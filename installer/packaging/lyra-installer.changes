@@ -47,7 +47,7 @@ Tue Aug 12 16:58:00 UTC 2026 - Lyra OS Team
   installed user's password.
 
 -------------------------------------------------------------------
-Wed Aug 12 12:00:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Wed Aug 12 12:00:00 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Override openSUSE's Defaults targetpw in the installed system so sudo
   authenticates with the invoking administrator's password instead of the
@@ -59,14 +59,14 @@ Wed Aug 12 12:00:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
   emits a terminal Failed event; never report a failed install as passed.
 
 -------------------------------------------------------------------
-Mon Aug 10 19:29:10 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Mon Aug 10 19:29:10 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Strip liveuser's live-session-only passwordless sudo drop-in
   (etc/sudoers.d/00-liveuser-nopasswd) from the installed system, matching
   the existing live-only artifact cleanup.
 
 -------------------------------------------------------------------
-Mon Aug 10 18:48:31 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Mon Aug 10 18:48:31 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Deactivate LVM volume groups with a physical volume on the target disk
   before wiping it, fixing partitioning failures on whole-disk installs
@@ -74,19 +74,19 @@ Mon Aug 10 18:48:31 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
   install.
 
 -------------------------------------------------------------------
-Mon Aug 10 17:28:48 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Mon Aug 10 17:28:48 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Release the target disk's mounted partitions and active swap before
   wiping it, fixing partitioning failures on whole-disk installs onto an
   already-occupied disk.
 
 -------------------------------------------------------------------
-Sun Aug  9 21:53:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sun Aug  9 21:53:00 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Standardize installer text and select controls at 13 px for readability.
 
 -------------------------------------------------------------------
-Sun Aug  9 20:12:38 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sun Aug  9 20:12:38 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Remove the live-only installer RPM before the first rollback snapshot.
 - Prevent package updates or rollback from restoring the privileged service
@@ -94,20 +94,20 @@ Sun Aug  9 20:12:38 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
 - Write private structured installer evidence for the Beta 2 release gate.
 
 -------------------------------------------------------------------
-Sun Aug  9 17:30:19 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sun Aug  9 17:30:19 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Restage the unchanged Beta 2 candidate through the reviewed staging flow.
 - Record release provenance only; no installer code or runtime payload changed.
 
 -------------------------------------------------------------------
-Sun Aug  9 17:01:48 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sun Aug  9 17:01:48 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Keep final installation controls in the stable footer; restore spacing
   between page kickers and enlarged titles; remain warning-free under Rust
   and Clippy 1.97.
 
 -------------------------------------------------------------------
-Sun Aug  9 13:43:49 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sun Aug  9 13:43:49 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Use one filesystem-wide Btrfs compression policy, compress=zstd:3.
 - Set NOCOW granularly on empty database and VM subvolume roots.
@@ -117,7 +117,7 @@ Sun Aug  9 13:43:49 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
   fail installation instead of silently generating an unthemed menu.
 
 -------------------------------------------------------------------
-Sun Aug  9 12:23:49 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sun Aug  9 12:23:49 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Match the Tauri GTK application ID and desktop ID on GNOME Wayland.
 - Declare the measured X11 WM_CLASS for correct launcher grouping.
@@ -125,18 +125,18 @@ Sun Aug  9 12:23:49 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
 - Validate the installer identity across Tauri, RPM, and the live image.
 
 -------------------------------------------------------------------
-Sun Aug  9 00:16:25 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sun Aug  9 00:16:25 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Remove the redundant administrator notice from account creation.
 
 -------------------------------------------------------------------
-Sat Aug  8 23:55:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sat Aug  8 23:55:00 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Allow the main Tauri window to listen for live installation events.
 - Center the decorated installer window within GNOME's monitor work area.
 
 -------------------------------------------------------------------
-Sat Aug  8 20:40:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sat Aug  8 20:40:00 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Align the account form into balanced, responsive rows.
 - Stream privileged installation events to the progress panel in real time.
@@ -156,14 +156,14 @@ Sat Aug  8 20:40:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
 - Enable the standard minimize and maximize window controls.
 
 -------------------------------------------------------------------
-Sat Aug  8 20:21:55 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sat Aug  8 20:21:55 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Skip optional desktop groups absent from the extracted Leap system.
 - Preserve users and wheel as mandatory account groups.
 - Include the failed executable and stderr in installation traces.
 
 -------------------------------------------------------------------
-Sat Aug  8 19:00:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sat Aug  8 19:00:00 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Require every command used by the privileged installation backend.
 - Include FAT32 and squashfs deployment tools in minimal live images.
@@ -172,7 +172,7 @@ Sat Aug  8 19:00:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
 - Write a password-redacted installation trace in the live user's home.
 
 -------------------------------------------------------------------
-Sat Aug  8 18:36:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sat Aug  8 18:36:00 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Wire the final confirmation screen to the privileged installation service.
 - Require explicit destructive confirmation and report terminal events.
@@ -180,7 +180,7 @@ Sat Aug  8 18:36:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
 - Display the packaged Lyra Installer logo in the wizard sidebar.
 
 -------------------------------------------------------------------
-Sat Aug  8 15:35:00 UTC 2026 - Rodrigo Brito <rodrigo@w3ti.com.br>
+Sat Aug  8 15:35:00 UTC 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
 
 - Promote Lyra Installer from experimental to the only Beta 2 installer.
 - Ship its launcher as the only live-session installer autostart.

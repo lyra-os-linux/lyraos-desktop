@@ -64,7 +64,7 @@ placeholder or disposable Alpha key is trusted. The canonical identity selected
 before the first signed Beta 1 candidate is:
 
 - **Fingerprint:** `01B6 3EED BE6B 0791 26A0  116E FA73 53A1 31EC EFEB`
-- **UID:** `Lyra OS Release <rodrigo@w3ti.com.br>`
+- **UID:** `Lyra OS Release <rodrigo@lyraos.com.br>`
 - **Public key:** [`docs/release-signing-key.asc`](release-signing-key.asc)
 
 The unused draft identity `E765 8249 6F86 597D A854 7BA4 FE28 7BB5 4891
