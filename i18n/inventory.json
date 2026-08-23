@@ -20,17 +20,6 @@
       "rationale": "Three embedded catalogs cover the application; completion and smoke evidence accepted from maintainer testing."
     },
     {
-      "id": "aladfar",
-      "project": "lyra",
-      "wave": "alpha5",
-      "status": "scheduled",
-      "format": "gettext",
-      "domain": "aladfar",
-      "selection": "LC_ALL/LC_MESSAGES/LANG",
-      "lint": "package i18n test",
-      "rationale": "Second-wave user interface scheduled by the release plan."
-    },
-    {
       "id": "beam",
       "project": "lyra",
       "wave": "alpha5",
