@@ -3,7 +3,7 @@
 Este documento define o fluxo normativo entre interface, planejamento e
 serviço privilegiado. A confirmação final já inicia a execução real e mostra
 o estado em andamento e os eventos terminais; o streaming de cada evento para
-a tela enquanto uma operação longa ainda roda continua pendente na #38.
+a tela enquanto uma operação longa ainda roda continua pendente na britors/Lyra#38.
 
 ## Estados
 
@@ -72,7 +72,7 @@ inválido encerra a execução antes da primeira operação.
 Eventos podem conter nome da etapa, detalhe técnico não secreto e mensagem de
 erro. Eles nunca incluem senha, conteúdo enviado a `chpasswd`, tokens ou
 chaves. A senha não entra em argv. A exportação persistente e revisável dos
-eventos é parte restante da #38; até ela existir, o serviço escreve somente o
+eventos é parte restante da britors/Lyra#38; até ela existir, o serviço escreve somente o
 stream JSON Lines consumido pelo frontend.
 
 ## Superfície privilegiada

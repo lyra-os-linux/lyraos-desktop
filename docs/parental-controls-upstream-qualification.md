@@ -1,6 +1,6 @@
 # Qualificação upstream de controles parentais
 
-Status: resultado técnico da #110  
+Status: resultado técnico da #6  
 Data da consulta: 18/08/2026  
 Alvo: Lyra OS Desktop 1.0, openSUSE Leap 16.0, x86_64
 
@@ -18,7 +18,7 @@ Consequentemente:
 - não copiar `libmalcontent` nem os helpers do BigLinux;
 - não criar fork privado permanente;
 - solicitar/manter o pacote pela cadeia GNOME/openSUSE e submetê-lo ao staging;
-- bloquear #114 até existir pacote qualificado ou exceção formal documentada.
+- bloquear #2 até existir pacote qualificado ou exceção formal documentada.
 
 Referências:
 
@@ -85,15 +85,15 @@ A futura arquitetura deve separar:
 - `ApplicationPolicyAdapter`: política upstream via malcontent;
 - `StoreAdapter`: autorização efetiva nos fluxos Vega/zypper/Flatpak;
 - `SessionAdapter`: agenda/quota com systemd/logind/PAM quando aprovado;
-- `AgeSignalProvider`: interface mínima ainda indefinida pela #106/#111.
+- `AgeSignalProvider`: interface mínima ainda indefinida pela #10/#111.
 
 Falha em qualquer adaptador obrigatório deve produzir estado explícito
 `Unavailable` ou `Blocked`, nunca liberação automática.
 
-## Gate da #110
+## Gate da #6
 
 A pesquisa e a decisão de qualificação estão concluídas. A integração ainda
-fica bloqueada pela ausência do pacote oficial. A #111 pode usar este resultado
-para desenhar a arquitetura, mas a #114 só inicia quando o pacote estiver
+fica bloqueada pela ausência do pacote oficial. A #5 pode usar este resultado
+para desenhar a arquitetura, mas a #2 só inicia quando o pacote estiver
 qualificado ou houver exceção formal com proprietário, manutenção, testes e
 plano de remoção.

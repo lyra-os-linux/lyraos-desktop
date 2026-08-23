@@ -1,7 +1,7 @@
 # Dossiê preparatório para o parecer do ECA Digital
 
 Status: **rascunho técnico para revisão jurídica — não é parecer jurídico**  
-Issue: #106  
+Issue: #10  
 Baseline consultada: 18/08/2026
 
 ## Finalidade e limite
@@ -11,7 +11,7 @@ ser validados por profissional especializado em tecnologia, infância e proteç�
 de dados. Ele não conclui o enquadramento jurídico do Lyra, do mantenedor, do
 Vega, do openSUSE, do OBS ou do Flathub e não autoriza aferição de idade.
 
-Até a assinatura do parecer e a aprovação da ADR #111:
+Até a assinatura do parecer e a aprovação da ADR #5:
 
 - não coletar documento, biometria, data de nascimento ou histórico de navegação;
 - não tratar autodeclaração, declaração parental ou tipo da conta como aferição
@@ -19,7 +19,7 @@ Até a assinatura do parecer e a aprovação da ADR #111:
 - não liberar conteúdo ou instalação por ausência de sinal;
 - não expor faixa etária por uma API geral;
 - não selecionar fornecedor ou mecanismo proprietário;
-- não implementar o serviço #114 nem a integração #109.
+- não implementar o serviço #2 nem a integração #7.
 
 ## Baseline normativa oficial
 
@@ -101,9 +101,9 @@ Até a assinatura do parecer e a aprovação da ADR #111:
 - inventário preliminar de dados — inclusive confirmação explícita de dados que
   não são coletados;
 - modelo de contas e capacidades administrativas;
-- resultados da auditoria #112 e qualificação upstream #110;
-- especificação de UX #108, sem assumir que ela cumpre a lei;
-- modelo de ameaça e proposta de retenção da futura ADR #111.
+- resultados da auditoria #4 e qualificação upstream #6;
+- especificação de UX #8, sem assumir que ela cumpre a lei;
+- modelo de ameaça e proposta de retenção da futura ADR #5.
 
 ## Candidato identificado para a revisão
 
@@ -129,7 +129,7 @@ Antes da contratação, solicitar:
 Também convém comparar ao menos uma segunda proposta especializada. A decisão
 de contratação e o parecer assinado permanecem atos externos ao repositório.
 
-## Gate de conclusão da #106
+## Gate de conclusão da #10
 
 A issue só pode ser fechada quando houver parecer datado e identificado,
 matriz revisada, posição fundamentada sobre o Vega, lacunas bloqueantes e

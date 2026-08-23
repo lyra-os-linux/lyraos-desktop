@@ -1,6 +1,6 @@
 # Experiência de supervisão parental no Vega
 
-Status: especificação de UX da #108 — implementação visual pertence à #109  
+Status: especificação de UX da #8 — implementação visual pertence à #7  
 Idiomas obrigatórios: `en-US`, `pt-BR`, `es-ES`  
 Fallback: `en-US`
 
@@ -66,7 +66,7 @@ retenção e campos explícitos.
 
 ### Etapa 3: sinal etário
 
-Esta etapa é um slot condicionado à ADR #111. Até o contrato ser aprovado, o
+Esta etapa é um slot condicionado à ADR #5. Até o contrato ser aprovado, o
 protótipo mostra:
 
 > O método de confirmação de idade ainda não está disponível. Nenhuma idade ou
@@ -214,7 +214,7 @@ Cada mensagem possui ID estável, sem concatenar frases:
 - dados, finalidade, retenção e consumidores;
 - códigos de indisponibilidade dos adaptadores.
 
-Catálogos completos nos três idiomas são requisito de merge da #109.
+Catálogos completos nos três idiomas são requisito de merge da #7.
 
 ## Pesquisa e validação antes da implementação
 
@@ -228,11 +228,11 @@ Catálogos completos nos três idiomas são requisito de merge da #109.
   administrador comprometido;
 - protótipo deve usar backend simulado, nunca dados reais de menores.
 
-## Critérios de aceite para #108
+## Critérios de aceite para #8
 
 - fluxos acima revisados por segurança, privacidade e acessibilidade;
-- método etário permanece slot bloqueado até #106/#111;
+- método etário permanece slot bloqueado até #10/#111;
 - perfil inicial protetivo e ausência de dark patterns demonstrados;
 - visão do usuário supervisionado e limitações explícitas presentes;
-- inventário i18n criado na implementação #109;
+- inventário i18n criado na implementação #7;
 - nenhum elemento do protótipo é confundido com enforcement funcional.

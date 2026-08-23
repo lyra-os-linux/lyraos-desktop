@@ -15,9 +15,9 @@ Depois de clonar o repositório, peça ao Codex:
 
 O repositório canônico é `git@github.com:lyra-os-linux/lyraos-desktop.git`,
 branch `main` (migrado de `britors/Lyra`, arquivado, em 2026-08-23 — as
-issues #90-#104 citadas abaixo vivem no repositório arquivado, não foram
-recriadas no novo). O último commit confirmado e publicado antes da
-formatação é:
+issues citadas abaixo por número já foram recriadas em `lyraos-desktop`
+com numeração nova; issues fechadas continuam apenas em `britors/Lyra`).
+O último commit confirmado e publicado antes da formatação é:
 
 ```text
 d5ea06471211fc2559d3f1c79a71c38d9a324fec
@@ -90,8 +90,8 @@ lyra-os.x86_64-2026.08-alpha5.verified
 
 ### Confiabilidade do instalador
 
-O commit `472cd8f` implementou as correções relacionadas às issues #90, #91 e
-#92:
+O commit `472cd8f` implementou as correções relacionadas às issues britors/Lyra#90, #23 e
+britors/Lyra#92:
 
 - política de assinatura alinhada ao estágio: SHA-256 sem assinatura GPG da ISO
   antes da Beta 1, sem relaxar assinaturas de repositório/RPM;
@@ -107,14 +107,14 @@ erros. `sudo` com a senha do usuário funcionou.
 Na primeira candidata o Fish informou falta do Git. O pacote `git` foi tornado
 explícito na imagem Desktop. Na VM, o mantenedor instalou Git para continuar os
 testes e confirmou o funcionamento. A correção definitiva está no manifesto da
-Alpha 5 e é acompanhada pela issue #104.
+Alpha 5 e é acompanhada pela issue #12.
 
 ### LinuxToys
 
 LinuxToys 6.6.2 foi empacotado como RPM do Lyra e incluído somente no profile
 Desktop. Os mecanismos próprios de atualização (`curl | bash` e `git pull`)
 foram desabilitados para que atualizações ocorram exclusivamente por RPM/Zypper.
-O pacote foi construído no OBS, promovido e testado com sucesso. Issue #95.
+O pacote foi construído no OBS, promovido e testado com sucesso. Issue #21.
 
 ### Lyra Welcome
 
@@ -221,46 +221,46 @@ continuam desejáveis durante o ciclo.
    `./scripts/upload-desktop-alpha5-sourceforge.sh --verify-download`.
 7. Confirmar que o download público tem o SHA-256 registrado acima.
 8. Registrar/fechar as issues Alpha 5 já implementadas apenas depois de anexar
-   os commits e os resultados de teste: #90, #91, #92, #95 e #104.
-9. Triar #94 (NVIDIA/monitor externo) conforme hardware disponível; não afirmar
+   os commits e os resultados de teste: britors/Lyra#90, #23, britors/Lyra#92, #21 e #12.
+9. Triar #22 (NVIDIA/monitor externo) conforme hardware disponível; não afirmar
    que foi corrigida sem reprodução e evidência.
 10. Resolver a inconsistência de `docs/release-gate.md`, cujo título e texto
     ainda dizem Desktop Alpha 3. Definir um gate proporcional para Alphas e o
     gate completo a partir da Beta 1, preservando a ADR 0005.
-11. Retomar a arquitetura do Lyra Upgrade na issue #81. A implementação foi
-    deliberadamente movida para Alpha 6: epic #84 e issues #82, #83, #86, #88 e
-    #103. Não inserir o updater às pressas na Alpha 5 já validada.
+11. Retomar a arquitetura do Lyra Upgrade na issue #27. A implementação foi
+    deliberadamente movida para Alpha 6: epic #25 e issues #26, britors/Lyra#83, britors/Lyra#86, britors/Lyra#88 e
+    #13. Não inserir o updater às pressas na Alpha 5 já validada.
 
 ## Issues abertas relevantes
 
 ### Marcadas Alpha 5
 
-- #104 — incluir Git para Fish/nvm-fish: implementada, falta atualizar/fechar;
-- #95 — pré-instalar LinuxToys: implementada e publicada no OBS, falta fechar;
-- #94 — monitor externo NVIDIA não acorda após DPMS/suspensão: pendente;
-- #92 — falha de desmontagem não pode virar sucesso: implementada;
-- #91 — teste destrutivo fail-closed: implementada;
-- #90 — assinatura por estágio: implementada;
-- #81 — contratos do Lyra Upgrade: ainda aberta; reavaliar escopo/label porque
+- #12 — incluir Git para Fish/nvm-fish: implementada, falta atualizar/fechar;
+- #21 — pré-instalar LinuxToys: implementada e publicada no OBS, falta fechar;
+- #22 — monitor externo NVIDIA não acorda após DPMS/suspensão: pendente;
+- britors/Lyra#92 — falha de desmontagem não pode virar sucesso: implementada;
+- #23 — teste destrutivo fail-closed: implementada;
+- britors/Lyra#90 — assinatura por estágio: implementada;
+- #27 — contratos do Lyra Upgrade: ainda aberta; reavaliar escopo/label porque
   a implementação está planejada para Alpha 6;
-- #84 e #73 — epics que atravessam versões.
+- #25 e #29 — epics que atravessam versões.
 
 ### Próximo foco planejado
 
 A Alpha 6 concentra o Lyra Upgrade:
 
-- #103 — aplicativo em Rust;
-- #86 — core, preflight e máquina de estados;
-- #83 — serviço privilegiado e atualização da mesma release;
-- #82 — upgrade entre releases;
-- #88 — interface Tauri e i18n.
+- #13 — aplicativo em Rust;
+- britors/Lyra#86 — core, preflight e máquina de estados;
+- britors/Lyra#83 — serviço privilegiado e atualização da mesma release;
+- #26 — upgrade entre releases;
+- britors/Lyra#88 — interface Tauri e i18n.
 
 A arquitetura deve aproveitar Zypper, Snapper e rollback do openSUSE. O projeto
 considerou usar um JSON publicado junto aos arquivos do SourceForge para
 informar a versão atual e versões antigas/suportadas. A ideia é promissora, mas
 o documento deve ser autenticado, validado por schema, servido com política de
 fallback segura e nunca ser a única fonte de verdade para executar comandos
-privilegiados. Especificar isso em #81 antes de programar.
+privilegiados. Especificar isso em #27 antes de programar.
 
 ## Comandos de retomada e verificação
 

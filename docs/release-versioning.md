@@ -135,48 +135,48 @@ foi declarado suportado depois da validação no hardware G06 disponível.
 ### Desktop Alpha 5 — 14/08 a 28/08
 
 - corrigir os bloqueadores herdados do instalador e do pipeline de release
-  antes de ampliar o escopo (#90, #91 e #92).
+  antes de ampliar o escopo (britors/Lyra#90, #23 e britors/Lyra#92).
 - aprovar arquitetura, modelo de ameaças, protocolos e máquina de estados do
-  Lyra Upgrade (#81), pois esse contrato bloqueia as demais implementações.
-- concluir o enquadramento jurídico do ECA Digital (#106), auditar a referência
-  do BigLinux (#112), qualificar a base upstream (#110), especificar a
-  experiência no Vega (#108) e aprovar a arquitetura e os contratos (#111).
+  Lyra Upgrade (#27), pois esse contrato bloqueia as demais implementações.
+- concluir o enquadramento jurídico do ECA Digital (#10), auditar a referência
+  do BigLinux (#4), qualificar a base upstream (#6), especificar a
+  experiência no Vega (#8) e aprovar a arquitetura e os contratos (#5).
 - estabelecer a baseline e a cadência de acompanhamento regulatório LTS
-  (#113), sem autorizar ampliação silenciosa após o congelamento funcional.
-- concluído antecipadamente: todos os projetos e RPMs nos três idiomas (#78),
-  NVIDIA pelo Vega e remoção da ISO dedicada (#77) e qualificação na imagem
-  (#79).
+  (#3), sem autorizar ampliação silenciosa após o congelamento funcional.
+- concluído antecipadamente: todos os projetos e RPMs nos três idiomas (britors/Lyra#78),
+  NVIDIA pelo Vega e remoção da ISO dedicada (britors/Lyra#77) e qualificação na imagem
+  (britors/Lyra#79).
 
 ### Desktop Alpha 6 — 28/08 a 11/09
 
-- criar o programa Lyra Upgrade em Rust e estabilizar seu protocolo (#103).
+- criar o programa Lyra Upgrade em Rust e estabilizar seu protocolo (#13).
 - implementar o core não privilegiado, preflight, plano reproduzível e estado
-  durável do Lyra Upgrade (#86).
+  durável do Lyra Upgrade (britors/Lyra#86).
 - implementar o serviço privilegiado e a atualização segura dentro da mesma
-  release (#83), com testes de falha antes da integração.
+  release (britors/Lyra#83), com testes de falha antes da integração.
 - implementar o upgrade entre releases com manifesto assinado, simulação
-  reproduzível e aplicação offline (#82).
+  reproduzível e aplicação offline (#26).
 - criar a interface acessível e os três catálogos do Lyra Upgrade, incluindo
-  retomada da UI e apresentação de falhas (#88).
+  retomada da UI e apresentação de falhas (britors/Lyra#88).
 - implementar o serviço autenticado, versionado e persistente de políticas de
-  controle parental (#114), independente do processo gráfico do Vega.
+  controle parental (#2), independente do processo gráfico do Vega.
 
 ### Desktop Alpha 7 — 11/09 a 25/09
 
 - integrar no Vega a configuração parental e a autorização de aplicativos
-  sobre o backend já qualificado (#109).
+  sobre o backend já qualificado (#7).
 - concluído antecipadamente: verificação pós-boot, recuperação e rollback
-  determinístico pelo snapshot registrado na operação (#85).
+  determinístico pelo snapshot registrado na operação (britors/Lyra#85).
 
 ### Desktop Alpha 8 — 25/09 a 13/10
 
 - **25/set–06/out:** automatizar update, upgrade, reboot, Secure Boot e rollback
-  no release gate, usando RPMs reais do candidato (#87).
+  no release gate, usando RPMs reais do candidato (#24).
 - automatizar o gate de conformidade, privacidade e regressão do ECA Digital,
-  incluindo testes de evasão e evidências ligadas ao release (#107).
+  incluindo testes de evasão e evidências ligadas ao release (#9).
 - **06–13/out:** nenhuma feature nova. Corrigir defeitos, repetir o gate
   completo e auditar que toda feature 1.0 foi implementada ou formalmente
-  removida do escopo (#80).
+  removida do escopo (#28).
 
 **13/10/2026 é meta, não promoção automática.** A Beta 1 inicia o congelamento
 funcional somente após a última Alpha fechar os gates. Uma
