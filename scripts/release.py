@@ -155,29 +155,11 @@ def replace_once(text: str, pattern: str, replacement: str, path: Path) -> str:
     # No count= limit here on purpose: re.subn(..., count=1) always reports
     # count=1 for any match count >= 1, since it stops after the first
     # substitution - it can never detect "more than one match", which is
-    # exactly the failure mode this guard exists to catch (found the hard
-    # way once kiwi/config.xml grew a second <preferences>/<version>/volid
-    # block for the server profile - see replace_once_in_block below for
-    # patterns that are legitimately not unique file-wide).
+    # exactly the failure mode this guard exists to catch.
     updated, count = re.subn(pattern, lambda _: replacement, text, flags=re.MULTILINE)
     if count != 1:
         raise ValueError(f"expected one release field matching {pattern!r} in {path}")
     return updated
-
-
-def replace_once_in_block(
-    text: str, block_pattern: str, inner_pattern: str, replacement: str, path: Path
-) -> str:
-    """Like replace_once, but only within the single region matching
-    block_pattern - for fields such as <version>/volid that are legitimately
-    repeated once per KIWI profile, so replace_once's whole-file uniqueness
-    check does not apply."""
-    matches = list(re.finditer(block_pattern, text, flags=re.DOTALL))
-    if len(matches) != 1:
-        raise ValueError(f"expected one block matching {block_pattern!r} in {path}")
-    block = matches[0]
-    updated_inner = replace_once(block.group(0), inner_pattern, replacement, path)
-    return text[: block.start()] + updated_inner + text[block.end() :]
 
 
 def shell_value(value: str) -> str:
@@ -221,21 +203,14 @@ def render_files(release: Release) -> dict[Path, str]:
         f"    <specification>{release.specification}</specification>",
         xml_path,
     )
-    # <version> and volid= exist once per KIWI profile (desktop, server);
-    # scope both to the desktop preferences block so this script never
-    # touches the server profile's own version/volid (rendered separately
-    # by scripts/server-release.py from release-server.toml).
-    desktop_preferences_block = r'<preferences profiles="desktop">.*?</preferences>'
-    xml = replace_once_in_block(
+    xml = replace_once(
         xml,
-        desktop_preferences_block,
         r"^[ \t]*<version>[^<]+</version>$",
         f"    <version>{release.version_id}</version>",
         xml_path,
     )
-    xml = replace_once_in_block(
+    xml = replace_once(
         xml,
-        desktop_preferences_block,
         r'volid="[^"]+"',
         f'volid="{release.volume_id}"',
         xml_path,

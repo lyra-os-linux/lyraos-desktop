@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import dataclasses
 import importlib.util
 import json
 import stat
@@ -86,22 +85,18 @@ class ImagePolicyTests(unittest.TestCase):
 
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         desktop_packages = {
-            package.attrib["name"]
-            for packages in root.findall("packages")
-            if packages.attrib.get("profiles") == "desktop"
-            for package in packages.findall("package")
+            node.attrib["name"] for node in root.findall("packages/package")
         }
         self.assertIn("vega-gtk", desktop_packages)
 
     def test_canonical_sources_pass_repository_and_signature_policy(self) -> None:
         image_build.validate_sources(self.manifest)
 
-    def test_personal_obs_repository_is_desktop_only_and_low_precedence(self) -> None:
+    def test_personal_obs_repository_is_low_precedence(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         repository = root.find("repository[@alias='repo-rodrigosbrito']")
         self.assertIsNotNone(repository)
         assert repository is not None
-        self.assertEqual(repository.attrib["profiles"], "desktop")
         self.assertEqual(repository.attrib["priority"], "90")
         self.assertEqual(
             repository.find("source").attrib["path"],
@@ -172,24 +167,14 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("google-carlito-fonts", packages)
         self.assertIn("google-noto-sans-cjk-fonts", packages)
 
-    def test_fish_and_nvm_are_available_only_in_the_desktop_profile(self) -> None:
+    def test_fish_and_nvm_are_available(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
-        shared = next(
-            packages
-            for packages in root.findall("packages")
-            if packages.attrib.get("type") == "image" and "profiles" not in packages.attrib
-        )
-        desktop = root.find("packages[@type='image'][@profiles='desktop']")
-        server = root.find("packages[@type='image'][@profiles='server']")
-        assert desktop is not None
-        assert server is not None
+        packages = {node.attrib["name"] for node in root.findall("packages/package")}
 
         for package in ("fish", "nvm-fish", "git", "linuxtoys", "lyra-welcome"):
-            self.assertIsNotNone(desktop.find(f"package[@name='{package}']"))
-            self.assertIsNone(shared.find(f"package[@name='{package}']"))
-            self.assertIsNone(server.find(f"package[@name='{package}']"))
+            self.assertIn(package, packages)
 
-        live_user = root.find("users[@profiles='desktop']/user[@name='liveuser']")
+        live_user = root.find("users/user[@name='liveuser']")
         assert live_user is not None
         self.assertEqual(live_user.attrib["shell"], "/usr/bin/fish")
 
@@ -298,10 +283,7 @@ class ImagePolicyTests(unittest.TestCase):
     def test_chord_is_not_installed_or_pinned_on_the_desktop(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         desktop_packages = {
-            node.attrib["name"]
-            for packages in root.findall("packages")
-            if packages.attrib.get("profiles") in (None, "desktop")
-            for node in packages.findall("package")
+            node.attrib["name"] for node in root.findall("packages/package")
         }
         self.assertNotIn("chord", desktop_packages)
 
@@ -316,26 +298,16 @@ class ImagePolicyTests(unittest.TestCase):
         # (neither is a hard Requires of gnome_basic/gnome), so Bluetooth
         # never turned on and GNOME Shell's Ctrl+Shift+Alt+R screen
         # recorder silently failed while plain screenshots (a different,
-        # non-GStreamer code path) kept working. Desktop-only: the server
-        # profile is headless (docs/server-edition.md).
+        # non-GStreamer code path) kept working.
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         desktop_packages = {
-            node.attrib["name"]
-            for packages in root.findall('packages[@profiles="desktop"]')
-            for node in packages.findall("package")
-        }
-        server_packages = {
-            node.attrib["name"]
-            for packages in root.findall('packages[@profiles="server"]')
-            for node in packages.findall("package")
+            node.attrib["name"] for node in root.findall("packages/package")
         }
         for name in ("bluez", "bluez-firmware", "gnome-bluetooth", "gstreamer-plugins-good"):
             self.assertIn(name, desktop_packages, name)
-            self.assertNotIn(name, server_packages, name)
 
         config_sh = (ROOT / "kiwi/config.sh").read_text(encoding="utf-8")
-        # Must be inside the desktop-only display-manager block, not the
-        # shared/server path (config.sh runs once per profile build).
+        # Must be inside the display-manager block.
         desktop_branch = config_sh[
             config_sh.index("# Display manager") : config_sh.index("# zram-generator")
         ]
@@ -347,33 +319,17 @@ class ImagePolicyTests(unittest.TestCase):
         # obtain battery state and therefore displayed no battery icon.
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         desktop_packages = {
-            node.attrib["name"]
-            for packages in root.findall('packages[@profiles="desktop"]')
-            for node in packages.findall("package")
-        }
-        server_packages = {
-            node.attrib["name"]
-            for packages in root.findall('packages[@profiles="server"]')
-            for node in packages.findall("package")
+            node.attrib["name"] for node in root.findall("packages/package")
         }
         self.assertIn("upower", desktop_packages)
-        self.assertNotIn("upower", server_packages)
 
     def test_desktop_installs_explicit_alsa_userspace_stack(self) -> None:
         # PipeWire remains the desktop audio server, while these packages
         # provide ALSA hardware profiles, diagnostics and compatibility for
-        # applications that do not use PipeWire directly. Keep the set
-        # desktop-only instead of growing the headless Server image.
+        # applications that do not use PipeWire directly.
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         desktop_packages = {
-            node.attrib["name"]
-            for packages in root.findall('packages[@profiles="desktop"]')
-            for node in packages.findall("package")
-        }
-        server_packages = {
-            node.attrib["name"]
-            for packages in root.findall('packages[@profiles="server"]')
-            for node in packages.findall("package")
+            node.attrib["name"] for node in root.findall("packages/package")
         }
         alsa_packages = {
             "alsa",
@@ -386,14 +342,11 @@ class ImagePolicyTests(unittest.TestCase):
             "libatopology2",
         }
         self.assertTrue(alsa_packages.issubset(desktop_packages))
-        self.assertTrue(alsa_packages.isdisjoint(server_packages))
 
     def test_mozilla_apps_follow_installed_system_locale(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         desktop_packages = {
-            node.attrib["name"]
-            for packages in root.findall('packages[@profiles="desktop"]')
-            for node in packages.findall("package")
+            node.attrib["name"] for node in root.findall("packages/package")
         }
         self.assertIn("MozillaFirefox", desktop_packages)
         self.assertIn("MozillaFirefox-translations-common", desktop_packages)
@@ -453,9 +406,7 @@ class ImagePolicyTests(unittest.TestCase):
     def test_desktop_app_curation_uses_vlc_without_gnome_software_or_monitor(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         desktop_packages = {
-            node.attrib["name"]
-            for packages in root.findall('packages[@profiles="desktop"]')
-            for node in packages.findall("package")
+            node.attrib["name"] for node in root.findall("packages/package")
         }
 
         self.assertIn("vlc", desktop_packages)
@@ -498,11 +449,8 @@ class ImagePolicyTests(unittest.TestCase):
         hook = hook_path.read_text(encoding="utf-8")
         self.assertIn("GRUB_THEME_ASSET=usr/share/grub/themes/Lyra-OS/theme.txt", hook)
         self.assertIn('GRUB_THEME="/usr/share/grub/themes/Lyra-OS/theme.txt"', hook)
-        # Real regression, found running --profile server in a VM: this hook
-        # used to hard-require the theme asset unconditionally, which broke
-        # the server profile build (no lyra-os-theme there,
-        # docs/server-edition.md). It must be conditional on the asset
-        # existing, not on a hardcoded profile name.
+        # The hook must be conditional on the theme asset existing, not
+        # assume it is always present.
         self.assertIn('if [ -s "$GRUB_THEME_ASSET" ]; then', hook)
         helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
         self.assertIn("IMAGE_INSTALLED_GRUB_THEME", helper)
@@ -577,15 +525,6 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("existing ISO contains an unreadable/corrupt live SquashFS", helper)
         self.assertIn("refusing to boot with --skip-build", helper)
 
-    def test_vm_helper_forwards_ssh_and_vega_web_ports_for_server(self) -> None:
-        # QEMU's user-mode/SLIRP networking is NAT-only by default - without
-        # hostfwd, the server profile's ssh/vega-web could not be reached
-        # from the host running the VM at all.
-        helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
-        self.assertIn("hostfwd=tcp::2222-:22", helper)
-        self.assertIn("hostfwd=tcp::9090-:9090", helper)
-        self.assertIn('if [ "$PROFILE" = server ]; then', helper)
-
     def test_export_is_derived_from_canonical_kiwi_without_duplicate_package_list(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             destination = Path(temporary) / "export"
@@ -617,42 +556,6 @@ class ImagePolicyTests(unittest.TestCase):
             self.assertRegex(source["commit"], r"^[0-9a-f]{40}$")
             self.assertFalse(source["dirty"])
             self.assertTrue((destination / "root.tar.gz").is_file())
-
-    def test_export_includes_the_server_profile_overlay(self) -> None:
-        # kiwi/server/ overlays getty autologin, the pinned console
-        # installer and release metadata on top of root/ only when the
-        # server profile is selected (kiwi.system.setup.import_overlay_files).
-        # A `kiwi-ng system build --profile server` against an export
-        # missing this directory would fail immediately - config.sh
-        # requires /usr/lib/lyra-os/server-release, which only exists here.
-        with tempfile.TemporaryDirectory() as temporary:
-            destination = Path(temporary) / "export"
-            real_git = image_build.git
-            with mock.patch.object(
-                image_build,
-                "git",
-                side_effect=lambda *args: "" if args[0] == "status" else real_git(*args),
-            ):
-                image_build.export(self.manifest, destination, "HEAD", allow_dirty=False)
-            self.assertTrue((destination / "server/usr/lib/lyra-os/server-release").is_file())
-            self.assertTrue((destination / "server/usr/sbin/lyra-server-install").is_file())
-            self.assertTrue(
-                (destination / "server/etc/systemd/system/getty@tty1.service.d/override.conf").is_file()
-            )
-            self.assertTrue(
-                (destination / "server/etc/profile.d/lyra-server-info.sh").is_file()
-            )
-
-    def test_server_login_banner_shows_ip_cpu_disk_memory(self) -> None:
-        banner = (
-            ROOT / "kiwi/server/etc/profile.d/lyra-server-info.sh"
-        ).read_text(encoding="utf-8")
-        self.assertIn("ip -4", banner)
-        self.assertIn("/proc/cpuinfo", banner)
-        self.assertIn("free ", banner)
-        self.assertIn("df -h /", banner)
-        self.assertIn("uname -n", banner)
-        self.assertNotIn("$(hostname)", banner)
 
     def test_root_archive_is_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -690,80 +593,6 @@ class ImagePolicyTests(unittest.TestCase):
                 image_build.export(self.manifest, destination, "HEAD", allow_dirty=True)
             with self.assertRaisesRegex(image_build.PolicyError, "source identity"):
                 image_build.verify_export(self.manifest, destination)
-
-
-class ServerImagePolicyTests(unittest.TestCase):
-    # image-build-server.toml exists specifically so the server profile can
-    # go through the same export/validate/artifact-manifest pipeline as
-    # the desktop (docs/server-edition.md - initially left out on purpose,
-    # added when Rodrigo asked to prepare a real alpha1 release). Both
-    # profiles share <image name="lyra-os"> in kiwi/config.xml (cannot be
-    # scoped per KIWI profile), so Manifest gained its own "profile" field
-    # to tell the two whitelists apart in validate() instead.
-
-    def setUp(self) -> None:
-        self.manifest = image_build.Manifest.load(ROOT / "image-build-server.toml")
-
-    def test_server_manifest_loads_with_its_own_profile_and_sources(self) -> None:
-        self.assertEqual(self.manifest.profile, "server")
-        projects = [source.project for source in self.manifest.package_sources]
-        self.assertEqual(projects, ["home:rodrigosbrito:lyra", "home:rodrigosbrito:vega"])
-        self.assertNotIn("home:rodrigosbrito:fina", projects)
-        self.assertNotIn("Virtualization:Appliances:Builder", projects)
-        self.assertNotIn("rollback", self.manifest.required_test_results)
-        self.assertIn("checksum_signature", self.manifest.required_artifacts)
-
-    def test_desktop_manifest_still_defaults_to_the_desktop_profile(self) -> None:
-        desktop_manifest = image_build.Manifest.load()
-        self.assertEqual(desktop_manifest.profile, "desktop")
-        self.assertIn("rollback", desktop_manifest.required_test_results)
-
-    def test_validate_sources_checks_the_server_preferences_block(self) -> None:
-        image_build.validate_sources(
-            self.manifest, profile="server", release_file=ROOT / "release-server.toml"
-        )
-
-    def test_validate_sources_rejects_a_profile_release_file_mismatch(self) -> None:
-        # The desktop and server <preferences> blocks carry different
-        # <version> values (independent release cycles - docs/server-edition.md).
-        # Comparing the server's KIWI block against the desktop's
-        # release.toml (or vice versa) must fail loudly, not silently pass.
-        with self.assertRaisesRegex(image_build.PolicyError, "does not belong to profile"):
-            image_build.validate_sources(self.manifest, profile="server", release_file=image_build.RELEASE)
-
-    def test_build_identity_rejects_a_manifest_profile_mismatch(self) -> None:
-        with self.assertRaisesRegex(image_build.PolicyError, "differs from manifest profile"):
-            image_build.build_identity(
-                self.manifest,
-                profile="desktop",
-                release_file=ROOT / "release-server.toml",
-            )
-
-    def test_server_identity_is_derived_from_the_manifest(self) -> None:
-        profile, release_file = image_build.build_identity(self.manifest)
-        self.assertEqual(profile, "server")
-        self.assertEqual(release_file, ROOT / "release-server.toml")
-
-    def test_identity_options_are_accepted_after_the_subcommand(self) -> None:
-        args = image_build.parser().parse_args(
-            [
-                "validate",
-                "--manifest",
-                "image-build-server.toml",
-                "--profile",
-                "server",
-                "--release-file",
-                "release-server.toml",
-            ]
-        )
-        self.assertEqual(args.manifest, Path("image-build-server.toml"))
-        self.assertEqual(args.profile, "server")
-        self.assertEqual(args.release_file, Path("release-server.toml"))
-
-    def test_invalid_profile_is_rejected(self) -> None:
-        bogus = dataclasses.replace(self.manifest, profile="bogus")
-        with self.assertRaisesRegex(image_build.PolicyError, "profile must be desktop or server"):
-            bogus.validate()
 
 
 class ArtifactTests(unittest.TestCase):

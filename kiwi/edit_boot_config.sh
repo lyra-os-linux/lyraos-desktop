@@ -22,11 +22,9 @@ if [ ! -f "$GRUB_DEFAULTS" ]; then
   exit 1
 fi
 
-# lyra-os-theme (and its GRUB_THEME asset) is desktop-only
-# (docs/server-edition.md) - the server profile has no theme package
-# installed, so this hook is a no-op for it instead of a hard requirement.
-# Presence of the asset, not $kiwi_profiles (unavailable to this
-# non-chrooted hook), is what actually distinguishes the two here.
+# Guard on the asset actually being present instead of hard-requiring it,
+# so this hook is a no-op rather than a failure if lyra-os-theme is ever
+# absent from a build.
 if [ -s "$GRUB_THEME_ASSET" ]; then
   # KIWI's live bootloader writer uses /boot/grub2/themes for the ISO menu
   # and can overwrite the value previously written by the theme RPM/config.sh.

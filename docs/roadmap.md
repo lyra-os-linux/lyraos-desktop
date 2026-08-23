@@ -47,25 +47,6 @@ mudança, pacotes meta que mantenham KMP, userspace e firmware em lockstep,
 declarado suportado com um P1 aberto; a pendência da Alpha 4 fica registrada
 explicitamente na Alpha 5.
 
-## Lyra OS Server 1.0 “Delos”
-
-O Server 1.0 usa o codinome **Delos** e segue um ciclo independente com a
-mesma cadência e os mesmos gates
-P0–P3 do Desktop. Em 15/08/2026 o mantenedor encerrou antecipadamente o
-desenvolvimento funcional e promoveu o ciclo diretamente para Beta 1. As
-correções bloqueantes já identificadas e o fechamento das evidências
-ocupam esta etapa; nenhuma feature nova será aceita. O plano anterior da
-Alpha 3 foi absorvido pela estabilização da Beta 1. O alvo antecipado da final é
-aproximadamente 26/01/2027, com buffer até aproximadamente 16/02/2027. O
-cronograma detalhado e os critérios de saída estão em
-[`release-versioning.md`](release-versioning.md#lyra-os-server-10).
-
-O ciclo seguinte será o **Lyra OS Server 1.1 “Tebas”**, baseado no openSUSE
-Leap 16.1. Ele começa em 01/03/2027 e mantém gate independente: três Alphas
-de três semanas, três Betas de quatro semanas, duas RCs de duas semanas e
-buffer de duas semanas para a final estável, prevista para aproximadamente
-06/09/2027.
-
 ## NVIDIA em uma única ISO Desktop
 
 A ISO NVIDIA dedicada foi cancelada. A instalação opcional via Vega foi
@@ -77,11 +58,9 @@ históricas e alimentam esse fluxo; não representam uma segunda imagem.
 
 ## Congelamento funcional a partir da Beta 1
 
-A Server Beta 1 foi iniciada antecipadamente em 15/08/2026 por decisão do
-mantenedor, com o escopo funcional encerrado. A Desktop Beta 1 mantém
-13/10/2026 como meta; Alpha 5, Alpha 6, Alpha 7 e Alpha 8 continuam etapas
-obrigatórias do Desktop. Em ambas as edições, Betas e RCs não recebem novas
-features e os gates não são reduzidos para cumprir calendário.
+A Desktop Beta 1 mantém 13/10/2026 como meta; Alpha 5, Alpha 6, Alpha 7 e
+Alpha 8 continuam etapas obrigatórias do Desktop. Betas e RCs não recebem
+novas features e os gates não são reduzidos para cumprir calendário.
 
 São permitidas somente correções de bugs, regressões, segurança, desempenho e
 traduções já existentes. A Beta 3 faz QA linguístico e corrige catálogos, mas

@@ -227,9 +227,6 @@ def write_report(
         "schema_version": 1,
         "product": product,
         "version": version,
-        # codename is a desktop-only field (docs/server-edition.md: the
-        # server edition has none by design); .get() keeps this null
-        # instead of raising for release-server.toml.
         "codename": release.get("codename"),
         "source": {"commit": commit, "commit_epoch": epoch, "built_at": built_at},
         "iso": {"filename": iso.name, "size_bytes": iso.stat().st_size, "sha256": sha256(iso)},
@@ -299,12 +296,12 @@ def parser() -> argparse.ArgumentParser:
         "--release-file",
         type=Path,
         default=RELEASE,
-        help="release.toml (desktop, default) or release-server.toml (server)",
+        help="release metadata TOML file (default: release.toml)",
     )
     generate_command.add_argument(
         "--product",
         default="Lyra OS",
-        help='report "product" field, e.g. "Lyra OS Server"',
+        help='report "product" field',
     )
     return cli
 

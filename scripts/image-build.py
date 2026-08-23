@@ -26,10 +26,6 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / "image-build.toml"
 KIWI = ROOT / "kiwi"
 RELEASE = ROOT / "release.toml"
-PROFILE_RELEASE_FILES = {
-    "desktop": RELEASE,
-    "server": ROOT / "release-server.toml",
-}
 PACKAGE_SIGNING_KEYRING = KIWI / "keys/obs-package-signing-keyring.asc"
 PACKAGE_SIGNING_FINGERPRINTS = {
     "1C59D66FCD52563A16933DBCFEC28EAF09D9EA69",
@@ -69,13 +65,6 @@ class Manifest:
     package_sources: tuple[ObsPackageSource, ...]
     required_artifacts: tuple[str, ...]
     required_test_results: tuple[str, ...]
-    # "desktop" (default, image-build.toml) or "server"
-    # (image-build-server.toml) - selects which whitelist validate() checks
-    # package_sources/required_test_results against below. Both products
-    # share <image name="lyra-os"> in kiwi/config.xml (it cannot be scoped
-    # per KIWI profile - docs/server-edition.md), so image_name alone
-    # cannot tell them apart; this field is what does.
-    profile: str = "desktop"
 
     @classmethod
     def load(cls, path: Path = DEFAULT_MANIFEST) -> "Manifest":
@@ -101,7 +90,6 @@ class Manifest:
             ),
             required_artifacts=tuple(data["artifacts"]["required"]),
             required_test_results=tuple(data["evidence"]["required_test_results"]),
-            profile=image.get("profile", "desktop"),
         )
         result.validate()
         return result
@@ -120,45 +108,23 @@ class Manifest:
             raise PolicyError("invalid image identifier")
         if self.description != "config.xml":
             raise PolicyError("the exported KIWI description must be config.xml")
-        if self.profile not in ("desktop", "server"):
-            raise PolicyError("image profile must be desktop or server")
-        # Desktop and server each get their own fixed whitelist - loosening
-        # this to "any subset" would defeat the point (the whole file's
-        # posture is that image-build.toml records approved policy, not a
-        # free-form config). Server excludes home:rodrigosbrito:fina
-        # (desktop-only component) and Virtualization:Appliances:Builder
-        # (desktop image test tooling only), and excludes "rollback" from
-        # evidence (no Btrfs/Snapper in the server's v1 installer) - all
-        # per docs/server-edition.md.
-        if self.profile == "desktop":
-            expected_sources = (
-                ObsPackageSource("home:rodrigosbrito:lyra", "openSUSE_Leap_16.0"),
-                ObsPackageSource("home:rodrigosbrito:vega", "openSUSE_Leap_16.0"),
-                ObsPackageSource("home:rodrigosbrito:fina", "openSUSE_Leap_16.0"),
-                ObsPackageSource("Virtualization:Appliances:Builder", "openSUSE_Leap_16.0"),
-            )
-            expected_results = {
-                "obs-repositories",
-                "live-session",
-                "installer",
-                "first-boot",
-                "uefi-secure-boot",
-                "rollback",
-                "hardware-matrix",
-            }
-        else:
-            expected_sources = (
-                ObsPackageSource("home:rodrigosbrito:lyra", "openSUSE_Leap_16.0"),
-                ObsPackageSource("home:rodrigosbrito:vega", "openSUSE_Leap_16.0"),
-            )
-            expected_results = {
-                "obs-repositories",
-                "live-session",
-                "installer",
-                "first-boot",
-                "uefi-secure-boot",
-                "hardware-matrix",
-            }
+        # image-build.toml records approved policy, not a free-form config -
+        # loosening this to "any subset" would defeat the point.
+        expected_sources = (
+            ObsPackageSource("home:rodrigosbrito:lyra", "openSUSE_Leap_16.0"),
+            ObsPackageSource("home:rodrigosbrito:vega", "openSUSE_Leap_16.0"),
+            ObsPackageSource("home:rodrigosbrito:fina", "openSUSE_Leap_16.0"),
+            ObsPackageSource("Virtualization:Appliances:Builder", "openSUSE_Leap_16.0"),
+        )
+        expected_results = {
+            "obs-repositories",
+            "live-session",
+            "installer",
+            "first-boot",
+            "uefi-secure-boot",
+            "rollback",
+            "hardware-matrix",
+        }
         if self.package_sources != expected_sources:
             raise PolicyError("OBS RPM package sources are incomplete or out of order")
         expected_artifacts = {
@@ -202,7 +168,7 @@ def version_id(release_file: Path = RELEASE) -> str:
 def required_artifact_roles(manifest: Manifest, release_file: Path) -> tuple[str, ...]:
     """Return the artifact policy that applies to the release stage.
 
-    The profile manifest is shared by every stage.  Alpha releases deliberately
+    The manifest is shared by every stage.  Alpha releases deliberately
     publish a checksum without a detached release signature (ADR 0005), while
     Beta, RC and final candidates must carry one.  Keep the stage decision here
     so source validation and final evidence cannot disagree about the bundle.
@@ -280,34 +246,8 @@ def validate_installer_identity() -> None:
         raise PolicyError("KIWI installer icon differs from the packaged icon")
 
 
-def build_identity(
-    manifest: Manifest,
-    *,
-    profile: str | None = None,
-    release_file: Path | None = None,
-) -> tuple[str, Path]:
-    """Return a coherent profile/release pair, rejecting mixed products."""
-    effective_profile = profile or manifest.profile
-    if effective_profile != manifest.profile:
-        raise PolicyError(
-            f"CLI profile {effective_profile!r} differs from manifest profile {manifest.profile!r}"
-        )
-    expected_release = PROFILE_RELEASE_FILES[manifest.profile]
-    effective_release = release_file or expected_release
-    if effective_release.resolve() != expected_release.resolve():
-        raise PolicyError(
-            f"release file {effective_release.name!r} does not belong to profile {manifest.profile!r}; "
-            f"expected {expected_release.name!r}"
-        )
-    return effective_profile, effective_release
-
-
-def validate_sources(
-    manifest: Manifest, *, profile: str | None = None, release_file: Path | None = None
-) -> None:
-    profile, release_file = build_identity(
-        manifest, profile=profile, release_file=release_file
-    )
+def validate_sources(manifest: Manifest, *, release_file: Path | None = None) -> None:
+    release_file = release_file or RELEASE
     release = release_values(release_file)
     signature_required = release["stage"] != "alpha"
     has_signature = "checksum_signature" in manifest.required_artifacts
@@ -362,10 +302,8 @@ def validate_sources(
     root = canonical_xml().getroot()
     if root.attrib.get("name") != manifest.image_name:
         raise PolicyError("KIWI image name differs from image-build.toml")
-    # <preferences> is repeated once per KIWI profile (desktop, server -
-    # see kiwi/config.xml's top comment); only the block for the profile
-    # actually being validated carries the <version> that has to match.
-    version = root.findtext(f'preferences[@profiles=\'{profile}\']/version')
+    # config.xml has two <preferences> blocks; only one carries <version>.
+    version = root.findtext("preferences/version")
     if version != version_id(release_file):
         raise PolicyError(f"KIWI version {version!r} differs from {release_file.name}")
     if root.findtext("preferences/rpm-check-signatures") != "true":
@@ -405,8 +343,8 @@ def validate_sources(
     if aliases != expected_repositories:
         raise PolicyError("canonical KIWI repository aliases differ from policy")
     personal = root.find("repository[@alias='repo-rodrigosbrito']")
-    if personal is None or personal.attrib.get("profiles") != "desktop":
-        raise PolicyError("repo-rodrigosbrito must be restricted to the desktop profile")
+    if personal is None:
+        raise PolicyError("repo-rodrigosbrito repository is missing")
     if personal.attrib.get("priority") != "90":
         raise PolicyError("repo-rodrigosbrito must use normal installed-system priority 90")
     config = (KIWI / "config.sh").read_text(encoding="utf-8")
@@ -479,10 +417,9 @@ def export(
     commit: str,
     allow_dirty: bool,
     *,
-    profile: str | None = None,
     release_file: Path | None = None,
 ) -> None:
-    validate_sources(manifest, profile=profile, release_file=release_file)
+    validate_sources(manifest, release_file=release_file)
     dirty = bool(git("status", "--porcelain", "--untracked-files=normal"))
     if dirty and not allow_dirty:
         raise PolicyError("working tree is dirty; commit the image sources before export")
@@ -494,18 +431,6 @@ def export(
         shutil.copy2(KIWI / name, destination / name)
     shutil.copytree(KIWI / "keys", destination / "keys")
     shutil.copytree(KIWI / "root", destination / "root", symlinks=True)
-    # KIWI overlays a directory named after each active profile on top of
-    # root/ (kiwi.system.setup.import_overlay_files) - e.g. kiwi/server/
-    # for the server profile's getty autologin, pinned installer script
-    # and release metadata (docs/server-edition.md). Reading profile names
-    # from config.xml instead of hardcoding them means a new profile's
-    # overlay directory is picked up automatically as soon as it exists,
-    # with no export()-side change required.
-    for profile in canonical_xml().getroot().findall("profiles/profile"):
-        profile_name = profile.attrib["name"]
-        profile_dir = KIWI / profile_name
-        if profile_dir.is_dir():
-            shutil.copytree(profile_dir, destination / profile_name, symlinks=True)
     (destination / "build-source.json").write_text(
         json.dumps(metadata, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
@@ -664,7 +589,7 @@ def artifact_manifest(
     *,
     release_file: Path | None = None,
 ) -> None:
-    _, release_file = build_identity(manifest, release_file=release_file)
+    release_file = release_file or RELEASE
     artifact_patterns = {
         "iso": ("*.iso", "ISO"),
         "packages": ("*.packages", "package revision list"),
@@ -739,7 +664,6 @@ def artifact_manifest(
 def parser() -> argparse.ArgumentParser:
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
-    cli.add_argument("--profile")
     cli.add_argument("--release-file", type=Path)
     commands = cli.add_subparsers(dest="command", required=True)
 
@@ -749,7 +673,6 @@ def parser() -> argparse.ArgumentParser:
     # value supplied before the subcommand when none follows it.
     def add_identity_options(command: argparse.ArgumentParser) -> None:
         command.add_argument("--manifest", type=Path, default=argparse.SUPPRESS)
-        command.add_argument("--profile", default=argparse.SUPPRESS)
         command.add_argument("--release-file", type=Path, default=argparse.SUPPRESS)
 
     validate = commands.add_parser("validate")
@@ -774,11 +697,9 @@ def main() -> int:
     args = parser().parse_args()
     try:
         manifest = Manifest.load(args.manifest)
-        profile, release_file = build_identity(
-            manifest, profile=args.profile, release_file=args.release_file
-        )
+        release_file = args.release_file or RELEASE
         if args.command == "validate":
-            validate_sources(manifest, profile=profile, release_file=release_file)
+            validate_sources(manifest, release_file=release_file)
             print("OK: GitHub sources, RPM repositories, signatures, and distribution policy are valid")
         elif args.command == "export":
             export(
@@ -786,7 +707,6 @@ def main() -> int:
                 args.destination,
                 args.commit,
                 args.allow_dirty,
-                profile=profile,
                 release_file=release_file,
             )
         elif args.command == "verify-export":

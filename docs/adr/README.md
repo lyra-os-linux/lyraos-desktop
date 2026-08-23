@@ -13,6 +13,7 @@ nova não apaga a anterior: cria outro ADR que a substitui e aponta para ela.
 | [0006](0006-btrfs-mount-policy-and-plan-v3.md) | Política Btrfs global e NOCOW granular, plano versão 3 | Aceita |
 | [0007](0007-lyra-upgrade-trust-boundaries.md) | Fronteiras, protocolo e persistência do Lyra Upgrade | Aceita |
 | [0008](0008-private-age-signal-and-parental-supervision.md) | Sinal etário privado e supervisão parental | Proposta — bloqueada pela #106 |
+| [0009](0009-server-edition-own-repository.md) | Edição Server migra para repositório próprio (britors/lyra-os-server) | Aceita |
 
 Mudanças incompatíveis no formato do plano precisam incrementar
 `INSTALL_PLAN_SCHEMA_VERSION`, atualizar o ADR 0002 por meio de um novo ADR e

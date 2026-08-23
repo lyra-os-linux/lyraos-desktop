@@ -1,28 +1,16 @@
 #!/bin/bash
 #
-# Lyra OS - Odisseia (desktop) + Lyra OS Server
-# KIWI config.sh: runs chrooted into the image after packages are installed,
-# once per profile build. $kiwi_profiles (from /.profile) tells the two
-# profiles apart; see kiwi/config.xml's top comment and
-# docs/server-edition.md for what actually differs between them.
+# Lyra OS - Odisseia (desktop)
+# KIWI config.sh: runs chrooted into the image after packages are installed.
 
 set -euo pipefail
 
 test -f /.kconfig && . /.kconfig
 test -f /.profile && . /.profile
 
-echo "Configuring image: [$kiwi_iname] profiles=[${kiwi_profiles:-}]..."
+echo "Configuring image: [$kiwi_iname]..."
 
-case ",${kiwi_profiles:-}," in
-    *,server,*) IS_SERVER=1 ;;
-    *) IS_SERVER=0 ;;
-esac
-
-if [ "$IS_SERVER" = 1 ]; then
-    RELEASE_METADATA=/usr/lib/lyra-os/server-release
-else
-    RELEASE_METADATA=/usr/lib/lyra-os/release
-fi
+RELEASE_METADATA=/usr/lib/lyra-os/release
 if [ ! -r "$RELEASE_METADATA" ]; then
     echo "Missing generated release metadata: $RELEASE_METADATA" >&2
     exit 1
@@ -75,131 +63,113 @@ ln -sfn ../proc/self/mounts /etc/mtab
 suseInsertService NetworkManager
 suseInsertService firewalld
 
-if [ "$IS_SERVER" = 1 ]; then
-    # No GDM/graphical session on this profile. The console opens via a
-    # systemd getty autologin as root instead (overlaid by
-    # kiwi/server/etc/systemd/system/getty@tty1.service.d/ - a static
-    # drop-in needs no service-enable step here), which then runs
-    # scripts/server-install.sh (pinned as
-    # kiwi/server/usr/sbin/lyra-server-install) from root's
-    # .bash_profile. Both the getty override and the installer script are
-    # live-only and get stripped by the installer itself once a disk is
-    # in place - see scripts/server-install.sh's "strip live-only
-    # artifacts" step.
-    :
-else
-    # Display manager
-    baseUpdateSysConfig /etc/sysconfig/displaymanager DISPLAYMANAGER gdm
-    suseInsertService gdm
+# Display manager
+baseUpdateSysConfig /etc/sysconfig/displaymanager DISPLAYMANAGER gdm
+suseInsertService gdm
 
-    # bluez is present but its service isn't enabled by default - without
-    # this, Bluetooth stays off even with the adapter and driver both
-    # working (confirmed on a real installed image: hardware/kernel side
-    # was fine, bluetooth.service just didn't exist as an enabled unit).
-    suseInsertService bluetooth
+# bluez is present but its service isn't enabled by default - without
+# this, Bluetooth stays off even with the adapter and driver both
+# working (confirmed on a real installed image: hardware/kernel side
+# was fine, bluetooth.service just didn't exist as an enabled unit).
+suseInsertService bluetooth
 
-    # Live-session autologin as liveuser. This is a live-boot convenience
-    # only; the installed system's login/account model is set up by the
-    # Lyra Installer (root disabled, sudo user), not here.
-    mkdir -p /etc/gdm
-    cat > /etc/gdm/custom.conf <<EOF
+# Live-session autologin as liveuser. This is a live-boot convenience
+# only; the installed system's login/account model is set up by the
+# Lyra Installer (root disabled, sudo user), not here.
+mkdir -p /etc/gdm
+cat > /etc/gdm/custom.conf <<EOF
 [daemon]
 AutomaticLoginEnable=true
 AutomaticLogin=liveuser
 EOF
 
-    # Passwordless sudo for the live session only. liveuser's password is
-    # locked ("!" in config.xml), so without this it cannot authenticate to
-    # sudo at all - this is what lets a live-session terminal actually run
-    # admin commands (e.g. cfdisk to inspect a disk before installing). The
-    # Rust installer removes this file during deployment (LIVE_ONLY_ARTIFACTS
-    # in deploy.rs); it must never reach an installed system, which gets its
-    # own sudo user with a real password instead.
-    cat > /etc/sudoers.d/00-liveuser-nopasswd <<EOF
+# Passwordless sudo for the live session only. liveuser's password is
+# locked ("!" in config.xml), so without this it cannot authenticate to
+# sudo at all - this is what lets a live-session terminal actually run
+# admin commands (e.g. cfdisk to inspect a disk before installing). The
+# Rust installer removes this file during deployment (LIVE_ONLY_ARTIFACTS
+# in deploy.rs); it must never reach an installed system, which gets its
+# own sudo user with a real password instead.
+cat > /etc/sudoers.d/00-liveuser-nopasswd <<EOF
 liveuser ALL=(ALL) NOPASSWD: ALL
 EOF
-    chmod 0440 /etc/sudoers.d/00-liveuser-nopasswd
-    visudo -cf /etc/sudoers.d/00-liveuser-nopasswd
-fi
+chmod 0440 /etc/sudoers.d/00-liveuser-nopasswd
+visudo -cf /etc/sudoers.d/00-liveuser-nopasswd
 
 # zram-generator activates its own systemd generator at boot from
 # /etc/systemd/zram-generator.conf - no service to enable here.
 
-if [ "$IS_SERVER" = 0 ]; then
-    # Flathub is shipped as a versioned remote definition in root/. Keeping
-    # its URL and signing key in the source prevents a network fetch during
-    # the build. Desktop-only: Flatpak is not installed on the server
-    # profile.
-    if [ ! -r /etc/flatpak/remotes.d/flathub.flatpakrepo ]; then
-        echo "Missing versioned Flathub remote definition" >&2
-        exit 1
-    fi
-
-    # Compile the image-owned GNOME defaults after KIWI has overlaid root/.
-    # This activates the system-installed Sheliak extension for the live
-    # account and for users subsequently created by the installer, while
-    # allowing each user to disable it normally. Desktop-only: there is no
-    # GNOME Shell on the server profile to target.
-    glib-compile-schemas /usr/share/glib-2.0/schemas
-
-    # Fish plugin set, resolved once here instead of on every machine's first
-    # terminal. Fisher has no RPM upstream and pulls its plugins from GitHub,
-    # so doing this at first login would mean every new installation hitting
-    # the network - and an installation done offline would simply never get
-    # the plugins. Seeding /etc/skel moves that cost to this build: useradd
-    # -m copies it into every account the installer creates afterwards, and
-    # conf.d/lyra-fish-bootstrap.fish then finds the marker and stays quiet.
-    #
-    # This is the one step in the build that needs the network. Lyra builds
-    # its images locally (image-build.toml pins OBS to "packages-only"), so
-    # that is available here; the failure is fatal on purpose, because an ISO
-    # that silently ships without the plugins is a regression nobody notices
-    # until it is installed.
-    LYRA_FISH_SKEL=/etc/skel
-    if ! HOME="$LYRA_FISH_SKEL" \
-         XDG_CONFIG_HOME="$LYRA_FISH_SKEL/.config" \
-         XDG_STATE_HOME="$LYRA_FISH_SKEL/.local/state" \
-         LYRA_FISH_SEED=1 \
-         fish --command fish_setup_lyra_plugins; then
-        echo "Failed to seed the Lyra fish plugin set into $LYRA_FISH_SKEL" >&2
-        exit 1
-    fi
-
-    # Never carry a build-time z/zoxide data path into accounts copied from
-    # /etc/skel. The universal-variable file is loaded before normal Fish
-    # config snippets and can otherwise retain /root from the privileged
-    # image build, causing a permission error on every new terminal.
-    LYRA_FISH_VARIABLES="$LYRA_FISH_SKEL/.config/fish/fish_variables"
-    if [ -f "$LYRA_FISH_VARIABLES" ]; then
-        sed -i \
-            -e '\|SETUVAR Z_DATA:/root/|d' \
-            -e '\|SETUVAR Z_DATA_DIR:/root/|d' \
-            "$LYRA_FISH_VARIABLES"
-    fi
-
-    # fish_plugins is Fisher's manifest; fish_prompt.fish only exists if hydro
-    # actually activated. Checking both turns a half-finished seed into a
-    # build failure rather than a surprise on the installed system.
-    for lyra_fish_artifact in fish_plugins functions/fish_prompt.fish; do
-        if [ ! -e "$LYRA_FISH_SKEL/.config/fish/$lyra_fish_artifact" ]; then
-            echo "Incomplete fish seed: missing $lyra_fish_artifact" >&2
-            exit 1
-        fi
-    done
-
-    # liveuser's home was created by KIWI from the pre-seed /etc/skel (its
-    # useradd -m runs before this script), so the live session needs an
-    # explicit copy to match what an installed account gets.
-    if [ ! -d /home/liveuser ]; then
-        echo "liveuser home is missing; cannot seed the live session" >&2
-        exit 1
-    fi
-    install -d -m 0755 /home/liveuser/.config /home/liveuser/.local/state
-    cp -a "$LYRA_FISH_SKEL/.config/fish" /home/liveuser/.config/
-    cp -a "$LYRA_FISH_SKEL/.local/state/lyra-fish-productivity" \
-        /home/liveuser/.local/state/
-    chown -R liveuser:"$(id -gn liveuser)" /home/liveuser/.config /home/liveuser/.local
+# Flathub is shipped as a versioned remote definition in root/. Keeping
+# its URL and signing key in the source prevents a network fetch during
+# the build.
+if [ ! -r /etc/flatpak/remotes.d/flathub.flatpakrepo ]; then
+    echo "Missing versioned Flathub remote definition" >&2
+    exit 1
 fi
+
+# Compile the image-owned GNOME defaults after KIWI has overlaid root/.
+# This activates the system-installed Sheliak extension for the live
+# account and for users subsequently created by the installer, while
+# allowing each user to disable it normally.
+glib-compile-schemas /usr/share/glib-2.0/schemas
+
+# Fish plugin set, resolved once here instead of on every machine's first
+# terminal. Fisher has no RPM upstream and pulls its plugins from GitHub,
+# so doing this at first login would mean every new installation hitting
+# the network - and an installation done offline would simply never get
+# the plugins. Seeding /etc/skel moves that cost to this build: useradd
+# -m copies it into every account the installer creates afterwards, and
+# conf.d/lyra-fish-bootstrap.fish then finds the marker and stays quiet.
+#
+# This is the one step in the build that needs the network. Lyra builds
+# its images locally (image-build.toml pins OBS to "packages-only"), so
+# that is available here; the failure is fatal on purpose, because an ISO
+# that silently ships without the plugins is a regression nobody notices
+# until it is installed.
+LYRA_FISH_SKEL=/etc/skel
+if ! HOME="$LYRA_FISH_SKEL" \
+     XDG_CONFIG_HOME="$LYRA_FISH_SKEL/.config" \
+     XDG_STATE_HOME="$LYRA_FISH_SKEL/.local/state" \
+     LYRA_FISH_SEED=1 \
+     fish --command fish_setup_lyra_plugins; then
+    echo "Failed to seed the Lyra fish plugin set into $LYRA_FISH_SKEL" >&2
+    exit 1
+fi
+
+# Never carry a build-time z/zoxide data path into accounts copied from
+# /etc/skel. The universal-variable file is loaded before normal Fish
+# config snippets and can otherwise retain /root from the privileged
+# image build, causing a permission error on every new terminal.
+LYRA_FISH_VARIABLES="$LYRA_FISH_SKEL/.config/fish/fish_variables"
+if [ -f "$LYRA_FISH_VARIABLES" ]; then
+    sed -i \
+        -e '\|SETUVAR Z_DATA:/root/|d' \
+        -e '\|SETUVAR Z_DATA_DIR:/root/|d' \
+        "$LYRA_FISH_VARIABLES"
+fi
+
+# fish_plugins is Fisher's manifest; fish_prompt.fish only exists if hydro
+# actually activated. Checking both turns a half-finished seed into a
+# build failure rather than a surprise on the installed system.
+for lyra_fish_artifact in fish_plugins functions/fish_prompt.fish; do
+    if [ ! -e "$LYRA_FISH_SKEL/.config/fish/$lyra_fish_artifact" ]; then
+        echo "Incomplete fish seed: missing $lyra_fish_artifact" >&2
+        exit 1
+    fi
+done
+
+# liveuser's home was created by KIWI from the pre-seed /etc/skel (its
+# useradd -m runs before this script), so the live session needs an
+# explicit copy to match what an installed account gets.
+if [ ! -d /home/liveuser ]; then
+    echo "liveuser home is missing; cannot seed the live session" >&2
+    exit 1
+fi
+install -d -m 0755 /home/liveuser/.config /home/liveuser/.local/state
+cp -a "$LYRA_FISH_SKEL/.config/fish" /home/liveuser/.config/
+cp -a "$LYRA_FISH_SKEL/.local/state/lyra-fish-productivity" \
+    /home/liveuser/.local/state/
+chown -R liveuser:"$(id -gn liveuser)" /home/liveuser/.config /home/liveuser/.local
 
 # Product identity (PROMPT-LYRA-OS.md: "Lyra OS", not "Lyra Linux" or
 # "Lyra Enterprise Linux" - those are historical/discontinued names).
@@ -211,36 +181,7 @@ fi
 # confirmed project website, issue tracker, or a matching icon name
 # shipped by lyra-os-icons to point them at - adding guessed
 # URLs/icon names felt worse than leaving these optional fields out.
-if [ "$IS_SERVER" = 1 ]; then
-    # No VERSION_CODENAME: the server edition has no codename by design
-    # (docs/server-edition.md). ID is distinct from the desktop's
-    # "lyra-os" so tooling branching on os-release can tell the two
-    # products apart, matching IMAGE_ID already being "lyra-os-server"
-    # here (LYRA_IMAGE_NAME, from release-server.toml).
-    cat > /etc/os-release <<EOF
-NAME="Lyra OS Server"
-PRETTY_NAME="$LYRA_PRETTY_NAME"
-ID=lyra-os-server
-ID_LIKE="opensuse suse"
-VERSION="$LYRA_VERSION_NAME"
-VERSION_ID="$LYRA_VERSION_ID"
-BUILD_ID="$LYRA_VERSION_ID"
-IMAGE_ID="$LYRA_IMAGE_NAME"
-IMAGE_VERSION="$LYRA_VERSION_ID"
-CPE_NAME="cpe:/o:rodrigosbrito:lyra_os_server:$LYRA_VERSION_ID"
-EOF
-else
-    # Product identity (PROMPT-LYRA-OS.md: "Lyra OS", not "Lyra Linux" or
-    # "Lyra Enterprise Linux" - those are historical/discontinued names).
-    # ID_LIKE keeps openSUSE/SUSE tooling that branches on it (package
-    # managers, some installers) working correctly; everything user-visible
-    # says Lyra OS. Overwrites whatever openSUSE-release just installed.
-    #
-    # Deliberately no HOME_URL/BUG_REPORT_URL/LOGO here: there's no
-    # confirmed project website, issue tracker, or a matching icon name
-    # shipped by lyra-os-icons to point them at - adding guessed
-    # URLs/icon names felt worse than leaving these optional fields out.
-    cat > /etc/os-release <<EOF
+cat > /etc/os-release <<EOF
 NAME="Lyra OS"
 PRETTY_NAME="$LYRA_PRETTY_NAME"
 ID=lyra-os
@@ -253,6 +194,5 @@ IMAGE_ID="$LYRA_IMAGE_NAME"
 IMAGE_VERSION="$LYRA_VERSION_ID"
 CPE_NAME="cpe:/o:rodrigosbrito:lyra_os:$LYRA_VERSION_ID"
 EOF
-fi
 
 exit 0

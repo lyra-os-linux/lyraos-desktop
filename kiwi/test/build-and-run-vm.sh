@@ -17,13 +17,6 @@
 #   ./build-and-run-vm.sh --published-welcome
 #                                        use the Welcome RPM from OBS instead of local sources
 #   ./build-and-run-vm.sh --secure-boot   use OVMF with Secure Boot and Microsoft keys
-#   ./build-and-run-vm.sh --profile server
-#                                        build the headless server profile instead of desktop
-#                                        (docs/server-edition.md) - no Rust installer staging,
-#                                        no desktop-only post-build checks (GRUB theme,
-#                                        wallpaper, GNOME defaults, Lyra Installer identity),
-#                                        version/ISO name come from release-server.toml instead
-#                                        of release.toml
 #   ./build-and-run-vm.sh --help          show every option and environment override
 #
 # Every run rebuilds the KIWI tree from a clean slate by default. The current
@@ -55,10 +48,10 @@ INSTALLER_DIR="$REPO_ROOT/installer"
 PACKAGE_SIGNING_KEYRING="$KIWI_DESC/keys/obs-package-signing-keyring.asc"
 CURRENT_UID="$(id -u)"
 # Keep enough memory for the live GNOME session and the Rust installer while
-# installer regressions are being isolated. Also plenty for the leaner
-# server profile.
+# installer regressions are being isolated.
 RAM_MB="${LYRA_VM_RAM_MB:-8192}"
 SMP="${LYRA_VM_CPUS:-4}"
+RELEASE_TOOL="$REPO_ROOT/scripts/release.py"
 
 SKIP_BUILD=0
 BUILD_ONLY=0
@@ -66,7 +59,6 @@ BOOT_INSTALLED=0
 SECURE_BOOT=0
 USE_LOCAL_INSTALLER=1
 USE_LOCAL_WELCOME=1
-PROFILE=desktop
 
 usage() {
   cat <<'EOF'
@@ -82,16 +74,10 @@ Opções:
                   disco ou estado UEFI
   --fresh-disk    compatibilidade; disco/NVRAM novos são sempre obrigatórios
   --published-installer
-                  usa somente o RPM publicado no OBS (obrigatório para release;
-                  ignorado com --profile server, que não tem instalador Rust)
+                  usa somente o RPM publicado no OBS (obrigatório para release)
   --published-welcome
                   usa o RPM publicado do Lyra Welcome em vez do workspace local
   --secure-boot   usa OVMF Secure Boot com chaves Microsoft
-  --profile <desktop|server>
-                  qual profile do kiwi/config.xml construir (padrão: desktop).
-                  server usa release-server.toml em vez de release.toml, pula
-                  o staging do instalador Rust e as validações pós-build que
-                  só existem no desktop (docs/server-edition.md)
   -h, --help      mostra esta ajuda
 
 Recursos podem ser ajustados sem editar o script:
@@ -99,8 +85,6 @@ Recursos podem ser ajustados sem editar o script:
   LYRA_VM_RAM_MB=8192    memória da VM em MiB (padrão: 8192)
   LYRA_VM_CPUS=4         CPUs virtuais (padrão: 4)
   LYRA_TEST_WORK_DIR=... diretório persistente de build, ISO, VM e logs
-                          (padrão inclui o profile, então desktop e server
-                          não compartilham cache)
 
 Cada execução que inicia QEMU encerra a VM anterior e apaga seu disco e estado
 UEFI somente depois de uma ISO válida estar disponível. Depois da instalação,
@@ -108,8 +92,8 @@ reinicie dentro da mesma janela do QEMU para testar o primeiro boot pelo disco
 instalado. --build-only não requer QEMU, KVM, OVMF nem sessão gráfica.
 
 Por padrão, um novo build compila e injeta os binários do instalador e do
-Welcome deste workspace (só --profile desktop). --skip-build apenas reinicia
-a ISO já existente e não recompila.
+Welcome deste workspace. --skip-build apenas reinicia a ISO já existente e
+não recompila.
 EOF
 }
 
@@ -122,41 +106,15 @@ while [ "$#" -gt 0 ]; do
     --published-installer) USE_LOCAL_INSTALLER=0; shift ;;
     --published-welcome) USE_LOCAL_WELCOME=0; shift ;;
     --secure-boot) SECURE_BOOT=1; shift ;;
-    --profile)
-      if [ "$#" -lt 2 ]; then
-        echo "--profile requires a value (desktop or server)" >&2
-        exit 1
-      fi
-      PROFILE="$2"
-      shift 2
-      ;;
     -h|--help) usage; exit 0 ;;
     *) echo "unknown flag: $1" >&2; exit 1 ;;
   esac
 done
 
-case "$PROFILE" in
-  desktop|server) : ;;
-  *) echo "--profile must be 'desktop' or 'server', got: $PROFILE" >&2; exit 1 ;;
-esac
-
-if [ "$PROFILE" = server ]; then
-  RELEASE_TOOL="$REPO_ROOT/scripts/server-release.py"
-  USE_LOCAL_INSTALLER=0
-else
-  RELEASE_TOOL="$REPO_ROOT/scripts/release.py"
-fi
-
 # Keep the large KIWI tree, ISO and VM disk on the persistent filesystem.
 # On many systems /tmp is a small RAM-backed tmpfs and cannot hold a full
-# image build plus an expanding qcow2 installation disk. Suffixing by
-# profile keeps a desktop and a server run from fighting over the same
-# cached ISO/VM state.
-if [ "$PROFILE" = server ]; then
-  WORK_DIR="${LYRA_TEST_WORK_DIR:-$KIWI_DESC/.kiwi/test-$CURRENT_UID-server}"
-else
-  WORK_DIR="${LYRA_TEST_WORK_DIR:-$KIWI_DESC/.kiwi/test-$CURRENT_UID}"
-fi
+# image build plus an expanding qcow2 installation disk.
+WORK_DIR="${LYRA_TEST_WORK_DIR:-$KIWI_DESC/.kiwi/test-$CURRENT_UID}"
 BUILD_DIR="$WORK_DIR/build"
 BUILD_DESCRIPTION_DIR="$WORK_DIR/description"
 ISO_DIR="$WORK_DIR/iso"
@@ -308,10 +266,6 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
   stop_previous_vm
   rm -f "$VM_PID_FILE"
 
-  INSTALLED_NETDEV_ARGS="user,id=net0"
-  if [ "$PROFILE" = server ]; then
-    INSTALLED_NETDEV_ARGS="user,id=net0,hostfwd=tcp::2222-:22,hostfwd=tcp::9090-:9090"
-  fi
   INSTALLED_QEMU_ARGS=(
     -name lyra-os-test
     -pidfile "$VM_PID_FILE"
@@ -323,7 +277,7 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
     -drive if=pflash,format=raw,file="$OVMF_VARS"
     -drive if=virtio,format=qcow2,file="$DISK_IMG"
     -device virtio-net-pci,netdev=net0
-    -netdev "$INSTALLED_NETDEV_ARGS"
+    -netdev user,id=net0
     -vga virtio
     -display gtk
     -boot order=c,menu=on
@@ -352,8 +306,7 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
       exit 1
     fi
   done
-  if [ "$USE_LOCAL_INSTALLER" -eq 1 ] ||
-     { [ "$PROFILE" = desktop ] && [ "$USE_LOCAL_WELCOME" -eq 1 ]; }; then
+  if [ "$USE_LOCAL_INSTALLER" -eq 1 ] || [ "$USE_LOCAL_WELCOME" -eq 1 ]; then
     for command in cargo install sha256sum; do
       if ! command -v "$command" >/dev/null 2>&1; then
         echo "required local workspace command not found: $command" >&2
@@ -508,11 +461,11 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     LOCAL_INSTALLER_SERVICE_SHA256="$(sha256sum "$INSTALLER_DIR/target/release/lyra-installer-service" | awk '{print $1}')"
     BUILD_DESCRIPTION="$BUILD_DESCRIPTION_DIR"
     echo "--- DEVELOPMENT IMAGE: local installer override is not releasable ---"
-  elif [ "$PROFILE" = desktop ]; then
+  else
     echo "--- using published Lyra Installer RPM from OBS ---"
   fi
 
-  if [ "$PROFILE" = desktop ] && [ "$USE_LOCAL_WELCOME" -eq 1 ]; then
+  if [ "$USE_LOCAL_WELCOME" -eq 1 ]; then
     if [ ! -d "$BUILD_DESCRIPTION_DIR" ]; then
       rm -rf "$BUILD_DESCRIPTION_DIR"
       mkdir -p "$BUILD_DESCRIPTION_DIR"
@@ -553,16 +506,11 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
       printf 'source=local-worktree\n'
     } >"$BUILD_DESCRIPTION_DIR/root/usr/share/lyra-welcome/build-source.txt"
     echo "--- DEVELOPMENT IMAGE: local Welcome override is not releasable ---"
-  elif [ "$PROFILE" = desktop ]; then
+  else
     echo "--- using published Lyra Welcome RPM from OBS ---"
   fi
 
-  KIWI_PROFILE_ARGS=()
-  if [ "$PROFILE" = server ]; then
-    KIWI_PROFILE_ARGS+=(--profile=server)
-  fi
-
-  echo "--- building ISO with kiwi-ng (profile=$PROFILE, will prompt for sudo password) ---"
+  echo "--- building ISO with kiwi-ng (will prompt for sudo password) ---"
   start_loader_guard
   trap 'stop_loader_guard' EXIT
   trap 'stop_loader_guard; exit 130' INT TERM
@@ -571,7 +519,6 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
       --setenv="LYRA_BUILD_SOURCE_DIRTY=$BUILD_SOURCE_DIRTY" \
       --setenv="LYRA_BUILD_SOURCE_EPOCH=$BUILD_SOURCE_EPOCH" \
       --setenv="LYRA_IMAGE_BUILT_AT=$IMAGE_BUILT_AT" \
-      "${KIWI_PROFILE_ARGS[@]}" \
       system build \
       --signing-key "$PACKAGE_SIGNING_KEYRING" \
       --description "$BUILD_DESCRIPTION" \
@@ -606,168 +553,127 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     exit 1
   fi
 
-  if [ "$PROFILE" = desktop ]; then
-    IMAGE_INSTALLED_GRUB_DEFAULT="$BUILD_DIR/build/image-root/etc/default/grub"
-    IMAGE_INSTALLED_GRUB_THEME="$BUILD_DIR/build/image-root/usr/share/grub/themes/Lyra-OS/theme.txt"
-    if [ ! -s "$IMAGE_INSTALLED_GRUB_THEME" ] ||
-       ! grep -Fx 'GRUB_THEME="/usr/share/grub/themes/Lyra-OS/theme.txt"' \
-          "$IMAGE_INSTALLED_GRUB_DEFAULT" >/dev/null; then
-      echo "!!! built rootfs has an inconsistent installed-system GRUB theme" >&2
-      echo "!!! expected $IMAGE_INSTALLED_GRUB_THEME and matching GRUB_THEME" >&2
-      exit 1
-    fi
-
-    IMAGE_WALLPAPER_DIR="$BUILD_DIR/build/image-root/usr/share/backgrounds/lyra"
-    IMAGE_GNOME_DEFAULTS="$BUILD_DIR/build/image-root/usr/share/glib-2.0/schemas/99-lyra-os.gschema.override"
-    for WALLPAPER_ASSET in \
-        nebula.png \
-        nebula-light.png \
-        nebula.jxl \
-        nebula-light.jxl; do
-      if [ ! -s "$IMAGE_WALLPAPER_DIR/$WALLPAPER_ASSET" ]; then
-        echo "!!! built image is missing the default Nebula wallpaper asset:" >&2
-        echo "  $IMAGE_WALLPAPER_DIR/$WALLPAPER_ASSET" >&2
-        exit 1
-      fi
-    done
-    if ! grep -Fx \
-        "picture-uri='file:///usr/share/backgrounds/lyra/nebula-light.png'" \
-        "$IMAGE_GNOME_DEFAULTS" >/dev/null ||
-       ! grep -Fx \
-        "picture-uri-dark='file:///usr/share/backgrounds/lyra/nebula.png'" \
-        "$IMAGE_GNOME_DEFAULTS" >/dev/null; then
-      echo "!!! built image does not use Nebula as the default GNOME wallpaper" >&2
-      exit 1
-    fi
-    echo "--- validated Nebula wallpaper assets and GNOME defaults ---"
-
-    IMAGE_INSTALLER_GUI="$BUILD_DIR/build/image-root/usr/bin/lyra-installer"
-    IMAGE_INSTALLER_LOCK="$BUILD_DIR/build/image-root/usr/bin/lyra-install-lock"
-    IMAGE_INSTALLER_SERVICE="$BUILD_DIR/build/image-root/usr/libexec/lyra-installer-service"
-    IMAGE_HARDWARE_MATRIX="$BUILD_DIR/build/image-root/usr/bin/lyra-hardware-matrix"
-    IMAGE_LIVE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-live-smoke"
-    IMAGE_SYSTEM_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-system-smoke"
-    IMAGE_UPDATE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-update-smoke"
-    IMAGE_INSTALLER_AUTOSTART="$BUILD_DIR/build/image-root/etc/xdg/autostart/lyra-installer-autostart.desktop"
-    IMAGE_INSTALLER_LAUNCHER="$BUILD_DIR/build/image-root/usr/share/applications/org.lyraos.LyraInstaller.desktop"
-    IMAGE_INSTALLER_ICON="$BUILD_DIR/build/image-root/usr/share/icons/hicolor/256x256/apps/org.lyraos.LyraInstaller.png"
-    for INSTALLER_EXECUTABLE in \
-        "$IMAGE_INSTALLER_GUI" \
-        "$IMAGE_INSTALLER_LOCK" \
-        "$IMAGE_INSTALLER_SERVICE" \
-        "$IMAGE_HARDWARE_MATRIX" \
-        "$IMAGE_LIVE_SMOKE" \
-        "$IMAGE_SYSTEM_SMOKE" \
-        "$IMAGE_UPDATE_SMOKE"; do
-      if [ ! -x "$INSTALLER_EXECUTABLE" ]; then
-        echo "!!! built image is missing an executable installer component:" >&2
-        echo "  $INSTALLER_EXECUTABLE" >&2
-        exit 1
-      fi
-    done
-    # Validate the actual packaged service, not merely the local source tree.
-    # Alpha 6 once embedded a green but stale OBS RPM from before the Fish
-    # migration; installations succeeded and silently created Bash users.
-    # Optimized Rust/LLVM builds may split the literal `/usr/bin/fish` into
-    # adjacent ELF string fragments (for example `bin/fish` and `/usr/bin`).
-    # Check the stable suffix in the actual packaged ELF instead of requiring
-    # one contiguous `strings` record, while still rejecting the old Bash
-    # implementation.
-    if ! grep -a -F 'bin/fish' "$IMAGE_INSTALLER_SERVICE" >/dev/null ||
-       grep -a -F '.bashrc' "$IMAGE_INSTALLER_SERVICE" >/dev/null; then
-      echo "!!! packaged Lyra Installer does not enforce the desktop Fish policy" >&2
-      echo "!!! refusing an ISO with a stale or incompatible installer RPM" >&2
-      if [ -f "$BUILD_DIR/build/image-root/usr/share/lyra-installer/build-source.txt" ]; then
-        echo "!!! packaged installer source identity:" >&2
-        sed 's/^/  /' \
-          "$BUILD_DIR/build/image-root/usr/share/lyra-installer/build-source.txt" >&2
-      fi
-      exit 1
-    fi
-    if [ "$USE_LOCAL_INSTALLER" -eq 1 ]; then
-      IMAGE_INSTALLER_GUI_SHA256="$(sha256sum "$IMAGE_INSTALLER_GUI" | awk '{print $1}')"
-      IMAGE_INSTALLER_SERVICE_SHA256="$(sha256sum "$IMAGE_INSTALLER_SERVICE" | awk '{print $1}')"
-      if [ "$IMAGE_INSTALLER_GUI_SHA256" != "$LOCAL_INSTALLER_GUI_SHA256" ] ||
-         [ "$IMAGE_INSTALLER_SERVICE_SHA256" != "$LOCAL_INSTALLER_SERVICE_SHA256" ]; then
-        echo "!!! built image did not preserve the current local installer binaries" >&2
-        exit 1
-      fi
-      if [ ! -f "$BUILD_DIR/build/image-root/usr/lib/lyra-os/local-installer-build" ]; then
-        echo "!!! built development image lost local installer provenance" >&2
-        exit 1
-      fi
-    fi
-    if [ ! -f "$IMAGE_INSTALLER_AUTOSTART" ] ||
-       ! grep -Fx 'TryExec=/usr/bin/lyra-installer' "$IMAGE_INSTALLER_AUTOSTART" >/dev/null ||
-       ! grep -Fx 'Exec=/usr/bin/lyra-install-lock /usr/bin/lyra-installer' \
-          "$IMAGE_INSTALLER_AUTOSTART" >/dev/null ||
-       ! grep -Fx 'StartupWMClass=lyra-installer' \
-          "$IMAGE_INSTALLER_AUTOSTART" >/dev/null; then
-      echo "!!! built image has no valid GNOME autostart for Lyra Installer" >&2
-      exit 1
-    fi
-    if [ ! -f "$IMAGE_INSTALLER_LAUNCHER" ] || [ ! -s "$IMAGE_INSTALLER_ICON" ]; then
-      echo "!!! built image is missing the Lyra Installer launcher or icon" >&2
-      exit 1
-    fi
-    if ! grep -Fx 'TryExec=/usr/bin/lyra-installer' "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
-       ! grep -Fx 'Exec=/usr/bin/lyra-install-lock /usr/bin/lyra-installer' \
-          "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
-       ! grep -Fx 'Icon=org.lyraos.LyraInstaller' "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
-       ! grep -Fx 'StartupWMClass=lyra-installer' \
-          "$IMAGE_INSTALLER_LAUNCHER" >/dev/null; then
-      echo "!!! built image has an inconsistent Lyra Installer desktop identity" >&2
-      exit 1
-    fi
-    if command -v desktop-file-validate >/dev/null 2>&1; then
-      desktop-file-validate "$IMAGE_INSTALLER_AUTOSTART" "$IMAGE_INSTALLER_LAUNCHER"
-    fi
-    echo "--- validated Lyra Installer executable and GNOME autostart chain ---"
-  else
-    # Server profile: no GNOME/theme/wallpaper/Lyra Installer to validate
-    # (docs/server-edition.md). Check the pieces that replace them instead.
-    IMAGE_SERVER_INSTALL="$BUILD_DIR/build/image-root/usr/sbin/lyra-server-install"
-    IMAGE_SERVER_RELEASE="$BUILD_DIR/build/image-root/usr/lib/lyra-os/server-release"
-    IMAGE_GETTY_OVERRIDE="$BUILD_DIR/build/image-root/etc/systemd/system/getty@tty1.service.d/override.conf"
-    if [ ! -x "$IMAGE_SERVER_INSTALL" ]; then
-      echo "!!! built server image is missing the executable console installer:" >&2
-      echo "  $IMAGE_SERVER_INSTALL" >&2
-      exit 1
-    fi
-    if [ ! -f "$IMAGE_SERVER_RELEASE" ]; then
-      echo "!!! built server image is missing server release metadata:" >&2
-      echo "  $IMAGE_SERVER_RELEASE" >&2
-      exit 1
-    fi
-    if [ ! -f "$IMAGE_GETTY_OVERRIDE" ]; then
-      echo "!!! built server image is missing the tty1 autologin override:" >&2
-      echo "  $IMAGE_GETTY_OVERRIDE" >&2
-      exit 1
-    fi
-    echo "--- validated server console installer overlay (getty autologin, pinned script, release metadata) ---"
+  IMAGE_INSTALLED_GRUB_DEFAULT="$BUILD_DIR/build/image-root/etc/default/grub"
+  IMAGE_INSTALLED_GRUB_THEME="$BUILD_DIR/build/image-root/usr/share/grub/themes/Lyra-OS/theme.txt"
+  if [ ! -s "$IMAGE_INSTALLED_GRUB_THEME" ] ||
+     ! grep -Fx 'GRUB_THEME="/usr/share/grub/themes/Lyra-OS/theme.txt"' \
+        "$IMAGE_INSTALLED_GRUB_DEFAULT" >/dev/null; then
+    echo "!!! built rootfs has an inconsistent installed-system GRUB theme" >&2
+    echo "!!! expected $IMAGE_INSTALLED_GRUB_THEME and matching GRUB_THEME" >&2
+    exit 1
   fi
+
+  IMAGE_WALLPAPER_DIR="$BUILD_DIR/build/image-root/usr/share/backgrounds/lyra"
+  IMAGE_GNOME_DEFAULTS="$BUILD_DIR/build/image-root/usr/share/glib-2.0/schemas/99-lyra-os.gschema.override"
+  for WALLPAPER_ASSET in \
+      nebula.png \
+      nebula-light.png \
+      nebula.jxl \
+      nebula-light.jxl; do
+    if [ ! -s "$IMAGE_WALLPAPER_DIR/$WALLPAPER_ASSET" ]; then
+      echo "!!! built image is missing the default Nebula wallpaper asset:" >&2
+      echo "  $IMAGE_WALLPAPER_DIR/$WALLPAPER_ASSET" >&2
+      exit 1
+    fi
+  done
+  if ! grep -Fx \
+      "picture-uri='file:///usr/share/backgrounds/lyra/nebula-light.png'" \
+      "$IMAGE_GNOME_DEFAULTS" >/dev/null ||
+     ! grep -Fx \
+      "picture-uri-dark='file:///usr/share/backgrounds/lyra/nebula.png'" \
+      "$IMAGE_GNOME_DEFAULTS" >/dev/null; then
+    echo "!!! built image does not use Nebula as the default GNOME wallpaper" >&2
+    exit 1
+  fi
+  echo "--- validated Nebula wallpaper assets and GNOME defaults ---"
+
+  IMAGE_INSTALLER_GUI="$BUILD_DIR/build/image-root/usr/bin/lyra-installer"
+  IMAGE_INSTALLER_LOCK="$BUILD_DIR/build/image-root/usr/bin/lyra-install-lock"
+  IMAGE_INSTALLER_SERVICE="$BUILD_DIR/build/image-root/usr/libexec/lyra-installer-service"
+  IMAGE_HARDWARE_MATRIX="$BUILD_DIR/build/image-root/usr/bin/lyra-hardware-matrix"
+  IMAGE_LIVE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-live-smoke"
+  IMAGE_SYSTEM_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-system-smoke"
+  IMAGE_UPDATE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-update-smoke"
+  IMAGE_INSTALLER_AUTOSTART="$BUILD_DIR/build/image-root/etc/xdg/autostart/lyra-installer-autostart.desktop"
+  IMAGE_INSTALLER_LAUNCHER="$BUILD_DIR/build/image-root/usr/share/applications/org.lyraos.LyraInstaller.desktop"
+  IMAGE_INSTALLER_ICON="$BUILD_DIR/build/image-root/usr/share/icons/hicolor/256x256/apps/org.lyraos.LyraInstaller.png"
+  for INSTALLER_EXECUTABLE in \
+      "$IMAGE_INSTALLER_GUI" \
+      "$IMAGE_INSTALLER_LOCK" \
+      "$IMAGE_INSTALLER_SERVICE" \
+      "$IMAGE_HARDWARE_MATRIX" \
+      "$IMAGE_LIVE_SMOKE" \
+      "$IMAGE_SYSTEM_SMOKE" \
+      "$IMAGE_UPDATE_SMOKE"; do
+    if [ ! -x "$INSTALLER_EXECUTABLE" ]; then
+      echo "!!! built image is missing an executable installer component:" >&2
+      echo "  $INSTALLER_EXECUTABLE" >&2
+      exit 1
+    fi
+  done
+  # Validate the actual packaged service, not merely the local source tree.
+  # Alpha 6 once embedded a green but stale OBS RPM from before the Fish
+  # migration; installations succeeded and silently created Bash users.
+  # Optimized Rust/LLVM builds may split the literal `/usr/bin/fish` into
+  # adjacent ELF string fragments (for example `bin/fish` and `/usr/bin`).
+  # Check the stable suffix in the actual packaged ELF instead of requiring
+  # one contiguous `strings` record, while still rejecting the old Bash
+  # implementation.
+  if ! grep -a -F 'bin/fish' "$IMAGE_INSTALLER_SERVICE" >/dev/null ||
+     grep -a -F '.bashrc' "$IMAGE_INSTALLER_SERVICE" >/dev/null; then
+    echo "!!! packaged Lyra Installer does not enforce the desktop Fish policy" >&2
+    echo "!!! refusing an ISO with a stale or incompatible installer RPM" >&2
+    if [ -f "$BUILD_DIR/build/image-root/usr/share/lyra-installer/build-source.txt" ]; then
+      echo "!!! packaged installer source identity:" >&2
+      sed 's/^/  /' \
+        "$BUILD_DIR/build/image-root/usr/share/lyra-installer/build-source.txt" >&2
+    fi
+    exit 1
+  fi
+  if [ "$USE_LOCAL_INSTALLER" -eq 1 ]; then
+    IMAGE_INSTALLER_GUI_SHA256="$(sha256sum "$IMAGE_INSTALLER_GUI" | awk '{print $1}')"
+    IMAGE_INSTALLER_SERVICE_SHA256="$(sha256sum "$IMAGE_INSTALLER_SERVICE" | awk '{print $1}')"
+    if [ "$IMAGE_INSTALLER_GUI_SHA256" != "$LOCAL_INSTALLER_GUI_SHA256" ] ||
+       [ "$IMAGE_INSTALLER_SERVICE_SHA256" != "$LOCAL_INSTALLER_SERVICE_SHA256" ]; then
+      echo "!!! built image did not preserve the current local installer binaries" >&2
+      exit 1
+    fi
+    if [ ! -f "$BUILD_DIR/build/image-root/usr/lib/lyra-os/local-installer-build" ]; then
+      echo "!!! built development image lost local installer provenance" >&2
+      exit 1
+    fi
+  fi
+  if [ ! -f "$IMAGE_INSTALLER_AUTOSTART" ] ||
+     ! grep -Fx 'TryExec=/usr/bin/lyra-installer' "$IMAGE_INSTALLER_AUTOSTART" >/dev/null ||
+     ! grep -Fx 'Exec=/usr/bin/lyra-install-lock /usr/bin/lyra-installer' \
+        "$IMAGE_INSTALLER_AUTOSTART" >/dev/null ||
+     ! grep -Fx 'StartupWMClass=lyra-installer' \
+        "$IMAGE_INSTALLER_AUTOSTART" >/dev/null; then
+    echo "!!! built image has no valid GNOME autostart for Lyra Installer" >&2
+    exit 1
+  fi
+  if [ ! -f "$IMAGE_INSTALLER_LAUNCHER" ] || [ ! -s "$IMAGE_INSTALLER_ICON" ]; then
+    echo "!!! built image is missing the Lyra Installer launcher or icon" >&2
+    exit 1
+  fi
+  if ! grep -Fx 'TryExec=/usr/bin/lyra-installer' "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
+     ! grep -Fx 'Exec=/usr/bin/lyra-install-lock /usr/bin/lyra-installer' \
+        "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
+     ! grep -Fx 'Icon=org.lyraos.LyraInstaller' "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
+     ! grep -Fx 'StartupWMClass=lyra-installer' \
+        "$IMAGE_INSTALLER_LAUNCHER" >/dev/null; then
+    echo "!!! built image has an inconsistent Lyra Installer desktop identity" >&2
+    exit 1
+  fi
+  if command -v desktop-file-validate >/dev/null 2>&1; then
+    desktop-file-validate "$IMAGE_INSTALLER_AUTOSTART" "$IMAGE_INSTALLER_LAUNCHER"
+  fi
+  echo "--- validated Lyra Installer executable and GNOME autostart chain ---"
 
   BUILT_ISO="$(sudo find "$BUILD_DIR" -maxdepth 1 -type f -name '*.iso' -print -quit)"
   if [ -z "$BUILT_ISO" ]; then
     echo "!!! kiwi-ng reported success but no .iso found under $BUILD_DIR"
     exit 1
-  fi
-  if [ "$PROFILE" = server ] && [ "$(basename "$BUILT_ISO")" != "$EXPECTED_ISO_NAME" ]; then
-    # kiwi-ng always names its output from <image name="..."> at the
-    # document root of kiwi/config.xml, which cannot be scoped per profile
-    # the way <preferences>/<packages> are - it stays "lyra-os" even when
-    # building --profile=server. Rename the ISO and its sibling artifact
-    # files (.changes/.packages/.verified) to match release-server.toml's
-    # own naming instead of trying to make the KIWI description itself
-    # profile-aware about this one attribute.
-    KIWI_ISO_STEM="$(basename "$BUILT_ISO" .iso)"
-    EXPECTED_ISO_STEM="${EXPECTED_ISO_NAME%.iso}"
-    echo "--- renaming kiwi-ng output for the server profile: $KIWI_ISO_STEM -> $EXPECTED_ISO_STEM ---"
-    for SIBLING in "$BUILD_DIR/$KIWI_ISO_STEM".*; do
-      [ -e "$SIBLING" ] || continue
-      sudo mv "$SIBLING" "$BUILD_DIR/$EXPECTED_ISO_STEM.${SIBLING##*.}"
-    done
-    BUILT_ISO="$BUILD_DIR/$EXPECTED_ISO_NAME"
   fi
   if [ "$(basename "$BUILT_ISO")" != "$EXPECTED_ISO_NAME" ]; then
     echo "!!! KIWI generated an unexpected ISO name:" >&2
@@ -786,26 +692,22 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   rm -rf "$SQUASHFS_VERIFY_DIR"
   xorriso -osirrox on -indev "$BUILT_ISO" \
     -extract /boot/grub2/grub.cfg "$ISO_GRUB_CFG" >/dev/null 2>&1
-  if [ "$PROFILE" = desktop ]; then
-    xorriso -osirrox on -indev "$BUILT_ISO" \
-      -extract /boot/grub2/themes/Lyra-OS/theme.txt \
-      "$ISO_GRUB_THEME" >/dev/null 2>&1
-  fi
+  xorriso -osirrox on -indev "$BUILT_ISO" \
+    -extract /boot/grub2/themes/Lyra-OS/theme.txt \
+    "$ISO_GRUB_THEME" >/dev/null 2>&1
   xorriso -osirrox on -indev "$BUILT_ISO" \
     -extract /boot/x86_64/loader/initrd "$ISO_INITRD" >/dev/null 2>&1
   xorriso -osirrox on -indev "$BUILT_ISO" \
     -extract /LiveOS/squashfs.img "$ISO_SQUASHFS" >/dev/null 2>&1
 
-  if [ "$PROFILE" = desktop ]; then
-    if ! grep -F 'set theme=($root)/boot/grub2/themes/Lyra-OS/theme.txt' \
-        "$ISO_GRUB_CFG" >/dev/null; then
-      echo "!!! generated GRUB config does not activate the Lyra-OS theme" >&2
-      exit 1
-    fi
-    if ! grep -F 'desktop-image: "background.png"' "$ISO_GRUB_THEME" >/dev/null; then
-      echo "!!! generated ISO contains an invalid Lyra-OS GRUB theme" >&2
-      exit 1
-    fi
+  if ! grep -F 'set theme=($root)/boot/grub2/themes/Lyra-OS/theme.txt' \
+      "$ISO_GRUB_CFG" >/dev/null; then
+    echo "!!! generated GRUB config does not activate the Lyra-OS theme" >&2
+    exit 1
+  fi
+  if ! grep -F 'desktop-image: "background.png"' "$ISO_GRUB_THEME" >/dev/null; then
+    echo "!!! generated ISO contains an invalid Lyra-OS GRUB theme" >&2
+    exit 1
   fi
   if grep -Eq '^[[:space:]]*linux .* (quiet|splash)( |$)' "$ISO_GRUB_CFG"; then
     echo "!!! live GRUB entry unexpectedly hides boot diagnostics with quiet/splash" >&2
@@ -958,19 +860,6 @@ else
   echo "--- Secure Boot disabled (standard OVMF UEFI) ---"
 fi
 
-NETDEV_ARGS="user,id=net0"
-if [ "$PROFILE" = server ]; then
-  # QEMU's user-mode/SLIRP networking is NAT-only by default - the guest's
-  # DHCP-assigned address (typically 10.0.2.15) is reachable from inside
-  # the VM but not from the host, so ssh/vega-web could not be exercised
-  # from outside at all without this. Fixed host ports are fine for a
-  # single local test VM; they would collide if two server VM runs were
-  # ever launched at once, which this helper does not support anyway (see
-  # stop_previous_vm).
-  NETDEV_ARGS="user,id=net0,hostfwd=tcp::2222-:22,hostfwd=tcp::9090-:9090"
-  echo "--- host port forwarding: ssh -p 2222 <usuario>@localhost | http://localhost:9090 (vega-web) ---"
-fi
-
 QEMU_ARGS=(
   -name lyra-os-test
   -pidfile "$VM_PID_FILE"
@@ -982,7 +871,7 @@ QEMU_ARGS=(
   -drive if=pflash,format=raw,file="$OVMF_VARS"
   -drive if=virtio,format=qcow2,file="$DISK_IMG"
   -device virtio-net-pci,netdev=net0
-  -netdev "$NETDEV_ARGS"
+  -netdev user,id=net0
   -vga virtio
   -display gtk
 )
