@@ -247,6 +247,14 @@
     <!-- Keep familiar modal and approachable terminal editors in both
          Desktop and Server for recovery and offline administration. -->
     <package name="vim"/>
+    <!-- vim's base package ships almost no language syntax files (7 total,
+         e.g. sh.vim) - python.vim, c.vim, javascript.vim and the rest all
+         live in this optional 37 MiB package. Developers are a target
+         profile for Lyra OS, so real syntax highlighting is explicit here
+         rather than left to onlyRequired. Neovim needs no equivalent
+         package: its language syntax/runtime files ship inside the neovim
+         package itself. -->
+    <package name="vim-data"/>
     <package name="neovim"/>
     <package name="nano"/>
 

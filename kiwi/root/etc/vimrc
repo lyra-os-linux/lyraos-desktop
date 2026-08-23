@@ -1,0 +1,54 @@
+" Lyra OS system vimrc (system vimrc file, per `vim --version`).
+"
+" Loaded before any user vimrc, on both the Desktop and Server profile -
+" vim/neovim are shared-base packages (kiwi/config.xml). Every setting here
+" is a default a user's own ~/.vimrc, ~/.vim/vimrc or
+" $XDG_CONFIG_HOME/vim/vimrc can freely override; nothing here is enforced.
+
+set nocompatible
+filetype plugin indent on
+syntax enable
+
+set background=dark
+silent! colorscheme lyra
+
+set number
+set cursorline
+set scrolloff=4
+set sidescrolloff=8
+set wildmenu
+set wildmode=longest:full,full
+set mouse=a
+set backspace=indent,eol,start
+set splitright
+set splitbelow
+set laststatus=2
+set list
+set listchars=tab:»\ ,trail:·,nbsp:+
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set autoindent
+
+" Persistent undo across sessions, kept out of project trees (XDG state
+" dir, not the file's own directory). Root's HOME can be read-only under
+" onlyRequired's minimal live/install environment, hence the isdirectory
+" guard instead of assuming mkdir succeeds.
+if has('persistent_undo')
+  let s:lyra_undodir = (empty($XDG_STATE_HOME) ? expand('~/.local/state') : $XDG_STATE_HOME) . '/vim/undo'
+  if !isdirectory(s:lyra_undodir)
+    silent! call mkdir(s:lyra_undodir, 'p', 0700)
+  endif
+  if isdirectory(s:lyra_undodir)
+    let &undodir = s:lyra_undodir
+    set undofile
+  endif
+  unlet s:lyra_undodir
+endif
