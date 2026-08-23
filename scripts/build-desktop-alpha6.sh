@@ -16,8 +16,9 @@ usage() {
   cat <<EOF
 Uso: $0 [--artifacts-only] [--evidence-dir DIRETÓRIO]
 
-Sem opções, valida o OBS e constrói uma candidata limpa usando os RPMs
-publicados do instalador e do Welcome. --artifacts-only reutiliza a ISO atual.
+Sem opções, valida o OBS e constrói uma candidata limpa usando o RPM
+publicado do instalador (o Welcome já vem sempre do RPM publicado).
+--artifacts-only reutiliza a ISO atual.
 Quando --evidence-dir é informado, o manifesto final exige as sete evidências
 aprovadas do gate da Desktop Alpha 6.
 EOF
@@ -59,7 +60,7 @@ mkdir -p "$WORK_DIR/evidence"
 if [ "$ARTIFACTS_ONLY" -eq 0 ]; then
   sudo -v
   ./kiwi/test/build-and-run-vm.sh --build-only \
-    --published-installer --published-welcome
+    --published-installer
 fi
 
 ISO="$ARTIFACT_DIR/$ISO_NAME"
