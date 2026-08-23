@@ -1,6 +1,6 @@
 # Auditoria técnica de `big-parental-controls`
 
-Status: auditoria de referência para #112 — **não aprova reutilização**  
+Status: auditoria de referência para #4 — **não aprova reutilização**  
 Repositório: `biglinux/big-parental-controls`  
 Revisão auditada: `39cd6d272954da05d16d35f70292766d871e8116`  
 Data: 18/08/2026
@@ -42,7 +42,7 @@ A política do system bus permite no contexto padrão:
 Os métodos de histórico não vinculam o alvo ao UID do chamador. Um processo
 local não privilegiado pode enumerar supervisionados, consultar faixa e obter
 nomes de processos e horários de outro usuário. Isso contraria minimização e o
-critério da #114 de impedir leitura por chamadores não autorizados.
+critério da #2 de impedir leitura por chamadores não autorizados.
 
 **Decisão Lyra:** não reutilizar a API. Exigir autorização por método, vínculo
 entre chamador/conta e respostas por finalidade; sinal etário não será uma
@@ -139,7 +139,7 @@ componentes que devem ser avaliados no openSUSE.
 ## Elementos aproveitáveis conceitualmente
 
 - AccountsService para identidade da conta local, sem confundi-la com aferição;
-- malcontent/OARS como política upstream de aplicações, após #110;
+- malcontent/OARS como política upstream de aplicações, após #6;
 - processo de enforcement independente da GUI;
 - indicador claro para o usuário supervisionado;
 - persistência local e ausência de telemetria/cloud por padrão;
@@ -152,9 +152,9 @@ Esses pontos são referências, não dependências escolhidas.
 
 | Componente | Decisão | Condição |
 |---|---|---|
-| GTK/libadwaita | Não importar | UX será integrada ao Vega na #109 |
+| GTK/libadwaita | Não importar | UX será integrada ao Vega na #7 |
 | AccountsService | Avaliar upstream | Confirmar suporte e contrato no Leap |
-| malcontent | Candidato preferencial | Qualificação #110, pacote oficial e testes |
+| malcontent | Candidato preferencial | Qualificação #6, pacote oficial e testes |
 | Daemon Rust | Rejeitar no estado atual | API/autorização/fail-open incompatíveis |
 | `group-helper` shell | Rejeitar | Privilégio excessivo e contrato não tipado |
 | ACLs | Somente defesa complementar | Nunca fronteira única; cobrir update/bypass |
@@ -163,7 +163,7 @@ Esses pontos são referências, não dependências escolhidas.
 | Histórico de processos | Não adotar por padrão | Só após necessidade/proporcionalidade aprovadas |
 | Hook libalpm | Não aplicável | Lyra usa RPM/zypper/OBS |
 
-## Requisitos derivados para #110, #111 e #114
+## Requisitos derivados para #6, #5 e #2
 
 1. API por capacidade, autenticada e versionada; nenhum método geral
    `GetAgeGroup(uid)`.
@@ -180,9 +180,9 @@ Esses pontos são referências, não dependências escolhidas.
    aprovadas.
 10. Portabilidade upstream/openSUSE antes de código exclusivo do Lyra.
 
-## Resultado da #112
+## Resultado da #4
 
 A auditoria técnica está concluída para a revisão indicada. Qualquer nova
 revisão upstream exige análise diferencial. O resultado desbloqueia pesquisa
-da #110 e alimenta a ADR #111, mas não desbloqueia sozinho a implementação
-#114: o parecer #106 e as demais dependências continuam obrigatórios.
+da #6 e alimenta a ADR #5, mas não desbloqueia sozinho a implementação
+#2: o parecer #10 e as demais dependências continuam obrigatórios.
