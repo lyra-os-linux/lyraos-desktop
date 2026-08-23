@@ -13,8 +13,11 @@ Depois de clonar o repositório, peça ao Codex:
 > Confira o estado local e remoto antes de alterar qualquer coisa e continue a
 > partir das pendências registradas no handoff.
 
-O repositório canônico é `git@github.com:britors/Lyra.git`, branch `main`. O
-último commit confirmado e publicado antes da formatação é:
+O repositório canônico é `git@github.com:lyra-os-linux/lyraos-desktop.git`,
+branch `main` (migrado de `britors/Lyra`, arquivado, em 2026-08-23 — as
+issues #90-#104 citadas abaixo vivem no repositório arquivado, não foram
+recriadas no novo). O último commit confirmado e publicado antes da
+formatação é:
 
 ```text
 d5ea06471211fc2559d3f1c79a71c38d9a324fec
@@ -208,7 +211,8 @@ continuam desejáveis durante o ciclo.
 1. Instalar a Alpha 5 na máquina física e preservar/baixar este repositório.
 2. Configurar Git, autenticação GitHub (`gh auth login` e chave SSH, se usada) e
    autenticação do SourceForge/OBS. Nunca registrar segredos no repositório.
-3. Clonar `git@github.com:britors/Lyra.git`, ler `AGENTS.md` e este handoff.
+3. Clonar `git@github.com:lyra-os-linux/lyraos-desktop.git`, ler `AGENTS.md` e
+   este handoff.
 4. Verificar `git status`, `git log -1`, `git fetch` e `git pull --ff-only`.
 5. Abrir o diretório público da Alpha 5 e conferir se há todos os nove arquivos
    do bundle. A tentativa feita pelo agente não enviou arquivos.
@@ -263,7 +267,7 @@ privilegiados. Especificar isso em #81 antes de programar.
 Preparação básica, ajustando o caminho se necessário:
 
 ```bash
-git clone git@github.com:britors/Lyra.git ~/Git/Lyra
+git clone git@github.com:lyra-os-linux/lyraos-desktop.git ~/Git/Lyra
 cd ~/Git/Lyra
 git status --short
 git log -1 --oneline

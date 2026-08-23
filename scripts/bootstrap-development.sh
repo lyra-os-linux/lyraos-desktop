@@ -3,7 +3,7 @@
 #
 # Supported entry point:
 #   curl -fsSL \
-#     https://raw.githubusercontent.com/britors/Lyra/main/scripts/bootstrap-development.sh \
+#     https://raw.githubusercontent.com/lyra-os-linux/lyraos-desktop/main/scripts/bootstrap-development.sh \
 #     | bash
 
 set -Eeuo pipefail

@@ -61,8 +61,8 @@ O ambiente de desenvolvimento suportado é o Lyra OS ou o openSUSE Leap 16.0.
 Clone o repositório e execute o bootstrap como usuário comum:
 
 ```bash
-git clone https://github.com/britors/Lyra.git
-cd Lyra
+git clone https://github.com/lyra-os-linux/lyraos-desktop.git
+cd lyraos-desktop
 ./scripts/bootstrap-development.sh --dry-run
 ./scripts/bootstrap-development.sh
 ```

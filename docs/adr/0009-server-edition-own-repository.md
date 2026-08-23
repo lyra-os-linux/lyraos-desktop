@@ -16,11 +16,14 @@ repositórios GitHub distintos.
 
 ## Decisão
 
-A edição Server passa a viver em [`britors/lyra-os-server`](https://github.com/britors/lyra-os-server),
-público, com histórico git preservado para os arquivos que já eram
-exclusivos do Server (overlay `kiwi/server/`, `scripts/server-*`,
-`image-build-server.toml`, `release-server.toml`, `docs/server-edition.md`,
-notas de release do Server e seus testes dedicados).
+A edição Server passa a viver em
+[`lyra-os-linux/lyraos-server`](https://github.com/lyra-os-linux/lyraos-server),
+com histórico git preservado para os arquivos que já eram exclusivos do
+Server (overlay `kiwi/server/`, `scripts/server-*`, `image-build-server.toml`,
+`release-server.toml`, `docs/server-edition.md`, notas de release do Server e
+seus testes dedicados). Este repositório (Desktop) passou, na mesma data, a
+viver em [`lyra-os-linux/lyraos-desktop`](https://github.com/lyra-os-linux/lyraos-desktop)
+— ambos privados, sob o org GitHub `lyra-os-linux`.
 
 O `kiwi/config.xml` deixou de usar o sistema de `<profiles>` do KIWI: cada
 repositório agora tem seu próprio `config.xml` completo, sem o atributo

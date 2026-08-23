@@ -29,7 +29,7 @@ entre como `root` e não execute o bootstrap inteiro com `sudo`.
 sudo zypper --non-interactive refresh
 sudo zypper --non-interactive install git curl ca-certificates
 mkdir -p ~/Git
-git clone https://github.com/britors/Lyra.git ~/Git/Lyra
+git clone https://github.com/lyra-os-linux/lyraos-desktop.git ~/Git/Lyra
 cd ~/Git/Lyra
 ```
 
@@ -162,7 +162,7 @@ Antes de editar ou publicar qualquer coisa:
 ```bash
 git pull --ff-only
 git status --short --branch
-gh issue list --repo britors/Lyra --state open --limit 100
+gh issue list --repo lyra-os-linux/lyraos-desktop --state open --limit 100
 ```
 
 Fontes ficam no GitHub, RPMs no OBS e ISOs no SourceForge. Se algum estado

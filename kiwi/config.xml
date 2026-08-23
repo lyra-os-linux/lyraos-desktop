@@ -8,7 +8,7 @@
 
   The headless Lyra OS Server edition used to be a second profile in this
   same file; it now lives in its own repository,
-  github.com/britors/lyra-os-server (docs/adr/0009-server-edition-own-repository.md).
+  github.com/lyra-os-linux/lyraos-server (docs/adr/0009-server-edition-own-repository.md).
 
   See kiwi/README.md for the remaining gaps (installer artwork, multimedia
   codecs pending upstream, release automation, and end-to-end testing).

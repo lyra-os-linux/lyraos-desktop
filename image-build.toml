@@ -7,7 +7,7 @@ architecture = "x86_64"
 profile = "desktop"
 
 [source]
-repository = "https://github.com/britors/Lyra"
+repository = "https://github.com/lyra-os-linux/lyraos-desktop"
 
 [distribution]
 iso_provider = "sourceforge"
