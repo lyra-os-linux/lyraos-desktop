@@ -48,8 +48,9 @@ compatível com o risco de regressão. Essa exceção não autoriza completar
 silenciosamente partes incompletas do produto nem adicionar novos componentes.
 
 A partir do início da RC1 — incluindo todas as RCs e a versão estável — pacotes
-já distribuídos podem receber correções de bugs e de segurança quando
-necessárias. Não aceite novas funcionalidades, melhorias funcionais nem
+já distribuídos podem receber correções de bugs, de travamentos e de
+segurança, além de melhorias de performance quando forem consideradas
+críticas. Não aceite novas funcionalidades, melhorias funcionais amplas nem
 atualizações que ampliem o comportamento ou o escopo; essas mudanças devem
 aguardar o próximo ciclo.
 
@@ -94,10 +95,11 @@ próprio sistema.
   publicação. Se aparecer um defeito não trivial, interrompa a promoção, volte
   à estabilização e gere outra RC; não reduza os critérios para preservar uma
   data. A partir da RC1, atualize pacotes já distribuídos somente para corrigir
-  bugs ou problemas de segurança, nunca para adicionar funcionalidades.
+  bugs, travamentos, problemas de segurança ou performance crítica, nunca para
+  adicionar funcionalidades.
 - **Estável:** conteúdo funcional congelado, mas o sistema não é imutável: a
   série publicada continua mantida e atualizável. Pacotes já distribuídos podem
-  receber correções de bugs e de segurança quando necessárias, mas não novas
-  funcionalidades, melhorias funcionais ou ampliação de comportamento. Essas
-  mudanças pertencem ao próximo ciclo e devem percorrer novamente Alpha, Beta
-  e RC.
+  receber correções de bugs, de travamentos, de segurança e melhorias de
+  performance crítica quando necessárias, mas não novas funcionalidades,
+  melhorias funcionais ou ampliação de comportamento. Essas mudanças pertencem
+  ao próximo ciclo e devem percorrer novamente Alpha, Beta e RC.
