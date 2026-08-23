@@ -15,6 +15,7 @@ nova não apaga a anterior: cria outro ADR que a substitui e aponta para ela.
 | [0008](0008-private-age-signal-and-parental-supervision.md) | Sinal etário privado e supervisão parental | Proposta — bloqueada pela #106 |
 | [0009](0009-server-edition-own-repository.md) | Edição Server migra para repositório próprio (britors/lyra-os-server) | Aceita |
 | [0010](0010-welcome-own-repository.md) | Lyra Welcome migra para repositório próprio (lyraos-desktop-welcome) | Aceita |
+| [0011](0011-upgrade-own-repository.md) | Lyra Upgrade migra para repositório próprio (lyraos-desktop-updater) | Aceita |
 
 Mudanças incompatíveis no formato do plano precisam incrementar
 `INSTALL_PLAN_SCHEMA_VERSION`, atualizar o ADR 0002 por meio de um novo ADR e
