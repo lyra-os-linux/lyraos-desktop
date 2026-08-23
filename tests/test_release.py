@@ -175,7 +175,8 @@ class RepositoryMetadataTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
 
         self.assertIn('EXPECTED_VERSION="2026.08-alpha6"', builder)
-        self.assertIn("--published-installer --published-welcome", builder)
+        self.assertIn("--published-installer", builder)
+        self.assertNotIn("--published-welcome", builder)
         self.assertIn("obs-release.py health", builder)
         self.assertIn("--evidence-dir", builder)
         for evidence in (

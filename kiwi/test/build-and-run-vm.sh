@@ -14,8 +14,6 @@
 #   ./build-and-run-vm.sh --fresh-disk    accepted for compatibility; fresh is always enforced
 #   ./build-and-run-vm.sh --published-installer
 #                                        use the installer RPM from OBS instead of local sources
-#   ./build-and-run-vm.sh --published-welcome
-#                                        use the Welcome RPM from OBS instead of local sources
 #   ./build-and-run-vm.sh --secure-boot   use OVMF with Secure Boot and Microsoft keys
 #   ./build-and-run-vm.sh --help          show every option and environment override
 #
@@ -58,7 +56,6 @@ BUILD_ONLY=0
 BOOT_INSTALLED=0
 SECURE_BOOT=0
 USE_LOCAL_INSTALLER=1
-USE_LOCAL_WELCOME=1
 
 usage() {
   cat <<'EOF'
@@ -75,8 +72,6 @@ Opções:
   --fresh-disk    compatibilidade; disco/NVRAM novos são sempre obrigatórios
   --published-installer
                   usa somente o RPM publicado no OBS (obrigatório para release)
-  --published-welcome
-                  usa o RPM publicado do Lyra Welcome em vez do workspace local
   --secure-boot   usa OVMF Secure Boot com chaves Microsoft
   -h, --help      mostra esta ajuda
 
@@ -91,9 +86,10 @@ UEFI somente depois de uma ISO válida estar disponível. Depois da instalação
 reinicie dentro da mesma janela do QEMU para testar o primeiro boot pelo disco
 instalado. --build-only não requer QEMU, KVM, OVMF nem sessão gráfica.
 
-Por padrão, um novo build compila e injeta os binários do instalador e do
-Welcome deste workspace. --skip-build apenas reinicia a ISO já existente e
-não recompila.
+Por padrão, um novo build compila e injeta o binário do instalador deste
+workspace; o Lyra Welcome sempre usa o RPM publicado no OBS, já que vive em
+repositório próprio. --skip-build apenas reinicia a ISO já existente e não
+recompila.
 EOF
 }
 
@@ -104,7 +100,6 @@ while [ "$#" -gt 0 ]; do
     --boot-installed) BOOT_INSTALLED=1; shift ;;
     --fresh-disk) shift ;;
     --published-installer) USE_LOCAL_INSTALLER=0; shift ;;
-    --published-welcome) USE_LOCAL_WELCOME=0; shift ;;
     --secure-boot) SECURE_BOOT=1; shift ;;
     -h|--help) usage; exit 0 ;;
     *) echo "unknown flag: $1" >&2; exit 1 ;;
@@ -306,7 +301,7 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
       exit 1
     fi
   done
-  if [ "$USE_LOCAL_INSTALLER" -eq 1 ] || [ "$USE_LOCAL_WELCOME" -eq 1 ]; then
+  if [ "$USE_LOCAL_INSTALLER" -eq 1 ]; then
     for command in cargo install sha256sum; do
       if ! command -v "$command" >/dev/null 2>&1; then
         echo "required local workspace command not found: $command" >&2
@@ -465,50 +460,7 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     echo "--- using published Lyra Installer RPM from OBS ---"
   fi
 
-  if [ "$USE_LOCAL_WELCOME" -eq 1 ]; then
-    if [ ! -d "$BUILD_DESCRIPTION_DIR" ]; then
-      rm -rf "$BUILD_DESCRIPTION_DIR"
-      mkdir -p "$BUILD_DESCRIPTION_DIR"
-      cp \
-        "$KIWI_DESC/config.xml" \
-        "$KIWI_DESC/config.sh" \
-        "$KIWI_DESC/edit_boot_config.sh" \
-        "$BUILD_DESCRIPTION_DIR/"
-      cp -a "$KIWI_DESC/root" "$BUILD_DESCRIPTION_DIR/root"
-      cp -a "$KIWI_DESC/keys" "$BUILD_DESCRIPTION_DIR/keys"
-      BUILD_DESCRIPTION="$BUILD_DESCRIPTION_DIR"
-    fi
-    echo "--- compiling current Lyra Welcome workspace ---"
-    cargo build \
-      --manifest-path "$REPO_ROOT/welcome/src-tauri/Cargo.toml" \
-      --release \
-      --locked
-    echo "--- staging local Lyra Welcome binaries and launchers ---"
-    install -Dm0755 \
-      "$REPO_ROOT/welcome/src-tauri/target/release/lyra-welcome" \
-      "$BUILD_DESCRIPTION_DIR/root/usr/bin/lyra-welcome"
-    install -Dm0755 \
-      "$REPO_ROOT/welcome/packaging/lyra-welcome-first-login" \
-      "$BUILD_DESCRIPTION_DIR/root/usr/bin/lyra-welcome-first-login"
-    install -Dm0644 \
-      "$REPO_ROOT/welcome/packaging/org.lyraos.LyraWelcome.desktop" \
-      "$BUILD_DESCRIPTION_DIR/root/usr/share/applications/org.lyraos.LyraWelcome.desktop"
-    install -Dm0644 \
-      "$REPO_ROOT/welcome/packaging/org.lyraos.LyraWelcome-autostart.desktop" \
-      "$BUILD_DESCRIPTION_DIR/root/etc/xdg/autostart/org.lyraos.LyraWelcome.desktop"
-    install -Dm0644 \
-      "$REPO_ROOT/welcome/packaging/org.lyraos.LyraWelcome.svg" \
-      "$BUILD_DESCRIPTION_DIR/root/usr/share/icons/hicolor/scalable/apps/org.lyraos.LyraWelcome.svg"
-    install -d "$BUILD_DESCRIPTION_DIR/root/usr/share/lyra-welcome"
-    {
-      printf 'commit=%s\n' "$BUILD_SOURCE_COMMIT"
-      printf 'dirty=%s\n' "$BUILD_SOURCE_DIRTY"
-      printf 'source=local-worktree\n'
-    } >"$BUILD_DESCRIPTION_DIR/root/usr/share/lyra-welcome/build-source.txt"
-    echo "--- DEVELOPMENT IMAGE: local Welcome override is not releasable ---"
-  else
-    echo "--- using published Lyra Welcome RPM from OBS ---"
-  fi
+  echo "--- using published Lyra Welcome RPM from OBS ---"
 
   echo "--- building ISO with kiwi-ng (will prompt for sudo password) ---"
   start_loader_guard
