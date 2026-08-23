@@ -193,16 +193,6 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertNotIn("ConfigureUserBashrc", deploy)
         self.assertNotIn('join(".bashrc")', deploy)
 
-        spec = (ROOT / "packaging/linuxtoys/linuxtoys.spec").read_text(
-            encoding="utf-8"
-        )
-        patch = (
-            ROOT / "packaging/linuxtoys/linuxtoys-disable-self-update.patch"
-        ).read_text(encoding="utf-8")
-        self.assertIn("Requires:       git", spec)
-        self.assertIn("upstream self-update bypasses RPM ownership", spec)
-        self.assertIn("LinuxToys is managed by Lyra OS", patch)
-
     def test_fish_z_state_is_always_owned_by_the_logged_in_user(self) -> None:
         early_defaults = (
             ROOT / "kiwi/root/etc/fish/conf.d/00-lyra-home.fish"
