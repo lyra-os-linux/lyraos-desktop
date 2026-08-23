@@ -80,8 +80,8 @@ class ImagePolicyTests(unittest.TestCase):
             ROOT
             / "kiwi/root/usr/share/glib-2.0/schemas/99-lyra-sheliak.gschema.override"
         ).read_text(encoding="utf-8")
-        self.assertIn("sheliak@lyraos.org", override)
-        self.assertIn("updates-indicator@lyraos.org", override)
+        self.assertIn("sheliak@lyraos.com.br", override)
+        self.assertIn("updates-indicator@lyraos.com.br", override)
 
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         desktop_packages = {
