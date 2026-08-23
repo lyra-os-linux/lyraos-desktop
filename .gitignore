@@ -9,7 +9,6 @@ kiwi-build/
 *.src.rpm
 rpmbuild/
 /installer/packaging/output/
-/upgrade/packaging/output/
 /legal-review-packet/
 
 # ISO images and checksums
