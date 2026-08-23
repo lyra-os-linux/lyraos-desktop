@@ -10,7 +10,6 @@ fingerprint = "399218A6E088C4053F4533BE58097F767EDCA82E"
 tag = "v2026.08-beta2-stable-20260809"
 
 [baseline.projects.lyra]
-aladfar = "200049ab5d3d20e6c06ac12da8b63e86"
 beam = "05d3a064ddc8b743d7bd1e398915ee98"
 chord = "a7cd39953df218e3a5836f6ad071ad89"
 lyra-installer = "d2210ab36d89a4c185dc0f36764edf52"
@@ -43,7 +42,6 @@ release = "home:rodrigosbrito:lyra"
 staging = "home:rodrigosbrito:lyra:staging"
 iso_consumer = true
 packages = [
-  "aladfar",
   "beam",
   "chord",
   "lyra-fish-productivity",
