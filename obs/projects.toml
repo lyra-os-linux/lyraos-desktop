@@ -54,6 +54,7 @@ packages = [
   "postgres-draco",
   "sheliak",
   "sulafat",
+  "zed",
 ]
 # Pacotes legados presentes no projeto, mas fora da imagem e do contrato de
 # promoção da Alpha 6. A remoção exige uma limpeza separada e explícita.
