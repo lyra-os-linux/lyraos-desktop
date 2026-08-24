@@ -149,17 +149,18 @@ foi declarado suportado depois da validação no hardware G06 disponível.
 
 ### Desktop Alpha 6 — 28/08 a 11/09
 
-- criar o programa Lyra Upgrade em Rust e estabilizar seu protocolo (#13).
-- implementar o core não privilegiado, preflight, plano reproduzível e estado
-  durável do Lyra Upgrade (lyra-os-linux/lyraos-desktop#86).
-- implementar o serviço privilegiado e a atualização segura dentro da mesma
-  release (lyra-os-linux/lyraos-desktop#83), com testes de falha antes da integração.
-- implementar o upgrade entre releases com manifesto assinado, simulação
-  reproduzível e aplicação offline (#26).
-- criar a interface acessível e os três catálogos do Lyra Upgrade, incluindo
-  retomada da UI e apresentação de falhas (lyra-os-linux/lyraos-desktop#88).
-- implementar o serviço autenticado, versionado e persistente de políticas de
-  controle parental (#2), independente do processo gráfico do Vega.
+- entregar o core, preflight, estado durável e serviço privilegiado do Lyra
+  Upgrade para atualizações seguras dentro da mesma release;
+- entregar a interface acessível do Lyra Upgrade em `en-US`, `pt-BR` e
+  `es-ES`, incluindo retomada da UI, apresentação de falhas, console
+  sanitizado, diagnóstico e caminhos orientados de recuperação e rollback;
+- integrar as novas telas do Welcome e a pilha ALSA explícita da imagem;
+- validar a candidata final com os RPMs efetivamente publicados no OBS,
+  incluindo áudio, Welcome, Vega, atualização, Secure Boot e rollback (#1).
+
+O upgrade entre releases pertence à Alpha 7 (#26). O serviço parental
+permanece no marco 1.0 e só avança depois da revisão jurídica e da qualificação
+técnica; ele não bloqueia a candidata da Alpha 6.
 
 ### Desktop Alpha 7 — 11/09 a 25/09
 
