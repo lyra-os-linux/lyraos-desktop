@@ -195,6 +195,8 @@
     <package name="python3-base"/>
     <package name="pciutils"/>
     <package name="usbutils"/>
+    <package name="bind-utils"/>
+    <package name="telnet"/>
     <package name="less"/>
     <!-- Command-line documentation is a baseline administration facility;
          onlyRequired does not guarantee it. -->
