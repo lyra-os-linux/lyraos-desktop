@@ -365,6 +365,11 @@ class ImagePolicyTests(unittest.TestCase):
                 / "kiwi/root/usr/lib64/firefox/distribution/policies.json"
             ).read_text(encoding="utf-8")
         )
+        homepage = policies["policies"]["Homepage"]
+        self.assertEqual(homepage["URL"], "https://lyraos.com.br/")
+        self.assertEqual(homepage["StartPage"], "homepage")
+        self.assertTrue(homepage["ShowHomeButton"])
+        self.assertFalse(homepage["Locked"])
         preferences = policies["policies"].get("Preferences", {})
         self.assertNotIn("intl.locale.requested", preferences)
 
