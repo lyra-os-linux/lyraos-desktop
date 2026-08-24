@@ -123,29 +123,36 @@ que formam a estação Lyra.
 
 ### Vega
 
-Vega combina Rust/GTK4/libadwaita com o daemon Go `vegad`:
+Os componentes do Vega vivem em repositórios irmãos. O frontend GTK está em
+`vega`; o daemon e as demais interfaces têm ciclos próprios:
 
 ```bash
-cd ~/Git/Vega
+cd ~/Git/Lyra/vega
 cargo fmt --check
 cargo test --locked
 cargo clippy --locked --all-targets -- -D warnings
-
-cd vegad
-GOCACHE=/tmp/vega-gocache go test ./...
-```
-
-Para executar a interface:
-
-```bash
-cd ~/Git/Vega
 cargo run --manifest-path vega-gtk/Cargo.toml
+
+cd ~/Git/Lyra/vegad
+GOCACHE=/tmp/vega-gocache go test ./...
+
+cd ~/Git/Lyra/vega-cli
+bash -n bin/vega lib/*.sh
+
+cd ~/Git/Lyra/vega-web
+cargo test --locked
+
+cd ~/Git/Lyra/lyra-vega-dbus
+cargo test --locked
 ```
+
+Consulte o README de cada componente para testes de integração e requisitos
+específicos.
 
 ### Chord
 
 ```bash
-cd ~/Git/Chord
+cd ~/Git/Lyra/chord
 cargo fmt --check
 cargo test --workspace --locked
 cargo clippy --workspace --all-targets --locked -- -D warnings
@@ -155,7 +162,7 @@ cargo run -p chord-gtk
 ### Beam
 
 ```bash
-cd ~/Git/Beam
+cd ~/Git/Lyra/beam
 cargo fmt --check
 cargo test --workspace --locked
 cargo clippy --workspace --all-targets --locked -- -D warnings
@@ -165,7 +172,7 @@ cargo run -p beam-gtk
 ### Sulafat
 
 ```bash
-cd ~/Git/Sulafat
+cd ~/Git/Lyra/sulafat
 cargo fmt --check
 cargo test --workspace --locked
 cargo clippy --workspace --all-targets --locked -- -D warnings
@@ -175,19 +182,39 @@ cargo run -p sulafat-gtk
 ### Sheliak
 
 ```bash
-cd ~/Git/Sheliak
+cd ~/Git/Lyra/lyraos-desktop-sheliak
 npm ci
 npm run check
 npm run build
 npm run pack
 ```
 
+### Aplicativos extraídos do Desktop
+
+Welcome e Updater são validados nos próprios repositórios:
+
+```bash
+cd ~/Git/Lyra/lyraos-desktop-welcome
+cargo test --manifest-path src-tauri/Cargo.toml --locked
+python3 -m unittest discover -s tests
+
+cd ~/Git/Lyra/lyraos-desktop-updater
+cargo test --workspace --locked
+python3 -m unittest discover -s tests
+
+cd ~/Git/Lyra/lyraos-desktop-linuxtoys
+python3 -m unittest discover -s tests
+```
+
+Os READMEs desses repositórios são a fonte canônica dos comandos; esta lista é
+apenas um caminho rápido para a estação de desenvolvimento.
+
 ## Lyra OS e ISO
 
 Build da imagem:
 
 ```bash
-cd ~/Git/Lyra
+cd ~/Git/Lyra/lyraos-desktop
 ./kiwi/test/build-and-run-vm.sh --build-only --published-installer
 ```
 
