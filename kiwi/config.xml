@@ -416,6 +416,10 @@
     <!-- Packaged by Lyra from a fixed upstream release. Its curl-pipe-shell
          self-updater is disabled downstream; RPM/Zypper owns updates. -->
     <package name="linuxtoys"/>
+    <!-- Packaged by Lyra from the upstream prebuilt Linux release. Its
+         bundled auto-updater is redirected to RPM/Zypper via
+         ZED_UPDATE_EXPLANATION; GNOME Text Editor stays installed too. -->
+    <package name="zed"/>
     <!-- Shown once per installed user through its guarded XDG autostart.
          The launcher explicitly skips the liveuser installation session. -->
     <package name="lyra-welcome"/>

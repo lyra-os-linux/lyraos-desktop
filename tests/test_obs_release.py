@@ -34,6 +34,7 @@ class ManifestTests(unittest.TestCase):
         self.assertEqual([project.id for project in self.manifest.projects], ["lyra", "vega", "fina"])
         self.assertEqual(len(self.manifest.project("lyra").packages), 13)
         self.assertIn("linuxtoys", self.manifest.project("lyra").packages)
+        self.assertIn("zed", self.manifest.project("lyra").packages)
         self.assertIn("lyra-welcome", self.manifest.project("lyra").packages)
         self.assertIn("nvm-fish", self.manifest.project("lyra").packages)
         self.assertIn("lyra-fish-productivity", self.manifest.project("lyra").packages)

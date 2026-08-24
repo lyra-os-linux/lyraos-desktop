@@ -152,6 +152,17 @@
       "rationale": "Second-wave user interface scheduled by the release plan."
     },
     {
+      "id": "zed",
+      "project": "lyra",
+      "wave": "alpha5",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "RPM policy checks and upstream ownership review",
+      "rationale": "Third-party interface and translations remain upstream-owned; Lyra only replaces the unsupported self-update path with a packaging safety diagnostic."
+    },
+    {
       "id": "vega-cli",
       "project": "vega",
       "wave": "alpha5",
