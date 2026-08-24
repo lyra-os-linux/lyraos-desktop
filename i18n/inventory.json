@@ -152,6 +152,17 @@
       "rationale": "Second-wave user interface scheduled by the release plan."
     },
     {
+      "id": "vscode-repo",
+      "project": "lyra",
+      "wave": "alpha5",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "Ships only a Zypper repository definition pointing at Microsoft's official VS Code repository; there is no Lyra-owned interface text and no VS Code binary in this package."
+    },
+    {
       "id": "zed",
       "project": "lyra",
       "wave": "alpha5",

@@ -18,6 +18,7 @@ nova não apaga a anterior: cria outro ADR que a substitui e aponta para ela.
 | [0011](0011-upgrade-own-repository.md) | Lyra Upgrade migra para repositório próprio (lyraos-desktop-updater) | Aceita |
 | [0012](0012-linuxtoys-own-repository.md) | Empacotamento do LinuxToys migra para repositório próprio (lyraos-desktop-linuxtoys) | Aceita |
 | [0013](0013-zed-editor-baseline-package.md) | Zed passa a ser empacotado (zededitor) e instalado por padrão na ISO | Aceita |
+| [0014](0014-vscode-repository-registration-only.md) | VS Code entra só como registro do repositório oficial da Microsoft (vscode-repo) | Aceita |
 
 Mudanças incompatíveis no formato do plano precisam incrementar
 `INSTALL_PLAN_SCHEMA_VERSION`, atualizar o ADR 0002 por meio de um novo ADR e
