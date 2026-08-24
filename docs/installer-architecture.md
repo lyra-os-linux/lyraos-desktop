@@ -73,7 +73,7 @@ O KIWI já contém somente o pacote, autostart e regra de privilégio do Lyra
 Installer. A ISO não pode ser publicada enquanto esse checklist não estiver
 verde; não existe instalador alternativo ou fallback na Beta 2.
 
-## Descoberta de armazenamento e plano (issue britors/Lyra#39)
+## Descoberta de armazenamento e plano (issue lyra-os-linux/lyraos-desktop#39)
 
 `lyra-installer-core::storage` já existe: `discovery` lê o estado atual de
 discos/RAID/LVM sem privilégio (via `lsblk`, sysfs e `pvs`/`vgs`/`lvs`,
@@ -83,22 +83,22 @@ que garante o dry-run do passo 2 do pipeline acima. Os alvos suportados hoje
 são disco inteiro, criação ou reaproveitamento de array RAID (mdadm) e
 criação ou reaproveitamento de volume group LVM em cima do alvo bruto. A
 execução real do plano (particionar, criar o array/VG, formatar) continua
-sendo trabalho do `lyra-installer-service` (britors/Lyra#37/#40), não deste módulo.
+sendo trabalho do `lyra-installer-service` (lyra-os-linux/lyraos-desktop#37/#40), não deste módulo.
 
-## Serviço privilegiado (issue britors/Lyra#37)
+## Serviço privilegiado (issue lyra-os-linux/lyraos-desktop#37)
 
 `lyra-installer-core::service` e o binário `installer/service`
 (`lyra-installer-service`) implementam o arcabouço de execução segura:
 protocolo em JSON lines pelo stdin/stdout, revalidação do plano contra um
 `StorageSnapshot` fresco antes de qualquer escrita (reaproveitando o
-`PlanBuilder` de britors/Lyra#39), allow-list de binários no `RealExecutor` (nunca
+`PlanBuilder` de lyra-os-linux/lyraos-desktop#39), allow-list de binários no `RealExecutor` (nunca
 shell, nunca concatenação de string — escrita de arquivo como `/etc/fstab`
 é `std::fs::write` direto do próprio processo, já root, não passa pela
 allow-list de spawn de processo), cancelamento entre operações e
 desfazimento em ordem reversa de tudo que rodou — **sempre**, sucesso ou
 falha, não só em erro (é assim que o alvo fica desmontado ao final de uma
 instalação bem-sucedida). `operation::PrivilegedOperation` deixou de ser um
-enum vazio com britors/Lyra#40 — ver a seção seguinte.
+enum vazio com lyra-os-linux/lyraos-desktop#40 — ver a seção seguinte.
 
 O `lyra-installer-service` é lançado via
 `pkexec /usr/libexec/lyra-installer-service` só pelo comando Tauri
@@ -112,7 +112,7 @@ O RPM `lyra-installer` entrega interface, serviço, desktop entry, policy e
 regra como um conjunto. `kiwi/config.xml` consome esse pacote e não contém um
 segundo instalador.
 
-## Particionamento e layout Btrfs (issue britors/Lyra#40)
+## Particionamento e layout Btrfs (issue lyra-os-linux/lyraos-desktop#40)
 
 `lyra-installer-core::service::operations` traduz um `InstallPlan` em
 operações reais para o caso "disco inteiro, layout direto": tabela GPT,
@@ -139,10 +139,10 @@ uma imagem descartável via `sudo`, mas ainda precisa ser rodado (ex.: na VM
 de teste do KIWI) antes desse caminho ser considerado confirmado na
 prática, só na lógica pura coberta por `cargo test`.
 
-## Implantação do rootfs e configuração do destino (issue britors/Lyra#41)
+## Implantação do rootfs e configuração do destino (issue lyra-os-linux/lyraos-desktop#41)
 
 `lyra-installer-core::service::operations::deploy` implanta o sistema no
-target já particionado por britors/Lyra#40: extrai `/run/overlay/live/LiveOS/squashfs.img`
+target já particionado por lyra-os-linux/lyraos-desktop#40: extrai `/run/overlay/live/LiveOS/squashfs.img`
 (`unsquashfs -f`, preserva permissões/ACLs/xattrs), depois executa a sequência
 Lyra auditada contra o comportamento do instalador anterior: machine-id,
 locale, teclado,
@@ -151,7 +151,7 @@ stdin, nunca argv), `sudoers.d`, initramfs, remoção do `liveuser` e de
 artefatos exclusivos da sessão live, redução de prioridade dos repositórios
 Lyra, cópia dos perfis de rede salvos e relógio de hardware em UTC.
 `operations::build(request)` é o ponto de entrada que junta particionamento
-(britors/Lyra#40) + implantação (britors/Lyra#41) + `sync` final numa sequência só.
+(lyra-os-linux/lyraos-desktop#40) + implantação (lyra-os-linux/lyraos-desktop#41) + `sync` final numa sequência só.
 
 A maioria dos passos usa `--root`/`-R` (`useradd`, `userdel`, `chpasswd`,
 `systemctl`) ou escreve arquivo direto (`std::fs::write`/`std::fs::symlink`)
@@ -161,21 +161,21 @@ existe para *comandos*, não para E/S direta de um processo já confiável.
 Só o `dracut` precisa de chroot de verdade (inspeciona `/lib/modules` do
 próprio target): três operações `BindMount` (`/proc`, `/sys`, `/dev`) mais
 `chroot <target> dracut -f`, desmontadas pelo mesmo desfazimento
-sempre-executado de britors/Lyra#40.
+sempre-executado de lyra-os-linux/lyraos-desktop#40.
 
 O serviço usa `dracut -f`, mantendo o nome de initramfs derivado do kernel, e
 `InstallConfig` carrega explicitamente o layout de teclado selecionado.
 
-Mesma limitação de britors/Lyra#40: nada disso foi executado contra root/disco real
+Mesma limitação de lyra-os-linux/lyraos-desktop#40: nada disso foi executado contra root/disco real
 nesta sessão — só a lógica pura, com `FakeExecutor`/diretórios temporários
 graváveis em `/tmp`, está coberta por `cargo test`.
 
-## GRUB, shim (Secure Boot) e rollback via Snapper (issue britors/Lyra#42)
+## GRUB, shim (Secure Boot) e rollback via Snapper (issue lyra-os-linux/lyraos-desktop#42)
 
 Últimas operações de `deployment_operations()`, depois da limpeza do
 `liveuser` e dos artefatos live — de propósito, porque o primeiro snapshot
 do Snapper precisa nascer já sem isso. Reaproveita os bind mounts de
-`/proc`/`/sys`/`/dev` que `RunDracut` (britors/Lyra#41) já deixou de pé: como o
+`/proc`/`/sys`/`/dev` que `RunDracut` (lyra-os-linux/lyraos-desktop#41) já deixou de pé: como o
 desfazimento do engine só roda no fim de toda a execução, o chroot
 continua disponível para todas as operações abaixo sem montar nada de
 novo. A implementação usa `/usr/sbin/shim-install` do pacote `shim` e o helper
@@ -190,7 +190,7 @@ target (sem chroot — é só um argumento de caminho) + remove `subvol=`/
 `subvolid=` da linha raiz do fstab (porta direta do awk do
 `prepare-root` real) → `chroot snapper create-config` → confere
 `/.snapshots` e acrescenta a linha dele no fstab (porta do `mount-snapshots`
-real) → `chroot dracut --force --fstab` (chamada separada da de britors/Lyra#41,
+real) → `chroot dracut --force --fstab` (chamada separada da de lyra-os-linux/lyraos-desktop#41,
 pra reincorporar o fstab sem `subvol=`) → remove o RPM `lyra-installer` do
 banco do target e limpa qualquer overlay local → `chroot snapper create
 --read-only ...` (primeiro snapshot já sem o serviço privilegiado) →

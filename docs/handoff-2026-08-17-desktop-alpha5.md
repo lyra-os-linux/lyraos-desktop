@@ -90,8 +90,8 @@ lyra-os.x86_64-2026.08-alpha5.verified
 
 ### Confiabilidade do instalador
 
-O commit `472cd8f` implementou as correções relacionadas às issues britors/Lyra#90, #23 e
-britors/Lyra#92:
+O commit `472cd8f` implementou as correções relacionadas às issues lyra-os-linux/lyraos-desktop#90, #23 e
+lyra-os-linux/lyraos-desktop#92:
 
 - política de assinatura alinhada ao estágio: SHA-256 sem assinatura GPG da ISO
   antes da Beta 1, sem relaxar assinaturas de repositório/RPM;
@@ -221,14 +221,14 @@ continuam desejáveis durante o ciclo.
    `./scripts/upload-desktop-alpha5-sourceforge.sh --verify-download`.
 7. Confirmar que o download público tem o SHA-256 registrado acima.
 8. Registrar/fechar as issues Alpha 5 já implementadas apenas depois de anexar
-   os commits e os resultados de teste: britors/Lyra#90, #23, britors/Lyra#92, #21 e #12.
+   os commits e os resultados de teste: lyra-os-linux/lyraos-desktop#90, #23, lyra-os-linux/lyraos-desktop#92, #21 e #12.
 9. Triar #22 (NVIDIA/monitor externo) conforme hardware disponível; não afirmar
    que foi corrigida sem reprodução e evidência.
 10. Resolver a inconsistência de `docs/release-gate.md`, cujo título e texto
     ainda dizem Desktop Alpha 3. Definir um gate proporcional para Alphas e o
     gate completo a partir da Beta 1, preservando a ADR 0005.
 11. Retomar a arquitetura do Lyra Upgrade na issue #27. A implementação foi
-    deliberadamente movida para Alpha 6: epic #25 e issues #26, britors/Lyra#83, britors/Lyra#86, britors/Lyra#88 e
+    deliberadamente movida para Alpha 6: epic #25 e issues #26, lyra-os-linux/lyraos-desktop#83, lyra-os-linux/lyraos-desktop#86, lyra-os-linux/lyraos-desktop#88 e
     #13. Não inserir o updater às pressas na Alpha 5 já validada.
 
 ## Issues abertas relevantes
@@ -238,9 +238,9 @@ continuam desejáveis durante o ciclo.
 - #12 — incluir Git para Fish/nvm-fish: implementada, falta atualizar/fechar;
 - #21 — pré-instalar LinuxToys: implementada e publicada no OBS, falta fechar;
 - #22 — monitor externo NVIDIA não acorda após DPMS/suspensão: pendente;
-- britors/Lyra#92 — falha de desmontagem não pode virar sucesso: implementada;
+- lyra-os-linux/lyraos-desktop#92 — falha de desmontagem não pode virar sucesso: implementada;
 - #23 — teste destrutivo fail-closed: implementada;
-- britors/Lyra#90 — assinatura por estágio: implementada;
+- lyra-os-linux/lyraos-desktop#90 — assinatura por estágio: implementada;
 - #27 — contratos do Lyra Upgrade: ainda aberta; reavaliar escopo/label porque
   a implementação está planejada para Alpha 6;
 - #25 e #29 — epics que atravessam versões.
@@ -250,10 +250,10 @@ continuam desejáveis durante o ciclo.
 A Alpha 6 concentra o Lyra Upgrade:
 
 - #13 — aplicativo em Rust;
-- britors/Lyra#86 — core, preflight e máquina de estados;
-- britors/Lyra#83 — serviço privilegiado e atualização da mesma release;
+- lyra-os-linux/lyraos-desktop#86 — core, preflight e máquina de estados;
+- lyra-os-linux/lyraos-desktop#83 — serviço privilegiado e atualização da mesma release;
 - #26 — upgrade entre releases;
-- britors/Lyra#88 — interface Tauri e i18n.
+- lyra-os-linux/lyraos-desktop#88 — interface Tauri e i18n.
 
 A arquitetura deve aproveitar Zypper, Snapper e rollback do openSUSE. O projeto
 considerou usar um JSON publicado junto aos arquivos do SourceForge para

@@ -122,7 +122,7 @@ pacotes meta que mantêm kernel module, userspace e firmware sincronizados.
 
 ## Branding e identidade visual
 
-Fonte de verdade: repositório [britors/Lyra-Theme](https://github.com/britors/Lyra-Theme)
+Fonte de verdade: repositório [lyra-os-linux/lyraos-desktop-theme](https://github.com/lyra-os-linux/lyraos-desktop-theme)
 ("Lyra Enterprise").
 
 - **Abordagem**: Adwaita nativo para GNOME Shell, GTK4/libadwaita e

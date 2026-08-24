@@ -56,7 +56,7 @@ Cada captura registra `details.services.man-db.service` separando:
 
 O resumo de cinco execuções agrega contagem de ativações, duração e ocorrências
 no caminho crítico em `services.man-db.service`. Não masque a unidade nem mude
-o timer somente para reduzir o resultado de `blame`: uma alteração da britors/Lyra#28 só é
+o timer somente para reduzir o resultado de `blame`: uma alteração da lyra-os-linux/lyraos-desktop#28 só é
 aceitável se reduzir `boot_to_desktop_seconds` ou `boot_userspace_seconds` em
 séries comparáveis e mantiver `man`, `apropos` e a atualização do índice
 funcionais. A configuração nativa continua sendo a reversão padrão até existir
@@ -102,7 +102,7 @@ trabalho útil, não necessariamente regressão.
 
 ## Regras para otimizações
 
-Mudanças das issues britors/Lyra#28 e britors/Lyra#29 devem anexar resumos antes/depois feitos no mesmo
+Mudanças das issues lyra-os-linux/lyraos-desktop#28 e lyra-os-linux/lyraos-desktop#29 devem anexar resumos antes/depois feitos no mesmo
 ambiente. Uma melhoria só avança quando a série é estável e os testes de boot,
 atualização, Snapper e rollback continuam verdes. Ganho isolado não compensa
 falha funcional ou perda de recuperabilidade.

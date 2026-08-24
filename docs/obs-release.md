@@ -107,7 +107,7 @@ Never use `osc copypac` directly from a workstation into a release project.
 ## Release health gate
 
 Before building a release candidate, verify the release channels through their
-public download URLs and write the evidence consumed by britors/Lyra#51:
+public download URLs and write the evidence consumed by lyra-os-linux/lyraos-desktop#51:
 
 ```console
 ./scripts/obs-release.py health \
