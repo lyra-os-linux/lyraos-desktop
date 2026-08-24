@@ -4,6 +4,8 @@ Mon Aug 24 21:00:00 UTC 2026 - Lyra OS Team
 - Repair ownership of the complete installed user home after useradd copies
   the skeleton, using numeric IDs from the target passwd database without
   following symbolic links.
+- Reject a pre-existing target home instead of letting useradd silently adopt
+  content leaked into the image or left by an inconsistent deployment.
 
 -------------------------------------------------------------------
 Fri Aug 21 12:00:00 UTC 2026 - Lyra OS Team

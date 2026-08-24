@@ -603,6 +603,13 @@ impl PrivilegedOperation for CreateUser {
     }
 
     fn perform(&self, executor: &dyn Executor) -> Result<(), OperationError> {
+        let home = self.target_root.join("home").join(&self.username);
+        if home.exists() {
+            return Err(OperationError::Io(format!(
+                "home já existe antes de useradd: {}",
+                home.display()
+            )));
+        }
         let supplementary_groups = available_user_groups(&self.target_root)?;
         executor.run(&ArgvCommand {
             binary: "useradd".to_string(),
@@ -628,12 +635,12 @@ impl PrivilegedOperation for CreateUser {
             &format!("{}:{}\n", self.username, self.password),
         )?;
 
-        // Do not rely on useradd -R -m to repair ownership of every item
-        // copied from /etc/skel. A real Alpha 6 installation produced a
-        // root-owned home containing only the seeded Git directory, leaving
-        // the account unable to create files. Resolve the numeric IDs from
-        // the target passwd database (host NSS must not be involved), then
-        // repair only this account's home without dereferencing symlinks.
+        // Do not rely only on useradd -R -m for the final ownership invariant.
+        // A real Alpha 6 image leaked the host build path into /home; for a
+        // matching username useradd adopted that root-owned directory. The
+        // pre-existing-home guard above rejects that collision, while this
+        // final repair covers skeleton content. Resolve IDs from the target
+        // passwd database (never host NSS) and do not dereference symlinks.
         let (uid, gid) = target_user_ids(&self.target_root, &self.username)?;
         executor.run(&ArgvCommand {
             binary: "chown".to_string(),
@@ -641,7 +648,7 @@ impl PrivilegedOperation for CreateUser {
                 "--recursive".to_string(),
                 "--no-dereference".to_string(),
                 format!("{uid}:{gid}"),
-                path_str(&self.target_root.join("home").join(&self.username)),
+                path_str(&home),
             ],
         })?;
         Ok(())
@@ -1846,6 +1853,25 @@ mod tests {
             executor.calls()[0].contains("-G users,lp,video,wheel,audio"),
             "network and storage must be omitted when Leap does not provide them"
         );
+    }
+
+    #[test]
+    fn create_user_rejects_a_home_that_existed_before_useradd() {
+        let temp = TempRoot::new("create-user-existing-home");
+        write_group_fixture(&temp.0, USER_SUPPLEMENTARY_GROUPS);
+        fs::create_dir_all(temp.0.join("home/lyra/Git")).unwrap();
+        let op = CreateUser {
+            target_root: temp.0.clone(),
+            full_name: "Lyra User".to_string(),
+            username: "lyra".to_string(),
+            password: "harmonia-2026".to_string(),
+        };
+        let executor = FakeExecutor::new();
+
+        let error = op.perform(&executor).unwrap_err();
+
+        assert!(error.to_string().contains("home já existe antes de useradd"));
+        assert!(executor.calls().is_empty());
     }
 
     #[test]

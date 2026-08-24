@@ -5,7 +5,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
-ARTIFACT_DIR="$REPO_ROOT/kiwi/.kiwi/test-$(id -u)/iso"
+WORK_DIR="${LYRA_TEST_WORK_DIR:-/var/tmp/lyraos-desktop-test-$(id -u)}"
+ARTIFACT_DIR="$WORK_DIR/iso"
 EXPECTED_VERSION="2026.08-alpha6"
 REMOTE="rodrigobritosoa@frs.sourceforge.net:/home/frs/project/lyra/releases/1.0/desktop/alpha6/"
 DOWNLOAD_URL="https://downloads.sourceforge.net/project/lyra/releases/1.0/desktop/alpha6"

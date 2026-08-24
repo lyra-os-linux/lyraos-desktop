@@ -5,7 +5,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
-WORK_DIR="$REPO_ROOT/kiwi/.kiwi/test-$(id -u)"
+WORK_DIR="${LYRA_TEST_WORK_DIR:-/var/tmp/lyraos-desktop-test-$(id -u)}"
 BUILD_DIR="$WORK_DIR/build"
 ARTIFACT_DIR="$WORK_DIR/iso"
 EVIDENCE_DIR=""

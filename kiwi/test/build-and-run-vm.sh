@@ -26,8 +26,10 @@
 # the installed disk.
 #
 # All output is logged (with timestamps) below a private per-user directory
-# under kiwi/.kiwi, in addition to your terminal. Set LYRA_TEST_WORK_DIR to
-# use another persistent location.
+# in /var/tmp, in addition to your terminal. The work tree must stay outside
+# the KIWI description checkout: KIWI exposes that checkout in its build root,
+# so nesting the output below it can recursively leak host paths into the ISO.
+# Set LYRA_TEST_WORK_DIR to use another persistent location outside the repo.
 
 set -euo pipefail
 
@@ -109,7 +111,7 @@ done
 # Keep the large KIWI tree, ISO and VM disk on the persistent filesystem.
 # On many systems /tmp is a small RAM-backed tmpfs and cannot hold a full
 # image build plus an expanding qcow2 installation disk.
-WORK_DIR="${LYRA_TEST_WORK_DIR:-$KIWI_DESC/.kiwi/test-$CURRENT_UID}"
+WORK_DIR="${LYRA_TEST_WORK_DIR:-/var/tmp/lyraos-desktop-test-$CURRENT_UID}"
 BUILD_DIR="$WORK_DIR/build"
 BUILD_DESCRIPTION_DIR="$WORK_DIR/description"
 ISO_DIR="$WORK_DIR/iso"
@@ -159,6 +161,32 @@ if [ -e "$WORK_DIR" ] && [ "$(stat -c '%u' "$WORK_DIR")" -ne "$CURRENT_UID" ]; t
 fi
 mkdir -p -m 0700 "$WORK_DIR"
 chmod 0700 "$WORK_DIR"
+
+case "$(readlink -f "$WORK_DIR")/" in
+  "$(readlink -f "$REPO_ROOT")/"*)
+    echo "Work directory must be outside the repository: $WORK_DIR" >&2
+    exit 1
+    ;;
+esac
+
+validate_live_rootfs_homes() {
+  local extracted_root="$1"
+  local unexpected_home
+
+  if [ ! -d "$extracted_root/home/liveuser" ]; then
+    echo "!!! live rootfs does not contain /home/liveuser" >&2
+    return 1
+  fi
+  unexpected_home="$(
+    find "$extracted_root/home" -mindepth 1 -maxdepth 1 \
+      ! -name liveuser -print -quit
+  )"
+  if [ -n "$unexpected_home" ]; then
+    echo "!!! live rootfs contains an unexpected home: $unexpected_home" >&2
+    echo "!!! refusing an ISO that may contain host build data" >&2
+    return 1
+  fi
+}
 
 # Timestamp every line, tee to log file and terminal.
 exec > >(while IFS= read -r line; do printf '%s %s\n' "$(date '+%H:%M:%S')" "$line"; done | tee -a "$LOG") 2>&1
@@ -688,6 +716,11 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     rm -rf "$SQUASHFS_VERIFY_DIR"
     exit 1
   fi
+  if ! validate_live_rootfs_homes "$SQUASHFS_VERIFY_DIR"; then
+    chmod -R u+rwX "$SQUASHFS_VERIFY_DIR" 2>/dev/null || true
+    rm -rf "$SQUASHFS_VERIFY_DIR"
+    exit 1
+  fi
   chmod -R u+rwX "$SQUASHFS_VERIFY_DIR" 2>/dev/null || true
   rm -rf "$SQUASHFS_VERIFY_DIR"
   echo "--- validated live SquashFS by full extraction ---"
@@ -751,6 +784,11 @@ if [ "$SKIP_BUILD" -eq 1 ]; then
       -d "$SQUASHFS_VERIFY_DIR" "$ISO_SQUASHFS" >/dev/null; then
     echo "!!! existing ISO contains an unreadable/corrupt live SquashFS" >&2
     echo "!!! refusing to boot with --skip-build: $ISO_PATH" >&2
+    chmod -R u+rwX "$SQUASHFS_VERIFY_DIR" 2>/dev/null || true
+    rm -rf "$SQUASHFS_VERIFY_DIR"
+    exit 1
+  fi
+  if ! validate_live_rootfs_homes "$SQUASHFS_VERIFY_DIR"; then
     chmod -R u+rwX "$SQUASHFS_VERIFY_DIR" 2>/dev/null || true
     rm -rf "$SQUASHFS_VERIFY_DIR"
     exit 1
