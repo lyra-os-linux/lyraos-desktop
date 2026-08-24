@@ -27,7 +27,14 @@ beam = "ea498bf5f23177feedbbab89daad2081"
 chord = "a7cd39953df218e3a5836f6ad071ad89"
 linuxtoys = "019158c908ac70259af9b9c80ff0c316"
 lyra-installer = "d2210ab36d89a4c185dc0f36764edf52"
-lyra-theme = "7e39029875e758c1189d46a1beed0af2"
+# The final Alpha 6 wallpaper payload was initially committed directly to
+# release as srcmd5 f3b58da0bd26e261cafd4ba37c83396f. It was reconstructed
+# in staging rev 8, where both multibuild flavors and the complete staging
+# channel passed on 2026-08-24. Staging srcmd5
+# 7ced7c370bd6f9203fcf8d94e0096677 and release resolve to the same verifymd5
+# 7679a3d789db96f9bcfe16171de1d5c1; OBS rejected the submit request because
+# it contained no source changes. Subsequent changes require accepted staging.
+lyra-theme = "f3b58da0bd26e261cafd4ba37c83396f"
 nvm-fish = "676c25d2dd1a17ba2fadd78dfdbccbd8"
 postgres-draco = "78c6d81ca2977081b35b21cbaaf5e1e1"
 sheliak = "66386901d478e307ace8bca0ecbcd6ad"
