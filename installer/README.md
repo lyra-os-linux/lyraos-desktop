@@ -222,6 +222,9 @@ instalação já concluída em falha falsa.
 squashfs da sessão live, machine-id, fuso horário, teclado, locale
 (mapeamento de teclado fixo por locale por enquanto — sem tela própria),
 hostname, cria o usuário (senha só via stdin do `chpasswd`, nunca em argv),
+repara a propriedade numérica de todo o `/home/<usuário>` sem seguir links
+simbólicos e bloqueia o primeiro boot gate se o diretório não pertencer à conta
+ou não tiver escrita para o dono,
 `sudoers.d`, initramfs via `chroot`, remove `liveuser` e artefatos da
 sessão live, ajusta prioridade dos repositórios Lyra, copia perfis de rede
 e sincroniza o relógio em UTC. Por último (depois da limpeza do

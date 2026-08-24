@@ -31,6 +31,7 @@ class SystemSmokeTests(unittest.TestCase):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(content, encoding="utf-8")
         (root / "sys/firmware/efi/efivars").mkdir(parents=True)
+        (root / "home/alice").mkdir(parents=True)
 
     @staticmethod
     def runner(arguments: list[str]) -> tuple[int, str]:
@@ -38,6 +39,8 @@ class SystemSmokeTests(unittest.TestCase):
             return 0, "alice:x:1000:100::/home/alice:/bin/bash"
         if arguments[:3] == ["getent", "passwd", "liveuser"]:
             return 2, ""
+        if arguments[:2] == ["stat", "--format=%u:%g:%a"]:
+            return 0, "1000:100:700"
         if arguments[0] == "rpm":
             return 1, "package lyra-installer is not installed"
         if arguments[:4] == ["findmnt", "-n", "-o", "FSTYPE"]:
@@ -104,6 +107,28 @@ class SystemSmokeTests(unittest.TestCase):
             self.assertEqual(report["status"], "failed")
             self.assertIn("live-artifacts-removed", failed)
             self.assertIn("installer-package-removed", failed)
+
+    def test_root_owned_home_blocks_first_boot(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_installed_root(root)
+
+            def runner(arguments: list[str]) -> tuple[int, str]:
+                if arguments[:2] == ["stat", "--format=%u:%g:%a"]:
+                    return 0, "0:0:755"
+                return self.runner(arguments)
+
+            report = system_smoke.validate_first_boot(
+                root=root, username="alice", runner=runner
+            )
+            failed = {
+                item["id"]
+                for item in report["checks"]
+                if item["status"] == "failed"
+            }
+            self.assertEqual(report["status"], "failed")
+            self.assertIn("installed-user-home-ownership", failed)
+            self.assertIn("installed-user-home-writable", failed)
 
     def test_unreadable_grub_is_a_structured_failure_not_a_traceback(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
