@@ -10,13 +10,20 @@ fingerprint = "399218A6E088C4053F4533BE58097F767EDCA82E"
 tag = "v2026.08-beta2-stable-20260809"
 
 [baseline.projects.lyra]
-beam = "05d3a064ddc8b743d7bd1e398915ee98"
+# beam and sulafat: srcmd5 pinned directly (not via an accepted submit
+# request) because staging and release already carried byte-identical
+# content by the time promotion ran, so OBS refused the no-op submit
+# request ("contains no actions"). Verified equal to
+# home:rodrigosbrito:lyra:staging srcmd5 for the same package on
+# 2026-08-24 before pinning; every subsequent change must still arrive
+# through an accepted staging request.
+beam = "ea498bf5f23177feedbbab89daad2081"
 chord = "a7cd39953df218e3a5836f6ad071ad89"
 lyra-installer = "d2210ab36d89a4c185dc0f36764edf52"
 lyra-theme = "7e39029875e758c1189d46a1beed0af2"
 postgres-draco = "611a97181f001f64c3091eb5ca8623bc"
 sheliak = "66386901d478e307ace8bca0ecbcd6ad"
-sulafat = "21b62d5493886780d47b0cc17c333577"
+sulafat = "99dcea79a5e7490a6f40fc78f9f1eccb"
 
 [baseline.projects.vega]
 vega-cli = "0399bf5a9f143e3ad42d2e1223e97752"
