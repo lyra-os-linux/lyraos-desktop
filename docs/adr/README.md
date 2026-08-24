@@ -11,7 +11,7 @@ nova não apaga a anterior: cria outro ADR que a substitui e aponta para ela.
 | [0004](0004-rust-installer-only-in-beta-2.md) | Instalador Rust como único caminho da Beta 2 | Aceita |
 | [0005](0005-guided-swap-policy-and-plan-v2.md) | Política guiada de swap e plano versão 2 | Aceita |
 | [0006](0006-btrfs-mount-policy-and-plan-v3.md) | Política Btrfs global e NOCOW granular, plano versão 3 | Aceita |
-| [0007](0007-lyra-upgrade-trust-boundaries.md) | Fronteiras, protocolo e persistência do Lyra Upgrade | Aceita |
+| [0007](0007-lyra-upgrade-trust-boundaries.md) | Fronteiras, protocolo e persistência do Lyra Upgrade | Migrada para `lyraos-desktop-updater` |
 | [0008](0008-private-age-signal-and-parental-supervision.md) | Sinal etário privado e supervisão parental | Proposta — bloqueada pela #106 |
 | [0009](0009-server-edition-own-repository.md) | Edição Server migra para repositório próprio (lyraos-server) | Aceita |
 | [0010](0010-welcome-own-repository.md) | Lyra Welcome migra para repositório próprio (lyraos-desktop-welcome) | Aceita |
