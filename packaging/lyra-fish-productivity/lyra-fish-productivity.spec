@@ -15,7 +15,7 @@ Version:        1.0.0
 Release:        0
 Summary:        Fisher and the curated fish plugin set of Lyra OS
 License:        GPL-3.0-only
-URL:            https://github.com/britors/Lyra
+URL:            https://github.com/lyra-os-linux/lyraos-desktop
 Source0:        %{name}-%{version}.tar.xz
 BuildArch:      noarch
 

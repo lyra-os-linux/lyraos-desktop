@@ -27,7 +27,7 @@
 <policyconfig>
 
   <vendor>Lyra OS</vendor>
-  <vendor_url>https://github.com/britors/Lyra</vendor_url>
+  <vendor_url>https://github.com/lyra-os-linux/lyraos-desktop</vendor_url>
 
   <action id="io.lyra.Installer.execute-plan">
     <description xml:lang="pt_BR">Executar o plano de instalação do Lyra OS</description>

@@ -543,7 +543,7 @@
     <package name="lyra-upgrade"/>
 
     <!--
-      Branding (Lyra-Theme, github.com/britors/Lyra-Theme). Package
+      Branding (Lyra-Theme, github.com/lyra-os-linux/lyraos-desktop-theme). Package
       names, dependency, and behavior confirmed against that repo's real
       packaging/opensuse/*.spec and install-rpm.sh, not assumed:
 

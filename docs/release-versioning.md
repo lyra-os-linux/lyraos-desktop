@@ -135,7 +135,7 @@ foi declarado suportado depois da validação no hardware G06 disponível.
 ### Desktop Alpha 5 — 14/08 a 28/08
 
 - corrigir os bloqueadores herdados do instalador e do pipeline de release
-  antes de ampliar o escopo (britors/Lyra#90, #23 e britors/Lyra#92).
+  antes de ampliar o escopo (lyra-os-linux/lyraos-desktop#90, #23 e lyra-os-linux/lyraos-desktop#92).
 - aprovar arquitetura, modelo de ameaças, protocolos e máquina de estados do
   Lyra Upgrade (#27), pois esse contrato bloqueia as demais implementações.
 - concluir o enquadramento jurídico do ECA Digital (#10), auditar a referência
@@ -143,21 +143,21 @@ foi declarado suportado depois da validação no hardware G06 disponível.
   experiência no Vega (#8) e aprovar a arquitetura e os contratos (#5).
 - estabelecer a baseline e a cadência de acompanhamento regulatório LTS
   (#3), sem autorizar ampliação silenciosa após o congelamento funcional.
-- concluído antecipadamente: todos os projetos e RPMs nos três idiomas (britors/Lyra#78),
-  NVIDIA pelo Vega e remoção da ISO dedicada (britors/Lyra#77) e qualificação na imagem
-  (britors/Lyra#79).
+- concluído antecipadamente: todos os projetos e RPMs nos três idiomas (lyra-os-linux/lyraos-desktop#78),
+  NVIDIA pelo Vega e remoção da ISO dedicada (lyra-os-linux/lyraos-desktop#77) e qualificação na imagem
+  (lyra-os-linux/lyraos-desktop#79).
 
 ### Desktop Alpha 6 — 28/08 a 11/09
 
 - criar o programa Lyra Upgrade em Rust e estabilizar seu protocolo (#13).
 - implementar o core não privilegiado, preflight, plano reproduzível e estado
-  durável do Lyra Upgrade (britors/Lyra#86).
+  durável do Lyra Upgrade (lyra-os-linux/lyraos-desktop#86).
 - implementar o serviço privilegiado e a atualização segura dentro da mesma
-  release (britors/Lyra#83), com testes de falha antes da integração.
+  release (lyra-os-linux/lyraos-desktop#83), com testes de falha antes da integração.
 - implementar o upgrade entre releases com manifesto assinado, simulação
   reproduzível e aplicação offline (#26).
 - criar a interface acessível e os três catálogos do Lyra Upgrade, incluindo
-  retomada da UI e apresentação de falhas (britors/Lyra#88).
+  retomada da UI e apresentação de falhas (lyra-os-linux/lyraos-desktop#88).
 - implementar o serviço autenticado, versionado e persistente de políticas de
   controle parental (#2), independente do processo gráfico do Vega.
 
@@ -166,7 +166,7 @@ foi declarado suportado depois da validação no hardware G06 disponível.
 - integrar no Vega a configuração parental e a autorização de aplicativos
   sobre o backend já qualificado (#7).
 - concluído antecipadamente: verificação pós-boot, recuperação e rollback
-  determinístico pelo snapshot registrado na operação (britors/Lyra#85).
+  determinístico pelo snapshot registrado na operação (lyra-os-linux/lyraos-desktop#85).
 
 ### Desktop Alpha 8 — 25/09 a 13/10
 

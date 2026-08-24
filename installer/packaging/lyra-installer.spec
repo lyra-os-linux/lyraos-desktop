@@ -15,7 +15,7 @@ Release:        0
 Summary:        Instalador nativo do Lyra OS
 License:        GPL-3.0-only
 Group:          System/Boot/Installation
-URL:            https://github.com/britors/Lyra
+URL:            https://github.com/lyra-os-linux/lyraos-desktop
 Source0:        %{name}-%{version}.tar.zst
 Source1:        vendor.tar.zst
 Source2:        build-source.txt
