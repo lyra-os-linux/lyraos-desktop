@@ -19,7 +19,7 @@ Release = release_module.Release
 
 def sample_release(**overrides: object) -> Release:
     values: dict[str, object] = {
-        "calendar_version": "2026.08",
+        "calendar_version": "27.02",
         "stage": "beta",
         "iteration": 2,
         "codename": "Odisseia",
@@ -36,30 +36,30 @@ def sample_release(**overrides: object) -> Release:
 class ReleaseConventionTests(unittest.TestCase):
     def test_alpha_identifiers(self) -> None:
         release = sample_release(stage="alpha", iteration=5)
-        self.assertEqual(release.version_id, "2026.08-alpha5")
-        self.assertEqual(release.tag, "v2026.08-alpha5")
-        self.assertEqual(release.iso_filename, "lyra-os.x86_64-2026.08-alpha5.iso")
-        self.assertEqual(release.volume_id, "LYRA_OS_2026_08_ALPHA5")
-        self.assertEqual(release.pretty_name, "Lyra OS Alpha 5 (Odisseia)")
+        self.assertEqual(release.version_id, "27.02-alpha5")
+        self.assertEqual(release.tag, "v27.02-alpha5")
+        self.assertEqual(release.iso_filename, "lyra-os.x86_64-27.02-alpha5.iso")
+        self.assertEqual(release.volume_id, "LYRA_OS_27_02_ALPHA5")
+        self.assertEqual(release.pretty_name, "Lyra OS 27.02 Alpha 5 (Odisseia)")
 
     def test_beta_identifiers(self) -> None:
         release = sample_release()
-        self.assertEqual(release.version_id, "2026.08-beta2")
-        self.assertEqual(release.tag, "v2026.08-beta2")
-        self.assertEqual(release.iso_filename, "lyra-os.x86_64-2026.08-beta2.iso")
-        self.assertEqual(release.volume_id, "LYRA_OS_2026_08_BETA2")
-        self.assertEqual(release.pretty_name, "Lyra OS Beta 2 (Odisseia)")
+        self.assertEqual(release.version_id, "27.02-beta2")
+        self.assertEqual(release.tag, "v27.02-beta2")
+        self.assertEqual(release.iso_filename, "lyra-os.x86_64-27.02-beta2.iso")
+        self.assertEqual(release.volume_id, "LYRA_OS_27_02_BETA2")
+        self.assertEqual(release.pretty_name, "Lyra OS 27.02 Beta 2 (Odisseia)")
 
     def test_rc_identifiers(self) -> None:
         release = sample_release(stage="rc", iteration=1)
-        self.assertEqual(release.version_id, "2026.08-rc1")
+        self.assertEqual(release.version_id, "27.02-rc1")
         self.assertEqual(release.stage_label, "RC 1")
 
     def test_final_identifiers(self) -> None:
         release = sample_release(stage="release", iteration=0)
-        self.assertEqual(release.version_id, "2026.08")
-        self.assertEqual(release.tag, "v2026.08")
-        self.assertEqual(release.pretty_name, "Lyra OS 2026.08 (Odisseia)")
+        self.assertEqual(release.version_id, "27.02")
+        self.assertEqual(release.tag, "v27.02")
+        self.assertEqual(release.pretty_name, "Lyra OS 27.02 (Odisseia)")
 
     def test_prerelease_requires_iteration(self) -> None:
         with self.assertRaisesRegex(ValueError, "positive iteration"):
@@ -174,7 +174,7 @@ class RepositoryMetadataTests(unittest.TestCase):
             ROOT / "scripts/upload-desktop-alpha6-sourceforge.sh"
         ).read_text(encoding="utf-8")
 
-        self.assertIn('EXPECTED_VERSION="2026.08-alpha6"', builder)
+        self.assertIn('EXPECTED_VERSION="27.02-alpha6"', builder)
         self.assertIn("--published-installer", builder)
         self.assertNotIn("--published-welcome", builder)
         self.assertIn("obs-release.py health", builder)

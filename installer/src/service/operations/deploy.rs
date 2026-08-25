@@ -553,6 +553,43 @@ fn available_user_groups(target_root: &Path) -> Result<String, OperationError> {
         .join(","))
 }
 
+fn target_user_ids(target_root: &Path, username: &str) -> Result<(u32, u32), OperationError> {
+    let passwd_path = target_root.join("etc/passwd");
+    let passwd = fs::read_to_string(&passwd_path).map_err(io_error)?;
+    let expected_home = format!("/home/{username}");
+
+    for line in passwd.lines() {
+        let fields: Vec<&str> = line.split(':').collect();
+        if fields.first() != Some(&username) {
+            continue;
+        }
+        if fields.len() != 7 || fields[5] != expected_home {
+            return Err(OperationError::Io(format!(
+                "entrada inválida para {username} em {}",
+                passwd_path.display()
+            )));
+        }
+        let uid = fields[2].parse::<u32>().map_err(|_| {
+            OperationError::Io(format!(
+                "UID inválido para {username} em {}",
+                passwd_path.display()
+            ))
+        })?;
+        let gid = fields[3].parse::<u32>().map_err(|_| {
+            OperationError::Io(format!(
+                "GID inválido para {username} em {}",
+                passwd_path.display()
+            ))
+        })?;
+        return Ok((uid, gid));
+    }
+
+    Err(OperationError::Io(format!(
+        "usuário {username} ausente em {} após useradd",
+        passwd_path.display()
+    )))
+}
+
 struct CreateUser {
     target_root: PathBuf,
     full_name: String,
@@ -566,6 +603,13 @@ impl PrivilegedOperation for CreateUser {
     }
 
     fn perform(&self, executor: &dyn Executor) -> Result<(), OperationError> {
+        let home = self.target_root.join("home").join(&self.username);
+        if home.exists() {
+            return Err(OperationError::Io(format!(
+                "home já existe antes de useradd: {}",
+                home.display()
+            )));
+        }
         let supplementary_groups = available_user_groups(&self.target_root)?;
         executor.run(&ArgvCommand {
             binary: "useradd".to_string(),
@@ -590,6 +634,23 @@ impl PrivilegedOperation for CreateUser {
             },
             &format!("{}:{}\n", self.username, self.password),
         )?;
+
+        // Do not rely only on useradd -R -m for the final ownership invariant.
+        // A real Alpha 6 image leaked the host build path into /home; for a
+        // matching username useradd adopted that root-owned directory. The
+        // pre-existing-home guard above rejects that collision, while this
+        // final repair covers skeleton content. Resolve IDs from the target
+        // passwd database (never host NSS) and do not dereference symlinks.
+        let (uid, gid) = target_user_ids(&self.target_root, &self.username)?;
+        executor.run(&ArgvCommand {
+            binary: "chown".to_string(),
+            args: vec![
+                "--recursive".to_string(),
+                "--no-dereference".to_string(),
+                format!("{uid}:{gid}"),
+                path_str(&home),
+            ],
+        })?;
         Ok(())
     }
 }
@@ -1503,6 +1564,16 @@ mod tests {
         fs::write(etc.join("group"), content).unwrap();
     }
 
+    fn write_passwd_fixture(root: &Path, username: &str, uid: u32, gid: u32) {
+        let etc = root.join("etc");
+        fs::create_dir_all(&etc).unwrap();
+        fs::write(
+            etc.join("passwd"),
+            format!("{username}:x:{uid}:{gid}:Lyra User:/home/{username}:/usr/bin/fish\n"),
+        )
+        .unwrap();
+    }
+
     #[test]
     fn extract_rootfs_runs_unsquashfs_with_force_and_the_live_squashfs_source() {
         // A real directory: FakeExecutor doesn't actually run unsquashfs, but
@@ -1725,6 +1796,7 @@ mod tests {
     fn create_user_sends_the_password_via_stdin_never_as_an_argument() {
         let temp = TempRoot::new("create-user");
         write_group_fixture(&temp.0, USER_SUPPLEMENTARY_GROUPS);
+        write_passwd_fixture(&temp.0, "lyra", 1000, 100);
         let op = CreateUser {
             target_root: temp.0.clone(),
             full_name: "Lyra User".to_string(),
@@ -1753,12 +1825,21 @@ mod tests {
                 temp.0.display()
             )
         );
+        assert_eq!(
+            calls[2],
+            format!(
+                "chown --recursive --no-dereference 1000:100 {}/home/lyra",
+                temp.0.display()
+            ),
+            "the installed account must own its complete home and skeleton"
+        );
     }
 
     #[test]
     fn create_user_skips_optional_groups_absent_from_the_target() {
         let temp = TempRoot::new("create-user-optional-groups");
         write_group_fixture(&temp.0, &["users", "lp", "video", "wheel", "audio"]);
+        write_passwd_fixture(&temp.0, "lyra", 1000, 100);
         let op = CreateUser {
             target_root: temp.0.clone(),
             full_name: "Lyra User".to_string(),
@@ -1772,6 +1853,25 @@ mod tests {
             executor.calls()[0].contains("-G users,lp,video,wheel,audio"),
             "network and storage must be omitted when Leap does not provide them"
         );
+    }
+
+    #[test]
+    fn create_user_rejects_a_home_that_existed_before_useradd() {
+        let temp = TempRoot::new("create-user-existing-home");
+        write_group_fixture(&temp.0, USER_SUPPLEMENTARY_GROUPS);
+        fs::create_dir_all(temp.0.join("home/lyra/Git")).unwrap();
+        let op = CreateUser {
+            target_root: temp.0.clone(),
+            full_name: "Lyra User".to_string(),
+            username: "lyra".to_string(),
+            password: "harmonia-2026".to_string(),
+        };
+        let executor = FakeExecutor::new();
+
+        let error = op.perform(&executor).unwrap_err();
+
+        assert!(error.to_string().contains("home já existe antes de useradd"));
+        assert!(executor.calls().is_empty());
     }
 
     #[test]

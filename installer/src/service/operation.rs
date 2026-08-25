@@ -45,6 +45,9 @@ pub const ALLOWED_BINARIES: &[&str] = &[
     "useradd",
     "userdel",
     "chpasswd",
+    // Repairs ownership of the target user's home after useradd copies the
+    // live image skeleton. Arguments use numeric IDs read from target passwd.
+    "chown",
     "chroot",
     "systemctl",
     "hwclock",

@@ -204,6 +204,51 @@ def validate_first_boot(
         code == 0 and bool(user_entry),
         "created account is resolvable",
     )
+    account_fields = user_entry.split(":") if code == 0 else []
+    if len(account_fields) == 7:
+        account_uid, account_gid, account_home = (
+            account_fields[2],
+            account_fields[3],
+            account_fields[5],
+        )
+        home_path = rooted(root, account_home)
+        stat_code, home_metadata = runner(
+            ["stat", "--format=%u:%g:%a", str(home_path)]
+        )
+        metadata_fields = home_metadata.split(":")
+        home_owned = (
+            stat_code == 0
+            and len(metadata_fields) == 3
+            and metadata_fields[:2] == [account_uid, account_gid]
+        )
+        owner_writable = (
+            home_owned
+            and metadata_fields[2].isdigit()
+            and bool(int(metadata_fields[2][0]) & 2)
+        )
+        check(
+            "installed-user-home-ownership",
+            home_owned,
+            f"home metadata: {home_metadata or 'unavailable'}; expected owner {account_uid}:{account_gid}",
+        )
+        check(
+            "installed-user-home-writable",
+            owner_writable,
+            "home owner has write permission"
+            if owner_writable
+            else f"home is not writable by its owner: {home_metadata or 'unavailable'}",
+        )
+    else:
+        check(
+            "installed-user-home-ownership",
+            False,
+            "created account entry is malformed",
+        )
+        check(
+            "installed-user-home-writable",
+            False,
+            "created account home cannot be validated",
+        )
     code, live_user = runner(["getent", "passwd", "liveuser"])
     check("live-user-removed", code != 0 and not live_user, "liveuser is absent")
 

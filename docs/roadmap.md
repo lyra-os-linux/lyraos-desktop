@@ -24,18 +24,18 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   atualizações dentro da mesma release, com interface nos três idiomas,
   console sanitizado, recuperação e rollback. Integra também as novas telas do
   Welcome e a pilha ALSA explícita da imagem. O upgrade entre releases segue
-  para a Alpha 7; o serviço parental permanece no marco 1.0, condicionado à
+  para a Alpha 7; o serviço parental permanece no marco 27.02, condicionado à
   revisão jurídica e à qualificação técnica.
 - **Alpha 7 (11–25/09) — upgrade entre releases e compatibilidade:** conclui o
   fluxo controlado entre releases do Lyra Upgrade e permanece reservada à
   trilha de compatibilidade Android e Windows. A integração parental só avança
-  quando os gates jurídico e técnico do marco 1.0 estiverem satisfeitos.
+  quando os gates jurídico e técnico do marco 27.02 estiverem satisfeitos.
 - **Alpha 8 (25/09–13/10) — gate e estabilização:** automatiza update, upgrade,
   reboot, rollback e a matriz do ECA Digital; não recebe feature nova e depois
   corrige somente defeitos até a decisão da Beta 1.
 
 A Beta 1 não começa por calendário com P0/P1 ou entrega obrigatória pendente.
-O Lyra OS 1.0 oferece somente inglês dos Estados Unidos (`en-US`), português
+O Lyra OS 27.02 oferece somente inglês dos Estados Unidos (`en-US`), português
 do Brasil (`pt-BR`) e espanhol da Espanha (`es-ES`), com `en-US` como padrão e fallback.
 Os projetos e seus RPMs já foram traduzidos e testados nos três idiomas.
 Outros idiomas entram apenas em ciclo futuro.
@@ -72,8 +72,8 @@ estão em [`release-versioning.md`](release-versioning.md#cronograma-do-ciclo-ly
 
 ## Idiomas em ciclos futuros
 
-A ampliação para outros idiomas começa somente depois da Lyra OS 1.0. A
-infraestrutura criada na 1.0 deve aceitar novos catálogos com fallback para
-`en-US`, mas isso não autoriza publicar traduções adicionais antes da 1.1.
+A ampliação para outros idiomas começa somente depois da Lyra OS 27.02. A
+infraestrutura criada na 27.02 deve aceitar novos catálogos com fallback para
+`en-US`, mas isso não autoriza publicar traduções adicionais antes da 27.10.
 Cada novo idioma terá inventário, revisão humana, fallback e gate linguístico
 próprios antes de ser oferecido pelo instalador.

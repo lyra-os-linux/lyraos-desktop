@@ -1,0 +1,460 @@
+{
+  "audited_at": "2026-08-25T15:35:34.411360Z",
+  "findings": [
+    {
+      "kind": "host-path-content",
+      "path": "/boot/grub2/grub.cfg",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/bin/__pycache__/lyra-hardware-matrixcpython-313.pyc",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/bin/__pycache__/lyra-live-smokecpython-313.pyc",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/bin/__pycache__/lyra-performancecpython-313.pyc",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/bin/__pycache__/lyra-system-smokecpython-313.pyc",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/bin/__pycache__/lyra-update-smokecpython-313.pyc",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/lib64/libgtk-3.so.0.2418.32",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/libexec/__pycache__/lyra-report-redactcpython-313.pyc",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/evince/icons/hicolor/scalable/actions/object-rotate-left.svg",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/evince/icons/hicolor/scalable/actions/object-rotate-right.svg",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/fish/completions/p4.fish",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/icons/HighContrast/scalable/apps-extra/orca.svg",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/locale/en/LC_MESSAGES/fish.mo",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/nvim/runtime/doc/lua.txt",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/nvim/runtime/lua/vim/fs.lua",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0001.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0002.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0003.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0004.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0005.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0006.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0007.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0008.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0009.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0010.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0011.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0012.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0013.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0014.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0015.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0016.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0017.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0018.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0019.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0020.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0021.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0022.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0023.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0024.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0025.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0026.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0027.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0028.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0029.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0030.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0031.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0032.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0033.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0034.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0035.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/animation-0036.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0001.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0002.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0003.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0004.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0005.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0006.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0007.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0008.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0009.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0010.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0011.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0012.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0013.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0014.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0015.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0016.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0017.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0018.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0019.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0020.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0021.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0022.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0023.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0024.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0025.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0026.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0027.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0028.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0029.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/usr/share/plymouth/themes/spinner/throbber-0030.png",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/var/log/zypp/history",
+      "severity": "critical"
+    },
+    {
+      "kind": "host-path-content",
+      "path": "/var/log/zypper.log",
+      "severity": "critical"
+    }
+  ],
+  "inventory": {
+    "caches": [
+      "/home/liveuser/.cache",
+      "/root/.cache",
+      "/var/cache/cups",
+      "/var/cache/fontconfig",
+      "/var/cache/gio-2.0",
+      "/var/cache/ldconfig",
+      "/var/cache/man",
+      "/var/cache/zypp"
+    ],
+    "homes": [
+      "/home/liveuser"
+    ],
+    "logs": [
+      "/var/log/YaST2",
+      "/var/log/alternatives.log",
+      "/var/log/chrony",
+      "/var/log/cups",
+      "/var/log/journal",
+      "/var/log/krb5",
+      "/var/log/speech-dispatcher",
+      "/var/log/vega",
+      "/var/log/zypp",
+      "/var/log/zypper.log"
+    ],
+    "root": [
+      "/root/.cache",
+      "/root/.gnupg",
+      "/root/.local",
+      "/root/bin"
+    ]
+  },
+  "iso": {
+    "name": "lyra-os.x86_64-2026.08-alpha5.iso",
+    "sha256": "72fa2b0481e6053d5291faf5166dae44ef7d9a071ba79451a689d0fca00963f2",
+    "size": 2162642944
+  },
+  "result": "fail",
+  "schema_version": 1
+}

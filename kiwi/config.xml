@@ -18,7 +18,7 @@
   <description type="system">
     <author>Rodrigo Brito</author>
     <contact>rodrigo@lyraos.com.br</contact>
-    <specification>Lyra OS "Odisseia" Alpha 6 - live/installer ISO, openSUSE Leap 16 base, GNOME desktop, x86_64</specification>
+    <specification>Lyra OS "Odisseia" 27.02 Alpha 6 - live/installer ISO, openSUSE Leap 16 base, GNOME desktop, x86_64</specification>
   </description>
 
   <preferences>
@@ -33,7 +33,7 @@
 
   <preferences>
     <!-- Generated from release.toml; user-facing strings say "Alpha 6". -->
-    <version>2026.08-alpha6</version>
+    <version>27.02-alpha6</version>
     <!--
       Selects lyra-os-theme's "Lyra-OS" assets. The
       bootloader theme is active in the live GRUB menu. The bootsplash
@@ -53,7 +53,7 @@
       squashfscompression="zstd"
       firmware="uefi"
       editbootconfig="edit_boot_config.sh"
-      volid="LYRA_OS_2026_08_ALPHA6"
+      volid="LYRA_OS_27_02_ALPHA6"
       application_id="LyraOS"
       publisher="Lyra OS Project">
       <bootloader name="grub2" timeout="10"/>
@@ -554,13 +554,10 @@
       - It also ships a compiled-in gsettings default
         (/usr/share/glib-2.0/schemas/99-lyra-os.gschema.override:
         icon-theme, accent-color, color-scheme=prefer-dark, both
-        picture-uri/picture-uri-dark wallpapers) - this is what actually
-        satisfies "dark and light both installed, one active by
-        default" from the spec, with no extra dconf work needed here.
-        Dark is the package's own hardcoded default; nothing in the spec
-        picks one for v1, and the dark palette is the one described in
-        more detail there, so accepting the package default was the
-        reasonable call rather than fighting it.
+        picture-uri/picture-uri-dark wallpapers). The Desktop overlay's
+        later zz-lyra-desktop-wallpaper.gschema.override intentionally selects
+        Lyra OS - Dawn for both color schemes, while leaving the setting
+        user-changeable.
       - Its %post also installs the GDM dconf defaults and branded logo.
       - Lyra's own 99-lyra-desktop-defaults.gschema.override enables the
         minimize/maximize titlebar buttons and keeps directories before files

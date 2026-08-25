@@ -365,6 +365,11 @@ class ImagePolicyTests(unittest.TestCase):
                 / "kiwi/root/usr/lib64/firefox/distribution/policies.json"
             ).read_text(encoding="utf-8")
         )
+        homepage = policies["policies"]["Homepage"]
+        self.assertEqual(homepage["URL"], "https://lyraos.com.br/")
+        self.assertEqual(homepage["StartPage"], "homepage")
+        self.assertTrue(homepage["ShowHomeButton"])
+        self.assertFalse(homepage["Locked"])
         preferences = policies["policies"].get("Preferences", {})
         self.assertNotIn("intl.locale.requested", preferences)
 
@@ -514,6 +519,24 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("generated ISO contains an unreadable/corrupt live SquashFS", helper)
         self.assertIn("existing ISO contains an unreadable/corrupt live SquashFS", helper)
         self.assertIn("refusing to boot with --skip-build", helper)
+        self.assertEqual(helper.count('validate_live_rootfs_homes "$SQUASHFS_VERIFY_DIR"'), 2)
+        self.assertIn("refusing an ISO that may contain host build data", helper)
+        self.assertEqual(helper.count('audit_live_rootfs \\'), 2)
+        self.assertIn("generated-iso-security-audit.json", helper)
+        self.assertIn("reused-iso-security-audit.json", helper)
+        self.assertIn("failed the build-host data security audit", helper)
+
+    def test_vm_helper_keeps_build_output_outside_the_source_checkout(self) -> None:
+        helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
+        alpha6 = (ROOT / "scripts/build-desktop-alpha6.sh").read_text(encoding="utf-8")
+        upload = (ROOT / "scripts/upload-desktop-alpha6-sourceforge.sh").read_text(
+            encoding="utf-8"
+        )
+        safe_default = "/var/tmp/lyraos-desktop-test-$(id -u)"
+        self.assertIn("Work directory must be outside the repository", helper)
+        self.assertNotIn('$KIWI_DESC/.kiwi/test-$CURRENT_UID', helper)
+        self.assertIn(safe_default, alpha6)
+        self.assertIn(safe_default, upload)
 
     def test_export_is_derived_from_canonical_kiwi_without_duplicate_package_list(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

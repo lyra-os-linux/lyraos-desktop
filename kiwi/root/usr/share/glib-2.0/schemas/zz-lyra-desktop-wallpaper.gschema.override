@@ -1,0 +1,6 @@
+# Lyra Desktop wallpaper default. Keep this override after the theme package's
+# defaults so the image has a release-owned, deterministic initial wallpaper.
+# Users remain free to change it normally in GNOME Settings.
+[org.gnome.desktop.background]
+picture-uri='file:///usr/share/backgrounds/lyra/lyra-dawn.png'
+picture-uri-dark='file:///usr/share/backgrounds/lyra/lyra-dawn.png'
