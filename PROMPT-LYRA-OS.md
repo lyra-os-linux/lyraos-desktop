@@ -186,11 +186,10 @@ antiga vibrante azul-safira→violeta):
 - A versão 27.02 oferece somente `en-US`, `pt-BR` e `es-ES`; todos os projetos e
   RPMs foram traduzidos e testados nos três idiomas. Outros idiomas são escopo
   de um ciclo futuro, com fallback `en-US`.
-- Beta 1 inicia o congelamento funcional somente após a última Alpha fechar
-  todos os gates; 13/10/2026 é a meta atual. Betas e RCs
-  recebem somente correções de bugs, regressões, segurança, desempenho e
-  traduções já existentes; não recebem novas features, idiomas ou
-  infraestrutura de i18n.
+- Beta 1 começa somente após a última Alpha fechar todos os gates; 13/10/2026
+  é a meta atual. Nas Betas da 27.02, melhorias estão autorizadas quando os
+  ganhos compensarem os riscos, com benefício, impacto, testes de regressão e
+  plano de reversão registrados. A RC1 inicia o congelamento estrito.
 - O cronograma canônico e os critérios de promoção ficam em
   `docs/release-versioning.md`; o buffer final vai até aproximadamente 16 de
   fevereiro de 2027, sempre priorizando qualidade sobre prazo.

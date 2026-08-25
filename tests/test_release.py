@@ -107,14 +107,16 @@ class RepositoryMetadataTests(unittest.TestCase):
         self.assertIn("90-lyra-nvidia-quarantine.conf", nvidia_iso)
         self.assertIn("suspensão e retomada controladas", nvidia_iso)
 
-    def test_desktop_features_and_i18n_freeze_before_beta1(self) -> None:
+    def test_desktop_beta_improvements_and_rc1_freeze_are_documented(self) -> None:
         versioning = (ROOT / "docs/release-versioning.md").read_text(encoding="utf-8")
         roadmap = (ROOT / "docs/roadmap.md").read_text(encoding="utf-8")
         prompt = (ROOT / "PROMPT-LYRA-OS.md").read_text(encoding="utf-8")
 
         for text in (versioning, roadmap, prompt):
             self.assertIn("13/10/2026", text)
-            self.assertIn("congelamento funcional", text.lower())
+            self.assertIn("melhorias", text.lower())
+            self.assertIn("RC1", text)
+            self.assertIn("congelamento estrito", text.lower())
         for locale in ("pt-BR", "en-US"):
             self.assertIn(locale, versioning)
             self.assertIn(locale, prompt)
@@ -132,7 +134,7 @@ class RepositoryMetadataTests(unittest.TestCase):
         self.assertIn("como padrão e fallback", roadmap)
         self.assertIn("Alpha 6", roadmap)
         self.assertNotIn("A meta principal da Beta 3", roadmap)
-        self.assertIn("não recebem novas features", prompt)
+        self.assertIn("Outros idiomas são escopo de um ciclo futuro", prompt)
 
     def test_release_artifact_signing_starts_at_beta1(self) -> None:
         adr = (ROOT / "docs/adr/0005-release-signing-starts-at-beta1.md").read_text(
