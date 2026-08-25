@@ -7,15 +7,15 @@ na interface do instalador ou no arquivo gerado
 
 ## Convenção
 
-O Lyra usa uma versão de calendário `AAAA.MM` e acrescenta o estágio enquanto
+O Lyra usa uma versão de calendário no padrão Ubuntu, `AA.MM`, e acrescenta o estágio enquanto
 a imagem ainda é uma pré-release:
 
 | Estágio | `release.toml` | Versão, tag e exemplo de ISO |
 |---|---|---|
-| Alpha | `stage = "alpha"`, `iteration = N` | `2026.08-alphaN`, `v2026.08-alphaN`, `lyra-os.x86_64-2026.08-alphaN.iso` |
-| Beta | `stage = "beta"`, `iteration = N` | `2026.08-betaN`, `v2026.08-betaN`, `lyra-os.x86_64-2026.08-betaN.iso` |
-| RC | `stage = "rc"`, `iteration = N` | `2026.08-rcN`, `v2026.08-rcN`, `lyra-os.x86_64-2026.08-rcN.iso` |
-| Final | `stage = "release"`, `iteration = 0` | `2026.08`, `v2026.08`, `lyra-os.x86_64-2026.08.iso` |
+| Alpha | `stage = "alpha"`, `iteration = N` | `27.02-alphaN`, `v27.02-alphaN`, `lyra-os.x86_64-27.02-alphaN.iso` |
+| Beta | `stage = "beta"`, `iteration = N` | `27.02-betaN`, `v27.02-betaN`, `lyra-os.x86_64-27.02-betaN.iso` |
+| RC | `stage = "rc"`, `iteration = N` | `27.02-rcN`, `v27.02-rcN`, `lyra-os.x86_64-27.02-rcN.iso` |
+| Final | `stage = "release"`, `iteration = 0` | `27.02`, `v27.02`, `lyra-os.x86_64-27.02.iso` |
 
 ## Contrato de maturidade
 
@@ -91,7 +91,7 @@ A decisão final segue a checklist versionada em
 [`release-gate.md`](release-gate.md). O manifesto de evidências rejeita árvore
 suja, resultado vermelho e qualquer evidência obrigatória ausente.
 
-## Cronograma do ciclo Lyra OS 1.0
+## Cronograma do ciclo Lyra OS 27.02
 
 O número de iterações por estágio é um teto, não uma meta fixa: a promoção
 de estágio é liberada por critério de saída (nenhum item P0/P1 aberto no
@@ -116,7 +116,7 @@ um estágio fechar mais cedo, a promoção acontece mais cedo.
 
 ### Desktop Alpha 4 — publicação em 14/08
 
-O Lyra Installer da 1.0 oferece somente **inglês dos Estados Unidos
+O Lyra Installer da 27.02 oferece somente **inglês dos Estados Unidos
 (`en-US`)**, **português do Brasil (`pt-BR`)** e **espanhol da Espanha
 (`es-ES`)**, com `en-US` como padrão e fallback. O gate integral mínimo dos
 demais pacotes próprios permanece em `en-US`/`pt-BR`; outros idiomas ficam
@@ -159,7 +159,7 @@ foi declarado suportado depois da validação no hardware G06 disponível.
   incluindo áudio, Welcome, Vega, atualização, Secure Boot e rollback (#1).
 
 O upgrade entre releases pertence à Alpha 7 (#26). O serviço parental
-permanece no marco 1.0 e só avança depois da revisão jurídica e da qualificação
+permanece no marco 27.02 e só avança depois da revisão jurídica e da qualificação
 técnica; ele não bloqueia a candidata da Alpha 6.
 
 ### Desktop Alpha 7 — 11/09 a 25/09
@@ -176,7 +176,7 @@ técnica; ele não bloqueia a candidata da Alpha 6.
 - automatizar o gate de conformidade, privacidade e regressão do ECA Digital,
   incluindo testes de evasão e evidências ligadas ao release (#9).
 - **06–13/out:** nenhuma feature nova. Corrigir defeitos, repetir o gate
-  completo e auditar que toda feature 1.0 foi implementada ou formalmente
+  completo e auditar que toda feature 27.02 foi implementada ou formalmente
   removida do escopo (#28).
 
 **13/10/2026 é meta, não promoção automática.** A Beta 1 inicia o congelamento
@@ -191,15 +191,15 @@ estar encerrada até 25/09; a semana final da Alpha 8 é reservada exclusivament
 para estabilização. O novo fracionamento não
 autoriza reduzir os gates para cumprir a data. Fevereiro continua sendo a
 folga máxima do cronograma, não motivo para promover uma Beta incompleta.
-A final deste ciclo é publicada como **Lyra OS 1.0**.
+A final deste ciclo é publicada como **Lyra OS 27.02**.
 
-## Lyra OS 1.1 “Ilíada” (rebase para openSUSE Leap 16.1)
+## Lyra OS 27.10 “Ilíada” (rebase para openSUSE Leap 16.1)
 
-Início em março/2027, ~1 mês após a final do 1.0. A base muda de Leap 16.0
+Início em março/2027, ~1 mês após a final da 27.02. A base muda de Leap 16.0
 para Leap 16.1 (GA em 03/nov/2026), o que exige revalidar disponibilidade de
 pacotes, ABI, shim de Secure Boot e matriz de hardware contra o novo
 repositório — não é um bump cosmético de número. O funil é mais enxuto que o
-do 1.0 porque o tooling de release e o gate já existem; só a base precisa de
+da 27.02 porque o tooling de release e o gate já existem; só a base precisa de
 requalificação:
 
 Este ciclo também abre a expansão para idiomas além de `en-US` e `pt-BR`.
@@ -224,11 +224,9 @@ seletor do Lyra Installer.
 | rc2 | 2 semanas | 27/set/2027 → 11/out/2027 |
 | final estável (buffer) | 2 semanas | 11/out/2027 → **~25/out/2027** |
 
-"1.0" e "1.1" são nomes de produto para os ciclos de release, complementares
-ao `calendar_version` (`AAAA.MM`) que continua sendo o campo mecânico em
-`release.toml` — não existe hoje um campo separado de versão semântica major.minor
-no schema; se isso precisar virar um campo formal (por exemplo para
-exibição em release notes), é uma decisão em aberto, não assumida aqui.
+`27.02` e `27.10` são as versões canônicas dos ciclos, tanto para o produto
+quanto para o campo mecânico `calendar_version` (`AA.MM`) em `release.toml`.
+Não há uma numeração semântica `1.x` paralela.
 
 ## Campos sincronizados
 

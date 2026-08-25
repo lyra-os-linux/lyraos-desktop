@@ -1,4 +1,4 @@
-# Lyra OS 2026.08 Alpha 6 “Odisseia” — notas de lançamento
+# Lyra OS 27.02 Alpha 6 “Odisseia” — notas de lançamento
 
 O Lyra OS Alpha 6 é uma versão antecipada do desktop baseado no openSUSE
 Leap 16.0 e GNOME 48+. Ela prioriza atualizações previsíveis, recuperação e
@@ -49,13 +49,13 @@ grupo `wheel`.
 Arquivo esperado:
 
 ```text
-lyra-os.x86_64-2026.08-alpha6.iso
+lyra-os.x86_64-27.02-alpha6.iso
 ```
 
 Verifique o checksum fornecido junto da ISO:
 
 ```sh
-sha256sum -c lyra-os.x86_64-2026.08-alpha6.iso.sha256
+sha256sum -c lyra-os.x86_64-27.02-alpha6.iso.sha256
 ```
 
 Conforme a ADR 0005, a Alpha 6 usa SHA-256 sem assinatura GPG destacada da

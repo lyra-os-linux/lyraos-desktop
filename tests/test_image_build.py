@@ -521,6 +521,10 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("refusing to boot with --skip-build", helper)
         self.assertEqual(helper.count('validate_live_rootfs_homes "$SQUASHFS_VERIFY_DIR"'), 2)
         self.assertIn("refusing an ISO that may contain host build data", helper)
+        self.assertEqual(helper.count('audit_live_rootfs \\'), 2)
+        self.assertIn("generated-iso-security-audit.json", helper)
+        self.assertIn("reused-iso-security-audit.json", helper)
+        self.assertIn("failed the build-host data security audit", helper)
 
     def test_vm_helper_keeps_build_output_outside_the_source_checkout(self) -> None:
         helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")

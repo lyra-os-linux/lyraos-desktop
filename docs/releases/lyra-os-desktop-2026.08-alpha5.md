@@ -57,7 +57,7 @@ removidas. Não há retomada automática depois da primeira operação destrutiv
   release;
 - Beam, Sulafat e Aladfar ainda aguardam a conclusão da segunda onda de
   internacionalização;
-- outros idiomas ficam fora do escopo da versão 1.0;
+- outros idiomas ficam fora do escopo da versão 27.02;
 - o fluxo NVIDIA G06 ainda não é suportado e permanece fora da ISO padrão;
 - a matriz inicial de hardware físico é limitada e algumas combinações de GPU,
   Wi-Fi, armazenamento ou firmware podem apresentar problemas;

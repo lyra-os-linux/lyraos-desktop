@@ -52,6 +52,7 @@ CURRENT_UID="$(id -u)"
 RAM_MB="${LYRA_VM_RAM_MB:-8192}"
 SMP="${LYRA_VM_CPUS:-4}"
 RELEASE_TOOL="$REPO_ROOT/scripts/release.py"
+ISO_SECURITY_AUDIT="$REPO_ROOT/scripts/audit-release-iso.py"
 
 SKIP_BUILD=0
 BUILD_ONLY=0
@@ -184,6 +185,18 @@ validate_live_rootfs_homes() {
   if [ -n "$unexpected_home" ]; then
     echo "!!! live rootfs contains an unexpected home: $unexpected_home" >&2
     echo "!!! refusing an ISO that may contain host build data" >&2
+    return 1
+  fi
+}
+
+audit_live_rootfs() {
+  local iso="$1"
+  local extracted_root="$2"
+  local report="$3"
+
+  if ! "$ISO_SECURITY_AUDIT" "$iso" --rootfs "$extracted_root" --output "$report"; then
+    echo "!!! live rootfs failed the build-host data security audit" >&2
+    echo "!!! evidence: $report" >&2
     return 1
   fi
 }
@@ -544,28 +557,22 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   fi
 
   IMAGE_WALLPAPER_DIR="$BUILD_DIR/build/image-root/usr/share/backgrounds/lyra"
-  IMAGE_GNOME_DEFAULTS="$BUILD_DIR/build/image-root/usr/share/glib-2.0/schemas/99-lyra-os.gschema.override"
-  for WALLPAPER_ASSET in \
-      nebula.png \
-      nebula-light.png \
-      nebula.jxl \
-      nebula-light.jxl; do
-    if [ ! -s "$IMAGE_WALLPAPER_DIR/$WALLPAPER_ASSET" ]; then
-      echo "!!! built image is missing the default Nebula wallpaper asset:" >&2
-      echo "  $IMAGE_WALLPAPER_DIR/$WALLPAPER_ASSET" >&2
-      exit 1
-    fi
-  done
-  if ! grep -Fx \
-      "picture-uri='file:///usr/share/backgrounds/lyra/nebula-light.png'" \
-      "$IMAGE_GNOME_DEFAULTS" >/dev/null ||
-     ! grep -Fx \
-      "picture-uri-dark='file:///usr/share/backgrounds/lyra/nebula.png'" \
-      "$IMAGE_GNOME_DEFAULTS" >/dev/null; then
-    echo "!!! built image does not use Nebula as the default GNOME wallpaper" >&2
+  IMAGE_GNOME_DEFAULTS="$BUILD_DIR/build/image-root/usr/share/glib-2.0/schemas/zz-lyra-desktop-wallpaper.gschema.override"
+  if [ ! -s "$IMAGE_WALLPAPER_DIR/lyra-dawn.png" ]; then
+    echo "!!! built image is missing the default Lyra OS - Dawn wallpaper asset:" >&2
+    echo "  $IMAGE_WALLPAPER_DIR/lyra-dawn.png" >&2
     exit 1
   fi
-  echo "--- validated Nebula wallpaper assets and GNOME defaults ---"
+  if ! grep -Fx \
+      "picture-uri='file:///usr/share/backgrounds/lyra/lyra-dawn.png'" \
+      "$IMAGE_GNOME_DEFAULTS" >/dev/null ||
+     ! grep -Fx \
+      "picture-uri-dark='file:///usr/share/backgrounds/lyra/lyra-dawn.png'" \
+      "$IMAGE_GNOME_DEFAULTS" >/dev/null; then
+    echo "!!! built image does not use Lyra OS - Dawn as the default GNOME wallpaper" >&2
+    exit 1
+  fi
+  echo "--- validated Lyra OS - Dawn wallpaper asset and GNOME defaults ---"
 
   IMAGE_INSTALLER_GUI="$BUILD_DIR/build/image-root/usr/bin/lyra-installer"
   IMAGE_INSTALLER_LOCK="$BUILD_DIR/build/image-root/usr/bin/lyra-install-lock"
@@ -721,6 +728,12 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     rm -rf "$SQUASHFS_VERIFY_DIR"
     exit 1
   fi
+  if ! audit_live_rootfs \
+      "$BUILT_ISO" "$SQUASHFS_VERIFY_DIR" "$WORK_DIR/generated-iso-security-audit.json"; then
+    chmod -R u+rwX "$SQUASHFS_VERIFY_DIR" 2>/dev/null || true
+    rm -rf "$SQUASHFS_VERIFY_DIR"
+    exit 1
+  fi
   chmod -R u+rwX "$SQUASHFS_VERIFY_DIR" 2>/dev/null || true
   rm -rf "$SQUASHFS_VERIFY_DIR"
   echo "--- validated live SquashFS by full extraction ---"
@@ -789,6 +802,12 @@ if [ "$SKIP_BUILD" -eq 1 ]; then
     exit 1
   fi
   if ! validate_live_rootfs_homes "$SQUASHFS_VERIFY_DIR"; then
+    chmod -R u+rwX "$SQUASHFS_VERIFY_DIR" 2>/dev/null || true
+    rm -rf "$SQUASHFS_VERIFY_DIR"
+    exit 1
+  fi
+  if ! audit_live_rootfs \
+      "$ISO_PATH" "$SQUASHFS_VERIFY_DIR" "$WORK_DIR/reused-iso-security-audit.json"; then
     chmod -R u+rwX "$SQUASHFS_VERIFY_DIR" 2>/dev/null || true
     rm -rf "$SQUASHFS_VERIFY_DIR"
     exit 1
