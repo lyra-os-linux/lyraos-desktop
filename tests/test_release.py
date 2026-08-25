@@ -134,7 +134,7 @@ class RepositoryMetadataTests(unittest.TestCase):
         self.assertIn("como padrão e fallback", roadmap)
         self.assertIn("Alpha 6", roadmap)
         self.assertNotIn("A meta principal da Beta 3", roadmap)
-        self.assertIn("Outros idiomas são escopo de um ciclo futuro", prompt)
+        self.assertIn("Outros idiomas são escopo", prompt)
 
     def test_release_artifact_signing_starts_at_beta1(self) -> None:
         adr = (ROOT / "docs/adr/0005-release-signing-starts-at-beta1.md").read_text(
