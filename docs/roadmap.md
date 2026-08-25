@@ -26,10 +26,12 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   Welcome e a pilha ALSA explícita da imagem. O upgrade entre releases segue
   para a Alpha 7; o serviço parental permanece no marco 27.02, condicionado à
   revisão jurídica e à qualificação técnica.
-- **Alpha 7 (11–25/09) — upgrade entre releases e compatibilidade:** conclui o
-  fluxo controlado entre releases do Lyra Upgrade e permanece reservada à
-  trilha de compatibilidade Android e Windows. A integração parental só avança
-  quando os gates jurídico e técnico do marco 27.02 estiverem satisfeitos.
+- **Alpha 7 (11–25/09) — rebase, upgrade e compatibilidade:** migra o Desktop
+  27.02 para o openSUSE Leap 16.1 Beta 1 e requalifica pacotes, ABI, Secure
+  Boot, instalação, atualização, rollback e hardware. Também conclui o fluxo
+  controlado entre releases do Lyra Upgrade e mantém a trilha de
+  compatibilidade Android e Windows. A integração parental só avança quando
+  os gates jurídico e técnico do marco 27.02 estiverem satisfeitos.
 - **Alpha 8 (25/09–13/10) — gate e estabilização:** automatiza update, upgrade,
   reboot, rollback e a matriz do ECA Digital; não recebe feature nova e depois
   corrige somente defeitos até a decisão da Beta 1.
@@ -56,16 +58,19 @@ pacotes KMP/userspace em lockstep, `dracut`, reinício, validação e rollback.
 As descobertas técnicas preservadas em [`nvidia-iso.md`](nvidia-iso.md) são
 históricas e alimentam esse fluxo; não representam uma segunda imagem.
 
-## Congelamento funcional a partir da Beta 1
+## Melhorias permitidas nas Betas da 27.02
 
 A Desktop Beta 1 mantém 13/10/2026 como meta; Alpha 5, Alpha 6, Alpha 7 e
-Alpha 8 continuam etapas obrigatórias do Desktop. Betas e RCs não recebem
-novas features e os gates não são reduzidos para cumprir calendário.
+Alpha 8 continuam etapas obrigatórias do Desktop. Por decisão do mantenedor,
+as Betas da 27.02 podem receber melhorias programadas quando o ganho esperado
+compensar o risco. Cada mudança precisa de justificativa, análise de impacto,
+testes de regressão e plano de reversão; os gates não são reduzidos para
+cumprir calendário. A RC1 encerra essa exceção e inicia o congelamento estrito.
 
-São permitidas somente correções de bugs, regressões, segurança, desempenho e
-traduções já existentes. A Beta 3 faz QA linguístico e corrige catálogos, mas
-não cria infraestrutura, não incorpora um novo pacote ao esforço e não adiciona
-idioma. Exceções exigem um P0/P1 e decisão formal registrada.
+Correções de bugs, regressões, segurança, desempenho e traduções continuam
+prioritárias. Melhorias não podem deixar P0/P1 aberto para a etapa seguinte.
+Novos aplicativos e mudanças amplas de arquitetura ainda exigem decisão
+explícita. A Beta 3 também faz QA linguístico e corrige catálogos.
 
 O cronograma semanal, o inventário nominal de pacotes e os critérios de saída
 estão em [`release-versioning.md`](release-versioning.md#cronograma-do-ciclo-lyra-os-10).
@@ -74,6 +79,6 @@ estão em [`release-versioning.md`](release-versioning.md#cronograma-do-ciclo-ly
 
 A ampliação para outros idiomas começa somente depois da Lyra OS 27.02. A
 infraestrutura criada na 27.02 deve aceitar novos catálogos com fallback para
-`en-US`, mas isso não autoriza publicar traduções adicionais antes da 27.10.
+`en-US`, mas isso não autoriza publicar traduções adicionais antes da 28.02.
 Cada novo idioma terá inventário, revisão humana, fallback e gate linguístico
 próprios antes de ser oferecido pelo instalador.
