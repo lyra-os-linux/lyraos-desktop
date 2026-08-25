@@ -105,11 +105,11 @@ um estágio fechar mais cedo, a promoção acontece mais cedo.
 | alpha4 | snapshot antecipado | 14/ago/2026 | Publicar i18n base, instalador em três idiomas e primeira onda de pacotes. |
 | alpha5 | 2 semanas | 14/ago/2026 → 28/ago/2026 | Corrigir bloqueadores herdados; fechar i18n, NVIDIA pelo Vega e contratos do Lyra Upgrade. |
 | alpha6 | 2 semanas | 28/ago/2026 → 11/set/2026 | Concluir core, serviço, interface e fluxos de update/upgrade; entregar backend parental. |
-| alpha7 | 2 semanas | 11/set/2026 → 25/set/2026 | Integrar controles parentais no Vega e executar a trilha de compatibilidade. |
+| alpha7 | 2 semanas | 11/set/2026 → 25/set/2026 | Rebase para Leap 16.1 Beta 1; requalificar a imagem e integrar controles parentais no Vega. |
 | alpha8 | 2 semanas e 4 dias | 25/set/2026 → 13/out/2026 | Fechar upgrade e gate até 06/out; estabilizar exclusivamente de 06–13/out. |
-| beta1 | 4 semanas | 13/out/2026 → 10/nov/2026 | **Feature freeze:** somente bugs, regressões, segurança, desempenho e correções de traduções existentes. |
-| beta2 | 4 semanas | 10/nov/2026 → 08/dez/2026 | Estabilidade e atualização; nenhuma feature nova. |
-| beta3 | 4 semanas | 08/dez/2026 → 05/jan/2027 | QA linguístico e correções finais; nenhuma infraestrutura ou novo componente traduzido. |
+| beta1 | 4 semanas | 13/out/2026 → 10/nov/2026 | Estabilização e melhorias aprovadas com benefício, risco, testes e reversão registrados. |
+| beta2 | 4 semanas | 10/nov/2026 → 08/dez/2026 | Estabilidade, atualização e melhorias aprovadas sob os mesmos gates. |
+| beta3 | 4 semanas | 08/dez/2026 → 05/jan/2027 | QA linguístico, correções finais e últimas melhorias qualificadas antes da RC1. |
 | rc1 | 2 semanas | 05/jan/2027 → 19/jan/2027 | Somente bloqueadores P0/P1 e repetição do gate. |
 | rc2 | 2 semanas | 19/jan/2027 → 02/fev/2027 | Somente bloqueadores P0/P1 e preparação da publicação. |
 | final (buffer) | 2 semanas | 02/fev/2027 → **~16/fev/2027** | Publicação e verificação dos artefatos; nenhuma mudança funcional. |
@@ -164,6 +164,11 @@ técnica; ele não bloqueia a candidata da Alpha 6.
 
 ### Desktop Alpha 7 — 11/09 a 25/09
 
+- migrar a base do Desktop 27.02 para openSUSE Leap 16.1 Beta 1 e reconstruir
+  todos os RPMs consumidos pela imagem no alvo `openSUSE_Leap_16.1`;
+- repetir os gates de disponibilidade de pacotes, ABI, instalação, Secure
+  Boot, NVIDIA, atualização, rollback e matriz de hardware antes de promover
+  a Alpha 8; o rebase não é considerado concluído enquanto houver P0/P1;
 - integrar no Vega a configuração parental e a autorização de aplicativos
   sobre o backend já qualificado (#7).
 - concluído antecipadamente: verificação pós-boot, recuperação e rollback
@@ -179,12 +184,12 @@ técnica; ele não bloqueia a candidata da Alpha 6.
   completo e auditar que toda feature 27.02 foi implementada ou formalmente
   removida do escopo (#28).
 
-**13/10/2026 é meta, não promoção automática.** A Beta 1 inicia o congelamento
-funcional somente após a última Alpha fechar os gates. Uma
-mudança depois desse ponto só pode corrigir bug, regressão, vulnerabilidade,
-desempenho ou tradução já existente. Novo componente, novo fluxo, novo idioma
-ou nova infraestrutura de i18n volta para o próximo ciclo, salvo P0/P1 com
-decisão formal registrada.
+**13/10/2026 é meta, não promoção automática.** A Beta 1 só começa após a
+última Alpha fechar os gates. Por decisão do mantenedor, as Betas da 27.02
+podem receber melhorias quando o benefício esperado compensar o risco e a
+mudança tiver análise, testes de regressão e plano de reversão registrados.
+Novos aplicativos e mudanças amplas de arquitetura exigem aprovação explícita.
+A RC1 encerra essa autorização e inicia o congelamento estrito.
 
 Alpha 5, Alpha 6, Alpha 7 e Alpha 8 são obrigatórias. Toda funcionalidade deve
 estar encerrada até 25/09; a semana final da Alpha 8 é reservada exclusivamente
@@ -193,14 +198,12 @@ autoriza reduzir os gates para cumprir a data. Fevereiro continua sendo a
 folga máxima do cronograma, não motivo para promover uma Beta incompleta.
 A final deste ciclo é publicada como **Lyra OS 27.02**.
 
-## Lyra OS 27.10 “Ilíada” (rebase para openSUSE Leap 16.1)
+## Lyra OS 28.02 “Ilíada”
 
-Início em março/2027, ~1 mês após a final da 27.02. A base muda de Leap 16.0
-para Leap 16.1 (GA em 03/nov/2026), o que exige revalidar disponibilidade de
-pacotes, ABI, shim de Secure Boot e matriz de hardware contra o novo
-repositório — não é um bump cosmético de número. O funil é mais enxuto que o
-da 27.02 porque o tooling de release e o gate já existem; só a base precisa de
-requalificação:
+Início em março/2027, ~1 mês após a final da 27.02, com lançamento em
+fevereiro/2028. O rebase para Leap 16.1 foi antecipado para a Alpha 7 da
+27.02; este ciclo usa a base já qualificada e concentra o tempo adicional em
+evolução do produto, hardware e estabilização.
 
 Este ciclo também abre a expansão para idiomas além de `en-US` e `pt-BR`.
 Cada idioma novo precisa de catálogo completo dos componentes em escopo,
@@ -222,9 +225,10 @@ seletor do Lyra Installer.
 | beta3 | 4 semanas | 16/ago/2027 → 13/set/2027 |
 | rc1 | 2 semanas | 13/set/2027 → 27/set/2027 |
 | rc2 | 2 semanas | 27/set/2027 → 11/out/2027 |
-| final estável (buffer) | 2 semanas | 11/out/2027 → **~25/out/2027** |
+| estabilização prolongada | ~4 meses | 11/out/2027 → 01/fev/2028 |
+| final estável (buffer) | 2 semanas | 01/fev/2028 → **~15/fev/2028** |
 
-`27.02` e `27.10` são as versões canônicas dos ciclos, tanto para o produto
+`27.02` e `28.02` são as versões canônicas dos ciclos, tanto para o produto
 quanto para o campo mecânico `calendar_version` (`AA.MM`) em `release.toml`.
 Não há uma numeração semântica `1.x` paralela.
 
