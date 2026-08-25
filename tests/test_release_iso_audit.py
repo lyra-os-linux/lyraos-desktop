@@ -75,6 +75,19 @@ class ReleaseIsoAuditTests(unittest.TestCase):
         report = audit.audit(self.iso, rootfs=self.rootfs)
         self.assertEqual(report["result"], "pass")
 
+    def test_packaged_generic_home_example_is_not_a_lyra_checkout_leak(self) -> None:
+        fixture = self.rootfs / "usr/share/doc/example.txt"
+        fixture.parent.mkdir(parents=True)
+        fixture.write_text("Example: /home/jdoe/src/plugin\n", encoding="utf-8")
+        report = audit.audit(self.iso, rootfs=self.rootfs)
+        self.assertEqual(report["result"], "pass")
+
+    def test_shell_secret_variable_reference_is_not_a_literal_secret(self) -> None:
+        fixture = self.rootfs / "home/liveuser/config.fish"
+        fixture.write_text('command --password="$runtime_password"\n', encoding="utf-8")
+        report = audit.audit(self.iso, rootfs=self.rootfs)
+        self.assertEqual(report["result"], "pass")
+
 
 if __name__ == "__main__":
     unittest.main()

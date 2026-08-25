@@ -448,7 +448,20 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   sudo rm -rf "$BUILD_DIR"
   ISO_PATH=""
 
-  BUILD_DESCRIPTION="$KIWI_DESC"
+  echo "--- staging clean KIWI description ---"
+  rm -rf "$BUILD_DESCRIPTION_DIR"
+  mkdir -p "$BUILD_DESCRIPTION_DIR"
+  cp \
+    "$KIWI_DESC/config.xml" \
+    "$KIWI_DESC/config.sh" \
+    "$KIWI_DESC/edit_boot_config.sh" \
+    "$BUILD_DESCRIPTION_DIR/"
+  cp -a "$KIWI_DESC/root" "$BUILD_DESCRIPTION_DIR/root"
+  cp -a "$KIWI_DESC/keys" "$BUILD_DESCRIPTION_DIR/keys"
+  find "$BUILD_DESCRIPTION_DIR/root" -type d -name __pycache__ -prune -exec rm -rf -- {} +
+  find "$BUILD_DESCRIPTION_DIR/root" -type f -name '*.pyc' -delete
+
+  BUILD_DESCRIPTION="$BUILD_DESCRIPTION_DIR"
   LOCAL_INSTALLER_GUI_SHA256=""
   LOCAL_INSTALLER_SERVICE_SHA256=""
   if [ "$USE_LOCAL_INSTALLER" -eq 1 ]; then
@@ -459,16 +472,7 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
       --release \
       --locked
 
-    echo "--- staging KIWI description with local installer binaries ---"
-    rm -rf "$BUILD_DESCRIPTION_DIR"
-    mkdir -p "$BUILD_DESCRIPTION_DIR"
-    cp \
-      "$KIWI_DESC/config.xml" \
-      "$KIWI_DESC/config.sh" \
-      "$KIWI_DESC/edit_boot_config.sh" \
-      "$BUILD_DESCRIPTION_DIR/"
-    cp -a "$KIWI_DESC/root" "$BUILD_DESCRIPTION_DIR/root"
-    cp -a "$KIWI_DESC/keys" "$BUILD_DESCRIPTION_DIR/keys"
+    echo "--- adding local installer binaries to staged KIWI description ---"
 
     install -Dm0755 "$INSTALLER_DIR/target/release/lyra-installer" \
       "$BUILD_DESCRIPTION_DIR/root/usr/bin/lyra-installer"

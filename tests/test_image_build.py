@@ -526,6 +526,16 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("reused-iso-security-audit.json", helper)
         self.assertIn("failed the build-host data security audit", helper)
 
+    def test_vm_helper_stages_description_without_python_bytecode(self) -> None:
+        helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
+        self.assertIn('BUILD_DESCRIPTION="$BUILD_DESCRIPTION_DIR"', helper)
+        self.assertIn("-type d -name __pycache__ -prune -exec rm -rf -- {} +", helper)
+        self.assertIn("-type f -name '*.pyc' -delete", helper)
+        self.assertLess(
+            helper.index("-type f -name '*.pyc' -delete"),
+            helper.index('echo "--- building ISO with kiwi-ng'),
+        )
+
     def test_vm_helper_keeps_build_output_outside_the_source_checkout(self) -> None:
         helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
         alpha6 = (ROOT / "scripts/build-desktop-alpha6.sh").read_text(encoding="utf-8")
