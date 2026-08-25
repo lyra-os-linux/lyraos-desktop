@@ -29,9 +29,14 @@ SENSITIVE_NAMES = re.compile(
 SECRET_CONTENT = re.compile(
     rb"(-----BEGIN (?:OPENSSH |RSA |EC |DSA )?PRIVATE KEY-----|"
     rb"gh[opusr]_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20,}|"
-    rb"AKIA[0-9A-Z]{16}|(?i:(?:password|passwd|token|secret|api[_-]?key))\s*[:=]\s*[^\s]{8,})"
+    rb"AKIA[0-9A-Z]{16}|(?i:(?:password|passwd|token|secret|api[_-]?key))\s*[:=]\s*"
+    rb"(?![\"']?\$)[^\s]{8,})"
 )
-HOST_PATH = re.compile(rb"/(?:home|Users)/[A-Za-z0-9._-]+/(?:Git|Projects|src|workspace)/")
+HOST_PATH = re.compile(
+    rb"/(?:home|Users)/[A-Za-z0-9._-]+/(?:Git|Projects|src|workspace)/"
+    rb"(?:Lyra|lyraos-desktop)(?:/|\b)",
+    re.IGNORECASE,
+)
 TEXT_SCAN_LIMIT = 8 * 1024 * 1024
 
 
