@@ -103,12 +103,19 @@ aplicativo instalado e depois da remoção:
 ./scripts/bottles-pilot-evidence.py before --output bottles-before.json
 ./scripts/bottles-pilot-evidence.py installed --output bottles-installed.json
 ./scripts/bottles-pilot-evidence.py removed --output bottles-removed.json
+./scripts/bottles-pilot-evidence.py review \
+  --before bottles-before.json \
+  --installed bottles-installed.json \
+  --removed bottles-removed.json \
+  --output bottles-review.json
 ```
 
 O coletor não instala, executa nem remove software. Ele apenas registra estado,
 permissões, overrides, serviços de usuário e sockets em escuta; `observed` não
 significa aprovação do isolamento, que continua dependendo da revisão das três
-evidências e dos testes negativos.
+evidências e dos testes negativos. A revisão automática retorna
+`review-required` quando não encontra resíduos; somente inconsistência de fase
+ou resíduo detectável produz `failed`. Nunca produz `passed`.
 
 ## Reversão
 
