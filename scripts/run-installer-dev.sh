@@ -59,8 +59,8 @@ check_system() {
 
     # shellcheck disable=SC1091
     source /etc/os-release
-    if [[ ${ID:-} != "lyra-os" && ! ( ${ID:-} == "opensuse-leap" && ${VERSION_ID:-} == "16.0" ) ]]; then
-        die "suportado somente no Lyra OS/openSUSE Leap 16.0; encontrado: ${PRETTY_NAME:-desconhecido}"
+    if [[ ${ID:-} != "lyra-os" && ! ( ${ID:-} == "opensuse-leap" && ${VERSION_ID:-} == "16.1" ) ]]; then
+        die "suportado somente no Lyra OS/openSUSE Leap 16.1; encontrado: ${PRETTY_NAME:-desconhecido}"
     fi
 }
 

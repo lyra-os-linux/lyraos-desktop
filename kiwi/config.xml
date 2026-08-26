@@ -88,11 +88,11 @@
   -->
   <repository alias="repo-oss" priority="20" type="rpm-md" imageinclude="true"
               repository_gpgcheck="true" package_gpgcheck="true">
-    <source path="https://download.opensuse.org/distribution/leap/16.0/repo/oss/"/>
+    <source path="https://download.opensuse.org/distribution/leap/16.1/repo/oss/"/>
   </repository>
   <repository alias="repo-non-oss" priority="21" type="rpm-md" imageinclude="true"
               repository_gpgcheck="true" package_gpgcheck="true">
-    <source path="https://download.opensuse.org/distribution/leap/16.0/repo/non-oss/"/>
+    <source path="https://download.opensuse.org/distribution/leap/16.1/repo/non-oss/"/>
   </repository>
 
   <!-- Proprietary multimedia codecs. Limit the third-party surface to
@@ -103,16 +103,16 @@
   <repository alias="repo-packman-essentials" priority="15" type="rpm-md"
               imageinclude="true" repository_gpgcheck="true"
               package_gpgcheck="true">
-    <source path="https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_16.0/Essentials/"/>
+    <source path="https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_16.1/Essentials/"/>
   </repository>
 
   <!--
     Lyra ecosystem repos, hosted on OBS under the `rodrigosbrito` account
     (see PROMPT-LYRA-OS.md). Verified live against the real OBS instance
-    on 2026-08-05 (build target "openSUSE_Leap_16.0" on all three,
+    on 2026-08-26 (build target "openSUSE_Leap_16.1" on all three,
     repodata resolves, and vega-gtk/sheliak/fina/lyra-theme's subpackages
     all build successfully):
-      https://download.opensuse.org/repositories/home:/rodrigosbrito:/{lyra,vega,fina}/openSUSE_Leap_16.0/
+      https://download.opensuse.org/repositories/home:/rodrigosbrito:/{lyra,vega,fina}/openSUSE_Leap_16.1/
 
     Priorities below (1-3) are deliberately lower than repo-oss/repo-non-oss
     (20-21) above - in zypper, lower number wins. These repos ship forked
@@ -124,25 +124,15 @@
   -->
   <repository alias="repo-lyra" priority="1" type="rpm-md" imageinclude="true"
               repository_gpgcheck="true" package_gpgcheck="true">
-    <source path="https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.0/"/>
+    <source path="https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1/"/>
   </repository>
   <repository alias="repo-vega" priority="2" type="rpm-md" imageinclude="true"
               repository_gpgcheck="true" package_gpgcheck="true">
-    <source path="https://download.opensuse.org/repositories/home:/rodrigosbrito:/vega/openSUSE_Leap_16.0/"/>
+    <source path="https://download.opensuse.org/repositories/home:/rodrigosbrito:/vega/openSUSE_Leap_16.1/"/>
   </repository>
   <repository alias="repo-fina" priority="3" type="rpm-md" imageinclude="true"
               repository_gpgcheck="true" package_gpgcheck="true">
-    <source path="https://download.opensuse.org/repositories/home:/rodrigosbrito:/fina/openSUSE_Leap_16.0/"/>
-  </repository>
-
-  <!-- Pacotes gerais publicados no projeto OBS pessoal do mantenedor que
-       complementam o desktop, sem substituir os projetos dedicados acima.
-       A prioridade 90 preserva a preferência pelos repositórios oficiais do
-       Leap durante atualizações normais. -->
-  <repository alias="repo-rodrigosbrito" priority="90" type="rpm-md"
-              imageinclude="true" repository_gpgcheck="true"
-              package_gpgcheck="true">
-    <source path="https://download.opensuse.org/repositories/home:/rodrigosbrito/openSUSE_Leap_16.0/"/>
+    <source path="https://download.opensuse.org/repositories/home:/rodrigosbrito:/fina/openSUSE_Leap_16.1/"/>
   </repository>
 
   <packages type="bootstrap">
@@ -437,7 +427,7 @@
          apps, not accessibility tooling. -->
     <package name="orca"/>
     <!-- Firefox: default browser. Confirmed as `MozillaFirefox` in the
-         real Leap 16.0 OSS repodata (there is no plain "firefox" RPM).
+         real Leap 16.1 OSS repodata (there is no plain "firefox" RPM).
          Leap does not publish one Firefox RPM per locale: the version-locked
          translations-common package provides es_ES and pt_BR (among others),
          while en_US is built into the main package. That covers all three
@@ -474,13 +464,20 @@
     <package name="libreoffice-l10n-pt_BR"/>
     <package name="libreoffice-l10n-es"/>
 
-    <!-- VLC and the complete FFmpeg/GStreamer codec stack. The codec packages
-         come from the Packman Essentials repository above. -->
+    <!-- VLC and the multimedia codec stack. Packman Essentials supplies the
+         complete FFmpeg/VLC builds. Leap 16.1's official GStreamer 1.28
+         packages supply the required H.264/H.265, AAC, AC-3, DTS, MPEG,
+         VP8/VP9 and AV1 decoding capabilities. Keep the GStreamer packages
+         explicit under onlyRequired: Packman's 1.26 bad/ugly codec add-ons
+         are not published for Leap 16.1 and must not be mixed with the 1.28
+         base. -->
     <package name="vlc"/>
     <package name="vlc-codecs"/>
     <package name="ffmpeg-7"/>
-    <package name="gstreamer-plugins-bad-codecs"/>
-    <package name="gstreamer-plugins-ugly-codecs"/>
+    <package name="gstreamer-plugins-bad"/>
+    <package name="gstreamer-plugins-ugly"/>
+    <package name="gstreamer-plugins-libav"/>
+    <package name="gstreamer-plugins-good-extra"/>
 
     <!-- Redistributable firmware from the official Non-OSS channel. Generic
          kernel firmware remains covered by kernel-firmware-all above. -->

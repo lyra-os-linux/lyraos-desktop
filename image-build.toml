@@ -18,19 +18,15 @@ role = "packages-only"
 
 [[obs.package_sources]]
 project = "home:rodrigosbrito:lyra"
-repository = "openSUSE_Leap_16.0"
+repository = "openSUSE_Leap_16.1"
 
 [[obs.package_sources]]
 project = "home:rodrigosbrito:vega"
-repository = "openSUSE_Leap_16.0"
+repository = "openSUSE_Leap_16.1"
 
 [[obs.package_sources]]
 project = "home:rodrigosbrito:fina"
-repository = "openSUSE_Leap_16.0"
-
-[[obs.package_sources]]
-project = "Virtualization:Appliances:Builder"
-repository = "openSUSE_Leap_16.0"
+repository = "openSUSE_Leap_16.1"
 
 [artifacts]
 required = [
