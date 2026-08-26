@@ -1,6 +1,6 @@
 # ADR 0015: compatibilidade Android e Windows permanece opcional e desacoplada da ISO
 
-- Estado: aceita
+- Estado: substituída pela ADR 0016
 - Data: 2026-08-26
 - Relacionadas: issues #14, #15, #16, #17, #18, #19, #20 e #50
 
