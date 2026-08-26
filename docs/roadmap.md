@@ -26,12 +26,13 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   Welcome e a pilha ALSA explícita da imagem. O upgrade entre releases segue
   para a Alpha 7; o serviço parental permanece no marco 27.02, condicionado à
   revisão jurídica e à qualificação técnica.
-- **Alpha 7 (11–25/09) — rebase, upgrade e compatibilidade:** migra o Desktop
+- **Alpha 7 (11–25/09) — rebase e upgrade:** migra o Desktop
   27.02 para o openSUSE Leap 16.1 Beta 1 e requalifica pacotes, ABI, Secure
   Boot, instalação, atualização, rollback e hardware. Também conclui o fluxo
-  controlado entre releases do Lyra Upgrade e mantém a trilha de
-  compatibilidade Android e Windows. A integração parental só avança quando
-  os gates jurídico e técnico do marco 27.02 estiverem satisfeitos.
+  controlado entre releases do Lyra Upgrade. O Desktop 27.02 não oferece
+  suporte de produto a aplicativos Android ou Windows; essa trilha volta a ser
+  avaliada somente no ciclo 28.02. A integração parental só avança quando os
+  gates jurídico e técnico do marco 27.02 estiverem satisfeitos.
 - **Alpha 8 (25/09–13/10) — gate e estabilização:** automatiza update, upgrade,
   reboot, rollback e a matriz do ECA Digital; não recebe feature nova e depois
   corrige somente defeitos até a decisão da Beta 1.
