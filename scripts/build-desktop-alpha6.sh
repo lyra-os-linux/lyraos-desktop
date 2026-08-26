@@ -21,8 +21,8 @@ Uso: $COMMAND_NAME [--artifacts-only] [--evidence-dir DIRETÓRIO]
 Sem opções, valida o OBS e constrói uma candidata limpa usando o RPM
 publicado do instalador (o Welcome já vem sempre do RPM publicado).
 --artifacts-only reutiliza a ISO atual.
-Quando --evidence-dir é informado, o manifesto final exige as sete evidências
-aprovadas do gate da $RELEASE_LABEL.
+Quando --evidence-dir é informado, o manifesto final exige todas as evidências
+aplicáveis ao estágio declarado em release.toml.
 EOF
 }
 
@@ -115,19 +115,16 @@ install -m 0644 \
 (cd "$ARTIFACT_DIR" && sha256sum -c "$PREFIX.iso.sha256")
 
 if [ -n "$EVIDENCE_DIR" ]; then
+  # The stage-aware policy always includes the established baseline:
+  # obs-repositories, live-session, installer, first-boot, uefi-secure-boot,
+  # rollback and hardware-matrix. Alpha 8+ additions come from the same
+  # versioned policy rather than a second shell list that could drift.
   TEST_ARGS=()
-  for name in \
-      obs-repositories \
-      live-session \
-      installer \
-      first-boot \
-      uefi-secure-boot \
-      rollback \
-      hardware-matrix; do
+  while IFS= read -r name; do
     file="$EVIDENCE_DIR/$name-result.json"
     [ -s "$file" ] || { echo "ERRO: evidência ausente: $file" >&2; exit 1; }
     TEST_ARGS+=(--test-result "$name=$file")
-  done
+  done < <(./scripts/image-build.py required-test-results)
   ./scripts/image-build.py artifact-manifest "$ARTIFACT_DIR" \
     --output "$ARTIFACT_DIR/$PREFIX.evidence.json" "${TEST_ARGS[@]}"
   echo "Bundle $RELEASE_LABEL qualificado em: $ARTIFACT_DIR"

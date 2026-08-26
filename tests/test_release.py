@@ -225,6 +225,22 @@ class RepositoryMetadataTests(unittest.TestCase):
         ):
             self.assertIn(evidence, builder)
 
+    def test_alpha8_wrapper_uses_the_stage_aware_release_gate(self) -> None:
+        wrapper = (ROOT / "scripts/build-desktop-alpha8.sh").read_text(encoding="utf-8")
+        uploader_wrapper = (ROOT / "scripts/upload-desktop-alpha8-sourceforge.sh").read_text(encoding="utf-8")
+        builder = (ROOT / "scripts/build-desktop-alpha6.sh").read_text(encoding="utf-8")
+        uploader = (ROOT / "scripts/upload-desktop-alpha6-sourceforge.sh").read_text(encoding="utf-8")
+        gate = (ROOT / "docs/release-gate.md").read_text(encoding="utf-8")
+        contract = (ROOT / "docs/alpha8-evidence.md").read_text(encoding="utf-8")
+
+        self.assertIn('LYRA_EXPECTED_VERSION="27.02-alpha8"', wrapper)
+        self.assertIn('LYRA_RELEASE_SLUG="alpha8"', uploader_wrapper)
+        self.assertIn("required-test-results", builder)
+        self.assertIn("required-test-results", uploader)
+        for evidence in ("upgrade-rehearsal", "eca-digital", "i18n", "feature-freeze"):
+            self.assertIn(evidence, gate)
+            self.assertIn(evidence, contract)
+
     def test_build_manifest_is_traceable(self) -> None:
         release = Release.from_file()
         with tempfile.TemporaryDirectory() as directory:

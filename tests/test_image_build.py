@@ -651,6 +651,22 @@ class ImagePolicyTests(unittest.TestCase):
 
 
 class ArtifactTests(unittest.TestCase):
+    def alpha8_release_file(self, directory: Path) -> Path:
+        path = directory / "release-alpha8.toml"
+        path.write_text(
+            """[release]
+calendar_version = "27.02"
+stage = "alpha"
+iteration = 8
+codename = "Odisseia"
+codename_id = "odisseia"
+image_name = "lyra-os"
+architecture = "x86_64"
+""",
+            encoding="utf-8",
+        )
+        return path
+
     def create_artifacts(self, directory: Path) -> None:
         (directory / "lyra.iso").write_bytes(b"iso")
         (directory / "lyra.packages").write_text(
@@ -762,6 +778,88 @@ class ArtifactTests(unittest.TestCase):
                 image_build.artifact_manifest(manifest, directory, output, tests)
             document = json.loads(output.read_text(encoding="utf-8"))
             self.assertNotIn("checksum_signature", document["artifacts"])
+
+    def test_alpha8_adds_upgrade_compliance_i18n_and_freeze_evidence(self) -> None:
+        manifest = image_build.Manifest.load()
+        with tempfile.TemporaryDirectory() as temporary:
+            release_file = self.alpha8_release_file(Path(temporary))
+            required = set(image_build.required_test_result_names(manifest, release_file))
+        self.assertEqual(required - set(manifest.required_test_results), image_build.ALPHA8_TEST_RESULTS)
+
+    def test_upgrade_rehearsal_requires_faults_reboot_signature_and_rollback(self) -> None:
+        valid = {
+            "schema": 1,
+            "status": "passed",
+            "mode": "upgrade-rehearsal",
+            "phase": "rollback-verified",
+            "checks": [{"id": "successor", "status": "passed"}],
+            "facts": {
+                "baseline_version": "27.02",
+                "target_version": "27.10",
+                "manifest_signature_verified": True,
+                "offline_applied": True,
+                "reboot_count": 2,
+                "rollback_baseline_verified": True,
+                "fault_scenarios": [
+                    "network-loss", "low-space", "ui-terminated",
+                    "state-truncated", "rpm-failure", "initramfs-failure",
+                ],
+            },
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            iso = Path(temporary) / "candidate.iso"
+            iso.write_bytes(b"iso")
+            image_build.validate_test_result("upgrade-rehearsal", valid, iso_path=iso)
+            valid["facts"]["fault_scenarios"].remove("initramfs-failure")
+            with self.assertRaisesRegex(image_build.PolicyError, "incomplete"):
+                image_build.validate_test_result("upgrade-rehearsal", valid, iso_path=iso)
+
+    def test_freeze_gate_is_fail_closed_and_has_fixed_locale_scope(self) -> None:
+        valid = {
+            "schema": 1,
+            "status": "passed",
+            "mode": "feature-freeze",
+            "checks": [{"id": "scope", "status": "passed"}],
+            "decision": "GO",
+            "open_p0": 0,
+            "open_p1": 0,
+            "locales": ["en-US", "pt-BR", "es-ES"],
+            "all_features_implemented_or_removed": True,
+            "documentation_consistent": True,
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            iso = Path(temporary) / "candidate.iso"
+            iso.write_bytes(b"iso")
+            image_build.validate_test_result("feature-freeze", valid, iso_path=iso)
+            valid["open_p1"] = 1
+            with self.assertRaisesRegex(image_build.PolicyError, "not eligible"):
+                image_build.validate_test_result("feature-freeze", valid, iso_path=iso)
+
+    def test_eca_and_i18n_gates_require_the_fixed_three_locale_scope(self) -> None:
+        common = {
+            "schema": 1,
+            "status": "passed",
+            "checks": [{"id": "coverage", "status": "passed"}],
+            "locales": ["en-US", "pt-BR", "es-ES"],
+        }
+        eca = {
+            **common,
+            "mode": "eca-digital",
+            "legal_review": "review-1",
+            "security_review": "review-2",
+            "privacy_impact_assessment": "review-3",
+            "negative_and_evasion_tests": True,
+            "retains_sensitive_age_evidence": False,
+        }
+        i18n = {**common, "mode": "i18n", "fallback": "en-US"}
+        with tempfile.TemporaryDirectory() as temporary:
+            iso = Path(temporary) / "candidate.iso"
+            iso.write_bytes(b"iso")
+            image_build.validate_test_result("eca-digital", eca, iso_path=iso)
+            image_build.validate_test_result("i18n", i18n, iso_path=iso)
+            eca["retains_sensitive_age_evidence"] = True
+            with self.assertRaisesRegex(image_build.PolicyError, "incomplete"):
+                image_build.validate_test_result("eca-digital", eca, iso_path=iso)
 
     def test_beta_manifest_rejects_missing_detached_signature(self) -> None:
         manifest = image_build.Manifest.load()

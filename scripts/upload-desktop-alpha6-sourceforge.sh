@@ -69,7 +69,11 @@ done
 
 cd "$ARTIFACT_DIR"
 sha256sum -c "$PREFIX.iso.sha256"
-python3 - "$PREFIX.evidence.json" "$DECISION_FILE" "$PREFIX" <<'PY'
+# Baseline: obs-repositories, live-session, installer, first-boot,
+# uefi-secure-boot, rollback and hardware-matrix. Stage-aware additions are
+# read from the same policy used to create the evidence manifest.
+mapfile -t REQUIRED_EVIDENCE < <("$REPO_ROOT/scripts/image-build.py" required-test-results)
+python3 - "$PREFIX.evidence.json" "$DECISION_FILE" "$PREFIX" "${REQUIRED_EVIDENCE[@]}" <<'PY'
 import datetime
 import json
 import pathlib
@@ -79,15 +83,9 @@ import sys
 evidence = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
 decision = json.loads(pathlib.Path(sys.argv[2]).read_text(encoding="utf-8"))
 prefix = sys.argv[3]
-required = {
-    "obs-repositories",
-    "live-session",
-    "installer",
-    "first-boot",
-    "uefi-secure-boot",
-    "rollback",
-    "hardware-matrix",
-}
+required = set(sys.argv[4:])
+if not required:
+    raise SystemExit("ERRO: política não informou evidências obrigatórias")
 if evidence.get("source", {}).get("dirty") is not False:
     raise SystemExit("ERRO: manifesto final originado de árvore suja")
 if set(evidence.get("test_results", {})) != required:
