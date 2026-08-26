@@ -10,17 +10,19 @@ BUILD_DIR="$WORK_DIR/build"
 ARTIFACT_DIR="$WORK_DIR/iso"
 EVIDENCE_DIR=""
 ARTIFACTS_ONLY=0
-EXPECTED_VERSION="27.02-alpha6"
+EXPECTED_VERSION="${LYRA_EXPECTED_VERSION:-27.02-alpha6}"
+RELEASE_LABEL="${LYRA_RELEASE_LABEL:-Desktop Alpha 6}"
+COMMAND_NAME="${LYRA_COMMAND_NAME:-$0}"
 
 usage() {
   cat <<EOF
-Uso: $0 [--artifacts-only] [--evidence-dir DIRETÓRIO]
+Uso: $COMMAND_NAME [--artifacts-only] [--evidence-dir DIRETÓRIO]
 
 Sem opções, valida o OBS e constrói uma candidata limpa usando o RPM
 publicado do instalador (o Welcome já vem sempre do RPM publicado).
 --artifacts-only reutiliza a ISO atual.
 Quando --evidence-dir é informado, o manifesto final exige as sete evidências
-aprovadas do gate da Desktop Alpha 6.
+aprovadas do gate da $RELEASE_LABEL.
 EOF
 }
 
@@ -128,10 +130,10 @@ if [ -n "$EVIDENCE_DIR" ]; then
   done
   ./scripts/image-build.py artifact-manifest "$ARTIFACT_DIR" \
     --output "$ARTIFACT_DIR/$PREFIX.evidence.json" "${TEST_ARGS[@]}"
-  echo "Bundle Desktop Alpha 6 qualificado em: $ARTIFACT_DIR"
+  echo "Bundle $RELEASE_LABEL qualificado em: $ARTIFACT_DIR"
 else
   echo "Artefatos da candidata prontos em: $ARTIFACT_DIR"
   echo "Execute novamente com --artifacts-only --evidence-dir após concluir o gate."
 fi
 
-echo "Alpha 6 usa SHA-256 sem assinatura GPG destacada conforme a ADR 0005."
+echo "$RELEASE_LABEL usa SHA-256 sem assinatura GPG destacada conforme a ADR 0005."

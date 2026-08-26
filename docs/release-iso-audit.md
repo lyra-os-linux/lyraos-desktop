@@ -7,7 +7,7 @@ conteúdo potencialmente secreto para a evidência.
 
 ```sh
 python3 scripts/audit-release-iso.py \
-  /caminho/lyra-os.x86_64-27.02-alpha6.iso \
+  /caminho/lyra-os.x86_64-27.02-alpha7.iso \
   --output evidence/alpha5-iso-audit.json
 ```
 
