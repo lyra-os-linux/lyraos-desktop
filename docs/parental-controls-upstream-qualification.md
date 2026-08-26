@@ -2,7 +2,11 @@
 
 Status: resultado técnico da #6  
 Data da consulta: 18/08/2026  
-Alvo: Lyra OS Desktop 27.02, openSUSE Leap 16.0, x86_64
+Alvo original: Lyra OS Desktop 27.02, openSUSE Leap 16.0, x86_64
+
+> Esta qualificação registra a decisão tomada sobre a base 16.0. A migração
+> para Leap 16.1 exige repetir a consulta de disponibilidade e os testes antes
+> de promover qualquer componente de controle parental para a imagem.
 
 ## Resultado
 

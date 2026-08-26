@@ -49,8 +49,8 @@ class ManifestTests(unittest.TestCase):
                 [target.name for target in project.targets[:2]],
                 ["openSUSE_Leap_16.0", "openSUSE_Leap_16.1"],
             )
-            self.assertTrue(project.targets[0].iso_consumer)
-            self.assertFalse(project.targets[1].iso_consumer)
+            self.assertFalse(project.targets[0].iso_consumer)
+            self.assertTrue(project.targets[1].iso_consumer)
             self.assertEqual(
                 project.targets[1].upstream_project, "openSUSE:Leap:16.1"
             )
@@ -93,10 +93,10 @@ class ManifestTests(unittest.TestCase):
     def test_public_repository_url_uses_obs_download_layout(self) -> None:
         self.assertEqual(
             obs_release.repository_url(
-                "home:rodrigosbrito:lyra", "openSUSE_Leap_16.0"
+                "home:rodrigosbrito:lyra", "openSUSE_Leap_16.1"
             ),
             "https://download.opensuse.org/repositories/"
-            "home:/rodrigosbrito:/lyra/openSUSE_Leap_16.0",
+            "home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1",
         )
 
     def test_staging_metadata_builds_and_publishes_leap_16_1(self) -> None:

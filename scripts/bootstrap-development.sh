@@ -101,11 +101,11 @@ check_target_system() {
         return
     fi
 
-    if [[ ${ID:-} == "opensuse-leap" && ${VERSION_ID:-} == "16.0" ]]; then
+    if [[ ${ID:-} == "opensuse-leap" && ${VERSION_ID:-} == "16.1" ]]; then
         return
     fi
 
-    die "supported systems are Lyra OS and openSUSE Leap 16.0 (found: ${PRETTY_NAME:-unknown})"
+    die "supported systems are Lyra OS and openSUSE Leap 16.1 (found: ${PRETTY_NAME:-unknown})"
 }
 
 ensure_profile_path() {

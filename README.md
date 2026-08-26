@@ -26,9 +26,11 @@ o instalador da edição **Odisseia 27.02 Alpha 6** para computadores x86_64.
 - `lyra-report` para diagnóstico local e sob demanda, sem telemetria ou envio
   automático de dados.
 
-O desktop habilita somente o Packman Essentials para fornecer codecs
-multimídia completos; o Packman completo não é usado. Os repositórios oficiais
-do Leap têm prioridade sobre os repositórios OBS do ecossistema Lyra no sistema instalado.
+O desktop habilita somente o Packman Essentials para as compilações completas
+de FFmpeg e VLC; o Packman completo não é usado. A pilha GStreamer vem dos
+pacotes oficiais compatíveis com a versão da base Leap. Os repositórios
+oficiais do Leap têm prioridade sobre os repositórios OBS do ecossistema Lyra
+no sistema instalado.
 
 ## Estado atual
 
@@ -57,7 +59,7 @@ gates estão registrados no [roadmap do projeto](docs/roadmap.md).
 
 ## Preparando o ambiente
 
-O ambiente de desenvolvimento suportado é o Lyra OS ou o openSUSE Leap 16.0.
+O ambiente de desenvolvimento suportado é o Lyra OS ou o openSUSE Leap 16.1.
 Clone o repositório e execute o bootstrap como usuário comum:
 
 ```bash

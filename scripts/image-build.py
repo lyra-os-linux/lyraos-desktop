@@ -111,10 +111,9 @@ class Manifest:
         # image-build.toml records approved policy, not a free-form config -
         # loosening this to "any subset" would defeat the point.
         expected_sources = (
-            ObsPackageSource("home:rodrigosbrito:lyra", "openSUSE_Leap_16.0"),
-            ObsPackageSource("home:rodrigosbrito:vega", "openSUSE_Leap_16.0"),
-            ObsPackageSource("home:rodrigosbrito:fina", "openSUSE_Leap_16.0"),
-            ObsPackageSource("Virtualization:Appliances:Builder", "openSUSE_Leap_16.0"),
+            ObsPackageSource("home:rodrigosbrito:lyra", "openSUSE_Leap_16.1"),
+            ObsPackageSource("home:rodrigosbrito:vega", "openSUSE_Leap_16.1"),
+            ObsPackageSource("home:rodrigosbrito:fina", "openSUSE_Leap_16.1"),
         )
         expected_results = {
             "obs-repositories",
@@ -321,11 +320,10 @@ def validate_sources(manifest: Manifest, *, release_file: Path | None = None) ->
         "repo-lyra",
         "repo-vega",
         "repo-fina",
-        "repo-rodrigosbrito",
     }
     if len(repositories) != len(expected_repositories):
         raise PolicyError(
-            "canonical KIWI description must contain exactly seven repositories"
+            "canonical KIWI description must contain exactly six repositories"
         )
     aliases: set[str] = set()
     for repository in repositories:
@@ -342,11 +340,6 @@ def validate_sources(manifest: Manifest, *, release_file: Path | None = None) ->
                 raise PolicyError(f"{alias}: {option} must be true")
     if aliases != expected_repositories:
         raise PolicyError("canonical KIWI repository aliases differ from policy")
-    personal = root.find("repository[@alias='repo-rodrigosbrito']")
-    if personal is None:
-        raise PolicyError("repo-rodrigosbrito repository is missing")
-    if personal.attrib.get("priority") != "90":
-        raise PolicyError("repo-rodrigosbrito must use normal installed-system priority 90")
     config = (KIWI / "config.sh").read_text(encoding="utf-8")
     forbidden = ("curl ", "wget ", "flatpak remote-add", "obsrepositories:/")
     for token in forbidden:
@@ -447,8 +440,8 @@ def verify_export(manifest: Manifest, directory: Path) -> None:
         raise PolicyError("export has invalid source identity")
     root = ET.parse(directory / manifest.description).getroot()
     repositories = root.findall("repository")
-    if len(repositories) != 7:
-        raise PolicyError("export must preserve the seven canonical repositories")
+    if len(repositories) != 6:
+        raise PolicyError("export must preserve the six canonical repositories")
     for repository in repositories:
         source = repository.find("source")
         url = "" if source is None else source.attrib.get("path", "")

@@ -92,16 +92,10 @@ class ImagePolicyTests(unittest.TestCase):
     def test_canonical_sources_pass_repository_and_signature_policy(self) -> None:
         image_build.validate_sources(self.manifest)
 
-    def test_personal_obs_repository_is_low_precedence(self) -> None:
+    def test_empty_personal_obs_repository_is_not_configured(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         repository = root.find("repository[@alias='repo-rodrigosbrito']")
-        self.assertIsNotNone(repository)
-        assert repository is not None
-        self.assertEqual(repository.attrib["priority"], "90")
-        self.assertEqual(
-            repository.find("source").attrib["path"],
-            "https://download.opensuse.org/repositories/home:/rodrigosbrito/openSUSE_Leap_16.0/",
-        )
+        self.assertIsNone(repository)
 
     def test_release_evidence_tools_are_executable(self) -> None:
         for name in (
@@ -128,8 +122,18 @@ class ImagePolicyTests(unittest.TestCase):
     def test_obs_is_restricted_to_ordered_rpm_package_sources(self) -> None:
         self.assertEqual(self.manifest.obs_role, "packages-only")
         projects = [source.project for source in self.manifest.package_sources]
-        self.assertEqual(projects[0], "home:rodrigosbrito:lyra")
-        self.assertEqual(projects[-1], "Virtualization:Appliances:Builder")
+        self.assertEqual(
+            projects,
+            [
+                "home:rodrigosbrito:lyra",
+                "home:rodrigosbrito:vega",
+                "home:rodrigosbrito:fina",
+            ],
+        )
+        self.assertEqual(
+            {source.repository for source in self.manifest.package_sources},
+            {"openSUSE_Leap_16.1"},
+        )
         self.assertFalse(hasattr(self.manifest, "project"))
         self.assertFalse(hasattr(self.manifest, "package"))
 
@@ -409,13 +413,20 @@ class ImagePolicyTests(unittest.TestCase):
         for name in (
             "vlc-codecs",
             "ffmpeg-7",
-            "gstreamer-plugins-bad-codecs",
-            "gstreamer-plugins-ugly-codecs",
+            "gstreamer-plugins-bad",
+            "gstreamer-plugins-ugly",
+            "gstreamer-plugins-libav",
+            "gstreamer-plugins-good-extra",
             "ivtv-firmware",
             "bladeRF-fpga-firmware",
             "bladeRF-fx3-firmware",
         ):
             self.assertIn(name, desktop_packages, name)
+        for incompatible_packman_addon in (
+            "gstreamer-plugins-bad-codecs",
+            "gstreamer-plugins-ugly-codecs",
+        ):
+            self.assertNotIn(incompatible_packman_addon, desktop_packages)
         for name in (
             "gnome-software",
             "gnome-software-lang",

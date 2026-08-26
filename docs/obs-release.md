@@ -16,18 +16,18 @@ commit before a new release can pass the health gate.
 
 | Component | Staging project | Release project | Target | ISO |
 |---|---|---|---|---|
-| Lyra base and apps | `home:rodrigosbrito:lyra:staging` | `home:rodrigosbrito:lyra` | Leap 16.0 and 16.1, x86_64 | Leap 16.0 release only |
-| Vega | `home:rodrigosbrito:vega:staging` | `home:rodrigosbrito:vega` | Leap 16.0 and 16.1, x86_64 | Leap 16.0 release only |
-| Fina | `home:rodrigosbrito:fina:staging` | `home:rodrigosbrito:fina` | Leap 16.0, Leap 16.1 and Tumbleweed, x86_64 | Leap 16.0 release only |
+| Lyra base and apps | `home:rodrigosbrito:lyra:staging` | `home:rodrigosbrito:lyra` | Leap 16.0 and 16.1, x86_64 | Leap 16.1 release only |
+| Vega | `home:rodrigosbrito:vega:staging` | `home:rodrigosbrito:vega` | Leap 16.0 and 16.1, x86_64 | Leap 16.1 release only |
+| Fina | `home:rodrigosbrito:fina:staging` | `home:rodrigosbrito:fina` | Leap 16.0, Leap 16.1 and Tumbleweed, x86_64 | Leap 16.1 release only |
 
 Staging repositories build directly against their official openSUSE targets.
 They are published so testers can install the exact RPMs, but neither KIWI nor
 an installed Lyra system contains a staging URL. The release projects remain
 the stable URLs consumed by `kiwi/config.xml`.
 
-Leap 16.1 is an additional build and publication gate. It is deliberately not
-an ISO consumer until the separately reviewed base-system migration changes
-KIWI and the installed repository configuration from Leap 16.0 to 16.1.
+Leap 16.1 is the active ISO consumer. Leap 16.0 remains an additional build and
+publication compatibility gate, but no KIWI or installed-system repository
+points to it.
 
 Package ownership is explicit in the manifest. Multibuild flavors such as
 `lyra-theme:lyra-os-icons` are results of the `lyra-theme` source package and
@@ -38,9 +38,11 @@ failed flavor, an unpublished repository, or a target mismatch fails the gate.
 
 During image construction, KIWI uses priorities 1, 2, and 3 for Lyra, Vega,
 and Fina so the image consumes the reviewed Lyra packages. The desktop-only
-Packman Essentials repository uses priority 15 so its complete codec builds
-win over restricted official variants; official Leap OSS and non-OSS use 20
-and 21. These exceptions are allowlisted by the repository policy.
+Packman Essentials repository uses priority 15 so its complete FFmpeg and VLC
+builds win over restricted official variants. The GStreamer plugin stack stays
+on the matching official Leap build to avoid mixing incompatible framework
+versions. Official Leap OSS and non-OSS use 20 and 21. These exceptions are
+allowlisted by the repository policy.
 
 Before the installed system is finalized, the Rust installer changes all three
 personal OBS repositories to priority 90. Official Leap therefore wins every
