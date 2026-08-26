@@ -31,17 +31,6 @@
       "rationale": "Second-wave user interface scheduled by the release plan."
     },
     {
-      "id": "chord",
-      "project": "lyra",
-      "wave": "alpha5",
-      "status": "scheduled",
-      "format": "gettext",
-      "domain": "chord",
-      "selection": "LC_ALL/LC_MESSAGES/LANG",
-      "lint": "package i18n test",
-      "rationale": "Second-wave terminal integration scheduled by the release plan."
-    },
-    {
       "id": "linuxtoys",
       "project": "lyra",
       "wave": "alpha5",

@@ -16,14 +16,18 @@ commit before a new release can pass the health gate.
 
 | Component | Staging project | Release project | Target | ISO |
 |---|---|---|---|---|
-| Lyra base and apps | `home:rodrigosbrito:lyra:staging` | `home:rodrigosbrito:lyra` | Leap 16.0, x86_64 | release only |
-| Vega | `home:rodrigosbrito:vega:staging` | `home:rodrigosbrito:vega` | Leap 16.0, x86_64 | release only |
-| Fina | `home:rodrigosbrito:fina:staging` | `home:rodrigosbrito:fina` | Leap 16.0 and Tumbleweed, x86_64 | Leap release only |
+| Lyra base and apps | `home:rodrigosbrito:lyra:staging` | `home:rodrigosbrito:lyra` | Leap 16.0 and 16.1, x86_64 | Leap 16.0 release only |
+| Vega | `home:rodrigosbrito:vega:staging` | `home:rodrigosbrito:vega` | Leap 16.0 and 16.1, x86_64 | Leap 16.0 release only |
+| Fina | `home:rodrigosbrito:fina:staging` | `home:rodrigosbrito:fina` | Leap 16.0, Leap 16.1 and Tumbleweed, x86_64 | Leap 16.0 release only |
 
 Staging repositories build directly against their official openSUSE targets.
 They are published so testers can install the exact RPMs, but neither KIWI nor
 an installed Lyra system contains a staging URL. The release projects remain
 the stable URLs consumed by `kiwi/config.xml`.
+
+Leap 16.1 is an additional build and publication gate. It is deliberately not
+an ISO consumer until the separately reviewed base-system migration changes
+KIWI and the installed repository configuration from Leap 16.0 to 16.1.
 
 Package ownership is explicit in the manifest. Multibuild flavors such as
 `lyra-theme:lyra-os-icons` are results of the `lyra-theme` source package and
@@ -68,6 +72,7 @@ Select the project and package from `obs/projects.toml`, then:
 osc -A https://api.opensuse.org checkout home:rodrigosbrito:lyra:staging beam
 cd home:rodrigosbrito:lyra:staging/beam
 osc build --clean --checks openSUSE_Leap_16.0 x86_64
+osc build --clean --checks openSUSE_Leap_16.1 x86_64
 osc status
 osc diff
 osc commit -m 'Explain the change and its test coverage'

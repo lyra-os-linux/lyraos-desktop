@@ -153,16 +153,6 @@ cargo test --locked
 Consulte o README de cada componente para testes de integração e requisitos
 específicos.
 
-### Chord
-
-```bash
-cd ~/Git/Lyra/chord
-cargo fmt --check
-cargo test --workspace --locked
-cargo clippy --workspace --all-targets --locked -- -D warnings
-cargo run -p chord-gtk
-```
-
 ### Beam
 
 ```bash
