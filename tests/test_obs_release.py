@@ -32,7 +32,8 @@ class ManifestTests(unittest.TestCase):
 
     def test_project_inventory_matches_release_contract(self) -> None:
         self.assertEqual([project.id for project in self.manifest.projects], ["lyra", "vega", "fina"])
-        self.assertEqual(len(self.manifest.project("lyra").packages), 14)
+        self.assertEqual(len(self.manifest.project("lyra").packages), 13)
+        self.assertNotIn("chord", self.manifest.project("lyra").packages)
         self.assertIn("linuxtoys", self.manifest.project("lyra").packages)
         self.assertIn("zed", self.manifest.project("lyra").packages)
         self.assertIn("vscode-repo", self.manifest.project("lyra").packages)
@@ -43,7 +44,17 @@ class ManifestTests(unittest.TestCase):
         self.assertEqual(
             self.manifest.project("lyra").legacy_packages, ("calco", "prosa")
         )
-        self.assertEqual(self.manifest.project("fina").targets[1].name, "openSUSE_Tumbleweed")
+        for project in self.manifest.projects:
+            self.assertEqual(
+                [target.name for target in project.targets[:2]],
+                ["openSUSE_Leap_16.0", "openSUSE_Leap_16.1"],
+            )
+            self.assertTrue(project.targets[0].iso_consumer)
+            self.assertFalse(project.targets[1].iso_consumer)
+            self.assertEqual(
+                project.targets[1].upstream_project, "openSUSE:Leap:16.1"
+            )
+        self.assertEqual(self.manifest.project("fina").targets[2].name, "openSUSE_Tumbleweed")
 
     def test_staging_is_never_an_iso_consumer(self) -> None:
         for project in self.manifest.projects:
@@ -86,6 +97,21 @@ class ManifestTests(unittest.TestCase):
             ),
             "https://download.opensuse.org/repositories/"
             "home:/rodrigosbrito:/lyra/openSUSE_Leap_16.0",
+        )
+
+    def test_staging_metadata_builds_and_publishes_leap_16_1(self) -> None:
+        metadata = obs_release.render_project_meta(
+            self.manifest, self.manifest.project("lyra")
+        )
+        root = ET.fromstring(metadata)
+        repository = root.find("./repository[@name='openSUSE_Leap_16.1']")
+        self.assertIsNotNone(repository)
+        self.assertEqual(
+            repository.find("path").attrib,
+            {"project": "openSUSE:Leap:16.1", "repository": "standard"},
+        )
+        self.assertIsNotNone(
+            root.find("./publish/enable[@repository='openSUSE_Leap_16.1'][@arch='x86_64']")
         )
 
 

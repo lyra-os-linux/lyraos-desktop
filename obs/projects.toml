@@ -24,7 +24,6 @@ tag = "v2026.08-beta2-stable-20260809"
 # clean 683-second staging build and the full channel gate. Every subsequent
 # change must still arrive through an accepted staging request.
 beam = "ea498bf5f23177feedbbab89daad2081"
-chord = "a7cd39953df218e3a5836f6ad071ad89"
 linuxtoys = "019158c908ac70259af9b9c80ff0c316"
 lyra-installer = "d2210ab36d89a4c185dc0f36764edf52"
 # The final Alpha 6 wallpaper payload was initially committed directly to
@@ -72,7 +71,6 @@ staging = "home:rodrigosbrito:lyra:staging"
 iso_consumer = true
 packages = [
   "beam",
-  "chord",
   "lyra-fish-productivity",
   "lyra-installer",
   "lyra-upgrade",
@@ -97,6 +95,13 @@ upstream_repository = "standard"
 architectures = ["x86_64"]
 iso_consumer = true
 
+[[projects.targets]]
+name = "openSUSE_Leap_16.1"
+upstream_project = "openSUSE:Leap:16.1"
+upstream_repository = "standard"
+architectures = ["x86_64"]
+iso_consumer = false
+
 [[projects]]
 id = "vega"
 release = "home:rodrigosbrito:vega"
@@ -111,6 +116,13 @@ upstream_repository = "standard"
 architectures = ["x86_64"]
 iso_consumer = true
 
+[[projects.targets]]
+name = "openSUSE_Leap_16.1"
+upstream_project = "openSUSE:Leap:16.1"
+upstream_repository = "standard"
+architectures = ["x86_64"]
+iso_consumer = false
+
 [[projects]]
 id = "fina"
 release = "home:rodrigosbrito:fina"
@@ -124,6 +136,13 @@ upstream_project = "openSUSE:Leap:16.0"
 upstream_repository = "standard"
 architectures = ["x86_64"]
 iso_consumer = true
+
+[[projects.targets]]
+name = "openSUSE_Leap_16.1"
+upstream_project = "openSUSE:Leap:16.1"
+upstream_repository = "standard"
+architectures = ["x86_64"]
+iso_consumer = false
 
 [[projects.targets]]
 name = "openSUSE_Tumbleweed"

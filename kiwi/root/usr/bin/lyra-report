@@ -178,7 +178,7 @@ collect efi-boot /usr/sbin/efibootmgr -v
 collect flatpak-remotes /usr/bin/flatpak remotes --system --show-details
 collect gnome-version /usr/bin/gnome-shell --version
 collect lyra-packages /usr/bin/rpm -q \
-    beam chord fina lyra-installer lyra-theme postgres-draco \
+    beam fina lyra-installer lyra-theme postgres-draco \
     sheliak sulafat vega-cli vega-gtk vega-web vegad
 collect_file lyra-installer-log /var/log/lyra-installer.log
 
