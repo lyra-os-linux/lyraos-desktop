@@ -96,6 +96,20 @@ Antes de qualquer exposição pelo Vega ou promoção para a Beta 1:
 - registrar versões e checksums dos componentes usados no teste;
 - manter P0/P1 e falha de isolamento como bloqueadores de promoção.
 
+O estado do host deve ser capturado sem privilégio antes da instalação, com o
+aplicativo instalado e depois da remoção:
+
+```bash
+./scripts/bottles-pilot-evidence.py before --output bottles-before.json
+./scripts/bottles-pilot-evidence.py installed --output bottles-installed.json
+./scripts/bottles-pilot-evidence.py removed --output bottles-removed.json
+```
+
+O coletor não instala, executa nem remove software. Ele apenas registra estado,
+permissões, overrides, serviços de usuário e sockets em escuta; `observed` não
+significa aprovação do isolamento, que continua dependendo da revisão das três
+evidências e dos testes negativos.
+
 ## Reversão
 
 Como os componentes não entram na composição da ISO, a reversão primária é
@@ -119,4 +133,3 @@ serviço ou repositório chega ao sistema do usuário.
   reabertura neste ciclo;
 - #16 passa a tratar apenas integrações próprias do Lyra; não duplica os
   pacotes Wine oficiais nem o Flatpak Bottles.
-
