@@ -39,12 +39,12 @@ conteúdo após a última verificação de imagem, assinatura, instalação,
 atualização, recuperação e uso real. Ausência de P0/P1 é requisito mínimo, não
 evidência suficiente por si só.
 
-O build atual é `alpha6`: ciclo de conclusão do Lyra Upgrade, do fluxo de
-atualizações e do backend de controle parental, mantendo a classificação Alpha
-porque ainda há funcionalidades planejadas em implementação, não apenas
-estabilização. A tag já
-publicada `v2026.08-beta2-stable-20260809` permanece como registro histórico
-e não é reescrita; o próximo ciclo de beta deste produto recomeça em `beta1`.
+O build atual é `alpha7`: primeira candidata do Desktop 27.02 baseada no
+openSUSE Leap 16.1. O ciclo qualifica a nova base, reconstrói e verifica os
+pacotes consumidos pela imagem e repete os gates de instalação, Secure Boot,
+NVIDIA, atualização e rollback. A tag `v27.02-alpha6` permanece como baseline
+imutável da base Leap 16.0 e não é reescrita; o próximo ciclo de beta deste
+produto recomeça em `beta1`.
 
 Uma nova compilação da mesma release mantém a versão. O commit, a data, o
 estado limpo ou modificado da árvore e o SHA-256 distinguem builds e ficam no

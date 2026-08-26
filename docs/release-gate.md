@@ -1,7 +1,7 @@
-# Desktop Alpha 6 release gate
+# Desktop Alpha 7 release gate
 
 This checklist is the versioned go/no-go contract for the standard Lyra OS
-Desktop Alpha 6 ISO. A release coordinator may declare **GO** only when every blocking
+Desktop Alpha 7 ISO. A release coordinator may declare **GO** only when every blocking
 item below has passed and its evidence is included in the final image evidence
 manifest. Missing evidence is a failure, not an implicit exception.
 
@@ -28,6 +28,8 @@ risk.
 - [ ] `release.toml`, KIWI metadata, ISO filename and installed `VERSION_ID`
   agree;
 - [ ] the ISO package inventory contains exact OBS source revisions;
+- [ ] every enabled RPM repository targets Leap 16.1 and no Leap 16.0 URL is
+  present in the candidate;
 - [ ] the candidate is tagged only after all blocking checks pass.
 
 ## Required evidence
@@ -48,10 +50,12 @@ content and hardware coverage; a bare green status is rejected:
 - [ ] `uefi-secure-boot`: supported UEFI and Secure Boot scenarios pass;
 - [ ] `rollback`: update, Snapper snapshots and GRUB rollback pass;
 - [ ] `hardware-matrix`: required real/virtual hardware scenarios are recorded.
+- [ ] `v27.02-alpha6` remains available as the immutable Leap 16.0 rollback
+  baseline and the 16.0 → 16.1 upgrade/rollback rehearsal is recorded.
 
 ## Release signing key
 
-Per [ADR 0005](adr/0005-release-signing-starts-at-beta1.md), Desktop Alpha 6
+Per [ADR 0005](adr/0005-release-signing-starts-at-beta1.md), Desktop Alpha 7
 is published with SHA-256 but without a detached GPG signature. The release
 key is created and made mandatory starting with Beta 1. RPM repository and
 package signatures remain mandatory in every stage and are not affected by
@@ -107,13 +111,13 @@ Accepted P2/P3 issues and workarounds:
 Residual risks:
 ```
 
-## Current Desktop Alpha 6 state
+## Current Desktop Alpha 7 state
 
-**NO-GO enquanto a candidata limpa e as evidências da Alpha 6 não passarem.**
-As validações anteriores do instalador, primeiro boot, rede, GRUB e Snapper
-continuam úteis, mas não substituem a repetição com os RPMs promovidos desta
-versão. O gate atual inclui explicitamente Welcome, áudio e Lyra Upgrade. A
-Alpha 6 permanece sem assinatura GPG destacada da ISO conforme a ADR 0005;
+**NO-GO enquanto a candidata limpa e as evidências da Alpha 7 não passarem.**
+As validações da Alpha 6 continuam úteis como baseline, mas não substituem a
+repetição completa sobre o Leap 16.1. O gate atual inclui explicitamente boot,
+instalação, NVIDIA, áudio, codecs, upgrade e rollback. A Alpha 7 permanece sem
+assinatura GPG destacada da ISO conforme a ADR 0005;
 checksum, assinaturas de RPM/repositório e evidências estruturadas continuam
 obrigatórios.
 

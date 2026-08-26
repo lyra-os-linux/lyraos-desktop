@@ -1,7 +1,7 @@
 [release]
 calendar_version = "27.02"
 stage = "alpha"
-iteration = 6
+iteration = 7
 codename = "Odisseia"
 codename_id = "odisseia"
 image_name = "lyra-os"

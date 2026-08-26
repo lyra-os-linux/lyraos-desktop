@@ -176,7 +176,7 @@ class RepositoryMetadataTests(unittest.TestCase):
             ROOT / "scripts/upload-desktop-alpha6-sourceforge.sh"
         ).read_text(encoding="utf-8")
 
-        self.assertIn('EXPECTED_VERSION="27.02-alpha6"', builder)
+        self.assertIn('LYRA_EXPECTED_VERSION:-27.02-alpha6', builder)
         self.assertIn("--published-installer", builder)
         self.assertNotIn("--published-welcome", builder)
         self.assertIn("obs-release.py health", builder)
@@ -192,9 +192,38 @@ class RepositoryMetadataTests(unittest.TestCase):
         ):
             self.assertIn(evidence, builder)
             self.assertIn(evidence, uploader)
-        self.assertIn("desktop/alpha6/", uploader)
+        self.assertIn('LYRA_RELEASE_SLUG:-alpha6', uploader)
         self.assertIn("--decision-file", uploader)
         self.assertNotIn("iso.sha256.asc", uploader)
+
+    def test_alpha7_release_uses_leap_16_1_and_preserves_full_evidence_gate(self) -> None:
+        wrapper = (ROOT / "scripts/build-desktop-alpha7.sh").read_text(
+            encoding="utf-8"
+        )
+        builder = (ROOT / "scripts/build-desktop-alpha6.sh").read_text(
+            encoding="utf-8"
+        )
+        uploader_wrapper = (
+            ROOT / "scripts/upload-desktop-alpha7-sourceforge.sh"
+        ).read_text(encoding="utf-8")
+        kiwi = (ROOT / "kiwi/config.xml").read_text(encoding="utf-8")
+
+        self.assertIn('LYRA_EXPECTED_VERSION="27.02-alpha7"', wrapper)
+        self.assertIn('LYRA_RELEASE_SLUG="alpha7"', uploader_wrapper)
+        self.assertIn("--published-installer", builder)
+        self.assertIn("obs-release.py health", builder)
+        self.assertNotIn("openSUSE_Leap_16.0/", kiwi)
+        self.assertIn("openSUSE_Leap_16.1/", kiwi)
+        for evidence in (
+            "obs-repositories",
+            "live-session",
+            "installer",
+            "first-boot",
+            "uefi-secure-boot",
+            "rollback",
+            "hardware-matrix",
+        ):
+            self.assertIn(evidence, builder)
 
     def test_build_manifest_is_traceable(self) -> None:
         release = Release.from_file()

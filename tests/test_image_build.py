@@ -569,6 +569,7 @@ class ImagePolicyTests(unittest.TestCase):
     def test_vm_helper_keeps_build_output_outside_the_source_checkout(self) -> None:
         helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
         alpha6 = (ROOT / "scripts/build-desktop-alpha6.sh").read_text(encoding="utf-8")
+        alpha7 = (ROOT / "scripts/build-desktop-alpha7.sh").read_text(encoding="utf-8")
         upload = (ROOT / "scripts/upload-desktop-alpha6-sourceforge.sh").read_text(
             encoding="utf-8"
         )
@@ -576,6 +577,7 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("Work directory must be outside the repository", helper)
         self.assertNotIn('$KIWI_DESC/.kiwi/test-$CURRENT_UID', helper)
         self.assertIn(safe_default, alpha6)
+        self.assertIn("build-desktop-alpha6.sh", alpha7)
         self.assertIn(safe_default, upload)
 
     def test_export_is_derived_from_canonical_kiwi_without_duplicate_package_list(self) -> None:

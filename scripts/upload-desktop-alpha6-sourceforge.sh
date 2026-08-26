@@ -7,14 +7,17 @@ SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
 WORK_DIR="${LYRA_TEST_WORK_DIR:-/var/tmp/lyraos-desktop-test-$(id -u)}"
 ARTIFACT_DIR="$WORK_DIR/iso"
-EXPECTED_VERSION="27.02-alpha6"
-REMOTE="rodrigobritosoa@frs.sourceforge.net:/home/frs/project/lyra/releases/27.02/desktop/alpha6/"
-DOWNLOAD_URL="https://downloads.sourceforge.net/project/lyra/releases/27.02/desktop/alpha6"
+EXPECTED_VERSION="${LYRA_EXPECTED_VERSION:-27.02-alpha6}"
+RELEASE_LABEL="${LYRA_RELEASE_LABEL:-Desktop Alpha 6}"
+RELEASE_SLUG="${LYRA_RELEASE_SLUG:-alpha6}"
+COMMAND_NAME="${LYRA_COMMAND_NAME:-$0}"
+REMOTE="rodrigobritosoa@frs.sourceforge.net:/home/frs/project/lyra/releases/27.02/desktop/$RELEASE_SLUG/"
+DOWNLOAD_URL="https://downloads.sourceforge.net/project/lyra/releases/27.02/desktop/$RELEASE_SLUG"
 CHECK_ONLY=0
 DECISION_FILE=""
 
 usage() {
-  echo "Uso: $0 [--check-only] --decision-file ARQUIVO.json" >&2
+  echo "Uso: $COMMAND_NAME [--check-only] --decision-file ARQUIVO.json" >&2
 }
 
 while [ "$#" -gt 0 ]; do
@@ -132,7 +135,7 @@ OPEN_BLOCKERS="$(gh issue list --state open --label desktop --limit 200 \
 install -m 0644 "$DECISION_FILE" "$ARTIFACT_DIR/$PREFIX.release-decision.json"
 FILES+=("$PREFIX.release-decision.json")
 if [ "$CHECK_ONLY" -eq 1 ]; then
-  echo "Bundle Desktop Alpha 6 válido; nenhum arquivo foi enviado."
+  echo "Bundle $RELEASE_LABEL válido; nenhum arquivo foi enviado."
   exit 0
 fi
 
@@ -146,7 +149,7 @@ rsync -avP --partial \
   -e "ssh -o UserKnownHostsFile=$KNOWN_HOSTS -o StrictHostKeyChecking=yes" \
   "${FILES[@]}" "$REMOTE"
 
-DOWNLOAD_DIR="$(mktemp -d /tmp/lyra-desktop-alpha6-download.XXXXXX)"
+DOWNLOAD_DIR="$(mktemp -d "/tmp/lyra-desktop-$RELEASE_SLUG-download.XXXXXX")"
 trap 'rm -rf -- "$DOWNLOAD_DIR"' EXIT
 curl --fail --location --retry 5 \
   --output "$DOWNLOAD_DIR/$PREFIX.iso.sha256" \
@@ -155,4 +158,4 @@ curl --fail --location --retry 5 \
   --output "$DOWNLOAD_DIR/$PREFIX.iso" \
   "$DOWNLOAD_URL/$PREFIX.iso"
 (cd "$DOWNLOAD_DIR" && sha256sum -c "$PREFIX.iso.sha256")
-echo "Publicação Desktop Alpha 6 verificada após novo download."
+echo "Publicação $RELEASE_LABEL verificada após novo download."
