@@ -474,16 +474,16 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
 
     echo "--- adding local installer binaries to staged KIWI description ---"
 
-    install -Dm0755 "$INSTALLER_DIR/target/release/lyra-installer" \
-      "$BUILD_DESCRIPTION_DIR/root/usr/bin/lyra-installer"
-    install -Dm0755 "$INSTALLER_DIR/target/release/lyra-installer-service" \
-      "$BUILD_DESCRIPTION_DIR/root/usr/libexec/lyra-installer-service"
+    install -Dm0755 "$INSTALLER_DIR/target/release/2702-installer" \
+      "$BUILD_DESCRIPTION_DIR/root/usr/bin/2702-installer"
+    install -Dm0755 "$INSTALLER_DIR/target/release/2702-installer-service" \
+      "$BUILD_DESCRIPTION_DIR/root/usr/libexec/2702-installer-service"
     install -Dm0644 "$INSTALLER_DIR/packaging/io.lyra.Installer.policy" \
       "$BUILD_DESCRIPTION_DIR/root/usr/share/polkit-1/actions/io.lyra.Installer.policy"
     install -Dm0644 "$INSTALLER_DIR/packaging/01-lyra-installer-service.rules" \
       "$BUILD_DESCRIPTION_DIR/root/etc/polkit-1/rules.d/01-lyra-installer-service.rules"
 
-    INSTALLER_BUILD_SOURCE="$BUILD_DESCRIPTION_DIR/root/usr/share/lyra-installer/build-source.txt"
+    INSTALLER_BUILD_SOURCE="$BUILD_DESCRIPTION_DIR/root/usr/share/2702-installer/build-source.txt"
     install -d "$(dirname "$INSTALLER_BUILD_SOURCE")"
     {
       printf 'commit=%s\n' "$BUILD_SOURCE_COMMIT"
@@ -497,8 +497,8 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     printf 'commit=%s\ndirty=%s\n' "$BUILD_SOURCE_COMMIT" "$BUILD_SOURCE_DIRTY" \
       >"$BUILD_DESCRIPTION_DIR/root/usr/lib/lyra-os/local-installer-build"
 
-    LOCAL_INSTALLER_GUI_SHA256="$(sha256sum "$INSTALLER_DIR/target/release/lyra-installer" | awk '{print $1}')"
-    LOCAL_INSTALLER_SERVICE_SHA256="$(sha256sum "$INSTALLER_DIR/target/release/lyra-installer-service" | awk '{print $1}')"
+    LOCAL_INSTALLER_GUI_SHA256="$(sha256sum "$INSTALLER_DIR/target/release/2702-installer" | awk '{print $1}')"
+    LOCAL_INSTALLER_SERVICE_SHA256="$(sha256sum "$INSTALLER_DIR/target/release/2702-installer-service" | awk '{print $1}')"
     BUILD_DESCRIPTION="$BUILD_DESCRIPTION_DIR"
     echo "--- DEVELOPMENT IMAGE: local installer override is not releasable ---"
   else
@@ -563,16 +563,16 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   IMAGE_WALLPAPER_DIR="$BUILD_DIR/build/image-root/usr/share/backgrounds/lyra"
   IMAGE_GNOME_DEFAULTS="$BUILD_DIR/build/image-root/usr/share/glib-2.0/schemas/zz-lyra-desktop-wallpaper.gschema.override"
   IMAGE_GTK4_DEFAULT="$BUILD_DIR/build/image-root/etc/skel/.config/gtk-4.0/gtk.css"
-  if [ ! -s "$IMAGE_WALLPAPER_DIR/lyra-dawn.png" ]; then
+  if [ ! -s "$IMAGE_WALLPAPER_DIR/2702-dawn.png" ]; then
     echo "!!! built image is missing the default Lyra OS - Dawn wallpaper asset:" >&2
-    echo "  $IMAGE_WALLPAPER_DIR/lyra-dawn.png" >&2
+    echo "  $IMAGE_WALLPAPER_DIR/2702-dawn.png" >&2
     exit 1
   fi
   if ! grep -Fx \
-      "picture-uri='file:///usr/share/backgrounds/lyra/lyra-dawn.png'" \
+      "picture-uri='file:///usr/share/backgrounds/lyra/2702-dawn.png'" \
       "$IMAGE_GNOME_DEFAULTS" >/dev/null ||
      ! grep -Fx \
-      "picture-uri-dark='file:///usr/share/backgrounds/lyra/lyra-dawn.png'" \
+      "picture-uri-dark='file:///usr/share/backgrounds/lyra/2702-dawn.png'" \
       "$IMAGE_GNOME_DEFAULTS" >/dev/null; then
     echo "!!! built image does not use Lyra OS - Dawn as the default GNOME wallpaper" >&2
     exit 1
@@ -587,14 +587,14 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   fi
   echo "--- validated Lyra OS - Dawn wallpaper and complete GTK defaults ---"
 
-  IMAGE_INSTALLER_GUI="$BUILD_DIR/build/image-root/usr/bin/lyra-installer"
-  IMAGE_INSTALLER_LOCK="$BUILD_DIR/build/image-root/usr/bin/lyra-install-lock"
-  IMAGE_INSTALLER_SERVICE="$BUILD_DIR/build/image-root/usr/libexec/lyra-installer-service"
-  IMAGE_HARDWARE_MATRIX="$BUILD_DIR/build/image-root/usr/bin/lyra-hardware-matrix"
-  IMAGE_LIVE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-live-smoke"
-  IMAGE_SYSTEM_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-system-smoke"
-  IMAGE_UPDATE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-update-smoke"
-  IMAGE_INSTALLER_AUTOSTART="$BUILD_DIR/build/image-root/etc/xdg/autostart/lyra-installer-autostart.desktop"
+  IMAGE_INSTALLER_GUI="$BUILD_DIR/build/image-root/usr/bin/2702-installer"
+  IMAGE_INSTALLER_LOCK="$BUILD_DIR/build/image-root/usr/bin/2702-install-lock"
+  IMAGE_INSTALLER_SERVICE="$BUILD_DIR/build/image-root/usr/libexec/2702-installer-service"
+  IMAGE_HARDWARE_MATRIX="$BUILD_DIR/build/image-root/usr/bin/2702-hardware-matrix"
+  IMAGE_LIVE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/2702-live-smoke"
+  IMAGE_SYSTEM_SMOKE="$BUILD_DIR/build/image-root/usr/bin/2702-system-smoke"
+  IMAGE_UPDATE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/2702-update-smoke"
+  IMAGE_INSTALLER_AUTOSTART="$BUILD_DIR/build/image-root/etc/xdg/autostart/2702-installer-autostart.desktop"
   IMAGE_INSTALLER_LAUNCHER="$BUILD_DIR/build/image-root/usr/share/applications/org.lyraos.LyraInstaller.desktop"
   IMAGE_INSTALLER_ICON="$BUILD_DIR/build/image-root/usr/share/icons/hicolor/256x256/apps/org.lyraos.LyraInstaller.png"
   for INSTALLER_EXECUTABLE in \
@@ -623,10 +623,10 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
      grep -a -F '.bashrc' "$IMAGE_INSTALLER_SERVICE" >/dev/null; then
     echo "!!! packaged Lyra Installer does not enforce the desktop Fish policy" >&2
     echo "!!! refusing an ISO with a stale or incompatible installer RPM" >&2
-    if [ -f "$BUILD_DIR/build/image-root/usr/share/lyra-installer/build-source.txt" ]; then
+    if [ -f "$BUILD_DIR/build/image-root/usr/share/2702-installer/build-source.txt" ]; then
       echo "!!! packaged installer source identity:" >&2
       sed 's/^/  /' \
-        "$BUILD_DIR/build/image-root/usr/share/lyra-installer/build-source.txt" >&2
+        "$BUILD_DIR/build/image-root/usr/share/2702-installer/build-source.txt" >&2
     fi
     exit 1
   fi
@@ -644,8 +644,8 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     fi
   fi
   if [ ! -f "$IMAGE_INSTALLER_AUTOSTART" ] ||
-     ! grep -Fx 'TryExec=/usr/bin/lyra-installer' "$IMAGE_INSTALLER_AUTOSTART" >/dev/null ||
-     ! grep -Fx 'Exec=/usr/bin/lyra-install-lock /usr/bin/lyra-installer' \
+     ! grep -Fx 'TryExec=/usr/bin/2702-installer' "$IMAGE_INSTALLER_AUTOSTART" >/dev/null ||
+     ! grep -Fx 'Exec=/usr/bin/2702-install-lock /usr/bin/2702-installer' \
         "$IMAGE_INSTALLER_AUTOSTART" >/dev/null ||
      ! grep -Fx 'StartupWMClass=lyra-installer' \
         "$IMAGE_INSTALLER_AUTOSTART" >/dev/null; then
@@ -656,8 +656,8 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     echo "!!! built image is missing the Lyra Installer launcher or icon" >&2
     exit 1
   fi
-  if ! grep -Fx 'TryExec=/usr/bin/lyra-installer' "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
-     ! grep -Fx 'Exec=/usr/bin/lyra-install-lock /usr/bin/lyra-installer' \
+  if ! grep -Fx 'TryExec=/usr/bin/2702-installer' "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
+     ! grep -Fx 'Exec=/usr/bin/2702-install-lock /usr/bin/2702-installer' \
         "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
      ! grep -Fx 'Icon=org.lyraos.LyraInstaller' "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
      ! grep -Fx 'StartupWMClass=lyra-installer' \
