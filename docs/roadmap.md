@@ -1,5 +1,17 @@
 # Roadmap do Lyra OS
 
+## Flavor KDE experimental
+
+Fica planejado um flavor KDE experimental, separado da edição Desktop GNOME,
+que continua sendo a edição oficial e recomendada do Lyra OS. O flavor começa
+com uma Alpha formada somente pela pilha KDE da base, sem pacotes próprios do
+Lyra; em etapas posteriores recebe primeiro os wallpapers e depois um Vega
+nativo em Qt. O Welcome não faz parte do flavor, e uma integração própria de
+atualização permanece apenas como possibilidade a avaliar.
+
+O escopo, a ordem das etapas e a separação prevista dos repositórios estão em
+[`kde-experimental-flavor.md`](kde-experimental-flavor.md).
+
 ## Lyra Enterprise Linux
 
 Fica registrada a decisão de criar futuramente o **Lyra Enterprise Linux**
