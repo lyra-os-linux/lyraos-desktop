@@ -559,7 +559,7 @@
       - Lyra's own 99-lyra-desktop-defaults.gschema.override enables the
         minimize/maximize titlebar buttons and keeps directories before files
         in Nautilus/GTK file views. These are defaults, not locked settings.
-      - Requires lyra-os-icons + plymouth-plugin-two-step
+      - Requires lyra-os-icons + lyra-os-wallpapers + plymouth-plugin-two-step
         automatically (RPM deps); fastfetch is only a Recommends in the
         spec file so it's made explicit here. Neofetch is left out
         deliberately (Suggests-only upstream, and it's an archived/EOL

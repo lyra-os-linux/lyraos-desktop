@@ -563,6 +563,11 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   IMAGE_WALLPAPER_DIR="$BUILD_DIR/build/image-root/usr/share/backgrounds/lyra"
   IMAGE_GNOME_DEFAULTS="$BUILD_DIR/build/image-root/usr/share/glib-2.0/schemas/zz-lyra-desktop-wallpaper.gschema.override"
   IMAGE_GTK4_DEFAULT="$BUILD_DIR/build/image-root/etc/skel/.config/gtk-4.0/gtk.css"
+  if ! rpm --root "$BUILD_DIR/build/image-root" -q \
+      lyra-os-theme lyra-os-icons lyra-os-wallpapers >/dev/null; then
+    echo "!!! built image is missing one or more split visual packages" >&2
+    exit 1
+  fi
   if [ ! -s "$IMAGE_WALLPAPER_DIR/2702-dawn.png" ]; then
     echo "!!! built image is missing the default Lyra OS - Dawn wallpaper asset:" >&2
     echo "  $IMAGE_WALLPAPER_DIR/2702-dawn.png" >&2

@@ -29,10 +29,11 @@ Leap 16.1 is the active ISO consumer. Leap 16.0 remains an additional build and
 publication compatibility gate, but no KIWI or installed-system repository
 points to it.
 
-Package ownership is explicit in the manifest. Multibuild flavors such as
-`lyra-theme:lyra-os-icons` are results of the `lyra-theme` source package and
-are promoted together. An undeclared source package, a missing package, a
-failed flavor, an unpublished repository, or a target mismatch fails the gate.
+Package ownership is explicit in the manifest. The visual identity is split
+into the independent source packages `lyra-theme`, `lyra-icons`, and
+`lyra-wallpapers`; each is built and promoted separately. An undeclared source
+package, a missing package, a failed build, an unpublished repository, or a
+target mismatch fails the gate.
 
 ## Repository priorities
 
