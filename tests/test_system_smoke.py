@@ -83,6 +83,22 @@ class SystemSmokeTests(unittest.TestCase):
             self.assertEqual(report["status"], "passed")
             self.assertEqual(report["mode"], "first-boot")
 
+    def test_gnome_shell_core_dump_blocks_first_boot_evidence(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_installed_root(root)
+
+            def crashing_runner(arguments: list[str]) -> tuple[int, str]:
+                if arguments[0] == "journalctl" and "--grep=Process .*gnome-shell.*dumped core" in arguments:
+                    return 0, "gnome-shell dumped core"
+                return self.runner(arguments)
+
+            report = system_smoke.validate_first_boot(
+                root=root, username="alice", runner=crashing_runner
+            )
+            failed = {item["id"] for item in report["checks"] if item["status"] == "failed"}
+            self.assertIn("gnome-shell-core-dump", failed)
+
     def test_installer_or_live_artifact_blocks_first_boot(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

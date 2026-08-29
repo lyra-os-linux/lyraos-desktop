@@ -372,6 +372,25 @@ def validate_first_boot(
         )
         observations["desktop"] = environment.get("XDG_CURRENT_DESKTOP", "")
         observations["session_type"] = environment.get("XDG_SESSION_TYPE", "")
+        code, shell_crashes = privileged_command(
+            [
+                "journalctl",
+                "-b",
+                "_COMM=systemd-coredump",
+                "--grep=Process .*gnome-shell.*dumped core",
+                "--no-pager",
+                "--quiet",
+                "--output=short-monotonic",
+            ],
+            runner=runner,
+            required=privileged_access_required,
+        )
+        check(
+            "gnome-shell-core-dump",
+            code in (0, 1) and not shell_crashes,
+            shell_crashes or "no GNOME Shell core dump in this boot",
+        )
+        observations["gnome_shell_core_dumps"] = shell_crashes.splitlines()
 
     code, failed_units = runner(
         ["systemctl", "--failed", "--no-legend", "--plain"]

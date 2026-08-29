@@ -172,6 +172,23 @@ def validate_live_session(
             code == 0 and bool(output),
             "GNOME Shell process is running",
         )
+        code, shell_crashes = runner(
+            [
+                "journalctl",
+                "-b",
+                "_COMM=systemd-coredump",
+                "--grep=Process .*gnome-shell.*dumped core",
+                "--no-pager",
+                "--quiet",
+                "--output=short-monotonic",
+            ]
+        )
+        check(
+            "gnome-shell-core-dump",
+            code in (0, 1) and not shell_crashes,
+            shell_crashes or "no GNOME Shell core dump in this boot",
+        )
+        observations["gnome_shell_core_dumps"] = shell_crashes.splitlines()
 
     code, failed_units = runner(
         ["systemctl", "--failed", "--no-legend", "--plain"]

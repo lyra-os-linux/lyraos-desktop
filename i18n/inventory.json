@@ -64,6 +64,17 @@
       "rationale": "Three embedded catalogs with live switching and English fallback."
     },
     {
+      "id": "lyra-icons",
+      "project": "lyra",
+      "wave": "alpha8",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "Icon artwork package has no interactive Lyra-owned text."
+    },
+    {
       "id": "lyra-theme",
       "project": "lyra",
       "wave": "alpha4",
@@ -73,6 +84,17 @@
       "selection": "none",
       "lint": "inventory rationale",
       "rationale": "Theme and artwork package has no interactive Lyra-owned text."
+    },
+    {
+      "id": "lyra-wallpapers",
+      "project": "lyra",
+      "wave": "alpha8",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "Wallpaper artwork package has no interactive Lyra-owned text."
     },
     {
       "id": "lyra-upgrade",
