@@ -59,6 +59,15 @@ BUILD_ONLY=0
 BOOT_INSTALLED=0
 SECURE_BOOT=0
 USE_LOCAL_INSTALLER=1
+PRIVILEGE_TOOL="${LYRA_PRIVILEGE_TOOL:-sudo}"
+
+run_privileged() {
+  case "$PRIVILEGE_TOOL" in
+    sudo) sudo "$@" ;;
+    pkexec) pkexec "$@" ;;
+    *) echo "LYRA_PRIVILEGE_TOOL must be sudo or pkexec" >&2; return 2 ;;
+  esac
+}
 
 usage() {
   cat <<'EOF'
@@ -336,12 +345,16 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
 fi
 
 if [ "$SKIP_BUILD" -eq 0 ]; then
-  for command in kiwi-ng ldconfig ldd lsinitrd strings sudo xorriso unsquashfs; do
+  for command in kiwi-ng ldd lsinitrd strings "$PRIVILEGE_TOOL" xorriso unsquashfs; do
     if ! command -v "$command" >/dev/null 2>&1; then
       echo "required build command not found: $command" >&2
       exit 1
     fi
   done
+  if [ ! -x /usr/sbin/ldconfig ]; then
+    echo "required build command not found: /usr/sbin/ldconfig" >&2
+    exit 1
+  fi
   if [ "$USE_LOCAL_INSTALLER" -eq 1 ]; then
     for command in cargo install sha256sum; do
       if ! command -v "$command" >/dev/null 2>&1; then
@@ -376,7 +389,11 @@ repair_host_loader_cache() {
     return 0
   fi
   echo "!!! host loader cache became inconsistent; regenerating it with ldconfig"
-  sudo -n ldconfig
+  if [ "$PRIVILEGE_TOOL" = sudo ]; then
+    sudo -n ldconfig
+  else
+    pkexec /usr/sbin/ldconfig
+  fi
   if ! host_loader_is_healthy; then
     echo "!!! host loader cache is still inconsistent after ldconfig" >&2
     return 1
@@ -396,14 +413,18 @@ stop_loader_guard() {
 start_loader_guard() {
   # Acquire credentials in the foreground so recovery never blocks on an
   # invisible password prompt in the background watcher.
-  sudo -v
+  if [ "$PRIVILEGE_TOOL" = sudo ]; then
+    sudo -v
+  else
+    pkexec /usr/bin/true
+  fi
   repair_host_loader_cache
   LOADER_GUARD_PARENT_PID="$BASHPID"
   (
     refresh_count=0
     while sleep 2; do
       refresh_count=$((refresh_count + 1))
-      if [ "$refresh_count" -ge 30 ]; then
+      if [ "$PRIVILEGE_TOOL" = sudo ] && [ "$refresh_count" -ge 30 ]; then
         if ! sudo -n -v; then
           echo "!!! loader guard could not renew its sudo credential; aborting build" >&2
           kill -TERM "$LOADER_GUARD_PARENT_PID"
@@ -445,7 +466,7 @@ fi
 
 if [ "$SKIP_BUILD" -eq 0 ]; then
   echo "--- wiping the previous build dir; preserving the current ISO ---"
-  sudo rm -rf "$BUILD_DIR"
+  run_privileged rm -rf "$BUILD_DIR"
   ISO_PATH=""
 
   echo "--- staging clean KIWI description ---"
@@ -474,16 +495,16 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
 
     echo "--- adding local installer binaries to staged KIWI description ---"
 
-    install -Dm0755 "$INSTALLER_DIR/target/release/2702-installer" \
-      "$BUILD_DESCRIPTION_DIR/root/usr/bin/2702-installer"
-    install -Dm0755 "$INSTALLER_DIR/target/release/2702-installer-service" \
-      "$BUILD_DESCRIPTION_DIR/root/usr/libexec/2702-installer-service"
+    install -Dm0755 "$INSTALLER_DIR/target/release/lyra-installer" \
+      "$BUILD_DESCRIPTION_DIR/root/usr/bin/lyra-installer"
+    install -Dm0755 "$INSTALLER_DIR/target/release/lyra-installer-service" \
+      "$BUILD_DESCRIPTION_DIR/root/usr/libexec/lyra-installer-service"
     install -Dm0644 "$INSTALLER_DIR/packaging/io.lyra.Installer.policy" \
       "$BUILD_DESCRIPTION_DIR/root/usr/share/polkit-1/actions/io.lyra.Installer.policy"
     install -Dm0644 "$INSTALLER_DIR/packaging/01-lyra-installer-service.rules" \
       "$BUILD_DESCRIPTION_DIR/root/etc/polkit-1/rules.d/01-lyra-installer-service.rules"
 
-    INSTALLER_BUILD_SOURCE="$BUILD_DESCRIPTION_DIR/root/usr/share/2702-installer/build-source.txt"
+    INSTALLER_BUILD_SOURCE="$BUILD_DESCRIPTION_DIR/root/usr/share/lyra-installer/build-source.txt"
     install -d "$(dirname "$INSTALLER_BUILD_SOURCE")"
     {
       printf 'commit=%s\n' "$BUILD_SOURCE_COMMIT"
@@ -497,8 +518,8 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     printf 'commit=%s\ndirty=%s\n' "$BUILD_SOURCE_COMMIT" "$BUILD_SOURCE_DIRTY" \
       >"$BUILD_DESCRIPTION_DIR/root/usr/lib/lyra-os/local-installer-build"
 
-    LOCAL_INSTALLER_GUI_SHA256="$(sha256sum "$INSTALLER_DIR/target/release/2702-installer" | awk '{print $1}')"
-    LOCAL_INSTALLER_SERVICE_SHA256="$(sha256sum "$INSTALLER_DIR/target/release/2702-installer-service" | awk '{print $1}')"
+    LOCAL_INSTALLER_GUI_SHA256="$(sha256sum "$INSTALLER_DIR/target/release/lyra-installer" | awk '{print $1}')"
+    LOCAL_INSTALLER_SERVICE_SHA256="$(sha256sum "$INSTALLER_DIR/target/release/lyra-installer-service" | awk '{print $1}')"
     BUILD_DESCRIPTION="$BUILD_DESCRIPTION_DIR"
     echo "--- DEVELOPMENT IMAGE: local installer override is not releasable ---"
   else
@@ -507,11 +528,11 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
 
   echo "--- using published Lyra Welcome RPM from OBS ---"
 
-  echo "--- building ISO with kiwi-ng (will prompt for sudo password) ---"
+  echo "--- building ISO with kiwi-ng via $PRIVILEGE_TOOL ---"
   start_loader_guard
   trap 'stop_loader_guard' EXIT
   trap 'stop_loader_guard; exit 130' INT TERM
-  if sudo kiwi-ng \
+  if run_privileged kiwi-ng \
       --setenv="LYRA_BUILD_SOURCE_COMMIT=$BUILD_SOURCE_COMMIT" \
       --setenv="LYRA_BUILD_SOURCE_DIRTY=$BUILD_SOURCE_DIRTY" \
       --setenv="LYRA_BUILD_SOURCE_EPOCH=$BUILD_SOURCE_EPOCH" \
@@ -592,14 +613,14 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   fi
   echo "--- validated Lyra OS - Dawn wallpaper and complete GTK defaults ---"
 
-  IMAGE_INSTALLER_GUI="$BUILD_DIR/build/image-root/usr/bin/2702-installer"
-  IMAGE_INSTALLER_LOCK="$BUILD_DIR/build/image-root/usr/bin/2702-install-lock"
-  IMAGE_INSTALLER_SERVICE="$BUILD_DIR/build/image-root/usr/libexec/2702-installer-service"
-  IMAGE_HARDWARE_MATRIX="$BUILD_DIR/build/image-root/usr/bin/2702-hardware-matrix"
-  IMAGE_LIVE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/2702-live-smoke"
-  IMAGE_SYSTEM_SMOKE="$BUILD_DIR/build/image-root/usr/bin/2702-system-smoke"
-  IMAGE_UPDATE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/2702-update-smoke"
-  IMAGE_INSTALLER_AUTOSTART="$BUILD_DIR/build/image-root/etc/xdg/autostart/2702-installer-autostart.desktop"
+  IMAGE_INSTALLER_GUI="$BUILD_DIR/build/image-root/usr/bin/lyra-installer"
+  IMAGE_INSTALLER_LOCK="$BUILD_DIR/build/image-root/usr/bin/lyra-install-lock"
+  IMAGE_INSTALLER_SERVICE="$BUILD_DIR/build/image-root/usr/libexec/lyra-installer-service"
+  IMAGE_HARDWARE_MATRIX="$BUILD_DIR/build/image-root/usr/bin/lyra-hardware-matrix"
+  IMAGE_LIVE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-live-smoke"
+  IMAGE_SYSTEM_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-system-smoke"
+  IMAGE_UPDATE_SMOKE="$BUILD_DIR/build/image-root/usr/bin/lyra-update-smoke"
+  IMAGE_INSTALLER_AUTOSTART="$BUILD_DIR/build/image-root/etc/xdg/autostart/lyra-installer-autostart.desktop"
   IMAGE_INSTALLER_LAUNCHER="$BUILD_DIR/build/image-root/usr/share/applications/org.lyraos.LyraInstaller.desktop"
   IMAGE_INSTALLER_ICON="$BUILD_DIR/build/image-root/usr/share/icons/hicolor/256x256/apps/org.lyraos.LyraInstaller.png"
   for INSTALLER_EXECUTABLE in \
@@ -628,10 +649,10 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
      grep -a -F '.bashrc' "$IMAGE_INSTALLER_SERVICE" >/dev/null; then
     echo "!!! packaged Lyra Installer does not enforce the desktop Fish policy" >&2
     echo "!!! refusing an ISO with a stale or incompatible installer RPM" >&2
-    if [ -f "$BUILD_DIR/build/image-root/usr/share/2702-installer/build-source.txt" ]; then
+    if [ -f "$BUILD_DIR/build/image-root/usr/share/lyra-installer/build-source.txt" ]; then
       echo "!!! packaged installer source identity:" >&2
       sed 's/^/  /' \
-        "$BUILD_DIR/build/image-root/usr/share/2702-installer/build-source.txt" >&2
+        "$BUILD_DIR/build/image-root/usr/share/lyra-installer/build-source.txt" >&2
     fi
     exit 1
   fi
@@ -649,8 +670,8 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     fi
   fi
   if [ ! -f "$IMAGE_INSTALLER_AUTOSTART" ] ||
-     ! grep -Fx 'TryExec=/usr/bin/2702-installer' "$IMAGE_INSTALLER_AUTOSTART" >/dev/null ||
-     ! grep -Fx 'Exec=/usr/bin/2702-install-lock /usr/bin/2702-installer' \
+     ! grep -Fx 'TryExec=/usr/bin/lyra-installer' "$IMAGE_INSTALLER_AUTOSTART" >/dev/null ||
+     ! grep -Fx 'Exec=/usr/bin/lyra-install-lock /usr/bin/lyra-installer' \
         "$IMAGE_INSTALLER_AUTOSTART" >/dev/null ||
      ! grep -Fx 'StartupWMClass=lyra-installer' \
         "$IMAGE_INSTALLER_AUTOSTART" >/dev/null; then
@@ -661,8 +682,8 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     echo "!!! built image is missing the Lyra Installer launcher or icon" >&2
     exit 1
   fi
-  if ! grep -Fx 'TryExec=/usr/bin/2702-installer' "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
-     ! grep -Fx 'Exec=/usr/bin/2702-install-lock /usr/bin/2702-installer' \
+  if ! grep -Fx 'TryExec=/usr/bin/lyra-installer' "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
+     ! grep -Fx 'Exec=/usr/bin/lyra-install-lock /usr/bin/lyra-installer' \
         "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
      ! grep -Fx 'Icon=org.lyraos.LyraInstaller' "$IMAGE_INSTALLER_LAUNCHER" >/dev/null ||
      ! grep -Fx 'StartupWMClass=lyra-installer' \
@@ -675,7 +696,7 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   fi
   echo "--- validated Lyra Installer executable and GNOME autostart chain ---"
 
-  BUILT_ISO="$(sudo find "$BUILD_DIR" -maxdepth 1 -type f -name '*.iso' -print -quit)"
+  BUILT_ISO="$(run_privileged find "$BUILD_DIR" -maxdepth 1 -type f -name '*.iso' -print -quit)"
   if [ -z "$BUILT_ISO" ]; then
     echo "!!! kiwi-ng reported success but no .iso found under $BUILD_DIR"
     exit 1
@@ -761,8 +782,8 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   ISO_STAGED="$ISO_DIR/.$ISO_NAME.new"
   rm -f "$ISO_STAGED"
   echo "--- staging $BUILT_ISO -> $ISO_STAGED ---"
-  sudo cp "$BUILT_ISO" "$ISO_STAGED"
-  sudo chown "$(id -u):$(id -g)" "$ISO_STAGED"
+  run_privileged cp "$BUILT_ISO" "$ISO_STAGED"
+  run_privileged chown "$(id -u):$(id -g)" "$ISO_STAGED"
 
   EXISTING_ISOS=()
   mapfile -d '' -t EXISTING_ISOS < <(

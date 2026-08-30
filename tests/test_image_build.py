@@ -485,8 +485,12 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("start_loader_guard", helper)
         self.assertIn("stop_loader_guard", helper)
         self.assertIn("sudo -n ldconfig", helper)
-        self.assertLess(helper.index("start_loader_guard"), helper.index("sudo kiwi-ng"))
-        self.assertGreater(helper.rindex("stop_loader_guard"), helper.index("sudo kiwi-ng"))
+        self.assertLess(
+            helper.index("start_loader_guard"), helper.index("run_privileged kiwi-ng")
+        )
+        self.assertGreater(
+            helper.rindex("stop_loader_guard"), helper.index("run_privileged kiwi-ng")
+        )
 
     def test_vm_helper_can_boot_installed_disk_without_iso_or_reset(self) -> None:
         helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
