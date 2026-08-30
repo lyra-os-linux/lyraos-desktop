@@ -5,7 +5,7 @@
 O Lyra OS terá futuramente um flavor KDE experimental. A edição Desktop com
 GNOME continua sendo a edição oficial, recomendada e responsável pelos gates
 completos de produto do Lyra OS. O flavor KDE não substitui a edição GNOME,
-não altera o escopo da versão 27.02 e terá ciclo, artefatos e expectativas de
+não altera o escopo da versão 1.0 e terá ciclo, artefatos e expectativas de
 suporte próprios.
 
 O objetivo inicial não é reproduzir no Plasma todas as integrações existentes
