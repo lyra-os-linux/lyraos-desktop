@@ -18,6 +18,13 @@ SPEC.loader.exec_module(controlled)
 
 
 class ControlledSuccessorTests(unittest.TestCase):
+    def test_checked_in_repository_set_is_complete(self) -> None:
+        repositories = json.loads(
+            (ROOT / "rehearsal/controlled-repositories-leap-16.1.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual({item["alias"] for item in repositories}, controlled.REQUIRED_REPOSITORIES)
+        self.assertEqual(len(repositories), len(controlled.REQUIRED_REPOSITORIES))
+
     def arguments(self, output: Path):
         repositories = output.parent / "repositories.json"
         aliases = sorted(controlled.REQUIRED_REPOSITORIES)

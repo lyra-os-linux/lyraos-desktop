@@ -10,7 +10,7 @@ Prepare the RPM sources and canonical manifest with:
 ./scripts/prepare-controlled-successor.py \
   --output-dir /tmp/lyra-successor \
   --manifest-tool ../lyraos-desktop-updater/scripts/release-manifest.py \
-  --repositories /secure/input/controlled-repositories.json \
+  --repositories rehearsal/controlled-repositories-leap-16.1.json \
   --sequence 1 \
   --valid-from 2026-08-31T00:00:00Z \
   --valid-until 2026-09-30T00:00:00Z \
@@ -54,3 +54,8 @@ unsigned because the release private key is intentionally absent from the
 development host. Until an authorized signing environment produces
 the detached signature and an external HTTPS endpoint publishes both files,
 the fixture is not eligible for VM execution or release evidence.
+
+The checked-in repository input records public URLs and fingerprints verified
+directly from each repository key on 2026-08-31. The successor key URL remains
+unusable until OBS publishes that repository; generation is not proof of URL
+availability, and the VM rehearsal must re-fetch and verify all seven keys.
