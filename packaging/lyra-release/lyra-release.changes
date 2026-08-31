@@ -1,0 +1,5 @@
+-------------------------------------------------------------------
+Mon Aug 31 16:40:00 UTC 2026 - Rodrigo Brito
+
+- Initial package for the RPM-owned Lyra OS product identity.
+- Keep image build metadata separate from the version transitioned by zypper.

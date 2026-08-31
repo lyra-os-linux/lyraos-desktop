@@ -27,5 +27,3 @@ grep -Fx "LYRA_ARCHITECTURE='x86_64'" %{SOURCE0}
 %files
 %dir %{_prefix}/lib/lyra-os
 %{_prefix}/lib/lyra-os/product-release
-
-%changelog
