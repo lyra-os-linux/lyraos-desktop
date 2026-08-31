@@ -208,6 +208,17 @@
       "rationale": "GTK catalog implementation exists for all three locales."
     },
     {
+      "id": "vega-qt",
+      "project": "vega",
+      "wave": "alpha7",
+      "status": "scheduled",
+      "format": "Qt Linguist",
+      "domain": "vega-qt",
+      "selection": "QLocale with English fallback",
+      "lint": "Qt translation catalog validation",
+      "rationale": "The native Qt frontend is now part of the reviewed OBS distribution contract; its translation catalogs remain scheduled for Alpha 7."
+    },
+    {
       "id": "vega-web",
       "project": "vega",
       "wave": "alpha5",
@@ -217,6 +228,17 @@
       "selection": "authenticated user's locale",
       "lint": "cargo test --workspace",
       "rationale": "Locale support is shared by the Vega stack and already implemented."
+    },
+    {
+      "id": "vega-xfce",
+      "project": "vega",
+      "wave": "alpha7",
+      "status": "complete",
+      "format": "gettext",
+      "domain": "vega-gtk",
+      "selection": "LC_ALL/LC_MESSAGES/LANG and AccountsService",
+      "lint": "python3 tests/test_vega_gtk_i18n.py",
+      "rationale": "The native XFCE frontend ships the three supported gettext catalogs and is now covered by the reviewed OBS distribution contract."
     },
     {
       "id": "vegad",

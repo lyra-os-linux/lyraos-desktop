@@ -44,6 +44,10 @@ class ManifestTests(unittest.TestCase):
         self.assertIn("lyra-fish-productivity", self.manifest.project("lyra").packages)
         self.assertNotIn("calamares", self.manifest.project("lyra").packages)
         self.assertEqual(
+            set(self.manifest.project("vega").packages),
+            {"vega-cli", "vega-gtk", "vega-qt", "vega-web", "vega-xfce", "vegad"},
+        )
+        self.assertEqual(
             self.manifest.project("lyra").legacy_packages, ("calco", "prosa")
         )
         for project in self.manifest.projects:
@@ -57,6 +61,7 @@ class ManifestTests(unittest.TestCase):
                 project.targets[1].upstream_project, "openSUSE:Leap:16.1"
             )
         self.assertEqual(self.manifest.project("fina").targets[2].name, "openSUSE_Tumbleweed")
+        self.assertEqual(self.manifest.project("vega").targets[2].name, "openSUSE_Tumbleweed")
 
     def test_staging_is_never_an_iso_consumer(self) -> None:
         for project in self.manifest.projects:
