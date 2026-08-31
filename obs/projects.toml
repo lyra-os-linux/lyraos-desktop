@@ -74,6 +74,7 @@ packages = [
   "lyra-fish-productivity",
   "lyra-installer",
   "lyra-icons",
+  "lyra-release",
   "lyra-upgrade",
   "linuxtoys",
   "lyra-welcome",

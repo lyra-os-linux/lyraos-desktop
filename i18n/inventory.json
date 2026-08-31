@@ -97,6 +97,17 @@
       "rationale": "Wallpaper artwork package has no interactive Lyra-owned text."
     },
     {
+      "id": "lyra-release",
+      "project": "lyra",
+      "wave": "alpha7",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "RPM package identity contract tests",
+      "rationale": "Metadata-only package has no interactive Lyra-owned text."
+    },
+    {
       "id": "lyra-upgrade",
       "project": "lyra",
       "wave": "alpha6",
