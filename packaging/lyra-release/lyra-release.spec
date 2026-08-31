@@ -23,6 +23,7 @@ install -Dm0644 %{SOURCE0} \
 grep -Fx "LYRA_VERSION_ID='%{version}'" %{SOURCE0}
 grep -Fx "LYRA_EDITION='desktop'" %{SOURCE0}
 grep -Fx "LYRA_ARCHITECTURE='x86_64'" %{SOURCE0}
+grep -Fx "LYRA_BUILD_ID='lyra-release-%{version}'" %{SOURCE0}
 
 %files
 %dir %{_prefix}/lib/lyra-os
