@@ -19,12 +19,22 @@ SPEC.loader.exec_module(controlled)
 
 class ControlledSuccessorTests(unittest.TestCase):
     def arguments(self, output: Path):
+        repositories = output.parent / "repositories.json"
+        aliases = sorted(controlled.REQUIRED_REPOSITORIES)
+        repositories.write_text(json.dumps([
+            {
+                "alias": alias,
+                "base_url": f"https://download.example.test/{alias}/",
+                "signing_key_url": f"https://download.example.test/{alias}/key.asc",
+                "signing_key_fingerprint": "A" * 40,
+                "priority": index + 1,
+            }
+            for index, alias in enumerate(aliases)
+        ]), encoding="utf-8")
         return type("Arguments", (), {
             "output_dir": output,
             "manifest_tool": ROOT.parent / "lyraos-desktop-updater/scripts/release-manifest.py",
-            "repository_url": "https://download.example.test/lyra-successor/",
-            "repository_key_url": "https://download.example.test/lyra-successor/repodata/repomd.xml.key",
-            "repository_key_fingerprint": "A" * 40,
+            "repositories": repositories,
             "sequence": 1,
             "valid_from": "2026-08-31T00:00:00Z",
             "valid_until": "2026-09-30T00:00:00Z",
@@ -53,8 +63,10 @@ class ControlledSuccessorTests(unittest.TestCase):
                 controlled.prepare(self.arguments(output))
             output.rmdir()
             arguments = self.arguments(output)
-            arguments.repository_url = "http://download.example.test/repo"
-            with self.assertRaisesRegex(controlled.PreparationError, "HTTPS"):
+            document = json.loads(arguments.repositories.read_text(encoding="utf-8"))
+            document.pop()
+            arguments.repositories.write_text(json.dumps(document), encoding="utf-8")
+            with self.assertRaisesRegex(controlled.PreparationError, "exact controlled target"):
                 controlled.prepare(arguments)
 
 

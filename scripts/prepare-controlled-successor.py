@@ -6,11 +6,9 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
-import re
 import subprocess
 import sys
 from pathlib import Path
-from urllib.parse import urlsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -18,7 +16,10 @@ BASE = ROOT / "packaging/lyra-release"
 TARGET_VERSION = "1.1-beta.1"
 TARGET_RPM_VERSION = "1.1~beta.1"
 TARGET_BUILD_ID = "lyra-release-1.1-beta.1"
-FINGERPRINT = re.compile(r"[0-9A-F]{40}")
+REQUIRED_REPOSITORIES = {
+    "repo-oss", "repo-non-oss", "repo-packman-essentials", "repo-lyra",
+    "repo-vega", "repo-fina", "lyra-controlled-successor",
+}
 
 
 class PreparationError(ValueError):
@@ -35,24 +36,13 @@ def timestamp(value: str) -> dt.datetime:
     return parsed
 
 
-def require_https(value: str) -> None:
-    parsed = urlsplit(value)
-    if (
-        parsed.scheme != "https"
-        or not parsed.hostname
-        or parsed.username is not None
-        or parsed.password is not None
-        or parsed.query
-        or parsed.fragment
-    ):
-        raise PreparationError("repository URLs must be HTTPS without credentials or query")
-
-
 def prepare(args: argparse.Namespace) -> Path:
-    require_https(args.repository_url)
-    require_https(args.repository_key_url)
-    if not FINGERPRINT.fullmatch(args.repository_key_fingerprint):
-        raise PreparationError("repository key fingerprint must be 40 uppercase hexadecimal digits")
+    repositories = json.loads(args.repositories.read_text(encoding="utf-8"))
+    if not isinstance(repositories, list) or any(not isinstance(item, dict) for item in repositories):
+        raise PreparationError("repositories input must be a JSON array of objects")
+    aliases = {item.get("alias") for item in repositories}
+    if aliases != REQUIRED_REPOSITORIES or len(repositories) != len(REQUIRED_REPOSITORIES):
+        raise PreparationError("repositories input must contain the exact controlled target alias set")
     if args.sequence < 1:
         raise PreparationError("sequence must be positive")
     if timestamp(args.valid_from) >= timestamp(args.valid_until):
@@ -107,13 +97,7 @@ def prepare(args: argparse.Namespace) -> Path:
         },
         "minimum_updater_version": "0.2.1",
         "minimum_free_space_bytes": 8589934592,
-        "repositories": [{
-            "alias": "lyra-controlled-successor",
-            "base_url": args.repository_url,
-            "signing_key_url": args.repository_key_url,
-            "signing_key_fingerprint": args.repository_key_fingerprint,
-            "priority": 1,
-        }],
+        "repositories": repositories,
         "allowed_removals": [],
         "allowed_vendor_transitions": [],
         "lockstep_packages": [],
@@ -131,9 +115,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", required=True, type=Path)
     parser.add_argument("--manifest-tool", required=True, type=Path)
-    parser.add_argument("--repository-url", required=True)
-    parser.add_argument("--repository-key-url", required=True)
-    parser.add_argument("--repository-key-fingerprint", required=True)
+    parser.add_argument("--repositories", required=True, type=Path)
     parser.add_argument("--sequence", required=True, type=int)
     parser.add_argument("--valid-from", required=True)
     parser.add_argument("--valid-until", required=True)

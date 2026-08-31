@@ -10,17 +10,20 @@ Prepare the RPM sources and canonical manifest with:
 ./scripts/prepare-controlled-successor.py \
   --output-dir /tmp/lyra-successor \
   --manifest-tool ../lyraos-desktop-updater/scripts/release-manifest.py \
-  --repository-url https://download.example.invalid/lyra-successor/ \
-  --repository-key-url https://download.example.invalid/lyra-successor/repodata/repomd.xml.key \
-  --repository-key-fingerprint 0123456789ABCDEF0123456789ABCDEF01234567 \
+  --repositories /secure/input/controlled-repositories.json \
   --sequence 1 \
   --valid-from 2026-08-31T00:00:00Z \
   --valid-until 2026-09-30T00:00:00Z \
   --signing-key FEDCBA9876543210FEDCBA9876543210FEDCBA98
 ```
 
-Replace every example value with the isolated project's real HTTPS URLs and
-full fingerprints. The output directory must not exist. The generator derives
+The repository input must contain exactly `repo-oss`, `repo-non-oss`,
+`repo-packman-essentials`, `repo-lyra`, `repo-vega`, `repo-fina` and
+`lyra-controlled-successor`, each with its real HTTPS base/key URLs, full
+fingerprint and target priority. Omitting an installed source would invalidate
+metadata revalidation or orphan installed packages, so the generator rejects
+partial sets. Replace every other example value with its real value. The output
+directory must not exist. The generator derives
 the successor spec from the canonical `lyra-release` package, changes both the
 version and build ID atomically, and delegates manifest validation/signing to
 the updater's canonical producer.
@@ -44,8 +47,10 @@ non-production fixture. Its repository key fingerprint is
 contains RPM version `1.1~beta.1` and product version `1.1-beta.1`; it built
 successfully for Leap 16.0 and 16.1 on 2026-08-31.
 
-The canonical manifest has been generated with the real repository identity,
-but remains unsigned because the release private key is intentionally absent
-from the development host. Until an authorized signing environment produces
+The first single-repository manifest draft was invalidated after preflight
+review proved that every enabled baseline alias must remain represented. A new
+canonical manifest still needs the complete seven-repository input and remains
+unsigned because the release private key is intentionally absent from the
+development host. Until an authorized signing environment produces
 the detached signature and an external HTTPS endpoint publishes both files,
 the fixture is not eligible for VM execution or release evidence.
