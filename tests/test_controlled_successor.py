@@ -61,6 +61,7 @@ class ControlledSuccessorTests(unittest.TestCase):
             self.assertEqual(manifest["source"]["build_id"], "lyra-release-1.0")
             self.assertEqual(manifest["target"]["build_id"], "lyra-release-1.1-beta.1")
             self.assertEqual(manifest["status"], "testing")
+            self.assertEqual(manifest["minimum_updater_version"], "0.2.3")
 
     def test_refuses_existing_output_and_untrusted_repository_inputs(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

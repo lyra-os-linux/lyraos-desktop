@@ -34,6 +34,10 @@ same disk, NVRAM and installation UUID through offline application, reboot,
 verification and rollback. GNOME, KDE and XFCE use the shared contract. LXQt
 must join the same matrix when its official image exists.
 
+The controlled route requires updater 0.2.3 or newer because that is the first
+version that keeps stable URLs compiled while allowing an explicit external
+manifest base URL only after the administrative `testing` opt-in.
+
 Do not turn a locally generated artifact into passing release evidence. The
 gate accepts a result only after real OBS RPMs, the externally hosted signed
 manifest, post-boot target identity and restored baseline have all been

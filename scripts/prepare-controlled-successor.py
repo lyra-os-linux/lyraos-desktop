@@ -95,7 +95,7 @@ def prepare(args: argparse.Namespace) -> Path:
             "version": TARGET_VERSION, "edition": "desktop", "architecture": "x86_64",
             "build_id": TARGET_BUILD_ID,
         },
-        "minimum_updater_version": "0.2.1",
+        "minimum_updater_version": "0.2.3",
         "minimum_free_space_bytes": 8589934592,
         "repositories": repositories,
         "allowed_removals": [],
