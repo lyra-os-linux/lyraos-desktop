@@ -35,3 +35,17 @@ Do not turn a locally generated artifact into passing release evidence. The
 gate accepts a result only after real OBS RPMs, the externally hosted signed
 manifest, post-boot target identity and restored baseline have all been
 observed.
+
+## Current isolated fixture
+
+The OBS project `home:rodrigosbrito:lyra:upgrade-rehearsal` is the current
+non-production fixture. Its repository key fingerprint is
+`FC29F72CD7A021D88CD01D713A2AFF9457B7B5DA`. Revision 3 of `lyra-release`
+contains RPM version `1.1~beta.1` and product version `1.1-beta.1`; it built
+successfully for Leap 16.0 and 16.1 on 2026-08-31.
+
+The canonical manifest has been generated with the real repository identity,
+but remains unsigned because the release private key is intentionally absent
+from the development host. Until an authorized signing environment produces
+the detached signature and an external HTTPS endpoint publishes both files,
+the fixture is not eligible for VM execution or release evidence.
