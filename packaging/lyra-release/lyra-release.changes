@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Tue Sep  1 17:20:00 UTC 2026 - Rodrigo Brito
+
+- Align the RPM-owned product identity with Lyra OS 1.1 and Leap 16.1.
+
+-------------------------------------------------------------------
 Mon Aug 31 16:40:00 UTC 2026 - Rodrigo Brito
 
 - Make build ID part of the RPM-owned atomic product identity.

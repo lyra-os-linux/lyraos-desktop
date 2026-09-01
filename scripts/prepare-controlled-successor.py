@@ -13,9 +13,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "packaging/lyra-release"
-TARGET_VERSION = "1.1-beta.1"
-TARGET_RPM_VERSION = "1.1~beta.1"
-TARGET_BUILD_ID = "lyra-release-1.1-beta.1"
+TARGET_VERSION = "1.2-beta.1"
+TARGET_RPM_VERSION = "1.2~beta.1"
+TARGET_BUILD_ID = "lyra-release-1.2-beta.1"
 REQUIRED_REPOSITORIES = {
     "repo-oss", "repo-non-oss", "repo-packman-essentials", "repo-lyra",
     "repo-vega", "repo-fina", "lyra-controlled-successor",
@@ -53,7 +53,7 @@ def prepare(args: argparse.Namespace) -> Path:
     rpm_dir = args.output_dir / "rpm"
     rpm_dir.mkdir(parents=True, mode=0o755)
     spec = (BASE / "lyra-release.spec").read_text(encoding="utf-8")
-    spec = spec.replace("Version:        1.0", f"Version:        {TARGET_RPM_VERSION}", 1)
+    spec = spec.replace("Version:        1.1", f"Version:        {TARGET_RPM_VERSION}", 1)
     spec = spec.replace(
         'grep -Fx "LYRA_VERSION_ID=\'%{version}\'" %{SOURCE0}',
         f'grep -Fx "LYRA_VERSION_ID=\'{TARGET_VERSION}\'" %{{SOURCE0}}',
@@ -77,7 +77,7 @@ def prepare(args: argparse.Namespace) -> Path:
     (rpm_dir / "lyra-release.changes").write_text(
         "-------------------------------------------------------------------\n"
         "Mon Aug 31 17:00:00 UTC 2026 - Lyra controlled rehearsal\n\n"
-        "- Controlled successor identity for the 1.0 to 1.1-beta.1 rehearsal.\n",
+        "- Controlled successor identity for the 1.1 to 1.2-beta.1 rehearsal.\n",
         encoding="utf-8",
     )
 
@@ -89,7 +89,7 @@ def prepare(args: argparse.Namespace) -> Path:
         "valid_until": args.valid_until,
         "source": {
             "version": "1.0", "edition": "desktop", "architecture": "x86_64",
-            "build_id": "lyra-release-1.0",
+            "build_id": "lyra-release-1.1",
         },
         "target": {
             "version": TARGET_VERSION, "edition": "desktop", "architecture": "x86_64",

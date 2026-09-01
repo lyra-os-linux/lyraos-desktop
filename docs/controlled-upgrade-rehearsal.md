@@ -1,6 +1,6 @@
 # Controlled release-upgrade rehearsal
 
-The `1.0 -> 1.1-beta.1` target is a test fixture, not a public Lyra release.
+The `1.1 -> 1.2-beta.1` target is a test fixture, not a public Lyra release.
 Build it in a dedicated OBS rehearsal project that is not inherited by an
 installed image and never publish it in the stable repositories.
 
@@ -47,7 +47,7 @@ observed.
 The OBS project `home:rodrigosbrito:lyra:upgrade-rehearsal` is the current
 non-production fixture. Its repository key fingerprint is
 `FC29F72CD7A021D88CD01D713A2AFF9457B7B5DA`. Revision 3 of `lyra-release`
-contains RPM version `1.1~beta.1` and product version `1.1-beta.1`; it built
+contains RPM version `1.2~beta.1` and product version `1.2-beta.1`; it built
 successfully for Leap 16.0 and 16.1 on 2026-08-31.
 
 The first single-repository manifest draft was invalidated after preflight

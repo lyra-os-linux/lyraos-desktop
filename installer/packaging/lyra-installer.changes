@@ -1,7 +1,9 @@
 -------------------------------------------------------------------
 Tue Sep  1 12:15:00 UTC 2026 - Lyra OS Team
 
-- Identify the installer UI as Lyra OS Odisseia 1.0 Alpha 7.
+- Identify the installer UI as Lyra OS Odisseia 1.1 Alpha 7.
+- Restore the flavor-neutral security highlight, including the shield icon and
+  localized English, Portuguese, and Spanish copy.
 
 -------------------------------------------------------------------
 Mon Aug 24 21:00:00 UTC 2026 - Lyra OS Team
