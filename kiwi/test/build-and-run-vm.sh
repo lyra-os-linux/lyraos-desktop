@@ -260,8 +260,11 @@ audit_live_rootfs() {
   fi
 }
 
-# Timestamp every line, tee to log file and terminal.
-exec > >(while IFS= read -r line; do printf '%s %s\n' "$(date '+%H:%M:%S')" "$line"; done | tee -a "$LOG") 2>&1
+# Timestamp every line without spawning `date`. During KIWI package scriptlets
+# the host loader cache can be transiently inconsistent; a dynamically loaded
+# timestamp helper would then die, close this pipe and make the main build
+# process receive SIGPIPE before the loader guard can recover the host.
+exec > >(while IFS= read -r line; do printf '%(%H:%M:%S)T %s\n' -1 "$line"; done | tee -a "$LOG") 2>&1
 
 echo "=== $(date -Iseconds) run start (args: $*) ==="
 echo "--- using KIWI description: $KIWI_DESC ---"
@@ -473,6 +476,14 @@ stop_loader_guard() {
   repair_host_loader_cache
 }
 
+abort_loader_guarded_build() {
+  echo "!!! build interrupted after the loader guard requested termination" >&2
+  if ! stop_loader_guard; then
+    echo "!!! host loader recovery failed while handling termination" >&2
+  fi
+  exit 130
+}
+
 start_loader_guard() {
   # Acquire credentials in the foreground so recovery never blocks on an
   # invisible password prompt in the background watcher.
@@ -495,7 +506,16 @@ start_loader_guard() {
         fi
         refresh_count=0
       fi
-      if ! repair_host_loader_cache; then
+      loader_recovered=0
+      for recovery_attempt in 1 2 3; do
+        if repair_host_loader_cache; then
+          loader_recovered=1
+          break
+        fi
+        echo "!!! loader guard recovery attempt $recovery_attempt failed" >&2
+        sleep 1
+      done
+      if [ "$loader_recovered" -ne 1 ]; then
         echo "!!! loader guard could not recover the host; aborting build" >&2
         kill -TERM "$LOADER_GUARD_PARENT_PID"
         exit 1
@@ -594,7 +614,7 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   echo "--- building ISO with kiwi-ng via $PRIVILEGE_TOOL ---"
   start_loader_guard
   trap 'stop_loader_guard' EXIT
-  trap 'stop_loader_guard; exit 130' INT TERM
+  trap 'abort_loader_guarded_build' INT TERM
   if run_privileged kiwi-ng \
       --setenv="LYRA_BUILD_SOURCE_COMMIT=$BUILD_SOURCE_COMMIT" \
       --setenv="LYRA_BUILD_SOURCE_DIRTY=$BUILD_SOURCE_DIRTY" \
@@ -607,12 +627,18 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     BUILD_STATUS=0
   else
     BUILD_STATUS=$?
-    stop_loader_guard
+    if ! stop_loader_guard; then
+      echo "!!! host loader recovery also failed after the KIWI error" >&2
+    fi
     trap - EXIT INT TERM
     echo "!!! kiwi-ng build failed with exit code $BUILD_STATUS, see log above"
     exit "$BUILD_STATUS"
   fi
-  stop_loader_guard
+  if ! stop_loader_guard; then
+    trap - EXIT INT TERM
+    echo "!!! refusing post-build validation with an unhealthy host loader" >&2
+    exit 1
+  fi
   trap - EXIT INT TERM
 
   IMAGE_MTAB="$BUILD_DIR/build/image-root/etc/mtab"
@@ -623,7 +649,9 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   fi
 
   IMAGE_OS_RELEASE="$BUILD_DIR/build/image-root/etc/os-release"
-  if ! grep -Fx "VERSION_ID=\"$("$RELEASE_TOOL" field version_id)\"" \
+  if ! grep -Fx "VERSION_ID=\"$("$RELEASE_TOOL" field product_version)\"" \
+      "$IMAGE_OS_RELEASE" >/dev/null ||
+     ! grep -Fx "IMAGE_VERSION=\"$("$RELEASE_TOOL" field version_id)\"" \
       "$IMAGE_OS_RELEASE" >/dev/null; then
     echo "!!! built image /etc/os-release does not match release.toml" >&2
     exit 1

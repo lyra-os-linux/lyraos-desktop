@@ -55,6 +55,12 @@ class ImagePolicyTests(unittest.TestCase):
         )
         self.assertIn("%{_prefix}/lib/lyra-os/product-release", spec)
 
+    def test_vm_helper_distinguishes_product_and_artifact_versions(self) -> None:
+        helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
+        self.assertIn('field product_version)', helper)
+        self.assertIn('field version_id)', helper)
+        self.assertIn('IMAGE_VERSION=', helper)
+
     def test_zypper_cache_policy_matches_vega_update_flow(self) -> None:
         config = (
             ROOT / "kiwi/root/etc/zypp/zypp.conf.d/90-lyra-refresh.conf"
@@ -496,6 +502,20 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("start_loader_guard", helper)
         self.assertIn("stop_loader_guard", helper)
         self.assertIn("sudo -n ldconfig", helper)
+        self.assertIn(
+            "host loader recovery also failed after the KIWI error", helper
+        )
+        self.assertIn(
+            "refusing post-build validation with an unhealthy host loader", helper
+        )
+        self.assertIn("for recovery_attempt in 1 2 3", helper)
+        self.assertIn("loader guard recovery attempt", helper)
+        self.assertIn("abort_loader_guarded_build", helper)
+        self.assertIn(
+            "build interrupted after the loader guard requested termination", helper
+        )
+        self.assertIn("printf '%(%H:%M:%S)T %s\\n' -1", helper)
+        self.assertNotIn("\"$(date '+%H:%M:%S')\"", helper)
         self.assertLess(
             helper.index("start_loader_guard"), helper.index("run_privileged kiwi-ng")
         )
