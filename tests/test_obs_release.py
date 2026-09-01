@@ -52,17 +52,16 @@ class ManifestTests(unittest.TestCase):
             self.manifest.project("lyra").legacy_packages, ("calco", "prosa")
         )
         for project in self.manifest.projects:
+            self.assertEqual(project.targets[0].name, "openSUSE_Leap_16.1")
+            self.assertTrue(project.targets[0].iso_consumer)
             self.assertEqual(
-                [target.name for target in project.targets[:2]],
-                ["openSUSE_Leap_16.0", "openSUSE_Leap_16.1"],
+                project.targets[0].upstream_project, "openSUSE:Leap:16.1"
             )
-            self.assertFalse(project.targets[0].iso_consumer)
-            self.assertTrue(project.targets[1].iso_consumer)
-            self.assertEqual(
-                project.targets[1].upstream_project, "openSUSE:Leap:16.1"
+            self.assertNotIn(
+                "openSUSE_Leap_16.0", [target.name for target in project.targets]
             )
-        self.assertEqual(self.manifest.project("fina").targets[2].name, "openSUSE_Tumbleweed")
-        self.assertEqual(self.manifest.project("vega").targets[2].name, "openSUSE_Tumbleweed")
+        self.assertEqual(self.manifest.project("fina").targets[1].name, "openSUSE_Tumbleweed")
+        self.assertEqual(self.manifest.project("vega").targets[1].name, "openSUSE_Tumbleweed")
 
     def test_staging_is_never_an_iso_consumer(self) -> None:
         for project in self.manifest.projects:
@@ -140,7 +139,7 @@ class BuildGateTests(unittest.TestCase):
             ]
         )
         path = (
-            "/build/home:example/_result?repository=openSUSE_Leap_16.0"
+            "/build/home:example/_result?repository=openSUSE_Leap_16.1"
             "&arch=x86_64&view=status"
         )
         document = (
@@ -163,7 +162,7 @@ class BuildGateTests(unittest.TestCase):
             ]
         )
         path = (
-            "/build/home:example/_result?repository=openSUSE_Leap_16.0"
+            "/build/home:example/_result?repository=openSUSE_Leap_16.1"
             "&arch=x86_64&view=status"
         )
         document = '<resultlist><result code="published">' + "".join(statuses) + "</result></resultlist>"
@@ -174,7 +173,7 @@ class BuildGateTests(unittest.TestCase):
 
     def test_unpublished_repository_blocks_promotion(self) -> None:
         path = (
-            "/build/home:example/_result?repository=openSUSE_Leap_16.0"
+            "/build/home:example/_result?repository=openSUSE_Leap_16.1"
             "&arch=x86_64&view=status"
         )
         document = '<resultlist><result code="building" state="building"/></resultlist>'

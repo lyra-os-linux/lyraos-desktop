@@ -16,18 +16,17 @@ commit before a new release can pass the health gate.
 
 | Component | Staging project | Release project | Target | ISO |
 |---|---|---|---|---|
-| Lyra base and apps | `home:rodrigosbrito:lyra:staging` | `home:rodrigosbrito:lyra` | Leap 16.0 and 16.1, x86_64 | Leap 16.1 release only |
-| Vega | `home:rodrigosbrito:vega:staging` | `home:rodrigosbrito:vega` | Leap 16.0 and 16.1, x86_64 | Leap 16.1 release only |
-| Fina | `home:rodrigosbrito:fina:staging` | `home:rodrigosbrito:fina` | Leap 16.0, Leap 16.1 and Tumbleweed, x86_64 | Leap 16.1 release only |
+| Lyra base and apps | `home:rodrigosbrito:lyra:staging` | `home:rodrigosbrito:lyra` | Leap 16.1, x86_64 | Leap 16.1 release only |
+| Vega | `home:rodrigosbrito:vega:staging` | `home:rodrigosbrito:vega` | Leap 16.1 and Tumbleweed, x86_64 | Leap 16.1 release only |
+| Fina | `home:rodrigosbrito:fina:staging` | `home:rodrigosbrito:fina` | Leap 16.1 and Tumbleweed, x86_64 | Leap 16.1 release only |
 
 Staging repositories build directly against their official openSUSE targets.
 They are published so testers can install the exact RPMs, but neither KIWI nor
 an installed Lyra system contains a staging URL. The release projects remain
 the stable URLs consumed by `kiwi/config.xml`.
 
-Leap 16.1 is the active ISO consumer. Leap 16.0 remains an additional build and
-publication compatibility gate, but no KIWI or installed-system repository
-points to it.
+Leap 16.1 is the only active Leap target and the ISO consumer. The retired
+Leap 16.0 repositories are absent from both release and staging projects.
 
 Package ownership is explicit in the manifest. The visual identity is split
 into the independent source packages `lyra-theme`, `lyra-icons`, and
@@ -74,7 +73,6 @@ Select the project and package from `obs/projects.toml`, then:
 ```console
 osc -A https://api.opensuse.org checkout home:rodrigosbrito:lyra:staging beam
 cd home:rodrigosbrito:lyra:staging/beam
-osc build --clean --checks openSUSE_Leap_16.0 x86_64
 osc build --clean --checks openSUSE_Leap_16.1 x86_64
 osc status
 osc diff
