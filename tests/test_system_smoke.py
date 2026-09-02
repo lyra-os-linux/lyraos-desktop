@@ -5,6 +5,7 @@ import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -82,6 +83,80 @@ class SystemSmokeTests(unittest.TestCase):
             )
             self.assertEqual(report["status"], "passed")
             self.assertEqual(report["mode"], "first-boot")
+
+    def test_real_root_fstab_verification_uses_cached_sudo(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_installed_root(root)
+            calls: list[list[str]] = []
+
+            def runner(arguments: list[str]) -> tuple[int, str]:
+                calls.append(arguments)
+                if arguments[:3] == ["sudo", "-n", "--"]:
+                    if arguments[3:] == ["true"]:
+                        return 0, ""
+                    return self.runner(arguments[3:])
+                return self.runner(arguments)
+
+            with mock.patch.object(Path, "resolve", return_value=Path("/")):
+                report = system_smoke.validate_first_boot(
+                    root=root, username="alice", runner=runner
+                )
+
+            self.assertEqual(report["status"], "passed")
+            self.assertIn(
+                [
+                    "sudo",
+                    "-n",
+                    "--",
+                    "findmnt",
+                    "--verify",
+                    "--tab-file",
+                    "/etc/fstab",
+                ],
+                calls,
+            )
+
+    def test_critical_journal_detail_requires_an_acknowledgement(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_installed_root(root)
+
+            def runner(arguments: list[str]) -> tuple[int, str]:
+                if arguments[0] == "journalctl" and "-p" in arguments:
+                    return 0, "kernel: critical fixture"
+                return self.runner(arguments)
+
+            report = system_smoke.validate_first_boot(
+                root=root, username="alice", runner=runner
+            )
+            journal_check = next(
+                item
+                for item in report["checks"]
+                if item["id"] == "critical-journal"
+            )
+            self.assertEqual(journal_check["status"], "failed")
+            self.assertEqual(
+                journal_check["detail"],
+                "critical entries require explicit acknowledgement",
+            )
+
+            acknowledged = system_smoke.validate_first_boot(
+                root=root,
+                username="alice",
+                runner=runner,
+                journal_acknowledgement="reviewed VM-only firmware warning",
+            )
+            acknowledged_check = next(
+                item
+                for item in acknowledged["checks"]
+                if item["id"] == "critical-journal"
+            )
+            self.assertEqual(acknowledged["status"], "passed")
+            self.assertEqual(
+                acknowledged_check["detail"],
+                "reviewed with explicit acknowledgement",
+            )
 
     def test_gnome_shell_core_dump_blocks_first_boot_evidence(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

@@ -346,8 +346,10 @@ def validate_first_boot(
         code == 0 and bool(efi_mount),
         efi_mount or "/boot/efi is not mounted",
     )
-    code, fstab_output = runner(
-        ["findmnt", "--verify", "--tab-file", "/etc/fstab"]
+    code, fstab_output = privileged_command(
+        ["findmnt", "--verify", "--tab-file", "/etc/fstab"],
+        runner=runner,
+        required=privileged_access_required,
     )
     check("fstab-valid", code == 0, fstab_output or "fstab verified")
 
@@ -481,7 +483,11 @@ def validate_first_boot(
         journal_passed,
         "empty"
         if not critical_journal
-        else "reviewed with explicit acknowledgement",
+        else (
+            "reviewed with explicit acknowledgement"
+            if journal_acknowledgement.strip()
+            else "critical entries require explicit acknowledgement"
+        ),
     )
     observations["critical_journal"] = critical_journal.splitlines()
     observations["journal_acknowledgement"] = journal_acknowledgement.strip()
