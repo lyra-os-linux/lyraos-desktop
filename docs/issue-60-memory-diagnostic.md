@@ -14,6 +14,9 @@ memória que não foi detectada pelo MemTest86+.
 
 - Lyra OS 27.02 Alpha 6;
 - aproximadamente 15 GiB de RAM física;
+- dois módulos DDR4 SODIMM de 8 GiB e 3200 MT/s, configurados a 2933 MT/s;
+- módulo `Controller0-ChannelA-DIMM0`: A-DATA `AD4S320038G22-BHYD`;
+- módulo `Controller1-ChannelA-DIMM0`: fabricante `0x0080`, sem part number;
 - `stressapptest-1.0.11-bp160.1.12.x86_64`;
 - `stress-ng-0.17.04-160000.2.2.x86_64`;
 - nenhum contador EDAC exposto pelo kernel;
@@ -49,21 +52,73 @@ expected: 0x4a4a4a4ab5b5b5b5
 ```
 
 O ensaio foi interrompido imediatamente depois da detecção para não prolongar
-a carga em uma máquina com suspeita de corrupção. O `stress-ng` foi instalado,
-mas não foi executado após esse resultado.
+a carga em uma máquina com suspeita de corrupção.
 
 Não surgiram mensagens de erro de memória, MCE, EDAC ou Btrfs no journal do
 kernel durante a curta execução. A ausência é esperada caso a plataforma sem
 ECC não consiga observar e reportar a falha.
 
+## Testes complementares
+
+### `stress-ng`
+
+Foi executado um teste independente de memória, com dois workers de 5 GiB,
+durante cinco minutos:
+
+```console
+stress-ng --vm 2 --vm-bytes 5G --vm-method all --verify --klog-check \
+  --timeout 5m --metrics-brief --vmstat 30 \
+  --log-file /tmp/lyra-stress-ng.log
+```
+
+O `stress-ng` concluiu 67.623.150 bogo operations com os dois workers
+aprovados, zero falhas de verificação e zero métricas não confiáveis. Nenhum
+erro relevante apareceu no journal do kernel.
+
+### Repetição integral do `stressapptest`
+
+O comando original foi repetido durante os 15 minutos completos, usando um
+novo log:
+
+```console
+stressapptest -s 900 -M 10240 -W \
+  -l /tmp/lyra-stressapptest-retest.log
+```
+
+O resultado final foi:
+
+```text
+Stats: Found 89 hardware incidents
+Stats: Completed: 19767688.00M in 900.11s 21961.53MB/s,
+       with 89 hardware incidents, 0 errors
+Status: FAIL - test discovered HW problems
+```
+
+Os 89 incidentes ocorreram em endereços, workers e padrões de teste distintos.
+Em todos eles, o XOR entre a primeira leitura e o valor esperado foi `0x1`, ou
+seja, somente o bit menos significativo divergiu. Em 85 eventos a releitura
+voltou ao valor esperado; em quatro, o mesmo bit continuou incorreto na
+releitura.
+
+Depois dos testes, os contadores persistentes do Btrfs continuavam em 21
+eventos de corrupção, sem erro de escrita, leitura, flush ou geração. Nenhum
+novo erro relevante apareceu no journal do kernel.
+
 ## Interpretação
 
 A primeira leitura diferiu do padrão esperado por um bit e a releitura retornou
-o valor correto. Isso é consistente com uma falha transitória no caminho de
-memória e reforça a hipótese de hardware ou firmware levantada na issue #60.
-O resultado não identifica sozinho o componente: módulo, contato, slot,
-controlador de memória, cache, alimentação e configuração de firmware continuam
-como possibilidades.
+o valor correto. A repetição integral confirmou 89 ocorrências no mesmo bit,
+incluindo quatro que persistiram na releitura. Isso é consistente com uma falha
+numa via física comum do caminho de memória e reforça a hipótese de hardware ou
+firmware levantada na issue #60. O resultado não identifica sozinho o
+componente: módulo, contato, slot, controlador de memória, cache, alimentação e
+configuração de firmware continuam como possibilidades.
+
+Os dois módulos instalados são de fabricantes diferentes. Essa combinação não
+prova defeito ou incompatibilidade, mas torna importante testar cada módulo
+isoladamente antes de comprar peças. O `stress-ng` aprovado também não invalida
+o resultado: ele usa algoritmos e padrões de acesso diferentes, enquanto o
+`stressapptest` reproduziu a mesma assinatura em duas execuções.
 
 Uma corrupção persistente do executável usado no ensaio é improvável, pois seu
 checksum corresponde ao pacote RPM. Um defeito no kernel ou no próprio teste
