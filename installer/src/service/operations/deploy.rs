@@ -40,11 +40,15 @@ const LIVE_ONLY_ARTIFACTS: &[&str] = &[
     "etc/sudoers.d/00-liveuser-nopasswd",
 ];
 
-/// Essential services enabled in the installed system.
+/// Essential services shared by every desktop flavor.
+///
+/// The image already carries the correct `display-manager.service` link for
+/// its flavor (GDM, SDDM or LightDM).  Do not name a desktop-specific unit
+/// here: the same published installer RPM is consumed by every Lyra Desktop
+/// image.
 const ENABLED_SERVICES: &[&str] = &[
     "NetworkManager.service",
     "firewalld.service",
-    "gdm.service",
     "cups.service",
 ];
 
@@ -2220,7 +2224,7 @@ mod tests {
     }
 
     #[test]
-    fn enable_services_targets_the_right_root_and_unit_list() {
+    fn enable_services_targets_the_right_root_with_flavor_neutral_units() {
         let op = EnableServices {
             target_root: PathBuf::from("/run/lyra-installer/target"),
         };
@@ -2229,7 +2233,7 @@ mod tests {
         assert_eq!(
             executor.calls(),
             vec![
-                "systemctl --root=/run/lyra-installer/target enable NetworkManager.service firewalld.service gdm.service cups.service"
+                "systemctl --root=/run/lyra-installer/target enable NetworkManager.service firewalld.service cups.service"
             ]
         );
     }
