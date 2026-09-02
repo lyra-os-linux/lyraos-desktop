@@ -32,7 +32,15 @@ const INSTALLED_THIRD_PARTY_PRIORITY: u8 = 90;
 /// Files that only make sense in the autologin live session.
 const LIVE_ONLY_ARTIFACTS: &[&str] = &[
     "etc/gdm/custom.conf",
+    "etc/lightdm/lightdm.conf.d/50-lyra-live.conf",
+    "etc/sddm.conf.d/10-lyra-live.conf",
+    "etc/sddm.conf",
+    "etc/pam.d/common-auth-lyra-live",
+    "etc/pam.d/sddm",
+    "etc/pam.d/sddm-autologin",
     "etc/xdg/autostart/lyra-installer-autostart.desktop",
+    "usr/libexec/lyra-live-sddm-autologin-retry",
+    "usr/lib/systemd/system/lyra-live-autologin-retry.service",
     "usr/bin/lyra-live-smoke",
     // liveuser's passwordless sudo (kiwi/config.sh) - must never survive
     // onto the installed system, which gets its own sudo user with a real
@@ -397,7 +405,7 @@ impl PrivilegedOperation for WriteLocale {
 ///   since it happens to also be a valid console keymap for most of
 ///   [`KEYBOARD_LAYOUTS`]'s Latin-script entries), covers TTY access only
 ///   (Ctrl+Alt+F3), unrelated to the desktop session.
-/// - a GNOME systemwide `dconf` default for
+/// - when GNOME Shell is present, a GNOME systemwide `dconf` default for
 ///   `org.gnome.desktop.input-sources` — the mechanism that actually
 ///   controls the real GNOME/Wayland desktop session (GNOME 48+ here is
 ///   Wayland by default). The previous version instead wrote
@@ -454,6 +462,13 @@ impl PrivilegedOperation for WriteKeyboard {
                 ),
             )
             .map_err(io_error)?;
+        }
+
+        // The published installer is shared by every desktop flavor. Plasma
+        // and XFCE consume /etc/default/keyboard directly and must not receive
+        // GNOME-specific dconf state.
+        if !self.target_root.join("usr/bin/gnome-shell").is_file() {
+            return Ok(());
         }
 
         let dconf_profile_dir = etc.join("dconf/profile");
@@ -913,8 +928,32 @@ impl PrivilegedOperation for RemoveLiveOnlyArtifacts {
             // to clean up.
             let _ = fs::remove_file(self.target_root.join(artifact));
         }
+        clear_live_autologin(&self.target_root.join("etc/sysconfig/displaymanager"))?;
         Ok(())
     }
+}
+
+/// Keep the display manager selected by each image, but never carry the live
+/// account's autologin into the installed system.
+fn clear_live_autologin(path: &Path) -> Result<(), OperationError> {
+    if !path.exists() {
+        return Ok(());
+    }
+    let content = fs::read_to_string(path).map_err(io_error)?;
+    let rewritten = content
+        .lines()
+        .map(|line| {
+            if line.trim() == "DISPLAYMANAGER_AUTOLOGIN=\"liveuser\"" {
+                "DISPLAYMANAGER_AUTOLOGIN=\"\""
+            } else {
+                line
+            }
+        })
+        .collect::<Vec<_>>()
+        .join("\n")
+        + "\n";
+    fs::write(path, rewritten).map_err(io_error)?;
+    Ok(())
 }
 
 /// Line-for-line translation of `networkcfg/main.py`'s real logic: copy
@@ -1078,7 +1117,6 @@ const GRUB_DEFAULT_KEYS: &[(&str, &str)] = &[
     ("SUSE_BTRFS_SNAPSHOT_BOOTING", "true"),
     ("GRUB_CMDLINE_LINUX_DEFAULT", "\"quiet splash\""),
     ("GRUB_DISTRIBUTOR", "\"Lyra OS\""),
-    ("GRUB_THEME", "\"/usr/share/grub/themes/Lyra-OS/theme.txt\""),
 ];
 
 const GRUB_THEME_PATH: &str = "/usr/share/grub/themes/Lyra-OS/theme.txt";
@@ -1093,17 +1131,15 @@ impl PrivilegedOperation for WriteGrubDefaults {
     }
 
     fn perform(&self, _executor: &dyn Executor) -> Result<(), OperationError> {
-        let theme = self
-            .target_root
-            .join(GRUB_THEME_PATH.trim_start_matches('/'));
-        if !theme.is_file() {
-            return Err(OperationError::Io(format!(
-                "tema do GRUB ausente no target: {GRUB_THEME_PATH}"
-            )));
-        }
         let path = self.target_root.join("etc/default/grub");
         let existing = fs::read_to_string(&path).unwrap_or_default();
         let mut remaining: Vec<(&str, &str)> = GRUB_DEFAULT_KEYS.to_vec();
+        let theme = self
+            .target_root
+            .join(GRUB_THEME_PATH.trim_start_matches('/'));
+        if theme.is_file() {
+            remaining.push(("GRUB_THEME", "\"/usr/share/grub/themes/Lyra-OS/theme.txt\""));
+        }
         let mut lines: Vec<String> = Vec::new();
 
         for line in existing.lines() {
@@ -1116,6 +1152,11 @@ impl PrivilegedOperation for WriteGrubDefaults {
                     .next()
                     .unwrap_or("")
                     .trim();
+                // Editions without the shared GRUB theme use GRUB's packaged
+                // default instead of retaining a stale live-image path.
+                if key == "GRUB_THEME" && !theme.is_file() {
+                    continue;
+                }
                 if let Some(pos) = remaining.iter().position(|(k, _)| *k == key) {
                     let (k, v) = remaining.remove(pos);
                     lines.push(format!("{k}={v}"));
@@ -1707,6 +1748,9 @@ mod tests {
     #[test]
     fn write_keyboard_writes_vconsole_and_a_dconf_default_then_updates_it() {
         let temp = TempRoot::new("keyboard-brazil");
+        let gnome_shell = temp.0.join("usr/bin/gnome-shell");
+        fs::create_dir_all(gnome_shell.parent().unwrap()).unwrap();
+        fs::write(gnome_shell, "fixture\n").unwrap();
         let op = WriteKeyboard {
             target_root: temp.0.clone(),
             keyboard_layout: "br-abnt2".to_string(),
@@ -1751,11 +1795,15 @@ mod tests {
         assert!(content.contains("XKBLAYOUT=\"us\""));
         assert!(content.contains("XKBVARIANT=\"intl\""));
         assert!(content.contains("BACKSPACE=\"guess\""));
+        assert!(!temp.0.join("etc/dconf").exists());
     }
 
     #[test]
     fn write_keyboard_combines_layout_and_variant_for_sources_with_a_variant() {
         let temp = TempRoot::new("keyboard-us-intl");
+        let gnome_shell = temp.0.join("usr/bin/gnome-shell");
+        fs::create_dir_all(gnome_shell.parent().unwrap()).unwrap();
+        fs::write(gnome_shell, "fixture\n").unwrap();
         let op = WriteKeyboard {
             target_root: temp.0.clone(),
             keyboard_layout: "us-intl".to_string(),
@@ -2079,6 +2127,30 @@ mod tests {
     }
 
     #[test]
+    fn remove_live_only_artifacts_clears_autologin_without_changing_the_manager() {
+        for manager in ["gdm", "sddm", "lightdm"] {
+            let temp = TempRoot::new(&format!("remove-live-autologin-{manager}"));
+            let path = temp.0.join("etc/sysconfig/displaymanager");
+            fs::create_dir_all(path.parent().unwrap()).unwrap();
+            fs::write(
+                &path,
+                format!("DISPLAYMANAGER=\"{manager}\"\nDISPLAYMANAGER_AUTOLOGIN=\"liveuser\"\n"),
+            )
+            .unwrap();
+
+            let op = RemoveLiveOnlyArtifacts {
+                target_root: temp.0.clone(),
+            };
+            op.perform(&FakeExecutor::new()).unwrap();
+
+            assert_eq!(
+                fs::read_to_string(path).unwrap(),
+                format!("DISPLAYMANAGER=\"{manager}\"\nDISPLAYMANAGER_AUTOLOGIN=\"\"\n")
+            );
+        }
+    }
+
+    #[test]
     fn copy_network_config_skips_ltsp_and_existing_and_rewrites_permissions() {
         let source = TempRoot::new("nm-source");
         fs::write(
@@ -2284,15 +2356,19 @@ mod tests {
     }
 
     #[test]
-    fn write_grub_defaults_rejects_a_missing_packaged_theme() {
+    fn write_grub_defaults_uses_the_packaged_default_when_theme_is_absent() {
         let temp = TempRoot::new("grub-theme-missing");
+        let defaults = temp.0.join("etc/default/grub");
+        fs::create_dir_all(defaults.parent().unwrap()).unwrap();
+        fs::write(&defaults, "GRUB_THEME=/live/theme.txt\n").unwrap();
         let op = WriteGrubDefaults {
             target_root: temp.0.clone(),
         };
 
-        let error = op.perform(&FakeExecutor::new()).unwrap_err();
-        assert!(error.to_string().contains(GRUB_THEME_PATH));
-        assert!(!temp.0.join("etc/default/grub").exists());
+        op.perform(&FakeExecutor::new()).unwrap();
+        let content = fs::read_to_string(defaults).unwrap();
+        assert!(!content.contains("GRUB_THEME="));
+        assert!(content.contains("GRUB_DISTRIBUTOR=\"Lyra OS\""));
     }
 
     #[test]
