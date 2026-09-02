@@ -183,6 +183,84 @@ class SystemSmokeTests(unittest.TestCase):
             self.assertEqual(code, 0)
             self.assertIn("menuentry ", content)
 
+    def test_privileged_probe_detects_a_protected_system_file(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "protected" / "BOOTX64.EFI"
+            path.parent.mkdir()
+            path.write_text("fixture", encoding="utf-8")
+            path.parent.chmod(0)
+
+            def runner(arguments: list[str]) -> tuple[int, str]:
+                self.assertEqual(
+                    arguments,
+                    ["sudo", "-n", "--", "test", "-f", str(path)],
+                )
+                return 0, ""
+
+            try:
+                exists, error = system_smoke.probe_system_path(
+                    path,
+                    kind="file",
+                    runner=runner,
+                    privileged_fallback=True,
+                )
+            finally:
+                path.parent.chmod(0o700)
+            self.assertTrue(exists)
+            self.assertEqual(error, "")
+
+    def test_privileged_probe_handles_a_protected_absent_path(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "protected" / "absent"
+            path.parent.mkdir()
+            path.parent.chmod(0)
+
+            def runner(arguments: list[str]) -> tuple[int, str]:
+                if arguments == [
+                    "sudo",
+                    "-n",
+                    "--",
+                    "test",
+                    "-e",
+                    str(path),
+                ]:
+                    return 1, ""
+                self.assertEqual(arguments, ["sudo", "-n", "--", "true"])
+                return 0, ""
+
+            try:
+                exists, error = system_smoke.probe_system_path(
+                    path,
+                    kind="exists",
+                    runner=runner,
+                    privileged_fallback=True,
+                )
+            finally:
+                path.parent.chmod(0o700)
+            self.assertFalse(exists)
+            self.assertEqual(error, "")
+
+    def test_unprivileged_path_probe_is_a_structured_failure(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_installed_root(root)
+            efi = root / "boot/efi"
+            efi.chmod(0)
+            try:
+                report = system_smoke.validate_secure_boot(
+                    root=root, runner=self.runner
+                )
+            finally:
+                efi.chmod(0o700)
+            fallback_check = next(
+                item
+                for item in report["checks"]
+                if item["id"] == "efi-fallback-loader"
+            )
+            self.assertEqual(report["status"], "failed")
+            self.assertEqual(fallback_check["status"], "failed")
+            self.assertIn("Permission denied", fallback_check["detail"])
+
     def test_unknown_profile_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
