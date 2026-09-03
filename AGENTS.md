@@ -113,3 +113,12 @@ próprio sistema.
   performance crítica quando necessárias, mas não novas funcionalidades,
   melhorias funcionais ou ampliação de comportamento. Essas mudanças pertencem
   ao próximo ciclo e devem percorrer novamente Alpha, Beta e RC.
+
+## Operação das VMs de teste
+
+Quando uma VM de teste estiver disponível e houver um canal seguro de controle
+ou evidência, execute diretamente nela os comandos necessários à validação em
+vez de pedir ao mantenedor que os digite. Preserve a interação manual para
+decisões, observações visuais e ações que não possam ser automatizadas com
+segurança. Antes de qualquer operação destrutiva dentro da VM, confirme que o
+alvo é o disco descartável previsto pelo ensaio.
