@@ -173,10 +173,34 @@ class RepositoryMetadataTests(unittest.TestCase):
         uploader_wrapper = (
             ROOT / "scripts/upload-desktop-alpha7-sourceforge.sh"
         ).read_text(encoding="utf-8")
+        gnome_uploader = (
+            ROOT / "scripts/upload-gnome-alpha7-sourceforge.sh"
+        ).read_text(encoding="utf-8")
+        uploader = (
+            ROOT / "scripts/upload-desktop-alpha6-sourceforge.sh"
+        ).read_text(encoding="utf-8")
         kiwi = (ROOT / "kiwi/config.xml").read_text(encoding="utf-8")
 
         self.assertIn('LYRA_EXPECTED_VERSION="1.1-alpha.7"', wrapper)
-        self.assertIn('LYRA_RELEASE_SLUG="alpha7"', uploader_wrapper)
+        self.assertIn("upload-gnome-alpha7-sourceforge.sh", uploader_wrapper)
+        self.assertIn('LYRA_RELEASE_SLUG="alpha7"', gnome_uploader)
+        self.assertIn('LYRA_RELEASE_EDITION="gnome"', gnome_uploader)
+        self.assertIn('LYRA_RELEASE_LAYOUT="release-first"', gnome_uploader)
+        self.assertIn('LYRA_VERIFY_DOWNLOAD="0"', gnome_uploader)
+        self.assertIn('LYRA_REQUIRE_DECISION="0"', gnome_uploader)
+        self.assertIn('LYRA_CHECK_OPEN_BLOCKERS="0"', gnome_uploader)
+        self.assertIn(
+            'release-first) RELEASE_PATH="$RELEASE_SERIES/$RELEASE_SLUG/$RELEASE_EDITION"',
+            uploader,
+        )
+        self.assertLess(
+            uploader.index('if [ "$VERIFY_DOWNLOAD" -eq 0 ]'),
+            uploader.index("curl --fail --location"),
+        )
+        self.assertIn(
+            'LYRA_RELEASE_NOTES="$SCRIPT_DIR/../docs/releases/lyra-os-desktop-1.1-alpha7.md"',
+            wrapper,
+        )
         self.assertIn("--published-installer", builder)
         self.assertIn("obs-release.py health", builder)
         self.assertNotIn("openSUSE_Leap_16.0/", kiwi)
