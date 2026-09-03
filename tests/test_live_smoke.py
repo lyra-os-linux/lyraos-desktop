@@ -88,7 +88,7 @@ class LiveSmokeTests(unittest.TestCase):
             def failing_runner(arguments: list[str]) -> tuple[int, str]:
                 if arguments[:2] == ["systemctl", "--failed"]:
                     return 0, "bad.service loaded failed failed"
-                if arguments[0] == "journalctl":
+                if arguments[0] == "journalctl" and "-p" in arguments:
                     return 0, "kernel: critical fixture"
                 return self.runner(arguments)
 
@@ -104,6 +104,20 @@ class LiveSmokeTests(unittest.TestCase):
                 if item["status"] == "failed"
             }
             self.assertEqual(failed, {"failed-units", "critical-journal"})
+
+    def test_gnome_shell_core_dump_blocks_live_evidence(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_root(root)
+
+            def crashing_runner(arguments: list[str]) -> tuple[int, str]:
+                if arguments[0] == "journalctl" and "--grep=Process .*gnome-shell.*dumped core" in arguments:
+                    return 0, "gnome-shell dumped core"
+                return self.runner(arguments)
+
+            report = live_smoke.validate_live_session(root=root, runner=crashing_runner)
+            failed = {item["id"] for item in report["checks"] if item["status"] == "failed"}
+            self.assertIn("gnome-shell-core-dump", failed)
 
     def test_missing_command_is_reported_instead_of_crashing(self) -> None:
         with mock.patch.object(

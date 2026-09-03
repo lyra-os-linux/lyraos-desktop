@@ -64,6 +64,17 @@
       "rationale": "Three embedded catalogs with live switching and English fallback."
     },
     {
+      "id": "lyra-icons",
+      "project": "lyra",
+      "wave": "alpha8",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "Icon artwork package has no interactive Lyra-owned text."
+    },
+    {
       "id": "lyra-theme",
       "project": "lyra",
       "wave": "alpha4",
@@ -73,6 +84,28 @@
       "selection": "none",
       "lint": "inventory rationale",
       "rationale": "Theme and artwork package has no interactive Lyra-owned text."
+    },
+    {
+      "id": "lyra-wallpapers",
+      "project": "lyra",
+      "wave": "alpha8",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "Wallpaper artwork package has no interactive Lyra-owned text."
+    },
+    {
+      "id": "lyra-release",
+      "project": "lyra",
+      "wave": "alpha7",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "RPM package identity contract tests",
+      "rationale": "Metadata-only package has no interactive Lyra-owned text."
     },
     {
       "id": "lyra-upgrade",
@@ -186,6 +219,17 @@
       "rationale": "GTK catalog implementation exists for all three locales."
     },
     {
+      "id": "vega-qt",
+      "project": "vega",
+      "wave": "alpha7",
+      "status": "scheduled",
+      "format": "Qt Linguist",
+      "domain": "vega-qt",
+      "selection": "QLocale with English fallback",
+      "lint": "Qt translation catalog validation",
+      "rationale": "The native Qt frontend is now part of the reviewed OBS distribution contract; its translation catalogs remain scheduled for Alpha 7."
+    },
+    {
       "id": "vega-web",
       "project": "vega",
       "wave": "alpha5",
@@ -195,6 +239,17 @@
       "selection": "authenticated user's locale",
       "lint": "cargo test --workspace",
       "rationale": "Locale support is shared by the Vega stack and already implemented."
+    },
+    {
+      "id": "vega-xfce",
+      "project": "vega",
+      "wave": "alpha7",
+      "status": "complete",
+      "format": "gettext",
+      "domain": "vega-gtk",
+      "selection": "LC_ALL/LC_MESSAGES/LANG and AccountsService",
+      "lint": "python3 tests/test_vega_gtk_i18n.py",
+      "rationale": "The native XFCE frontend ships the three supported gettext catalogs and is now covered by the reviewed OBS distribution contract."
     },
     {
       "id": "vegad",

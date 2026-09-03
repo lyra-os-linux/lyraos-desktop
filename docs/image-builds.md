@@ -175,6 +175,14 @@ SourceForge. Upload credentials and the SourceForge release operation remain
 outside this repository; this prevents CI or an OBS package workflow from
 silently distributing an unapproved image.
 
+Treat the tested ISO as immutable. Immediately after its gates pass, run the
+release builder with `--artifacts-only` against that same work directory and
+upload the resulting bundle before starting another image change. Never rebuild
+an approved ISO only to create publication metadata: a rebuild changes the
+candidate checksum and invalidates the ISO-bound evidence. If preparation or
+upload fails, preserve the tested ISO and resume from its existing work
+directory.
+
 ## OBS boundary
 
 OBS remains responsible for the Lyra, Vega, Fina, and installer RPMs. Their

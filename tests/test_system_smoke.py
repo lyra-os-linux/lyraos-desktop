@@ -5,6 +5,7 @@ import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,7 +20,7 @@ LOADER.exec_module(system_smoke)
 class SystemSmokeTests(unittest.TestCase):
     def create_installed_root(self, root: Path) -> None:
         files = {
-            "usr/lib/lyra-os/release": "VERSION_ID=27.02-beta2\n",
+            "usr/lib/lyra-os/release": "VERSION_ID=1.0-beta.2\n",
             "usr/lib/lyra-os/build-info": "LYRA_SOURCE_COMMIT=fixture\n",
             "etc/machine-id": "0123456789abcdef0123456789abcdef\n",
             "boot/grub2/grub.cfg": "menuentry 'Lyra OS' {}\n",
@@ -54,6 +55,8 @@ class SystemSmokeTests(unittest.TestCase):
         if arguments[:2] == ["systemctl", "is-active"]:
             return 0, "active"
         if arguments[:2] == ["systemctl", "is-enabled"]:
+            if arguments[-1] in system_smoke.EXPECTED_DISABLED_UNITS["desktop"]:
+                return 1, "disabled"
             return 0, "static"
         if arguments[:2] == ["systemctl", "--failed"]:
             return 0, ""
@@ -82,6 +85,137 @@ class SystemSmokeTests(unittest.TestCase):
             )
             self.assertEqual(report["status"], "passed")
             self.assertEqual(report["mode"], "first-boot")
+
+    def test_desktop_checks_the_canonical_display_manager_unit(self) -> None:
+        units = system_smoke.EXPECTED_ACTIVE_UNITS["desktop"]
+        self.assertIn("display-manager.service", units)
+        for implementation in ("gdm.service", "sddm.service", "lightdm.service"):
+            self.assertNotIn(implementation, units)
+
+    def test_desktop_requires_only_the_safe_btrfs_maintenance_timer(self) -> None:
+        active = system_smoke.EXPECTED_ACTIVE_UNITS["desktop"]
+        disabled = system_smoke.EXPECTED_DISABLED_UNITS["desktop"]
+
+        self.assertIn("btrfs-scrub.timer", active)
+        self.assertEqual(
+            disabled,
+            (
+                "btrfs-balance.timer",
+                "btrfs-defrag.timer",
+                "btrfs-trim.timer",
+            ),
+        )
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_installed_root(root)
+            report = system_smoke.validate_first_boot(
+                root=root,
+                username="alice",
+                environment={
+                    "XDG_CURRENT_DESKTOP": "GNOME",
+                    "XDG_SESSION_TYPE": "wayland",
+                },
+                runner=self.runner,
+            )
+
+        checks = {item["id"]: item for item in report["checks"]}
+        self.assertEqual(checks["unit-btrfs-scrub.timer"]["status"], "passed")
+        for unit in disabled:
+            self.assertEqual(
+                checks[f"unit-{unit}-disabled"]["status"],
+                "passed",
+            )
+
+    def test_real_root_fstab_verification_uses_cached_sudo(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_installed_root(root)
+            calls: list[list[str]] = []
+
+            def runner(arguments: list[str]) -> tuple[int, str]:
+                calls.append(arguments)
+                if arguments[:3] == ["sudo", "-n", "--"]:
+                    if arguments[3:] == ["true"]:
+                        return 0, ""
+                    return self.runner(arguments[3:])
+                return self.runner(arguments)
+
+            with mock.patch.object(Path, "resolve", return_value=Path("/")):
+                report = system_smoke.validate_first_boot(
+                    root=root, username="alice", runner=runner
+                )
+
+            self.assertEqual(report["status"], "passed")
+            self.assertIn(
+                [
+                    "sudo",
+                    "-n",
+                    "--",
+                    "findmnt",
+                    "--verify",
+                    "--tab-file",
+                    "/etc/fstab",
+                ],
+                calls,
+            )
+
+    def test_critical_journal_detail_requires_an_acknowledgement(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_installed_root(root)
+
+            def runner(arguments: list[str]) -> tuple[int, str]:
+                if arguments[0] == "journalctl" and "-p" in arguments:
+                    return 0, "kernel: critical fixture"
+                return self.runner(arguments)
+
+            report = system_smoke.validate_first_boot(
+                root=root, username="alice", runner=runner
+            )
+            journal_check = next(
+                item
+                for item in report["checks"]
+                if item["id"] == "critical-journal"
+            )
+            self.assertEqual(journal_check["status"], "failed")
+            self.assertEqual(
+                journal_check["detail"],
+                "critical entries require explicit acknowledgement",
+            )
+
+            acknowledged = system_smoke.validate_first_boot(
+                root=root,
+                username="alice",
+                runner=runner,
+                journal_acknowledgement="reviewed VM-only firmware warning",
+            )
+            acknowledged_check = next(
+                item
+                for item in acknowledged["checks"]
+                if item["id"] == "critical-journal"
+            )
+            self.assertEqual(acknowledged["status"], "passed")
+            self.assertEqual(
+                acknowledged_check["detail"],
+                "reviewed with explicit acknowledgement",
+            )
+
+    def test_gnome_shell_core_dump_blocks_first_boot_evidence(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_installed_root(root)
+
+            def crashing_runner(arguments: list[str]) -> tuple[int, str]:
+                if arguments[0] == "journalctl" and "--grep=Process .*gnome-shell.*dumped core" in arguments:
+                    return 0, "gnome-shell dumped core"
+                return self.runner(arguments)
+
+            report = system_smoke.validate_first_boot(
+                root=root, username="alice", runner=crashing_runner
+            )
+            failed = {item["id"] for item in report["checks"] if item["status"] == "failed"}
+            self.assertIn("gnome-shell-core-dump", failed)
 
     def test_installer_or_live_artifact_blocks_first_boot(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -166,6 +300,84 @@ class SystemSmokeTests(unittest.TestCase):
                 path.chmod(0o600)
             self.assertEqual(code, 0)
             self.assertIn("menuentry ", content)
+
+    def test_privileged_probe_detects_a_protected_system_file(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "protected" / "BOOTX64.EFI"
+            path.parent.mkdir()
+            path.write_text("fixture", encoding="utf-8")
+            path.parent.chmod(0)
+
+            def runner(arguments: list[str]) -> tuple[int, str]:
+                self.assertEqual(
+                    arguments,
+                    ["sudo", "-n", "--", "test", "-f", str(path)],
+                )
+                return 0, ""
+
+            try:
+                exists, error = system_smoke.probe_system_path(
+                    path,
+                    kind="file",
+                    runner=runner,
+                    privileged_fallback=True,
+                )
+            finally:
+                path.parent.chmod(0o700)
+            self.assertTrue(exists)
+            self.assertEqual(error, "")
+
+    def test_privileged_probe_handles_a_protected_absent_path(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "protected" / "absent"
+            path.parent.mkdir()
+            path.parent.chmod(0)
+
+            def runner(arguments: list[str]) -> tuple[int, str]:
+                if arguments == [
+                    "sudo",
+                    "-n",
+                    "--",
+                    "test",
+                    "-e",
+                    str(path),
+                ]:
+                    return 1, ""
+                self.assertEqual(arguments, ["sudo", "-n", "--", "true"])
+                return 0, ""
+
+            try:
+                exists, error = system_smoke.probe_system_path(
+                    path,
+                    kind="exists",
+                    runner=runner,
+                    privileged_fallback=True,
+                )
+            finally:
+                path.parent.chmod(0o700)
+            self.assertFalse(exists)
+            self.assertEqual(error, "")
+
+    def test_unprivileged_path_probe_is_a_structured_failure(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            self.create_installed_root(root)
+            efi = root / "boot/efi"
+            efi.chmod(0)
+            try:
+                report = system_smoke.validate_secure_boot(
+                    root=root, runner=self.runner
+                )
+            finally:
+                efi.chmod(0o700)
+            fallback_check = next(
+                item
+                for item in report["checks"]
+                if item["id"] == "efi-fallback-loader"
+            )
+            self.assertEqual(report["status"], "failed")
+            self.assertEqual(fallback_check["status"], "failed")
+            self.assertIn("Permission denied", fallback_check["detail"])
 
     def test_unknown_profile_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

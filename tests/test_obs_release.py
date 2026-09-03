@@ -32,29 +32,36 @@ class ManifestTests(unittest.TestCase):
 
     def test_project_inventory_matches_release_contract(self) -> None:
         self.assertEqual([project.id for project in self.manifest.projects], ["lyra", "vega", "fina"])
-        self.assertEqual(len(self.manifest.project("lyra").packages), 13)
+        self.assertEqual(len(self.manifest.project("lyra").packages), 16)
+        self.assertIn("lyra-release", self.manifest.project("lyra").packages)
         self.assertNotIn("chord", self.manifest.project("lyra").packages)
         self.assertIn("linuxtoys", self.manifest.project("lyra").packages)
         self.assertIn("zed", self.manifest.project("lyra").packages)
         self.assertIn("vscode-repo", self.manifest.project("lyra").packages)
         self.assertIn("lyra-welcome", self.manifest.project("lyra").packages)
+        self.assertIn("lyra-icons", self.manifest.project("lyra").packages)
+        self.assertIn("lyra-wallpapers", self.manifest.project("lyra").packages)
         self.assertIn("nvm-fish", self.manifest.project("lyra").packages)
         self.assertIn("lyra-fish-productivity", self.manifest.project("lyra").packages)
         self.assertNotIn("calamares", self.manifest.project("lyra").packages)
         self.assertEqual(
+            set(self.manifest.project("vega").packages),
+            {"vega-cli", "vega-gtk", "vega-qt", "vega-web", "vega-xfce", "vegad"},
+        )
+        self.assertEqual(
             self.manifest.project("lyra").legacy_packages, ("calco", "prosa")
         )
         for project in self.manifest.projects:
+            self.assertEqual(project.targets[0].name, "openSUSE_Leap_16.1")
+            self.assertTrue(project.targets[0].iso_consumer)
             self.assertEqual(
-                [target.name for target in project.targets[:2]],
-                ["openSUSE_Leap_16.0", "openSUSE_Leap_16.1"],
+                project.targets[0].upstream_project, "openSUSE:Leap:16.1"
             )
-            self.assertFalse(project.targets[0].iso_consumer)
-            self.assertTrue(project.targets[1].iso_consumer)
-            self.assertEqual(
-                project.targets[1].upstream_project, "openSUSE:Leap:16.1"
+            self.assertNotIn(
+                "openSUSE_Leap_16.0", [target.name for target in project.targets]
             )
-        self.assertEqual(self.manifest.project("fina").targets[2].name, "openSUSE_Tumbleweed")
+        self.assertEqual(self.manifest.project("fina").targets[1].name, "openSUSE_Tumbleweed")
+        self.assertEqual(self.manifest.project("vega").targets[1].name, "openSUSE_Tumbleweed")
 
     def test_staging_is_never_an_iso_consumer(self) -> None:
         for project in self.manifest.projects:
@@ -132,7 +139,7 @@ class BuildGateTests(unittest.TestCase):
             ]
         )
         path = (
-            "/build/home:example/_result?repository=openSUSE_Leap_16.0"
+            "/build/home:example/_result?repository=openSUSE_Leap_16.1"
             "&arch=x86_64&view=status"
         )
         document = (
@@ -155,7 +162,7 @@ class BuildGateTests(unittest.TestCase):
             ]
         )
         path = (
-            "/build/home:example/_result?repository=openSUSE_Leap_16.0"
+            "/build/home:example/_result?repository=openSUSE_Leap_16.1"
             "&arch=x86_64&view=status"
         )
         document = '<resultlist><result code="published">' + "".join(statuses) + "</result></resultlist>"
@@ -166,7 +173,7 @@ class BuildGateTests(unittest.TestCase):
 
     def test_unpublished_repository_blocks_promotion(self) -> None:
         path = (
-            "/build/home:example/_result?repository=openSUSE_Leap_16.0"
+            "/build/home:example/_result?repository=openSUSE_Leap_16.1"
             "&arch=x86_64&view=status"
         )
         document = '<resultlist><result code="building" state="building"/></resultlist>'

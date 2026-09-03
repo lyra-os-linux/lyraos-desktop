@@ -18,7 +18,7 @@
   <description type="system">
     <author>Rodrigo Brito</author>
     <contact>rodrigo@lyraos.com.br</contact>
-    <specification>Lyra OS "Odisseia" 27.02 Alpha 7 - live/installer ISO, openSUSE Leap 16 base, GNOME desktop, x86_64</specification>
+    <specification>Lyra OS "Odisseia" 1.1 Alpha 7 - live/installer ISO, openSUSE Leap 16.1 base, GNOME desktop, x86_64</specification>
   </description>
 
   <preferences>
@@ -33,7 +33,7 @@
 
   <preferences>
     <!-- Generated from release.toml; user-facing strings say "Alpha 7". -->
-    <version>27.02-alpha7</version>
+    <version>1.1-alpha.7</version>
     <!--
       Selects lyra-os-theme's "Lyra-OS" assets. The
       bootloader theme is active in the live GRUB menu. The bootsplash
@@ -53,7 +53,7 @@
       squashfscompression="zstd"
       firmware="uefi"
       editbootconfig="edit_boot_config.sh"
-      volid="LYRA_OS_27_02_ALPHA7"
+      volid="LYRA_OS_1_1_ALPHA_7"
       application_id="LyraOS"
       publisher="Lyra OS Project">
       <bootloader name="grub2" timeout="10"/>
@@ -253,6 +253,10 @@
       is what makes the GRUB panic-button rollback menu exist at all.
     -->
     <package name="btrfsprogs"/>
+    <!-- Keep checksum verification periodic on installed systems.  The image
+         config enables monthly scrub only; balance, defrag and trim remain
+         disabled to avoid unexpected write-heavy maintenance. -->
+    <package name="btrfsmaintenance"/>
     <package name="snapper"/>
     <!-- snapper only Recommends this package; onlyRequired would otherwise
          omit the plugin that creates pre/post snapshots for zypper. -->
@@ -538,6 +542,7 @@
          O serviço privilegiado reaproveita zypper, Snapper, dracut e GRUB;
          a interface nunca recebe privilégios amplos. -->
     <package name="lyra-upgrade"/>
+    <package name="lyra-release"/>
 
     <!--
       Branding (Lyra-Theme, github.com/lyra-os-linux/lyraos-desktop-theme). Package
@@ -559,7 +564,7 @@
       - Lyra's own 99-lyra-desktop-defaults.gschema.override enables the
         minimize/maximize titlebar buttons and keeps directories before files
         in Nautilus/GTK file views. These are defaults, not locked settings.
-      - Requires lyra-os-icons + plymouth-plugin-two-step
+      - Requires lyra-os-icons + lyra-os-wallpapers + plymouth-plugin-two-step
         automatically (RPM deps); fastfetch is only a Recommends in the
         spec file so it's made explicit here. Neofetch is left out
         deliberately (Suggests-only upstream, and it's an archived/EOL
@@ -568,6 +573,7 @@
     -->
     <package name="lyra-os-theme"/>
     <package name="lyra-os-icons"/>
+    <package name="lyra-os-wallpapers"/>
     <package name="fastfetch"/>
 
     <!--

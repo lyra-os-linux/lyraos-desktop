@@ -10,9 +10,10 @@ BUILD_DIR="$WORK_DIR/build"
 ARTIFACT_DIR="$WORK_DIR/iso"
 EVIDENCE_DIR=""
 ARTIFACTS_ONLY=0
-EXPECTED_VERSION="${LYRA_EXPECTED_VERSION:-27.02-alpha6}"
+EXPECTED_VERSION="${LYRA_EXPECTED_VERSION:-1.0-alpha.6}"
 RELEASE_LABEL="${LYRA_RELEASE_LABEL:-Desktop Alpha 6}"
 COMMAND_NAME="${LYRA_COMMAND_NAME:-$0}"
+RELEASE_NOTES="${LYRA_RELEASE_NOTES:-$REPO_ROOT/docs/releases/lyra-os-desktop-$EXPECTED_VERSION.md}"
 
 usage() {
   cat <<EOF
@@ -21,8 +22,8 @@ Uso: $COMMAND_NAME [--artifacts-only] [--evidence-dir DIRETÓRIO]
 Sem opções, valida o OBS e constrói uma candidata limpa usando o RPM
 publicado do instalador (o Welcome já vem sempre do RPM publicado).
 --artifacts-only reutiliza a ISO atual.
-Quando --evidence-dir é informado, o manifesto final exige as sete evidências
-aprovadas do gate da $RELEASE_LABEL.
+Quando --evidence-dir é informado, o manifesto final exige todas as evidências
+aplicáveis ao estágio declarado em release.toml.
 EOF
 }
 
@@ -110,24 +111,21 @@ install -m 0644 "$VERIFIED_SOURCE" "$ARTIFACT_DIR/$PREFIX.verified"
   --output-dir "$ARTIFACT_DIR" \
   --commit "$COMMIT"
 install -m 0644 \
-  "$REPO_ROOT/docs/releases/lyra-os-desktop-$EXPECTED_VERSION.md" \
+  "$RELEASE_NOTES" \
   "$ARTIFACT_DIR/README.md"
 (cd "$ARTIFACT_DIR" && sha256sum -c "$PREFIX.iso.sha256")
 
 if [ -n "$EVIDENCE_DIR" ]; then
+  # The stage-aware policy always includes the established baseline:
+  # obs-repositories, live-session, installer, first-boot, uefi-secure-boot,
+  # rollback and hardware-matrix. Alpha 8+ additions come from the same
+  # versioned policy rather than a second shell list that could drift.
   TEST_ARGS=()
-  for name in \
-      obs-repositories \
-      live-session \
-      installer \
-      first-boot \
-      uefi-secure-boot \
-      rollback \
-      hardware-matrix; do
+  while IFS= read -r name; do
     file="$EVIDENCE_DIR/$name-result.json"
     [ -s "$file" ] || { echo "ERRO: evidência ausente: $file" >&2; exit 1; }
     TEST_ARGS+=(--test-result "$name=$file")
-  done
+  done < <(./scripts/image-build.py required-test-results)
   ./scripts/image-build.py artifact-manifest "$ARTIFACT_DIR" \
     --output "$ARTIFACT_DIR/$PREFIX.evidence.json" "${TEST_ARGS[@]}"
   echo "Bundle $RELEASE_LABEL qualificado em: $ARTIFACT_DIR"

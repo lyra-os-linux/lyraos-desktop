@@ -1,5 +1,10 @@
 # Desktop Alpha 7 release gate
 
+> Alpha 8 adds four fail-closed results to this baseline: `upgrade-rehearsal`,
+> `eca-digital`, `i18n` and `feature-freeze`. The build tooling selects these
+> requirements from `release.toml`; Alpha 7 remains reproducible with its
+> original seven-result gate.
+
 This checklist is the versioned go/no-go contract for the standard Lyra OS
 Desktop Alpha 7 ISO. A release coordinator may declare **GO** only when every blocking
 item below has passed and its evidence is included in the final image evidence
@@ -32,6 +37,20 @@ risk.
   present in the candidate;
 - [ ] the candidate is tagged only after all blocking checks pass.
 
+### Preserve and publish the tested candidate
+
+The ISO identified by its filename, source commit and SHA-256 is the release
+candidate. As soon as that exact ISO passes every blocking gate, freeze it,
+generate the remaining files with `--artifacts-only`, and upload the bundle in
+the same release run. Do not rebuild an approved ISO merely to prepare or
+publish artifacts.
+
+Preserve the tested ISO while resolving packaging, evidence or upload-tool
+problems. Any source or image-content change creates a new candidate with a new
+checksum and requires the applicable gates to be repeated; evidence from the
+discarded ISO must not be relabeled for the replacement. This ordering avoids
+spending a complete validation cycle on an image that is never published.
+
 ## Required evidence
 
 Each file is structured JSON with schema 1 and top-level
@@ -50,8 +69,23 @@ content and hardware coverage; a bare green status is rejected:
 - [ ] `uefi-secure-boot`: supported UEFI and Secure Boot scenarios pass;
 - [ ] `rollback`: update, Snapper snapshots and GRUB rollback pass;
 - [ ] `hardware-matrix`: required real/virtual hardware scenarios are recorded.
-- [ ] `v27.02-alpha6` remains available as the immutable Leap 16.0 rollback
+- [ ] `v1.0-alpha.6` remains available as the immutable Leap 16.0 rollback
   baseline and the 16.0 → 16.1 upgrade/rollback rehearsal is recorded.
+
+## Alpha 8 additions
+
+- [ ] `upgrade-rehearsal`: a published baseline consumes a signed successor
+  manifest, applies it offline, crosses reboot, verifies the target and restores
+  the baseline through rollback; network loss, low space, UI termination,
+  truncated state, RPM failure and initramfs failure are exercised;
+- [ ] `eca-digital`: legal, security and privacy reviews are referenced, negative
+  and evasion tests pass, and no document, biometric sample or unnecessary age
+  history is retained;
+- [ ] `i18n`: every supported Lyra-owned interface passes in `en-US`, `pt-BR`
+  and Spanish (`es-ES`), with `en-US` as the explicit fallback;
+- [ ] `feature-freeze`: every 1.0 feature is implemented or formally removed,
+  documentation is consistent, and the recorded counts of open P0 and P1 are
+  both zero. Any other result is `NO-GO`, and Alpha continues.
 
 ## Release signing key
 
@@ -89,9 +123,10 @@ commit that publishes the first candidate signed by the new key.
   workarounds;
 - [ ] the evidence manifest is generated from a clean commit and contains all
   required green results;
-- [ ] ISO and evidence are uploaded to SourceForge and downloaded again for
-  checksum verification; signature verification is additionally mandatory
-  from Beta 1 onward;
+- [ ] the exact tested ISO and its evidence are uploaded to SourceForge
+  immediately after GO; Alpha 7 does not require a post-upload redownload, but
+  independent local checksum verification remains mandatory; signature
+  verification is additionally mandatory from Beta 1 onward;
 - [ ] #1 records coordinator, decision time, evidence URLs, accepted P2/P3
   risks and the exact source commit.
 

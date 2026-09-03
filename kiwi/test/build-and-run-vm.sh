@@ -53,12 +53,23 @@ RAM_MB="${LYRA_VM_RAM_MB:-8192}"
 SMP="${LYRA_VM_CPUS:-4}"
 RELEASE_TOOL="$REPO_ROOT/scripts/release.py"
 ISO_SECURITY_AUDIT="$REPO_ROOT/scripts/audit-release-iso.py"
+REHEARSAL_TRACE_TOOL="$SCRIPT_DIR/rehearsal-trace.py"
 
 SKIP_BUILD=0
 BUILD_ONLY=0
 BOOT_INSTALLED=0
+SUMMARIZE_UPGRADE=0
 SECURE_BOOT=0
 USE_LOCAL_INSTALLER=1
+PRIVILEGE_TOOL="${LYRA_PRIVILEGE_TOOL:-sudo}"
+
+run_privileged() {
+  case "$PRIVILEGE_TOOL" in
+    sudo) sudo "$@" ;;
+    pkexec) pkexec "$@" ;;
+    *) echo "LYRA_PRIVILEGE_TOOL must be sudo or pkexec" >&2; return 2 ;;
+  esac
+}
 
 usage() {
   cat <<'EOF'
@@ -69,9 +80,12 @@ Sem opções, valida e constrói a ISO, cria uma VM descartável nova e a inicia
 Opções:
   --build-only   constrói e valida a ISO sem encerrar ou alterar a VM existente
   --skip-build    reutiliza a ISO já construída
+  --audit-only    audita a ISO existente sem abrir ou alterar a VM
   --boot-installed
                   inicia o disco já instalado sem anexar ISO e sem recriar
                   disco ou estado UEFI
+  --summarize-upgrade
+                  valida baseline, target e rollback já observados sem iniciar a VM
   --fresh-disk    compatibilidade; disco/NVRAM novos são sempre obrigatórios
   --published-installer
                   usa somente o RPM publicado no OBS (obrigatório para release)
@@ -83,6 +97,7 @@ Recursos podem ser ajustados sem editar o script:
   LYRA_VM_RAM_MB=8192    memória da VM em MiB (padrão: 8192)
   LYRA_VM_CPUS=4         CPUs virtuais (padrão: 4)
   LYRA_TEST_WORK_DIR=... diretório persistente de build, ISO, VM e logs
+  LYRA_REHEARSAL_OBSERVER=/caminho/rehearsal-observations.py
 
 Cada execução que inicia QEMU encerra a VM anterior e apaga seu disco e estado
 UEFI somente depois de uma ISO válida estar disponível. Depois da instalação,
@@ -100,7 +115,9 @@ while [ "$#" -gt 0 ]; do
   case "$1" in
     --build-only) BUILD_ONLY=1; shift ;;
     --skip-build) SKIP_BUILD=1; shift ;;
+    --audit-only) SKIP_BUILD=1; BUILD_ONLY=1; shift ;;
     --boot-installed) BOOT_INSTALLED=1; shift ;;
+    --summarize-upgrade) SUMMARIZE_UPGRADE=1; shift ;;
     --fresh-disk) shift ;;
     --published-installer) USE_LOCAL_INSTALLER=0; shift ;;
     --secure-boot) SECURE_BOOT=1; shift ;;
@@ -113,6 +130,15 @@ done
 # On many systems /tmp is a small RAM-backed tmpfs and cannot hold a full
 # image build plus an expanding qcow2 installation disk.
 WORK_DIR="${LYRA_TEST_WORK_DIR:-/var/tmp/lyraos-desktop-test-$CURRENT_UID}"
+if [ -z "${LYRA_TEST_WORK_DIR+x}" ]; then
+  WORK_PROBE="$WORK_DIR/.write-probe-$$"
+  if ! mkdir -p "$WORK_DIR" 2>/dev/null || ! : > "$WORK_PROBE" 2>/dev/null; then
+    WORK_DIR="/tmp/lyraos-desktop-test-$CURRENT_UID"
+    mkdir -p "$WORK_DIR"
+  else
+    rm -f "$WORK_PROBE"
+  fi
+fi
 BUILD_DIR="$WORK_DIR/build"
 BUILD_DESCRIPTION_DIR="$WORK_DIR/description"
 ISO_DIR="$WORK_DIR/iso"
@@ -123,12 +149,45 @@ DISK_SIZE="${LYRA_VM_DISK_SIZE:-24G}"
 OVMF_VARS_STANDARD="$VM_DIR/ovmf-vars.bin"
 OVMF_VARS_SECURE="$VM_DIR/ovmf-secure-vars.bin"
 VM_PID_FILE="$VM_DIR/qemu.pid"
+VM_MONITOR_SOCKET="$VM_DIR/qemu-monitor.sock"
+VM_ID_FILE="$VM_DIR/installation.uuid"
+VM_TRACE_FILE="$VM_DIR/upgrade-rehearsal-trace.json"
+VM_GUEST_EVIDENCE_FILE="$VM_DIR/upgrade-guest-evidence.jsonl"
+VM_REHEARSAL_SUMMARY_FILE="$VM_DIR/upgrade-rehearsal-observations.json"
 LOG="$WORK_DIR/lyra-os-test.log"
 
-if [ "$BUILD_ONLY" -eq 1 ] && [ "$SKIP_BUILD" -eq 1 ]; then
-  echo "--build-only cannot be combined with --skip-build" >&2
-  exit 1
+load_vm_uuid() {
+  if [ ! -f "$VM_ID_FILE" ] || [ -L "$VM_ID_FILE" ] ||
+     [ "$(stat -c '%u' "$VM_ID_FILE")" -ne "$CURRENT_UID" ]; then
+    echo "VM installation identity is missing, unsafe, or not owned by the current user: $VM_ID_FILE" >&2
+    return 1
+  fi
+  VM_UUID="$(tr -d '\n' < "$VM_ID_FILE")"
+  if [[ ! "$VM_UUID" =~ ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$ ]]; then
+    echo "VM installation identity is malformed: $VM_ID_FILE" >&2
+    return 1
+  fi
+}
+
+if [ "$SUMMARIZE_UPGRADE" -eq 1 ]; then
+  if [ "$BOOT_INSTALLED" -eq 1 ] || [ "$BUILD_ONLY" -eq 1 ] ||
+     [ "$SKIP_BUILD" -eq 1 ] || [ "$SECURE_BOOT" -eq 1 ]; then
+    echo "--summarize-upgrade cannot be combined with VM/build flags" >&2
+    exit 1
+  fi
+  OBSERVER="${LYRA_REHEARSAL_OBSERVER:-}"
+  if [ -z "$OBSERVER" ] || [ ! -f "$OBSERVER" ] || [ -L "$OBSERVER" ] ||
+     [ ! -x "$OBSERVER" ] || [ "$(stat -c '%u' "$OBSERVER")" -ne "$CURRENT_UID" ]; then
+    echo "LYRA_REHEARSAL_OBSERVER must be an owned executable regular file" >&2
+    exit 1
+  fi
+  python3 "$OBSERVER" --trace "$VM_TRACE_FILE" \
+    --observations "$VM_GUEST_EVIDENCE_FILE" --output "$VM_REHEARSAL_SUMMARY_FILE" \
+    --baseline-version 1.1 --baseline-build-id lyra-release-1.1 \
+    --target-version 1.2-beta.1 --target-build-id lyra-release-1.2-beta.1
+  exit 0
 fi
+
 if [ "$BOOT_INSTALLED" -eq 1 ] &&
    { [ "$BUILD_ONLY" -eq 1 ] || [ "$SKIP_BUILD" -eq 1 ]; }; then
   echo "--boot-installed cannot be combined with --build-only or --skip-build" >&2
@@ -201,8 +260,11 @@ audit_live_rootfs() {
   fi
 }
 
-# Timestamp every line, tee to log file and terminal.
-exec > >(while IFS= read -r line; do printf '%s %s\n' "$(date '+%H:%M:%S')" "$line"; done | tee -a "$LOG") 2>&1
+# Timestamp every line without spawning `date`. During KIWI package scriptlets
+# the host loader cache can be transiently inconsistent; a dynamically loaded
+# timestamp helper would then die, close this pipe and make the main build
+# process receive SIGPIPE before the loader guard can recover the host.
+exec > >(while IFS= read -r line; do printf '%(%H:%M:%S)T %s\n' -1 "$line"; done | tee -a "$LOG") 2>&1
 
 echo "=== $(date -Iseconds) run start (args: $*) ==="
 echo "--- using KIWI description: $KIWI_DESC ---"
@@ -247,6 +309,7 @@ if [ ! -x "$RELEASE_TOOL" ]; then
 fi
 "$RELEASE_TOOL" check
 EXPECTED_ISO_NAME="$("$RELEASE_TOOL" field iso_filename)"
+EXPECTED_KIWI_ISO_NAME="lyra-os.x86_64-$("$RELEASE_TOOL" field version_id).iso"
 BUILD_SOURCE_COMMIT="$(git -C "$REPO_ROOT" rev-parse HEAD)"
 BUILD_SOURCE_EPOCH="$(git -C "$REPO_ROOT" show -s --format=%ct "$BUILD_SOURCE_COMMIT")"
 if [ -n "$(git -C "$REPO_ROOT" status --porcelain --untracked-files=normal)" ]; then
@@ -271,6 +334,10 @@ fi
 if [ "$BOOT_INSTALLED" -eq 1 ]; then
   if ! command -v qemu-system-x86_64 >/dev/null 2>&1; then
     echo "required command not found: qemu-system-x86_64" >&2
+    exit 1
+  fi
+  if ! command -v python3 >/dev/null 2>&1 || [ ! -r "$REHEARSAL_TRACE_TOOL" ]; then
+    echo "upgrade rehearsal trace tool is unavailable" >&2
     exit 1
   fi
   if [ ! -r "$OVMF_CODE" ]; then
@@ -299,12 +366,18 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
   fi
 
   mkdir -p "$VM_DIR"
+  load_vm_uuid
   stop_previous_vm
-  rm -f "$VM_PID_FILE"
+  rm -f "$VM_PID_FILE" "$VM_MONITOR_SOCKET"
 
   INSTALLED_QEMU_ARGS=(
     -name lyra-os-test
     -pidfile "$VM_PID_FILE"
+    -monitor "unix:$VM_MONITOR_SOCKET,server=on,wait=off"
+    -uuid "$VM_UUID"
+    -chardev "file,id=upgrade-evidence,path=$VM_GUEST_EVIDENCE_FILE,append=on"
+    -device virtio-serial-pci
+    -device virtserialport,chardev=upgrade-evidence,name=org.lyraos.UpgradeEvidence
     -machine "$MACHINE"
     -cpu host
     -smp "$SMP"
@@ -322,6 +395,8 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
     INSTALLED_QEMU_ARGS+=(-global driver=cfi.pflash01,property=secure,value=on)
   fi
 
+  python3 "$REHEARSAL_TRACE_TOOL" --trace "$VM_TRACE_FILE" --uuid "$VM_UUID" \
+    --mode installed --disk "$DISK_IMG" --nvram "$OVMF_VARS"
   echo "--- booting installed disk without attaching an ISO ---"
   echo "--- preserving VM disk and UEFI state ---"
   echo "--- launching: qemu-system-x86_64 ${INSTALLED_QEMU_ARGS[*]} ---"
@@ -336,12 +411,16 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
 fi
 
 if [ "$SKIP_BUILD" -eq 0 ]; then
-  for command in kiwi-ng ldconfig ldd lsinitrd strings sudo xorriso unsquashfs; do
+  for command in kiwi-ng ldd lsinitrd strings "$PRIVILEGE_TOOL" xorriso unsquashfs; do
     if ! command -v "$command" >/dev/null 2>&1; then
       echo "required build command not found: $command" >&2
       exit 1
     fi
   done
+  if [ ! -x /usr/sbin/ldconfig ]; then
+    echo "required build command not found: /usr/sbin/ldconfig" >&2
+    exit 1
+  fi
   if [ "$USE_LOCAL_INSTALLER" -eq 1 ]; then
     for command in cargo install sha256sum; do
       if ! command -v "$command" >/dev/null 2>&1; then
@@ -376,7 +455,11 @@ repair_host_loader_cache() {
     return 0
   fi
   echo "!!! host loader cache became inconsistent; regenerating it with ldconfig"
-  sudo -n ldconfig
+  if [ "$PRIVILEGE_TOOL" = sudo ]; then
+    sudo -n ldconfig
+  else
+    pkexec /usr/sbin/ldconfig
+  fi
   if ! host_loader_is_healthy; then
     echo "!!! host loader cache is still inconsistent after ldconfig" >&2
     return 1
@@ -393,17 +476,29 @@ stop_loader_guard() {
   repair_host_loader_cache
 }
 
+abort_loader_guarded_build() {
+  echo "!!! build interrupted after the loader guard requested termination" >&2
+  if ! stop_loader_guard; then
+    echo "!!! host loader recovery failed while handling termination" >&2
+  fi
+  exit 130
+}
+
 start_loader_guard() {
   # Acquire credentials in the foreground so recovery never blocks on an
   # invisible password prompt in the background watcher.
-  sudo -v
+  if [ "$PRIVILEGE_TOOL" = sudo ]; then
+    sudo -v
+  else
+    pkexec /usr/bin/true
+  fi
   repair_host_loader_cache
   LOADER_GUARD_PARENT_PID="$BASHPID"
   (
     refresh_count=0
     while sleep 2; do
       refresh_count=$((refresh_count + 1))
-      if [ "$refresh_count" -ge 30 ]; then
+      if [ "$PRIVILEGE_TOOL" = sudo ] && [ "$refresh_count" -ge 30 ]; then
         if ! sudo -n -v; then
           echo "!!! loader guard could not renew its sudo credential; aborting build" >&2
           kill -TERM "$LOADER_GUARD_PARENT_PID"
@@ -411,7 +506,16 @@ start_loader_guard() {
         fi
         refresh_count=0
       fi
-      if ! repair_host_loader_cache; then
+      loader_recovered=0
+      for recovery_attempt in 1 2 3; do
+        if repair_host_loader_cache; then
+          loader_recovered=1
+          break
+        fi
+        echo "!!! loader guard recovery attempt $recovery_attempt failed" >&2
+        sleep 1
+      done
+      if [ "$loader_recovered" -ne 1 ]; then
         echo "!!! loader guard could not recover the host; aborting build" >&2
         kill -TERM "$LOADER_GUARD_PARENT_PID"
         exit 1
@@ -445,7 +549,7 @@ fi
 
 if [ "$SKIP_BUILD" -eq 0 ]; then
   echo "--- wiping the previous build dir; preserving the current ISO ---"
-  sudo rm -rf "$BUILD_DIR"
+  run_privileged rm -rf "$BUILD_DIR"
   ISO_PATH=""
 
   echo "--- staging clean KIWI description ---"
@@ -507,11 +611,11 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
 
   echo "--- using published Lyra Welcome RPM from OBS ---"
 
-  echo "--- building ISO with kiwi-ng (will prompt for sudo password) ---"
+  echo "--- building ISO with kiwi-ng via $PRIVILEGE_TOOL ---"
   start_loader_guard
   trap 'stop_loader_guard' EXIT
-  trap 'stop_loader_guard; exit 130' INT TERM
-  if sudo kiwi-ng \
+  trap 'abort_loader_guarded_build' INT TERM
+  if run_privileged kiwi-ng \
       --setenv="LYRA_BUILD_SOURCE_COMMIT=$BUILD_SOURCE_COMMIT" \
       --setenv="LYRA_BUILD_SOURCE_DIRTY=$BUILD_SOURCE_DIRTY" \
       --setenv="LYRA_BUILD_SOURCE_EPOCH=$BUILD_SOURCE_EPOCH" \
@@ -523,12 +627,18 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     BUILD_STATUS=0
   else
     BUILD_STATUS=$?
-    stop_loader_guard
+    if ! stop_loader_guard; then
+      echo "!!! host loader recovery also failed after the KIWI error" >&2
+    fi
     trap - EXIT INT TERM
     echo "!!! kiwi-ng build failed with exit code $BUILD_STATUS, see log above"
     exit "$BUILD_STATUS"
   fi
-  stop_loader_guard
+  if ! stop_loader_guard; then
+    trap - EXIT INT TERM
+    echo "!!! refusing post-build validation with an unhealthy host loader" >&2
+    exit 1
+  fi
   trap - EXIT INT TERM
 
   IMAGE_MTAB="$BUILD_DIR/build/image-root/etc/mtab"
@@ -539,7 +649,9 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   fi
 
   IMAGE_OS_RELEASE="$BUILD_DIR/build/image-root/etc/os-release"
-  if ! grep -Fx "VERSION_ID=\"$("$RELEASE_TOOL" field version_id)\"" \
+  if ! grep -Fx "VERSION_ID=\"$("$RELEASE_TOOL" field product_version)\"" \
+      "$IMAGE_OS_RELEASE" >/dev/null ||
+     ! grep -Fx "IMAGE_VERSION=\"$("$RELEASE_TOOL" field version_id)\"" \
       "$IMAGE_OS_RELEASE" >/dev/null; then
     echo "!!! built image /etc/os-release does not match release.toml" >&2
     exit 1
@@ -563,16 +675,21 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   IMAGE_WALLPAPER_DIR="$BUILD_DIR/build/image-root/usr/share/backgrounds/lyra"
   IMAGE_GNOME_DEFAULTS="$BUILD_DIR/build/image-root/usr/share/glib-2.0/schemas/zz-lyra-desktop-wallpaper.gschema.override"
   IMAGE_GTK4_DEFAULT="$BUILD_DIR/build/image-root/etc/skel/.config/gtk-4.0/gtk.css"
-  if [ ! -s "$IMAGE_WALLPAPER_DIR/lyra-dawn.png" ]; then
+  if ! rpm --root "$BUILD_DIR/build/image-root" -q \
+      lyra-os-theme lyra-os-icons lyra-os-wallpapers >/dev/null; then
+    echo "!!! built image is missing one or more split visual packages" >&2
+    exit 1
+  fi
+  if [ ! -s "$IMAGE_WALLPAPER_DIR/2702-dawn.png" ]; then
     echo "!!! built image is missing the default Lyra OS - Dawn wallpaper asset:" >&2
-    echo "  $IMAGE_WALLPAPER_DIR/lyra-dawn.png" >&2
+    echo "  $IMAGE_WALLPAPER_DIR/2702-dawn.png" >&2
     exit 1
   fi
   if ! grep -Fx \
-      "picture-uri='file:///usr/share/backgrounds/lyra/lyra-dawn.png'" \
+      "picture-uri='file:///usr/share/backgrounds/lyra/2702-dawn.png'" \
       "$IMAGE_GNOME_DEFAULTS" >/dev/null ||
      ! grep -Fx \
-      "picture-uri-dark='file:///usr/share/backgrounds/lyra/lyra-dawn.png'" \
+      "picture-uri-dark='file:///usr/share/backgrounds/lyra/2702-dawn.png'" \
       "$IMAGE_GNOME_DEFAULTS" >/dev/null; then
     echo "!!! built image does not use Lyra OS - Dawn as the default GNOME wallpaper" >&2
     exit 1
@@ -670,16 +787,24 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   fi
   echo "--- validated Lyra Installer executable and GNOME autostart chain ---"
 
-  BUILT_ISO="$(sudo find "$BUILD_DIR" -maxdepth 1 -type f -name '*.iso' -print -quit)"
+  BUILT_ISO="$(find "$BUILD_DIR" -maxdepth 1 -type f -name '*.iso' -print -quit)"
   if [ -z "$BUILT_ISO" ]; then
     echo "!!! kiwi-ng reported success but no .iso found under $BUILD_DIR"
     exit 1
   fi
   if [ "$(basename "$BUILT_ISO")" != "$EXPECTED_ISO_NAME" ]; then
-    echo "!!! KIWI generated an unexpected ISO name:" >&2
-    echo "  expected: $EXPECTED_ISO_NAME" >&2
-    echo "  found:    $(basename "$BUILT_ISO")" >&2
-    exit 1
+    if [ "$(basename "$BUILT_ISO")" != "$EXPECTED_KIWI_ISO_NAME" ]; then
+      echo "!!! KIWI generated an unrecognized ISO name: $(basename "$BUILT_ISO")" >&2
+      exit 1
+    fi
+    KIWI_ISO_STEM="${EXPECTED_KIWI_ISO_NAME%.iso}"
+    EXPECTED_ISO_STEM="${EXPECTED_ISO_NAME%.iso}"
+    echo "--- normalizing KIWI artifacts: $KIWI_ISO_STEM -> $EXPECTED_ISO_STEM ---"
+    for SIBLING in "$BUILD_DIR/$KIWI_ISO_STEM".*; do
+      [ -e "$SIBLING" ] || continue
+      run_privileged mv "$SIBLING" "$BUILD_DIR/$EXPECTED_ISO_STEM.${SIBLING##*.}"
+    done
+    BUILT_ISO="$BUILD_DIR/$EXPECTED_ISO_NAME"
   fi
 
   ISO_GRUB_CFG="$WORK_DIR/iso-grub.cfg"
@@ -756,8 +881,8 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
   ISO_STAGED="$ISO_DIR/.$ISO_NAME.new"
   rm -f "$ISO_STAGED"
   echo "--- staging $BUILT_ISO -> $ISO_STAGED ---"
-  sudo cp "$BUILT_ISO" "$ISO_STAGED"
-  sudo chown "$(id -u):$(id -g)" "$ISO_STAGED"
+  run_privileged cp "$BUILT_ISO" "$ISO_STAGED"
+  run_privileged chown "$(id -u):$(id -g)" "$ISO_STAGED"
 
   EXISTING_ISOS=()
   mapfile -d '' -t EXISTING_ISOS < <(
@@ -866,7 +991,12 @@ fi
 mkdir -p "$VM_DIR"
 stop_previous_vm
 echo "--- deleting previous VM disk and UEFI state ---"
-rm -f "$DISK_IMG" "$OVMF_VARS_STANDARD" "$OVMF_VARS_SECURE" "$VM_PID_FILE"
+rm -f "$DISK_IMG" "$OVMF_VARS_STANDARD" "$OVMF_VARS_SECURE" "$VM_PID_FILE" "$VM_MONITOR_SOCKET" "$VM_ID_FILE" "$VM_TRACE_FILE" "$VM_GUEST_EVIDENCE_FILE"
+
+VM_ID_TMP="$VM_ID_FILE.tmp.$$"
+(umask 077; tr -d '\n' < /proc/sys/kernel/random/uuid > "$VM_ID_TMP")
+mv "$VM_ID_TMP" "$VM_ID_FILE"
+load_vm_uuid
 
 echo "--- creating install-target disk: $DISK_IMG ($DISK_SIZE) ---"
 qemu-img create -f qcow2 "$DISK_IMG" "$DISK_SIZE"
@@ -885,6 +1015,11 @@ fi
 QEMU_ARGS=(
   -name lyra-os-test
   -pidfile "$VM_PID_FILE"
+  -monitor "unix:$VM_MONITOR_SOCKET,server=on,wait=off"
+  -uuid "$VM_UUID"
+  -chardev "file,id=upgrade-evidence,path=$VM_GUEST_EVIDENCE_FILE,append=on"
+  -device virtio-serial-pci
+  -device virtserialport,chardev=upgrade-evidence,name=org.lyraos.UpgradeEvidence
   -machine "$MACHINE"
   -cpu host
   -smp "$SMP"
@@ -903,6 +1038,8 @@ if [ "$SECURE_BOOT" -eq 1 ]; then
 fi
 
 echo "--- booting live ISO once; subsequent reboot uses the installed disk ---"
+python3 "$REHEARSAL_TRACE_TOOL" --trace "$VM_TRACE_FILE" --uuid "$VM_UUID" \
+  --mode live --disk "$DISK_IMG" --nvram "$OVMF_VARS"
 QEMU_ARGS+=(-cdrom "$ISO_PATH")
 QEMU_ARGS+=(-boot order=c,once=d,menu=on)
 

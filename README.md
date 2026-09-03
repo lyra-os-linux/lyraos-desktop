@@ -1,9 +1,34 @@
 # Lyra OS
 
-Lyra OS é uma distribuição Linux desktop baseada no openSUSE Leap 16,
+Lyra OS é uma distribuição Linux desktop baseada no openSUSE Leap 16.1,
 voltada a uma experiência GNOME simples, estável e integrada ao ecossistema
 Lyra. Este repositório contém a descrição KIWI usada para gerar a ISO live e
-o instalador da edição **Odisseia 27.02 Alpha 7** para computadores x86_64.
+o instalador da edição **Odisseia 1.1 Alpha 7** para computadores x86_64.
+
+## Edições oficiais
+
+O Lyra OS mantém três edições oficiais, com imagens, integração do desktop e
+gates de qualidade independentes:
+
+| Edição | Repositório | Central Vega | Acompanhamento |
+|---|---|---|---|
+| GNOME | este repositório | Vega GTK | [estabilização](https://github.com/lyra-os-linux/lyraos-desktop/issues/56) |
+| KDE Plasma | [`lyraos-desktop-kde`](https://github.com/lyra-os-linux/lyraos-desktop-kde) | Vega Qt | [estabilização](https://github.com/lyra-os-linux/lyraos-desktop-kde/issues/1) |
+| XFCE | [`lyraos-desktop-xfce`](https://github.com/lyra-os-linux/lyraos-desktop-xfce) | Vega XFCE | [estabilização](https://github.com/lyra-os-linux/lyraos-desktop-xfce/issues/1) |
+
+Até **28 de setembro de 2026**, o foco do projeto é estabilizar as três
+edições e impedir regressões compartilhadas no instalador, boot, identidade
+visual, atualizações e integração com o Vega.
+
+## ECA Digital nas três edições
+
+A adequação ao ECA Digital é um requisito do Lyra OS, não apenas da edição
+GNOME. GNOME, KDE Plasma e XFCE devem compartilhar o mesmo serviço de
+políticas, os mesmos contratos de privacidade e os mesmos gates de segurança.
+Cada edição expõe essas funções em sua interface Vega nativa — GTK, Qt ou
+XFCE — sem alterar as garantias do backend. O trabalho é acompanhado pelo
+[épico do ECA Digital](https://github.com/lyra-os-linux/lyraos-desktop/issues/11)
+e por suas issues vinculadas.
 
 > [!IMPORTANT]
 > O projeto ainda está em desenvolvimento. A ISO não deve ser considerada uma
@@ -22,7 +47,7 @@ o instalador da edição **Odisseia 27.02 Alpha 7** para computadores x86_64.
   memória virtual;
 - Firefox, VLC, Flatpak e Flathub;
 - Vega, Sheliak e Fina pré-instalados pelos repositórios OBS do Lyra;
-- identidade visual Lyra Enterprise no desktop e no GRUB;
+- identidade visual Lyra OS no desktop e no GRUB;
 - `lyra-report` para diagnóstico local e sob demanda, sem telemetria ou envio
   automático de dados.
 
@@ -50,11 +75,12 @@ Ainda estão pendentes:
 Consulte a [documentação técnica do KIWI](kiwi/README.md) para conhecer as
 decisões de implementação, limitações e verificações já realizadas.
 
-## Próximos ciclos
+## Ciclo atual e próximos ciclos
 
-A versão 27.02 terá o Lyra Installer em `en-US`, `pt-BR` e `es-ES`,
+A estabilização conjunta de GNOME, KDE Plasma e XFCE segue até 28 de setembro
+de 2026. A versão 1.1 terá o Lyra Installer em `en-US`, `pt-BR` e `es-ES`,
 com inglês como padrão e fallback. Os demais pacotes próprios continuam com
-o gate integral em `en-US`/`pt-BR`; sua ampliação fica para a versão 27.10. O cronograma e os
+o gate integral em `en-US`/`pt-BR`; sua ampliação fica para uma release futura. O cronograma e os
 gates estão registrados no [roadmap do projeto](docs/roadmap.md).
 
 ## Preparando o ambiente

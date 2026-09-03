@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import stat
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -45,6 +46,57 @@ class ImagePolicyTests(unittest.TestCase):
         }
         self.assertIn("man", shared_image_packages)
 
+    def test_btrfs_scrub_is_monthly_without_write_heavy_maintenance(self) -> None:
+        root = ET.parse(ROOT / "kiwi/config.xml").getroot()
+        shared_image_packages = {
+            package.attrib["name"]
+            for packages in root.findall("packages")
+            if packages.attrib.get("type") == "image"
+            and "profiles" not in packages.attrib
+            for package in packages.findall("package")
+        }
+        self.assertIn("btrfsmaintenance", shared_image_packages)
+
+        config_sh = (ROOT / "kiwi/config.sh").read_text(encoding="utf-8")
+        maintenance = config_sh[
+            config_sh.index("# Verify Btrfs checksums monthly") :
+            config_sh.index("# Flathub is shipped")
+        ]
+        for setting in (
+            "BTRFS_SCRUB_MOUNTPOINTS /",
+            "BTRFS_SCRUB_PERIOD monthly",
+            "BTRFS_SCRUB_PRIORITY idle",
+            "BTRFS_SCRUB_READ_ONLY false",
+            "BTRFS_BALANCE_PERIOD none",
+            "BTRFS_DEFRAG_PERIOD none",
+            "BTRFS_TRIM_PERIOD none",
+            "BTRFS_ALLOW_CONCURRENCY false",
+        ):
+            self.assertIn(setting, maintenance)
+        self.assertIn(
+            "systemctl enable btrfsmaintenance-refresh.path btrfs-scrub.timer",
+            maintenance,
+        )
+        self.assertIn(
+            "systemctl disable btrfs-balance.timer btrfs-defrag.timer btrfs-trim.timer",
+            maintenance,
+        )
+
+    def test_product_release_identity_is_owned_by_an_rpm(self) -> None:
+        root = ET.parse(ROOT / "kiwi/config.xml").getroot()
+        packages = {node.attrib["name"] for node in root.findall("packages/package")}
+        self.assertIn("lyra-release", packages)
+        spec = (ROOT / "packaging/lyra-release/lyra-release.spec").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("%{_prefix}/lib/lyra-os/product-release", spec)
+
+    def test_vm_helper_distinguishes_product_and_artifact_versions(self) -> None:
+        helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
+        self.assertIn('field product_version)', helper)
+        self.assertIn('field version_id)', helper)
+        self.assertIn('IMAGE_VERSION=', helper)
+
     def test_zypper_cache_policy_matches_vega_update_flow(self) -> None:
         config = (
             ROOT / "kiwi/root/etc/zypp/zypp.conf.d/90-lyra-refresh.conf"
@@ -66,6 +118,7 @@ class ImagePolicyTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         for policy in (
             "ExecStartPre=/usr/libexec/lyra-localsearch-preflight",
+            "Environment=LD_LIBRARY_PATH=/usr/lib64/zlib-ng-compat",
             "StartLimitBurst=3",
             "CPUWeight=10",
             "MemoryHigh=512M",
@@ -485,8 +538,26 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("start_loader_guard", helper)
         self.assertIn("stop_loader_guard", helper)
         self.assertIn("sudo -n ldconfig", helper)
-        self.assertLess(helper.index("start_loader_guard"), helper.index("sudo kiwi-ng"))
-        self.assertGreater(helper.rindex("stop_loader_guard"), helper.index("sudo kiwi-ng"))
+        self.assertIn(
+            "host loader recovery also failed after the KIWI error", helper
+        )
+        self.assertIn(
+            "refusing post-build validation with an unhealthy host loader", helper
+        )
+        self.assertIn("for recovery_attempt in 1 2 3", helper)
+        self.assertIn("loader guard recovery attempt", helper)
+        self.assertIn("abort_loader_guarded_build", helper)
+        self.assertIn(
+            "build interrupted after the loader guard requested termination", helper
+        )
+        self.assertIn("printf '%(%H:%M:%S)T %s\\n' -1", helper)
+        self.assertNotIn("\"$(date '+%H:%M:%S')\"", helper)
+        self.assertLess(
+            helper.index("start_loader_guard"), helper.index("run_privileged kiwi-ng")
+        )
+        self.assertGreater(
+            helper.rindex("stop_loader_guard"), helper.index("run_privileged kiwi-ng")
+        )
 
     def test_vm_helper_can_boot_installed_disk_without_iso_or_reset(self) -> None:
         helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
@@ -501,6 +572,45 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertNotIn("-cdrom", branch)
         self.assertNotIn('rm -f "$DISK_IMG"', branch)
         self.assertIn("preserving VM disk and UEFI state", branch)
+        self.assertIn('VM_MONITOR_SOCKET="$VM_DIR/qemu-monitor.sock"', helper)
+        self.assertEqual(
+            helper.count('-monitor "unix:$VM_MONITOR_SOCKET,server=on,wait=off"'),
+            2,
+        )
+        self.assertIn('VM_ID_FILE="$VM_DIR/installation.uuid"', helper)
+        self.assertEqual(helper.count('-uuid "$VM_UUID"'), 4)
+        self.assertIn("load_vm_uuid", branch)
+        self.assertNotIn('rm -f "$VM_ID_FILE"', branch)
+        self.assertIn('VM_GUEST_EVIDENCE_FILE="$VM_DIR/upgrade-guest-evidence.jsonl"', helper)
+        self.assertEqual(helper.count("name=org.lyraos.UpgradeEvidence"), 2)
+        self.assertNotIn('rm -f "$VM_GUEST_EVIDENCE_FILE"', branch)
+
+    def test_upgrade_rehearsal_trace_is_atomic_and_bound_to_vm_artifacts(self) -> None:
+        tool = ROOT / "kiwi/test/rehearsal-trace.py"
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            disk, nvram, trace = root / "disk", root / "nvram", root / "trace.json"
+            disk.write_bytes(b"disk")
+            nvram.write_bytes(b"nvram")
+            identity = "12345678-1234-4234-8234-123456789abc"
+            base = [sys.executable, str(tool), "--trace", str(trace), "--uuid", identity, "--disk", str(disk), "--nvram", str(nvram)]
+            subprocess.run([*base, "--mode", "live"], check=True)
+            subprocess.run([*base, "--mode", "installed"], check=True)
+            document = json.loads(trace.read_text(encoding="utf-8"))
+            self.assertEqual(document["status"], "in-progress")
+            self.assertEqual(document["qemu_launch_count"], 2)
+            self.assertEqual([item["mode"] for item in document["launches"]], ["live", "installed"])
+            disk.unlink()
+            disk.write_bytes(b"replacement")
+            self.assertNotEqual(subprocess.run([*base, "--mode", "installed"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode, 0)
+
+    def test_vm_helper_summarizes_rehearsal_without_launching_qemu(self) -> None:
+        helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
+        self.assertIn("--summarize-upgrade", helper)
+        self.assertIn("LYRA_REHEARSAL_OBSERVER", helper)
+        self.assertIn("upgrade-rehearsal-observations.json", helper)
+        self.assertIn("--baseline-build-id lyra-release-1.1", helper)
+        self.assertIn("--target-build-id lyra-release-1.2-beta.1", helper)
 
     def test_vm_helper_rejects_a_stale_published_installer(self) -> None:
         helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
@@ -651,8 +761,39 @@ class ImagePolicyTests(unittest.TestCase):
 
 
 class ArtifactTests(unittest.TestCase):
+    def alpha8_release_file(self, directory: Path) -> Path:
+        path = directory / "release-alpha8.toml"
+        path.write_text(
+            """[release]
+version = "1.0"\nbase_distribution = "opensuse-leap"\nbase_version = "16.1"
+stage = "alpha"
+iteration = 8
+codename = "Odisseia"
+codename_id = "odisseia"
+image_name = "lyra-os"
+architecture = "x86_64"
+""",
+            encoding="utf-8",
+        )
+        return path
+
     def create_artifacts(self, directory: Path) -> None:
         (directory / "lyra.iso").write_bytes(b"iso")
+        (directory / "lyra.iso.manifest.json").write_text(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "version": image_build.version_id(),
+                    "source": {"commit": "a" * 40, "dirty": False},
+                    "iso": {
+                        "filename": "lyra.iso",
+                        "sha256": image_build.sha256(directory / "lyra.iso"),
+                    },
+                }
+            )
+            + "\n",
+            encoding="utf-8",
+        )
         (directory / "lyra.packages").write_text(
             "fina|(none)|0.4.0|12.1|x86_64|obs://build.opensuse.org/"
             "home:rodrigosbrito:fina/repo/revision-fina|MIT\n",
@@ -744,6 +885,28 @@ class ArtifactTests(unittest.TestCase):
                 set(document["test_results"]), set(manifest.required_test_results)
             )
             self.assertFalse(document["source"]["dirty"])
+            self.assertEqual(document["source"]["commit"], "a" * 40)
+
+    def test_manifest_rejects_iso_build_manifest_with_wrong_checksum(self) -> None:
+        manifest = image_build.Manifest.load()
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            self.create_artifacts(directory)
+            build_manifest_path = directory / "lyra.iso.manifest.json"
+            build_manifest = json.loads(build_manifest_path.read_text(encoding="utf-8"))
+            build_manifest["iso"]["sha256"] = "0" * 64
+            build_manifest_path.write_text(
+                json.dumps(build_manifest) + "\n", encoding="utf-8"
+            )
+            with self.assertRaisesRegex(
+                image_build.PolicyError, "does not match the candidate ISO"
+            ):
+                image_build.artifact_manifest(
+                    manifest,
+                    directory,
+                    directory / "manifest.json",
+                    self.create_test_results(manifest, directory),
+                )
 
     def test_alpha_manifest_accepts_checksum_without_detached_signature(self) -> None:
         manifest = image_build.Manifest.load()
@@ -762,6 +925,88 @@ class ArtifactTests(unittest.TestCase):
                 image_build.artifact_manifest(manifest, directory, output, tests)
             document = json.loads(output.read_text(encoding="utf-8"))
             self.assertNotIn("checksum_signature", document["artifacts"])
+
+    def test_alpha8_adds_upgrade_compliance_i18n_and_freeze_evidence(self) -> None:
+        manifest = image_build.Manifest.load()
+        with tempfile.TemporaryDirectory() as temporary:
+            release_file = self.alpha8_release_file(Path(temporary))
+            required = set(image_build.required_test_result_names(manifest, release_file))
+        self.assertEqual(required - set(manifest.required_test_results), image_build.ALPHA8_TEST_RESULTS)
+
+    def test_upgrade_rehearsal_requires_faults_reboot_signature_and_rollback(self) -> None:
+        valid = {
+            "schema": 1,
+            "status": "passed",
+            "mode": "upgrade-rehearsal",
+            "phase": "rollback-verified",
+            "checks": [{"id": "successor", "status": "passed"}],
+            "facts": {
+                "baseline_version": "1.0",
+                "target_version": "1.0.1",
+                "manifest_signature_verified": True,
+                "offline_applied": True,
+                "reboot_count": 2,
+                "rollback_baseline_verified": True,
+                "fault_scenarios": [
+                    "network-loss", "low-space", "ui-terminated",
+                    "state-truncated", "rpm-failure", "initramfs-failure",
+                ],
+            },
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            iso = Path(temporary) / "candidate.iso"
+            iso.write_bytes(b"iso")
+            image_build.validate_test_result("upgrade-rehearsal", valid, iso_path=iso)
+            valid["facts"]["fault_scenarios"].remove("initramfs-failure")
+            with self.assertRaisesRegex(image_build.PolicyError, "incomplete"):
+                image_build.validate_test_result("upgrade-rehearsal", valid, iso_path=iso)
+
+    def test_freeze_gate_is_fail_closed_and_has_fixed_locale_scope(self) -> None:
+        valid = {
+            "schema": 1,
+            "status": "passed",
+            "mode": "feature-freeze",
+            "checks": [{"id": "scope", "status": "passed"}],
+            "decision": "GO",
+            "open_p0": 0,
+            "open_p1": 0,
+            "locales": ["en-US", "pt-BR", "es-ES"],
+            "all_features_implemented_or_removed": True,
+            "documentation_consistent": True,
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            iso = Path(temporary) / "candidate.iso"
+            iso.write_bytes(b"iso")
+            image_build.validate_test_result("feature-freeze", valid, iso_path=iso)
+            valid["open_p1"] = 1
+            with self.assertRaisesRegex(image_build.PolicyError, "not eligible"):
+                image_build.validate_test_result("feature-freeze", valid, iso_path=iso)
+
+    def test_eca_and_i18n_gates_require_the_fixed_three_locale_scope(self) -> None:
+        common = {
+            "schema": 1,
+            "status": "passed",
+            "checks": [{"id": "coverage", "status": "passed"}],
+            "locales": ["en-US", "pt-BR", "es-ES"],
+        }
+        eca = {
+            **common,
+            "mode": "eca-digital",
+            "legal_review": "review-1",
+            "security_review": "review-2",
+            "privacy_impact_assessment": "review-3",
+            "negative_and_evasion_tests": True,
+            "retains_sensitive_age_evidence": False,
+        }
+        i18n = {**common, "mode": "i18n", "fallback": "en-US"}
+        with tempfile.TemporaryDirectory() as temporary:
+            iso = Path(temporary) / "candidate.iso"
+            iso.write_bytes(b"iso")
+            image_build.validate_test_result("eca-digital", eca, iso_path=iso)
+            image_build.validate_test_result("i18n", i18n, iso_path=iso)
+            eca["retains_sensitive_age_evidence"] = True
+            with self.assertRaisesRegex(image_build.PolicyError, "incomplete"):
+                image_build.validate_test_result("eca-digital", eca, iso_path=iso)
 
     def test_beta_manifest_rejects_missing_detached_signature(self) -> None:
         manifest = image_build.Manifest.load()
