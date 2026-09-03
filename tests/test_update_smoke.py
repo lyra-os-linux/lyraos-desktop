@@ -106,6 +106,13 @@ class UpdateSmokeTests(unittest.TestCase):
             self.assertEqual(verified["status"], "incomplete")
             prepared = update_smoke.prepare_rollback(state_path=state, runner=runner)
             self.assertEqual(prepared["status"], "incomplete")
+            self.assertIn(
+                [
+                    "snapper", "--no-dbus", "--config", "root", "--ambit",
+                    "classic", "rollback", "1",
+                ],
+                runner.calls,
+            )
             runner.kernel = "6.12.0-fixture"
             rolled_back = update_smoke.verify_rollback(root=root, state_path=state, runner=runner)
             self.assertEqual(rolled_back["status"], "passed")

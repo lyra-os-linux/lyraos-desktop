@@ -419,7 +419,10 @@ def prepare_rollback(*, state_path: Path, runner: Runner) -> dict[str, object]:
     require_phase(state, {"updated-verified"})
     snapshot = int(state["rollback_snapshot"])
     code, _ = runner(
-        ["snapper", "--no-dbus", "--config", "root", "rollback", str(snapshot)],
+        [
+            "snapper", "--no-dbus", "--config", "root", "--ambit", "classic",
+            "rollback", str(snapshot),
+        ],
         600,
     )
     checks = [
