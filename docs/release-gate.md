@@ -37,6 +37,20 @@ risk.
   present in the candidate;
 - [ ] the candidate is tagged only after all blocking checks pass.
 
+### Preserve and publish the tested candidate
+
+The ISO identified by its filename, source commit and SHA-256 is the release
+candidate. As soon as that exact ISO passes every blocking gate, freeze it,
+generate the remaining files with `--artifacts-only`, and upload the bundle in
+the same release run. Do not rebuild an approved ISO merely to prepare or
+publish artifacts.
+
+Preserve the tested ISO while resolving packaging, evidence or upload-tool
+problems. Any source or image-content change creates a new candidate with a new
+checksum and requires the applicable gates to be repeated; evidence from the
+discarded ISO must not be relabeled for the replacement. This ordering avoids
+spending a complete validation cycle on an image that is never published.
+
 ## Required evidence
 
 Each file is structured JSON with schema 1 and top-level
@@ -109,9 +123,10 @@ commit that publishes the first candidate signed by the new key.
   workarounds;
 - [ ] the evidence manifest is generated from a clean commit and contains all
   required green results;
-- [ ] ISO and evidence are uploaded to SourceForge and downloaded again for
-  checksum verification; signature verification is additionally mandatory
-  from Beta 1 onward;
+- [ ] the exact tested ISO and its evidence are uploaded to SourceForge
+  immediately after GO; Alpha 7 does not require a post-upload redownload, but
+  independent local checksum verification remains mandatory; signature
+  verification is additionally mandatory from Beta 1 onward;
 - [ ] #1 records coordinator, decision time, evidence URLs, accepted P2/P3
   risks and the exact source commit.
 

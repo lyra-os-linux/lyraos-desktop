@@ -232,6 +232,17 @@ class RepositoryMetadataTests(unittest.TestCase):
             self.assertIn(evidence, gate)
             self.assertIn(evidence, contract)
 
+    def test_tested_candidate_is_published_without_rebuild(self) -> None:
+        gate = (ROOT / "docs/release-gate.md").read_text(encoding="utf-8")
+        builds = (ROOT / "docs/image-builds.md").read_text(encoding="utf-8")
+        normalized_gate = " ".join(gate.split())
+
+        self.assertIn("Preserve and publish the tested candidate", gate)
+        self.assertIn("Do not rebuild an approved ISO", gate)
+        self.assertIn("upload the bundle in the same release run", normalized_gate)
+        self.assertIn("Treat the tested ISO as immutable", builds)
+        self.assertIn("--artifacts-only", builds)
+
     def test_build_manifest_is_traceable(self) -> None:
         release = Release.from_file()
         with tempfile.TemporaryDirectory() as directory:
