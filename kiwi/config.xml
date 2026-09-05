@@ -423,6 +423,9 @@
     <package name="baobab"/>
     <package name="gnome-logs"/>
     <package name="gnome-tweaks"/>
+    <!-- Manage Sheliak and other Shell extensions through GNOME's native UI.
+         Its translations are provided by gnome-shell-lang below. -->
+    <package name="gnome-extensions"/>
     <!-- Accessibility - kept deliberately; curation is about redundant
          apps, not accessibility tooling. -->
     <package name="orca"/>
