@@ -547,24 +547,18 @@ class ImagePolicyTests(unittest.TestCase):
             helper.index('echo "--- building ISO with kiwi-ng'),
         )
 
-    def test_image_activates_complete_lyra_gtk_theme_for_new_users(self) -> None:
+    def test_image_uses_standard_gnome_gtk_for_new_users(self) -> None:
         override = (
             ROOT
             / "kiwi/root/usr/share/glib-2.0/schemas/zz-lyra-desktop-wallpaper.gschema.override"
         ).read_text(encoding="utf-8")
-        gtk4 = (ROOT / "kiwi/root/etc/skel/.config/gtk-4.0/gtk.css").read_text(
-            encoding="utf-8"
-        )
-        self.assertIn("[org.gnome.desktop.interface]", override)
-        self.assertIn("gtk-theme='Lyra-OS'", override)
-        self.assertIn("color-scheme='prefer-dark'", override)
-        self.assertIn(
-            '@import url("file:///usr/share/themes/Lyra-OS/gtk-4.0/gtk.css");',
-            gtk4,
-        )
+        self.assertNotIn("gtk-theme=", override)
+        self.assertNotIn("color-scheme=", override)
+        self.assertIn("2702-dawn.png", override)
+        self.assertFalse((ROOT / "kiwi/root/etc/skel/.config/gtk-4.0/gtk.css").exists())
         helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
-        self.assertIn("IMAGE_GTK4_DEFAULT", helper)
-        self.assertIn("does not activate the complete Lyra OS GTK theme", helper)
+        self.assertIn("overrides the standard GNOME GTK theme", helper)
+        self.assertNotIn("lyra-dawn.png", helper)
 
     def test_vm_helper_keeps_build_output_outside_the_source_checkout(self) -> None:
         helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")

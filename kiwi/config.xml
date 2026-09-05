@@ -550,12 +550,13 @@
         plymouth-dracut; only the GRUB theme is enabled on the live path.
       - It also ships a compiled-in gsettings default
         (/usr/share/glib-2.0/schemas/99-lyra-os.gschema.override:
-        icon-theme, accent-color, color-scheme=prefer-dark, both
+        icon-theme and both
         picture-uri/picture-uri-dark wallpapers). The Desktop overlay's
         later zz-lyra-desktop-wallpaper.gschema.override intentionally selects
         Lyra OS - Dawn for both color schemes, while leaving the setting
         user-changeable.
-      - Its %post also installs the GDM dconf defaults and branded logo.
+      - GTK and Shell use the standard GNOME theme; Lyra icons follow the
+        selected accent color. Its %post installs the GDM defaults and logo.
       - Lyra's own 99-lyra-desktop-defaults.gschema.override enables the
         minimize/maximize titlebar buttons and keeps directories before files
         in Nautilus/GTK file views. These are defaults, not locked settings.
