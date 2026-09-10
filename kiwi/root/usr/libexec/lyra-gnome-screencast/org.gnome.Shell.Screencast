@@ -1,0 +1,16 @@
+import Gst from 'gi://Gst?version=1.0';
+import {programInvocationName, programArgs} from 'system';
+
+import {installGStreamerCompatibility} from './gstreamerCompat.js';
+
+installGStreamerCompatibility(Gst);
+
+// Keep the upstream entry-point basename and package initialization so the
+// service continues to load GNOME's installed resources and implementation.
+imports.package.init({
+    name: 'gnome-shell',
+    prefix: '/usr',
+    libdir: '/usr/lib64',
+});
+const {main} = await import(`${imports.package.moduledir}/main.js`);
+await main([programInvocationName, ...programArgs]);

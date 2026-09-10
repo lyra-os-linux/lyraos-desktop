@@ -694,15 +694,12 @@ if [ "$SKIP_BUILD" -eq 0 ]; then
     echo "!!! built image does not use Lyra OS - Dawn as the default GNOME wallpaper" >&2
     exit 1
   fi
-  if ! grep -Fx "gtk-theme='Lyra-OS'" "$IMAGE_GNOME_DEFAULTS" >/dev/null ||
-     ! grep -Fx "color-scheme='prefer-dark'" "$IMAGE_GNOME_DEFAULTS" >/dev/null ||
-     ! grep -Fx \
-       '@import url("file:///usr/share/themes/Lyra-OS/gtk-4.0/gtk.css");' \
-       "$IMAGE_GTK4_DEFAULT" >/dev/null; then
-    echo "!!! built image does not activate the complete Lyra OS GTK theme" >&2
+  if grep -Eq "^gtk-theme=.*Lyra" "$IMAGE_GNOME_DEFAULTS" ||
+     [ -s "$IMAGE_GTK4_DEFAULT" ]; then
+    echo "!!! built image overrides the standard GNOME GTK theme" >&2
     exit 1
   fi
-  echo "--- validated Lyra OS - Dawn wallpaper and complete GTK defaults ---"
+  echo "--- validated Lyra OS - Dawn wallpaper and standard GNOME GTK defaults ---"
 
   IMAGE_INSTALLER_GUI="$BUILD_DIR/build/image-root/usr/bin/lyra-installer"
   IMAGE_INSTALLER_LOCK="$BUILD_DIR/build/image-root/usr/bin/lyra-install-lock"
