@@ -600,7 +600,8 @@ class ImagePolicyTests(unittest.TestCase):
             self.assertEqual(document["status"], "in-progress")
             self.assertEqual(document["qemu_launch_count"], 2)
             self.assertEqual([item["mode"] for item in document["launches"]], ["live", "installed"])
-            disk.unlink()
+            # Keep the previous inode allocated; unlink may reuse it immediately.
+            disk.rename(root / "previous-disk")
             disk.write_bytes(b"replacement")
             self.assertNotEqual(subprocess.run([*base, "--mode", "installed"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode, 0)
 

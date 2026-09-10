@@ -58,6 +58,7 @@ class ControlledSuccessorTests(unittest.TestCase):
             self.assertIn("Version:        1.2~beta.1", spec)
             self.assertIn("LYRA_VERSION_ID='1.2-beta.1'", product)
             self.assertIn("LYRA_BUILD_ID='lyra-release-1.2-beta.1'", product)
+            self.assertEqual(manifest["source"]["version"], "1.1")
             self.assertEqual(manifest["source"]["build_id"], "lyra-release-1.1")
             self.assertEqual(manifest["target"]["build_id"], "lyra-release-1.2-beta.1")
             self.assertEqual(manifest["status"], "testing")

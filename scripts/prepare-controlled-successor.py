@@ -88,7 +88,7 @@ def prepare(args: argparse.Namespace) -> Path:
         "valid_from": args.valid_from,
         "valid_until": args.valid_until,
         "source": {
-            "version": "1.0", "edition": "desktop", "architecture": "x86_64",
+            "version": "1.1", "edition": "desktop", "architecture": "x86_64",
             "build_id": "lyra-release-1.1",
         },
         "target": {
