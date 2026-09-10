@@ -203,10 +203,9 @@ chown -R liveuser:"$(id -gn liveuser)" /home/liveuser/.config /home/liveuser/.lo
 # managers, some installers) working correctly; everything user-visible
 # says Lyra OS. Overwrites whatever openSUSE-release just installed.
 #
-# Deliberately no HOME_URL/BUG_REPORT_URL/LOGO here: there's no
-# confirmed project website, issue tracker, or a matching icon name
-# shipped by lyra-os-icons to point them at - adding guessed
-# URLs/icon names felt worse than leaving these optional fields out.
+# Deliberately no HOME_URL/BUG_REPORT_URL here: there's no
+# confirmed project website or issue tracker in this image contract.
+# The distro logo is provided by lyra-os-icons (including hicolor).
 cat > /etc/os-release <<EOF
 NAME="Lyra OS"
 PRETTY_NAME="$LYRA_PRETTY_NAME"
@@ -219,6 +218,7 @@ BUILD_ID="$LYRA_BUILD_ID"
 IMAGE_ID="$LYRA_IMAGE_NAME"
 IMAGE_VERSION="$LYRA_ARTIFACT_VERSION"
 CPE_NAME="cpe:/o:rodrigosbrito:lyra_os:$LYRA_VERSION_ID"
+LOGO="distributor-logo-lyra"
 EOF
 
 exit 0
