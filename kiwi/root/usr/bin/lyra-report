@@ -160,6 +160,10 @@ collect failed-units /usr/bin/systemctl --failed --no-pager
 collect boot-time /usr/bin/systemd-analyze
 collect journal-warnings /usr/bin/journalctl -b -p warning..alert --no-pager \
     --output=short-monotonic --lines=2000
+collect gnome-shell-journal /usr/bin/journalctl -b _COMM=gnome-shell \
+    --no-pager --output=short-monotonic --lines=2000
+collect gnome-shell-coredumps /usr/bin/coredumpctl list /usr/bin/gnome-shell \
+    --no-pager
 collect network-devices /usr/bin/nmcli --terse --fields DEVICE,TYPE,STATE device status
 collect network-addresses /usr/sbin/ip --brief address
 collect network-routes /usr/sbin/ip route show
@@ -177,6 +181,9 @@ collect secure-boot /usr/bin/mokutil --sb-state
 collect efi-boot /usr/sbin/efibootmgr -v
 collect flatpak-remotes /usr/bin/flatpak remotes --system --show-details
 collect gnome-version /usr/bin/gnome-shell --version
+collect graphics-stack /usr/bin/rpm -q \
+    gnome-shell mutter libglib-2_0-0 Mesa libdrm2 \
+    libwayland-client0 libwayland-server0
 collect lyra-packages /usr/bin/rpm -q \
     beam fina lyra-installer lyra-theme postgres-draco \
     sheliak sulafat vega-cli vega-gtk vega-web vegad

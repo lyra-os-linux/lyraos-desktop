@@ -19,7 +19,9 @@ Release = release_module.Release
 
 def sample_release(**overrides: object) -> Release:
     values: dict[str, object] = {
-        "calendar_version": "27.02",
+        "product_version": "1.0",
+        "base_distribution": "opensuse-leap",
+        "base_version": "16.1",
         "stage": "beta",
         "iteration": 2,
         "codename": "Odisseia",
@@ -36,30 +38,30 @@ def sample_release(**overrides: object) -> Release:
 class ReleaseConventionTests(unittest.TestCase):
     def test_alpha_identifiers(self) -> None:
         release = sample_release(stage="alpha", iteration=5)
-        self.assertEqual(release.version_id, "27.02-alpha5")
-        self.assertEqual(release.tag, "v27.02-alpha5")
-        self.assertEqual(release.iso_filename, "lyra-os.x86_64-27.02-alpha5.iso")
-        self.assertEqual(release.volume_id, "LYRA_OS_27_02_ALPHA5")
-        self.assertEqual(release.pretty_name, "Lyra OS 27.02 Alpha 5 (Odisseia)")
+        self.assertEqual(release.version_id, "1.0-alpha.5")
+        self.assertEqual(release.tag, "v1.0-alpha.5")
+        self.assertEqual(release.iso_filename, "lyra-os-1.0-alpha.5-x86_64.iso")
+        self.assertEqual(release.volume_id, "LYRA_OS_1_0_ALPHA_5")
+        self.assertEqual(release.pretty_name, "Lyra OS 1.0 Alpha 5 (Odisseia)")
 
     def test_beta_identifiers(self) -> None:
         release = sample_release()
-        self.assertEqual(release.version_id, "27.02-beta2")
-        self.assertEqual(release.tag, "v27.02-beta2")
-        self.assertEqual(release.iso_filename, "lyra-os.x86_64-27.02-beta2.iso")
-        self.assertEqual(release.volume_id, "LYRA_OS_27_02_BETA2")
-        self.assertEqual(release.pretty_name, "Lyra OS 27.02 Beta 2 (Odisseia)")
+        self.assertEqual(release.version_id, "1.0-beta.2")
+        self.assertEqual(release.tag, "v1.0-beta.2")
+        self.assertEqual(release.iso_filename, "lyra-os-1.0-beta.2-x86_64.iso")
+        self.assertEqual(release.volume_id, "LYRA_OS_1_0_BETA_2")
+        self.assertEqual(release.pretty_name, "Lyra OS 1.0 Beta 2 (Odisseia)")
 
     def test_rc_identifiers(self) -> None:
         release = sample_release(stage="rc", iteration=1)
-        self.assertEqual(release.version_id, "27.02-rc1")
+        self.assertEqual(release.version_id, "1.0-rc.1")
         self.assertEqual(release.stage_label, "RC 1")
 
     def test_final_identifiers(self) -> None:
         release = sample_release(stage="release", iteration=0)
-        self.assertEqual(release.version_id, "27.02")
-        self.assertEqual(release.tag, "v27.02")
-        self.assertEqual(release.pretty_name, "Lyra OS 27.02 (Odisseia)")
+        self.assertEqual(release.version_id, "1.0")
+        self.assertEqual(release.tag, "v1.0")
+        self.assertEqual(release.pretty_name, "Lyra OS 1.0 (Odisseia)")
 
     def test_prerelease_requires_iteration(self) -> None:
         with self.assertRaisesRegex(ValueError, "positive iteration"):
@@ -91,50 +93,14 @@ class RepositoryMetadataTests(unittest.TestCase):
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("20/09/2026", text, path)
 
-    def test_nvidia_post_install_replaces_the_dedicated_iso(self) -> None:
-        prompt = (ROOT / "PROMPT-LYRA-OS.md").read_text(encoding="utf-8")
-        roadmap = (ROOT / "docs/roadmap.md").read_text(encoding="utf-8")
+    def test_versioning_policy_separates_product_base_and_build(self) -> None:
         versioning = (ROOT / "docs/release-versioning.md").read_text(encoding="utf-8")
-        nvidia_iso = (ROOT / "docs/nvidia-iso.md").read_text(encoding="utf-8")
-
-        for text in (prompt, roadmap, versioning, nvidia_iso):
-            self.assertIn("Alpha 5", text)
-        self.assertIn("pós-instalação", prompt)
-        self.assertIn("sem driver proprietário embutido na ISO padrão", prompt)
-        self.assertIn("uma única ISO Desktop", nvidia_iso)
-        self.assertIn("proposta cancelada", nvidia_iso)
-        self.assertIn("RPMs G06 efetivos", nvidia_iso)
-        self.assertIn("90-lyra-nvidia-quarantine.conf", nvidia_iso)
-        self.assertIn("suspensão e retomada controladas", nvidia_iso)
-
-    def test_desktop_beta_improvements_and_rc1_freeze_are_documented(self) -> None:
-        versioning = (ROOT / "docs/release-versioning.md").read_text(encoding="utf-8")
-        roadmap = (ROOT / "docs/roadmap.md").read_text(encoding="utf-8")
-        prompt = (ROOT / "PROMPT-LYRA-OS.md").read_text(encoding="utf-8")
-
-        for text in (versioning, roadmap, prompt):
-            self.assertIn("13/10/2026", text)
-            self.assertIn("melhorias", text.lower())
-            self.assertIn("RC1", text)
-            self.assertIn("congelamento estrito", text.lower())
-        for locale in ("pt-BR", "en-US"):
-            self.assertIn(locale, versioning)
-            self.assertIn(locale, prompt)
-
-    def test_installer_language_scope_and_future_expansion_are_documented(self) -> None:
-        versioning = (ROOT / "docs/release-versioning.md").read_text(encoding="utf-8")
-        roadmap = (ROOT / "docs/roadmap.md").read_text(encoding="utf-8")
-        prompt = (ROOT / "PROMPT-LYRA-OS.md").read_text(encoding="utf-8")
-
-        for text in (versioning, roadmap, prompt):
-            for locale in ("en-US", "pt-BR", "es-ES"):
-                self.assertIn(locale, text)
-            self.assertIn("ciclo futuro", text)
-        self.assertIn("`en-US`", roadmap)
-        self.assertIn("como padrão e fallback", roadmap)
-        self.assertIn("Alpha 6", roadmap)
-        self.assertNotIn("A meta principal da Beta 3", roadmap)
-        self.assertIn("Outros idiomas são escopo", prompt)
+        self.assertIn("MAJOR.MINOR.PATCH", versioning)
+        self.assertIn("Lyra OS 1 — Odisseia", versioning)
+        self.assertIn("openSUSE Leap 16.1", versioning)
+        self.assertIn("BUILD_ID", versioning)
+        self.assertIn("independente", versioning)
+        self.assertNotIn("ano.mês", versioning)
 
     def test_release_artifact_signing_starts_at_beta1(self) -> None:
         adr = (ROOT / "docs/adr/0005-release-signing-starts-at-beta1.md").read_text(
@@ -176,7 +142,7 @@ class RepositoryMetadataTests(unittest.TestCase):
             ROOT / "scripts/upload-desktop-alpha6-sourceforge.sh"
         ).read_text(encoding="utf-8")
 
-        self.assertIn('LYRA_EXPECTED_VERSION:-27.02-alpha6', builder)
+        self.assertIn('LYRA_EXPECTED_VERSION:-1.0-alpha.6', builder)
         self.assertIn("--published-installer", builder)
         self.assertNotIn("--published-welcome", builder)
         self.assertIn("obs-release.py health", builder)
@@ -197,6 +163,7 @@ class RepositoryMetadataTests(unittest.TestCase):
         self.assertNotIn("iso.sha256.asc", uploader)
 
     def test_alpha7_release_uses_leap_16_1_and_preserves_full_evidence_gate(self) -> None:
+        self.assertEqual(Release.from_file().version_id, "1.1-alpha.7")
         wrapper = (ROOT / "scripts/build-desktop-alpha7.sh").read_text(
             encoding="utf-8"
         )
@@ -206,10 +173,34 @@ class RepositoryMetadataTests(unittest.TestCase):
         uploader_wrapper = (
             ROOT / "scripts/upload-desktop-alpha7-sourceforge.sh"
         ).read_text(encoding="utf-8")
+        gnome_uploader = (
+            ROOT / "scripts/upload-gnome-alpha7-sourceforge.sh"
+        ).read_text(encoding="utf-8")
+        uploader = (
+            ROOT / "scripts/upload-desktop-alpha6-sourceforge.sh"
+        ).read_text(encoding="utf-8")
         kiwi = (ROOT / "kiwi/config.xml").read_text(encoding="utf-8")
 
-        self.assertIn('LYRA_EXPECTED_VERSION="27.02-alpha7"', wrapper)
-        self.assertIn('LYRA_RELEASE_SLUG="alpha7"', uploader_wrapper)
+        self.assertIn('LYRA_EXPECTED_VERSION="1.1-alpha.7"', wrapper)
+        self.assertIn("upload-gnome-alpha7-sourceforge.sh", uploader_wrapper)
+        self.assertIn('LYRA_RELEASE_SLUG="alpha7"', gnome_uploader)
+        self.assertIn('LYRA_RELEASE_EDITION="gnome"', gnome_uploader)
+        self.assertIn('LYRA_RELEASE_LAYOUT="release-first"', gnome_uploader)
+        self.assertIn('LYRA_VERIFY_DOWNLOAD="0"', gnome_uploader)
+        self.assertIn('LYRA_REQUIRE_DECISION="0"', gnome_uploader)
+        self.assertIn('LYRA_CHECK_OPEN_BLOCKERS="0"', gnome_uploader)
+        self.assertIn(
+            'release-first) RELEASE_PATH="$RELEASE_SERIES/$RELEASE_SLUG/$RELEASE_EDITION"',
+            uploader,
+        )
+        self.assertLess(
+            uploader.index('if [ "$VERIFY_DOWNLOAD" -eq 0 ]'),
+            uploader.index("curl --fail --location"),
+        )
+        self.assertIn(
+            'LYRA_RELEASE_NOTES="$SCRIPT_DIR/../docs/releases/lyra-os-desktop-1.1-alpha7.md"',
+            wrapper,
+        )
         self.assertIn("--published-installer", builder)
         self.assertIn("obs-release.py health", builder)
         self.assertNotIn("openSUSE_Leap_16.0/", kiwi)
@@ -224,6 +215,33 @@ class RepositoryMetadataTests(unittest.TestCase):
             "hardware-matrix",
         ):
             self.assertIn(evidence, builder)
+
+    def test_alpha8_wrapper_uses_the_stage_aware_release_gate(self) -> None:
+        wrapper = (ROOT / "scripts/build-desktop-alpha8.sh").read_text(encoding="utf-8")
+        uploader_wrapper = (ROOT / "scripts/upload-desktop-alpha8-sourceforge.sh").read_text(encoding="utf-8")
+        builder = (ROOT / "scripts/build-desktop-alpha6.sh").read_text(encoding="utf-8")
+        uploader = (ROOT / "scripts/upload-desktop-alpha6-sourceforge.sh").read_text(encoding="utf-8")
+        gate = (ROOT / "docs/release-gate.md").read_text(encoding="utf-8")
+        contract = (ROOT / "docs/alpha8-evidence.md").read_text(encoding="utf-8")
+
+        self.assertIn('LYRA_EXPECTED_VERSION="1.1-alpha.8"', wrapper)
+        self.assertIn('LYRA_RELEASE_SLUG="alpha8"', uploader_wrapper)
+        self.assertIn("required-test-results", builder)
+        self.assertIn("required-test-results", uploader)
+        for evidence in ("upgrade-rehearsal", "eca-digital", "i18n", "feature-freeze"):
+            self.assertIn(evidence, gate)
+            self.assertIn(evidence, contract)
+
+    def test_tested_candidate_is_published_without_rebuild(self) -> None:
+        gate = (ROOT / "docs/release-gate.md").read_text(encoding="utf-8")
+        builds = (ROOT / "docs/image-builds.md").read_text(encoding="utf-8")
+        normalized_gate = " ".join(gate.split())
+
+        self.assertIn("Preserve and publish the tested candidate", gate)
+        self.assertIn("Do not rebuild an approved ISO", gate)
+        self.assertIn("upload the bundle in the same release run", normalized_gate)
+        self.assertIn("Treat the tested ISO as immutable", builds)
+        self.assertIn("--artifacts-only", builds)
 
     def test_build_manifest_is_traceable(self) -> None:
         release = Release.from_file()

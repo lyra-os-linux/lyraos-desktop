@@ -1,6 +1,6 @@
-# Lyra OS 27.02 Alpha 7 “Odisseia” — notas de lançamento
+# Lyra OS 1.1 Alpha 7 “Odisseia” — notas de lançamento
 
-O Lyra OS Alpha 7 é a primeira candidata do Desktop 27.02 baseada no
+O Lyra OS Alpha 7 é a primeira candidata do Desktop 1.1 baseada no
 openSUSE Leap 16.1. Esta versão concentra-se na qualificação da nova base e
 na preservação do comportamento estável já validado na Alpha 6.
 
@@ -17,7 +17,10 @@ para produção nem para computadores com dados sem backup.
 - compilações completas de FFmpeg e VLC fornecidas pelo Packman Essentials;
 - remoção de repositórios vazios ou sem alvo 16.1 da composição da imagem;
 - manutenção de Btrfs, Snapper, Secure Boot e recuperação pelo GRUB como
-  contratos bloqueantes da release.
+  contratos bloqueantes da release;
+- verificação mensal de checksums Btrfs com `btrfsmaintenance`; balance,
+  defrag e trim periódicos permanecem desativados para evitar escrita e I/O
+  inesperados.
 
 ## Qualificação obrigatória da nova base
 
@@ -54,13 +57,13 @@ O cenário coberto continua sendo instalação em disco inteiro.
 Arquivo esperado:
 
 ```text
-lyra-os.x86_64-27.02-alpha7.iso
+LyraOS-Desktop-1.1-alpha.7-x86_64.iso
 ```
 
 Verifique o checksum fornecido junto da ISO:
 
 ```sh
-sha256sum -c lyra-os.x86_64-27.02-alpha7.iso.sha256
+sha256sum -c LyraOS-Desktop-1.1-alpha.7-x86_64.iso.sha256
 ```
 
 Conforme a ADR 0005, a Alpha 7 usa SHA-256 sem assinatura GPG destacada da

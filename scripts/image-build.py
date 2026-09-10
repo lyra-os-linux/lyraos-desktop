@@ -41,6 +41,13 @@ INSTALLER_APP_ID = "org.lyraos.LyraInstaller"
 INSTALLER_EXEC = "/usr/bin/lyra-install-lock /usr/bin/lyra-installer"
 INSTALLER_TRY_EXEC = "/usr/bin/lyra-installer"
 INSTALLER_WM_CLASS = "lyra-installer"
+ALPHA8_TEST_RESULTS = {
+    "upgrade-rehearsal",
+    "eca-digital",
+    "i18n",
+    "feature-freeze",
+}
+SUPPORTED_LOCALES = ["en-US", "pt-BR", "es-ES"]
 
 
 class PolicyError(RuntimeError):
@@ -160,8 +167,8 @@ def release_values(release_file: Path = RELEASE) -> dict[str, object]:
 def version_id(release_file: Path = RELEASE) -> str:
     release = release_values(release_file)
     if release["stage"] == "release":
-        return str(release["calendar_version"])
-    return f'{release["calendar_version"]}-{release["stage"]}{release["iteration"]}'
+        return str(release["version"])
+    return f'{release["version"]}-{release["stage"]}.{release["iteration"]}'
 
 
 def required_artifact_roles(manifest: Manifest, release_file: Path) -> tuple[str, ...]:
@@ -178,6 +185,15 @@ def required_artifact_roles(manifest: Manifest, release_file: Path) -> tuple[str
     if release_values(release_file)["stage"] != "alpha":
         return (*roles, "checksum_signature")
     return roles
+
+
+def required_test_result_names(manifest: Manifest, release_file: Path) -> tuple[str, ...]:
+    """Return evidence required by the release stage without weakening older gates."""
+    release = release_values(release_file)
+    required = set(manifest.required_test_results)
+    if release["stage"] != "alpha" or int(release["iteration"]) >= 8:
+        required.update(ALPHA8_TEST_RESULTS)
+    return tuple(sorted(required))
 
 
 def canonical_xml() -> ET.ElementTree:
@@ -489,6 +505,38 @@ def one(directory: Path, pattern: str, role: str) -> Path:
     return matches[0]
 
 
+def iso_source_commit(directory: Path, iso_path: Path, release_file: Path) -> str:
+    """Return the immutable build commit recorded beside the candidate ISO."""
+    build_manifest_path = one(
+        directory, f"{iso_path.name}.manifest.json", "ISO build manifest"
+    )
+    try:
+        build_manifest = json.loads(build_manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise PolicyError(
+            f"ISO build manifest is not valid JSON: {build_manifest_path}"
+        ) from error
+    if not isinstance(build_manifest, dict) or build_manifest.get("schema_version") != 1:
+        raise PolicyError("ISO build manifest has an unsupported schema")
+    recorded_iso = build_manifest.get("iso")
+    source = build_manifest.get("source")
+    if (
+        not isinstance(recorded_iso, dict)
+        or recorded_iso.get("filename") != iso_path.name
+        or recorded_iso.get("sha256") != sha256(iso_path)
+    ):
+        raise PolicyError("ISO build manifest does not match the candidate ISO")
+    if build_manifest.get("version") != version_id(release_file):
+        raise PolicyError("ISO build manifest does not match the release version")
+    if (
+        not isinstance(source, dict)
+        or source.get("dirty") is not False
+        or not re.fullmatch(r"[0-9a-f]{40}", str(source.get("commit", "")))
+    ):
+        raise PolicyError("ISO build manifest has an invalid source identity")
+    return str(source["commit"])
+
+
 def validate_passed_checks(name: str, result: dict[str, object]) -> None:
     checks = result.get("checks")
     if not isinstance(checks, list) or not checks:
@@ -533,6 +581,10 @@ def validate_test_result(
         "uefi-secure-boot": "uefi-secure-boot",
         "rollback": "rollback",
         "hardware-matrix": "hardware-matrix",
+        "upgrade-rehearsal": "upgrade-rehearsal",
+        "eca-digital": "eca-digital",
+        "i18n": "i18n",
+        "feature-freeze": "feature-freeze",
     }
     expected_mode = expected_modes.get(name)
     if expected_mode is None or result.get("mode") != expected_mode:
@@ -571,6 +623,50 @@ def validate_test_result(
     validate_passed_checks(name, result)
     if name == "rollback" and result.get("phase") != "rollback-verified":
         raise PolicyError("rollback evidence is not the final verified phase")
+    if name == "upgrade-rehearsal":
+        facts = result.get("facts")
+        required_faults = {
+            "network-loss", "low-space", "ui-terminated", "state-truncated",
+            "rpm-failure", "initramfs-failure",
+        }
+        if (
+            result.get("phase") != "rollback-verified"
+            or not isinstance(facts, dict)
+            or not isinstance(facts.get("baseline_version"), str)
+            or not isinstance(facts.get("target_version"), str)
+            or facts.get("baseline_version") == facts.get("target_version")
+            or facts.get("manifest_signature_verified") is not True
+            or facts.get("offline_applied") is not True
+            or not isinstance(facts.get("reboot_count"), int)
+            or facts.get("reboot_count", 0) < 1
+            or facts.get("rollback_baseline_verified") is not True
+            or not isinstance(facts.get("fault_scenarios"), list)
+            or not required_faults.issubset(set(facts.get("fault_scenarios", [])))
+        ):
+            raise PolicyError("upgrade rehearsal evidence is incomplete")
+    elif name == "eca-digital":
+        if (
+            result.get("locales") != SUPPORTED_LOCALES
+            or not result.get("legal_review")
+            or not result.get("security_review")
+            or not result.get("privacy_impact_assessment")
+            or result.get("negative_and_evasion_tests") is not True
+            or result.get("retains_sensitive_age_evidence") is not False
+        ):
+            raise PolicyError("ECA Digital evidence is incomplete")
+    elif name == "i18n":
+        if result.get("locales") != SUPPORTED_LOCALES or result.get("fallback") != "en-US":
+            raise PolicyError("i18n evidence must cover en-US, pt-BR and es-ES")
+    elif name == "feature-freeze":
+        if (
+            result.get("decision") != "GO"
+            or result.get("open_p0") != 0
+            or result.get("open_p1") != 0
+            or result.get("locales") != SUPPORTED_LOCALES
+            or result.get("all_features_implemented_or_removed") is not True
+            or result.get("documentation_consistent") is not True
+        ):
+            raise PolicyError("feature freeze decision is not eligible for GO")
     return result
 
 
@@ -598,6 +694,7 @@ def artifact_manifest(
         role: one(directory, *artifact_patterns[role])
         for role in required_roles
     }
+    source_commit = iso_source_commit(directory, roles["iso"], release_file)
     package_rows = [line.split("|") for line in roles["packages"].read_text(encoding="utf-8").splitlines() if line]
     if any(len(row) != 7 for row in package_rows):
         raise PolicyError("KIWI package manifest has an unexpected format")
@@ -624,10 +721,13 @@ def artifact_manifest(
             "size_bytes": path.stat().st_size,
             "status": "passed",
         }
-    missing_results = sorted(set(manifest.required_test_results) - set(test_results))
+    required_results = set(required_test_result_names(manifest, release_file))
+    unexpected_results = sorted(set(test_results) - required_results)
+    if unexpected_results:
+        raise PolicyError(f"unexpected release evidence: {unexpected_results}")
+    missing_results = sorted(required_results - set(test_results))
     if missing_results:
         raise PolicyError(f"required release evidence is missing: {missing_results}")
-    source_commit = git("rev-parse", "HEAD")
     source_dirty = bool(git("status", "--porcelain", "--untracked-files=normal"))
     if source_dirty:
         raise PolicyError("final release evidence requires a clean source commit")
@@ -683,6 +783,8 @@ def parser() -> argparse.ArgumentParser:
     artifacts.add_argument("directory", type=Path)
     artifacts.add_argument("--output", required=True, type=Path)
     artifacts.add_argument("--test-result", action="append", default=[])
+    evidence = commands.add_parser("required-test-results")
+    add_identity_options(evidence)
     return cli
 
 
@@ -704,8 +806,10 @@ def main() -> int:
             )
         elif args.command == "verify-export":
             verify_export(manifest, args.directory)
-        else:
+        elif args.command == "artifact-manifest":
             artifact_manifest(manifest, args.directory, args.output, args.test_result, release_file=release_file)
+        else:
+            print("\n".join(required_test_result_names(manifest, release_file)))
     except (KeyError, OSError, PolicyError, subprocess.SubprocessError, tomllib.TOMLDecodeError, ET.ParseError, json.JSONDecodeError) as error:
         print(f"ERROR: {error}", file=sys.stderr)
         return 1
