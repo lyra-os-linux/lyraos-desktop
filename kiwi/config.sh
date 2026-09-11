@@ -139,6 +139,12 @@ fi
 # allowing each user to disable it normally.
 glib-compile-schemas /usr/share/glib-2.0/schemas
 
+# A successful OBS upload alone must not allow a stale GNOME image. Preserve
+# the separate signed-RPM/provenance gates and reject old feature packages here.
+if rpm -q gnome-shell >/dev/null 2>&1; then
+    python3 /usr/libexec/lyra/check-gnome-image.py
+fi
+
 # Fish plugin set, resolved once here instead of on every machine's first
 # terminal. Fisher has no RPM upstream and pulls its plugins from GitHub,
 # so doing this at first login would mean every new installation hitting

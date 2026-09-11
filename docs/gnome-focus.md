@@ -17,3 +17,6 @@ a presença de uma variante no inventário não autoriza novas promoções dela.
 
 Pacotes e publicações existentes de outras variantes permanecem preservados.
 A decisão não pede sua remoção, desinstalação ou substituição automática.
+
+The next GNOME image must incorporate the current desktop fixes, MacOS X and
+optional desktop icons; see [integration and qualification](desktop-icons-and-macos.md).

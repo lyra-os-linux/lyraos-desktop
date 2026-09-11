@@ -85,6 +85,7 @@ packages = [
   "nvm-fish",
   "postgres-draco",
   "sheliak",
+  "gnome-shell-extension-desktop-icons",
   "sulafat",
   "vscode-repo",
   "zed",
