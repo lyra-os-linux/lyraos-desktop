@@ -261,6 +261,28 @@
       "selection": "request locale with English fallback",
       "lint": "go test ./...",
       "rationale": "Daemon catalogs exist for all three locales."
+    },
+    {
+      "project": "lyra",
+      "id": "lyra-nautilus-branding",
+      "status": "not-applicable",
+      "wave": "branding",
+      "format": "none",
+      "domain": "none",
+      "selection": "Follows host application locale; artwork is language-neutral.",
+      "lint": "python3 scripts/check-i18n-inventory.py",
+      "rationale": "Official Lyra logo watermark only; no user-facing strings or menus."
+    },
+    {
+      "project": "lyra",
+      "id": "libreoffice-branding-Lyra",
+      "status": "not-applicable",
+      "wave": "branding",
+      "format": "none",
+      "domain": "none",
+      "selection": "Follows host application locale; artwork is language-neutral.",
+      "lint": "python3 scripts/check-i18n-inventory.py",
+      "rationale": "Brand artwork and proper product names only; progress messages and application UI remain translated by LibreOffice."
     }
   ]
 }

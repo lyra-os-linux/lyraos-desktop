@@ -6,10 +6,10 @@ Nautilus package from the theme alone does not select it for a new installation.
 The LibreOffice package supplies the existing `libreoffice-branding` capability
 and replaces the openSUSE provider in the image's normal RPM transaction.
 
-Both source packages belong to the shared Lyra OBS inventory. KDE and XFCE
-manifests list the same project inventory for release checks; listing a source
-package there does not install it in their images. The new default selection
-is limited to GNOME.
+Both source packages belong to the shared Lyra OBS inventory maintained by the
+GNOME release manifest. The new default selection is limited to GNOME. KDE/XFCE
+integration and publication are paused by the maintainer's
+[GNOME focus decision](gnome-focus.md).
 
 The maintainer approved both designs locally and authorized release integration.
 The Nautilus module was tested with the actual RPM in 50 isolated native cases;
