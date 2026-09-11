@@ -351,6 +351,7 @@
          library; the result was a working BAT1 in sysfs but no battery icon. -->
     <package name="upower"/>
     <package name="nautilus"/>
+    <package name="lyra-nautilus-branding"/>
     <!-- Nautilus only Recommends gvfs. Without these explicit packages,
          trash, removable media, phones and network locations are missing. -->
     <package name="gvfs"/>
@@ -459,6 +460,7 @@
          modules, GNOME integration and every installer-supported locale
          explicit so the installed suite follows LANG selected by the user. -->
     <package name="libreoffice"/>
+    <package name="libreoffice-branding-Lyra"/>
     <package name="libreoffice-base"/>
     <package name="libreoffice-calc"/>
     <package name="libreoffice-draw"/>
