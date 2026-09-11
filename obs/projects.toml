@@ -79,6 +79,8 @@ packages = [
   "linuxtoys",
   "lyra-welcome",
   "lyra-theme",
+  "lyra-nautilus-branding",
+  "libreoffice-branding-Lyra",
   "lyra-wallpapers",
   "nvm-fish",
   "postgres-draco",
