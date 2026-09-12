@@ -1,7 +1,0 @@
--------------------------------------------------------------------
-Fri Sep 11 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
-
-- Package upstream DING 49.0.5 for the GNOME 48 Lyra image.
-- Pin upstream c32667693d0831c29e3ab3f7bfeb675ea1531a00.
-- Preserve desktop files when the extension is disabled in Vega.
-- Include the schema in the extension directory for isolated validation.

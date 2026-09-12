@@ -18,5 +18,6 @@ a presença de uma variante no inventário não autoriza novas promoções dela.
 Pacotes e publicações existentes de outras variantes permanecem preservados.
 A decisão não pede sua remoção, desinstalação ou substituição automática.
 
-The next GNOME image must incorporate the current desktop fixes, MacOS X and
-optional desktop icons; see [integration and qualification](desktop-icons-and-macos.md).
+A próxima imagem GNOME deve incorporar as correções atuais, os perfis Lyra
+Clássico/Central/Flutuante e as seis extensões do pacote Sheliak, incluindo Lyra
+Desktop Icons. Veja a [integração e qualificação](desktop-icons-and-macos.md).

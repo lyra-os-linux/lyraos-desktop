@@ -10,8 +10,7 @@ import re
 import subprocess
 
 MINIMUMS = {
-    'vega-gtk': '5.1.34', 'sheliak': '1.16.0', 'lyra-welcome': '0.4.0',
-    'gnome-shell-extension-desktop-icons': '49.0.5',
+    'vega-gtk': '5.1.35', 'sheliak': '2.0.0', 'lyra-welcome': '0.4.1',
     'lyra-os-theme': '1.9.3', 'lyra-os-icons': '1.9.4',
     'lyra-nautilus-branding': '1.9.3', 'libreoffice-branding-Lyra': '1.0.0',
     'linuxtoys': '6.9', 'lyra-upgrade': '0.2.3', 'beam': '1.0.1',
@@ -35,10 +34,14 @@ def version_at_least(actual, minimum):
     return int(result) >= 0
 
 
-def check_desktop_icons(shell_version, metadata):
+SUITE_UUIDS = tuple(role + '@lyraos.com.br' for role in
+    ('dock', 'panel', 'menus', 'search', 'animations', 'desktop-icons'))
+
+
+def check_extension(shell_version, metadata, uuid):
     major = shell_version.split('.')[0]
-    if metadata.get('uuid') != 'ding@rastersoft.com' or major not in metadata.get('shell-version', []):
-        raise ValueError(f'Desktop Icons NG does not support GNOME Shell {major}')
+    if metadata.get('uuid') != uuid or major not in metadata.get('shell-version', []) or metadata.get('lyra-suite-api') != 1:
+        raise ValueError(f'{uuid}: missing suite API or GNOME Shell {major} support')
 
 
 def main():
@@ -46,9 +49,11 @@ def main():
         actual = installed_version(package)
         if not version_at_least(actual, minimum):
             raise ValueError(f'{package}: need >= {minimum}, found {actual}')
-    metadata = json.loads(Path('/usr/share/gnome-shell/extensions/ding@rastersoft.com/metadata.json').read_text())
-    check_desktop_icons(installed_version('gnome-shell'), metadata)
-    print('GNOME package minimums and Desktop Icons NG compatibility passed')
+    shell_version = installed_version('gnome-shell')
+    for uuid in SUITE_UUIDS:
+        metadata = json.loads((Path('/usr/share/gnome-shell/extensions') / uuid / 'metadata.json').read_text())
+        check_extension(shell_version, metadata, uuid)
+    print('GNOME package minimums and all six Lyra extensions passed')
 
 
 if __name__ == '__main__':

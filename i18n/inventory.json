@@ -31,17 +31,6 @@
       "rationale": "Second-wave user interface scheduled by the release plan."
     },
     {
-      "id": "gnome-shell-extension-desktop-icons",
-      "project": "lyra",
-      "wave": "alpha8",
-      "status": "scheduled",
-      "format": "gettext",
-      "domain": "ding",
-      "selection": "system locale via gettext; English source messages as fallback",
-      "lint": "msgfmt --check on upstream pt_BR.po and es.po; native locale qualification",
-      "rationale": "Upstream DING owns the English messages and Portuguese/Spanish catalogs shipped by the RPM. Catalog syntax is validated; native linguistic qualification for the next ISO remains pending."
-    },
-    {
       "id": "linuxtoys",
       "project": "lyra",
       "wave": "alpha5",
@@ -171,7 +160,7 @@
       "domain": "sheliak",
       "selection": "GNOME session locale",
       "lint": "npm test",
-      "rationale": "JSON sources compile to standard locale/<lang>/LC_MESSAGES catalogs."
+      "rationale": "The Sheliak RPM ships six independently enabled GNOME extensions. Shell JSON catalogs compile to gettext; Lyra Desktop Icons retains its lyra-desktop-icons gettext domain and upstream catalogs, including 190 reviewed Portuguese and Spanish messages."
     },
     {
       "id": "sulafat",
