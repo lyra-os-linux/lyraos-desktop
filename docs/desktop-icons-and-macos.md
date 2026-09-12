@@ -5,6 +5,9 @@ and an independent Vega GTK switch to disable desktop icons without deleting
 files. GNOME remains the only desktop release target. These changes belong in
 the next ISO together with the fixes delivered through 11 September 2026.
 
+The ISO is built locally with KIWI from this repository. OBS supplies RPMs only;
+this change updates the local image recipe and does not submit an ISO build.
+
 Use upstream [Desktop Icons NG](https://gitlab.com/rastersoft/desktop-icons-ng)
 in an RPM, retaining the base package name `gnome-shell-extension-desktop-icons`.
 A separate Lyra implementation would duplicate maintained file operations and
