@@ -24,12 +24,12 @@ class MinimumsTests(unittest.TestCase):
             command.assert_not_called()
 
     def test_rejects_base_extension_without_shell_48_support(self):
-        base = {'uuid': 'ding@rastersoft.com', 'shell-version': ['45', '46', '47']}
+        base = {'uuid': 'desktop-icons@lyraos.com.br', 'lyra-suite-api': 1, 'shell-version': ['45', '46', '47']}
         with self.assertRaises(ValueError):
-            minimums.check_desktop_icons('48.5', base)
-        minimums.check_desktop_icons('48.5', dict(base, **{'shell-version': ['46', '47', '48', '49']}))
+            minimums.check_extension('48.5', base, base['uuid'])
+        minimums.check_extension('48.5', dict(base, **{'shell-version': ['48']}), base['uuid'])
         with self.assertRaises(ValueError):
-            minimums.check_desktop_icons('50.0', base)
+            minimums.check_extension('50.0', base, base['uuid'])
 
     def test_missing_package_and_stale_version_fail_closed(self):
         with patch.object(minimums, 'installed_version', return_value='5.1.33'):

@@ -133,7 +133,10 @@ class ImagePolicyTests(unittest.TestCase):
             ROOT
             / "kiwi/root/usr/share/glib-2.0/schemas/99-lyra-sheliak.gschema.override"
         ).read_text(encoding="utf-8")
-        self.assertIn("sheliak@lyraos.com.br", override)
+        for role in ("dock", "panel", "menus", "search", "animations", "desktop-icons"):
+            self.assertIn(role + "@lyraos.com.br", override)
+        self.assertNotIn("sheliak@lyraos.com.br", override)
+        self.assertNotIn("ding@rastersoft.com", override)
         self.assertIn("updates-indicator@lyraos.com.br", override)
 
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
