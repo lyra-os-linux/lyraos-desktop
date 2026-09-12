@@ -32,13 +32,14 @@ class ManifestTests(unittest.TestCase):
 
     def test_project_inventory_matches_release_contract(self) -> None:
         self.assertEqual([project.id for project in self.manifest.projects], ["lyra", "vega", "fina"])
-        self.assertEqual(len(self.manifest.project("lyra").packages), 18)
+        self.assertEqual(len(self.manifest.project("lyra").packages), 19)
         self.assertIn("lyra-release", self.manifest.project("lyra").packages)
         self.assertNotIn("chord", self.manifest.project("lyra").packages)
         self.assertIn("linuxtoys", self.manifest.project("lyra").packages)
         self.assertIn("zed", self.manifest.project("lyra").packages)
         self.assertIn("vscode-repo", self.manifest.project("lyra").packages)
         self.assertIn("lyra-welcome", self.manifest.project("lyra").packages)
+        self.assertIn("gnome-shell-extension-desktop-icons", self.manifest.project("lyra").packages)
         self.assertIn("lyra-icons", self.manifest.project("lyra").packages)
         self.assertIn("lyra-wallpapers", self.manifest.project("lyra").packages)
         self.assertIn("nvm-fish", self.manifest.project("lyra").packages)

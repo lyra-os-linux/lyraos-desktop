@@ -3,7 +3,8 @@
 The Lyra image pipeline has four explicit boundaries:
 
 - GitHub is the canonical source for the KIWI description and root overlay;
-- KIWI builds run locally or in CI from a clean Git commit;
+- KIWI image builds run locally from a clean Git commit; CI validates the
+  recipe and release contracts;
 - SourceForge is the public distribution point for ISO artifacts;
 - OBS builds and publishes RPM packages only.
 
