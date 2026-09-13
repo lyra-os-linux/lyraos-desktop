@@ -41,7 +41,7 @@ Lyra Floating, localized in Portuguese, English and Spanish. The persisted IDs
 `windows10`, `windows11` and `macos` remain compatible with saved favorites,
 menu cards and presentation snapshots.
 
-This image requires Vega GTK >=5.1.36, Sheliak >=2.0.1 and Welcome >=0.4.1.
+This image requires Vega GTK >=5.1.37, Sheliak >=2.0.1 and Welcome >=0.4.1.
 Welcome delegates profile changes to Vega. The suite helper journals changes
 before Vega changes the layout and restores interrupted transactions at retry
 or login. Independent component selections are remembered per layout; desktop
