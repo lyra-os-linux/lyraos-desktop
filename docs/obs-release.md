@@ -1,6 +1,6 @@
 # OBS staging, promotion, and rollback
 
-Lyra OS Beta 2 uses separate OBS staging and release channels. The ISO consumes
+Lyra OS uses separate OBS staging and release channels. The ISO consumes
 only the existing release projects. A source change must build and publish in
 staging, pass its package tests, and enter release through a revision-pinned,
 reviewed submit request.
@@ -11,6 +11,11 @@ Run `./scripts/obs-release.py validate` after changing it.
 The manifest also pins the fingerprint of the OBS signing key inherited from
 `home:rodrigosbrito`. A key rotation must update that fingerprint in a reviewed
 commit before a new release can pass the health gate.
+
+The active Desktop release target is GNOME. KDE/XFCE package work is deferred.
+The current product stage comes from `release.toml`; historical Beta 2 labels
+below do not change that stage. See [GNOME status](status-gnome.md) for the
+latest coordinated suite and remaining candidate qualification.
 
 ## Architecture
 
@@ -182,7 +187,7 @@ Rollback is considered complete only after the release project is published,
 the incident records the request ID, bad revision, restored revision, tester,
 and time.
 
-### Beta 2 rollback rehearsal
+### Historical rollback rehearsal — 2026-08-08
 
 On 2026-08-08 the rollback path was exercised without touching an
 ISO-consumed project. `fina` staging was changed from release revision 12 to

@@ -5,30 +5,28 @@ voltada a uma experiência GNOME simples, estável e integrada ao ecossistema
 Lyra. Este repositório contém a descrição KIWI usada para gerar a ISO live e
 o instalador da edição **Odisseia 1.1 Alpha 7** para computadores x86_64.
 
-## Edições oficiais
+## Foco da versão 1.1
 
-O Lyra OS mantém três edições oficiais, com imagens, integração do desktop e
-gates de qualidade independentes:
+A versão final do Lyra OS 1.1 tem **GNOME como único alvo de lançamento**.
+O trabalho atual de pacotes próprios e interface concentra-se no GNOME e no
+Vega GTK. KDE Plasma e XFCE ficam em segundo plano, sem compromisso de
+lançamento ou paridade nesta versão. Seus repositórios e registros anteriores
+permanecem disponíveis; retomá-los exige planejamento próprio.
 
-| Edição | Repositório | Central Vega | Acompanhamento |
-|---|---|---|---|
-| GNOME | este repositório | Vega GTK | [estabilização](https://github.com/lyra-os-linux/lyraos-desktop/issues/56) |
-| KDE Plasma | [`lyraos-desktop-kde`](https://github.com/lyra-os-linux/lyraos-desktop-kde) | Vega Qt | [estabilização](https://github.com/lyra-os-linux/lyraos-desktop-kde/issues/1) |
-| XFCE | [`lyraos-desktop-xfce`](https://github.com/lyra-os-linux/lyraos-desktop-xfce) | Vega XFCE | [estabilização](https://github.com/lyra-os-linux/lyraos-desktop-xfce/issues/1) |
+Há **uma única ISO Desktop GNOME**. A instalação opcional do driver NVIDIA
+acontece após instalar o sistema, pelo Vega. A proposta de uma ISO NVIDIA
+separada foi cancelada.
 
-Até **28 de setembro de 2026**, o foco do projeto é estabilizar as três
-edições e impedir regressões compartilhadas no instalador, boot, identidade
-visual, atualizações e integração com o Vega.
+A [situação do GNOME](docs/status-gnome.md) distingue código integrado,
+pacotes enviados e qualificação da candidata. O planejamento futuro de KDE
+está em [flavor KDE experimental](docs/kde-experimental-flavor.md).
 
-## ECA Digital nas três edições
+## Políticas e privacidade
 
-A adequação ao ECA Digital é um requisito do Lyra OS, não apenas da edição
-GNOME. GNOME, KDE Plasma e XFCE devem compartilhar o mesmo serviço de
-políticas, os mesmos contratos de privacidade e os mesmos gates de segurança.
-Cada edição expõe essas funções em sua interface Vega nativa — GTK, Qt ou
-XFCE — sem alterar as garantias do backend. O trabalho é acompanhado pelo
-[épico do ECA Digital](https://github.com/lyra-os-linux/lyraos-desktop/issues/11)
-e por suas issues vinculadas.
+O [épico do ECA Digital](https://github.com/lyra-os-linux/lyraos-desktop/issues/11)
+e seus gates técnicos, jurídicos e de privacidade continuam registrados.
+Essa trilha não equivale a uma declaração de conformidade já obtida. O foco
+atual de integração é GNOME; nenhuma entrega Qt/XFCE é prometida para a 1.1.
 
 > [!IMPORTANT]
 > O projeto ainda está em desenvolvimento. A ISO não deve ser considerada uma
@@ -37,7 +35,7 @@ e por suas issues vinculadas.
 
 ## Principais características
 
-- openSUSE Leap 16 com GNOME 48 ou superior;
+- openSUSE Leap 16.1 com GNOME;
 - sessão live e instalador nativo em Rust/Tauri, com HTML/CSS integrado ao
   WebKitGTK do sistema;
 - Btrfs com Snapper e snapshots automáticos durante operações do Zypper;
@@ -46,7 +44,9 @@ e por suas issues vinculadas.
 - escolha na instalação entre ZRAM com Zstandard, swap em disco ou nenhuma
   memória virtual;
 - Firefox, VLC, Flatpak e Flathub;
-- Vega, Sheliak e Fina pré-instalados pelos repositórios OBS do Lyra;
+- Vega GTK, Welcome e os aplicativos Lyra fornecidos em RPM pelo OBS;
+- Sheliak como pacote de seis extensões independentes: Lyra Dock, Painel,
+  Menus, Busca, Animações e Desktop Icons;
 - identidade visual Lyra OS no desktop e no GRUB;
 - `lyra-report` para diagnóstico local e sob demanda, sem telemetria ou envio
   automático de dados.
@@ -66,22 +66,29 @@ o resultado da execução. O fluxo principal de instalação e primeiro boot foi
 validado na base anterior; todo o gate será repetido sobre o Leap 16.1. Não
 há segundo instalador, configuração alternativa ou fallback na imagem.
 
-Ainda estão pendentes:
+Para a próxima candidata ainda é necessário qualificar o conjunto de RPMs
+assinados nos repositórios de release, construir a ISO localmente e repetir os
+gates de live, instalação, primeiro login, Secure Boot, hardware, atualização
+e rollback. As recentes correções da suíte GNOME devem estar nessa candidata.
 
-- repetir o teste completo no candidato final, incluindo Secure Boot e
-  rollback;
-- automatizar o ciclo de CI e publicação da ISO.
+O GitHub valida fontes e contratos; o OBS compila e publica pacotes RPM; o KIWI
+constrói a ISO **localmente**; o SourceForge distribui os artefatos aprovados.
+Veja o [fluxo de imagens](docs/image-builds.md).
 
 Consulte a [documentação técnica do KIWI](kiwi/README.md) para conhecer as
 decisões de implementação, limitações e verificações já realizadas.
 
 ## Ciclo atual e próximos ciclos
 
-A estabilização conjunta de GNOME, KDE Plasma e XFCE segue até 28 de setembro
-de 2026. A versão 1.1 terá o Lyra Installer em `en-US`, `pt-BR` e `es-ES`,
-com inglês como padrão e fallback. Os demais pacotes próprios continuam com
-o gate integral em `en-US`/`pt-BR`; sua ampliação fica para uma release futura. O cronograma e os
-gates estão registrados no [roadmap do projeto](docs/roadmap.md).
+O instalador e as interfaces próprias do Lyra OS 1.1 têm como escopo
+`en-US`, `pt-BR` e `es-ES`, com inglês como padrão e fallback. A presença dos
+catálogos e os testes dos componentes não dispensam a revisão da candidata
+nos três idiomas.
+
+A [política de versões](docs/release-versioning.md) registra a meta da 1.1;
+o [roadmap](docs/roadmap.md) detalha o ciclo. Datas são referências de
+planejamento. A promoção depende do [release gate](docs/release-gate.md),
+sem prazo conjunto para KDE/XFCE.
 
 ## Preparando o ambiente
 

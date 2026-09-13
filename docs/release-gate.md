@@ -10,6 +10,11 @@ Desktop Alpha 7 ISO. A release coordinator may declare **GO** only when every bl
 item below has passed and its evidence is included in the final image evidence
 manifest. Missing evidence is a failure, not an implicit exception.
 
+The current final-release scope is one GNOME Desktop ISO, with optional NVIDIA
+installation through Vega. KDE/XFCE are outside this release target. Package
+CI, staging upload and local preview installation do not satisfy the ISO gate;
+evidence must refer to the exact candidate. See [GNOME status](status-gnome.md).
+
 ## Severity and blocking policy
 
 - **P0 — stop immediately:** data loss, credential disclosure, corrupted
@@ -83,7 +88,7 @@ content and hardware coverage; a bare green status is rejected:
   history is retained;
 - [ ] `i18n`: every supported Lyra-owned interface passes in `en-US`, `pt-BR`
   and Spanish (`es-ES`), with `en-US` as the explicit fallback;
-- [ ] `feature-freeze`: every 1.0 feature is implemented or formally removed,
+- [ ] `feature-freeze`: every feature in the 1.1 release scope is implemented or formally removed,
   documentation is consistent, and the recorded counts of open P0 and P1 are
   both zero. Any other result is `NO-GO`, and Alpha continues.
 

@@ -1,5 +1,12 @@
 # Flavor KDE experimental
 
+## Prioridade atual
+
+Planejamento futuro, em segundo plano. O foco de implementação e publicação de
+pacotes do ciclo 1.1 é GNOME. Este documento preserva a sequência proposta para
+uma retomada de KDE; não anuncia trabalho ativo nem data de lançamento. XFCE
+também fica fora da entrega atual do GNOME.
+
 ## Status e relação com a edição oficial
 
 O Lyra OS terá futuramente um flavor KDE experimental. A edição Desktop com

@@ -123,8 +123,8 @@ detection, confirmation, a Snapper snapshot, validation and rollback.
 
 Keep the ISO together with its package inventory, verification report, KIWI
 report, checksum and both SBOM formats. A detached checksum signature becomes
-mandatory starting with Beta 1 (ADR 0005); Alpha 4 is an unsigned pre-Beta
-exception:
+mandatory starting with Beta 1 (ADR 0005); Alpha releases, including the current Alpha 7 stage, retain the documented
+pre-Beta artifact-signing exception. RPM signatures remain mandatory:
 
 - `*.iso`
 - `*.packages`
