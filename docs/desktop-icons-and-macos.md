@@ -27,6 +27,7 @@ and rollback qualification finish.
 
 New/live GNOME users receive unlocked defaults for the six Lyra UUIDs. Existing
 users migrate in their own session using `/usr/libexec/lyra/shell-suite migrate`;
+the login helper allows up to 30 seconds for Shell service startup before migrating UUIDs;
 the protected snapshot preserves their preferences, explicit disabled states
 and unrelated extensions. The helper disables old Sheliak/DING before enabling
 the replacements. It does not move or delete Desktop files. The Vega GTK Active
@@ -40,7 +41,7 @@ Lyra Floating, localized in Portuguese, English and Spanish. The persisted IDs
 `windows10`, `windows11` and `macos` remain compatible with saved favorites,
 menu cards and presentation snapshots.
 
-This image requires Vega GTK >=5.1.35, Sheliak >=2.0.0 and Welcome >=0.4.1.
+This image requires Vega GTK >=5.1.36, Sheliak >=2.0.1 and Welcome >=0.4.1.
 Welcome delegates profile changes to Vega. The suite helper journals changes
 before Vega changes the layout and restores interrupted transactions at retry
 or login. Independent component selections are remembered per layout; desktop
