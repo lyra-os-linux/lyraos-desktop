@@ -511,12 +511,12 @@
     <package name="flatpak"/>
 
     <!--
-      Vega (GTK4 frontend). Package name confirmed against
-      home:rodrigosbrito:vega's real OBS package list (vega-gtk,
-      alongside vega-cli/vegad which aren't pulled in explicitly - RPM
-      deps will bring in whatever vega-gtk actually needs).
+      Vega GTK4 and its shared backend. Both are explicit because the GNOME
+      image checks their minimum versions. The terminal frontend vega-cli
+      remains optional and is not required by the GTK frontend or this image.
     -->
     <package name="vega-gtk"/>
+    <package name="vegad"/>
 
     <!-- Lyra's native remote-access clients, pinned in the default GNOME
          favorites together with Vega and Firefox. -->
@@ -524,7 +524,7 @@
     <package name="sulafat"/>
 
     <!--
-      Sheliak, Lyra's GNOME 48 dock. Installing a system extension alone
+      Sheliak, Lyra's suite of six GNOME 48 extensions. Installing them alone
       does not enable it for users, so the image also ships a GNOME Shell
       schema override under root/usr/share/glib-2.0/schemas/.
     -->

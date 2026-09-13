@@ -134,7 +134,7 @@ if [ ! -r /etc/flatpak/remotes.d/flathub.flatpakrepo ]; then
 fi
 
 # Compile the image-owned GNOME defaults after KIWI has overlaid root/.
-# This activates the system-installed Sheliak extension for the live
+# This activates the system-installed Lyra extensions for the live
 # account and for users subsequently created by the installer, while
 # allowing each user to disable it normally.
 glib-compile-schemas /usr/share/glib-2.0/schemas

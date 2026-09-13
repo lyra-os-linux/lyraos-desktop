@@ -60,6 +60,11 @@ A nova [rodada de auditoria #78](https://github.com/lyra-os-linux/lyraos-desktop
 consolida integração entre pacotes, configurações, ciclo de atualização,
 hardware, idiomas, documentação e critérios de encerramento dos achados.
 
+Atualização em 13/09: a [primeira etapa da auditoria](audits/2026-09-13-gnome-integration.md)
+registrou o inventário e confirmou o autostart da suíte no novo login pessoal.
+Também corrigiu a exigência indevida do frontend opcional `vega-cli` no
+verificador da ISO. A qualificação da nova candidata permanece pendente.
+
 ## Ordem de trabalho
 
 Concluir a integração e as correções identificadas, consolidar a candidata e
