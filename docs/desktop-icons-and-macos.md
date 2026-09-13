@@ -54,6 +54,10 @@ icons remain a separate preference, including in GNOME Vanilla.
 `kiwi/config.sh` runs `check-gnome-image.py` inside the prepared image. It checks
 all six UUIDs, suite API version 1 and GNOME major compatibility, in addition to
 minimum versions of branding, themes, LinuxToys and other GNOME components.
+Every package with a required minimum is explicitly selected by the image.
+Vega GTK and vegad are required; the terminal frontend vega-cli remains optional
+and is not a prerequisite for building the GNOME ISO. Removing or downgrading a
+required package must still fail this check.
 The separate OBS provenance/signature gates require accepted source revisions;
 minimum versions alone cannot identify sources reusing a version number.
 
