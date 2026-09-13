@@ -41,7 +41,9 @@ Lyra Floating, localized in Portuguese, English and Spanish. The persisted IDs
 `windows10`, `windows11` and `macos` remain compatible with saved favorites,
 menu cards and presentation snapshots.
 
-This image requires Vega GTK >=5.1.37, Sheliak >=2.0.1 and Welcome >=0.4.1.
+This image requires Vega GTK >=5.1.37, Sheliak >=2.0.1, Welcome >=0.4.1
+and lyra-nautilus-branding >=1.9.4. The Nautilus module must recognize the
+independent shell UUIDs; the retired monolithic UUID is no longer sufficient.
 Welcome delegates profile changes to Vega. The suite helper journals changes
 before Vega changes the layout and restores interrupted transactions at retry
 or login. Independent component selections are remembered per layout; desktop

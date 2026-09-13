@@ -1,6 +1,14 @@
 # Roadmap do Lyra OS
 
-## Flavor KDE experimental
+## Escopo ativo e evidência
+
+O foco da versão final 1.1 é exclusivamente o GNOME e seus pacotes. KDE e XFCE
+estão em segundo plano; não há estabilização conjunta das três edições nem
+prazo comum de lançamento. A proposta de ISO NVIDIA dedicada está cancelada.
+A [situação do GNOME](status-gnome.md) registra o que foi integrado e o que
+continua pendente de qualificação. O estágio canônico está em `release.toml`.
+
+## Flavor KDE experimental — planejamento futuro
 
 Fica planejado um flavor KDE experimental, separado da edição Desktop GNOME,
 que continua sendo a edição oficial e recomendada do Lyra OS. O flavor começa
@@ -9,7 +17,8 @@ Lyra; em etapas posteriores recebe primeiro os wallpapers e depois um Vega
 nativo em Qt. O Welcome não faz parte do flavor, e uma integração própria de
 atualização permanece apenas como possibilidade a avaliar.
 
-O escopo, a ordem das etapas e a separação prevista dos repositórios estão em
+Essa trilha não está ativa no ciclo de entrega GNOME. O escopo, a ordem das
+etapas e a separação prevista dos repositórios estão em
 [`kde-experimental-flavor.md`](kde-experimental-flavor.md).
 
 ## Lyra Enterprise Linux
@@ -29,22 +38,22 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   bloqueadores herdados do instalador e do release e especifica o Lyra
   Upgrade. Para o ECA Digital, fecha enquadramento jurídico, auditoria da
   referência BigLinux, qualificação upstream, UX no Vega, ADR e baseline de
-  governança LTS. Os três idiomas e o fluxo NVIDIA pelo Vega já estão
-  concluídos e validados.
+  governança LTS. Os três idiomas e o fluxo NVIDIA pelo Vega foram implementados; a
+  qualificação na candidata atual, incluindo hardware, continua obrigatória.
 - **Alpha 6 (28/08–11/09) — atualização e integração:** entrega o core,
   preflight, estado durável e serviço privilegiado do Lyra Upgrade para
   atualizações dentro da mesma release, com interface nos três idiomas,
   console sanitizado, recuperação e rollback. Integra também as novas telas do
   Welcome e a pilha ALSA explícita da imagem. O upgrade entre releases segue
-  para a Alpha 7; o serviço parental permanece no marco 1.0, condicionado à
+  para a Alpha 7; o serviço parental permanece no ciclo atual, condicionado à
   revisão jurídica e à qualificação técnica.
-- **Alpha 7 (11–25/09) — rebase e upgrade:** migra o Desktop
-  1.0 para o openSUSE Leap 16.1 Beta 1 e requalifica pacotes, ABI, Secure
+- **Alpha 7 (11–25/09) — rebase e upgrade:** migra a base do Desktop
+  para o openSUSE Leap 16.1 Beta 1 e requalifica pacotes, ABI, Secure
   Boot, instalação, atualização, rollback e hardware. Também conclui o fluxo
   controlado entre releases do Lyra Upgrade. O Desktop 1.1 não oferece
   suporte de produto a aplicativos Android ou Windows; essa trilha volta a ser
   avaliada somente em uma release futura definida pelo projeto. A integração parental só avança quando os
-  gates jurídico e técnico do marco 1.0 estiverem satisfeitos.
+  gates jurídico e técnico do ciclo atual estiverem satisfeitos.
 - **Alpha 8 (25/09–13/10) — gate e estabilização:** automatiza update, upgrade,
   reboot, rollback e a matriz do ECA Digital; não recebe feature nova e depois
   corrige somente defeitos até a decisão da Beta 1.
@@ -52,7 +61,8 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
 A Beta 1 não começa por calendário com P0/P1 ou entrega obrigatória pendente.
 O Lyra OS 1.1 oferece somente inglês dos Estados Unidos (`en-US`), português
 do Brasil (`pt-BR`) e espanhol da Espanha (`es-ES`), com `en-US` como padrão e fallback.
-Os projetos e seus RPMs já foram traduzidos e testados nos três idiomas.
+Os componentes próprios possuem catálogos e testes nos três idiomas. A
+validação completa da ISO nos três idiomas deve ser registrada por candidata.
 Outros idiomas entram apenas em ciclo futuro.
 
 O gate da funcionalidade exige detecção conservadora de hardware compatível,
@@ -68,6 +78,8 @@ A ISO NVIDIA dedicada foi cancelada. A instalação opcional via Vega foi
 concluída na Desktop Alpha 5 e é o único fluxo proprietário: detecção do
 hardware real, confirmação, verificação de Secure Boot, snapshot Snapper,
 pacotes KMP/userspace em lockstep, `dracut`, reinício, validação e rollback.
+A implementação desse fluxo não substitui a qualificação do driver, suspensão,
+monitor externo e rollback no hardware suportado da candidata atual.
 As descobertas técnicas preservadas em [`nvidia-iso.md`](nvidia-iso.md) são
 históricas e alimentam esse fluxo; não representam uma segunda imagem.
 
@@ -85,8 +97,8 @@ prioritárias. Melhorias não podem deixar P0/P1 aberto para a etapa seguinte.
 Novos aplicativos e mudanças amplas de arquitetura ainda exigem decisão
 explícita. A Beta 3 também faz QA linguístico e corrige catálogos.
 
-O cronograma semanal, o inventário nominal de pacotes e os critérios de saída
-estão em [`release-versioning.md`](release-versioning.md#cronograma-do-ciclo-lyra-os-10).
+A meta da versão estável, as entregas recentes e os critérios de saída estão em [política de versões](release-versioning.md), no [estado do GNOME](status-gnome.md)
+e no [release gate](release-gate.md).
 
 ## Idiomas em ciclos futuros
 
