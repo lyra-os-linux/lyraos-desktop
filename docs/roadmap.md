@@ -4,7 +4,8 @@
 
 O foco da versão final 1.1 é exclusivamente o GNOME e seus pacotes. KDE e XFCE
 estão em segundo plano; não há estabilização conjunta das três edições nem
-prazo comum de lançamento. A proposta de ISO NVIDIA dedicada está cancelada.
+prazo comum de lançamento. A decisão de 14/09/2026 prevê duas variantes GNOME,
+padrão e NVIDIA pré-instalada, com implementação e qualificação pendentes.
 A [situação do GNOME](status-gnome.md) registra o que foi integrado e o que
 continua pendente de qualificação. O estágio canônico está em `release.toml`.
 
@@ -72,16 +73,30 @@ mudança, pacotes meta que mantenham KMP, userspace e firmware em lockstep,
 declarado suportado com um P1 aberto; a pendência da Alpha 4 fica registrada
 explicitamente na Alpha 5.
 
-## NVIDIA em uma única ISO Desktop
+## Duas variantes GNOME e cronograma independente
 
-A ISO NVIDIA dedicada foi cancelada. A instalação opcional via Vega foi
-concluída na Desktop Alpha 5 e é o único fluxo proprietário: detecção do
-hardware real, confirmação, verificação de Secure Boot, snapshot Snapper,
-pacotes KMP/userspace em lockstep, `dracut`, reinício, validação e rollback.
-A implementação desse fluxo não substitui a qualificação do driver, suspensão,
-monitor externo e rollback no hardware suportado da candidata atual.
-As descobertas técnicas preservadas em [`nvidia-iso.md`](nvidia-iso.md) são
-históricas e alimentam esse fluxo; não representam uma segunda imagem.
+Em 14/09/2026, o mantenedor substituiu a decisão de ISO única por duas variantes:
+padrão, sem a pilha NVIDIA pré-instalada, e NVIDIA, com o conjunto compatível
+pronto no live e no sistema instalado. A inspiração é a escolha de download
+do Pop!_OS; a implementação usará os contratos próprios do Leap/Lyra.
+A variante padrão mantém a instalação opcional pelo Vega GTK.
+
+As duas imagens devem compartilhar a receita GNOME e os pacotes da edição, com
+seleção gráfica explícita e inventários/evidências distintos. A criação da
+variante NVIDIA ainda está pendente em
+[#63](https://github.com/lyra-os-linux/lyraos-desktop/issues/63); o
+[plano técnico](nvidia-iso.md) define os critérios de cada imagem.
+
+O cronograma do Lyra é independente do Leap. Acompanhar semanalmente a
+correção upstream em [#82](https://github.com/lyra-os-linux/lyraos-desktop/issues/82)
+até a preparação da nossa RC1. Se a incompatibilidade persistir, corrigir a
+integração ao nosso alcance e validar antes de gerar a candidata. Não esperar
+passivamente diante de falha grave nem publicar um artefato com bloqueador
+contando com correção futura. A RC1 não tem data fixada neste roadmap.
+
+A sequência de trabalho permanece: issues de implementação/correção GNOME,
+auditoria #78, construção/testes locais das candidatas e Alpha 8 após os gates.
+A auditoria ampla está adiada; o acompanhamento semanal NVIDIA não a antecipa.
 
 ## Melhorias permitidas nas Betas da 1.1
 

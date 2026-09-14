@@ -1,15 +1,70 @@
-# ISO NVIDIA — proposta cancelada
+# Variantes GNOME padrão e NVIDIA — decisão de 14/09/2026
 
-A proposta de uma ISO Desktop separada com o driver proprietário NVIDIA foi
-cancelada em 14/08/2026. O Lyra OS mantém **uma única ISO Desktop**. O suporte
-proprietário opcional é instalado depois da instalação pelo Vega e pertence à
-Desktop Alpha 5.
+O mantenedor decidiu oferecer duas variantes GNOME, inspiradas na escolha de
+download do Pop!_OS. Esta decisão substitui o cancelamento anterior da imagem
+NVIDIA e o plano de ISO única. **A variante NVIDIA ainda precisa ser implementada
+e qualificada**; este documento não anuncia uma imagem pronta.
 
-Este arquivo preserva somente as descobertas técnicas que continuam válidas
-para o fluxo do Vega. Ele não autoriza criar profile KIWI, nome de imagem,
-artefato, repositório de imagem ou gate de release separado.
+| Variante | Composição pretendida | Validação específica |
+| --- | --- | --- |
+| Padrão | Sem a pilha NVIDIA pré-instalada; drivers gráficos da base e instalação opcional pelo Vega GTK | Live/instalação em Intel/AMD suportados e instalação posterior NVIDIA |
+| NVIDIA | Kernel, KMP, bibliotecas e firmware NVIDIA compatíveis no live e no sistema instalado | GPU NVIDIA física suportada, offload híbrido, Secure Boot e recuperação |
 
-## Contrato do fluxo Vega
+Ambas usam a mesma base Leap 16.1, aplicativos próprios RPM e build KIWI local.
+KDE/XFCE continuam fora deste ciclo. Acompanhar implementação em
+[#63](https://github.com/lyra-os-linux/lyraos-desktop/issues/63) e qualificação em
+[#56](https://github.com/lyra-os-linux/lyraos-desktop/issues/56).
+
+## Contrato a implementar e qualificar
+
+- Reutilizar a receita GNOME com seleção explícita de variante, evitando cópias
+  divergentes. Identificar variante no artefato e no manifesto, preservando
+  identidade comercial e gates de `release.toml`.
+- Auditar os inventários: impedir NVIDIA indireta por recomendações na padrão;
+  preservar Mesa, firmware e drivers necessários a Intel/AMD e à operação híbrida.
+- Selecionar a família do driver conforme hardware e base qualificados. Os
+  nomes G06 históricos abaixo não definem o conjunto G07 observado atualmente.
+- Usar origens RPM confiáveis e compatíveis com o Leap; conferir kernel, KMP,
+  bibliotecas, firmware e dependências reais dos metapacotes em conjunto.
+- Preservar a composição do live até a instalação sem rede e o primeiro boot;
+  a variante NVIDIA não deve precisar baixar o driver para concluir a instalação.
+- Manter o Vega GTK na padrão para instalação opcional e reconhecer corretamente
+  o conjunto já instalado na NVIDIA, sem declarar sucesso por mera presença RPM.
+- Produzir checksum, inventário RPM, SBOM e evidências próprios de cada imagem,
+  ligados à mesma revisão de receita. ISO local; OBS para os RPMs.
+- Validar live, instalação, primeiro boot, update/reboot e rollback em ambas.
+  Na NVIDIA, incluir hardware físico, assinatura/Secure Boot ligado/desligado,
+  renderização/offload, Wayland, monitor externo, DPMS e suspensão/retomada.
+  VM com GPU virtual não qualifica execução do driver físico.
+- Conferir atualizações por Vega/vegad, Zypper e GNOME Software/PackageKit.
+  Uma transação parcial pode quebrar o driver que funcionava na ISO; validar
+  o estado final e preservar uma rota de recuperação em ambiente descartável.
+- Rejeitar cada artefato afetado por P0/P1 ou falta de evidência. O sucesso
+  de uma imagem não homologa a outra; não anunciar ambas como prontas se uma
+  ainda estiver bloqueada. A variante amplia a matriz e o custo de manutenção.
+
+## Limite da espera por upstream
+
+A [issue #82](https://github.com/lyra-os-linux/lyraos-desktop/issues/82) centraliza
+o acompanhamento semanal até a **preparação da RC1 do Lyra**, ainda sem data
+fixada. O cronograma é independente do lançamento final do Leap. Preparar
+diagnóstico e alternativas nas revisões; se a correção upstream não chegar,
+corrigir a integração ao nosso alcance e validar antes de gerar a candidata.
+Não prometer corrigir código interno do driver ou fazer mudança ampla às pressas.
+
+Em 14/09, módulo/KMP 595.91.07 com bibliotecas 595.99.02 ainda produzem erro
+NVML de incompatibilidade. Esse conjunto não está aprovado para pré-instalação.
+O mantenedor mantém as atualizações liberadas, sem recriação automática de
+locks. A decisão não instala pacotes nem reinicia a estação. Falhas graves de
+uso ou boot podem exigir análise antecipada. A cadência está registrada, sem
+agendamento automático configurado.
+
+## Contrato histórico do fluxo Vega G06
+
+Os registros abaixo preservam ensaios e políticas anteriores; não comprovam
+qualificação na base e no conjunto G07 atuais. Qualquer reaplicação precisa
+conferir versão, propriedade dos arquivos e reversão. A política vigente de
+atualizações liberadas prevalece sobre as retenções propostas nesse histórico.
 
 - detectar conservadoramente GPU G06 suportada e bloquear hardware incerto;
 - exigir confirmação explícita;
@@ -52,7 +107,7 @@ A quarentena usa exclusivamente o drop-in gerenciado
 arquivo se o marcador de propriedade estiver presente, e o remove
 automaticamente quando uma versão qualificada substitui a versão afetada.
 
-## Gate mínimo
+## Gate histórico G06
 
 - GPU NVIDIA real, incluindo o notebook híbrido disponível;
 - Secure Boot ligado e desligado;
