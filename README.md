@@ -54,6 +54,13 @@ atual de integração é GNOME; nenhuma entrega Qt/XFCE é prometida para a 1.1.
 - `lyra-report` para diagnóstico local e sob demanda, sem telemetria ou envio
   automático de dados.
 
+O instalador desta imagem exige inicialização em **UEFI**. BIOS legado não é
+suportado; o planejamento e a revalidação recusam esse modo antes de escrever
+no disco. **Intel TDX não é requisito do Lyra Installer.** O teste dedicado
+comprova descoberta e planejamento em VM UEFI sem TDX; a instalação e o boot
+completos das novas ISOs continuam nos gates de release. Veja
+[`docs/installer-firmware-requirements.md`](docs/installer-firmware-requirements.md).
+
 O desktop habilita somente o Packman Essentials para as compilações completas
 de FFmpeg e VLC; o Packman completo não é usado. A pilha GStreamer vem dos
 pacotes oficiais compatíveis com a versão da base Leap. Os repositórios

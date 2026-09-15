@@ -65,6 +65,24 @@ mod tests {
     }
 
     #[test]
+    fn legacy_boot_is_rejected_before_producing_an_install_plan() {
+        let mut snapshot = snapshot_with_disks(vec![disk("sda", LARGE)]);
+        snapshot.uefi = false;
+        let error = PlanBuilder::new(&snapshot)
+            .build(&whole_disk_choice("/dev/sda"))
+            .unwrap_err();
+        assert_eq!(error.0.len(), 1);
+        assert!(error.0[0].contains("UEFI"));
+        // No CPU/TDX field is required to approve an ordinary UEFI machine.
+        snapshot.uefi = true;
+        assert!(
+            PlanBuilder::new(&snapshot)
+                .build(&whole_disk_choice("/dev/sda"))
+                .is_ok()
+        );
+    }
+
+    #[test]
     fn empty_disk_is_an_eligible_target() {
         let backend = discovery::FixtureBackend(snapshot_with_disks(vec![disk("sda", LARGE)]));
         let snapshot = backend.snapshot().expect("fixture backend never fails");
@@ -79,6 +97,40 @@ mod tests {
         assert!(plan.destructive_summary.erased.is_empty());
         assert_eq!(plan.schema_version, INSTALL_PLAN_SCHEMA_VERSION);
         assert_eq!(plan.root_filesystem, FilesystemPlan::default());
+    }
+
+    #[test]
+    #[ignore = "requires the disposable firmware VM harness"]
+    fn native_firmware_without_tdx() {
+        assert!(
+            std::fs::read_to_string("/proc/cmdline")
+                .unwrap()
+                .split_whitespace()
+                .any(|value| value == "lyra.firmware-test=1")
+        );
+        let expected = std::env::var("LYRA_EXPECT_UEFI").unwrap() == "1";
+        let cpu = std::fs::read_to_string("/proc/cpuinfo").unwrap();
+        assert!(
+            !cpu.split_whitespace()
+                .any(|flag| flag == "tdx" || flag == "tdx_guest")
+        );
+        assert!(!std::path::Path::new("/sys/firmware/tdx").exists());
+        let snapshot = SystemDiscoveryBackend.snapshot().unwrap();
+        assert_eq!(snapshot.uefi, expected);
+        assert_eq!(snapshot.disks.len(), 1);
+        assert_eq!(snapshot.disks[0].path, PathBuf::from("/dev/vda"));
+        let plan = PlanBuilder::new(&snapshot).build(&whole_disk_choice("/dev/vda"));
+        if expected {
+            assert!(plan.is_ok(), "{plan:?}");
+        } else {
+            assert!(
+                plan.unwrap_err()
+                    .0
+                    .iter()
+                    .any(|message| message.contains("UEFI"))
+            );
+        }
+        println!("LYRA_FIRMWARE_PASS uefi={expected} tdx=false disk=/dev/vda writes=0");
     }
 
     #[test]

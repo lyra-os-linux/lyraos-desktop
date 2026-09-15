@@ -148,6 +148,7 @@ function formatBytes(bytes){
 }
 
 function diskIneligibleReason(disk){
+  if(storageSnapshot && storageSnapshot.uefi!==true) return i18n.t('uefiRequired');
   if(disk.is_live_media) return i18n.t('diskLiveMedia');
   if(disk.role==='RaidMember') return i18n.t('diskRaidMember');
   if(disk.role==='LvmPhysicalVolume') return i18n.t('diskLvmMember');
@@ -173,6 +174,15 @@ function localizedErasedItems(){
 
 function renderDiskCards(){
   const list=document.querySelector('#disk-list');
+  if(storageSnapshot && storageSnapshot.uefi!==true){
+    selectedPlan=null;
+    selectedDiskPath=null;
+    list.innerHTML=`<p class="disk-plan-error">${i18n.t('uefiRequired')}</p>`;
+    document.querySelector('#disk-count').textContent='';
+    document.querySelector('#disk-plan').hidden=true;
+    updateNextButtonState();
+    return;
+  }
   const disks=storageSnapshot?.disks||[];
   if(!disks.length){
     list.innerHTML=`<p class="keyboard-empty">${i18n.t('noDisks')}</p>`;
