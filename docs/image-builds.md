@@ -48,6 +48,11 @@ the embedded source identity.
 
 ## Build and test the ISO
 
+Before building the next candidate, reconcile [physical-machine fixes](iso-fix-tracker.md)
+with its package inventory and overlay. Preserve the distinction between
+general fixes and hardware-specific repairs; qualify the resulting candidate
+on the supported hardware matrix rather than only the maintainer's station.
+
 For an interactive development build with the current installer workspace,
 VM installation, and first-boot test, use:
 

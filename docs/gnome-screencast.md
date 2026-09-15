@@ -21,13 +21,20 @@ then loads the installed GNOME service and resources. Native errors, capture
 permissions, recording pipelines, and updates remain under GNOME's control.
 The adaptation is confined to the recorder process.
 
+GDM prepends `/usr/share/gdm/greeter` and `/usr/share` to its data search path,
+so `/usr/local/share` alone does not override the recorder in the login session.
+The image also installs the same D-Bus service definition under
+`/usr/share/gdm/greeter/dbus-1/services`. It references the same compatibility
+launcher and fixes initialization in the greeter without replacing the vendor
+service, restarting GDM or changing the user's capture permissions.
+
 Validation must include the real GJS/GStreamer initialization and GNOME
 `ScreencastService.canScreencast()` with the image's installed resources. The
 ISO smoke test must also open Print Screen, select recording, save a short
 clip, and play it back in both the live session and the installed system.
 
 After the official packages support the original launcher with the same
-validation, remove the service override and
+validation, remove both service overrides and
 `/usr/libexec/lyra-gnome-screencast` from the image overlay. Removing those files
 also provides rollback to the vendor entry point. No GStreamer downgrade or
 replacement GNOME Shell package is required.

@@ -79,6 +79,9 @@ content and hardware coverage; a bare green status is rejected:
 
 ## Alpha 8 additions
 
+- [ ] reconcile every physical-machine fix in [the ISO fix tracker](iso-fix-tracker.md)
+  with candidate contents, applicable hardware coverage and exact-checksum
+  evidence; local repair alone does not close an ISO item;
 - [ ] `upgrade-rehearsal`: a published baseline consumes a signed successor
   manifest, applies it offline, crosses reboot, verifies the target and restores
   the baseline through rollback; network loss, low space, UI termination,

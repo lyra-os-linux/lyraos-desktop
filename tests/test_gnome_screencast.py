@@ -19,13 +19,17 @@ RESOURCE = Path("/usr/share/gnome-shell/org.gnome.Shell.Screencast.src.gresource
 
 class GnomeScreencastTests(unittest.TestCase):
     def test_service_override_resolves_to_the_image_launcher(self) -> None:
-        service = configparser.ConfigParser()
-        service.read(OVERLAY / "usr/local/share/dbus-1/services/org.gnome.Shell.Screencast.service")
-        definition = service["D-BUS Service"]
-        self.assertEqual(definition["Name"], LAUNCHER.name)
-        executable, flag, script = shlex.split(definition["Exec"])
-        self.assertEqual((executable, flag), ("/usr/bin/gjs", "-m"))
-        self.assertEqual(OVERLAY / script.lstrip("/"), LAUNCHER)
+        # GDM prepends its greeter directory and /usr/share to XDG_DATA_DIRS,
+        # so the normal /usr/local override cannot win in the login session.
+        for directory in ["usr/local/share", "usr/share/gdm/greeter"]:
+            with self.subTest(directory=directory):
+                service = configparser.ConfigParser()
+                service.read(OVERLAY / directory / "dbus-1/services/org.gnome.Shell.Screencast.service")
+                definition = service["D-BUS Service"]
+                self.assertEqual(definition["Name"], LAUNCHER.name)
+                executable, flag, script = shlex.split(definition["Exec"])
+                self.assertEqual((executable, flag), ("/usr/bin/gjs", "-m"))
+                self.assertEqual(OVERLAY / script.lstrip("/"), LAUNCHER)
         self.assertTrue(LAUNCHER.is_file())
         self.assertTrue(COMPAT.is_file())
         self.assertFalse((OVERLAY / "usr/share/gnome-shell" / LAUNCHER.name).exists())

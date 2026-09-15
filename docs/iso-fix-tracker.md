@@ -1,0 +1,132 @@
+# Correções da máquina física que precisam chegar à ISO
+
+Decisão do mantenedor em 15/09/2026: todo bug encontrado ou corrigido na estação
+física deve ser acompanhado na próxima ISO. A validação em uma máquina é evidência
+de um cenário; não qualifica outros modelos, GPUs ou firmwares.
+
+Este registro complementa a auditoria [#78](https://github.com/lyra-os-linux/lyraos-desktop/issues/78)
+e a [matriz de hardware #69](https://github.com/lyra-os-linux/lyraos-desktop/issues/69).
+Registro inicial: reparos de boot de 15/09 e integração NVIDIA relacionada.
+Não é uma afirmação de que todo o histórico anterior já foi reconciliado.
+
+## Regra para cada correção
+
+Registrar sintoma e causa, componente responsável, alcance entre hardwares,
+fonte/RPM/receita alterados, evidência local, riscos e reversão. Manter separados
+os estados **corrigido localmente**, **incorporado nas fontes**, **publicado em
+RPM quando aplicável**, **incluído na ISO exata** e **validado na candidata**.
+Só concluir o item da ISO após o teste da candidata identificada por checksum.
+
+Quando a causa for específica da estação, registrar isso e verificar que a ISO
+limpa não a reproduz. Não copiar diretórios pessoais, resíduos de prévia,
+blacklists, UUIDs de discos, chaves privadas, parâmetros de firmware ou drivers
+de um modelo para toda a distribuição. A correção deve usar detecção de
+capacidade/hardware quando necessária, preservar o comportamento nos demais
+equipamentos e oferecer reversão.
+
+## Lote atual
+
+As alterações abaixo integram o lote `fix/boot-startup-integration` nas fontes
+do Desktop. A verificação local não substitui a publicação dos artefatos nem
+a qualificação da imagem: nenhuma candidata nova foi construída ou homologada
+nesta etapa.
+
+| ID | Bug e correção local | Destino na ISO e alcance | Validação ainda necessária |
+| --- | --- | --- | --- |
+| BOOT-01 | `regulatory.db` ausente; RPM oficial `wireless-regdb` instalado e recarregado, conexão mantida | Dependência explícita na receita, independente do fornecedor do Wi-Fi; sem forçar país | Live e instalado com Intel e outro fornecedor de Wi-Fi, além de Ethernet e VM sem Wi-Fi; carregamento da assinatura, conexão e retorno de suspensão |
+| BOOT-02 | `linuwu_sense` órfão/sem assinatura, `acer_wmi` bloqueado; restaurado driver Acer assinado do kernel | Saneamento **apenas local**; a receita já usa módulos do kernel e não deve instalar Linuwu, forçar Acer ou distribuir esta blacklist | Confirmar ausência do resíduo na ISO; testar Acer e pelo menos um fabricante diferente; hotkeys/rfkill, suspensão e Secure Boot; não prometer controles extras Linuwu/DAMX |
+| BOOT-03 | Cinco prévias antigas mantinham UUID Sheliak incompleto; retiradas com backup | Resíduo **apenas local**, fora dos RPMs atuais; não distribuir remoção ampla de diretórios de extensões | Conta nova, atualização de instalação anterior e retorno de perfil; seis componentes ativos, sem depender de arquivos pessoais da estação |
+| BOOT-04 | Screencast GJS/GStreamer falhava no GDM; launcher compatível e override no diretório do greeter | Receita GNOME comum, reutilizando o mesmo launcher; nenhuma seleção por GPU | Ativação em D-Bus isolado passou; testar login real, bloqueio/desbloqueio e gravação/reprodução na candidata com Intel, AMD, NVIDIA suportada e VM |
+| BOOT-05 | Plymouth tinha `${localstatedir}` não expandido; PID e condição ajustados para `/run/plymouth/pid` | Overrides na receita e inclusão no initrd instalado; preservar exclusão de Plymouth/DRM do initrd live genérico | Boot e desligamento da candidata, splash/tema, passagem ao GDM e entrada de senha se houver volume criptografado suportado; reavaliar override ao mudar pacote upstream |
+| BOOT-06 | Exceção do Xwayland ao encerrar o greeter; sessão pessoal permaneceu ativa | **Pendente**, sem correção demonstrada; os reparos do screencast e do backend não encerram este item | Já reproduzido em três boots; comparar o encerramento GDM/GNOME em mais de uma GPU/VM antes de alterar lifecycle ou sessão gráfica |
+| BOOT-07 | Erros ACPI/firmware e aviso de TDX indisponível | **Específico de firmware/capacidade**, sem correção global aplicada; não desabilitar ACPI nem criar requisito de TDX | Comparar versões de firmware e outros fabricantes; energia, suspensão, dispositivos e requisitos mínimos; separar avisos sem impacto de falhas funcionais |
+| BOOT-08 | Plymouth usa `KillMode=none` depreciado | **Pendente upstream/qualificação**, mantida a política de término existente | Ensaiar boot, cancelamento, troca de root, passagem ao GDM e desligamento antes de alterar semântica para eliminar o aviso |
+| BOOT-09a | Instalador apagava `custom.conf`, deixando o GDM sem backend; arquivo restaurado localmente e limpeza do instalador corrigida | Fontes do instalador e `lyra-system-smoke`; geral para GNOME, independente da GPU | Regressões, leitor GDM isolado e reboot local de 15/09 às 16:18 passaram; consumir o instalador corrigido na nova ISO e validar instalação/primeiro login com conta nova |
+| BOOT-09b | Ativação `systemd1` falha no bus privado do greeter | Separação é deliberada no GDM 48; nenhuma alteração de PAM, bus ou lifecycle aplicada | Acompanhar upstream; não classificar a mensagem isolada como falha do gerenciador pessoal nem forçar integração que o GDM evita |
+| NVIDIA-01 | Conjunto oficial NVIDIA 610.57.04 + KMP SUSE assinado funciona na GTX 1650 desta estação | Metapacote guard publicado em OBS; integração/qualificação da variante NVIDIA ainda pendente. Variante padrão sem NVIDIA pré-instalada preservada | Matriz das GPUs realmente suportadas, sistemas híbridos e dedicados, Secure Boot, novo kernel, atualização/rollback, monitor externo e suspensão; não extrapolar GTX 1650 para todas as placas |
+
+## Reboot da estação de referência — 15/09, 15:58
+
+Boot `bc429101-7648-4871-93bd-62f5335b2c28`, kernel
+`6.12.0-160100.4-default`: persistência local dos reparos BOOT-01 a BOOT-05
+confirmada. Zero units de sistema/usuário failed; Acer assinado carregado;
+sem erro de regulatory.db, metadata Sheliak ausente, argumento null do screencast
+ou caminho inválido do Plymouth. Plymouth iniciou e o GDM ativou o screencast
+às 15:58:49. NVIDIA 610, Secure Boot, seis extensões, rede e serviços de áudio
+permaneceram ativos. Aparência do splash, gravação e brilho não foram aferidos.
+
+BOOT-06 foi reproduzido às 15:59:04 no Shell do greeter PID1415. O Shell pessoal
+PID2122 permaneceu ativo, sem reinícios. BOOT-07 e BOOT-08 também permanecem
+abertos. Próximo passo de BOOT-06: comparar integração GDM/sessão e outros
+hardwares; não é mais necessário pedir novo reboot apenas para reproduzir.
+
+**BOOT-09 — diagnóstico posterior, separado em dois itens:** a exclusão de
+`/etc/gdm/custom.conf` foi localizada em `LIVE_ONLY_ARTIFACTS` do instalador.
+O arquivo pertence a `gdm-branding-openSUSE`; sem ele e sem outro backend,
+GDM 48.0 emite a assertion. A limpeza agora mantém o arquivo e remove somente
+as opções de login automático, preservando opções como Wayland. Quatro novas
+regressões Rust e nove cenários do smoke cobrem arquivo ausente, outros display
+managers, configuração duplicada, erro de I/O e autologin residual.
+O leitor GDM instalado reproduziu uma assertion sem o arquivo e zero com o
+arquivo corrigido em namespaces descartáveis, sem contato com a sessão pessoal.
+
+O segundo bus não era um fallback causado por falha: o código do GDM 48.0
+envolve explicitamente o greeter em `dbus-run-session`, evitando o gerenciador
+systemd por conflitos de identificação de sessão/seat. A implementação não
+altera essa arquitetura. BOOT-06 continua aberto: o teste de leitura da
+configuração não reproduz nem qualifica o encerramento gráfico do Xwayland.
+Detalhes e fonte upstream em [boot-integration.md](boot-integration.md).
+
+Reparo local BOOT-09a aplicado às 16:15 de 15/09: arquivo root:root 0644,
+autologin automático e temporizado desabilitados; nenhuma opção de GPU imposta.
+GDM PID1347 e Shell pessoal PID2122 mantidos, zero units failed. Recibo/reversão
+em `/var/lib/lyra-os-theme/gdm-settings-repair-20260915/manifest.json`.
+Naquele momento, ainda sem novo boot, RPM publicado ou ISO construída para esta correção.
+
+Evidências locais: `analysis/2026-09-15/boot-repair/post-reboot/` no workspace
+LyraOS. Este resultado não encerra os itens da ISO nem substitui a matriz abaixo.
+
+## Reboot após correção do backend GDM — 15/09, 16:18
+
+Boot `cb9c2669-0c26-412c-8b3f-6614f4307c69`, iniciado às 16:18:22,
+kernel `6.12.0-160100.4-default`. BOOT-09a validado na estação: configuração
+preservada com hash esperado, flags de autologin desativadas, login pelo serviço
+`gdm-password`, sessão Wayland ativa e nenhuma assertion `settings->backends`.
+GDM PID1340 ativo; Shell pessoal PID2104 com zero reinícios. Zero units failed
+nos gerenciadores de sistema e usuário; seis componentes Lyra ativos,
+áudio e rede funcionando, NVIDIA 610.57.04 responde e Secure Boot habilitado.
+
+BOOT-06 reapareceu às 16:18:37 no greeter PID1414, durante seu encerramento;
+o Shell pessoal permaneceu ativo. No mesmo instante, `gsd-power` do greeter
+PID1609 registrou `backlights != NULL`; observação para o diagnóstico do
+encerramento, sem atribuição de causa nem correção de brilho comprovada.
+BOOT-09b (`systemd1` no bus privado), ACPI/TDX e depreciação do Plymouth persistem.
+O screencast do GDM ativou com sucesso às 16:18:29. Avisos transitórios de
+autostart/XSettings ocorreram, mas XSettings está ativo na consulta posterior.
+
+Nenhuma nova alteração no sistema nesta verificação. Evidências locais em
+`analysis/2026-09-15/gdm-integration/post-reboot/`. Na conclusão desta coleta,
+publicação do instalador e receita, build e qualificação da ISO exata e matriz
+de hardware permaneciam pendentes.
+
+## Matriz da candidata
+
+- CPU Intel e AMD dentro dos requisitos suportados; não exigir TDX por causa
+  de mensagens da estação de referência.
+- GPU Intel, AMD, NVIDIA compatível e adaptador virtual; notebook híbrido e
+  computador com GPU dedicada nos cenários anunciados.
+- UEFI com Secure Boot habilitado e desabilitado. BIOS legado só pode ser
+  anunciado após implementação e teste próprios; não inferir suporte deste boot.
+- Wi-Fi de fabricantes diferentes, Ethernet, equipamento sem Wi-Fi; teclado,
+  áudio, brilho, touchpad e suspensão/retorno conforme as capacidades presentes.
+- Live, instalação, primeiro boot com conta nova, novo login, atualização e
+  rollback. Executar sobre cada variante publicada, com evidências do checksum
+  exato. VM complementa os testes físicos; não comprova driver, energia ou firmware
+  que ela não expõe.
+
+O inventário do RPM/overlay precisa comprovar que cada correção geral chegou à
+candidata. Os testes devem demonstrar que os ajustes específicos da estação não
+viraram requisitos ou defaults para outros hardwares. Nenhum P0/P1 pode ser
+encerrado apenas porque deixou de ocorrer no computador do mantenedor.
+
+Detalhes técnicos e limites deste lote: [integração de boot](boot-integration.md).

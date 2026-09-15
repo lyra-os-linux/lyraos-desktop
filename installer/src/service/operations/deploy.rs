@@ -31,7 +31,6 @@ const INSTALLED_THIRD_PARTY_PRIORITY: u8 = 90;
 
 /// Files that only make sense in the autologin live session.
 const LIVE_ONLY_ARTIFACTS: &[&str] = &[
-    "etc/gdm/custom.conf",
     "etc/lightdm/lightdm.conf.d/50-lyra-live.conf",
     "etc/sddm.conf.d/10-lyra-live.conf",
     "etc/sddm.conf",
@@ -933,8 +932,59 @@ impl PrivilegedOperation for RemoveLiveOnlyArtifacts {
             let _ = fs::remove_file(self.target_root.join(artifact));
         }
         clear_live_autologin(&self.target_root.join("etc/sysconfig/displaymanager"))?;
+        clear_gdm_autologin(&self.target_root)?;
         Ok(())
     }
+}
+
+/// GDM needs a settings backend even after the live session is removed.
+/// Preserve unrelated options (including hardware settings), remove both forms
+/// of live autologin, and keep a valid daemon group instead of deleting the file.
+fn clear_gdm_autologin(target_root: &Path) -> Result<(), OperationError> {
+    let path = target_root.join("etc/gdm/custom.conf");
+    if !path.exists() && !target_root.join("usr/sbin/gdm").exists() {
+        return Ok(());
+    }
+    let content = if path.exists() {
+        fs::read_to_string(&path).map_err(io_error)?
+    } else {
+        String::new()
+    };
+    let mut rewritten = String::new();
+    let mut in_daemon = false;
+    let mut wrote_defaults = false;
+    for line in content.lines() {
+        let trimmed = line.trim();
+        if trimmed.starts_with('[') && trimmed.ends_with(']') {
+            in_daemon = trimmed == "[daemon]";
+        }
+        if in_daemon
+            && trimmed.split_once('=').is_some_and(|(key, _)| {
+                matches!(
+                    key.trim(),
+                    "AutomaticLoginEnable"
+                        | "AutomaticLogin"
+                        | "TimedLoginEnable"
+                        | "TimedLogin"
+                        | "TimedLoginDelay"
+                )
+            })
+        {
+            continue;
+        }
+        rewritten.push_str(line);
+        rewritten.push('\n');
+        if in_daemon && !wrote_defaults {
+            rewritten.push_str("AutomaticLoginEnable=false\nTimedLoginEnable=false\n");
+            wrote_defaults = true;
+        }
+    }
+    if !wrote_defaults {
+        rewritten.push_str("[daemon]\nAutomaticLoginEnable=false\nTimedLoginEnable=false\n");
+    }
+    fs::create_dir_all(path.parent().expect("GDM configuration has a parent")).map_err(io_error)?;
+    fs::write(path, rewritten).map_err(io_error)?;
+    Ok(())
 }
 
 /// Keep the display manager selected by each image, but never carry the live
@@ -2192,6 +2242,79 @@ mod tests {
                 format!("DISPLAYMANAGER=\"{manager}\"\nDISPLAYMANAGER_AUTOLOGIN=\"\"\n")
             );
         }
+    }
+
+    #[test]
+    fn gdm_cleanup_preserves_settings_and_disables_both_autologin_modes() {
+        let temp = TempRoot::new("gdm-autologin");
+        let path = temp.0.join("etc/gdm/custom.conf");
+        fs::create_dir_all(path.parent().unwrap()).unwrap();
+        fs::write(
+            &path,
+            concat!(
+                "# Keep the selected display backend\n[daemon]\nWaylandEnable=false\n",
+                "AutomaticLoginEnable = true\nAutomaticLogin=liveuser\n",
+                "TimedLoginEnable=true\nTimedLogin=liveuser\nTimedLoginDelay=5\n",
+                "[debug]\nEnable=true\n[daemon]\nAutomaticLoginEnable=true\n",
+            ),
+        )
+        .unwrap();
+        let op = RemoveLiveOnlyArtifacts {
+            target_root: temp.0.clone(),
+        };
+        op.perform(&FakeExecutor::new()).unwrap();
+        let content = fs::read_to_string(&path).unwrap();
+        assert_eq!(
+            content,
+            concat!(
+                "# Keep the selected display backend\n[daemon]\n",
+                "AutomaticLoginEnable=false\nTimedLoginEnable=false\nWaylandEnable=false\n",
+                "[debug]\nEnable=true\n[daemon]\n",
+            )
+        );
+        op.perform(&FakeExecutor::new()).unwrap();
+        assert_eq!(fs::read_to_string(path).unwrap(), content);
+    }
+
+    #[test]
+    fn gdm_cleanup_recovers_missing_backend_only_when_gdm_is_installed() {
+        let temp = TempRoot::new("gdm-missing-backend");
+        let op = RemoveLiveOnlyArtifacts {
+            target_root: temp.0.clone(),
+        };
+        op.perform(&FakeExecutor::new()).unwrap();
+        let path = temp.0.join("etc/gdm/custom.conf");
+        assert!(!path.exists());
+        fs::create_dir_all(temp.0.join("usr/sbin")).unwrap();
+        fs::write(temp.0.join("usr/sbin/gdm"), "fixture").unwrap();
+        op.perform(&FakeExecutor::new()).unwrap();
+        assert_eq!(
+            fs::read_to_string(path).unwrap(),
+            "[daemon]\nAutomaticLoginEnable=false\nTimedLoginEnable=false\n"
+        );
+    }
+
+    #[test]
+    fn gdm_cleanup_preserves_other_groups_when_daemon_group_is_missing() {
+        let temp = TempRoot::new("gdm-missing-group");
+        let path = temp.0.join("etc/gdm/custom.conf");
+        fs::create_dir_all(path.parent().unwrap()).unwrap();
+        fs::write(&path, "[security]\nDisallowTCP=true\n").unwrap();
+        clear_gdm_autologin(&temp.0).unwrap();
+        assert_eq!(
+            fs::read_to_string(path).unwrap(),
+            concat!(
+                "[security]\nDisallowTCP=true\n",
+                "[daemon]\nAutomaticLoginEnable=false\nTimedLoginEnable=false\n",
+            )
+        );
+    }
+
+    #[test]
+    fn gdm_cleanup_does_not_ignore_configuration_io_errors() {
+        let temp = TempRoot::new("gdm-unreadable");
+        fs::create_dir_all(temp.0.join("etc/gdm/custom.conf")).unwrap();
+        assert!(clear_gdm_autologin(&temp.0).is_err());
     }
 
     #[test]
