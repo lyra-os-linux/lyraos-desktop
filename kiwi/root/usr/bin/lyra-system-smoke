@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import configparser
 import datetime as dt
 import getpass
 import json
@@ -17,7 +18,6 @@ from typing import Callable
 CommandRunner = Callable[[list[str]], tuple[int, str]]
 
 LIVE_ONLY_PATHS = (
-    "/etc/gdm/custom.conf",
     "/etc/xdg/autostart/lyra-installer-autostart.desktop",
     "/usr/bin/lyra-install-lock",
     "/usr/bin/lyra-installer",
@@ -318,6 +318,35 @@ def validate_first_boot(
         if not remaining and not probe_errors
         else "; ".join([*remaining, *probe_errors]),
     )
+    if profile == "desktop" and (
+        rooted(root, "/usr/sbin/gdm").exists()
+        or rooted(root, "/etc/gdm/custom.conf").exists()
+    ):
+        code, content = read_system_text(
+            rooted(root, "/etc/gdm/custom.conf"),
+            runner=runner,
+            privileged_fallback=privileged_access_required,
+        )
+        valid = False
+        detail = content if code else "GDM configuration preserves the backend and disables autologin"
+        if code == 0:
+            # GKeyFile accepts repeated groups/keys and uses the last value.
+            parser = configparser.ConfigParser(interpolation=None, strict=False)
+            parser.optionxform = str
+            try:
+                parser.read_string(content)
+                valid = parser.has_section("daemon") and all(
+                    parser.get("daemon", key, fallback="false") in ("false", "0")
+                    for key in ("AutomaticLoginEnable", "TimedLoginEnable")
+                ) and all(
+                    parser.get("daemon", key, fallback="") != "liveuser"
+                    for key in ("AutomaticLogin", "TimedLogin")
+                )
+                if not valid:
+                    detail = "GDM daemon settings are missing or still contain autologin"
+            except configparser.Error as error:
+                detail = f"invalid GDM configuration: {error}"
+        check("gdm-installed-configuration", valid, detail)
     code, package_output = runner(
         ["rpm", "--root", str(root), "-q", "lyra-installer"]
     )

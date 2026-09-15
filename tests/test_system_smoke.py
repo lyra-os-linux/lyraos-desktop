@@ -92,6 +92,37 @@ class SystemSmokeTests(unittest.TestCase):
         for implementation in ("gdm.service", "sddm.service", "lightdm.service"):
             self.assertNotIn(implementation, units)
 
+    def test_gdm_requires_a_backend_without_live_autologin(self) -> None:
+        cases = (
+            (None, False),
+            ("", False),
+            ("invalid config", False),
+            ("[daemon]\nAutomaticLoginEnable=false\nTimedLoginEnable=false\n", True),
+            ("[daemon]\nWaylandEnable=false\n", True),
+            ("[daemon]\nAutomaticLoginEnable=true\nAutomaticLogin=liveuser\n", False),
+            ("[daemon]\nTimedLoginEnable=true\nTimedLogin=liveuser\n", False),
+            ("[daemon]\nAutomaticLoginEnable=false\nAutomaticLogin=liveuser\n", False),
+            ("[daemon]\nAutomaticLoginEnable=false\n[daemon]\nAutomaticLoginEnable=true\n", False),
+        )
+        for content, expected in cases:
+            with self.subTest(content=content), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                self.create_installed_root(root)
+                gdm = root / "usr/sbin/gdm"
+                gdm.parent.mkdir(parents=True)
+                gdm.write_text("fixture", encoding="utf-8")
+                if content is not None:
+                    config = root / "etc/gdm/custom.conf"
+                    config.parent.mkdir(parents=True)
+                    config.write_text(content, encoding="utf-8")
+                report = system_smoke.validate_first_boot(
+                    root=root, username="alice", runner=self.runner,
+                )
+                checks = {item["id"]: item for item in report["checks"]}
+                self.assertEqual(checks["live-artifacts-removed"]["status"], "passed")
+                self.assertEqual(checks["gdm-installed-configuration"]["status"],
+                                 "passed" if expected else "failed")
+
     def test_desktop_requires_only_the_safe_btrfs_maintenance_timer(self) -> None:
         active = system_smoke.EXPECTED_ACTIVE_UNITS["desktop"]
         disabled = system_smoke.EXPECTED_DISABLED_UNITS["desktop"]

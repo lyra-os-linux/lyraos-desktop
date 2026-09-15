@@ -167,6 +167,9 @@
          an ISO that boots in the VM but loses Wi-Fi/GPU/storage support on
          common physical hardware. CPU microcode is likewise explicit. -->
     <package name="kernel-firmware-all"/>
+    <!-- Required even with onlyRequired: cfg80211 loads this signed regulatory
+         database separately from hardware firmware. -->
+    <package name="wireless-regdb"/>
     <package name="ucode-amd"/>
     <package name="ucode-intel"/>
     <package name="grub2"/>

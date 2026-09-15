@@ -114,6 +114,18 @@ próprio sistema.
   melhorias funcionais ou ampliação de comportamento. Essas mudanças pertencem
   ao próximo ciclo e devem percorrer novamente Alpha, Beta e RC.
 
+## Correções observadas em hardware físico
+
+Por decisão do mantenedor em 15/09/2026, cada bug corrigido na estação física
+deve ser registrado em `docs/iso-fix-tracker.md` para a próxima candidata.
+Separar reparo local, alteração de fontes/RPM, inclusão na ISO e qualificação
+do checksum exato. Classificar o que é geral e o que depende do hardware;
+não copiar ajustes exclusivos da estação para a distribuição inteira. Validar
+os cenários aplicáveis em outros hardwares e em VM, sem tratar uma GTX, notebook
+ou firmware específico como representativo de todos. Concluir o item da ISO
+somente após evidência da candidata, ou registrar explicitamente que era um
+resíduo local ausente da receita limpa e verificar essa ausência.
+
 ## Operação das VMs de teste
 
 Quando uma VM de teste estiver disponível e houver um canal seguro de controle
