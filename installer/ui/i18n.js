@@ -15,7 +15,7 @@ window.LyraI18n=(()=>{
       erasedPartition:'{path}: {filesystem}{mount} ({size})',unknownFilesystem:'unknown filesystem',mountedAt:', mounted at {path}',
       installAuthorizing:'Authorizing and starting the installation…',installStarted:'Preparing the installation…',installing:'Installing Lyra OS…',
       installWarning:'The installer reported a warning',installFailed:'The installation was interrupted',installCompleted:'Installation and cleanup completed',installRetry:'Try installing again',
-      storageDiscoveryFailed:'Could not inspect the available disks.',planFailed:'Could not calculate a safe installation plan.',
+      storageDiscoveryFailed:'Could not inspect the available disks.',uefiRequired:'This Lyra OS image requires UEFI boot. Restart the installation media in UEFI mode; legacy BIOS is not supported.',planFailed:'Could not calculate a safe installation plan.',
       rebootLabel:'Restart system <span aria-hidden="true">↻</span>',rebooting:'Restarting…',rebootFailed:'Could not restart the system',
       validation:{fullNameRequired:'Full name is required',invalidFullName:'The full name contains an unsupported character or is too long',invalidPassword:'The password cannot contain a line feed or a null character',passwordTooLong:'The password is too long',invalidUsername:'Invalid username',invalidHostname:'Invalid device name',passwordTooShort:'The password must contain at least 8 characters',passwordMismatch:'The passwords do not match',unsupportedLocale:'Unsupported language',unsupportedTimezone:'Unsupported time zone',unsupportedKeyboard:'Unsupported keyboard layout'},
       static:{
@@ -53,7 +53,7 @@ window.LyraI18n=(()=>{
       erasedPartition:'{path}: {filesystem}{mount} ({size})',unknownFilesystem:'sistema de arquivos desconhecido',mountedAt:', montado em {path}',
       installAuthorizing:'Autorizando e iniciando a instalação…',installStarted:'Preparando a instalação…',installing:'Instalando o Lyra OS…',
       installWarning:'O instalador emitiu um aviso',installFailed:'A instalação foi interrompida',installCompleted:'Instalação e limpeza concluídas',installRetry:'Tentar instalar novamente',
-      storageDiscoveryFailed:'Não foi possível verificar os discos disponíveis.',planFailed:'Não foi possível calcular um plano de instalação seguro.',
+      storageDiscoveryFailed:'Não foi possível verificar os discos disponíveis.',uefiRequired:'Esta imagem do Lyra OS requer inicialização UEFI. Reinicie a mídia em modo UEFI; BIOS legado não é suportado.',planFailed:'Não foi possível calcular um plano de instalação seguro.',
       rebootLabel:'Reiniciar o sistema <span aria-hidden="true">↻</span>',rebooting:'Reiniciando…',rebootFailed:'Não foi possível reiniciar o sistema',
       validation:{fullNameRequired:'Nome completo obrigatório',invalidFullName:'O nome completo contém um caractere não aceito ou é longo demais',invalidPassword:'A senha não pode conter quebra de linha ou caractere nulo',passwordTooLong:'A senha é longa demais',invalidUsername:'Nome de usuário inválido',invalidHostname:'Nome do dispositivo inválido',passwordTooShort:'A senha deve ter ao menos 8 caracteres',passwordMismatch:'As senhas não coincidem',unsupportedLocale:'Idioma não suportado',unsupportedTimezone:'Fuso horário não suportado',unsupportedKeyboard:'Layout de teclado não suportado'},
       static:{
@@ -91,7 +91,7 @@ window.LyraI18n=(()=>{
       erasedPartition:'{path}: {filesystem}{mount} ({size})',unknownFilesystem:'sistema de archivos desconocido',mountedAt:', montado en {path}',
       installAuthorizing:'Autorizando e iniciando la instalación…',installStarted:'Preparando la instalación…',installing:'Instalando Lyra OS…',
       installWarning:'El instalador emitió una advertencia',installFailed:'La instalación fue interrumpida',installCompleted:'Instalación y limpieza completadas',installRetry:'Intentar instalar de nuevo',
-      storageDiscoveryFailed:'No se pudieron consultar los discos disponibles.',planFailed:'No se pudo calcular un plan de instalación seguro.',
+      storageDiscoveryFailed:'No se pudieron consultar los discos disponibles.',uefiRequired:'Esta imagen de Lyra OS requiere arranque UEFI. Reinicia el medio de instalación en modo UEFI; BIOS heredado no es compatible.',planFailed:'No se pudo calcular un plan de instalación seguro.',
       rebootLabel:'Reiniciar el sistema <span aria-hidden="true">↻</span>',rebooting:'Reiniciando…',rebootFailed:'No se pudo reiniciar el sistema',
       validation:{fullNameRequired:'El nombre completo es obligatorio',invalidFullName:'El nombre completo contiene un carácter no admitido o es demasiado largo',invalidPassword:'La contraseña no puede contener un salto de línea ni un carácter nulo',passwordTooLong:'La contraseña es demasiado larga',invalidUsername:'Nombre de usuario no válido',invalidHostname:'Nombre del dispositivo no válido',passwordTooShort:'La contraseña debe tener al menos 8 caracteres',passwordMismatch:'Las contraseñas no coinciden',unsupportedLocale:'Idioma no compatible',unsupportedTimezone:'Zona horaria no compatible',unsupportedKeyboard:'Distribución de teclado no compatible'},
       static:{

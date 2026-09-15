@@ -216,6 +216,11 @@ impl<'a> PlanBuilder<'a> {
     /// Pure function: validates `choice` against `snapshot` and produces a
     /// declarative plan, or every reason it's blocked. No I/O happens here.
     pub fn build(&self, choice: &GuidedChoice) -> Result<InstallPlan, PlanError> {
+        if !self.snapshot.uefi {
+            return Err(PlanError(vec![
+                "Esta imagem do Lyra OS requer inicialização UEFI. Reinicie a mídia em modo UEFI; BIOS legado não é suportado.".to_string(),
+            ]));
+        }
         let mut errors = Vec::new();
         let mut warnings = Vec::new();
         let mut erased = Vec::new();

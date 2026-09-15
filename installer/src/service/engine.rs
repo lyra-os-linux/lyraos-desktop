@@ -289,6 +289,25 @@ mod tests {
     }
 
     #[test]
+    fn legacy_firmware_fails_revalidation_before_any_operation() {
+        let (mut snapshot, request) = valid_request();
+        snapshot.uefi = false;
+        let executor = FakeExecutor::new(None);
+        let cancel = AtomicBool::new(false);
+        let ops = fake_ops(&[("must-not-run", false)]);
+        let mut events = Vec::new();
+        let outcome = execute(&request, &snapshot, &ops, &executor, &cancel, |event| {
+            events.push(event)
+        });
+        assert_eq!(outcome, ExecutionOutcome::Failed);
+        assert!(executor.calls().is_empty());
+        assert!(
+            matches!(events.last(), Some(ExecutionEvent::Failed { step, message })
+            if step == "revalidação" && message.contains("UEFI"))
+        );
+    }
+
+    #[test]
     fn invalid_identity_data_fails_before_any_operation() {
         let (snapshot, mut request) = valid_request();
         request.config.username = "root".to_string();

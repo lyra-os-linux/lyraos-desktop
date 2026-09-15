@@ -30,10 +30,10 @@ impl Executor for FaultExecutor<'_> {
     fn run(&self, command: &ArgvCommand) -> Result<String, ExecutorError> {
         let index = self.calls.borrow().len();
         self.calls.borrow_mut().push(command.clone());
-        if index == 1 {
-            if let Some(cancel) = self.cancel {
-                cancel.store(true, Ordering::SeqCst);
-            }
+        if index == 1
+            && let Some(cancel) = self.cancel
+        {
+            cancel.store(true, Ordering::SeqCst);
         }
         if self.fail_at.contains(&index) {
             return Err(ExecutorError::NonZeroExit {
