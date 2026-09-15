@@ -89,6 +89,24 @@ ended after login; the personal Shell remained active with zero restarts.
 ACPI firmware-table errors are also outside this change. The
 [ISO fix tracker](iso-fix-tracker.md) records the remaining work and hardware scope.
 
+## Greeter shutdown reproduced without NVIDIA or Lyra extensions
+
+A later September 15 comparison reproduced the same exception in a minimal
+VM using official Leap RPMs and a virtual GPU, and in the same base with all
+six Lyra components active. Three login/lock/unlock/logout cycles passed in
+each environment with zero user-Shell or GDM restarts. Signal tracing observed
+GDM terminating the greeter process group; in the Lyra trace the exception
+followed about 4 ms later. This supports a GDM/Mutter shutdown-order race.
+The count difference between the small samples does not establish a Lyra
+improvement. No lifecycle workaround or physical-session change was applied.
+
+See the [upstream reproduction](gdm-greeter-reproduction.md) and its evidence
+manifest. Component VMs do not qualify the full ISO or physical GPU behavior.
+The independent backend fix is now published in installer 0.1.0-lp161.33.1 via
+[OBS #1378217](https://build.opensuse.org/request/show/1378217), after
+[PR #85](https://github.com/lyra-os-linux/lyraos-desktop/pull/85). Recipe inclusion
+and qualification of the next exact ISO remain separate gates.
+
 ## Reference-machine cleanup only
 
 The unsigned orphan `linuwu_sense` module and its forced-load configuration,

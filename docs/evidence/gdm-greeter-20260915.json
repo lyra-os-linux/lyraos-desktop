@@ -1,0 +1,168 @@
+{
+  "date": "2026-09-15",
+  "scope": "GNOME/GDM component VMs, not complete installed ISO qualification",
+  "kernel": "6.12.0-160100.4-default",
+  "virtual_gpu": "virtio-vga, software Mesa rendering",
+  "nvidia_in_guests": false,
+  "core_packages": {
+    "Mesa-dri": "26.0.7-160100.2.1",
+    "systemd": "257.13-160100.2.5",
+    "dbus-broker": "36-160100.2.1",
+    "glib2-tools": "2.84.4-160100.2.1",
+    "gstreamer": "1.28.5-160100.2.1",
+    "gjs": "1.84.2-160100.2.1",
+    "xwayland": "24.1.9-160100.2.1",
+    "mutter": "48.8-160100.2.1",
+    "gnome-session": "48.0-160100.2.1",
+    "gnome-shell": "48.8-160100.2.1",
+    "gdm-systemd": "48.0-160100.2.1",
+    "gdm": "48.0-160100.2.1"
+  },
+  "lyra_source": "9584dc974039424cf15917feb939ef9f1178b515",
+  "sheliak_rpm": "sheliak-2.0.2-lp161.1.1.noarch.rpm",
+  "suite_runtime": {
+    "dock": 1.0,
+    "panel": 1.0,
+    "menus": 1.0,
+    "search": 1.0,
+    "animations": 1.0,
+    "desktop-icons": 1.0
+  },
+  "untraced_cycles": {
+    "leap": {
+      "variant": "leap",
+      "cycles": [
+        {
+          "cycle": 1,
+          "login_lock_unlock_logout_passed": true,
+          "same_pid_after_unlock": 823,
+          "shell_restarts": 0,
+          "gdm_restarts_zero": true,
+          "system_failed_units": ""
+        },
+        {
+          "cycle": 2,
+          "login_lock_unlock_logout_passed": true,
+          "same_pid_after_unlock": 1558,
+          "shell_restarts": 0,
+          "gdm_restarts_zero": true,
+          "system_failed_units": ""
+        },
+        {
+          "cycle": 3,
+          "login_lock_unlock_logout_passed": true,
+          "same_pid_after_unlock": 2209,
+          "shell_restarts": 0,
+          "gdm_restarts_zero": true,
+          "system_failed_units": ""
+        }
+      ],
+      "greeter_xwayland_exception_count": 3,
+      "greeter_exception_pids": [
+        "480",
+        "1254",
+        "1917"
+      ],
+      "exception_uids": [
+        "480"
+      ],
+      "all_requested_cycles_completed": true,
+      "journal_sha256": "5b502ee67e16a65d13d9a485a479360e2b21ff3cdb2850494fd7f41c1ed1f791",
+      "journal_bytes": 1964848
+    },
+    "lyra": {
+      "variant": "lyra",
+      "cycles": [
+        {
+          "cycle": 1,
+          "login": true,
+          "lock": true,
+          "unlock": true,
+          "logout": true,
+          "user_shell_pid": 814,
+          "same_pid_after_unlock": true,
+          "shell_restarts": 0,
+          "gdm_restarts_zero": true,
+          "system_failed_units": ""
+        },
+        {
+          "cycle": 2,
+          "login": true,
+          "lock": true,
+          "unlock": true,
+          "logout": true,
+          "user_shell_pid": 1602,
+          "same_pid_after_unlock": true,
+          "shell_restarts": 0,
+          "gdm_restarts_zero": true,
+          "system_failed_units": ""
+        },
+        {
+          "cycle": 3,
+          "login": true,
+          "lock": true,
+          "unlock": true,
+          "logout": true,
+          "user_shell_pid": 2330,
+          "same_pid_after_unlock": true,
+          "shell_restarts": 0,
+          "gdm_restarts_zero": true,
+          "system_failed_units": ""
+        }
+      ],
+      "greeter_xwayland_exception_count": 1,
+      "greeter_exception_pids": [
+        "489"
+      ],
+      "exception_uids": [
+        "480"
+      ],
+      "all_requested_cycles_completed": true
+    }
+  },
+  "trace": {
+    "leap": {
+      "observed": "GDM sends SIGTERM to greeter process group; greeter Xwayland receives it from GDM and exits 0",
+      "greeter_group": 2556,
+      "gdm_pid": 378,
+      "xwayland_pid": 2592,
+      "exception_reproduced_with_full_tracing": false
+    },
+    "lyra": {
+      "observed": "GDM sends SIGTERM to greeter process group; greeter Shell logs Xwayland exception 3.813 ms later",
+      "greeter_group": 2726,
+      "gdm_pid": 387,
+      "greeter_shell_pid": 2741,
+      "kill_realtime_us": 1789502713933623,
+      "exception_realtime_us": 1789502713937436,
+      "traced_process": "GDM only"
+    }
+  },
+  "evidence_sha256": {
+    "leap-journal.jsonl": "5b502ee67e16a65d13d9a485a479360e2b21ff3cdb2850494fd7f41c1ed1f791",
+    "lyra-journal.jsonl": "588a9f7e42a664d4686ee6ec1a3af2d2c051ff82e85de1e8a86067347b7aae1f",
+    "leap-gdm-signals.log": "3de2bffa1a14431db93591f24a56ff0545a89f43c4b29273aefc9ac9d03f5520",
+    "lyra-gdm-signals.log": "74130d2b035eb05bbadd4228bfdc6beb16751de90e7a79bf1d43c880d0a45aa7",
+    "lyra-trace-journal.jsonl": "9dabcd0344a48adabe7746cf6306f0a25170e264c2fc09b187d3d0a2b6c7d2fb"
+  },
+  "conclusion": "Reproduces without NVIDIA or Lyra extensions. Evidence supports a shutdown-order race in GDM/Mutter; no product workaround applied. Rate difference is not evidence of improvement.",
+  "cleanup": {
+    "removed": [
+      {
+        "path": "/tmp/lyra-gdm-comparison-20260915",
+        "files": 22651,
+        "logical_bytes": 18256803043,
+        "allocated_bytes": 3547430912
+      },
+      {
+        "path": "/tmp/lyra-gdm-vm-assets-20260915",
+        "files": 53,
+        "logical_bytes": 119637060,
+        "allocated_bytes": 119623680
+      }
+    ],
+    "qemu_processes_stopped": true,
+    "host_packages_modified": false,
+    "host_graphical_session_modified": false
+  }
+}

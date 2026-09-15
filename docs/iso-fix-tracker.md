@@ -38,7 +38,7 @@ nesta etapa.
 | BOOT-03 | Cinco prévias antigas mantinham UUID Sheliak incompleto; retiradas com backup | Resíduo **apenas local**, fora dos RPMs atuais; não distribuir remoção ampla de diretórios de extensões | Conta nova, atualização de instalação anterior e retorno de perfil; seis componentes ativos, sem depender de arquivos pessoais da estação |
 | BOOT-04 | Screencast GJS/GStreamer falhava no GDM; launcher compatível e override no diretório do greeter | Receita GNOME comum, reutilizando o mesmo launcher; nenhuma seleção por GPU | Ativação em D-Bus isolado passou; testar login real, bloqueio/desbloqueio e gravação/reprodução na candidata com Intel, AMD, NVIDIA suportada e VM |
 | BOOT-05 | Plymouth tinha `${localstatedir}` não expandido; PID e condição ajustados para `/run/plymouth/pid` | Overrides na receita e inclusão no initrd instalado; preservar exclusão de Plymouth/DRM do initrd live genérico | Boot e desligamento da candidata, splash/tema, passagem ao GDM e entrada de senha se houver volume criptografado suportado; reavaliar override ao mudar pacote upstream |
-| BOOT-06 | Exceção do Xwayland ao encerrar o greeter; sessão pessoal permaneceu ativa | **Pendente**, sem correção demonstrada; os reparos do screencast e do backend não encerram este item | Já reproduzido em três boots; comparar o encerramento GDM/GNOME em mais de uma GPU/VM antes de alterar lifecycle ou sessão gráfica |
+| BOOT-06 | Exceção do Xwayland ao encerrar o greeter; reproduzida também em VM oficial Leap sem NVIDIA/extensões Lyra | **Pendente upstream**; sinais observados sustentam disputa na ordem de encerramento GDM/Mutter; nenhum workaround aplicado | Seis ciclos login/bloqueio/desbloqueio/logout em VMs passaram, sem reinícios do Shell pessoal. Revisar [reprodução e limites](gdm-greeter-reproduction.md), acompanhar correção upstream e validar candidata/mais GPUs |
 | BOOT-07 | Erros ACPI/firmware e aviso de TDX indisponível | **Específico de firmware/capacidade**, sem correção global aplicada; não desabilitar ACPI nem criar requisito de TDX | Comparar versões de firmware e outros fabricantes; energia, suspensão, dispositivos e requisitos mínimos; separar avisos sem impacto de falhas funcionais |
 | BOOT-08 | Plymouth usa `KillMode=none` depreciado | **Pendente upstream/qualificação**, mantida a política de término existente | Ensaiar boot, cancelamento, troca de root, passagem ao GDM e desligamento antes de alterar semântica para eliminar o aviso |
 | BOOT-09a | Instalador apagava `custom.conf`, deixando o GDM sem backend; arquivo restaurado localmente e limpeza do instalador corrigida | Fontes do instalador e `lyra-system-smoke`; geral para GNOME, independente da GPU | Regressões, leitor GDM isolado e reboot local de 15/09 às 16:18 passaram; consumir o instalador corrigido na nova ISO e validar instalação/primeiro login com conta nova |
@@ -108,6 +108,29 @@ Nenhuma nova alteração no sistema nesta verificação. Evidências locais em
 `analysis/2026-09-15/gdm-integration/post-reboot/`. Na conclusão desta coleta,
 publicação do instalador e receita, build e qualificação da ISO exata e matriz
 de hardware permaneciam pendentes.
+
+## Publicação e comparação GDM — 15/09, após os reboots
+
+O lote foi integrado pela [PR #85](https://github.com/lyra-os-linux/lyraos-desktop/pull/85),
+commit `9584dc9`. Instalador `0.1.0-lp161.33.1` publicado no release pelo
+[pedido OBS #1378217](https://build.opensuse.org/request/show/1378217), com assinatura
+e origem verificadas. Os demais reparos gerais estão na receita KIWI integrada;
+não são entregues automaticamente pelo RPM do instalador. BOOT-09a ainda precisa
+ser consumido e qualificado na candidata exata.
+
+BOOT-06 foi reproduzido com RPMs oficiais Leap em VM sem NVIDIA ou extensões
+Lyra, e também na mesma base com os seis componentes Lyra ativos. Três ciclos
+completos de login, bloqueio, desbloqueio e logout passaram em cada cenário;
+nenhum reinício do Shell pessoal ou GDM e nenhuma unit de sistema failed.
+A exceção apareceu em 3/3 logins Leap e 1/3 com Lyra; amostra pequena e sensível
+à ordem de execução, sem conclusão de melhoria pela diferença de contagem.
+
+Uma coleta adicional mostrou o GDM enviando SIGTERM ao grupo do greeter e a
+exceção cerca de 4 ms depois. A evidência sustenta investigação upstream de
+encerramento GDM/Mutter; não justifica substituir o driver NVIDIA ou mudar
+Xwayland/PAM. [Reprodução, sinais e limitações](gdm-greeter-reproduction.md)
+registrados; não houve alteração na sessão física. VMs e discos foram removidos
+após preservar as evidências. A matriz física e a nova ISO continuam pendentes.
 
 ## Matriz da candidata
 
