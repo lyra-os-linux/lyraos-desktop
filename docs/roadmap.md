@@ -4,8 +4,8 @@
 
 O foco da versão final 1.1 é exclusivamente o GNOME e seus pacotes. KDE e XFCE
 estão em segundo plano; não há estabilização conjunta das três edições nem
-prazo comum de lançamento. A decisão de 14/09/2026 prevê duas variantes GNOME,
-padrão e NVIDIA pré-instalada, com implementação e qualificação pendentes.
+prazo comum de lançamento. A decisão de 16/09/2026 prevê uma única ISO GNOME,
+sem NVIDIA pré-instalada, e instalação opcional pelo Vega GTK.
 A [situação do GNOME](status-gnome.md) registra o que foi integrado e o que
 continua pendente de qualificação. O estágio canônico está em `release.toml`.
 
@@ -73,30 +73,26 @@ mudança, pacotes meta que mantenham KMP, userspace e firmware em lockstep,
 declarado suportado com um P1 aberto; a pendência da Alpha 4 fica registrada
 explicitamente na Alpha 5.
 
-## Duas variantes GNOME e cronograma independente
+## ISO GNOME única e cronograma independente
 
-Em 14/09/2026, o mantenedor substituiu a decisão de ISO única por duas variantes:
-padrão, sem a pilha NVIDIA pré-instalada, e NVIDIA, com o conjunto compatível
-pronto no live e no sistema instalado. A inspiração é a escolha de download
-do Pop!_OS; a implementação usará os contratos próprios do Leap/Lyra.
-A variante padrão mantém a instalação opcional pelo Vega GTK.
+Em 16/09/2026, o mantenedor retirou a variante Desktop com NVIDIA pré-instalada.
+A entrega é uma ISO GNOME única, com NVIDIA opcional após instalar o sistema
+pelo Vega GTK. A construção/qualificação continua em
+[#63](https://github.com/lyra-os-linux/lyraos-desktop/issues/63) e
+[#56](https://github.com/lyra-os-linux/lyraos-desktop/issues/56).
+O [plano NVIDIA](nvidia-iso.md) registra dependências e limites.
 
-As duas imagens devem compartilhar a receita GNOME e os pacotes da edição, com
-seleção gráfica explícita e inventários/evidências distintos. A criação da
-variante NVIDIA ainda está pendente em
-[#63](https://github.com/lyra-os-linux/lyraos-desktop/issues/63); o
-[plano técnico](nvidia-iso.md) define os critérios de cada imagem.
+O conjunto escolhido usa RPMs oficiais NVIDIA, KMP assinado SUSE e integração
+`lyra-nvidia` no OBS. Acompanhar versões, segurança e compatibilidade em
+[#82](https://github.com/lyra-os-linux/lyraos-desktop/issues/82); a decisão de
+15/09 substituiu a espera por correção do conjunto antigo até a RC1. O cronograma
+do Lyra permanece independente do Leap. Nenhuma data dispensa os gates.
 
-O cronograma do Lyra é independente do Leap. Acompanhar semanalmente a
-correção upstream em [#82](https://github.com/lyra-os-linux/lyraos-desktop/issues/82)
-até a preparação da nossa RC1. Se a incompatibilidade persistir, corrigir a
-integração ao nosso alcance e validar antes de gerar a candidata. Não esperar
-passivamente diante de falha grave nem publicar um artefato com bloqueador
-contando com correção futura. A RC1 não tem data fixada neste roadmap.
-
-A sequência de trabalho permanece: issues de implementação/correção GNOME,
-auditoria #78, construção/testes locais das candidatas e Alpha 8 após os gates.
-A auditoria ampla está adiada; o acompanhamento semanal NVIDIA não a antecipa.
+Sequência: issues de implementação/correção GNOME → auditoria #78 → construção
+e testes locais da ISO única → Alpha 8 após os gates. A auditoria ampla está
+adiada. Retirar a segunda imagem não elimina testes NVIDIA de instalação,
+Secure Boot, atualização, hardware ou recuperação. O Server com llama.cpp +
+NVIDIA permanece em seu planejamento próprio (Server #21).
 
 ## Melhorias permitidas nas Betas da 1.1
 

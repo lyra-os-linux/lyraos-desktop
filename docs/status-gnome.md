@@ -1,4 +1,4 @@
-# Situação do GNOME — 14/09/2026
+# Situação do GNOME — registro de 14/09, escopo atualizado em 16/09/2026
 
 Este é um registro datado de implementação e qualificação, não uma declaração
 de release aprovada. `release.toml` continua identificando **Lyra OS 1.1 Alpha 7
@@ -8,9 +8,9 @@ de release aprovada. `release.toml` continua identificando **Lyra OS 1.1 Alpha 7
 
 - GNOME é o único alvo da versão final 1.1; trabalho atual em pacotes GNOME.
 - KDE e XFCE ficam em segundo plano, sem prazo conjunto ou promessa de paridade.
-- Duas variantes GNOME planejadas: padrão sem NVIDIA pré-instalada e NVIDIA
-  pré-instalada. A padrão mantém a opção via Vega. A variante NVIDIA ainda
-  depende de implementação e qualificação; não é uma imagem já disponível.
+- Uma única ISO GNOME sem NVIDIA pré-instalada; instalação opcional via Vega
+  GTK após instalar o sistema. Decisão de 16/09 substitui as duas variantes.
+  O Server com llama.cpp + NVIDIA tem planejamento independente.
 - Pacotes próprios em RPM no OBS; ISO construída localmente com KIWI.
 - PT-BR, EN-US e ES-ES nas interfaces próprias; inglês como padrão e fallback.
 - Sheliak é o repositório/pacote de seis extensões, não uma extensão monolítica.
@@ -18,7 +18,7 @@ de release aprovada. `release.toml` continua identificando **Lyra OS 1.1 Alpha 7
 - Os perfis visíveis são Lyra, Ubuntu, GNOME Vanilla, Lyra Clássico, Lyra Central
   e Lyra Flutuante. IDs legados são mantidos para preservar preferências.
 
-## Implementação e pacotes
+## Implementação e pacotes — fotografia de 14/09
 
 | Entrega | Evidência | Limite da evidência |
 | --- | --- | --- |
@@ -43,10 +43,10 @@ das versões coordenadas em
 
 1. Conferir os RPMs assinados, revisões, proveniência e publicação no canal de
    release; manter evidência do conjunto exato consumido pela ISO.
-2. Implementar a composição das variantes e construir as ISOs localmente,
-   registrando commit, variante, inventário e checksum de cada uma.
-3. Validar live, instalação, primeiro login automático e conta nova em cada
-   variante; comprovar a NVIDIA pré-instalada em hardware compatível.
+2. Construir a ISO GNOME única localmente, registrando commit, inventário
+   e checksum exatos.
+3. Validar live, instalação, primeiro login automático e conta nova; qualificar
+   a instalação opcional NVIDIA pelo Vega em hardware compatível.
 4. Repetir os cenários de perfis, desktop, idiomas, monitores e acessibilidade
    sobre essa candidata.
 5. Executar hardware, energia/suspensão, atualização, reboot e rollback,
@@ -57,9 +57,9 @@ A [qualificação GNOME](https://github.com/lyra-os-linux/lyraos-desktop/issues/
 o [roteiro de hardware](https://github.com/lyra-os-linux/lyraos-desktop/issues/69)
 e o [ensaio de atualização/rollback](https://github.com/lyra-os-linux/lyraos-desktop/issues/24)
 organizam esse trabalho. Checklists antigos devem ser conciliados com as
-respectivas evidências antes de serem encerrados. O plano vigente de duas
-variantes GNOME substitui a decisão de ISO única; propostas históricas de três
-edições simultâneas continuam fora do ciclo atual.
+respectivas evidências antes de serem encerrados. A decisão de 16/09 mantém uma
+ISO GNOME única e NVIDIA opcional via Vega; propostas históricas de duas
+variantes ou três edições simultâneas não definem o ciclo atual.
 
 A nova [rodada de auditoria #78](https://github.com/lyra-os-linux/lyraos-desktop/issues/78)
 consolida integração entre pacotes, configurações, ciclo de atualização,

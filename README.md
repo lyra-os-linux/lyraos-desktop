@@ -13,12 +13,11 @@ Vega GTK. KDE Plasma e XFCE ficam em segundo plano, sem compromisso de
 lançamento ou paridade nesta versão. Seus repositórios e registros anteriores
 permanecem disponíveis; retomá-los exige planejamento próprio.
 
-O plano aprovado em 14/09/2026 prevê **duas variantes da ISO Desktop GNOME**:
-padrão, sem a pilha NVIDIA pré-instalada, e NVIDIA, com o conjunto compatível
-pré-instalado. A variante padrão mantém a instalação opcional pelo Vega.
-A composição das duas imagens ainda precisa ser implementada e qualificada;
-esta decisão substitui a proposta anterior de ISO única. Veja o
-[plano das variantes](docs/nvidia-iso.md).
+A decisão de 16/09/2026 prevê **uma única ISO Desktop GNOME**, sem a pilha
+NVIDIA pré-instalada. A instalação NVIDIA será opcional pelo Vega GTK após
+instalar o sistema, usando RPMs oficiais e a integração `lyra-nvidia`.
+Esta decisão substitui o plano de duas variantes de 14/09. A ISO e o fluxo
+opcional ainda exigem qualificação; veja o [plano NVIDIA](docs/nvidia-iso.md).
 
 A [situação do GNOME](docs/status-gnome.md) distingue código integrado,
 pacotes enviados e qualificação da candidata. O planejamento futuro de KDE

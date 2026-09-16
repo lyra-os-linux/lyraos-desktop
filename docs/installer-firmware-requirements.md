@@ -38,8 +38,8 @@ node tests/installer-firmware.mjs
 
 Os testes comprovam descoberta e planejamento, sem instalar uma ISO completa.
 Não qualificam Secure Boot, reinício do sistema instalado, requisitos mínimos
-do GNOME nem todo hardware antigo. Esses gates permanecem para as duas ISOs
-GNOME locais, depois das issues e da auditoria Desktop #78, antes da Alpha 8.
+do GNOME nem todo hardware antigo. Esses gates permanecem para a ISO GNOME
+única local, depois das issues e da auditoria Desktop #78, antes da Alpha 8.
 Um aviso de TDX isolado não deve ser classificado como causa de falha de boot:
 é necessário preservar o log completo e identificar o erro fatal real.
 

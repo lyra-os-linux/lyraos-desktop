@@ -1,0 +1,176 @@
+{
+  "date": "2026-09-16",
+  "scope": "Local Vega GTK / vegad official NVIDIA integration, Desktop #82",
+  "status": "passed-local-integration",
+  "rpms": [
+    {
+      "name": "vega-gtk",
+      "version": "5.1.39",
+      "file": "vega-gtk-5.1.39-0.local1.x86_64.rpm",
+      "sha256": "734b35372239f8c8796a131301e9200897c370bde29add23302e23be12d393bc",
+      "source_manifest": "vega-gtk-sources.json"
+    },
+    {
+      "name": "vegad",
+      "version": "5.1.28",
+      "release": "0.local2",
+      "file": "vegad-5.1.28-0.local2.x86_64.rpm",
+      "sha256": "1692e6fa27f419f776ec871ef5a0925ea93c0912610d41de7cbdde7f94430348",
+      "source_manifest": "vegad-sources.json"
+    }
+  ],
+  "installed_ui": {
+    "uid": 1001,
+    "shell_before": "2075",
+    "visited": [
+      "Hardware e Kernel",
+      "Atualizar diagnóstico"
+    ],
+    "dashboard_samples": [
+      {
+        "seconds": 5,
+        "connected": true
+      },
+      {
+        "seconds": 10,
+        "connected": true
+      },
+      {
+        "seconds": 15,
+        "connected": true
+      },
+      {
+        "seconds": 20,
+        "connected": true
+      },
+      {
+        "seconds": 25,
+        "connected": true
+      },
+      {
+        "seconds": 30,
+        "connected": true
+      },
+      {
+        "seconds": 35,
+        "connected": true
+      },
+      {
+        "seconds": 40,
+        "connected": true
+      },
+      {
+        "seconds": 45,
+        "connected": true
+      },
+      {
+        "seconds": 50,
+        "connected": true
+      },
+      {
+        "seconds": 55,
+        "connected": true
+      },
+      {
+        "seconds": 60,
+        "connected": true
+      },
+      {
+        "seconds": 65,
+        "connected": true
+      }
+    ],
+    "passed": true,
+    "start_us": 1789562798581186,
+    "pid": 48458,
+    "nvidia_label": "Driver NVIDIA ativo; bibliotecas, módulo e integração Lyra correspondem.",
+    "installed_driver_unchanged": "610.57.04",
+    "shell_after": "2075",
+    "end_us": 1789562870631560
+  },
+  "authorization": {
+    "scope": "Installed GTK startup, 65-second automatic refresh, NVIDIA page and manual refresh",
+    "start_us": 1789562798581186,
+    "end_us": 1789562870631560,
+    "vega_read_checks": 10,
+    "vega_read_flags": [
+      0
+    ],
+    "authentication_prompts": 0,
+    "note": "Other firewalld checks are separate policies; no claim that every service uses zero interactive flags."
+  },
+  "broker_status": {
+    "type": "(bbbssssu)",
+    "data": [
+      [
+        true,
+        true,
+        false,
+        "0000:01:00.0 VGA compatible controller: NVIDIA Corporation TU117M [GeForce GTX 1650 Mobile / Max-Q] (rev a1)",
+        "enabled",
+        "active",
+        "NVIDIA 610.57.04 · Kernel 6.12.0-160100.4-default",
+        0
+      ]
+    ]
+  },
+  "broker_check": {
+    "type": "bs",
+    "data": [
+      true,
+      "NVIDIA 610.57.04: NVML, module version and SUSE KMP verified"
+    ]
+  },
+  "native_zypper_plan": "passed",
+  "tests": [
+    "Go suite and vet",
+    "query-isolation regression",
+    "Rust unit suite and Clippy -D warnings",
+    "PT/EN/ES catalogs",
+    "D-Bus XML methods/signals",
+    "native GTK private bus: cancellation, denial, success, partial failure, owner loss",
+    "native real Zypper dry-run: adoption, initial bundle, cancellation",
+    "installed UI with real broker and Polkit monitoring"
+  ],
+  "driver_changed": false,
+  "kernel_changed": false,
+  "shell_pid": "2075",
+  "virtual_machines_created": 0,
+  "git_published": false,
+  "obs_submitted": false,
+  "remaining": [
+    "actual full-driver migration and recovery",
+    "future kernel and boot qualification",
+    "PackageKit",
+    "additional GPUs/rendering/suspend/CUDA",
+    "local standard/NVIDIA ISO tests"
+  ],
+  "health": {
+    "failed_system_units": 0,
+    "failed_user_units": 0,
+    "rpm_verification": "passed",
+    "driver": "610.57.04",
+    "secure_boot": "enabled",
+    "shell_pid": "2075"
+  },
+  "cleanup": {
+    "removed": [
+      "/tmp/lyra-vega-nvidia-rpms-_4wc6oem",
+      "/tmp/lyra-vega-nvidia-rpms-mujmb2x1",
+      "/tmp/lyra-vega-nvidia-rpms-9ofx2uqn",
+      "/tmp/lyra-vega-nvidia-rpms-n40u0tdq"
+    ],
+    "archives": [
+      {
+        "file": "vegad-src-5.1.28-local2.tar.gz",
+        "sha256": "6d2a7b658a765aebc4882217f576fa4a36c84fffbe3d695d2707157d2411d43d"
+      },
+      {
+        "file": "vega-src-5.1.39-local1.tar.gz",
+        "sha256": "fcca7e1bc997555304838456f007c78e86d372d77c4ac545dd5045942d1ba4c4"
+      }
+    ],
+    "virtual_machines_created": 0,
+    "monitor_running": false
+  }
+}
