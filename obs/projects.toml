@@ -92,6 +92,9 @@ packages = [
 # Pacotes legados presentes no projeto, mas fora da imagem e do contrato de
 # promoção da Alpha 6. A remoção exige uma limpeza separada e explícita.
 legacy_packages = ["calco", "prosa"]
+# Historical standalone DING sources retained only in staging for rollback
+# provenance. Both build and publication must remain globally disabled.
+retired_staging_packages = ["gnome-shell-extension-desktop-icons"]
 
 [[projects.targets]]
 name = "openSUSE_Leap_16.1"
