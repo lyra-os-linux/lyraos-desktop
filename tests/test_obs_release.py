@@ -82,6 +82,16 @@ class ManifestTests(unittest.TestCase):
     def test_local_priority_contract_is_current(self) -> None:
         obs_release.check_local_priorities(self.manifest)
 
+    def test_retired_packages_are_expected_only_in_staging(self) -> None:
+        project = self.manifest.project("lyra")
+        self.assertEqual(
+            project.retired_staging_packages, ("gnome-shell-extension-desktop-icons",)
+        )
+        for package in project.retired_staging_packages:
+            self.assertIn(package, obs_release.expected_source_packages(project, project.staging))
+            self.assertNotIn(package, obs_release.expected_source_packages(project, project.release))
+            self.assertNotIn(package, project.packages)
+
     def test_signing_key_is_pinned(self) -> None:
         self.assertEqual(self.manifest.signing_project, "home:rodrigosbrito")
         self.assertEqual(
@@ -182,6 +192,71 @@ class BuildGateTests(unittest.TestCase):
             obs_release.check_target_result(
                 FakeObs({path: document}), self.project, "home:example", self.target, "x86_64"
             )
+
+
+class RetiredStagingTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.project = obs_release.Manifest.load().project("lyra")
+        self.remote = self.project.staging
+        self.package = self.project.retired_staging_packages[0]
+        self.path = f"/source/{self.remote}/{self.package}/_meta"
+
+    def metadata(self, flags: str, *, name: str | None = None) -> FakeObs:
+        document = (
+            f'<package name="{name or self.package}" project="{self.remote}">'
+            + flags + "</package>"
+        )
+        return FakeObs({self.path: document})
+
+    def test_disabled_history_is_allowed_without_becoming_promotable(self) -> None:
+        obs_release.check_retired_staging(
+            self.metadata("<build><disable/></build><publish><disable/></publish>"),
+            self.project, self.remote,
+        )
+        self.assertNotIn(self.package, self.project.packages)
+
+    def test_missing_or_partial_disabling_blocks_staging(self) -> None:
+        for flags in (
+            "<build><disable/></build>",
+            "<build><enable/></build><publish><disable/></publish>",
+            '<build><disable repository="openSUSE_Leap_16.1"/></build><publish><disable/></publish>',
+            "<build><disable/></build><publish><disable/><enable/></publish>",
+            "<build><disable/></build><publish><disable/></publish><publish><disable/></publish>",
+        ):
+            with self.subTest(flags=flags), self.assertRaisesRegex(
+                obs_release.PolicyError, "must be globally disabled"
+            ):
+                obs_release.check_retired_staging(self.metadata(flags), self.project, self.remote)
+
+    def test_wrong_package_identity_blocks_staging(self) -> None:
+        with self.assertRaisesRegex(obs_release.PolicyError, "identity mismatch"):
+            obs_release.check_retired_staging(
+                self.metadata("<build><disable/></build><publish><disable/></publish>", name="other"),
+                self.project, self.remote,
+            )
+
+    def test_release_does_not_query_retired_staging_metadata(self) -> None:
+        obs_release.check_retired_staging(FakeObs({}), self.project, self.project.release)
+
+    def test_retired_build_must_be_disabled_on_each_target(self) -> None:
+        active = "".join(
+            f'<status package="{package}" code="succeeded"/>'
+            for package in self.project.packages
+        )
+        for target in self.project.targets:
+            path = f"/build/{self.remote}/_result?repository={target.name}&arch=x86_64&view=status"
+            for code, flavor in (("disabled", ""), ("succeeded", ""), (None, ""),
+                                 ("disabled", f'<status package="{self.package}:test" code="succeeded"/>')):
+                retired = "" if code is None else f'<status package="{self.package}" code="{code}"/>'
+                document = '<resultlist><result code="published">' + active + retired + flavor + '</result></resultlist>'
+                obs = FakeObs({path: document})
+                with self.subTest(target=target.name, code=code, flavor=flavor):
+                    if code == "disabled" and not flavor:
+                        states = obs_release.check_target_result(obs, self.project, self.remote, target, "x86_64")
+                        self.assertNotIn(self.package, states)
+                    else:
+                        with self.assertRaisesRegex(obs_release.PolicyError, "must remain disabled"):
+                            obs_release.check_target_result(obs, self.project, self.remote, target, "x86_64")
 
 
 class SafetyTests(unittest.TestCase):

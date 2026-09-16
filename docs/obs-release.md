@@ -39,6 +39,12 @@ into the independent source packages `lyra-theme`, `lyra-icons`, and
 package, a missing package, a failed build, an unpublished repository, or a
 target mismatch fails the gate.
 
+`retired_staging_packages` lists historical sources retained only in staging.
+The gate requires global build/publish disable flags and a disabled build state
+for every target. These packages are never eligible for promotion or selected
+by the ISO. The standalone DING package is retained this way after its replacement
+by Lyra Desktop Icons in Sheliak; its source history is not deleted.
+
 ## Repository priorities
 
 During image construction, KIWI uses priorities 1, 2, and 3 for Lyra, Vega,

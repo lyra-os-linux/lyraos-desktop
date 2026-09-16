@@ -52,6 +52,7 @@ class Project:
     packages: tuple[str, ...]
     legacy_packages: tuple[str, ...]
     targets: tuple[Target, ...]
+    retired_staging_packages: tuple[str, ...] = ()
 
 
 @dataclasses.dataclass(frozen=True)
@@ -79,6 +80,7 @@ class Manifest:
                 iso_consumer=item["iso_consumer"],
                 packages=tuple(item["packages"]),
                 legacy_packages=tuple(item.get("legacy_packages", [])),
+                retired_staging_packages=tuple(item.get("retired_staging_packages", [])),
                 targets=tuple(
                     Target(
                         name=target["name"],
@@ -142,6 +144,13 @@ class Manifest:
                 raise PolicyError(
                     f"{project.id}: active and legacy package lists overlap: {sorted(overlap)}"
                 )
+            retired = set(project.retired_staging_packages)
+            if len(retired) != len(project.retired_staging_packages) or retired & (
+                set(project.packages) | set(project.legacy_packages)
+            ):
+                raise PolicyError(f"{project.id}: retired staging packages overlap or repeat")
+            if any(not re.fullmatch(r"[a-zA-Z0-9_.+-]+", name) for name in retired):
+                raise PolicyError(f"{project.id}: invalid retired staging package name")
             if not project.targets:
                 raise PolicyError(f"{project.id}: at least one target is required")
             if project.iso_consumer and not any(target.iso_consumer for target in project.targets):
@@ -213,7 +222,23 @@ def expected_source_packages(project: Project, remote: str) -> set[str]:
     expected = set(project.packages)
     if remote == project.release:
         expected.update(project.legacy_packages)
+    elif remote == project.staging:
+        expected.update(project.retired_staging_packages)
     return expected
+
+
+def check_retired_staging(obs: Obs, project: Project, remote: str) -> None:
+    if remote != project.staging:
+        return
+    for package in project.retired_staging_packages:
+        root = obs.api_xml(f"/source/{remote}/{package}/_meta")
+        if root.attrib != {"name": package, "project": remote}:
+            raise PolicyError(f"{remote}/{package}: retired package identity mismatch")
+        for flag in ("build", "publish"):
+            nodes = root.findall(flag)
+            children = list(nodes[0]) if len(nodes) == 1 else []
+            if len(children) != 1 or children[0].tag != "disable" or children[0].attrib:
+                raise PolicyError(f"{remote}/{package}: retired {flag} must be globally disabled")
 
 
 class HttpDownloader:
@@ -498,6 +523,12 @@ def check_target_result(
         code = "missing" if result is None else result.attrib.get("code", "unknown")
         raise PolicyError(f"{remote}/{target.name}/{arch}: not published ({code})")
     statuses = {node.attrib["package"]: node.attrib["code"] for node in result.findall("status")}
+    if remote == project.staging:
+        for package in project.retired_staging_packages:
+            if statuses.get(package) != "disabled" or any(
+                name.startswith(f"{package}:") for name in statuses
+            ):
+                raise PolicyError(f"{remote}/{package}: retired package must remain disabled")
     checked: dict[str, dict[str, Any]] = {}
     for package in project.packages:
         state = statuses.get(package)
@@ -743,6 +774,7 @@ def check_remote(obs: Obs, manifest: Manifest, channel: str) -> None:
             extra = sorted(set(revisions) - expected_sources)
             if missing or extra:
                 raise PolicyError(f"{remote}: package inventory mismatch; missing={missing}, extra={extra}")
+            check_retired_staging(obs, project, remote)
             for target in project.targets:
                 for arch in target.architectures:
                     check_target_result(obs, project, remote, target, arch)
@@ -822,6 +854,7 @@ def check_remote_project(obs: Obs, project: Project, remote: str) -> None:
     extra = sorted(set(revisions) - expected_sources)
     if missing or extra:
         raise PolicyError(f"{remote}: package inventory mismatch; missing={missing}, extra={extra}")
+    check_retired_staging(obs, project, remote)
     for target in project.targets:
         for arch in target.architectures:
             check_target_result(obs, project, remote, target, arch)
