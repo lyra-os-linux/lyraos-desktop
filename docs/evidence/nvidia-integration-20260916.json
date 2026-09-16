@@ -1,0 +1,130 @@
+{
+  "date": "2026-09-16",
+  "scope": "Installation of the integration RPM on an existing coherent NVIDIA 610 host; isolated resolver and metapackage lifecycle qualification",
+  "package": "lyra-nvidia-610.57.04-lp161.1.1.noarch",
+  "rpm_sha256": "4d864c4e9ffc7b2afcdde8ecf1d61ffb7720a7b0d09c32ffc311ecaddd7b05da",
+  "obs_project": "home:rodrigosbrito:nvidia",
+  "obs_source_revision": "1",
+  "obs_srcmd5": "471a6176d606648ce5b959c5269de757",
+  "signing_key_fingerprint": "399218A6E088C4053F4533BE58097F767EDCA82E",
+  "host": {
+    "kernel": "6.12.0-160100.4-default",
+    "gpu": "NVIDIA GTX 1650, Intel/NVIDIA hybrid",
+    "driver": "610.57.04",
+    "signed_kmp": "nvidia-open-driver-G07-signed-cuda-kmp-default-610.57.04_k6.12.0_160100.4-160100.1.3.x86_64",
+    "added_packages": [
+      "lyra-nvidia|610.57.04|lp161.1.1|noarch"
+    ],
+    "removed_packages": [],
+    "other_packages_changed": false,
+    "secure_boot": true,
+    "nvml": "passed",
+    "gnome_shell_restarts": 0,
+    "system_failed_units": 0,
+    "user_failed_units": 0,
+    "package_signature": "passed",
+    "rpm_file_conflict_test": "passed",
+    "rpm_verify": "passed",
+    "dependencies": "passed",
+    "update_dry_run_changes": 0,
+    "remove_dry_run_only_metapackage": true,
+    "package_locks": 0,
+    "enabled_new_repositories": [
+      "lyra-nvidia",
+      "lyra-nvidia-upstream"
+    ],
+    "preserved_disabled_repositories": [
+      "repo-nvidia",
+      "nvidia-cuda-suse16"
+    ],
+    "snapshot_pre": 1,
+    "snapshot_post": 4,
+    "inventory_unchanged_after_isolated_tests": true,
+    "reboot_performed": false
+  },
+  "isolated_tests": {
+    "repository-inventory": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "kernel-syms-available": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "guarded-update": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "reject-615": {
+      "exit_code": 4,
+      "passed": true
+    },
+    "reject-dkms": {
+      "exit_code": 4,
+      "passed": true
+    },
+    "remove-headers-only": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "unguarded-update": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "payload-install": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "payload-verify": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "reinstalled-update": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "preserve-disabled-repository": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "inventory-before-remove": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "payload-remove": {
+      "exit_code": 0,
+      "passed": true
+    },
+    "inventory-after-remove": {
+      "exit_code": 0,
+      "passed": true
+    }
+  },
+  "metapackage_lifecycle": {
+    "signed_payload_install_and_verification": "passed",
+    "reinstall_preserves_disabled_repository": "passed",
+    "removal_only_metapackage": "passed",
+    "modified_disabled_repository_saved_as_rpmsave": "passed",
+    "host_read_only": true,
+    "network_isolated": true,
+    "other_package_scriptlets_and_triggers_disabled_in_fixture": true
+  },
+  "metadata_sha256": {
+    "openSUSE:repo-oss": "cdf0938727de86566202d54b6234808e3e63d5a57270e382a00e66d8997c6641",
+    "lyra-nvidia": "f67a86345919f26cf9e082c92729d0fbfee75f077ee284dd967ca7e904536a91",
+    "lyra-nvidia-upstream": "303f915eab04cc3febdd406382e730b1549acc903e3f60cdcac4f45a4d1b05f8"
+  },
+  "metadata_note": "NVIDIA and Lyra channels refreshed on host; Leap OSS cache reused, not a full refresh of all distribution repositories.",
+  "cleanup": {
+    "temporary_roots_removed": true,
+    "virtual_machines_created": 0
+  },
+  "limitations": [
+    "Migration from 595 not qualified by this integration test",
+    "No new kernel or driver upgrade applied",
+    "No boot or full operating-system rollback exercised",
+    "No clean complete OS installation",
+    "PackageKit/Vega, ISO variants, other GPUs, Vulkan, suspend/external display and CUDA still require qualification"
+  ],
+  "local_evidence": "analysis/2026-09-16/nvidia-integration/"
+}

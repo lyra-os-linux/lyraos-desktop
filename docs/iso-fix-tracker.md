@@ -26,6 +26,21 @@ equipamentos e oferecer reversão.
 
 ## Lote atual
 
+**Decisão de 16/09/2026:** uma única ISO Desktop GNOME, sem NVIDIA pré-instalada;
+instalação opcional pelo Vega GTK. Isso substitui o plano de duas variantes.
+O Server com llama.cpp + NVIDIA conserva seu planejamento separado.
+
+**Ensaio NVIDIA de 16/09:** instalação real dos dez RPMs assinados, scripts e
+verificação de integridade passaram em uma VM Leap/Btrfs limpa. PackageKit/zypp
+recusou atualização isolada incompatível para 615, mantendo o conjunto 610.
+Dois boots de recuperação Snapper restauraram arquivos/configuração e depois
+o inventário anterior à instalação, preservando dados em `/var`. Vega recusou
+instalação sem GPU. VM, disco e raízes temporárias foram apagados; estação
+inalterada. [Evidência e limites](evidence/nvidia-vm-20260916.json).
+Esse ensaio usa boot direto de kernel/initrd: não qualifica GRUB/Secure Boot,
+hardware NVIDIA, interface GNOME Software nem o caminho positivo completo do
+instalador Vega ou uma ISO exata. Esses gates continuam pendentes.
+
 As alterações abaixo integram o lote `fix/boot-startup-integration` nas fontes
 do Desktop. A verificação local não substitui a publicação dos artefatos nem
 a qualificação da imagem: nenhuma candidata nova foi construída ou homologada
@@ -43,7 +58,25 @@ nesta etapa.
 | BOOT-08 | Plymouth usa `KillMode=none` depreciado | **Pendente upstream/qualificação**, mantida a política de término existente | Ensaiar boot, cancelamento, troca de root, passagem ao GDM e desligamento antes de alterar semântica para eliminar o aviso |
 | BOOT-09a | Instalador apagava `custom.conf`, deixando o GDM sem backend; arquivo restaurado localmente e limpeza do instalador corrigida | Fontes do instalador e `lyra-system-smoke`; geral para GNOME, independente da GPU | Regressões, leitor GDM isolado e reboot local de 15/09 às 16:18 passaram; consumir o instalador corrigido na nova ISO e validar instalação/primeiro login com conta nova |
 | BOOT-09b | Ativação `systemd1` falha no bus privado do greeter | Separação é deliberada no GDM 48; nenhuma alteração de PAM, bus ou lifecycle aplicada | Acompanhar upstream; não classificar a mensagem isolada como falha do gerenciador pessoal nem forçar integração que o GDM evita |
-| NVIDIA-01 | Conjunto oficial NVIDIA 610.57.04 + KMP SUSE assinado funciona na GTX 1650 desta estação | Metapacote guard publicado em OBS; integração/qualificação da variante NVIDIA ainda pendente. Variante padrão sem NVIDIA pré-instalada preservada | Matriz das GPUs realmente suportadas, sistemas híbridos e dedicados, Secure Boot, novo kernel, atualização/rollback, monitor externo e suspensão; não extrapolar GTX 1650 para todas as placas |
+| NVIDIA-01 | Conjunto oficial NVIDIA 610.57.04 + KMP SUSE assinado funciona na GTX 1650 desta estação; integração `lyra-nvidia` instalada e verificada em 16/09, com rejeição de misturas incompatíveis em ensaio isolado | Metapacote publicado em OBS; qualificação da instalação opcional via Vega pendente. ISO GNOME única sem NVIDIA pré-instalada, por decisão de 16/09 | Matriz das GPUs realmente suportadas, sistemas híbridos e dedicados, Secure Boot, novo kernel, atualização/rollback, monitor externo e suspensão; não extrapolar GTX 1650 para todas as placas |
+| NVIDIA-02 | Vega não reconhecia a pilha oficial G07; o diagnóstico antigo de verificação podia alterar a política de suspensão. O ensaio instalado também revelou módulos ocultos pelo isolamento das consultas | Vega GTK5.1.39 + vegad5.1.28 corrigidos e instalados localmente; fontes/RPMs ainda sem publicação. Consulta permanece no UID do usuário, sem capabilities, sistema somente leitura e syscalls de módulos bloqueadas | Testar o card na ISO GNOME única, antes/depois da instalação opcional, abertura/refresh sem senha, cancelamento/negação, instalação real e recuperação; não extrapolar dry-run para migração real |
+
+## NVIDIA-03 — CLI/Web e recuperação Server/ext4, 16/09
+
+Vega CLI5.1.23 e Web5.1.23 passam a oferecer diagnóstico público e instalação
+NVIDIA com confirmação administrativa, usando vegad5.1.29. Os três RPMs foram
+qualificados e instalados localmente; Web permanece desativado. NVIDIA610,
+kernel e sessão GNOME da estação preservados. Fontes/RPMs ainda não publicados.
+O GNOME continua com Snapper; recuperação Restic offline foi qualificada em
+VM apenas para o layout Server/ext4 simples. A receita Server inclui Restic
+no live e no instalado. Não adicionar Web como serviço exposto no Desktop.
+
+[Evidência](evidence/nvidia-clients-server-20260916.json): instalação real dos
+RPMs, recuperação e interrupção/retomada, dados de serviços/home/ESP preservados,
+clientes nos três idiomas, autorização PAM/Polkit com UID real e RPMs verificados.
+A próxima ISO deve consumir o vegad novo e testar consultas sem senha, card GTK
+existente e instalação opcional. Sem GPU passthrough, GRUB/Secure Boot/CUDA ou
+ISO completa neste ensaio. Esses gates e a publicação continuam pendentes.
 
 ## Reboot da estação de referência — 15/09, 15:58
 
@@ -132,6 +165,40 @@ Xwayland/PAM. [Reprodução, sinais e limitações](gdm-greeter-reproduction.md)
 registrados; não houve alteração na sessão física. VMs e discos foram removidos
 após preservar as evidências. A matriz física e a nova ISO continuam pendentes.
 
+## NVIDIA-01 — integração instalada na estação em 16/09
+
+Instalado `lyra-nvidia-610.57.04-lp161.1.1.noarch` do OBS, com assinatura e
+conflitos de arquivos verificados. A transação adicionou somente esse pacote;
+nenhum driver, kernel ou componente gráfico mudou. Snapshots antes/depois
+preservados. Canais Lyra NVIDIA/fornecedor habilitados com verificação GPG;
+dois aliases antigos continuam desabilitados, sem locks de pacote.
+
+Integridade RPM, dependências, NVML e Secure Boot passaram. A simulação de
+atualização manteve o conjunto coerente; a de remoção selecionou somente o
+metapacote. Shell pessoal com zero reinícios, nenhum serviço de sistema/usuário
+em falha. Não houve reboot neste passo.
+
+Em cópia isolada da base RPM, sem rede e com host somente para leitura, a
+ausência do metapacote reproduziu a proposta de oito componentes NVIDIA 615
+e DKMS mantendo KMP assinado 610. Com o contrato instalado, nenhuma mudança;
+solicitações explícitas incompatíveis abortaram sem selecionar transação.
+Instalação e verificação dos arquivos reais do metapacote, reinstalação
+preservando o repositório desabilitado pelo administrador e remoção preservando
+os demais pacotes passaram. Configuração modificada foi salva em `.rpmsave`.
+Raízes descartáveis removidas; nenhuma VM criada.
+
+Esse ensaio não qualifica migração de um driver antigo, novo kernel/boot,
+rollback do sistema, instalação limpa completa, PackageKit/Vega ou qualquer
+ISO. Os scriptlets/triggers dos demais pacotes não foram executados na cópia
+isolada. Metadados NVIDIA/Lyra foram atualizados, mas o cache OSS do Leap foi
+reaproveitado. A integração na candidata segue pendente em
+[#82](https://github.com/lyra-os-linux/lyraos-desktop/issues/82) e #63/#56;
+suporte depende da GPU e da presença do módulo para o kernel de destino.
+
+[Evidência consolidada](evidence/nvidia-integration-20260916.json).
+Recibos completos e plano de reversão em
+`analysis/2026-09-16/nvidia-integration/` no workspace LyraOS.
+
 ## Matriz da candidata
 
 - CPU Intel e AMD dentro dos requisitos suportados; não exigir TDX por causa
@@ -153,3 +220,35 @@ viraram requisitos ou defaults para outros hardwares. Nenhum P0/P1 pode ser
 encerrado apenas porque deixou de ocorrer no computador do mantenedor.
 
 Detalhes técnicos e limites deste lote: [integração de boot](boot-integration.md).
+
+## NVIDIA-02 — Vega GTK/vegad, validação local em 16/09
+
+Instalados `vega-gtk-5.1.39-0.local1` e `vegad-5.1.28-0.local2`.
+Apenas pacotes do Vega mudaram; NVIDIA610.57.04, KMP, kernel e Shell PID2075
+preservados. RPMs verificados. O card Hardware e Kernel → Hardware reconhece
+a pilha oficial, Secure Boot, versões carregada/em disco e contrato Lyra, com
+mensagens PT/EN/ES. Instalação opcional Desktop tem confirmação obrigatória,
+Polkit apenas administrativo, recuperação Snapper e plano restrito aos RPMs
+qualificados; não migra nem remove drivers antigos automaticamente.
+
+O primeiro teste pela janela instalada encontrou `unknown-boot-kernel`:
+`ProtectKernelModules=yes` ocultava `/usr/lib/modules`, inclusive o destino de
+`/boot/vmlinuz`. Isso não aparecia no executável de consulta rodando diretamente.
+Somente NvidiaStatus/CheckNvidia agora podem ler esses arquivos, preservando
+UID/capabilities/NoNewPrivileges/filesystem somente leitura e bloqueando syscalls
+de carregar/remover módulos. Não copiar um relaxamento geral do isolamento para
+a ISO. Este caso exige teste através do broker realmente empacotado.
+
+Após corrigir, status/check D-Bus aprovados como usuário; interface instalada,
+65 segundos de atualização automática e atualização manual aprovados. Dez
+checagens das políticas de leitura Vega sem interação e nenhuma janela de
+autenticação no intervalo observado. Testes isolados incluem parser real do
+Zypper (dry-run), cancelamento/negação, inconsistências e perda do serviço.
+Fixtures removidos; nenhuma VM criada.
+
+A integração e esta correção entram na próxima receita, mas **publicação em
+Git/OBS e qualificação das ISOs continuam pendentes**. Não declarar instalação
+completa/migração/rollback de driver, outro kernel, PackageKit, CUDA/suspensão ou
+outro hardware aprovados por esses ensaios. Evidência compacta em
+[`evidence/vega-nvidia-20260916.json`](evidence/vega-nvidia-20260916.json);
+recibos locais em `analysis/2026-09-16/vega-nvidia/`.

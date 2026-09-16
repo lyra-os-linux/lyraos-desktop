@@ -1,0 +1,94 @@
+{
+  "date": "2026-09-16",
+  "status": "passed-scoped-vm-qualification",
+  "scope": "RPM lifecycle, PackageKit backend, Btrfs/Snapper recovery; no GPU passthrough",
+  "guest": {
+    "base": "Fresh official Leap 16.1 RPM installation",
+    "kernel": "6.12.0-160100.4-default",
+    "base_packages_installed": 233,
+    "virtio_gpu_without_nvidia": true,
+    "secure_boot_tested": false,
+    "disk": "12 GiB sparse Btrfs, now deleted",
+    "default_root_subvolume": true,
+    "separate_subvolumes": [
+      "/.snapshots",
+      "/var",
+      "/home"
+    ],
+    "network_attached": false,
+    "host_disks_attached": false,
+    "launches": 3,
+    "recovery_reboots": 2,
+    "failed_units_final": 0
+  },
+  "added_packages": [
+    "lyra-nvidia|610.57.04-lp161.1.1|noarch",
+    "nvidia-common-G07|610.57.04-1|x86_64",
+    "nvidia-compute-G07|610.57.04-1|x86_64",
+    "nvidia-compute-utils-G07|610.57.04-1|x86_64",
+    "nvidia-gl-G07|610.57.04-1|x86_64",
+    "nvidia-modprobe|610.57.04-1|x86_64",
+    "nvidia-open-driver-G07-signed-cuda-kmp-default|610.57.04_k6.12.0_160100.4-160100.1.3|x86_64",
+    "nvidia-open|610.57.04-1|x86_64",
+    "nvidia-persistenced|610.57.04-1|x86_64",
+    "nvidia-video-G07|610.57.04-1|x86_64"
+  ],
+  "package_signatures": "passed",
+  "payload_integrity": "passed, all ten packages",
+  "rpm_scriptlets_and_triggers": "enabled, normal Zypper transaction",
+  "vega": {
+    "actual_broker_no_gpu_read_as_unprivileged_user": "passed",
+    "cancel_without_authorization": "passed",
+    "confirmed_install_without_gpu": "refused, no repository or recovery marker created",
+    "positive_install_via_vega": "not tested: VM has no supported PCI GPU"
+  },
+  "packagekit": {
+    "backend": "zypp",
+    "transport": "real system D-Bus",
+    "repository_data": "offline replay of official signature-verified metadata",
+    "upgrades": [],
+    "explicit_615_update": "refused dependency-resolution-failed: lyra-nvidia requires compute610.57.04",
+    "package_inventory_unchanged": true,
+    "gnome_software_ui_tested": false
+  },
+  "recovery": {
+    "pre": 1,
+    "post": 2,
+    "known_good": 3,
+    "fault": "removed nvidia-smi and corrupted test baseline/repository configuration",
+    "restore_after_reboot": "inventory and exact nvidia-smi SHA256 restored, RPM verification passed",
+    "nvidia_smi_sha256": "145cc0ce04286ca2cddc7f39eb63b2cfc1431609125604d3aafdf37631e8c0be",
+    "rollback_before_install_after_reboot": "exact original RPM inventory and file absence restored",
+    "data_outside_snapshot": "preserved /var marker",
+    "interrupted_rpm_commit_tested": false,
+    "bootloader": "direct test kernel/initrd honoring Btrfs default, not GRUB/firmware"
+  },
+  "host": {
+    "inventory_unchanged": true,
+    "kernel": "6.12.0-160100.4-default",
+    "gpu": "NVIDIA GeForce GTX 1650, 610.57.04",
+    "shell_pid_before_after": "2075",
+    "failed_system_units": 0,
+    "failed_user_units": 0
+  },
+  "remaining": [
+    "Positive full Vega driver installation on compatible NVIDIA hardware",
+    "Migration from older NVIDIA stacks",
+    "Future kernel/driver updates and ABI/initramfs qualification",
+    "GRUB/Secure Boot and firmware recovery",
+    "GNOME Software UI and online repository refresh",
+    "Rendering, Vulkan, CUDA, external display, suspend, additional GPUs",
+    "Exact single Desktop ISO qualification"
+  ],
+  "cleanup": {
+    "vm_stopped": true,
+    "disk_and_staging_removed": true,
+    "initrd_and_sockets_removed": true,
+    "roots": [
+      "/tmp/lyra-nvidia-vm-20260916",
+      "/tmp/lyra-nvidia-vm-assets-20260916"
+    ]
+  },
+  "git_published": false,
+  "obs_submitted": false
+}
