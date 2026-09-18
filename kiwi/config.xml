@@ -421,6 +421,11 @@
     <!-- Shown once per installed user through its guarded XDG autostart.
          The launcher explicitly skips the liveuser installation session. -->
     <package name="lyra-welcome"/>
+    <!-- Download manager with parallel connections (aria2 backend). The
+         Firefox integration subpackage registers the native messaging host
+         globally; Firefox is the default browser. -->
+    <package name="lyra-downloads"/>
+    <package name="lyra-downloads-firefox-integration"/>
     <package name="gnome-calculator"/>
     <package name="gnome-characters"/>
     <package name="gnome-disk-utility"/>
