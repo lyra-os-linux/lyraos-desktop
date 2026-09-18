@@ -42,6 +42,17 @@
       "rationale": "Third-party interface and translations remain upstream-owned; Lyra only replaces the unsupported self-update path with a packaging safety diagnostic."
     },
     {
+      "id": "lyra-downloads",
+      "project": "lyra",
+      "wave": "alpha8",
+      "status": "scheduled",
+      "format": "gettext",
+      "domain": "lyra-downloads",
+      "selection": "LC_ALL/LC_MESSAGES/LANG",
+      "lint": "package i18n test",
+      "rationale": "Gettext template ships with pt-BR source strings; en-US and es-ES catalogs are not yet translated."
+    },
+    {
       "id": "lyra-fish-productivity",
       "project": "lyra",
       "wave": "alpha6",

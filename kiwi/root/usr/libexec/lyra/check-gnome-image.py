@@ -16,6 +16,7 @@ MINIMUMS = {
     'linuxtoys': '6.9', 'lyra-upgrade': '0.2.3', 'beam': '1.0.1',
     'sulafat': '1.0.4', 'vegad': '5.1.26',
     'lyra-installer': '0.1.0',
+    'lyra-downloads': '0.1.0',
 }
 
 
