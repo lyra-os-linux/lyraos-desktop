@@ -426,6 +426,11 @@
          globally; Firefox is the default browser. -->
     <package name="lyra-downloads"/>
     <package name="lyra-downloads-firefox-integration"/>
+    <!-- Mozilla-signed extension (AMO unlisted). Firefox installs it from
+         /usr/share/lyra-firefox-ext through ExtensionSettings in the
+         overlay's distribution/policies.json (normal_installed: the user
+         can disable it, not remove it). -->
+    <package name="lyra-firefox-ext"/>
     <package name="gnome-calculator"/>
     <package name="gnome-characters"/>
     <package name="gnome-disk-utility"/>

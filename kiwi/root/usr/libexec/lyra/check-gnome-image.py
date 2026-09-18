@@ -17,6 +17,7 @@ MINIMUMS = {
     'sulafat': '1.0.4', 'vegad': '5.1.26',
     'lyra-installer': '0.1.0',
     'lyra-downloads': '0.1.0',
+    'lyra-firefox-ext': '0.1.0',
 }
 
 

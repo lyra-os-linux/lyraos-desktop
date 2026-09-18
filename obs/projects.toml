@@ -72,6 +72,7 @@ iso_consumer = true
 packages = [
   "beam",
   "lyra-downloads",
+  "lyra-firefox-ext",
   "lyra-fish-productivity",
   "lyra-installer",
   "lyra-icons",
