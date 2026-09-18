@@ -432,6 +432,21 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertFalse(homepage["Locked"])
         preferences = policies["policies"].get("Preferences", {})
         self.assertNotIn("intl.locale.requested", preferences)
+        # The signed Lyra Downloads extension comes from lyra-firefox-ext;
+        # the ID must match the native host's allowed_extensions.
+        extension = policies["policies"]["ExtensionSettings"][
+            "lyra-downloads@lyraos.com.br"
+        ]
+        self.assertEqual(extension["installation_mode"], "normal_installed")
+        self.assertEqual(
+            extension["install_url"],
+            "file:///usr/share/lyra-firefox-ext/lyra-downloads@lyraos.com.br.xpi",
+        )
+        image_packages = {
+            node.attrib["name"]
+            for node in ET.parse(ROOT / "kiwi/config.xml").getroot().findall("packages/package")
+        }
+        self.assertIn("lyra-firefox-ext", image_packages)
 
     def test_office_apps_and_locales_match_image_policy(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()

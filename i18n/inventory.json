@@ -53,6 +53,17 @@
       "rationale": "Gettext template ships with pt-BR source strings; en-US and es-ES catalogs are not yet translated."
     },
     {
+      "id": "lyra-firefox-ext",
+      "project": "lyra",
+      "wave": "alpha8",
+      "status": "scheduled",
+      "format": "json",
+      "domain": "webextension _locales",
+      "selection": "Firefox UI locale with pt-BR default_locale",
+      "lint": "npm test",
+      "rationale": "WebExtension _locales ships pt-BR only; en-US and es-ES messages are not yet translated."
+    },
+    {
       "id": "lyra-fish-productivity",
       "project": "lyra",
       "wave": "alpha6",
