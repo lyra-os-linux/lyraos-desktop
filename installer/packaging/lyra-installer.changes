@@ -1,5 +1,5 @@
 -------------------------------------------------------------------
-Sat Sep 19 18:00:00 UTC 2026 - Lyra OS Team
+Sat Sep 19 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
 
 - Separate BIOS GPT/GRUB installation from UEFI signed shim/GRUB paths.
 - Keep UEFI boot files on the selected disk and support unavailable NVRAM
