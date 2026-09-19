@@ -80,8 +80,10 @@ em português, inglês e espanhol, incluído no CI.
 
 Esses ensaios não qualificam uma ISO completa, sessão GNOME, instalação pela
 interface, Snapper/rollback, firmware físico ou atualização posterior do
-bootloader. Falta publicar o RPM correspondente, incluí-lo na candidata e
-repetir instalação e boot dos três modos no checksum exato da ISO. Secure Boot
+bootloader. O RPM `lyra-installer-0.1.0-lp161.34.1` foi promovido pelo
+[pedido OBS 1379053](https://build.opensuse.org/request/show/1379053), com
+assinatura, origem e dependências verificadas; 124 testes passaram no staging
+e no release. Falta incluí-lo na candidata e repetir instalação e boot dos três modos no checksum exato da ISO. Secure Boot
 com OVMF/chaves Microsoft e hardware físico também continua no gate da imagem.
 A issue #89 permanece aberta até a integração/qualificação aplicável.
 

@@ -67,6 +67,19 @@
   "limits": [
     "Minimal public boot-tool fixture, not a full ISO or GNOME session",
     "Secure Boot uses OVMF SUSE keys",
-    "RPM/OBS and exact ISO qualification pending"
-  ]
+    "Exact ISO qualification pending; RPM/OBS promoted"
+  ],
+  "obs": {
+    "git": "28a7f1d7f209f81bbc2b4ef62f0da20dbaba86a5",
+    "request": 1379053,
+    "staging_revision": 38,
+    "release_revision": 34,
+    "srcmd5": "2e4aa67aff5df53795a5abf72c130ef0",
+    "rpm": "lyra-installer-0.1.0-lp161.34.1.x86_64.rpm",
+    "rpm_sha256": "60d181e75f62a77fff283bef5461597d53848adb46400c54e496fe85f2683fa7",
+    "signature": "RSA/SHA256 key 7edca82e verified",
+    "tests_core": 124,
+    "rpmlint_errors": 0,
+    "public_download_matches": true
+  }
 }

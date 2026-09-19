@@ -261,7 +261,9 @@ mantém boot independente de ESPs de outros discos. Testes de componentes
 instalaram e iniciaram discos descartáveis nos três modos, incluindo um
 ensaio UEFI Secure Boot com chaves SUSE. Nenhuma alteração no firmware do host.
 
-**RPM/OBS, inclusão na ISO e qualificação do checksum exato pendentes.**
+**RPM/OBS entregue:** `lyra-installer-0.1.0-lp161.34.1`, pedido OBS
+1379053 aceito, Git `28a7f1d`, assinatura e origem conferidas.
+**Inclusão na ISO e qualificação do checksum exato pendentes.**
 Não encerrar este item pelos testes de componentes. Contrato, reprodução e
 limites em [firmware do instalador](installer-firmware-requirements.md);
 recibos locais em `analysis/2026-09-19/installer-firmware/boot-vm/`.
