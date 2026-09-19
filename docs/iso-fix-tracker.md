@@ -252,3 +252,41 @@ completa/migração/rollback de driver, outro kernel, PackageKit, CUDA/suspensã
 outro hardware aprovados por esses ensaios. Evidência compacta em
 [`evidence/vega-nvidia-20260916.json`](evidence/vega-nvidia-20260916.json);
 recibos locais em `analysis/2026-09-16/vega-nvidia/`.
+
+
+## DL-01 — arquivo apagado após repasse do Firefox (19/09/2026)
+
+- **Sintoma/causa:** Firefox 140 ESR e Lyra Downloads 0.1.1 usando a mesma
+  pasta podiam concluir o repasse sem preservar o arquivo. A pausa do Firefox
+  remove o placeholder; o cancelamento posterior ainda pode apagar esse
+  caminho, agora aberto pelo aria2.
+- **Alcance:** geral da integração de downloads, independente de GPU/firmware;
+  não copiar configurações ou dados do perfil pessoal para a ISO.
+- **Fontes:** Downloads `03fd5780a37f10d62d174bdbcafeed42e82acb39`, versão 0.1.2.
+  Native host marca repasses automáticos para reservar o nome do Firefox e o
+  backend escolhe nome numerado livre antes de iniciar aria2. Downloads manuais
+  mantêm o comportamento. XPI assinado 0.1.1 permanece compatível.
+- **Evidência local:** 45 testes Rust, aria2 real e Firefox instalado em perfil
+  temporário; arquivo final com bytes exatos, estado restaurado após suspensão
+  da extensão, cancelamento confirmado antes da recuperação e duplicata tardia
+  recusada. A recuperação injeta o estado de uma resposta perdida; não simula
+  queda de processo. Permissões do perfil de teste concedidas pelo controlador.
+- **RPM/estação:** 0.1.2-lp161.1.1 publicada e instalada após
+  [SR 1379046](https://build.opensuse.org/request/show/1379046), revisão OBS
+  `c509218b46a5eb8a385571ec4c9d5713`. RPMs públicos assinados, origem e
+  integridade instaladas conferidas; backend/host em execução na 0.1.2, fila
+  vazia preservada. Gate completo de staging/release aprovado. O ensaio com
+  binários instalados preservou os bytes e passou na recuperação.
+- **Risco/reversão:** repasse automático usa sufixo numérico no nome final;
+  sem mudança de schema SQLite. Para interromper captura, desativar a opção na
+  extensão e baixar pelo Firefox. Reverter para 0.1.1 reintroduz a perda do
+  arquivo; não usar essa reversão com captura automática habilitada.
+- **ISO exata:** pendente. Confirmar Downloads e integração nativa >= 0.1.2,
+  XPI assinado 0.1.1, dependência exata entre backend e host, captura em pasta
+  compartilhada, integridade do arquivo, recuperação e atualização de instalação
+  anterior. Ensaiar em VM e outro hardware aplicável. Registrar checksum da
+  candidata e evidências antes de marcar inclusão/qualificação como concluídas.
+
+Evidência portátil: [downloads-handoff-20260919.json](evidence/downloads-handoff-20260919.json).
+Relatórios locais: `analysis/2026-09-19/host-downloads-0.1.2/` (correção) e
+`analysis/2026-09-19/obs-0.1.2/` (publicação e ensaio dos RPMs).
