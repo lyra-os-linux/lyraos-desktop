@@ -281,6 +281,12 @@ recibos locais em `analysis/2026-09-16/vega-nvidia/`.
   sem mudança de schema SQLite. Para interromper captura, desativar a opção na
   extensão e baixar pelo Firefox. Reverter para 0.1.1 reintroduz a perda do
   arquivo; não usar essa reversão com captura automática habilitada.
+- **Receita:** os três pacotes estão selecionados explicitamente. O verificador
+  executado por `kiwi/config.sh` exige Downloads e integração nativa >= 0.1.2
+  e extensão >= 0.1.1; recusa pacote ausente, versão antiga ou pré-release abaixo
+  desse piso antes de finalizar a imagem. A dependência do RPM nativo mantém
+  backend/host na mesma versão. Isso não substitui assinatura/proveniência nem
+  comprova que uma ISO foi construída.
 - **ISO exata:** pendente. Confirmar Downloads e integração nativa >= 0.1.2,
   XPI assinado 0.1.1, dependência exata entre backend e host, captura em pasta
   compartilhada, integridade do arquivo, recuperação e atualização de instalação

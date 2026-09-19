@@ -423,10 +423,13 @@
     <package name="lyra-welcome"/>
     <!-- Download manager with parallel connections (aria2 backend). The
          Firefox integration subpackage registers the native messaging host
-         globally; Firefox is the default browser. -->
+         globally; Firefox is the default browser. check-gnome-image.py
+         requires both packages >= 0.1.2 (DL-01: preserve handoff files).
+         The native host RPM requires the matching backend version. -->
     <package name="lyra-downloads"/>
     <package name="lyra-downloads-firefox-integration"/>
-    <!-- Mozilla-signed extension (AMO unlisted). Firefox installs it from
+    <!-- Mozilla-signed extension >= 0.1.1 (AMO unlisted), checked by
+         check-gnome-image.py. Firefox installs it from
          /usr/share/lyra-firefox-ext through ExtensionSettings in the
          overlay's distribution/policies.json (normal_installed: the user
          can disable it, not remove it). -->

@@ -16,8 +16,10 @@ MINIMUMS = {
     'linuxtoys': '6.9', 'lyra-upgrade': '0.2.3', 'beam': '1.0.1',
     'sulafat': '1.0.4', 'vegad': '5.1.26',
     'lyra-installer': '0.1.0',
-    'lyra-downloads': '0.1.0',
-    'lyra-firefox-ext': '0.1.0',
+    # DL-01: older handoff pairs can lose the file during Firefox cleanup.
+    'lyra-downloads': '0.1.2',
+    'lyra-downloads-firefox-integration': '0.1.2',
+    'lyra-firefox-ext': '0.1.1',
 }
 
 
