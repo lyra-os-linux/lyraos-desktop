@@ -8,6 +8,63 @@ Sat Sep 19 18:00:00 UTC 2026 - Lyra OS Team
 - Add disposable disk-boot VM coverage and localized UI regression tests.
 
 -------------------------------------------------------------------
+Tue Sep 15 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
+
+- Refresh 0.1.0 from integrated Git 9584dc974039424cf15917feb939ef9f1178b515.
+- Preserve the GDM settings backend when removing live autologin.
+- Disable automatic and timed login while retaining hardware settings.
+- Recover missing configuration only on targets with GDM installed.
+- Add cleanup regressions; Cargo dependency lock remains unchanged.
+
+-------------------------------------------------------------------
+Tue Sep 15 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
+
+- Refresh 0.1.0 from integrated Git 891ad0fb5de126792499aab751a395ba91702100.
+- Report UEFI-only support explicitly before any partitioning.
+- Allow empty removable-card readers during storage planning.
+- Preserve validated storage and firmware diagnostics.
+
+-------------------------------------------------------------------
+Fri Sep 11 2026 - Rodrigo Brito <rodrigo@lyraos.com.br>
+
+- Refresh 0.1.0 from integrated Git 561201eadb66051f0137f6f6ea91505483c903b6.
+- Preserve installed product identity and reject unsafe deployment state.
+- Include integrated installer and interface corrections.
+
+-------------------------------------------------------------------
+Wed Sep  9 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
+
+- Ship installer source commit b5ea13e6f5c15c99b96af055dc5e6bc53b280102.
+- Reject invalid account records before environment and disk operations.
+- Validate UTF-8 byte limits and preserve valid passwords in the UI.
+- Unmount temporary Btrfs staging on subvolume and directory failures.
+- Keep primary and cleanup errors; stop after failed unmount.
+- Core/service/UI regressions and 25 native Btrfs faults, cancellation
+  and retry passed in disposable VMs; vendor lock is unchanged.
+
+-------------------------------------------------------------------
+Wed Sep  2 20:13:00 UTC 2026 - Lyra OS Team
+
+- Rebuild the unchanged desktop-neutral Alpha 7 sources through the reviewed
+  staging channel to restore release promotion provenance.
+
+-------------------------------------------------------------------
+Wed Sep  2 14:38:00 UTC 2026 - Lyra OS Team
+
+- Remove live-session artifacts for GDM, SDDM and LightDM without changing
+  the display manager selected by each image.
+- Apply GNOME keyboard defaults only when GNOME Shell is installed.
+- Preserve the branded GRUB theme when packaged and use GRUB's packaged
+  default for editions that intentionally omit it.
+
+-------------------------------------------------------------------
+Wed Sep  2 14:15:00 UTC 2026 - Lyra OS Team
+
+- Keep service enablement desktop-neutral so the published installer works
+  with GNOME, KDE Plasma and XFCE images while preserving each image's
+  preconfigured display-manager.service.
+
+-------------------------------------------------------------------
 Tue Sep  1 12:15:00 UTC 2026 - Lyra OS Team
 
 - Identify the installer UI as Lyra OS Odisseia 1.1 Alpha 7.
