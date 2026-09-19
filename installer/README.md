@@ -38,7 +38,7 @@ mostra os discos elegíveis, o motivo quando um está bloqueado, o resumo
 destrutivo e os avisos do plano, e só libera “Continuar” quando o plano é
 válido.
 
-Todo `InstallPlan` carrega `schema_version`. A versão atual é `3`; o serviço
+Todo `InstallPlan` carrega `schema_version`. A versão atual é `4`, incluindo o modo `firmware`; o serviço
 rejeita versões desconhecidas antes de executar qualquer operação e reconstrói
 o plano contra um snapshot novo para detectar estado obsoleto. Os contratos e
 as regras de evolução estão em `docs/adr/0002-json-lines-privileged-protocol.md`

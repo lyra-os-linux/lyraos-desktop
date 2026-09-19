@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Sat Sep 19 18:00:00 UTC 2026 - Lyra OS Team
+
+- Separate BIOS GPT/GRUB installation from UEFI signed shim/GRUB paths.
+- Keep UEFI boot files on the selected disk and support unavailable NVRAM
+  through a verified portable boot path; preserve fatal payload/cleanup errors.
+- Version the firmware-aware plan schema and require both GRUB platforms.
+- Add disposable disk-boot VM coverage and localized UI regression tests.
+
+-------------------------------------------------------------------
 Tue Sep  1 12:15:00 UTC 2026 - Lyra OS Team
 
 - Identify the installer UI as Lyra OS Odisseia 1.1 Alpha 7.

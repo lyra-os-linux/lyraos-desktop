@@ -289,7 +289,7 @@ mod tests {
     }
 
     #[test]
-    fn legacy_firmware_fails_revalidation_before_any_operation() {
+    fn changed_firmware_fails_revalidation_before_any_operation() {
         let (mut snapshot, request) = valid_request();
         snapshot.uefi = false;
         let executor = FakeExecutor::new(None);
@@ -303,7 +303,7 @@ mod tests {
         assert!(executor.calls().is_empty());
         assert!(
             matches!(events.last(), Some(ExecutionEvent::Failed { step, message })
-            if step == "revalidação" && message.contains("UEFI"))
+            if step == "revalidação" && message.contains("plano não corresponde"))
         );
     }
 

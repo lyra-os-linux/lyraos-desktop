@@ -17,9 +17,10 @@ pub use device::{
 };
 pub use discovery::{DiscoveryBackend, DiscoveryError, SystemDiscoveryBackend};
 pub use plan::{
-    BTRFS_MOUNT_OPTIONS, DISK_SWAP_SIZE_BYTES, DestructiveSummary, EspPlan, FilesystemPlan,
-    GuidedChoice, INSTALL_PLAN_SCHEMA_VERSION, InstallPlan, LogicalVolumePlan, PlanBuilder,
-    PlanError, RawTarget, SizePolicy, SubvolumePlan, SwapChoice, SwapPlan, VolumeLayer,
+    BIOS_BOOT_SIZE_BYTES, BTRFS_MOUNT_OPTIONS, DISK_SWAP_SIZE_BYTES, DestructiveSummary, EspPlan,
+    FilesystemPlan, FirmwareMode, GuidedChoice, INSTALL_PLAN_SCHEMA_VERSION, InstallPlan,
+    LogicalVolumePlan, PlanBuilder, PlanError, RawTarget, SizePolicy, SubvolumePlan, SwapChoice,
+    SwapPlan, VolumeLayer,
 };
 
 #[cfg(test)]
@@ -65,21 +66,21 @@ mod tests {
     }
 
     #[test]
-    fn legacy_boot_is_rejected_before_producing_an_install_plan() {
+    fn bios_and_uefi_produce_distinct_boot_plans() {
         let mut snapshot = snapshot_with_disks(vec![disk("sda", LARGE)]);
         snapshot.uefi = false;
-        let error = PlanBuilder::new(&snapshot)
+        let bios = PlanBuilder::new(&snapshot)
             .build(&whole_disk_choice("/dev/sda"))
-            .unwrap_err();
-        assert_eq!(error.0.len(), 1);
-        assert!(error.0[0].contains("UEFI"));
-        // No CPU/TDX field is required to approve an ordinary UEFI machine.
+            .unwrap();
+        assert_eq!(bios.firmware, FirmwareMode::Bios);
+        assert_eq!(bios.esp, EspPlan::NotRequired);
         snapshot.uefi = true;
-        assert!(
-            PlanBuilder::new(&snapshot)
-                .build(&whole_disk_choice("/dev/sda"))
-                .is_ok()
-        );
+        let uefi = PlanBuilder::new(&snapshot)
+            .build(&whole_disk_choice("/dev/sda"))
+            .unwrap();
+        assert_eq!(uefi.firmware, FirmwareMode::Uefi);
+        assert!(matches!(uefi.esp, EspPlan::Create { .. }));
+        assert_ne!(bios, uefi);
     }
 
     #[test]
@@ -120,16 +121,15 @@ mod tests {
         assert_eq!(snapshot.disks.len(), 1);
         assert_eq!(snapshot.disks[0].path, PathBuf::from("/dev/vda"));
         let plan = PlanBuilder::new(&snapshot).build(&whole_disk_choice("/dev/vda"));
-        if expected {
-            assert!(plan.is_ok(), "{plan:?}");
-        } else {
-            assert!(
-                plan.unwrap_err()
-                    .0
-                    .iter()
-                    .any(|message| message.contains("UEFI"))
-            );
-        }
+        let plan = plan.unwrap();
+        assert_eq!(
+            plan.firmware,
+            if expected {
+                FirmwareMode::Uefi
+            } else {
+                FirmwareMode::Bios
+            }
+        );
         println!("LYRA_FIRMWARE_PASS uefi={expected} tdx=false disk=/dev/vda writes=0");
     }
 
@@ -207,7 +207,7 @@ mod tests {
     }
 
     #[test]
-    fn existing_esp_is_reused_never_recreated() {
+    fn another_disks_esp_is_not_used_by_whole_disk_install() {
         let mut with_esp = disk("sda", LARGE);
         with_esp.partitions.push(Partition {
             path: PathBuf::from("/dev/sda1"),
@@ -229,8 +229,8 @@ mod tests {
 
         assert_eq!(
             plan.esp,
-            EspPlan::Reuse {
-                path: PathBuf::from("/dev/sda1")
+            EspPlan::Create {
+                size_bytes: plan::ESP_RECOMMENDED_SIZE_BYTES
             }
         );
     }

@@ -52,6 +52,7 @@
       filesystem="squashfs"
       squashfscompression="zstd"
       firmware="uefi"
+      eficsm="true"
       editbootconfig="edit_boot_config.sh"
       volid="LYRA_OS_1_1_ALPHA_7"
       application_id="LyraOS"
@@ -174,6 +175,9 @@
     <package name="ucode-intel"/>
     <package name="grub2"/>
     <package name="grub2-x86_64-efi"/>
+    <!-- BIOS installs need embedding modules; preserve signed UEFI support. -->
+    <package name="grub2-i386-pc"/>
+    <package name="efibootmgr"/>
     <!-- shim + mokutil: Secure Boot is in scope for this installer. -->
     <package name="shim"/>
     <package name="mokutil"/>

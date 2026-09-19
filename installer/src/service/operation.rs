@@ -53,6 +53,8 @@ pub const ALLOWED_BINARIES: &[&str] = &[
     "hwclock",
     "grub2-mkconfig",
     "shim-install",
+    "grub2-install",
+    "efibootmgr",
     "snapper",
     // Removes the live-only installer package from the target RPM database.
     // Deleting only its files would let a later package update restore the

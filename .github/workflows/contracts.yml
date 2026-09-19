@@ -33,6 +33,8 @@ jobs:
         run: cargo test --locked -p lyra-installer-core -p lyra-installer-service
       - name: Check Node for behavioral account-form tests
         run: node --version
+      - name: Validate BIOS and UEFI installer UI in all languages
+        run: node tests/installer-firmware.mjs
       - name: Install disposable Btrfs VM dependencies
         run: |
           sudo apt-get update
