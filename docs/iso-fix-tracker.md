@@ -266,8 +266,14 @@ continua em 5 minutos por padrão, configurável de 1 a 60 minutos.
 
 O gate da imagem exige `vega-gtk >= 5.1.40`. Testes rejeitam 5.1.37, 5.1.39 e
 5.1.40~rc1. O CI das fontes 35533662810 passou, incluindo GTK/D-Bus privados com
-rajadas de 50 pedidos e recuperação após falha. Publicação OBS em andamento;
-nenhuma alteração do pacote instalado na estação. Inclusão e qualificação na
+rajadas de 50 pedidos e recuperação após falha. OBS1379318 aceito, staging22/release110; RPM público
+`vega-gtk-5.1.40-lp161.1.1.x86_64.rpm`, SHA256
+`1564ec93722bfd35230570679c08ba585899d38876fcf4475ca8323f2ac321ff`.
+Assinatura7edca82e válida; download público idêntico à API; binário de release
+idêntico ao staging qualificado. Sete verificações GTK/AT-SPI do RPM e 52 de
+perfis passaram; gates completos staging/release aprovados.
+[Evidência](https://github.com/lyra-os-linux/vega/blob/fix/dashboard-tab-refresh/docs/dashboard-obs-evidence.json).
+Nenhuma alteração do pacote instalado na estação. Inclusão e qualificação na
 ISO exata permanecem pendentes.
 
 Na candidata identificada por checksum: abrir Painel, voltar de Software,
