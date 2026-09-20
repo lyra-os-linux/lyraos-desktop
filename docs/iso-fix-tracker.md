@@ -252,3 +252,28 @@ completa/migração/rollback de driver, outro kernel, PackageKit, CUDA/suspensã
 outro hardware aprovados por esses ensaios. Evidência compacta em
 [`evidence/vega-nvidia-20260916.json`](evidence/vega-nvidia-20260916.json);
 recibos locais em `analysis/2026-09-16/vega-nvidia/`.
+
+
+## VEGA-01 — Atualização do Painel a cada clique, 20/09
+
+O Vega GTK mantinha os cards ao navegar de volta ao Painel ou clicar na aba já
+ativa, até o próximo ciclo automático. A correção geral, independente de GPU ou
+firmware, está no [Vega PR147](https://github.com/lyra-os-linux/vega/pull/147),
+versão 5.1.40, fontes `99b039bc6d6f9bc62c697b9af1668434e1410fee`.
+Agrupa cliques e temporizador em uma consulta e no máximo uma repetição, preserva
+consultas assíncronas e isola falhas entre os cards. O intervalo automático
+continua em 5 minutos por padrão, configurável de 1 a 60 minutos.
+
+O gate da imagem exige `vega-gtk >= 5.1.40`. Testes rejeitam 5.1.37, 5.1.39 e
+5.1.40~rc1. O CI das fontes 35533662810 passou, incluindo GTK/D-Bus privados com
+rajadas de 50 pedidos e recuperação após falha. Publicação OBS em andamento;
+nenhuma alteração do pacote instalado na estação. Inclusão e qualificação na
+ISO exata permanecem pendentes.
+
+Na candidata identificada por checksum: abrir Painel, voltar de Software,
+clicar na aba ativa, repetir cliques durante consulta lenta, provocar falha e
+recuperação do backend e conferir todos os cards. Verificar também o intervalo
+configurado, sem senha para as consultas. Não concluir este registro apenas com
+testes de fontes ou do RPM. Em caso de regressão, restaurar a revisão OBS anterior
+pelo fluxo de rollback via staging e requalificar; não reduzir silenciosamente o
+mínimo exigido pela imagem.
