@@ -265,7 +265,7 @@ recibos locais em `analysis/2026-09-16/vega-nvidia/`.
   Liberar providers e recursos antes dos filhos de uiGroup; manter restauração
   na desativação normal e tolerar limpeza repetida/reentrante.
 - **Receita:** pacote já selecionado; gate passa a exigir>=2.0.3, rejeitando2.0.2
-  e pré-release. Publicação do RPM está em acompanhamento.
+  e pré-release. RPM publicado e verificado conforme registro abaixo.
 - **Evidência:** matriz nativa com componentes isolados, juntos e quatro perfis;
   baseline41–168 acessos inválidos por cenário ativo, correção0.208 checks de
   ciclo e69 de coexistência/restauração. Compositor privado encerrado porSIGTERM
@@ -275,3 +275,16 @@ recibos locais em `analysis/2026-09-16/vega-nvidia/`.
   segfault nativo não têm resolução geral demonstrada por esse ensaio.
 - **Reversão:** reverter fontes e reconstruir pelo staging; manter a candidata
   bloqueada em regressão, sem ocultar avisos ou desativar globalmente extensões.
+
+### SHELL-01 — RPM publicado em20/09/2026
+
+[OBS1379316](https://build.opensuse.org/request/show/1379316) aceito; staging24,
+release53, fontes223791a, srcmd5 `ce77f2c05e1c481a51826300a8b807ce`.
+RPM `sheliak-2.0.3-lp161.1.1.noarch.rpm`, SHA256 público
+`0f5b550ee95bedb469efd31779399d08f1d0dcaa89c656ef7191009ddd38e327`, assinatura
+verificada.131 arquivos conferem com bundle qualificado; matriz repetida no
+RPM extraído passou208checks/setecenários,zero acessosdisposed e saída normal.
+Gates completos staging/release passaram. Evidência portátil em
+`docs/shutdown-obs-evidence.json` noPR Sheliak35.208 testesPython doDesktop e
+CI35532855573 aprovados no commit5c8d2f5. Integração/ISO/hardware continuam
+pendentes; SHELL-01 não é encerrado pela publicação do pacote.
