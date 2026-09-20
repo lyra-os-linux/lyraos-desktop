@@ -252,3 +252,25 @@ completa/migração/rollback de driver, outro kernel, PackageKit, CUDA/suspensã
 outro hardware aprovados por esses ensaios. Evidência compacta em
 [`evidence/vega-nvidia-20260916.json`](evidence/vega-nvidia-20260916.json);
 recibos locais em `analysis/2026-09-16/vega-nvidia/`.
+
+## UPD-01 — Coexistência offline com PackageKit
+
+- **Sintoma:** PackageKit conclui a atualização offline, mas a unit Lyra falha
+  ao procurar seu diretório de operações, sem existir um pedido Lyra.
+- **Escopo:** integração geral systemd/PackageKit, independente do hardware.
+- **Fontes:** [Updater #22](https://github.com/lyra-os-linux/lyraos-desktop-updater/issues/22),
+  [PR23](https://github.com/lyra-os-linux/lyraos-desktop-updater/pull/23), versão0.2.5.
+  Verificação do proprietário de /system-update antes do lock/estado Lyra;
+  estado próprio inválido continua rejeitado.
+- **Receita:** pacote já selecionado; gate passa a exigir >=0.2.5 e rejeita
+  0.2.4 e pré-release. Publicação/qualificação do RPM está em acompanhamento.
+- **Ensaio:** VM mínima descartável com PackageKit/zypp/systemd nativos,
+  atualização de RPM inerte e dois reboots;0.2.4 reproduziu ENOENT,0.2.5 passou.
+  Casos negativos de estado e recuperação própria também passaram.
+- **Pendente:** registrar revisão/hash do RPM final; integrar esta alteração;
+  verificar inventário e repetir ciclo na candidata identificada por checksum,
+  com interface GNOME e hardware aplicável. Não equivale a upgrade Lyra
+  completo para sucessor assinado. Nenhuma ISO foi construída neste ensaio.
+- **Risco/reversão:** preservar o processamento de pedidos próprios e o marcador
+  externo; não desabilitar a unit. Em regressão, reverter fontes e reconstruir
+  pelo staging, mantendo o item aberto e sem reduzir o gate da candidata.
