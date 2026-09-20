@@ -69,3 +69,12 @@ class MinimumsTests(unittest.TestCase):
         with patch.object(minimums, 'installed_version', side_effect=minimums.subprocess.CalledProcessError(1, 'rpm')):
             with self.assertRaises(minimums.subprocess.CalledProcessError):
                 minimums.main()
+
+    def test_shell_shutdown_fix_rejects_older_sheliak(self):
+        for version in ('2.0.1', '2.0.2', '2.0.3~rc1'):
+            with self.subTest(version=version):
+                def installed(package):
+                    return version if package == 'sheliak' else minimums.MINIMUMS[package]
+                with patch.object(minimums, 'installed_version', side_effect=installed):
+                    with self.assertRaisesRegex(ValueError, 'sheliak: need >= 2.0.3'):
+                        minimums.main()
