@@ -64,6 +64,17 @@
       "rationale": "WebExtension _locales ships pt-BR only; en-US and es-ES messages are not yet translated."
     },
     {
+      "id": "lyra-firefox-theme",
+      "project": "lyra",
+      "wave": "alpha8",
+      "status": "complete",
+      "format": "json",
+      "domain": "static theme _locales",
+      "selection": "Firefox UI locale with en-US fallback",
+      "lint": "python3 -m unittest discover -s test -p test_theme.py; web-ext lint --source-dir theme/static --self-hosted",
+      "rationale": "Theme name and description available in en-US, pt-BR and es-ES; no executable UI. Exact ISO qualification pending."
+    },
+    {
       "id": "lyra-fish-productivity",
       "project": "lyra",
       "wave": "alpha6",

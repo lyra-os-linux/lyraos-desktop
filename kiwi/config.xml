@@ -450,6 +450,7 @@
          overlay's distribution/policies.json (normal_installed: the user
          can disable it, not remove it). -->
     <package name="lyra-firefox-ext"/>
+    <package name="lyra-firefox-theme" version="&gt;=0.1.0"/>
     <package name="gnome-calculator"/>
     <package name="gnome-characters"/>
     <package name="gnome-disk-utility"/>

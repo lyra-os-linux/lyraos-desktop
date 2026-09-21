@@ -447,6 +447,12 @@ class ImagePolicyTests(unittest.TestCase):
             for node in ET.parse(ROOT / "kiwi/config.xml").getroot().findall("packages/package")
         }
         self.assertIn("lyra-firefox-ext", image_packages)
+        theme = policies["policies"]["ExtensionSettings"]["theme@lyraos.com.br"]
+        self.assertEqual(theme["installation_mode"], "normal_installed")
+        self.assertEqual(theme["install_url"], "file:///usr/share/lyra-firefox-theme/theme@lyraos.com.br.xpi")
+        self.assertIn("lyra-firefox-theme", image_packages)
+        self.assertNotIn("extensions.activeThemeID", preferences)
+
 
     def test_office_apps_and_locales_match_image_policy(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()

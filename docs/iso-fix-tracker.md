@@ -305,3 +305,23 @@ Nenhuma ISO construída ou qualificada. Depois da auditoria, repetir os cenário
 na ISO exata com conta instalada e sessão live, incluindo virt-manager gráfico,
 console, DNS/conectividade, instalação de convidado e persistência após reboot.
 Não marcar este item concluído apenas pela seleção de pacotes ou pelos contratos.
+
+## FF-THEME-01 — Tema oficial Firefox, Alpha 8
+
+Issue [Firefox #1](https://github.com/lyra-os-linux/lyra-firefox-ext/issues/1).
+Tema estático independente `theme@lyraos.com.br`, claro/escuro conforme sistema,
+metadados en-US/pt-BR/es-ES e sem permissões. Paleta aprovada pelo mantenedor
+em 21/09/2026. Implementação em Firefox PR2; pacote próprio lyra-firefox-theme.
+
+A receita adiciona o pacote e uma entrada normal_installed ao ExtensionSettings,
+preservando a extensão de Downloads e sem bloquear activeThemeID. OBS e inventário
+i18n incluem o novo pacote. 211 testes da receita passaram. No Firefox ESR140.13,
+o ensaio temporário de desenvolvimento validou cores claro/escuro, seleção de
+outro tema e remoção; 11 testes Python e dois arquivos Node passaram no componente.
+
+Ainda pendentes: retorno da assinatura Mozilla, validação do XPI e da política
+em perfis novos/existentes, pacote OBS e qualificação da candidata exata. Não
+promover esta receita enquanto o pacote assinado não estiver publicado e os
+ensaios de política aprovados. Nenhuma ISO gerada. A issue continua aberta.
+Reversão: retirar pacote/entrada de política e selecionar o tema padrão;
+preservar os perfis, dados e integração Downloads.
