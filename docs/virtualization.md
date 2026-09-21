@@ -84,7 +84,10 @@ arquivos próprios listados e preservou a ISO original.
 O ensaio encontrou cortes no editor e na confirmação de remoção. A receita
 agora exige GTK >=5.1.44 para incluir a correção de layout, validada com teclado
 e capturas a 100% e 200%. [Resumo e limites](evidence/vm-full-cycle-20260921.json).
-Publicação do RPM final ainda pendente; integrar esta receita após verificá-lo.
+Publicado pelo OBS #1379536: `vega-gtk-5.1.44-lp161.4.1.x86_64.rpm`.
+Assinatura e revisão verificadas; download público idêntico à API e conteúdo
+idêntico ao staging testado. O RPM final também passou criação e inspeção do
+editor/remoção em 1366×768; exclusão explícita limpou a fixture descartável.
 
 Este ensaio de componente não qualifica leitor de tela, todas as distribuições,
 instalação UEFI de convidado nem a candidata GNOME. Os testes da ISO continuam

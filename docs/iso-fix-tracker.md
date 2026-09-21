@@ -309,7 +309,8 @@ Não marcar este item concluído apenas pela seleção de pacotes ou pelos contr
 Qualificação adicional de componente em 21/09: instalação Alpine BIOS, boot sem
 ISO, edição de recursos com dados preservados e ambas as opções de remoção
 aprovadas. Vega GTK 5.1.44 corrige cortes nos diálogos encontrados no ensaio;
-piso atualizado na receita, publicação final pendente. Evidência em
+piso atualizado na receita, OBS #1379536 publicado e RPM público verificado
+(assinatura, revisão e conteúdo igual ao staging qualificado). Evidência em
 `docs/evidence/vm-full-cycle-20260921.json`. VIRT-01 continua aberto para a ISO
 exata e GNOME/Wayland; não extrapolar o ensaio Xvfb/BIOS para esses cenários.
 
