@@ -313,15 +313,16 @@ Tema estático independente `theme@lyraos.com.br`, claro/escuro conforme sistema
 metadados en-US/pt-BR/es-ES e sem permissões. Paleta aprovada pelo mantenedor
 em 21/09/2026. Implementação em Firefox PR2; pacote próprio lyra-firefox-theme.
 
-A receita adiciona o pacote e uma entrada normal_installed ao ExtensionSettings,
-preservando a extensão de Downloads e sem bloquear activeThemeID. OBS e inventário
-i18n incluem o novo pacote. 211 testes da receita passaram. No Firefox ESR140.13,
-o ensaio temporário de desenvolvimento validou cores claro/escuro, seleção de
-outro tema e remoção; 11 testes Python e dois arquivos Node passaram no componente.
+A receita adiciona o pacote, que expõe o XPI assinado através do diretório
+nativo distribution/extensions. Não há política de instalação para o tema:
+o ensaio mostrou que normal_installed sobrescreve escolhas existentes.
+A distribuição nativa preservou temas em perfis novos/existentes, seleção,
+reinício, troca e remoção sem reinstalação. Firefox ESR140.13 verificou a
+assinatura Mozilla (signedState=2). Paleta aprovada e metadados trilíngues.
 
-Ainda pendentes: retorno da assinatura Mozilla, validação do XPI e da política
-em perfis novos/existentes, pacote OBS e qualificação da candidata exata. Não
-promover esta receita enquanto o pacote assinado não estiver publicado e os
-ensaios de política aprovados. Nenhuma ISO gerada. A issue continua aberta.
-Reversão: retirar pacote/entrada de política e selecionar o tema padrão;
-preservar os perfis, dados e integração Downloads.
+OBS e inventário i18n incluem o pacote; 211 testes da receita passaram.
+Ainda pendentes: publicação OBS e qualificação da candidata exata, incluindo
+escala/teclado, repasse Downloads e upgrade de versão quando aplicável. Não
+integrar esta receita antes da publicação do pacote. Nenhuma ISO gerada.
+Reversão: retirar o pacote da receita e selecionar outro tema; preservar
+perfis, dados e integração Downloads. A issue permanece aberta até a candidata.
