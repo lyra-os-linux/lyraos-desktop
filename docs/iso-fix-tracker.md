@@ -283,3 +283,22 @@ configurado, sem senha para as consultas. Não concluir este registro apenas com
 testes de fontes ou do RPM. Em caso de regressão, restaurar a revisão OBS anterior
 pelo fluxo de rollback via staging e requalificar; não reduzir silenciosamente o
 mínimo exigido pela imagem.
+
+## VIRT-01 — QEMU/KVM e virt-manager, Alpha 8
+
+Integração solicitada pelo mantenedor em 17/09. A seleção inicial local incluía
+apenas os programas e o grupo libvirt no live; a receita agora declara o backend
+QEMU, cliente e rede padrão explicitamente, sem depender de recomendações do
+solver, e habilita seus sockets locais durante a construção da imagem.
+
+O acesso sem senha pelo grupo libvirt fica restrito ao liveuser. A conta criada
+pelo instalador mantém wheel e a autenticação Polkit administrativa existente.
+Não se habilitam TCP/TLS, rede NAT automática, máquinas ou discos no build.
+Detalhes e reversão em [virtualization.md](virtualization.md).
+
+Estado em 21/09: 211 testes Python passaram, incluindo três novos contratos.
+Ensaio de componente em raiz Leap 16.1 descartável ainda pendente de execução;
+nenhuma ISO construída ou qualificada. Antes da candidata: validar autorização,
+negação, sockets, rede NAT/DHCP, firmware e criação/inicialização de VM. Depois da
+auditoria, repetir os cenários na ISO exata com conta instalada e sessão live.
+Não marcar este item concluído apenas pela seleção de pacotes ou pelos contratos.

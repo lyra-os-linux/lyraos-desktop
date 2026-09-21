@@ -77,7 +77,7 @@
       installer exists. Locked password, no relation to the installed
       system's user model.
     -->
-    <user name="liveuser" password="!" pwdformat="encrypted" home="/home/liveuser" shell="/usr/bin/fish" groups="wheel,video,audio"/>
+    <user name="liveuser" password="!" pwdformat="encrypted" home="/home/liveuser" shell="/usr/bin/fish" groups="wheel,video,audio,libvirt"/>
   </users>
 
   <!--
@@ -246,6 +246,25 @@
          in kiwi/config.sh, not the package set. -->
     <package name="NetworkManager"/>
     <package name="firewalld"/>
+
+    <!--
+      Virtualização Desktop pronta para uso: o Lyra OS entrega o gerenciador
+      gráfico e o instalador de máquinas para o QEMU/KVM, com libvirt e os
+      componentes de rede explícitos, sem depender de recomendações opcionais.
+      Nenhuma máquina ou disco é criado durante a instalação da ISO.
+    -->
+    <package name="virt-manager"/>
+    <package name="virt-install"/>
+    <package name="libvirt-daemon-qemu"/>
+    <package name="libvirt-daemon-config-network"/>
+    <package name="libvirt-client"/>
+    <package name="qemu"/>
+    <package name="qemu-x86"/>
+    <package name="qemu-img"/>
+    <package name="qemu-ovmf-x86_64"/>
+    <package name="qemu-ui-gtk"/>
+    <package name="qemu-ui-opengl"/>
+    <package name="qemu-hw-display-virtio-vga"/>
 
     <!--
       Filesystem / snapshots. Btrfs itself stays the Leap default; the

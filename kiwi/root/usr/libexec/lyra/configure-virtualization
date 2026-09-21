@@ -1,0 +1,12 @@
+#!/bin/bash
+# Image construction only: enable vendor sockets without starting daemons.
+set -euo pipefail
+for package in libvirt-daemon-qemu libvirt-daemon-config-network libvirt-client; do
+    rpm -q "$package" >/dev/null
+done
+systemctl enable virtqemud.socket virtlogd.socket virtlockd.socket \
+    virtnetworkd.socket virtstoraged.socket virtsecretd.socket virtnodedevd.socket
+# The vendor package installs the default NAT definition. Let virt-manager
+# ask to start it when a guest needs it; do not create a bridge/DHCP server
+# during image construction or automatically on every desktop boot.
+test -r /etc/libvirt/qemu/networks/default.xml
