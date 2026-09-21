@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-21",
+  "status": "release-published-component-pass",
+  "console": {
+    "uuid": "ee4c6e9e-c941-4b41-81bf-0a530880ac4b",
+    "fullscreen_geometry": "WINDOW=2097159\nX=0\nY=0\nWIDTH=1280\nHEIGHT=800\nSCREEN=0",
+    "viewer_exit": 0,
+    "running_after_close": true,
+    "reconnect_process_survived": true,
+    "keyboard": "PASS visually confirmed LYRA_CONSOLE_KEYBOARD_OK",
+    "display": "Xvfb 1280x800, Openbox, virt-viewer 11.0"
+  },
+  "vega": "Final signed RPM opens VM page and lists running fixture; closing process preserves guest",
+  "rpms": {
+    "lyra-vms-0.1.0-lp161.2.1.x86_64.rpm": {
+      "sha256": "20878c94382d240a8758754e8a910ba6e2c5739ee343408306868404cec95087",
+      "signature": "RPM key 7edca82e verified"
+    },
+    "vega-gtk-5.1.41-lp161.2.1.x86_64.rpm": {
+      "sha256": "82cf22110c2601a33009f2d4a9de398d5afa56c3ae7945054c7e731d986ab661",
+      "signature": "RPM key 7edca82e verified"
+    }
+  },
+  "screenshots": {
+    "console-vega-rpm.png": "9588c15490aec9c4b857ba4018819fd0408ab4a1a4b58b39316089da183464f7",
+    "console-keyboard.png": "4611e16ca075a330d1a050429229835be1dc943e2b3643f0957388631908da61",
+    "console-fullscreen.png": "4aad4889a27bc093906d3b346619c78c7994e1545d01a94162c96aba9fa0d810",
+    "console-reconnect.png": "2dcdaf7cdb466e2cbaad71e6219cbb2f45ca0e5fa018ee806c5b46df8601fb17"
+  },
+  "limitations": [
+    "Disposable Leap component fixture, not complete guest OS installation",
+    "Exact ISO and installed GNOME/Wayland qualification pending",
+    "Vega existing packaging warnings retained; Lyra VMs rpmlint zero errors/warnings"
+  ],
+  "promotions": {
+    "vega-gtk": {
+      "request": 1379483,
+      "state": "accepted",
+      "staging_srcmd5": "c3572a4ce2762159f8bce6d4ab8e6a43",
+      "release_revision": 111,
+      "release_srcmd5": "c6eee73092361e23c37edae0501989ff"
+    },
+    "lyra-vms": {
+      "request": 1379484,
+      "state": "accepted",
+      "staging_srcmd5": "001eb3353626df839094b374befadfd5",
+      "release_revision": 1,
+      "release_srcmd5": "001eb3353626df839094b374befadfd5"
+    }
+  },
+  "release_artifacts": {
+    "lyra-vms": {
+      "release_sha256": "78f13d699b70364a5ffb3658e55438f9a5260c5020febc4a151d3436873f9908",
+      "binary_matches_staging": true,
+      "binary_sha256": "d0c6e215d8e144cdd1984bf597f3e3a2e658fd6263fde92b17ee48083ce91dc2",
+      "public_matches_release": true,
+      "public_file": "lyra-vms-0.1.0-lp161.1.1.x86_64.rpm"
+    },
+    "vega-gtk": {
+      "release_sha256": "7d390af66b4721e12a77fe143ce5b8b7dbb7a9d0c04714667fd104fa969abf0a",
+      "binary_matches_staging": true,
+      "binary_sha256": "31277eb541e987d32cee623aa4eb48f1e750ba8d5cdbf5f995d3e49d84edb9a9",
+      "public_matches_release": true,
+      "public_file": "vega-gtk-5.1.41-lp161.1.1.x86_64.rpm"
+    }
+  }
+}
