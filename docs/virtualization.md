@@ -63,8 +63,12 @@ A seleção da receita substitui virt-manager por Lyra VMs. `virt-viewer` contin
 como implementação do console; fechar Vega ou o console não desliga a VM.
 A alteração não desinstala programas nem apaga dados de instalações existentes.
 
-Publicação pendente: o pacote lyra-vms precisa passar pelo staging/release OBS,
-e o Vega publicado precisa conter a página de VMs. As versões mínimas e o
-inventário OBS impedem tratar a receita como pronta com pacotes antigos/ausentes.
+Publicados em 21/09: Vega 5.1.41 (OBS #1379483) e Lyra VMs 0.1.0
+(OBS #1379484), com revisões fixadas e requests aceitos. RPMs públicos assinados
+conferem com a API de release; binários idênticos aos testados em staging.
+Vega listou a VM; console passou teclado, tela cheia, reconexão e fechamento
+normal mantendo a execução. [Evidências](evidence/lyra-vms-staging-20260921.json).
+A instalação completa de convidado e a candidata GNOME/Wayland ainda devem ser
+qualificadas depois da auditoria e geração da ISO.
 A reversão desta troca consiste em restaurar virt-manager na seleção, sem
 remover QEMU/libvirt ou dados das máquinas. Auditar antes de gerar a ISO.

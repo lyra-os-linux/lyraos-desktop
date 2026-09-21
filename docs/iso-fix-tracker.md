@@ -337,6 +337,7 @@ perfis, dados e integração Downloads. A issue permanece aberta até a candidat
 
 Mantenedor solicitou remover virt-manager da distro e incluir Lyra VMs.
 Receita passa a exigir lyra-vms >= 0.1.0, virt-viewer e vega-gtk >= 5.1.41.
-Pacote lyra-vms adicionado ao inventário obrigatório OBS. A publicação dos
-pacotes e a qualificação da candidata permanecem pendentes; não gerar ISO antes
-da auditoria nem considerar seleção de pacotes como comprovação de entrega.
+Pacote lyra-vms adicionado ao inventário obrigatório OBS. Vega 5.1.41 e Lyra VMs
+0.1.0 publicados pelas requests #1379483/#1379484, com RPMs públicos assinados
+e binários iguais aos testados. A qualificação da candidata permanece pendente;
+não gerar ISO antes da auditoria. Evidência em lyra-vms-staging-20260921.json.
