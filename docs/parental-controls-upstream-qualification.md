@@ -1,5 +1,86 @@
 # Qualificação upstream de controles parentais
 
+## Reavaliação Leap 16.1 — 21/09/2026
+
+**A disponibilidade dos pacotes foi confirmada; a integração parental continua
+reprovada.** O Flatpak oficial não aplica o filtro no ensaio abaixo.
+Esta avaliação substitui as conclusões de indisponibilidade e de exclusão da
+interface GNOME feitas para Leap 16.0. A decisão de produto de 16/09 permanece:
+avaliar serviço e interface upstream antes de duplicá-los no Vega.
+
+### Origem e compatibilidade dos pacotes
+
+Consulta direta ao repositório oficial Leap 16.1 confirmou `malcontent`,
+`malcontent-control`, `libmalcontent-0-0`, `libmalcontent-ui-1-1` e
+`malcontent-lang` **0.12.0-160100.2.1**. Checksums conferem com o primary
+referenciado pelo repomd; os cinco RPMs têm assinatura válida SUSE `09d9ea69`.
+A origem de compilação é `SUSE:SLFO:1.3`, não um projeto pessoal.
+A consulta `/source/openSUSE:Leap:16.1/malcontent` retornou 404, mas não demonstra
+ausência de binários: o repositório da distribuição os contém.
+
+As dependências foram resolvidas pelo zypper com apenas o repositório oficial,
+numa VM descartável. Foram instalados AccountsService 23.13.9 e Flatpak
+1.16.6-160100.2.3. Nenhuma conta ou pacote da estação foi modificado.
+A receita Lyra referencia `malcontent-lang`; isso não comprova seleção explícita
+da interface, ativação de políticas ou aplicação de restrições.
+
+### Ensaios executados
+
+Conta fictícia `parentaltest`, sem grupos administrativos, em VM marcada
+`lyra.virtualization-test=1`. O administrador do ensaio gravou uma blocklist via
+`malcontent-client`, incluindo um caminho e uma referência Flatpak completa.
+
+| Cenário | Resultado observado |
+| --- | --- |
+| Administrador grava política | Passou |
+| Usuário consulta a própria política | Passou |
+| Usuário tenta remover a política, sem interação Polkit | Negado, código 2; política permaneceu |
+| Consulta do caminho bloqueado | Negada, código 3 |
+| Reinício do AccountsService | Política preservada, mesmo hash |
+| Execução direta de `/usr/bin/true` bloqueado | Executou, código 0; sem enforcement de execve |
+| Flatpak mínimo permitido | Executou, código 0 |
+| Mesmo Flatpak após blocklist explícita | **Executou, código 0; restrição não aplicada** |
+
+O teste Flatpak usa runtime/aplicativo mínimos locais, instalados pelo
+administrador somente na VM. A conta consulta o mesmo ref
+`app/org.lyra.TestApp/x86_64/stable` e recebe negação, enquanto
+`flatpak run org.lyra.TestApp` inicia normalmente. Não é uma inferência baseada
+apenas na aparência do menu. O teste esperado de bloqueio falhou; o resultado
+não foi convertido em aprovação para obter um gate verde.
+
+O SRPM oficial assinado `flatpak-1.16.6-160100.2.3.src.rpm` explica o resultado:
+`flatpak.spec:228` configura **`-Dmalcontent=disabled`**. O histórico da receita
+atribui a desativação, em 23/04/2024, a problemas com xdg-desktop-portal.
+Não remover essa opção e promover o pacote sem investigar essa regressão e
+qualificar os portais. Habilitar o suporte Flatpak tampouco resolveria execução
+direta de RPMs ou filtragem de conteúdo no navegador.
+
+### Decisão e trabalho restante
+
+1. Manter a interface GNOME como candidata, sem criar UI/daemon Lyra duplicados.
+2. Investigar a integração Flatpak/malcontent com o mantenedor da base e testar
+   uma correção isolada em staging, incluindo portais, autorização e rollback.
+3. Testar UI original com administrador/conta supervisionada, cancelamento,
+   instalação Flatpak por usuário/sistema, ausência do serviço e três idiomas.
+4. Completar a matriz RPM/navegadores/execução direta e separar os requisitos
+   não atendidos. Não apresentar o upstream como bloqueio universal.
+5. Validar reboot, atualização e rollback; depois adaptar ADR/UX e o acesso pelo
+   Vega somente ao comportamento comprovado.
+
+A issue #6 permanece aberta; #2/#7 não devem anunciar proteção efetiva antes
+dessa qualificação. Não há conclusão jurídica nem aprovação de conformidade
+neste ensaio. A auditoria final e a candidata Alpha 8 continuam pendentes.
+
+[Dados, versões, assinaturas e resultados](evidence/parental-base-20260921.json).
+Scripts/logs completos: `analysis/2026-09-21/parental-base/` no workspace.
+A documentação [GNOME](https://help.gnome.org/gnome-help/parental-controls.html)
+limita a lista de aplicativos a Flatpak. O README entregue no RPM malcontent
+explica que os consumidores devem consultar a política e que não é um sistema
+de controle obrigatório como AppArmor/SELinux.
+
+## Registro histórico — Leap 16.0, superado pela avaliação acima
+
+
 Status: resultado técnico da #6  
 Data da consulta: 18/08/2026  
 Alvo original: Lyra OS Desktop 1.0, openSUSE Leap 16.0, x86_64
