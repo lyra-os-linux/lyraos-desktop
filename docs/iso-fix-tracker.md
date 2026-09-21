@@ -284,7 +284,7 @@ testes de fontes ou do RPM. Em caso de regressão, restaurar a revisão OBS ante
 pelo fluxo de rollback via staging e requalificar; não reduzir silenciosamente o
 mínimo exigido pela imagem.
 
-## VIRT-01 — QEMU/KVM e virt-manager, Alpha 8
+## VIRT-01 — QEMU/KVM, Vega e Lyra VMs, Alpha 8
 
 Integração solicitada pelo mantenedor em 17/09. A seleção inicial local incluía
 apenas os programas e o grupo libvirt no live; a receita agora declara o backend
@@ -302,7 +302,7 @@ negação, sockets, NAT/DHCP, disco qcow2 e inicialização KVM BIOS/UEFI; limpe
 desligamento concluídos. Evidência em
 [evidence/virtualization-20260921.json](evidence/virtualization-20260921.json).
 Nenhuma ISO construída ou qualificada. Depois da auditoria, repetir os cenários
-na ISO exata com conta instalada e sessão live, incluindo virt-manager gráfico,
+na ISO exata com conta instalada e sessão live, incluindo Vega e Lyra VMs gráficos,
 console, DNS/conectividade, instalação de convidado e persistência após reboot.
 Não marcar este item concluído apenas pela seleção de pacotes ou pelos contratos.
 
@@ -332,3 +332,11 @@ Ainda pendente: qualificação da candidata exata, incluindo escala/teclado,
 repasse Downloads e upgrade de versão quando aplicável. Nenhuma ISO gerada.
 Reversão: retirar o pacote da receita e selecionar outro tema; preservar
 perfis, dados e integração Downloads. A issue permanece aberta até a candidata.
+
+### 21/09 — Substituição explícita de virt-manager
+
+Mantenedor solicitou remover virt-manager da distro e incluir Lyra VMs.
+Receita passa a exigir lyra-vms >= 0.1.0, virt-viewer e vega-gtk >= 5.1.41.
+Pacote lyra-vms adicionado ao inventário obrigatório OBS. A publicação dos
+pacotes e a qualificação da candidata permanecem pendentes; não gerar ISO antes
+da auditoria nem considerar seleção de pacotes como comprovação de entrega.

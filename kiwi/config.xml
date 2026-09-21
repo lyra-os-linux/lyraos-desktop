@@ -253,7 +253,8 @@
       componentes de rede explícitos, sem depender de recomendações opcionais.
       Nenhuma máquina ou disco é criado durante a instalação da ISO.
     -->
-    <package name="virt-manager"/>
+    <package name="lyra-vms" version="&gt;=0.1.0"/>
+    <package name="virt-viewer"/>
     <package name="virt-install"/>
     <package name="libvirt-daemon-qemu"/>
     <package name="libvirt-daemon-config-network"/>
@@ -548,7 +549,7 @@
       image checks their minimum versions. The terminal frontend vega-cli
       remains optional and is not required by the GTK frontend or this image.
     -->
-    <package name="vega-gtk"/>
+    <package name="vega-gtk" version="&gt;=5.1.41"/>
     <package name="vegad"/>
 
     <!-- Lyra's native remote-access clients, pinned in the default GNOME

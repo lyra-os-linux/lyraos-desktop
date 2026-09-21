@@ -316,6 +316,17 @@
       "selection": "Follows host application locale; artwork is language-neutral.",
       "lint": "python3 scripts/check-i18n-inventory.py",
       "rationale": "Brand artwork and proper product names only; progress messages and application UI remain translated by LibreOffice."
+    },
+    {
+      "project": "lyra",
+      "id": "lyra-vms",
+      "wave": "alpha8",
+      "status": "scheduled",
+      "format": "Rust locale strings + upstream gettext",
+      "domain": "lyra-vms / virt-viewer",
+      "selection": "LC_ALL, LANGUAGE, LC_MESSAGES, LANG; en-US fallback",
+      "lint": "cargo test --locked; desktop-file-validate; candidate locale smoke",
+      "rationale": "Launcher errors in en-US/pt-BR/es-ES; console translations supplied by virt-viewer. Candidate locale review pending."
     }
   ]
 }

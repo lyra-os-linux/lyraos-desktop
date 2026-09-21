@@ -13,11 +13,14 @@ class VirtualizationTests(unittest.TestCase):
         packages = {p.attrib['name'] for group in image.findall('packages')
                     if group.attrib.get('type') == 'image' and 'profiles' not in group.attrib
                     for p in group.findall('package')}
-        required = {'virt-manager', 'virt-install', 'libvirt-daemon-qemu',
+        required = {'lyra-vms', 'virt-viewer', 'vega-gtk', 'virt-install', 'libvirt-daemon-qemu',
                     'libvirt-daemon-config-network', 'libvirt-client', 'qemu',
                     'qemu-x86', 'qemu-img', 'qemu-ovmf-x86_64', 'qemu-ui-gtk',
                     'qemu-ui-opengl', 'qemu-hw-display-virtio-vga'}
         self.assertFalse(required - packages, required - packages)
+        self.assertNotIn('virt-manager', packages)
+        self.assertEqual(image.find(".//package[@name='lyra-vms']").get('version'), '>=0.1.0')
+        self.assertEqual(image.find(".//package[@name='vega-gtk']").get('version'), '>=5.1.41')
 
     def test_live_access_does_not_change_installed_account_policy(self):
         image = ET.parse(ROOT / 'kiwi/config.xml').getroot()
