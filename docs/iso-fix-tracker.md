@@ -305,3 +305,30 @@ Nenhuma ISO construída ou qualificada. Depois da auditoria, repetir os cenário
 na ISO exata com conta instalada e sessão live, incluindo virt-manager gráfico,
 console, DNS/conectividade, instalação de convidado e persistência após reboot.
 Não marcar este item concluído apenas pela seleção de pacotes ou pelos contratos.
+
+## FF-THEME-01 — Tema oficial Firefox, Alpha 8
+
+Issue [Firefox #1](https://github.com/lyra-os-linux/lyra-firefox-ext/issues/1).
+Tema estático independente `theme@lyraos.com.br`, claro/escuro conforme sistema,
+metadados en-US/pt-BR/es-ES e sem permissões. Paleta aprovada pelo mantenedor
+em 21/09/2026. Implementação em Firefox PR2; pacote próprio lyra-firefox-theme.
+
+A receita adiciona o pacote, que expõe o XPI assinado através do diretório
+nativo distribution/extensions. Não há política de instalação para o tema:
+o ensaio mostrou que normal_installed sobrescreve escolhas existentes.
+A distribuição nativa preservou temas em perfis novos/existentes, seleção,
+reinício, troca e remoção sem reinstalação. Firefox ESR140.13 verificou a
+assinatura Mozilla (signedState=2). Paleta aprovada e metadados trilíngues.
+
+OBS e inventário i18n incluem o pacote; 211 testes da receita passaram.
+Publicado por OBS1379465: lyra-firefox-theme-0.1.0-lp161.1.1.x86_64.rpm,
+SHA256 465810460a44cc48305ff1355d19f531dc8bca45e2f60509095b52f2f746f002.
+Gates completos staging/release passaram; assinatura do RPM e XPI verificados,
+download público idêntico à API, rpmlint sem erros/avisos. O repasse real de
+Downloads0.1.2 com tema ativo passou, incluindo arquivo final e recuperação.
+[Evidências do componente](https://github.com/lyra-os-linux/lyra-firefox-ext/tree/feat/alpha8-theme/theme/evidence).
+
+Ainda pendente: qualificação da candidata exata, incluindo escala/teclado,
+repasse Downloads e upgrade de versão quando aplicável. Nenhuma ISO gerada.
+Reversão: retirar o pacote da receita e selecionar outro tema; preservar
+perfis, dados e integração Downloads. A issue permanece aberta até a candidata.
