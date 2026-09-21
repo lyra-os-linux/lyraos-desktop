@@ -321,8 +321,14 @@ reinício, troca e remoção sem reinstalação. Firefox ESR140.13 verificou a
 assinatura Mozilla (signedState=2). Paleta aprovada e metadados trilíngues.
 
 OBS e inventário i18n incluem o pacote; 211 testes da receita passaram.
-Ainda pendentes: publicação OBS e qualificação da candidata exata, incluindo
-escala/teclado, repasse Downloads e upgrade de versão quando aplicável. Não
-integrar esta receita antes da publicação do pacote. Nenhuma ISO gerada.
+Publicado por OBS1379465: lyra-firefox-theme-0.1.0-lp161.1.1.x86_64.rpm,
+SHA256 465810460a44cc48305ff1355d19f531dc8bca45e2f60509095b52f2f746f002.
+Gates completos staging/release passaram; assinatura do RPM e XPI verificados,
+download público idêntico à API, rpmlint sem erros/avisos. O repasse real de
+Downloads0.1.2 com tema ativo passou, incluindo arquivo final e recuperação.
+[Evidências do componente](https://github.com/lyra-os-linux/lyra-firefox-ext/tree/feat/alpha8-theme/theme/evidence).
+
+Ainda pendente: qualificação da candidata exata, incluindo escala/teclado,
+repasse Downloads e upgrade de versão quando aplicável. Nenhuma ISO gerada.
 Reversão: retirar o pacote da receita e selecionar outro tema; preservar
 perfis, dados e integração Downloads. A issue permanece aberta até a candidata.
