@@ -30,6 +30,19 @@ live/instalado e configuração dos sockets sem inicializar VMs ou redes no buil
 A validação de componente deve usar uma raiz Leap 16.1 descartável e pacotes
 oficiais assinados, sem modificar libvirt, redes ou VMs da estação.
 
+Em 21/09/2026, os 211 testes Python e o CI passaram. Uma VM de componente
+Leap 16.1, com os RPMs oficiais assinados e os arquivos de produção acima,
+aprovou 23 verificações: sete sockets habilitados, acesso live, negação sem
+agente, autenticação Polkit com a senha da conta wheel e root bloqueado, ausência
+de listeners remotos, rede NAT inicialmente inativa, ativação com firewalld,
+DHCP via PXE, disco qcow2 e inicialização de domínios KVM BIOS/UEFI. Ao terminar,
+não restaram domínios, a rede padrão estava inativa sem autostart e a VM foi
+desligada. [Resultado e limites](evidence/virtualization-20260921.json).
+
+O ensaio foi sem interface gráfica: iniciar um domínio não comprova interação
+com seu console nem instalação de um sistema convidado. DNS, conectividade,
+virt-manager gráfico e persistência após reboot continuam pendentes na candidata.
+
 Na candidata exata, após a auditoria: abrir virt-manager com conta recém-criada,
 validar autenticação/cancelamento, criar disco e VM, iniciar a rede NAT, obter
 DHCP, conferir DNS/conectividade e console gráfico, testar BIOS/UEFI e persistir

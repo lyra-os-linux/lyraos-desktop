@@ -297,8 +297,11 @@ Não se habilitam TCP/TLS, rede NAT automática, máquinas ou discos no build.
 Detalhes e reversão em [virtualization.md](virtualization.md).
 
 Estado em 21/09: 211 testes Python passaram, incluindo três novos contratos.
-Ensaio de componente em raiz Leap 16.1 descartável ainda pendente de execução;
-nenhuma ISO construída ou qualificada. Antes da candidata: validar autorização,
-negação, sockets, rede NAT/DHCP, firmware e criação/inicialização de VM. Depois da
-auditoria, repetir os cenários na ISO exata com conta instalada e sessão live.
+Ensaio em VM Leap 16.1 descartável aprovou 23 verificações de autorização,
+negação, sockets, NAT/DHCP, disco qcow2 e inicialização KVM BIOS/UEFI; limpeza e
+desligamento concluídos. Evidência em
+[evidence/virtualization-20260921.json](evidence/virtualization-20260921.json).
+Nenhuma ISO construída ou qualificada. Depois da auditoria, repetir os cenários
+na ISO exata com conta instalada e sessão live, incluindo virt-manager gráfico,
+console, DNS/conectividade, instalação de convidado e persistência após reboot.
 Não marcar este item concluído apenas pela seleção de pacotes ou pelos contratos.
