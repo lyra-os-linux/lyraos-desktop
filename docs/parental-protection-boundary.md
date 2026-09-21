@@ -58,6 +58,55 @@ de utilizá-lo como uma camada complementar.
 
 ## Próxima implementação
 
+### Auditoria da base oficial em 21/09
+
+Foram baixados e extraídos, sem instalação, cinco RPMs oficiais do Leap 16.1:
+SELinux policy/targeted `20260826+git0.492b478c7-160100.1.1`, PAM
+`1.7.2+git12-160100.2.1`, GDM `48.0-160100.2.1` e o pattern SELinux
+`20241218-160100.3.1`. Checksums SHA-512 foram comparados aos metadados do
+repositório e as assinaturas RPM verificadas.
+
+- A política distribui `user_u` e `xguest_u`, com contextos para login local,
+  SSH, GDM (`xdm_t`), cron e init. Isso oferece pontos de integração; não prova
+  que cada entrada esteja confinada na candidata.
+- O mapeamento padrão é `unconfined_u`. Instalar SELinux não converte
+  automaticamente uma conta em supervisionada.
+- As regras CIL de `user_t` e `xguest_t`, por seus atributos de usuário,
+  permitem `execute_no_trans` para `bin_t` e `shell_exec_t`. Portanto, usar
+  esses perfis sem alteração não atende à lista de aplicativos aprovada.
+- O script de instalação de `selinux-policy` cria configuração enforcing
+  quando ausente e executa `pam-config -a --selinux`. Não basta inspecionar o
+  arquivo PAM estático do GDM: a pilha gerada também precisa ser verificada.
+- A receita Lyra usa `patternType="onlyRequired"` e não declara SELinux
+  explicitamente. Os Requires diretos examinados dos patterns base,
+  enhanced_base, minimal_base e gnome_basic não garantem sua inclusão. Isso
+  **não é uma resolução completa de dependências**; o conjunto resolvido e o
+  estado do kernel da candidata permanecem pendentes.
+
+[Evidência dos RPMs e regras](evidence/parental-mac-20260921.json) e
+[auditor reproduzível](evidence/parental-mac-audit.py). O auditor é estático:
+não executa scriptlets, não carrega política e não qualifica a sessão GNOME.
+Os RPMs extraídos e metadados estão no workspace em
+`analysis/2026-09-21/parental-mac/`. A origem da política openSUSE e sua relação
+com Fedora estão documentadas no [repositório oficial](https://github.com/openSUSE/selinux-policy).
+
+### Decisão técnica e sequência
+
+SELinux é o próximo candidato de integração a testar, aproveitando os pacotes
+oficiais. **Não aprovar `user_u`/`xguest_u` como solução pronta nem acrescentar
+regras `allow` esperando revogar as permissões amplas já existentes.** A prova
+seguinte precisa de um domínio dedicado com permissões mínimas, sem herdar
+as permissões genéricas incompatíveis com a lista de aplicativos.
+
+1. Preparar uma VM separada com política oficial, rotulagem e enforcement
+   verificados; preservar a VM dos ensaios anteriores como comparação.
+2. Criar o domínio experimental e demonstrar negação de shell/interpretador,
+   cópia e carregamento indireto, mantendo o controle positivo aprovado.
+3. Integrar mapeamento PAM e verificar contextos reais de GDM, systemd-user,
+   D-Bus, TTY/SSH e cron. Qualificar GNOME, portais e recuperação.
+4. Somente após isso fixar dependências e ativação na receita e conectar o
+   estado verificado ao Vega GTK. Não promover pacotes antes dessas evidências.
+
 Primeiro identificar a política de controle obrigatório de acesso efetivamente
 suportada e ativada na candidata openSUSE e qualificar um domínio de usuário
 restrito, incluindo leitura/carregamento de código e serviços fora da árvore

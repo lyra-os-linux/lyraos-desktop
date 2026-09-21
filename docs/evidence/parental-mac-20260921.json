@@ -1,0 +1,82 @@
+{
+  "date": "2026-09-21",
+  "kind": "static-official-package-audit",
+  "packages": [
+    {
+      "name": "gdm",
+      "version": {
+        "epoch": "0",
+        "ver": "48.0",
+        "rel": "160100.2.1"
+      },
+      "sha512": "7266104a36ce0eee70fc6f32ab2f4c8f0397dca46554a85ba347452968cab3c8394d2ab32b5e56f4625f2a3f58b5f3b3c02df1187e2f90347ca81c7c4d9cb91a",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/parental-mac/gdm-48.0-160100.2.1.x86_64.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n"
+    },
+    {
+      "name": "pam",
+      "version": {
+        "epoch": "0",
+        "ver": "1.7.2+git12",
+        "rel": "160100.2.1"
+      },
+      "sha512": "457056f95de10cca39fbb8809af9a4de3551bc0f577b539d3676f1f76b432f2555f0efe851f3556e1a71ace300101778660298e3b0ec28a4570667d8484155a5",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/parental-mac/pam-1.7.2+git12-160100.2.1.x86_64.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n"
+    },
+    {
+      "name": "patterns-base-selinux",
+      "version": {
+        "epoch": "0",
+        "ver": "20241218",
+        "rel": "160100.3.1"
+      },
+      "sha512": "188cef9fdcc924f97bb5f0b5d3d8b8fd538f1371326ba46c741718fb15b021646425616ae1111d703708a6b227af1ffe32eb9a4166aa7bfbdbd232b915099072",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/parental-mac/patterns-base-selinux-20241218-160100.3.1.x86_64.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n"
+    },
+    {
+      "name": "selinux-policy",
+      "version": {
+        "epoch": "0",
+        "ver": "20260826+git0.492b478c7",
+        "rel": "160100.1.1"
+      },
+      "sha512": "5f5fb24220b023e40d4c93c0c2ea68706d0b3f2e55b39c0e8fb3d61ef777933dd50c1cbd42a48a9d7061d499784694b3130823d34ba16688b0ec08d57e7504dd",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/parental-mac/selinux-policy-20260826+git0.492b478c7-160100.1.1.noarch.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n"
+    },
+    {
+      "name": "selinux-policy-targeted",
+      "version": {
+        "epoch": "0",
+        "ver": "20260826+git0.492b478c7",
+        "rel": "160100.1.1"
+      },
+      "sha512": "7822939d7c06b7321fdc971f6fee14eaa6c8ae57170b7415683c610075b4f71deaa64f2de302c99b7e958b90ec5c1a9cdb3fa2aa071a6ebd99c516ec69788584",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/parental-mac/selinux-policy-targeted-20260826+git0.492b478c7-160100.1.1.noarch.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n"
+    }
+  ],
+  "default_login_mapping": "root:unconfined_u:s0-s0:c0.c1023\n__default__:unconfined_u:s0-s0:c0.c1023\n",
+  "profiles": {
+    "unprivuser": {
+      "cil_sha256": "d8714a3649b77e48d58e974aaec676fa0c568044b5bd0684548129d606e0710e",
+      "execution_rules": [
+        "(typeattributeset user_usertype (user_t ))",
+        "(allow user_usertype bin_t (file (ioctl read getattr lock map execute open execute_no_trans)))",
+        "(allow user_usertype shell_exec_t (file (ioctl read getattr lock map execute open execute_no_trans)))"
+      ]
+    },
+    "xguest": {
+      "cil_sha256": "5941620e78687cd581142b32c8d422d2f1730ce3c1fe54266da74a4b0732d12f",
+      "execution_rules": [
+        "(typeattributeset xguest_usertype (xguest_t ))",
+        "(allow xguest_usertype bin_t (file (ioctl read getattr lock map execute open execute_no_trans)))",
+        "(allow xguest_usertype shell_exec_t (file (ioctl read getattr lock map execute open execute_no_trans)))"
+      ]
+    }
+  },
+  "package_script_enables_pam_selinux": true,
+  "package_script_default_mode": "enforcing",
+  "package_scripts_executed": false,
+  "runtime_enforcement_qualified": false,
+  "gnome_session_qualified": false,
+  "application_allowlist_qualified": false,
+  "conclusion": "Upstream user_t/xguest_t permit generic system binaries and shells; mapping alone is not the approved application allowlist."
+}
