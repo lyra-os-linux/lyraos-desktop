@@ -78,6 +78,62 @@ limita a lista de aplicativos a Flatpak. O README entregue no RPM malcontent
 explica que os consumidores devem consultar a política e que não é um sistema
 de controle obrigatório como AppArmor/SELinux.
 
+## Comparação com malcontent habilitado — 21/09
+
+O mesmo código Flatpak 1.16.6 do SRPM oficial foi compilado na VM com
+`-Dmalcontent=enabled`, mantendo o patch SUSE de autorização. O binário oficial
+foi preservado e executado como controle na mesma conta/fixture. Este build
+é diagnóstico: documentação e módulo SELinux não foram construídos; não é
+um RPM equivalente ao release. Helpers oficiais de sistema/sessão permanecem.
+
+| Cenário | Oficial | Build com malcontent |
+| --- | --- | --- |
+| Aplicativo permitido | Executa (0) | Executa (0) |
+| Ref explicitamente negado | Executa (0) | Bloqueia (1), mensagem de política |
+| Ref negado, barramento de sistema inacessível | Não repetido | **Executa (0)** |
+| Ref negado, AccountsService indisponível | Não repetido | **Executa (0)** |
+| Portal de documentos: exportar, ler e consultar permissão | Passou | Passou |
+
+O cenário de barramento usa endereço inexistente na variável de ambiente da
+própria conta sem privilégios. A indisponibilidade do AccountsService é uma
+injeção administrativa de falha: o serviço foi temporariamente mascarado em
+runtime e restaurado em `finally`. Não significa que a conta supervisionada
+conseguiu interromper o serviço.
+
+A causa está explícita em `common/flatpak-run.c:2835–2878`: a rotina retorna
+permissão quando a conexão ao barramento falha, os controles estão desativados
+ou o serviço obrigatório está ausente. Assim, habilitar a opção resolve o
+fluxo comum, mas não satisfaz o critério de falha/evasão da integração Lyra.
+Também não impede usar outros executáveis ou resolve bloqueio universal de RPMs.
+
+O portal de documentos real e o PermissionStore foram ativados por D-Bus;
+o conteúdo exportado conferiu byte a byte e a permissão de leitura foi
+consultada. Quatro testes upstream (`testcommon`, `test-context`,
+`test-exports`, `test-portal`) passaram, somando 49 subtestes. O teste upstream
+de portal usa um Flatpak simulado: não substitui o ensaio real do documento,
+nem qualifica FileChooser, ScreenCast ou a sessão GNOME/Wayland completa.
+O changelog oficial menciona problemas com portais em 2024 sem detalhar o caso;
+a pesquisa não identificou uma reprodução exata desse incidente. Não declarar
+a regressão histórica resolvida.
+
+A preparação do ambiente encontrou uma configuração SELinux incompleta trazida
+por dependências opcionais. Ela também quebrou o controle positivo com o binário
+oficial. Os resíduos foram preservados, a preparação foi reparada e o controle
+positivo passou antes de aceitar a comparação. O enforcement do kernel não foi
+alterado; este ambiente mínimo não qualifica SELinux da candidata.
+
+**Decisão: não promover esse build nem encerrar #102/#6.** Antes de ampliar a
+integração, definir a fronteira efetiva de proteção da conta supervisionada e
+como recusar falhas sem quebrar contas comuns, initial-setup e portais. Avaliar
+os mecanismos da base para essa fronteira; um botão no Vega ou uma alteração
+isolada no cliente não impede a execução de um cliente alternativo pelo usuário.
+Em seguida repetir instalação por usuário/sistema, autorização interativa,
+portais completos e atualização/rollback com o pacote candidato.
+
+[Comparação e limites](evidence/parental-flatpak-20260921.json).
+Artefatos reproduzíveis em `analysis/2026-09-21/parental-flatpak/` no workspace.
+Nenhum pacote enviado ao OBS, configuração do host alterada ou ISO gerada.
+
 ## Registro histórico — Leap 16.0, superado pela avaliação acima
 
 
