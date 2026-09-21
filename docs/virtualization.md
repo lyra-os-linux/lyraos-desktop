@@ -68,7 +68,24 @@ Publicados em 21/09: Vega 5.1.41 (OBS #1379483) e Lyra VMs 0.1.0
 conferem com a API de release; binários idênticos aos testados em staging.
 Vega listou a VM; console passou teclado, tela cheia, reconexão e fechamento
 normal mantendo a execução. [Evidências](evidence/lyra-vms-staging-20260921.json).
-A instalação completa de convidado e a candidata GNOME/Wayland ainda devem ser
-qualificadas depois da auditoria e geração da ISO.
+Esse primeiro ensaio foi complementado pelo ciclo instalado descrito abaixo.
+A candidata GNOME/Wayland ainda exige auditoria e qualificação da ISO exata.
 A reversão desta troca consiste em restaurar virt-manager na seleção, sem
 remover QEMU/libvirt ou dados das máquinas. Auditar antes de gerar a ISO.
+
+## Ciclo instalado e correção visual — Vega GTK 5.1.44
+
+Um convidado Alpine 3.24.2 em BIOS foi criado pela UI do Vega e instalado pelo
+console Lyra VMs numa VM descartável. Ejeção da ISO, boot por disco, renomeação,
+ampliação 4→5 GiB e edição CPU/RAM passaram, preservando o marcador de dados.
+Remover sem marcar a exclusão manteve os hashes; marcar a opção apagou os
+arquivos próprios listados e preservou a ISO original.
+
+O ensaio encontrou cortes no editor e na confirmação de remoção. A receita
+agora exige GTK >=5.1.44 para incluir a correção de layout, validada com teclado
+e capturas a 100% e 200%. [Resumo e limites](evidence/vm-full-cycle-20260921.json).
+Publicação do RPM final ainda pendente; integrar esta receita após verificá-lo.
+
+Este ensaio de componente não qualifica leitor de tela, todas as distribuições,
+instalação UEFI de convidado nem a candidata GNOME. Os testes da ISO continuam
+posteriores à auditoria, incluindo conta criada pelo instalador e sessão live.
