@@ -1,0 +1,48 @@
+{
+  "enforcing_during_tests": true,
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "parentaltest-start",
+      "rc": 1,
+      "stdout": "",
+      "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+    },
+    {
+      "name": "parentaltest-state",
+      "rc": 0,
+      "stdout": "MainPID=0\nResult=exit-code\nExecMainStatus=224\nActiveState=failed\nSubState=failed\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-journal",
+      "rc": 0,
+      "stdout": "Sep 22 10:38:06 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1003...\nSep 22 10:38:06 lyra-virtualization-fixture (systemd)[613]: pam_selinux(systemd-user:session): Setting key creation context lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 failed: Permission denied\nSep 22 10:38:06 lyra-virtualization-fixture (systemd)[613]: pam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nSep 22 10:38:06 lyra-virtualization-fixture (systemd)[613]: pam_selinux(systemd-user:session): Setting key creation context lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 failed: Permission denied\nSep 22 10:38:06 lyra-virtualization-fixture (systemd)[613]: PAM failed: Cannot make/remove an entry for the specified session\nSep 22 10:38:06 lyra-virtualization-fixture (systemd)[613]: user@1003.service: Failed to set up PAM session: Operation not permitted\nSep 22 10:38:06 lyra-virtualization-fixture (systemd)[613]: user@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nSep 22 10:38:06 lyra-virtualization-fixture systemd[1]: user@1003.service: Main process exited, code=exited, status=224/PAM\nSep 22 10:38:06 lyra-virtualization-fixture systemd[1]: user@1003.service: Failed with result 'exit-code'.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[1]: Failed to start User Manager for UID 1003.\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-start",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-state",
+      "rc": 0,
+      "stdout": "MainPID=623\nResult=success\nExecMainStatus=0\nActiveState=active\nSubState=running\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-journal",
+      "rc": 0,
+      "stdout": "Sep 22 10:38:06 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1002...\nSep 22 10:38:06 lyra-virtualization-fixture (systemd)[623]: pam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Queued start job for default target Main User Target.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Created slice User Application Slice.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Started Daily Cleanup of User's Temporary Directories.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Reached target Paths.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Reached target Timers.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Starting D-Bus User Message Bus Socket...\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Starting Create User Files and Directories...\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Listening on D-Bus User Message Bus Socket.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Reached target Sockets.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Finished Create User Files and Directories.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Reached target Basic System.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Reached target Main User Target.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[623]: Startup finished in 69ms.\nSep 22 10:38:06 lyra-virtualization-fixture systemd[1]: Started User Manager for UID 1002.\n",
+      "stderr": ""
+    },
+    {
+      "name": "process-contexts",
+      "rc": 0,
+      "stdout": " 1002 unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 /usr/lib/systemd/systemd --user\n 1002 system_u:system_r:init_t:s0     (sd-pam)\n",
+      "stderr": ""
+    }
+  ]
+}

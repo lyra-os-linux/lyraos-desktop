@@ -1,0 +1,34 @@
+; Disposable execution probe. NOT a desktop/account policy.
+(type lyra_parental_probe_t)
+(typeattributeset domain (lyra_parental_probe_t))
+(roletype system_r lyra_parental_probe_t)
+(type lyra_parental_probe_exec_t)
+(typeattributeset file_type (lyra_parental_probe_exec_t))
+(typeattributeset exec_type (lyra_parental_probe_exec_t))
+(allow lyra_parental_probe_t file_type (dir (search getattr)))
+(allow lyra_parental_probe_t file_type (lnk_file (read getattr)))
+; Read/map are deliberately broad in this execution-only experiment.
+(allow lyra_parental_probe_t file_type (file (read open getattr map)))
+(allow lyra_parental_probe_t lyra_parental_probe_exec_t (file (execute execute_no_trans entrypoint)))
+(allow lyra_parental_probe_t lib_t (file (execute)))
+(allow lyra_parental_probe_t ld_so_t (file (execute)))
+(allow lyra_parental_probe_t domain (fd (use)))
+(allow lyra_parental_probe_t domain (fifo_file (read write getattr ioctl)))
+(allow lyra_parental_probe_t file_type (fifo_file (read write getattr ioctl)))
+(allow lyra_parental_probe_t domain (process (sigchld)))
+(allow lyra_parental_probe_t self (process (getattr)))
+; Entry is allowed only from the disposable evidence service for this probe.
+(allow unconfined_service_t lyra_parental_probe_t (process (transition)))
+(allow lyra_parental_probe_t proc_type (dir (search getattr)))
+(allow lyra_parental_probe_t proc_type (file (read open getattr)))
+
+; Experimental PAM entry role. Not a complete login/session policy.
+(role lyra_parental_r)
+(roletype lyra_parental_r lyra_parental_probe_t)
+(roleallow system_r lyra_parental_r)
+(allow init_t lyra_parental_probe_t (process (transition)))
+(allow local_login_t lyra_parental_probe_t (process (transition)))
+(allow xdm_t lyra_parental_probe_t (process (transition)))
+
+; Test harness only: normal-account control from the evidence service.
+(allow unconfined_service_t unconfined_t (process (transition)))
