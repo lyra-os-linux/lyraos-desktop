@@ -1,0 +1,35 @@
+{
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "restricted-creates-and-executes",
+      "rc": 126,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nwritten=30832 label=lyra_parental_u:object_r:user_tmp_t:s0\ncreated_exec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "same-file-unconfined-control",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "restricted-executable-map",
+      "rc": 126,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nmmap_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "restricted-memfd-execution",
+      "rc": 126,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nwritten=30832 label=lyra_parental_u:object_r:lyra_parental_runtime_t:s0 memfd_map_errno=13\nmemfd_exec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "file-label",
+      "rc": 0,
+      "stdout": "-rwx------. 1 parentaltest parentaltest lyra_parental_u:object_r:user_tmp_t:s0 30832 Sep 22 14:31 /home/parentaltest/runtime-fixture/generated-7aa069e9a4614ce2955e8b00d3114d95\n",
+      "stderr": ""
+    }
+  ]
+}

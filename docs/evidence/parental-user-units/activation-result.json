@@ -1,0 +1,773 @@
+{
+  "checks": [
+    {
+      "name": "parentaltest-manager",
+      "passed": true
+    },
+    {
+      "name": "parentaltest-dbus-Approved",
+      "passed": true
+    },
+    {
+      "name": "parentaltest-dbus-Denied",
+      "passed": true
+    },
+    {
+      "name": "parentaltest-transient-approved",
+      "passed": true
+    },
+    {
+      "name": "parentaltest-transient-python",
+      "passed": true
+    },
+    {
+      "name": "parentaltest-transient-context",
+      "passed": true
+    },
+    {
+      "name": "no-unknown-classes",
+      "passed": true
+    },
+    {
+      "name": "approved-service-confined",
+      "passed": true
+    },
+    {
+      "name": "unapproved-service-exec-denied",
+      "passed": true
+    },
+    {
+      "name": "parentaltest-stop-enforcing",
+      "passed": true
+    },
+    {
+      "name": "parentaltest-inactive",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-manager",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-dbus-Approved",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-dbus-Denied",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-transient-approved",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-transient-python",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-transient-context",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-stop-enforcing",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-inactive",
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "name": "parentaltest-manager-start",
+      "argv": [
+        "systemctl",
+        "start",
+        "user@1003.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-busctl-0",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/busctl",
+        "--user",
+        "--timeout=5s",
+        "--",
+        "call",
+        "org.freedesktop.DBus",
+        "/org/freedesktop/DBus",
+        "org.freedesktop.DBus",
+        "StartServiceByName",
+        "su",
+        "org.lyra.Fixture.Approved",
+        "0"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nu 1\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-busctl-0",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/busctl",
+        "--user",
+        "--timeout=5s",
+        "--",
+        "call",
+        "org.freedesktop.DBus",
+        "/org/freedesktop/DBus",
+        "org.freedesktop.DBus",
+        "StartServiceByName",
+        "su",
+        "org.lyra.Fixture.Denied",
+        "0"
+      ],
+      "rc": 1,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": "Call failed: Could not activate remote peer 'org.lyra.Fixture.Denied': unit failed\n"
+    },
+    {
+      "name": "parentaltest-busctl-0",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/busctl",
+        "--user",
+        "--timeout=5s",
+        "--",
+        "call",
+        "org.freedesktop.systemd1",
+        "/org/freedesktop/systemd1",
+        "org.freedesktop.systemd1.Manager",
+        "StartTransientUnit",
+        "ssa(sv)a(sa(sv))",
+        "lyra-transient-approved-e7828ae359db469f9cb2eb7aab2b4736.service",
+        "fail",
+        "3",
+        "Type",
+        "s",
+        "oneshot",
+        "RemainAfterExit",
+        "b",
+        "true",
+        "ExecStart",
+        "a(sasb)",
+        "1",
+        "/opt/lyra-parental-probe/probe",
+        "1",
+        "/opt/lyra-parental-probe/probe",
+        "false",
+        "0"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\no \"/org/freedesktop/systemd1/job/42\"\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-systemctl-ExecMainStatus",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-transient-approved-e7828ae359db469f9cb2eb7aab2b4736.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nResult=success\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-busctl-0",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/busctl",
+        "--user",
+        "--timeout=5s",
+        "--",
+        "call",
+        "org.freedesktop.systemd1",
+        "/org/freedesktop/systemd1",
+        "org.freedesktop.systemd1.Manager",
+        "StartTransientUnit",
+        "ssa(sv)a(sa(sv))",
+        "lyra-transient-python-3f2e0be5bb6e445f9d60d6faccb036c4.service",
+        "fail",
+        "3",
+        "Type",
+        "s",
+        "oneshot",
+        "RemainAfterExit",
+        "b",
+        "true",
+        "ExecStart",
+        "a(sasb)",
+        "1",
+        "/usr/bin/python3",
+        "3",
+        "/usr/bin/python3",
+        "-c",
+        "print(42)",
+        "false",
+        "0"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\no \"/org/freedesktop/systemd1/job/53\"\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-systemctl-ExecMainStatus",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-transient-python-3f2e0be5bb6e445f9d60d6faccb036c4.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nResult=exit-code\nExecMainStatus=203\nActiveState=failed\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-busctl-0",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/busctl",
+        "--user",
+        "--timeout=5s",
+        "--",
+        "call",
+        "org.freedesktop.systemd1",
+        "/org/freedesktop/systemd1",
+        "org.freedesktop.systemd1.Manager",
+        "StartTransientUnit",
+        "ssa(sv)a(sa(sv))",
+        "lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service",
+        "fail",
+        "4",
+        "Type",
+        "s",
+        "oneshot",
+        "RemainAfterExit",
+        "b",
+        "true",
+        "ExecStart",
+        "a(sasb)",
+        "1",
+        "/opt/lyra-parental-probe/probe",
+        "1",
+        "/opt/lyra-parental-probe/probe",
+        "false",
+        "SELinuxContext",
+        "s",
+        "unconfined_u:unconfined_r:unconfined_t:s0",
+        "0"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\no \"/org/freedesktop/systemd1/job/64\"\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-systemctl-ExecMainStatus",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nResult=exit-code\nExecMainStatus=229\nActiveState=failed\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-context-child",
+      "argv": [
+        "journalctl",
+        "_SYSTEMD_USER_UNIT=lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service",
+        "_UID=1003",
+        "--since",
+        "2026-09-22 14:31:20",
+        "--no-pager"
+      ],
+      "rc": 0,
+      "stdout": "Sep 22 14:31:20 lyra-virtualization-fixture (probe)[932]: lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service: Failed to change SELinux context to unconfined_u:unconfined_r:unconfined_t:s0: Operation not permitted\nSep 22 14:31:20 lyra-virtualization-fixture (probe)[932]: lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service: Failed at step SELINUX_CONTEXT spawning /opt/lyra-parental-probe/probe: Operation not permitted\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-journal",
+      "argv": [
+        "journalctl",
+        "-u",
+        "user@1003.service",
+        "--since",
+        "2026-09-22 14:31:20",
+        "--no-pager"
+      ],
+      "rc": 0,
+      "stdout": "Sep 22 14:31:20 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1003...\nSep 22 14:31:20 lyra-virtualization-fixture (systemd)[897]: pam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Failed to create timezone change event source: Permission denied\nSep 22 14:31:20 lyra-virtualization-fixture (sd-exec-strv)[900]: /usr/lib/systemd/user-environment-generators/60-flatpak failed with exit status 1, ignoring.\nSep 22 14:31:20 lyra-virtualization-fixture systemd-xdg-autostart-generator[904]: Exec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\nSep 22 14:31:20 lyra-virtualization-fixture systemd-xdg-autostart-generator[904]: /usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Failed to acquire watch file descriptor: Permission denied\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Failed to allocate device monitor: Permission denied\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Failed to connect to system bus: Permission denied\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Queued start job for default target Main User Target.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Created slice User Application Slice.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Started Daily Cleanup of User's Temporary Directories.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Reached target Paths.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Reached target Timers.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Starting D-Bus User Message Bus Socket...\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Starting Create User Files and Directories...\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Listening on D-Bus User Message Bus Socket.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Reached target Sockets.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Finished Create User Files and Directories.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Reached target Basic System.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Reached target Main User Target.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Startup finished in 75ms.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[1]: Started User Manager for UID 1003.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Created slice User Core Session Slice.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Starting D-Bus User Message Bus...\nSep 22 14:31:20 lyra-virtualization-fixture dbus-broker-launch[911]: Policy to allow eavesdropping in /usr/share/dbus-1/session.conf +31: Eavesdropping is deprecated and ignored\nSep 22 14:31:20 lyra-virtualization-fixture dbus-broker-launch[911]: Policy to allow eavesdropping in /usr/share/dbus-1/session.conf +33: Eavesdropping is deprecated and ignored\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Started D-Bus User Message Bus.\nSep 22 14:31:20 lyra-virtualization-fixture dbus-broker-launch[911]: Ready\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Created slice Slice /app/dbus-:1.2-org.lyra.Fixture.Approved.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Started dbus-:1.2-org.lyra.Fixture.Approved@0.service.\nSep 22 14:31:20 lyra-virtualization-fixture bus-service[913]: uid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 name=org.lyra.Fixture.Approved\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Created slice Slice /app/dbus-:1.2-org.lyra.Fixture.Denied.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Started dbus-:1.2-org.lyra.Fixture.Denied@0.service.\nSep 22 14:31:20 lyra-virtualization-fixture (-service)[916]: dbus-:1.2-org.lyra.Fixture.Denied@0.service: Unable to locate executable '/opt/lyra-parental-probe/unapproved-bus-service': Permission denied\nSep 22 14:31:20 lyra-virtualization-fixture (-service)[916]: dbus-:1.2-org.lyra.Fixture.Denied@0.service: Failed at step EXEC spawning /opt/lyra-parental-probe/unapproved-bus-service: Permission denied\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: dbus-:1.2-org.lyra.Fixture.Denied@0.service: Main process exited, code=exited, status=203/EXEC\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: dbus-:1.2-org.lyra.Fixture.Denied@0.service: Failed with result 'exit-code'.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Starting lyra-transient-approved-e7828ae359db469f9cb2eb7aab2b4736.service...\nSep 22 14:31:20 lyra-virtualization-fixture probe[920]: uid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Finished lyra-transient-approved-e7828ae359db469f9cb2eb7aab2b4736.service.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Starting lyra-transient-python-3f2e0be5bb6e445f9d60d6faccb036c4.service...\nSep 22 14:31:20 lyra-virtualization-fixture (python3)[926]: lyra-transient-python-3f2e0be5bb6e445f9d60d6faccb036c4.service: Unable to locate executable '/usr/bin/python3': Permission denied\nSep 22 14:31:20 lyra-virtualization-fixture (python3)[926]: lyra-transient-python-3f2e0be5bb6e445f9d60d6faccb036c4.service: Failed at step EXEC spawning /usr/bin/python3: Permission denied\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: lyra-transient-python-3f2e0be5bb6e445f9d60d6faccb036c4.service: Main process exited, code=exited, status=203/EXEC\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: lyra-transient-python-3f2e0be5bb6e445f9d60d6faccb036c4.service: Failed with result 'exit-code'.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Failed to start lyra-transient-python-3f2e0be5bb6e445f9d60d6faccb036c4.service.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Starting lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service...\nSep 22 14:31:20 lyra-virtualization-fixture (probe)[932]: lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service: Failed to change SELinux context to unconfined_u:unconfined_r:unconfined_t:s0: Operation not permitted\nSep 22 14:31:20 lyra-virtualization-fixture (probe)[932]: lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service: Failed at step SELINUX_CONTEXT spawning /opt/lyra-parental-probe/probe: Operation not permitted\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service: Main process exited, code=exited, status=229/SELINUX_CONTEXT\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service: Failed with result 'exit-code'.\nSep 22 14:31:20 lyra-virtualization-fixture systemd[897]: Failed to start lyra-transient-context-d66226836462451f96a7b17cc798cfd3.service.\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-stop-enforcing",
+      "argv": [
+        "systemctl",
+        "stop",
+        "user@1003.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-stop-state",
+      "argv": [
+        "systemctl",
+        "show",
+        "user@1003.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "MainPID"
+      ],
+      "rc": 0,
+      "stdout": "MainPID=0\nActiveState=inactive\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-manager-start",
+      "argv": [
+        "systemctl",
+        "start",
+        "user@1002.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-busctl-0",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/busctl",
+        "--user",
+        "--timeout=5s",
+        "--",
+        "call",
+        "org.freedesktop.DBus",
+        "/org/freedesktop/DBus",
+        "org.freedesktop.DBus",
+        "StartServiceByName",
+        "su",
+        "org.lyra.Fixture.Approved",
+        "0"
+      ],
+      "rc": 0,
+      "stdout": "u 1\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-busctl-0",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/busctl",
+        "--user",
+        "--timeout=5s",
+        "--",
+        "call",
+        "org.freedesktop.DBus",
+        "/org/freedesktop/DBus",
+        "org.freedesktop.DBus",
+        "StartServiceByName",
+        "su",
+        "org.lyra.Fixture.Denied",
+        "0"
+      ],
+      "rc": 0,
+      "stdout": "u 1\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-busctl-0",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/busctl",
+        "--user",
+        "--timeout=5s",
+        "--",
+        "call",
+        "org.freedesktop.systemd1",
+        "/org/freedesktop/systemd1",
+        "org.freedesktop.systemd1.Manager",
+        "StartTransientUnit",
+        "ssa(sv)a(sa(sv))",
+        "lyra-transient-approved-116134d055bb4e8d861e05e5392c9fa7.service",
+        "fail",
+        "3",
+        "Type",
+        "s",
+        "oneshot",
+        "RemainAfterExit",
+        "b",
+        "true",
+        "ExecStart",
+        "a(sasb)",
+        "1",
+        "/opt/lyra-parental-probe/probe",
+        "1",
+        "/opt/lyra-parental-probe/probe",
+        "false",
+        "0"
+      ],
+      "rc": 0,
+      "stdout": "o \"/org/freedesktop/systemd1/job/42\"\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl-ExecMainStatus",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-transient-approved-116134d055bb4e8d861e05e5392c9fa7.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\nActiveState=activating\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl-ExecMainStatus",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-transient-approved-116134d055bb4e8d861e05e5392c9fa7.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-busctl-0",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/busctl",
+        "--user",
+        "--timeout=5s",
+        "--",
+        "call",
+        "org.freedesktop.systemd1",
+        "/org/freedesktop/systemd1",
+        "org.freedesktop.systemd1.Manager",
+        "StartTransientUnit",
+        "ssa(sv)a(sa(sv))",
+        "lyra-transient-python-ff23f15e2bc048f1b7ea4c0c60218895.service",
+        "fail",
+        "3",
+        "Type",
+        "s",
+        "oneshot",
+        "RemainAfterExit",
+        "b",
+        "true",
+        "ExecStart",
+        "a(sasb)",
+        "1",
+        "/usr/bin/python3",
+        "3",
+        "/usr/bin/python3",
+        "-c",
+        "print(42)",
+        "false",
+        "0"
+      ],
+      "rc": 0,
+      "stdout": "o \"/org/freedesktop/systemd1/job/53\"\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl-ExecMainStatus",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-transient-python-ff23f15e2bc048f1b7ea4c0c60218895.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\nActiveState=activating\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl-ExecMainStatus",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-transient-python-ff23f15e2bc048f1b7ea4c0c60218895.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-busctl-0",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/busctl",
+        "--user",
+        "--timeout=5s",
+        "--",
+        "call",
+        "org.freedesktop.systemd1",
+        "/org/freedesktop/systemd1",
+        "org.freedesktop.systemd1.Manager",
+        "StartTransientUnit",
+        "ssa(sv)a(sa(sv))",
+        "lyra-transient-context-dbc866f0a9a34b4d99497b97bf1483ac.service",
+        "fail",
+        "4",
+        "Type",
+        "s",
+        "oneshot",
+        "RemainAfterExit",
+        "b",
+        "true",
+        "ExecStart",
+        "a(sasb)",
+        "1",
+        "/opt/lyra-parental-probe/probe",
+        "1",
+        "/opt/lyra-parental-probe/probe",
+        "false",
+        "SELinuxContext",
+        "s",
+        "unconfined_u:unconfined_r:unconfined_t:s0",
+        "0"
+      ],
+      "rc": 0,
+      "stdout": "o \"/org/freedesktop/systemd1/job/64\"\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl-ExecMainStatus",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-transient-context-dbc866f0a9a34b4d99497b97bf1483ac.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\nActiveState=activating\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl-ExecMainStatus",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-transient-context-dbc866f0a9a34b4d99497b97bf1483ac.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-context-child",
+      "argv": [
+        "journalctl",
+        "_SYSTEMD_USER_UNIT=lyra-transient-context-dbc866f0a9a34b4d99497b97bf1483ac.service",
+        "_UID=1002",
+        "--since",
+        "2026-09-22 14:31:20",
+        "--no-pager"
+      ],
+      "rc": 0,
+      "stdout": "Sep 22 14:31:21 lyra-virtualization-fixture probe[986]: uid=1002 context=unconfined_u:unconfined_r:unconfined_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-journal",
+      "argv": [
+        "journalctl",
+        "-u",
+        "user@1002.service",
+        "--since",
+        "2026-09-22 14:31:20",
+        "--no-pager"
+      ],
+      "rc": 0,
+      "stdout": "Sep 22 14:31:21 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1002...\nSep 22 14:31:21 lyra-virtualization-fixture (systemd)[947]: pam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Queued start job for default target Main User Target.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Created slice User Application Slice.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Started Daily Cleanup of User's Temporary Directories.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Reached target Paths.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Reached target Timers.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Starting D-Bus User Message Bus Socket...\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Starting Create User Files and Directories...\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Listening on D-Bus User Message Bus Socket.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Reached target Sockets.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Finished Create User Files and Directories.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Reached target Basic System.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Reached target Main User Target.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Startup finished in 75ms.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[1]: Started User Manager for UID 1002.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Created slice User Core Session Slice.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Starting D-Bus User Message Bus...\nSep 22 14:31:21 lyra-virtualization-fixture dbus-broker-launch[962]: Policy to allow eavesdropping in /usr/share/dbus-1/session.conf +31: Eavesdropping is deprecated and ignored\nSep 22 14:31:21 lyra-virtualization-fixture dbus-broker-launch[962]: Policy to allow eavesdropping in /usr/share/dbus-1/session.conf +33: Eavesdropping is deprecated and ignored\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Started D-Bus User Message Bus.\nSep 22 14:31:21 lyra-virtualization-fixture dbus-broker-launch[962]: Ready\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Created slice Slice /app/dbus-:1.2-org.lyra.Fixture.Approved.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Started dbus-:1.2-org.lyra.Fixture.Approved@0.service.\nSep 22 14:31:21 lyra-virtualization-fixture bus-service[964]: uid=1002 context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 name=org.lyra.Fixture.Approved\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Created slice Slice /app/dbus-:1.2-org.lyra.Fixture.Denied.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Started dbus-:1.2-org.lyra.Fixture.Denied@0.service.\nSep 22 14:31:21 lyra-virtualization-fixture unapproved-bus-service[967]: uid=1002 context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 name=org.lyra.Fixture.Denied\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Starting lyra-transient-approved-116134d055bb4e8d861e05e5392c9fa7.service...\nSep 22 14:31:21 lyra-virtualization-fixture probe[970]: uid=1002 context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Finished lyra-transient-approved-116134d055bb4e8d861e05e5392c9fa7.service.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Starting lyra-transient-python-ff23f15e2bc048f1b7ea4c0c60218895.service...\nSep 22 14:31:21 lyra-virtualization-fixture python3[978]: 42\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Finished lyra-transient-python-ff23f15e2bc048f1b7ea4c0c60218895.service.\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Starting lyra-transient-context-dbc866f0a9a34b4d99497b97bf1483ac.service...\nSep 22 14:31:21 lyra-virtualization-fixture probe[986]: uid=1002 context=unconfined_u:unconfined_r:unconfined_t:s0\nSep 22 14:31:21 lyra-virtualization-fixture systemd[947]: Finished lyra-transient-context-dbc866f0a9a34b4d99497b97bf1483ac.service.\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-stop-enforcing",
+      "argv": [
+        "systemctl",
+        "stop",
+        "user@1002.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-stop-state",
+      "argv": [
+        "systemctl",
+        "show",
+        "user@1002.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "MainPID"
+      ],
+      "rc": 0,
+      "stdout": "MainPID=0\nActiveState=inactive\n",
+      "stderr": ""
+    },
+    {
+      "name": "cleanup-1003",
+      "argv": [
+        "systemctl",
+        "stop",
+        "user@1003.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "cleanup-1002",
+      "argv": [
+        "systemctl",
+        "stop",
+        "user@1002.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "full_account_protection": false
+}
