@@ -1,0 +1,34 @@
+[
+  {
+    "argv": [
+      "df",
+      "-h",
+      "/"
+    ],
+    "rc": 0,
+    "stdout": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/vda        5.9G  2.3G  3.3G  41% /\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-q",
+      "zypper",
+      "gdm",
+      "gnome-shell",
+      "gnome-session"
+    ],
+    "rc": 3,
+    "stdout": "zypper-1.14.98-160100.2.1.x86_64\npackage gdm is not installed\npackage gnome-shell is not installed\npackage gnome-session is not installed\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "ls",
+      "/etc/zypp/repos.d"
+    ],
+    "rc": 0,
+    "stdout": "leap-oss.repo.disabled\nparental-official.repo\n",
+    "stderr": ""
+  }
+]
