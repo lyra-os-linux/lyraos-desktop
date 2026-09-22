@@ -58,6 +58,15 @@ de utilizá-lo como uma camada complementar.
 
 ## Próxima implementação
 
+### Progresso experimental em 22/09
+
+O [ensaio do domínio e de sessão PAM](evidence/parental-selinux/README.md)
+demonstrou negações em enforcing e seleção do domínio por mapeamento de
+usuário. A checagem PAM experimental rejeita mapeamento ausente e estado
+permissivo. Ainda não pode ser integrada: falha do cadastro também bloqueia
+a conta comum, e o `systemd-user` restrito falha na preparação de keyring.
+Proteção da conta inteira, sessão GNOME e recuperação seguem pendentes.
+
 ### Auditoria da base oficial em 21/09
 
 Foram baixados e extraídos, sem instalação, cinco RPMs oficiais do Leap 16.1:
