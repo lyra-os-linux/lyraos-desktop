@@ -67,6 +67,12 @@ permissivo. Ainda não pode ser integrada: falha do cadastro também bloqueia
 a conta comum, e o `systemd-user` restrito falha na preparação de keyring.
 Proteção da conta inteira, sessão GNOME e recuperação seguem pendentes.
 
+A [revisão seguinte](evidence/parental-admission/README.md) preserva a conta
+comum na inconsistência do grupo da fixture e inicia o `systemd-user`
+restrito em enforcing. D-Bus e tmpfiles ainda falham; a identificação usa GID
+privado fixo de teste e ainda não possui contrato de produção. Não interpretar
+esse avanço como qualificação da sessão ou da conta inteira.
+
 ### Auditoria da base oficial em 21/09
 
 Foram baixados e extraídos, sem instalação, cinco RPMs oficiais do Leap 16.1:
