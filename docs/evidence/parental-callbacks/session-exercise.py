@@ -18,6 +18,10 @@ debuglog=P('/tmp/lyra-trusted-shell-test.log')
 keydir=P('/root/lyra-shell-test-db.d')
 generated=[launcher,dropin,profile,database,debuglog,keydir/'00-policy',keydir/'locks/00-policy']
 assert all(not p.exists() for p in generated)
+for p in atspi:
+    owner=subprocess.check_output(['rpm','-qf','--qf','%{NAME}',str(p)],text=True)
+    assert owner=='at-spi2-core' and p.stat().st_uid==0,(str(p),owner)
+subprocess.run(['rpm','-V','at-spi2-core'],check=True)
 original={p:(p.read_bytes(),stat.S_IMODE(p.stat().st_mode),os.getxattr(p,'security.selinux'))
           for p in [worker,helper,native,ctl,shell,entry,application]+atspi}
 created_dirs=[]

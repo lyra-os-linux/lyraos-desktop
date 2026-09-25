@@ -56,7 +56,14 @@ um tipo não executável para os arquivos de lock criados pelo Mutter em `/tmp`,
 além de autorização para os dois executáveis oficiais AT-SPI. A
 [captura nativa](session.json) mostra Shell, barramento de acessibilidade e
 registro AT-SPI ativos nos domínios esperados, com os 18 controles anteriores
-passando. O servidor XWayland ainda tem execução negada. Não foram aprovados
+passando. A [verificação do pacote](atspi-package.json) confirma a versão
+`at-spi2-core-2.58.7-160100.2.1`, propriedade de root e `rpm -V` limpo
+após a restauração. A primeira fixture tinha executáveis sem registro no RPM
+e pertencentes ao UID 65534; seus hashes coincidiam com o pacote, mas aquela
+captura foi substituída por este reteste após instalar o pacote oficial.
+O ensaio agora recusa essa inconsistência antes de alterar a VM.
+
+O servidor XWayland ainda tem execução negada. Não foram aprovados
 aplicativos X11, leitor de tela ou a sessão completa. Serviços de configurações,
 registro no GDM, Polkit e outros componentes ainda têm negações.
 
@@ -69,6 +76,10 @@ o encerramento do gerenciador do usuário antes de voltar a fixture para
 permissive. Os resultados aceitos são coletados em enforcing. O worker de diagnóstico compilado da
 etapa GDM e os helpers/política anteriores são pré-requisitos explícitos.
 Fontes oficiais, logs completos de auditoria e restauração ficam em `analysis/2026-09-25/parental-callbacks/`.
+A fixture recebeu os pacotes oficiais `audit`, `audit-rules`,
+`system-group-audit`, `gsettings-backend-dconf` e `at-spi2-core` (com `xprop`);
+essas dependências permanecem instaladas. O auditd fica inativo após o ensaio,
+mas sua instalação o habilitou para o próximo boot.
 O ensaio requer a VM marcada `lyra.parental-selinux-test=1` e os perfis e
 helpers das etapas anteriores; não executar em uma conta real. O GDM original,
 rótulos e arquivos foram restaurados e o módulo temporário removido.
