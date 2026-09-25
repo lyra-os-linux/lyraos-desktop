@@ -549,8 +549,8 @@
       image checks their minimum versions. The terminal frontend vega-cli
       remains optional and is not required by the GTK frontend or this image.
     -->
-    <package name="vega-gtk" version="&gt;=5.1.44"/>
-    <package name="vegad"/>
+    <package name="vega-gtk" version="&gt;=5.1.45"/>
+    <package name="vegad" version="&gt;=5.1.32"/>
 
     <!-- Lyra's native remote-access clients, pinned in the default GNOME
          favorites together with Vega and Firefox. -->
