@@ -1,0 +1,36 @@
+{
+  "scope": "native fixture domain; not full account protection",
+  "restored": true,
+  "worker_sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8",
+  "checks": [
+    {
+      "name": "ordinary",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/libexec/lyra/trusted-shell-test"
+      ],
+      "rc": 0,
+      "stdout": "uid=1002 context=system_u:system_r:unconfined_service_t:s0 enforcing=1\nffi_closure_alloc success=1 errno=2 (No such file or directory)\ncallback result=42\n",
+      "stderr": ""
+    },
+    {
+      "name": "shell-domain",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/libexec/lyra/trusted-shell-test"
+      ],
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\nffi_closure_alloc success=0 errno=12 (Cannot allocate memory)\n",
+      "stderr": ""
+    }
+  ]
+}

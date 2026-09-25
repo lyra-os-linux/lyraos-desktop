@@ -1,0 +1,1 @@
+type=AVC msg=audit(1790355281.122:1151813): avc:  denied  { execute } for  pid=64476 comm="trusted-shell-t" path=2F6D656D66643A6C6962666669202864656C6574656429 dev="tmpfs" ino=4809 scontext=system_u:system_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:lyra_parental_runtime_t:s0 tclass=file permissive=0

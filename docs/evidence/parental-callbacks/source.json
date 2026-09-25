@@ -1,0 +1,9 @@
+{
+  "rpm": "libffi-3.4.6-160100.2.1.src.rpm",
+  "url": "https://download.opensuse.org/source/distribution/leap/16.1/repo/oss/src/libffi-3.4.6-160100.2.1.src.rpm",
+  "sha256": "6959163942811a3f06a7cb530516c2c819dd76271f94fffe82bd99b06593c99e",
+  "signature": "digests signatures OK",
+  "disturl": "obs://build.suse.de/SUSE:SLFO:1.3/standard/758c7f0c36d470754e87aad21a90ad62-libffi",
+  "configure_option": "--disable-exec-static-tramp",
+  "tested_library": "installed official system libffi8, not rebuilt"
+}

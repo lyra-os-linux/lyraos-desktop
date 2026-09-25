@@ -1,0 +1,7 @@
+; Experimental delta for the dedicated Shell profile, NOT a complete policy.
+; Replace the existing Shell -> lyra_parental_runtime_t transition, do not add
+; a second conflicting transition. Account-created memory keeps its old type.
+(type lyra_parental_shell_memory_t)
+(typeattributeset file_type (lyra_parental_shell_memory_t))
+(typetransition lyra_parental_shell_t tmpfs_t file lyra_parental_shell_memory_t)
+(allow lyra_parental_shell_t lyra_parental_shell_memory_t (file (create read open getattr map write append setattr unlink execute)))

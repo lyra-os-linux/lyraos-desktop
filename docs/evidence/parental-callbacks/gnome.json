@@ -1,0 +1,18 @@
+{
+  "diagnostic_wayland_only": true,
+  "full_session_qualified": false,
+  "enforcing_before_start": true,
+  "processes": [
+    {
+      "pid": 64818,
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0",
+      "environment": {
+        "XDG_DATA_DIRS": "/usr/local/share:/usr/share",
+        "GNOME_SHELL_SESSION_MODE": "user",
+        "DCONF_PROFILE": "/etc/dconf/profile/lyra-supervised-test",
+        "GSETTINGS_BACKEND": "dconf"
+      }
+    }
+  ],
+  "capture_source_sha256": "f0a0933ba7af29e0be6be98c4687b9a9514dbe2ba98d3142f5e05bc44edf472d"
+}
