@@ -1,0 +1,422 @@
+{
+  "scope": "user-manager-only",
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "parentaltest-manager",
+      "argv": [
+        "systemctl",
+        "start",
+        "user@1003.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-show-ExecMainStatus",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "systemd-tmpfiles-setup.service",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nResult=success\nExecMainStatus=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-start-lyra-parental-approved-fixture.service",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-parental-approved-fixture.service"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-show-ActiveState",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-parental-approved-fixture.service",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus",
+        "-p",
+        "ActiveState"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nResult=success\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-start-lyra-parental-generic-fixture.service",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-parental-generic-fixture.service"
+      ],
+      "rc": 1,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": "Job for lyra-parental-generic-fixture.service failed because the control process exited with error code.\nSee \"systemctl --user status lyra-parental-generic-fixture.service\" and \"journalctl --user -xeu lyra-parental-generic-fixture.service\" for details.\n"
+    },
+    {
+      "name": "parentaltest-show-ActiveState",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-parental-generic-fixture.service",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus",
+        "-p",
+        "ActiveState"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nResult=exit-code\nExecMainStatus=203\nActiveState=failed\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-start-lyra-parental-shell-fixture.service",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-parental-shell-fixture.service"
+      ],
+      "rc": 1,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": "Job for lyra-parental-shell-fixture.service failed because the control process exited with error code.\nSee \"systemctl --user status lyra-parental-shell-fixture.service\" and \"journalctl --user -xeu lyra-parental-shell-fixture.service\" for details.\n"
+    },
+    {
+      "name": "parentaltest-show-ActiveState",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-parental-shell-fixture.service",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus",
+        "-p",
+        "ActiveState"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nResult=exit-code\nExecMainStatus=203\nActiveState=failed\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-start-lyra-parental-python-fixture.service",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-parental-python-fixture.service"
+      ],
+      "rc": 1,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": "Job for lyra-parental-python-fixture.service failed because the control process exited with error code.\nSee \"systemctl --user status lyra-parental-python-fixture.service\" and \"journalctl --user -xeu lyra-parental-python-fixture.service\" for details.\n"
+    },
+    {
+      "name": "parentaltest-show-ActiveState",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-parental-python-fixture.service",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus",
+        "-p",
+        "ActiveState"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nResult=exit-code\nExecMainStatus=203\nActiveState=failed\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-journal",
+      "argv": [
+        "journalctl",
+        "-u",
+        "user@1003.service",
+        "--since",
+        "2026-09-22 11:57:44",
+        "--no-pager"
+      ],
+      "rc": 0,
+      "stdout": "Sep 22 11:57:44 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1003...\nSep 22 11:57:44 lyra-virtualization-fixture (systemd)[1050]: pam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Failed to create timezone change event source: Permission denied\nSep 22 11:57:44 lyra-virtualization-fixture (sd-exec-strv)[1053]: /usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator failed with exit status 1, ignoring.\nSep 22 11:57:44 lyra-virtualization-fixture (sd-exec-strv)[1053]: /usr/lib/systemd/user-environment-generators/60-flatpak failed with exit status 1, ignoring.\nSep 22 11:57:44 lyra-virtualization-fixture (sd-exec-strv)[1056]: /usr/lib/systemd/user-generators/systemd-xdg-autostart-generator failed with exit status 1.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Failed to acquire watch file descriptor: Permission denied\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Failed to allocate device monitor: Permission denied\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Failed to connect to system bus: Permission denied\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Queued start job for default target Main User Target.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Created slice User Application Slice.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Started Daily Cleanup of User's Temporary Directories.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Reached target Paths.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Reached target Timers.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Starting D-Bus User Message Bus Socket...\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Starting Create User Files and Directories...\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Listening on D-Bus User Message Bus Socket.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Reached target Sockets.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Finished Create User Files and Directories.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Reached target Basic System.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Reached target Main User Target.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Startup finished in 39ms.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1]: Started User Manager for UID 1003.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Starting Disposable Lyra activation fixture...\nSep 22 11:57:44 lyra-virtualization-fixture probe[1066]: uid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Finished Disposable Lyra activation fixture.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Starting Disposable Lyra activation fixture...\nSep 22 11:57:44 lyra-virtualization-fixture (true)[1072]: lyra-parental-generic-fixture.service: Unable to locate executable '/usr/bin/true': Permission denied\nSep 22 11:57:44 lyra-virtualization-fixture (true)[1072]: lyra-parental-generic-fixture.service: Failed at step EXEC spawning /usr/bin/true: Permission denied\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: lyra-parental-generic-fixture.service: Main process exited, code=exited, status=203/EXEC\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: lyra-parental-generic-fixture.service: Failed with result 'exit-code'.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Failed to start Disposable Lyra activation fixture.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Starting Disposable Lyra activation fixture...\nSep 22 11:57:44 lyra-virtualization-fixture (bash)[1078]: lyra-parental-shell-fixture.service: Unable to locate executable '/usr/bin/bash': Permission denied\nSep 22 11:57:44 lyra-virtualization-fixture (bash)[1078]: lyra-parental-shell-fixture.service: Failed at step EXEC spawning /usr/bin/bash: Permission denied\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: lyra-parental-shell-fixture.service: Main process exited, code=exited, status=203/EXEC\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: lyra-parental-shell-fixture.service: Failed with result 'exit-code'.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Failed to start Disposable Lyra activation fixture.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Starting Disposable Lyra activation fixture...\nSep 22 11:57:44 lyra-virtualization-fixture (python3)[1084]: lyra-parental-python-fixture.service: Unable to locate executable '/usr/bin/python3': Permission denied\nSep 22 11:57:44 lyra-virtualization-fixture (python3)[1084]: lyra-parental-python-fixture.service: Failed at step EXEC spawning /usr/bin/python3: Permission denied\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: lyra-parental-python-fixture.service: Main process exited, code=exited, status=203/EXEC\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: lyra-parental-python-fixture.service: Failed with result 'exit-code'.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1050]: Failed to start Disposable Lyra activation fixture.\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-stop",
+      "argv": [
+        "systemctl",
+        "stop",
+        "user@1003.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-manager",
+      "argv": [
+        "systemctl",
+        "start",
+        "user@1002.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-show-ExecMainStatus",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "systemd-tmpfiles-setup.service",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-start-lyra-parental-approved-fixture.service",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-parental-approved-fixture.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-show-ActiveState",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-parental-approved-fixture.service",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus",
+        "-p",
+        "ActiveState"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-start-lyra-parental-generic-fixture.service",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-parental-generic-fixture.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-show-ActiveState",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-parental-generic-fixture.service",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus",
+        "-p",
+        "ActiveState"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-start-lyra-parental-shell-fixture.service",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-parental-shell-fixture.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-show-ActiveState",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-parental-shell-fixture.service",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus",
+        "-p",
+        "ActiveState"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-start-lyra-parental-python-fixture.service",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-parental-python-fixture.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-show-ActiveState",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "show",
+        "lyra-parental-python-fixture.service",
+        "-p",
+        "Result",
+        "-p",
+        "ExecMainStatus",
+        "-p",
+        "ActiveState"
+      ],
+      "rc": 0,
+      "stdout": "Result=success\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-journal",
+      "argv": [
+        "journalctl",
+        "-u",
+        "user@1002.service",
+        "--since",
+        "2026-09-22 11:57:44",
+        "--no-pager"
+      ],
+      "rc": 0,
+      "stdout": "Sep 22 11:57:44 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1002...\nSep 22 11:57:44 lyra-virtualization-fixture (systemd)[1095]: pam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Queued start job for default target Main User Target.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Created slice User Application Slice.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Started Daily Cleanup of User's Temporary Directories.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Reached target Paths.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Reached target Timers.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Starting D-Bus User Message Bus Socket...\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Starting Create User Files and Directories...\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Listening on D-Bus User Message Bus Socket.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Reached target Sockets.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Finished Create User Files and Directories.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Reached target Basic System.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Reached target Main User Target.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Startup finished in 68ms.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1]: Started User Manager for UID 1002.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Starting Disposable Lyra activation fixture...\nSep 22 11:57:44 lyra-virtualization-fixture probe[1111]: uid=1002 context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Finished Disposable Lyra activation fixture.\nSep 22 11:57:44 lyra-virtualization-fixture systemd[1095]: Starting Disposable Lyra activation fixture...\nSep 22 11:57:45 lyra-virtualization-fixture systemd[1095]: Finished Disposable Lyra activation fixture.\nSep 22 11:57:45 lyra-virtualization-fixture systemd[1095]: Starting Disposable Lyra activation fixture...\nSep 22 11:57:45 lyra-virtualization-fixture systemd[1095]: Finished Disposable Lyra activation fixture.\nSep 22 11:57:45 lyra-virtualization-fixture systemd[1095]: Starting Disposable Lyra activation fixture...\nSep 22 11:57:45 lyra-virtualization-fixture python3[1129]: 42\nSep 22 11:57:45 lyra-virtualization-fixture systemd[1095]: Finished Disposable Lyra activation fixture.\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-stop",
+      "argv": [
+        "systemctl",
+        "stop",
+        "user@1002.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}
