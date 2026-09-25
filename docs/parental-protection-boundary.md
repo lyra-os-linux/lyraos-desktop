@@ -60,6 +60,15 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso experimental em 25/09
 
+A [etapa XWayland](evidence/parental-xwayland/README.md) reproduziu a dependência
+de shell na compilação do teclado e a recusa de um descritor O_RDWR do Mutter.
+Patches experimentais usam execução direta do compilador e descritor privado
+somente para leitura. Testes de passagem de descritores preservam o bloqueio
+de escrita e execução no domínio receptor. O cliente X11 público passou em
+enforcing após corrigir a aceitação do socket e a notificação de prontidão.
+Ainda houve reinício do Shell e falhas de serviços GNOME; a sessão completa
+continua sem aprovação. Os detalhes e limites estão no relatório da etapa.
+
 A [reprodução nativa dos callbacks](evidence/parental-callbacks/README.md)
 identificou que a libffi oficial precisa mapear `memfd:libffi` como executável.
 Um tipo de memória exclusivo do Shell corrigiu essa falha sem permitir à conta
@@ -70,10 +79,10 @@ Não é qualificação de proteção da conta inteira ou mudança em pacotes pub
 O [ensaio nativo do GDM oficial](evidence/parental-gdm/README.md) localizou
 interferência do contexto SELinux pendente nos hooks de root antes do fork.
 Uma proposta de patch passou com o fonte oficial do openSUSE e em dez casos
-de falha. Não foi publicada nem aplicada à receita. A conta comum abriu
-GNOME Wayland em enforcing; a restrita ainda falha na inicialização do Shell,
-que precisa de memória executável mesmo com `GJS_DISABLE_JIT=1`. A separação
-de um domínio exclusivo do desktop está em investigação; não liberar essa
+de falha. Não foi publicada nem aplicada à receita. Na etapa GDM, a conta comum abriu
+GNOME Wayland em enforcing; a restrita falhava na inicialização do Shell,
+que precisa de memória executável mesmo com `GJS_DISABLE_JIT=1`. As etapas
+seguintes acima avançaram com um domínio exclusivo do desktop; não liberar essa
 permissão para o domínio inteiro nem declarar o controle parental concluído.
 
 ### Progresso experimental em 22/09

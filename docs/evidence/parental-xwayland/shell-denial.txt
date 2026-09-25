@@ -1,0 +1,2 @@
+type=AVC msg=audit(1790357879.358:1227806): avc:  denied  { execute } for  pid=69414 comm="Xwayland" name="bash" dev="vda" ino=478 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:object_r:shell_exec_t:s0 tclass=file permissive=0
+type=AVC msg=audit(1790357879.358:1227808): avc:  denied  { execute } for  pid=69415 comm="Xwayland" name="bash" dev="vda" ino=478 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:object_r:shell_exec_t:s0 tclass=file permissive=0

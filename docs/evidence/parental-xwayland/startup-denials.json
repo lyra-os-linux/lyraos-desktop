@@ -1,0 +1,12 @@
+{
+  "accept": {
+    "count": 124606,
+    "line": "type=AVC msg=audit(1790363997.165:9269025): avc:  denied  { accept } for  pid=78697 comm=\"Xwayland\" path=002F746D702F2E5831312D756E69782F5831 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=unix_stream_socket permissive=0\n"
+  },
+  "notify": {
+    "count": 1,
+    "line": "type=AVC msg=audit(1790364233.290:9370188): avc:  denied  { sendto } for  pid=79011 comm=\"gnome-shell\" path=\"/run/user/1003/systemd/notify\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=unix_dgram_socket permissive=0"
+  },
+  "baseline_audit_loss": true,
+  "complete_audit_claim": false
+}

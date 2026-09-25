@@ -1,0 +1,91 @@
+{
+  "build.json": [
+    {
+      "argv": [
+        "meson",
+        "setup",
+        "/root/xwayland-build",
+        "/root/xwayland-patched",
+        "--prefix=/usr",
+        "--sysconfdir=/etc",
+        "--localstatedir=/var",
+        "-Dglamor=true",
+        "-Dxvfb=true",
+        "-Dglx=true",
+        "-Dxdmcp=true",
+        "-Dxdm-auth-1=true",
+        "-Dsecure-rpc=true",
+        "-Dipv6=true",
+        "-Dinput_thread=true",
+        "-Dvendor_name=SUSE LINUX",
+        "-Dvendor_name_short=openSUSE",
+        "-Dvendor_web=https://www.opensuse.org",
+        "-Dlisten_tcp=false",
+        "-Dlisten_unix=true",
+        "-Dlisten_local=true",
+        "-Dxf86bigfont=true",
+        "-Dscreensaver=true",
+        "-Dxres=true",
+        "-Dxace=true",
+        "-Dxselinux=false",
+        "-Dxinerama=true",
+        "-Dxcsecurity=true",
+        "-Dxv=true",
+        "-Dmitshm=true",
+        "-Dsha1=libcrypto",
+        "-Ddri3=true",
+        "-Dxwayland-path=/usr/bin",
+        "-Ddtrace=false",
+        "-Dlibunwind=false",
+        "-Dxkb_dir=/usr/share/X11/xkb",
+        "-Dxkb_output_dir=/var/lib/xkb/compiled"
+      ],
+      "rc": 0
+    },
+    {
+      "argv": [
+        "ninja",
+        "-C",
+        "/root/xwayland-build",
+        "-j2",
+        "hw/xwayland/Xwayland"
+      ],
+      "rc": 0
+    }
+  ],
+  "mutter-build.json": [
+    {
+      "argv": [
+        "meson",
+        "setup",
+        "/root/mutter-build",
+        "/root/mutter-patched",
+        "--prefix=/usr",
+        "--libdir=lib64",
+        "--sysconfdir=/etc",
+        "--localstatedir=/var",
+        "-Degl_device=true",
+        "-Dwayland_eglstream=true",
+        "-Dcogl_tests=false",
+        "-Dclutter_tests=false",
+        "-Dtests=disabled",
+        "-Dinstalled_tests=false",
+        "-Dxwayland_initfd=auto",
+        "-Dprofiler=false"
+      ],
+      "rc": 0
+    },
+    {
+      "argv": [
+        "ninja",
+        "-C",
+        "/root/mutter-build",
+        "-j2",
+        "src/libmutter-16.so.0.0.0"
+      ],
+      "rc": 0
+    }
+  ],
+  "mutter_rpath": "After linking, chrpath changes build-only RPATH to /usr/lib64/mutter-16.",
+  "warnings": "XWayland build reports upstream cast warnings and libcrypto.so.3/libcrypto.so.56 linker warning. This is a diagnostic build, not an RPM qualified for production."
+}

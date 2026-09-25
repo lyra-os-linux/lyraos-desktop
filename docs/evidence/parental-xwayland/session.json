@@ -1,0 +1,268 @@
+{
+  "stage": "Diagnostic VM, not full session/account qualification",
+  "session": [
+    {
+      "argv": [
+        "fixture",
+        "display-environment"
+      ],
+      "rc": 0,
+      "stdout": "{\"DISPLAY\": \":0\", \"WAYLAND_DISPLAY\": \"wayland-0\", \"XAUTHORITY\": \"/run/user/1003/.mutter-Xwaylandauth.Y2SYV3\"}",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "env",
+        "DISPLAY=:0",
+        "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.Y2SYV3",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/xprop",
+        "-root"
+      ],
+      "rc": 0,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n_NET_WORKAREA(CARDINAL) = 0, 32, 1280, 768, 0, 32, 1280, 768\n_GTK_WORKAREAS_D1(CARDINAL) = 0, 32, 1280, 768\n_GTK_WORKAREAS_D0(CARDINAL) = 0, 32, 1280, 768\n_NET_DESKTOP_NAMES(UTF8_STRING) = \"Workspace 1\", \"Workspace 2\"\n_NET_SHOWING_DESKTOP(CARDINAL) = 0\n_NET_NUMBER_OF_DESKTOPS(CARDINAL) = 2\n_NET_DESKTOP_GEOMETRY(CARDINAL) = 1280, 800\n_NET_DESKTOP_VIEWPORT(CARDINAL) = 0, 0\n_NET_SUPPORTING_WM_CHECK(WINDOW): window id # 0x200001\n_NET_SUPPORTED(ATOM) = _NET_WM_NAME, _NET_CLOSE_WINDOW, _NET_WM_STATE, _NET_WM_STATE_MAXIMIZED_HORZ, _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_DESKTOP, _NET_NUMBER_OF_DESKTOPS, _NET_CURRENT_DESKTOP, _NET_WM_WINDOW_TYPE, _NET_WM_WINDOW_TYPE_DESKTOP, _NET_WM_WINDOW_TYPE_DOCK, _NET_WM_WINDOW_TYPE_TOOLBAR, _NET_WM_WINDOW_TYPE_MENU, _NET_WM_WINDOW_TYPE_UTILITY, _NET_WM_WINDOW_TYPE_SPLASH, _NET_WM_WINDOW_TYPE_DIALOG, _NET_WM_WINDOW_TYPE_DROPDOWN_MENU, _NET_WM_WINDOW_TYPE_POPUP_MENU, _NET_WM_WINDOW_TYPE_TOOLTIP, _NET_WM_WINDOW_TYPE_NOTIFICATION, _NET_WM_WINDOW_TYPE_COMBO, _NET_WM_WINDOW_TYPE_DND, _NET_WM_WINDOW_TYPE_NORMAL, _NET_WM_STATE_MODAL, _NET_CLIENT_LIST, _NET_CLIENT_LIST_STACKING, _NET_WM_STATE_SKIP_TASKBAR, _NET_WM_STATE_SKIP_PAGER, _NET_WM_ICON, _NET_WM_ICON_GEOMETRY, _NET_WM_MOVERESIZE, _NET_ACTIVE_WINDOW, _NET_WM_STRUT, _NET_WM_STATE_HIDDEN, _NET_WM_STATE_FULLSCREEN, _NET_WM_PING, _NET_WM_PID, _NET_WORKAREA, _NET_SHOWING_DESKTOP, _NET_DESKTOP_LAYOUT, _NET_DESKTOP_NAMES, _NET_WM_ALLOWED_ACTIONS, _NET_WM_ACTION_MOVE, _NET_WM_ACTION_RESIZE, _NET_WM_ACTION_SHADE, _NET_WM_ACTION_STICK, _NET_WM_ACTION_MAXIMIZE_HORZ, _NET_WM_ACTION_MAXIMIZE_VERT, _NET_WM_ACTION_CHANGE_DESKTOP, _NET_WM_ACTION_CLOSE, _NET_WM_STATE_ABOVE, _NET_WM_STATE_BELOW, _NET_STARTUP_ID, _NET_WM_STRUT_PARTIAL, _NET_WM_ACTION_FULLSCREEN, _NET_WM_ACTION_MINIMIZE, _NET_FRAME_EXTENTS, _NET_REQUEST_FRAME_EXTENTS, _NET_WM_USER_TIME, _NET_WM_STATE_DEMANDS_ATTENTION, _NET_MOVERESIZE_WINDOW, _NET_DESKTOP_GEOMETRY, _NET_DESKTOP_VIEWPORT, _NET_WM_USER_TIME_WINDOW, _NET_WM_ACTION_ABOVE, _NET_WM_ACTION_BELOW, _NET_WM_STATE_STICKY, _NET_WM_FULLSCREEN_MONITORS, _NET_WM_STATE_FOCUSED, _NET_WM_BYPASS_COMPOSITOR, _NET_WM_OPAQUE_REGION, _NET_WM_FRAME_DRAWN, _NET_WM_FRAME_TIMINGS, _NET_WM_WINDOW_OPACITY, _NET_RESTACK_WINDOW, _GTK_FRAME_EXTENTS, _GTK_SHOW_WINDOW_MENU, _GTK_EDGE_CONSTRAINTS, _GTK_WORKAREAS\nWM_ICON_SIZE(CARDINAL):\n\t\tminimum icon size: 32 by 32\n\t\tmaximum icon size: 32 by 32\n\t\tincremental size change: 0 by 0\n_XKB_RULES_NAMES(STRING) = \"evdev\", \"pc105\", \"us\", \"\", \"\"\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "fixture",
+        "managed-display-diagnostic"
+      ],
+      "rc": 0,
+      "stdout": "{\"public\": \":0\", \"managed\": \":1\"}",
+      "stderr": "Not qualification of the public desktop display"
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "env",
+        "DISPLAY=:1",
+        "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.Y2SYV3",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/xprop",
+        "-root",
+        "-f",
+        "LYRA_PARENTAL_PROBE",
+        "8s",
+        "-set",
+        "LYRA_PARENTAL_PROBE",
+        "restricted-client"
+      ],
+      "rc": 0,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "env",
+        "DISPLAY=:1",
+        "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.Y2SYV3",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/xprop",
+        "-root",
+        "LYRA_PARENTAL_PROBE"
+      ],
+      "rc": 0,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nLYRA_PARENTAL_PROBE(STRING) = \"restricted-client\"\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "env",
+        "XDG_RUNTIME_DIR=/run/user/1003",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+        "systemctl",
+        "--user",
+        "list-jobs",
+        "--no-pager"
+      ],
+      "rc": 0,
+      "stdout": "No jobs running.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "env",
+        "XDG_RUNTIME_DIR=/run/user/1003",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+        "systemctl",
+        "--user",
+        "show",
+        "gnome-session-initialized.target",
+        "gnome-session-x11-services-ready.target",
+        "org.gnome.SettingsDaemon.XSettings.service",
+        "-p",
+        "ActiveState",
+        "-p",
+        "SubState",
+        "-p",
+        "Job"
+      ],
+      "rc": 0,
+      "stdout": "ActiveState=active\nSubState=active\nJob=\n\nActiveState=active\nSubState=active\nJob=\n\nActiveState=activating\nSubState=auto-restart\nJob=\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "getenforce"
+      ],
+      "rc": 0,
+      "stdout": "Enforcing\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "env",
+        "XDG_RUNTIME_DIR=/run/user/1003",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+        "systemctl",
+        "--user",
+        "show",
+        "org.gnome.Shell@wayland.service",
+        "-p",
+        "ExecStart",
+        "-p",
+        "DropInPaths",
+        "-p",
+        "Restart",
+        "-p",
+        "Environment",
+        "-p",
+        "ActiveState",
+        "-p",
+        "SubState"
+      ],
+      "rc": 0,
+      "stdout": "Restart=no\nExecStart={ path=/usr/libexec/lyra/trusted-shell-test ; argv[]=/usr/libexec/lyra/trusted-shell-test ; ignore_errors=no ; start_time=[Fri 2026-09-25 19:26:37 UTC] ; stop_time=[n/a] ; pid=79873 ; code=(null) ; status=0/0 }\nEnvironment=GNOME_SHELL_JS=/home/parentaltest/untrusted-js GSETTINGS_BACKEND=memory DCONF_PROFILE=/home/parentaltest/untrusted-profile\nActiveState=active\nSubState=running\nDropInPaths=/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "fixture",
+        "shell-processes"
+      ],
+      "rc": 0,
+      "stdout": "[{\"pid\": 79873, \"context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0\\u0000\", \"environment\": {\"NOTIFY_SOCKET\": \"/run/user/1003/systemd/notify\", \"XDG_DATA_DIRS\": \"/usr/local/share:/usr/share\", \"GNOME_SHELL_SESSION_MODE\": \"user\", \"DCONF_PROFILE\": \"/etc/dconf/profile/lyra-supervised-test\", \"GSETTINGS_BACKEND\": \"dconf\"}}]",
+      "stderr": ""
+    }
+  ],
+  "fault_controls": [
+    {
+      "name": "writable-administrator-database",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: missing or untrusted administrator configuration\n"
+    },
+    {
+      "name": "non-root-administrator-database",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: missing or untrusted administrator configuration\n"
+    },
+    {
+      "name": "notification-socket-refused:'/tmp/untrusted-notify'",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: unexpected notification socket\n"
+    },
+    {
+      "name": "notification-socket-refused:'/run/user/1002/systemd/notify'",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: unexpected notification socket\n"
+    },
+    {
+      "name": "notification-socket-refused:'@untrusted-notify'",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: unexpected notification socket\n"
+    },
+    {
+      "name": "notification-socket-refused:''",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: unexpected notification socket\n"
+    },
+    {
+      "name": "profile-does-not-apply-locks",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: desktop restrictions are not locked and effective\n"
+    },
+    {
+      "name": "corrupt-administrator-database",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\n\n(process:79322): dconf-WARNING **: 19:26:21.584: unable to open file '/etc/dconf/db/lyra-supervised-test': /etc/dconf/db/lyra-supervised-test: invalid gvdb header; expect degraded performance\ntrusted-shell fixture refused: desktop restrictions are not locked and effective\n"
+    },
+    {
+      "name": "ordinary-account-cannot-enter-shell-domain",
+      "rc": 126,
+      "stdout": "",
+      "stderr": "trusted-shell fixture refused: not in trusted shell domain\n"
+    },
+    {
+      "name": "permissive-mode-refused",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": "trusted-shell fixture refused: SELinux is not enforcing\n"
+    }
+  ],
+  "audit_lost_delta": 0,
+  "audit_limited": false,
+  "restoration": [
+    {
+      "wayland_only_diagnostic": false,
+      "restored": true,
+      "official_worker_sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8"
+    },
+    {
+      "restored": true,
+      "pending": false
+    }
+  ],
+  "process_contexts": [
+    " 1003   79873 lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 /usr/bin/gnome-shell",
+    " 1003   79894 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/at-spi2/at-spi-bus-launcher",
+    " 1003   79900 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user",
+    " 1003   79902 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/at-spi2/at-spi2-registryd --use-gnome-session"
+  ],
+  "shell_launches_in_one_capture": 2,
+  "full_session_qualified": false,
+  "remaining_blockers": [
+    "Shell restarted during this capture; no uninterrupted session approval.",
+    "GNOME SettingsDaemon helpers including XSettings cannot execute.",
+    "GDM registration, AccountsService and Polkit messages denied.",
+    "dconf-service, permission store, portal and screencast services remain unqualified.",
+    "Full account admission, accessibility, application policy and recovery remain incomplete."
+  ]
+}

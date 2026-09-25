@@ -1,0 +1,17 @@
+{
+  "url": "https://download.opensuse.org/source/distribution/leap/16.1/repo/oss/src/xwayland-24.1.9-160100.2.2.src.rpm",
+  "source_rpm": "xwayland-24.1.9-160100.2.2.src.rpm",
+  "installed_rpm": "xwayland-24.1.9-160100.2.1.x86_64",
+  "source_sha256": "a7a1cd550ed5c2d85291dd25f9aee4eed01aa6c0466a9c685c1081e38e5fbc93",
+  "disturl": "obs://build.suse.de/SUSE:SLFO:1.3/standard/1c3653f818495144027938ea2ca6e1ca-xwayland",
+  "same_source_revision": true,
+  "rpm_signatures_verified": true,
+  "notes": "Source repository replaced release2.1 with2.2; same DISTURL source digest as installed2.1. Binary equivalence between releases not asserted.",
+  "mutter": {
+    "source_rpm": "mutter-48.8-160100.2.1.src.rpm",
+    "url": "https://download.opensuse.org/source/distribution/leap/16.1/repo/oss/src/mutter-48.8-160100.2.1.src.rpm",
+    "source_sha256": "3642ddd74118fe1e248dd315ef8452a4ae1fdb5170643f9f0b646fdd752ec867",
+    "disturl": "obs://build.suse.de/SUSE:SLFO:1.3/standard/86d3319eb79ca28bbf13f19f2f92a59c-mutter",
+    "rpm_signatures_verified": true
+  }
+}

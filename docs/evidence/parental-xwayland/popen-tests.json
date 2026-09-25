@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "literal-shell-metacharacters",
+      "status": "passed",
+      "returncode": 0
+    },
+    {
+      "name": "read-pipe",
+      "status": "passed",
+      "returncode": 0
+    },
+    {
+      "name": "write-pipe",
+      "status": "passed",
+      "returncode": 0
+    },
+    {
+      "name": "missing-executable",
+      "status": "passed",
+      "returncode": 127
+    },
+    {
+      "name": "child-failure",
+      "status": "passed",
+      "returncode": 1
+    },
+    {
+      "name": "invalid-arguments",
+      "status": "passed",
+      "returncode": 0
+    },
+    {
+      "name": "legacy-shell-semantics",
+      "status": "passed",
+      "returncode": 0
+    },
+    {
+      "name": "no-path-search",
+      "status": "passed",
+      "returncode": 127
+    }
+  ]
+}
