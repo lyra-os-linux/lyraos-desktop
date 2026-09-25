@@ -1,20 +1,26 @@
 # ADR 0008 — Sinal etário privado e supervisão parental
 
-- Status: **Proposta — aprovação bloqueada pela #106**
-- Data: 18/08/2026
-- Issues: #105, #106, #108, #110, #111, #112, #114
+- Status: **Proposta — revisão técnica e aprovação final pendentes**
+- Data: 18/08/2026; conciliação técnica: 21/09/2026
+- Issues vigentes: #5 (arquitetura), #6 (base upstream), #7/#8 (integração/UX),
+  #10 (parecer), #11 (epic), #102 (aplicação de políticas).
+- O parecer foi aprovado pelo mantenedor em 26/08, conforme #10/#5. Isso não
+  aprova automaticamente esta ADR nem preenche decisões técnicas ou contratuais.
+- Os números antigos abaixo pertencem ao rastreador anterior e são históricos.
 
 ## Contexto
 
 O Lyra precisa acomodar obrigações relacionadas a sistema operacional, loja e
 aplicativos sem criar uma base de identidade/vigilância nem concentrar
-privilégios no Vega. O contrato definitivo depende do parecer jurídico #106 e
-das orientações aplicáveis da ANPD.
+privilégios no Vega. O contrato definitivo deve aplicar as conclusões do parecer já aprovado e
+registrar as decisões técnicas pendentes, sem inferir requisitos jurídicos
+a partir dos ensaios de software.
 
 A auditoria #112 rejeitou importar o BigLinux: sua API expõe faixa e atividade,
-falha para `18+` em ausência/corrupção e usa helper privilegiado amplo. A #110
-escolheu malcontent como candidato upstream, mas registrou ausência de pacote
-oficial no Leap 16.0. A UX #108 exige informação, contestação, autonomia
+falha para `18+` em ausência/corrupção e usa helper privilegiado amplo. A qualificação inicial escolheu malcontent como candidato upstream. A
+reavaliação Leap 16.1 confirmou pacotes oficiais, mas reproduziu limitações de
+aplicação e evasão em #102. Consultar a
+[qualificação atual](../parental-controls-upstream-qualification.md). A UX #108 exige informação, contestação, autonomia
 progressiva e limitações claras.
 
 Apple Declared Age Range e Microsoft Family Safety são referências, não prova
@@ -104,12 +110,13 @@ desconhecidos falham fechado. Não existe método de comando, path ou JSON opaco
 - systemd/logind/PAM podem aplicar agenda/quota após qualificação;
 - cada adaptador publica saúde e limitações para a interface.
 
-## Decisões bloqueadas pela #106
+## Decisões que ainda precisam ser explicitadas a partir do parecer
 
 Permanecem indefinidos: método/provedor/base legal de aferição, valor de
 declaração parental, retenção, limiares/faixas, regras regionais,
 consentimento/revogação, evidências exigidas e enquadramento preciso do Vega
-como loja. Nenhum código #114 pode materializar esses pontos antes do parecer.
+como loja. A aprovação anterior do parecer não permite inventar o conteúdo dessas decisões.
+Protótipos técnicos usam contas fictícias, sem aferição nem dados de menores.
 
 ## Alternativas rejeitadas
 
@@ -147,8 +154,19 @@ dependências jurídicas/upstream não fecharem antes do congelamento.
 
 ## Gate de aprovação
 
-A ADR muda para `Aceita` somente quando #106 entregar parecer profissional, as
-decisões bloqueadas forem preenchidas, #110/#112 forem aceitas, #108 for
-revisada por privacidade/segurança/acessibilidade, houver revisão upstream e a
-#114 tiver plano de teste/migração/reversão. Até lá, orienta pesquisa e
-protótipos sem dados reais, mas não autoriza implementação funcional.
+A ADR muda para `Aceita` após registrar a aplicação das conclusões do parecer
+já aprovado, completar as decisões técnicas, qualificar a base (#6/#102),
+revisar a UX (#8) e demonstrar testes, migração e reversão. A aprovação do
+parecer não deve ser solicitada novamente como se ainda não existisse.
+Até a aprovação técnica, esta ADR orienta protótipos isolados com contas fictícias;
+não é evidência de uma proteção pronta para a distribuição.
+
+
+## Fronteira técnica de proteção — proposta de 21/09
+
+A [matriz de proteção](../parental-protection-boundary.md) distingue política
+armazenada, clientes cooperativos e controle da execução da conta. Em 21/09,
+o mantenedor escolheu **conta restrita, com aplicativos aprovados e proteção
+contra evasão**. Essa decisão não qualifica automaticamente um mecanismo de
+confinamento nem reduz os critérios de evasão porque a biblioteca upstream é cooperativa.
+Não expor “Supervisão ativa” antes da qualificação das camadas obrigatórias.

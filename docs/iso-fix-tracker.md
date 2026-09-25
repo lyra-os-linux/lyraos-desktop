@@ -254,6 +254,144 @@ outro hardware aprovados por esses ensaios. Evidência compacta em
 recibos locais em `analysis/2026-09-16/vega-nvidia/`.
 
 
+## VEGA-01 — Atualização do Painel a cada clique, 20/09
+
+O Vega GTK mantinha os cards ao navegar de volta ao Painel ou clicar na aba já
+ativa, até o próximo ciclo automático. A correção geral, independente de GPU ou
+firmware, está no [Vega PR147](https://github.com/lyra-os-linux/vega/pull/147),
+versão 5.1.40, fontes `99b039bc6d6f9bc62c697b9af1668434e1410fee`.
+Agrupa cliques e temporizador em uma consulta e no máximo uma repetição, preserva
+consultas assíncronas e isola falhas entre os cards. O intervalo automático
+continua em 5 minutos por padrão, configurável de 1 a 60 minutos.
+
+O gate da imagem exige `vega-gtk >= 5.1.40`. Testes rejeitam 5.1.37, 5.1.39 e
+5.1.40~rc1. O CI das fontes 35533662810 passou, incluindo GTK/D-Bus privados com
+rajadas de 50 pedidos e recuperação após falha. OBS1379318 aceito, staging22/release110; RPM público
+`vega-gtk-5.1.40-lp161.1.1.x86_64.rpm`, SHA256
+`1564ec93722bfd35230570679c08ba585899d38876fcf4475ca8323f2ac321ff`.
+Assinatura7edca82e válida; download público idêntico à API; binário de release
+idêntico ao staging qualificado. Sete verificações GTK/AT-SPI do RPM e 52 de
+perfis passaram; gates completos staging/release aprovados.
+[Evidência](https://github.com/lyra-os-linux/vega/blob/fix/dashboard-tab-refresh/docs/dashboard-obs-evidence.json).
+Nenhuma alteração do pacote instalado na estação. Inclusão e qualificação na
+ISO exata permanecem pendentes.
+
+Na candidata identificada por checksum: abrir Painel, voltar de Software,
+clicar na aba ativa, repetir cliques durante consulta lenta, provocar falha e
+recuperação do backend e conferir todos os cards. Verificar também o intervalo
+configurado, sem senha para as consultas. Não concluir este registro apenas com
+testes de fontes ou do RPM. Em caso de regressão, restaurar a revisão OBS anterior
+pelo fluxo de rollback via staging e requalificar; não reduzir silenciosamente o
+mínimo exigido pela imagem.
+
+## VIRT-01 — QEMU/KVM, Vega e Lyra VMs, Alpha 8
+
+Integração solicitada pelo mantenedor em 17/09. A seleção inicial local incluía
+apenas os programas e o grupo libvirt no live; a receita agora declara o backend
+QEMU, cliente e rede padrão explicitamente, sem depender de recomendações do
+solver, e habilita seus sockets locais durante a construção da imagem.
+
+O acesso sem senha pelo grupo libvirt fica restrito ao liveuser. A conta criada
+pelo instalador mantém wheel e a autenticação Polkit administrativa existente.
+Não se habilitam TCP/TLS, rede NAT automática, máquinas ou discos no build.
+Detalhes e reversão em [virtualization.md](virtualization.md).
+
+Estado em 21/09: 211 testes Python passaram, incluindo três novos contratos.
+Ensaio em VM Leap 16.1 descartável aprovou 23 verificações de autorização,
+negação, sockets, NAT/DHCP, disco qcow2 e inicialização KVM BIOS/UEFI; limpeza e
+desligamento concluídos. Evidência em
+[evidence/virtualization-20260921.json](evidence/virtualization-20260921.json).
+Nenhuma ISO construída ou qualificada. Depois da auditoria, repetir os cenários
+na ISO exata com conta instalada e sessão live, incluindo Vega e Lyra VMs gráficos,
+console, DNS/conectividade, instalação de convidado e persistência após reboot.
+Não marcar este item concluído apenas pela seleção de pacotes ou pelos contratos.
+
+Qualificação adicional de componente em 21/09: instalação Alpine BIOS, boot sem
+ISO, edição de recursos com dados preservados e ambas as opções de remoção
+aprovadas. Vega GTK 5.1.44 corrige cortes nos diálogos encontrados no ensaio;
+piso atualizado na receita, OBS #1379536 publicado e RPM público verificado
+(assinatura, revisão e conteúdo igual ao staging qualificado). Evidência em
+`docs/evidence/vm-full-cycle-20260921.json`. VIRT-01 continua aberto para a ISO
+exata e GNOME/Wayland; não extrapolar o ensaio Xvfb/BIOS para esses cenários.
+
+## FF-THEME-01 — Tema oficial Firefox, Alpha 8
+
+Issue [Firefox #1](https://github.com/lyra-os-linux/lyra-firefox-ext/issues/1).
+Tema estático independente `theme@lyraos.com.br`, claro/escuro conforme sistema,
+metadados en-US/pt-BR/es-ES e sem permissões. Paleta aprovada pelo mantenedor
+em 21/09/2026. Implementação em Firefox PR2; pacote próprio lyra-firefox-theme.
+
+A receita adiciona o pacote, que expõe o XPI assinado através do diretório
+nativo distribution/extensions. Não há política de instalação para o tema:
+o ensaio mostrou que normal_installed sobrescreve escolhas existentes.
+A distribuição nativa preservou temas em perfis novos/existentes, seleção,
+reinício, troca e remoção sem reinstalação. Firefox ESR140.13 verificou a
+assinatura Mozilla (signedState=2). Paleta aprovada e metadados trilíngues.
+
+OBS e inventário i18n incluem o pacote; 211 testes da receita passaram.
+Publicado por OBS1379465: lyra-firefox-theme-0.1.0-lp161.1.1.x86_64.rpm,
+SHA256 465810460a44cc48305ff1355d19f531dc8bca45e2f60509095b52f2f746f002.
+Gates completos staging/release passaram; assinatura do RPM e XPI verificados,
+download público idêntico à API, rpmlint sem erros/avisos. O repasse real de
+Downloads0.1.2 com tema ativo passou, incluindo arquivo final e recuperação.
+[Evidências do componente](https://github.com/lyra-os-linux/lyra-firefox-ext/tree/feat/alpha8-theme/theme/evidence).
+
+Ainda pendente: qualificação da candidata exata, incluindo escala/teclado,
+repasse Downloads e upgrade de versão quando aplicável. Nenhuma ISO gerada.
+Reversão: retirar o pacote da receita e selecionar outro tema; preservar
+perfis, dados e integração Downloads. A issue permanece aberta até a candidata.
+
+### 21/09 — Substituição explícita de virt-manager
+
+Mantenedor solicitou remover virt-manager da distro e incluir Lyra VMs.
+Receita passa a exigir lyra-vms >= 0.1.0, virt-viewer e vega-gtk >= 5.1.41.
+Pacote lyra-vms adicionado ao inventário obrigatório OBS. Vega 5.1.41 e Lyra VMs
+0.1.0 publicados pelas requests #1379483/#1379484, com RPMs públicos assinados
+e binários iguais aos testados. A qualificação da candidata permanece pendente;
+não gerar ISO antes da auditoria. Evidência em lyra-vms-staging-20260921.json.
+
+
+## PREP-01 — Preparação inicial dos repositórios
+
+A receita e a verificação de conteúdo da imagem exigem vegad >= 5.1.32 e
+Vega GTK >= 5.1.45. Isso evita uma candidata com o antigo job que atualizava
+pacotes automaticamente ou sem a interface de estado e recuperação.
+As issues vegad #56–#64 foram encerradas nas PRs #65–#73; SDK #7 e Vega #155
+completam a revisão de chaves desconhecidas por fingerprint e identidade.
+
+RPMs finais publicados pelas requests OBS [1380263](https://build.opensuse.org/request/show/1380263)
+e [1380264](https://build.opensuse.org/request/show/1380264). Fontes, assinaturas,
+proveniência, scripts e conteúdo conferidos; payload final idêntico ao staging.
+[Evidências portáveis](evidence/preparation-rpms-20260924.json).
+
+VM Leap 16.1: instalação dos RPMs e upgrade passaram, incluindo estados
+concluído/pendente/isento, repositórios reais com Packman, 120 atualizações
+pendentes sem upgrade automático de pacotes, falha de rede/Retry autorizado,
+recuperação automática do lock RPM e persistência no reboot. Interface do RPM
+GTK via Broadway mostrou os estados reais. Tumbleweed teve build e inspeção;
+a execução foi qualificada somente no Leap.
+
+Continua pendente na ISO exata: live sem preparação, instalação pelo Lyra
+Installer, primeiro login GDM/Wayland, diálogo Polkit e recuperação pela UI.
+Não marcar PREP-01 concluído com o ensaio de componentes. Reversão: bloquear
+novas candidatas e corrigir no staging; não reduzir os pisos para reintroduzir
+o job antigo de atualização automática.
+
+## GRUB-04 — Preferência local sobrescrita após atualização (25/09)
+
+Na estação física, uma atribuição GRUB_THEME=openSUSE apareceu após o include
+da preferência Lyra, anulando-a. Reparo local recolocou a preferência por último,
+com backup, geração em candidato, grub2-script-check e preservação das seis
+linhas kernel/initrd. Não houve reboot nem alteração de pacote nesta correção.
+
+A simulação da reescrita de variáveis pelo activate-theme manteve Lyra efetivo
+com o include final. A persistência contra substituição integral da configuração
+e o comportamento da receita limpa ainda precisam de qualificação; não copiar
+esse reparo local para a imagem sem verificar a causa no ciclo de upgrade.
+Evidências locais: analysis/2026-09-25/grub-theme-repair. Item permanece aberto
+para auditoria de empacotamento e candidata exata; nenhuma ISO qualificada.
+
+
 ## DL-01 — arquivo apagado após repasse do Firefox (19/09/2026)
 
 - **Sintoma/causa:** Firefox 140 ESR e Lyra Downloads 0.1.1 usando a mesma
@@ -282,8 +420,8 @@ recibos locais em `analysis/2026-09-16/vega-nvidia/`.
   extensão e baixar pelo Firefox. Reverter para 0.1.1 reintroduz a perda do
   arquivo; não usar essa reversão com captura automática habilitada.
 - **Receita:** os três pacotes estão selecionados explicitamente. O verificador
-  executado por `kiwi/config.sh` exige Downloads e integração nativa >= 0.1.2
-  e extensão >= 0.1.1; recusa pacote ausente, versão antiga ou pré-release abaixo
+  executado por `kiwi/config.sh` exige os três pacotes >= 0.1.3, preservando
+  o piso posterior da integração e das traduções; recusa pacote ausente, versão antiga ou pré-release abaixo
   desse piso antes de finalizar a imagem. A dependência do RPM nativo mantém
   backend/host na mesma versão. Isso não substitui assinatura/proveniência nem
   comprova que uma ISO foi construída.
@@ -296,3 +434,7 @@ recibos locais em `analysis/2026-09-16/vega-nvidia/`.
 Evidência portátil: [downloads-handoff-20260919.json](evidence/downloads-handoff-20260919.json).
 Relatórios locais: `analysis/2026-09-19/host-downloads-0.1.2/` (correção) e
 `analysis/2026-09-19/obs-0.1.2/` (publicação e ensaio dos RPMs).
+
+Integração em 25/09: preservados os pisos 0.1.3 já presentes no main. As
+versões 0.1.2/0.1.1 acima identificam os RPMs do ensaio histórico, não o
+inventário final da candidata. Revalidar o repasse no artefato exato.

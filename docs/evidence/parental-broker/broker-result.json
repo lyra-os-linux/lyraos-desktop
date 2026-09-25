@@ -1,0 +1,154 @@
+{
+  "enforcing_during_tests": true,
+  "full_account_protection": false,
+  "policy_sha256": "320778ba63e00d57612e1bcb1687f7635cd451ca2feec6e0424175b5b64df655",
+  "checks": [
+    {
+      "name": "parentaltest-start",
+      "argv": [
+        "systemctl",
+        "start",
+        "user@1003.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-start",
+      "argv": [
+        "systemctl",
+        "start",
+        "user@1002.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-confined-bus",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/busctl",
+        "--timeout=5s",
+        "--user",
+        "list"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nNAME                                         PID PROCESS         USER         CONNECTION    UNIT                  SESSION DESCRIPTION\n:1.0                                        1177 busctl          parentaltest :1.0          lyra-vm-agent.service -       -\n:1.1                                        1149 systemd         parentaltest :1.1          user@1003.service     -       -\n:1.2                                        1178 dbus-broker-lau parentaltest :1.2          user@1003.service     -       -\nca.desrt.dconf                                 - -               -            (activatable) -                     -       -\norg.a11y.Bus                                   - -               -            (activatable) -                     -       -\norg.flatpak.Authenticator.Oci                  - -               -            (activatable) -                     -       -\norg.freedesktop.DBus                        1149 systemd         parentaltest -             user@1003.service     -       -\norg.freedesktop.Flatpak                        - -               -            (activatable) -                     -       -\norg.freedesktop.impl.portal.PermissionStore    - -               -            (activatable) -                     -       -\norg.freedesktop.impl.portal.desktop.gtk        - -               -            (activatable) -                     -       -\norg.freedesktop.portal.Desktop                 - -               -            (activatable) -                     -       -\norg.freedesktop.portal.Documents               - -               -            (activatable) -                     -       -\norg.freedesktop.portal.Flatpak                 - -               -            (activatable) -                     -       -\norg.freedesktop.systemd1                    1149 systemd         parentaltest :1.1          user@1003.service     -       -\norg.gtk.GLib.PACRunner                         - -               -            (activatable) -                     -       -\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-outside-domain-bus",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "/usr/bin/busctl",
+        "--timeout=5s",
+        "--user",
+        "list"
+      ],
+      "rc": 1,
+      "stdout": "",
+      "stderr": "Failed to list names: Permission denied\n"
+    },
+    {
+      "name": "parentaltest-confined-bus",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/busctl",
+        "--timeout=5s",
+        "--user",
+        "list"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nNAME                                         PID PROCESS         USER         CONNECTION    UNIT                  SESSION DESCRIPTION\n:1.1                                        1149 systemd         parentaltest :1.1          user@1003.service     -       -\n:1.2                                        1178 dbus-broker-lau parentaltest :1.2          user@1003.service     -       -\n:1.4                                        1183 busctl          parentaltest :1.4          lyra-vm-agent.service -       -\nca.desrt.dconf                                 - -               -            (activatable) -                     -       -\norg.a11y.Bus                                   - -               -            (activatable) -                     -       -\norg.flatpak.Authenticator.Oci                  - -               -            (activatable) -                     -       -\norg.freedesktop.DBus                        1149 systemd         parentaltest -             user@1003.service     -       -\norg.freedesktop.Flatpak                        - -               -            (activatable) -                     -       -\norg.freedesktop.impl.portal.PermissionStore    - -               -            (activatable) -                     -       -\norg.freedesktop.impl.portal.desktop.gtk        - -               -            (activatable) -                     -       -\norg.freedesktop.portal.Desktop                 - -               -            (activatable) -                     -       -\norg.freedesktop.portal.Documents               - -               -            (activatable) -                     -       -\norg.freedesktop.portal.Flatpak                 - -               -            (activatable) -                     -       -\norg.freedesktop.systemd1                    1149 systemd         parentaltest :1.1          user@1003.service     -       -\norg.gtk.GLib.PACRunner                         - -               -            (activatable) -                     -       -\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-outside-domain-bus",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/busctl",
+        "--timeout=5s",
+        "--user",
+        "list"
+      ],
+      "rc": 0,
+      "stdout": "NAME                                         PID PROCESS         USER         CONNECTION    UNIT                  SESSION DESCRIPTION\n:1.0                                        1185 busctl          ordinaryuser :1.0          lyra-vm-agent.service -       -\n:1.2                                        1186 dbus-broker-lau ordinaryuser :1.2          user@1002.service     -       -\nca.desrt.dconf                                 - -               -            (activatable) -                     -       -\norg.a11y.Bus                                   - -               -            (activatable) -                     -       -\norg.flatpak.Authenticator.Oci                  - -               -            (activatable) -                     -       -\norg.freedesktop.DBus                        1164 systemd         ordinaryuser -             user@1002.service     -       -\norg.freedesktop.Flatpak                        - -               -            (activatable) -                     -       -\norg.freedesktop.impl.portal.PermissionStore    - -               -            (activatable) -                     -       -\norg.freedesktop.impl.portal.desktop.gtk        - -               -            (activatable) -                     -       -\norg.freedesktop.portal.Desktop                 - -               -            (activatable) -                     -       -\norg.freedesktop.portal.Documents               - -               -            (activatable) -                     -       -\norg.freedesktop.portal.Flatpak                 - -               -            (activatable) -                     -       -\norg.freedesktop.systemd1                       - -               -            (activatable) -                     -       -\norg.gtk.GLib.PACRunner                         - -               -            (activatable) -                     -       -\n",
+      "stderr": ""
+    },
+    {
+      "name": "process-contexts",
+      "argv": [
+        "ps",
+        "-eo",
+        "uid,label,args"
+      ],
+      "rc": 0,
+      "stdout": "  UID LABEL                           COMMAND\n    0 system_u:system_r:init_t:s0     /usr/lib/systemd/systemd\n    0 system_u:system_r:kernel_t:s0   [kthreadd]\n    0 system_u:system_r:kernel_t:s0   [pool_workqueue_release]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-kvfree_rcu_reclaim]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-rcu_gp]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-sync_wq]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-slub_flushwq]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-netns]\n    0 system_u:system_r:kernel_t:s0   [kworker/0:0H-events_highpri]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-mm_percpu_wq]\n    0 system_u:system_r:kernel_t:s0   [rcu_tasks_kthread]\n    0 system_u:system_r:kernel_t:s0   [rcu_tasks_rude_kthread]\n    0 system_u:system_r:kernel_t:s0   [rcu_tasks_trace_kthread]\n    0 system_u:system_r:kernel_t:s0   [ksoftirqd/0]\n    0 system_u:system_r:kernel_t:s0   [rcu_preempt]\n    0 system_u:system_r:kernel_t:s0   [rcu_exp_par_gp_kthread_worker/0]\n    0 system_u:system_r:kernel_t:s0   [rcu_exp_gp_kthread_worker]\n    0 system_u:system_r:kernel_t:s0   [migration/0]\n    0 system_u:system_r:kernel_t:s0   [idle_inject/0]\n    0 system_u:system_r:kernel_t:s0   [cpuhp/0]\n    0 system_u:system_r:kernel_t:s0   [cpuhp/1]\n    0 system_u:system_r:kernel_t:s0   [idle_inject/1]\n    0 system_u:system_r:kernel_t:s0   [migration/1]\n    0 system_u:system_r:kernel_t:s0   [ksoftirqd/1]\n    0 system_u:system_r:kernel_t:s0   [kworker/1:0-events]\n    0 system_u:system_r:kernel_t:s0   [kworker/1:0H-events_highpri]\n    0 system_u:system_r:kernel_t:s0   [kworker/u8:1-events_unbound]\n    0 system_u:system_r:kernel_t:s0   [kdevtmpfs]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-inet_frag_wq]\n    0 system_u:system_r:kernel_t:s0   [kauditd]\n    0 system_u:system_r:kernel_t:s0   [khungtaskd]\n    0 system_u:system_r:kernel_t:s0   [oom_reaper]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-writeback]\n    0 system_u:system_r:kernel_t:s0   [kcompactd0]\n    0 system_u:system_r:kernel_t:s0   [ksmd]\n    0 system_u:system_r:kernel_t:s0   [khugepaged]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-kblockd]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-blkcg_punt_bio]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-kintegrityd]\n    0 system_u:system_r:kernel_t:s0   [irq/9-acpi]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-tpm_dev_wq]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-edac-poller]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-devfreq_wq]\n    0 system_u:system_r:kernel_t:s0   [watchdogd]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-quota_events_unbound]\n    0 system_u:system_r:kernel_t:s0   [kworker/0:1H-kblockd]\n    0 system_u:system_r:kernel_t:s0   [kswapd0]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-kthrotld]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-mld]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-ipv6_addrconf]\n    0 system_u:system_r:kernel_t:s0   [kworker/1:1H-kblockd]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-kstrp]\n    0 system_u:system_r:kernel_t:s0   [kworker/u9:0]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-charger_manager]\n    0 system_u:system_r:kernel_t:s0   [kworker/0:2-events]\n    0 system_u:system_r:kernel_t:s0   [jbd2/vda-8]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-ext4-rsv-conversion]\n    0 system_u:system_r:kernel_t:s0   [psimon]\n    0 system_u:system_r:syslogd_t:s0  /usr/lib/systemd/systemd-journald\n  479 system_u:system_r:systemd_timedated_t:s0 /usr/lib/systemd/systemd-timesyncd\n    0 system_u:system_r:udev_t:s0-s0:c0.c1023 /usr/lib/systemd/systemd-udevd\n    0 system_u:system_r:kernel_t:s0   [psimon]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-cryptd]\n    0 system_u:system_r:kernel_t:s0   [kworker/u8:4-ext4-rsv-conversion]\n    0 system_u:system_r:kernel_t:s0   [kworker/u8:8-events_unbound]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-ata_sff]\n    0 system_u:system_r:kernel_t:s0   [scsi_eh_0]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_0]\n    0 system_u:system_r:kernel_t:s0   [scsi_eh_1]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_1]\n    0 system_u:system_r:kernel_t:s0   [scsi_eh_2]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_2]\n    0 system_u:system_r:kernel_t:s0   [scsi_eh_3]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_3]\n    0 system_u:system_r:kernel_t:s0   [scsi_eh_4]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_4]\n    0 system_u:system_r:kernel_t:s0   [scsi_eh_5]\n    0 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_5]\n  497 system_u:system_r:system_dbusd_t:s0-s0:c0.c1023 /usr/bin/dbus-broker-launch --scope system --audit\n  497 system_u:system_r:system_dbusd_t:s0-s0:c0.c1023 dbus-broker --log 4 --controller 9 --machine-id a3c5b5d6e9964b7fb4a79609f3e27e06 --max-bytes 536870912 --max-fds 4096 --max-matches 16384 --audit\n    0 system_u:system_r:unconfined_service_t:s0 /usr/bin/python3 /usr/local/libexec/lyra-guest-agent.py\n    0 system_u:system_r:systemd_logind_t:s0 /usr/lib/systemd/systemd-logind\n    0 system_u:system_r:firewalld_t:s0 /usr/bin/python3.13 /usr/sbin/firewalld --nofork --nopid\n    0 system_u:system_r:getty_t:s0-s0:c0.c1023 /sbin/agetty -o -- \\u --noreset --noclear - linux\n    0 system_u:system_r:getty_t:s0-s0:c0.c1023 /sbin/agetty -o -- \\u --noreset --noclear --keep-baud 115200,57600,38400,9600 - vt220\n  481 system_u:system_r:policykit_t:s0 /usr/libexec/polkit-1/polkitd --no-debug --log-level=notice\n    0 system_u:system_r:kernel_t:s0   [kworker/0:1-rcu_gp]\n    0 system_u:system_r:kernel_t:s0   [kworker/1:1-cgroup_destroy]\n    0 system_u:system_r:kernel_t:s0   [kworker/0:0-cgroup_destroy]\n    0 system_u:system_r:kernel_t:s0   [kworker/1:2-events]\n    0 system_u:system_r:kernel_t:s0   [kworker/0:3-events]\n    0 system_u:system_r:unconfined_service_t:s0 python3 -c import pathlib; assert 'lyra.parental-selinux-test=1' in pathlib.Path('/proc/cmdline').read_text().split(); import pathlib,subprocess,json,os,pwd,datetime,hashlib assert os.geteuid()==0 assert 'lyra.parental-selinux-test=1' in pathlib.Path('/proc/cmdline').read_text().split() rows=[];context='lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0' def run(name,argv,env=None):  p=subprocess.run(argv,capture_output=True,text=True,timeout=20,env=env)  r={'name':name,'argv':argv,'rc':p.returncode,'stdout':p.stdout,'stderr':p.stderr};rows.append(r);print(json.dumps(r),flush=True);return r def client(user,restricted):  a=pwd.getpwnam(user);env=dict(os.environ,HOME=a.pw_dir,XDG_RUNTIME_DIR=f'/run/user/{a.pw_uid}',DBUS_SESSION_BUS_ADDRESS=f'unix:path=/run/user/{a.pw_uid}/bus')  if restricted:args=['python3','/root/lyra-parental-pam-probe.py',user,'/opt/lyra-parental-probe/probe','/opt/lyra-parental-probe/busctl']  else:args=['runuser','-u',user,'--','/usr/bin/busctl']  return run(user+('-confined-bus' if restricted else '-outside-domain-bus'),args+['--timeout=5s','--user','list'],env) start=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') subprocess.run(['setenforce','1'],check=True) try:  for u,uid in [('parentaltest',1003),('ordinaryuser',1002)]:   r=run(u+'-start',['systemctl','start',f'user@{uid}.service']);assert r['rc']==0,r  r=client('parentaltest',True);assert r['rc']==0 and 'org.freedesktop.systemd1' in r['stdout'] and 'uid=1003 context='+context in r['stdout'],r  r=client('parentaltest',False);assert r['rc']!=0,r  r=client('parentaltest',True);assert r['rc']==0 and 'org.freedesktop.systemd1' in r['stdout'],r  r=client('ordinaryuser',False);assert r['rc']==0 and 'org.freedesktop.systemd1' in r['stdout'],r  r=run('process-contexts',['ps','-eo','uid,label,args'])  broker=[l for l in r['stdout'].splitlines() if l.split()[0]=='1003' and ('dbus-broker' in l or '/usr/lib/systemd/systemd --user' in l)]  assert len(broker)==3 and all(context in l for l in broker),broker  r=run('security-query-permissions',['sesearch','-A','-s','lyra_parental_probe_t','-c','security'])  assert 'compute_av' in r['stdout'] and 'compute_create' in r['stdout'] and all(x not in r['stdout'] for x in ['setenforce','load_policy','setbool']),r  r=run('session-journal',['journalctl','-u','user@1003.service','--since',start,'--no-pager'])  assert 'Unknown class' not in r['stdout'],r  assert 'scontext=system_u:system_r:unconfined_service_t:s0' in r['stdout'] and 'tclass=dbus permissive=0' in r['stdout'],r finally:  subprocess.run(['setenforce','0'],check=True)  try:   for uid in (1003,1002):    r=run('stop-'+str(uid),['systemctl','stop',f'user@{uid}.service']);assert r['rc']==0,r  finally:   pathlib.Path('/root/parental-broker-result.json').write_text(json.dumps({'enforcing_during_tests':True,'full_account_protection':False,'policy_sha256':hashlib.sha256(pathlib.Path('/tmp/lyra-parental-probe.cil').read_bytes()).hexdigest(),'checks':rows},indent=2)+'\\n') \n 1003 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/lib/systemd/systemd --user\n 1003 system_u:system_r:init_t:s0     (sd-pam)\n 1002 unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 /usr/lib/systemd/systemd --user\n 1002 system_u:system_r:init_t:s0     (sd-pam)\n 1003 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/bin/dbus-broker-launch --scope user\n 1003 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 dbus-broker --log 4 --controller 9 --machine-id a3c5b5d6e9964b7fb4a79609f3e27e06 --max-bytes 100000000000000 --max-fds 25000000000000 --max-matches 5000000000\n 1002 unconfined_u:unconfined_r:unconfined_dbusd_t:s0-s0:c0.c1023 /usr/bin/dbus-broker-launch --scope user\n 1002 unconfined_u:unconfined_r:unconfined_dbusd_t:s0-s0:c0.c1023 dbus-broker --log 4 --controller 9 --machine-id a3c5b5d6e9964b7fb4a79609f3e27e06 --max-bytes 100000000000000 --max-fds 25000000000000 --max-matches 5000000000\n    0 system_u:system_r:unconfined_service_t:s0 ps -eo uid,label,args\n",
+      "stderr": ""
+    },
+    {
+      "name": "security-query-permissions",
+      "argv": [
+        "sesearch",
+        "-A",
+        "-s",
+        "lyra_parental_probe_t",
+        "-c",
+        "security"
+      ],
+      "rc": 0,
+      "stdout": "allow lyra_parental_probe_t security_t:security { compute_av compute_create };\n",
+      "stderr": ""
+    },
+    {
+      "name": "session-journal",
+      "argv": [
+        "journalctl",
+        "-u",
+        "user@1003.service",
+        "--since",
+        "2026-09-22 11:58:46",
+        "--no-pager"
+      ],
+      "rc": 0,
+      "stdout": "Sep 22 11:58:46 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1003...\nSep 22 11:58:46 lyra-virtualization-fixture (systemd)[1149]: pam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Failed to create timezone change event source: Permission denied\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Failed to acquire watch file descriptor: Permission denied\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Failed to allocate device monitor: Permission denied\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Failed to connect to system bus: Permission denied\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Queued start job for default target Main User Target.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Created slice User Application Slice.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Started Daily Cleanup of User's Temporary Directories.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Reached target Paths.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Reached target Timers.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Starting D-Bus User Message Bus Socket...\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Starting Create User Files and Directories...\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Listening on D-Bus User Message Bus Socket.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Reached target Sockets.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Finished Create User Files and Directories.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Reached target Basic System.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Reached target Main User Target.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Startup finished in 53ms.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1]: Started User Manager for UID 1003.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Created slice User Core Session Slice.\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Starting D-Bus User Message Bus...\nSep 22 11:58:46 lyra-virtualization-fixture dbus-broker-launch[1178]: Policy to allow eavesdropping in /usr/share/dbus-1/session.conf +31: Eavesdropping is deprecated and ignored\nSep 22 11:58:46 lyra-virtualization-fixture dbus-broker-launch[1178]: Policy to allow eavesdropping in /usr/share/dbus-1/session.conf +33: Eavesdropping is deprecated and ignored\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: Started D-Bus User Message Bus.\nSep 22 11:58:46 lyra-virtualization-fixture dbus-broker-launch[1178]: Ready\nSep 22 11:58:46 lyra-virtualization-fixture systemd[1149]: selinux: avc:  denied  { status } for auid=1003 uid=1003 gid=1004 cmdline=\"/usr/bin/dbus-broker-launch --scope user\" function=\"method_subscribe\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=system permissive=0\nSep 22 11:58:46 lyra-virtualization-fixture dbus-broker-launch[1179]: avc:  denied  { send_msg } for  scontext=system_u:system_r:unconfined_service_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=dbus permissive=0\nSep 22 11:58:46 lyra-virtualization-fixture dbus-broker[1179]: A security policy denied :1.3 to send method call /org/freedesktop/DBus:org.freedesktop.DBus.Hello to org.freedesktop.DBus.\n",
+      "stderr": ""
+    },
+    {
+      "name": "stop-1003",
+      "argv": [
+        "systemctl",
+        "stop",
+        "user@1003.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "stop-1002",
+      "argv": [
+        "systemctl",
+        "stop",
+        "user@1002.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

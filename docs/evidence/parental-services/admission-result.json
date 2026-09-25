@@ -1,0 +1,90 @@
+{
+  "scope": "systemd-user-only",
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "healthy-supervised",
+      "uid": 1003,
+      "rc": 0,
+      "state": "MainPID=1190\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "healthy-ordinary",
+      "uid": 1002,
+      "rc": 0,
+      "state": "MainPID=1209\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "mapping-missing-supervised",
+      "uid": 1003,
+      "rc": 1,
+      "state": "MainPID=0\nExecMainStatus=224\nActiveState=failed\n",
+      "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+    },
+    {
+      "name": "mapping-missing-ordinary",
+      "uid": 1002,
+      "rc": 0,
+      "state": "MainPID=1243\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "guard-missing-supervised",
+      "uid": 1003,
+      "rc": 1,
+      "state": "MainPID=0\nExecMainStatus=224\nActiveState=failed\n",
+      "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+    },
+    {
+      "name": "guard-missing-ordinary",
+      "uid": 1002,
+      "rc": 0,
+      "state": "MainPID=1277\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "group-inconsistent-supervised",
+      "uid": 1003,
+      "rc": 1,
+      "state": "MainPID=0\nExecMainStatus=224\nActiveState=failed\n",
+      "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+    },
+    {
+      "name": "group-inconsistent-ordinary",
+      "uid": 1002,
+      "rc": 0,
+      "state": "MainPID=1309\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "permissive-supervised",
+      "uid": 1003,
+      "rc": 1,
+      "state": "MainPID=0\nExecMainStatus=224\nActiveState=failed\n",
+      "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+    },
+    {
+      "name": "permissive-ordinary",
+      "uid": 1002,
+      "rc": 0,
+      "state": "MainPID=1341\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "recovery-supervised",
+      "uid": 1003,
+      "rc": 0,
+      "state": "MainPID=1360\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "name": "recovery-ordinary",
+      "uid": 1002,
+      "rc": 0,
+      "state": "MainPID=1377\nExecMainStatus=0\nActiveState=active\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "kind": "dedicated-pam-session-fixture",
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "guard-approved",
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "guard-python",
+      "rc": 126,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\n{\"exec_errno\": 13}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-healthy",
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-mapping-denied",
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"parentaltest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-with-other-mapping-missing",
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "global-permissive-denied",
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "domain-permissive-denied",
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-registry-denied",
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-registry-ordinary-also-denied",
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-guard-module-denied",
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 28, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "recovery-approved",
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "recovery-ordinary",
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    }
+  ]
+}

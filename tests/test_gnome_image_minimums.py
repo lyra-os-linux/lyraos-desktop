@@ -93,3 +93,21 @@ class MinimumsTests(unittest.TestCase):
         with patch.object(minimums, 'installed_version', side_effect=minimums.subprocess.CalledProcessError(1, 'rpm')):
             with self.assertRaises(minimums.subprocess.CalledProcessError):
                 minimums.main()
+
+    def test_dashboard_refresh_rejects_stale_and_prerelease_vega(self):
+        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.43', '5.1.44', '5.1.45~rc1'):
+            with self.subTest(version=version):
+                def installed(package):
+                    return version if package == 'vega-gtk' else minimums.MINIMUMS[package]
+                with patch.object(minimums, 'installed_version', side_effect=installed):
+                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.1.45'):
+                        minimums.main()
+
+    def test_preparation_rejects_daemon_before_recovery_release(self):
+        for version in ('5.1.26', '5.1.31', '5.1.32~rc1'):
+            with self.subTest(version=version):
+                def installed(package):
+                    return version if package == 'vegad' else minimums.MINIMUMS[package]
+                with patch.object(minimums, 'installed_version', side_effect=installed):
+                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.32'):
+                        minimums.main()

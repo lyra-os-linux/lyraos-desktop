@@ -1,0 +1,170 @@
+[
+  {
+    "package": "beam",
+    "rpm": "beam-1.0.1-lp161.12.1.x86_64.rpm",
+    "sha256": "4afebf6befb3789005daaacf0cc223e3fdebb37217085574aa257744752c3b92",
+    "catalogs": {
+      "en_US": {
+        "messages": 67,
+        "empty": 0,
+        "bad_placeholders": [],
+        "sha256": "d69a757b5bc11f2593c737c47c76efdf6ac443a8f76ee1ad712637c88eeecbb1"
+      },
+      "pt_BR": {
+        "messages": 67,
+        "empty": 0,
+        "bad_placeholders": [],
+        "sha256": "58e33d4ad53513238afe6cc1a1a7d96b6a1afda3595fcafad04851f60258fad3"
+      },
+      "es_ES": {
+        "messages": 67,
+        "empty": 0,
+        "bad_placeholders": [],
+        "sha256": "d6f0d7646bb5d63b6ce98dc7827bebfa7e04705a85859e88c03c6a23845b451f"
+      }
+    },
+    "matching_keys": true,
+    "english_source": true,
+    "legacy_extra_catalog": "zh_CN (outside the three locales qualified here)"
+  },
+  {
+    "package": "sulafat",
+    "rpm": "sulafat-1.0.4-lp161.8.1.x86_64.rpm",
+    "sha256": "c666f993c20335dae6f148e8465d30be41c5087b7aa4608a57171be9a2c7ac4c",
+    "catalogs": {
+      "en_US": {
+        "absent": true
+      },
+      "pt_BR": {
+        "messages": 68,
+        "empty": 0,
+        "bad_placeholders": [],
+        "sha256": "a73b10cf06d1c2baffaf0fdb8f9518d470a3284d647be1c61da98e23631680df"
+      },
+      "es_ES": {
+        "messages": 68,
+        "empty": 0,
+        "bad_placeholders": [],
+        "sha256": "5b191832ac12b1deeaab9914550d7df832bc7f13f6ee5b520dc2eff96dda8791"
+      }
+    },
+    "matching_keys": true,
+    "english_source": "English msgids are the fallback; a separate English MO is unnecessary."
+  },
+  {
+    "package": "lyra-downloads",
+    "version": "0.1.3",
+    "channel": "staging-qualified; release publication verified below",
+    "rpms": [
+      {
+        "rpm": "lyra-downloads-0.1.3-lp161.2.1.x86_64.rpm",
+        "sha256": "251f01b2a054fb0c226bc29a906972ed499e3efb21bc9be058c1e1c81bfbd59f",
+        "disturl": "obs://build.opensuse.org/home:rodrigosbrito:lyra:staging/openSUSE_Leap_16.1/65b472b692bf8db5c68d1692c8b1efc5-lyra-downloads",
+        "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/alpha8-i18n/rpms-downloads/lyra-downloads-0.1.3-lp161.2.1.x86_64.rpm:\n    Header V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    MD5 digest: OK\n"
+      },
+      {
+        "rpm": "lyra-downloads-firefox-integration-0.1.3-lp161.2.1.x86_64.rpm",
+        "sha256": "8631a91da90c78a84812968e068120cd90558c7b8dcef6ac816104d242d8d127",
+        "disturl": "obs://build.opensuse.org/home:rodrigosbrito:lyra:staging/openSUSE_Leap_16.1/65b472b692bf8db5c68d1692c8b1efc5-lyra-downloads",
+        "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/alpha8-i18n/rpms-downloads/lyra-downloads-firefox-integration-0.1.3-lp161.2.1.x86_64.rpm:\n    Header V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    MD5 digest: OK\n"
+      }
+    ],
+    "catalogs": {
+      "en_US": {
+        "messages": 194,
+        "sha256": "e2ac2386d9058310833ace645be616987535eb06c92b20f5e847948fa29f6220"
+      },
+      "pt_BR": {
+        "messages": 194,
+        "sha256": "9dfb803eb10b6d95207eaf9a14fca1e21085284d5a8d77c61cb9d132ef199514"
+      },
+      "es_ES": {
+        "messages": 194,
+        "sha256": "04173d64e0ca5485d32b393ba4c43619ab56cb05071b84063518d5b47e683384"
+      }
+    },
+    "shared_libraries_resolved": true,
+    "publication": {
+      "package": "lyra-downloads",
+      "release_srcmd5": "65b472b692bf8db5c68d1692c8b1efc5",
+      "payload_identical_staging": true,
+      "verified_files": 18,
+      "rpms": [
+        {
+          "rpm": "lyra-downloads-0.1.3-lp161.1.1.x86_64.rpm",
+          "sha256": "5eb1bef3a04d0464865b409beb87a243b488f61277c19e5b4b65342c4cb78233",
+          "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/alpha8-i18n/public-rpms/lyra-downloads-0.1.3-lp161.1.1.x86_64.rpm:\n    Header V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    MD5 digest: OK\n",
+          "disturl": "obs://build.opensuse.org/home:rodrigosbrito:lyra/openSUSE_Leap_16.1/65b472b692bf8db5c68d1692c8b1efc5-lyra-downloads",
+          "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1/x86_64/lyra-downloads-0.1.3-lp161.1.1.x86_64.rpm",
+          "api_public_identical": true
+        },
+        {
+          "rpm": "lyra-downloads-firefox-integration-0.1.3-lp161.1.1.x86_64.rpm",
+          "sha256": "877d834d5f9f22b43fb8255d2fec25379604b188eebf61517e993d66e42fd68b",
+          "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/alpha8-i18n/public-rpms/lyra-downloads-firefox-integration-0.1.3-lp161.1.1.x86_64.rpm:\n    Header V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    MD5 digest: OK\n",
+          "disturl": "obs://build.opensuse.org/home:rodrigosbrito:lyra/openSUSE_Leap_16.1/65b472b692bf8db5c68d1692c8b1efc5-lyra-downloads",
+          "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1/x86_64/lyra-downloads-firefox-integration-0.1.3-lp161.1.1.x86_64.rpm",
+          "api_public_identical": true
+        }
+      ]
+    },
+    "rpm_publication_pending": false
+  },
+  {
+    "package": "lyra-firefox-ext",
+    "version": "0.1.3",
+    "xpi_sha256": "7656c3c67170ea3cb54f4509007f41bf70fa5237b1e42e467df9fb39ed262e45",
+    "source_revision": "3093cceeafd1c2bf2278c8aa8c91eed8161a99e4",
+    "signed_state": 2,
+    "locales": [
+      "en-US",
+      "pt-BR",
+      "es-ES"
+    ],
+    "fallback_test_locale": "fr",
+    "real_firefox_handoff_passed": true,
+    "rpm_publication_pending": false,
+    "staging_rpm": "lyra-firefox-ext-0.1.3-lp161.1.1.noarch.rpm",
+    "staging_rpm_sha256": "3d7615bb83b03150ff5bd750dcc5d47fff6f21524cf31357bf194da28858aaaf",
+    "staging_srcmd5": "66e8d3f6c9550be61533a5ed04471e0f",
+    "publication": {
+      "package": "lyra-firefox-ext",
+      "release_srcmd5": "66e8d3f6c9550be61533a5ed04471e0f",
+      "payload_identical_staging": true,
+      "verified_files": 3,
+      "rpms": [
+        {
+          "rpm": "lyra-firefox-ext-0.1.3-lp161.1.1.noarch.rpm",
+          "sha256": "df9ba06a245a31a828a6a474c4d119faa8396cfd84e689bbebf08f2fb66bc66e",
+          "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/alpha8-i18n/public-rpms/lyra-firefox-ext-0.1.3-lp161.1.1.noarch.rpm:\n    Header V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    MD5 digest: OK\n",
+          "disturl": "obs://build.opensuse.org/home:rodrigosbrito:lyra/openSUSE_Leap_16.1/66e8d3f6c9550be61533a5ed04471e0f-lyra-firefox-ext",
+          "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1/noarch/lyra-firefox-ext-0.1.3-lp161.1.1.noarch.rpm",
+          "api_public_identical": true
+        }
+      ]
+    }
+  },
+  {
+    "package": "vega-gtk",
+    "version": "5.1.43",
+    "publication": {
+      "package": "vega-gtk",
+      "release_srcmd5": "5e91064bbe710071790d6ad70855d94f",
+      "payload_identical_staging": true,
+      "verified_files": 10,
+      "rpms": [
+        {
+          "rpm": "vega-gtk-5.1.43-lp161.3.1.x86_64.rpm",
+          "sha256": "6e77e3291bc57fbb236f8396bba65e1091ff0be7a63242706cb9888fe01992ba",
+          "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/vega-vm-edit/public-rpms/vega-gtk-5.1.43-lp161.3.1.x86_64.rpm:\n    Header V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA256 Signature, key ID 7edca82e: OK\n    MD5 digest: OK\n",
+          "disturl": "obs://build.opensuse.org/home:rodrigosbrito:vega/openSUSE_Leap_16.1/5e91064bbe710071790d6ad70855d94f-vega-gtk",
+          "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/vega/openSUSE_Leap_16.1/x86_64/vega-gtk-5.1.43-lp161.3.1.x86_64.rpm",
+          "api_public_identical": true
+        }
+      ]
+    },
+    "disposable_qemu_vm_editing_passed": true,
+    "native_gtk_passed": true,
+    "iso_qualification_pending": true
+  }
+]

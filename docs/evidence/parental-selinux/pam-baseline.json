@@ -1,0 +1,30 @@
+{
+  "enforcing_during_tests": true,
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "mapped-approved",
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "mapped-python",
+      "rc": 126,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\n{\"exec_errno\": 13}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-account",
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nORDINARY_OK\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-mapping",
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"parentaltest\"}\nMISSING_MAPPING_EXECUTED\n",
+      "stderr": ""
+    }
+  ]
+}
