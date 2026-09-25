@@ -111,3 +111,12 @@ class MinimumsTests(unittest.TestCase):
                 with patch.object(minimums, 'installed_version', side_effect=installed):
                     with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.32'):
                         minimums.main()
+
+    def test_packagekit_coexistence_rejects_old_updater(self):
+        for version in ('0.2.3', '0.2.4', '0.2.5~rc1'):
+            with self.subTest(version=version):
+                def installed(package):
+                    return version if package == 'lyra-upgrade' else minimums.MINIMUMS[package]
+                with patch.object(minimums, 'installed_version', side_effect=installed):
+                    with self.assertRaisesRegex(ValueError, 'lyra-upgrade: need >= 0.2.5'):
+                        minimums.main()
