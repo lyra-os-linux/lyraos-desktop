@@ -148,7 +148,7 @@ function formatBytes(bytes){
 }
 
 function diskIneligibleReason(disk){
-  if(storageSnapshot && storageSnapshot.uefi!==true) return i18n.t('uefiRequired');
+  if(storageSnapshot && typeof storageSnapshot.uefi!=='boolean') return i18n.t('firmwareUnknown');
   if(disk.is_live_media) return i18n.t('diskLiveMedia');
   if(disk.role==='RaidMember') return i18n.t('diskRaidMember');
   if(disk.role==='LvmPhysicalVolume') return i18n.t('diskLvmMember');
@@ -174,10 +174,10 @@ function localizedErasedItems(){
 
 function renderDiskCards(){
   const list=document.querySelector('#disk-list');
-  if(storageSnapshot && storageSnapshot.uefi!==true){
+  if(storageSnapshot && typeof storageSnapshot.uefi!=='boolean'){
     selectedPlan=null;
     selectedDiskPath=null;
-    list.innerHTML=`<p class="disk-plan-error">${i18n.t('uefiRequired')}</p>`;
+    list.innerHTML=`<p class="disk-plan-error">${i18n.t('firmwareUnknown')}</p>`;
     document.querySelector('#disk-count').textContent='';
     document.querySelector('#disk-plan').hidden=true;
     updateNextButtonState();
@@ -218,7 +218,9 @@ async function discoverStorage(){
 
 function renderPlan(plan){
   const box=document.querySelector('#disk-plan');
-  const esp=plan.esp.Reuse
+  const esp=plan.firmware==='Bios'
+    ?i18n.t('biosBoot')
+    :plan.esp.Reuse
     ?i18n.t('espReuse',{path:plan.esp.Reuse.path})
     :i18n.t('espCreate',{size:formatBytes(plan.esp.Create.size_bytes)});
   const erased=localizedErasedItems();
@@ -227,7 +229,7 @@ function renderPlan(plan){
     :(plan.swap==='Zram'?i18n.t('swapZram'):i18n.t('swapDisk',{size:formatBytes(plan.swap.Partition.size_bytes)}));
   box.hidden=false;
   box.innerHTML=`
-    <div class="plan-row"><span>${i18n.t('planEfi')}</span><strong>${esp}</strong></div>
+    <div class="plan-row"><span>${i18n.t('planBoot')}</span><strong>${esp}</strong></div>
     <div class="plan-row"><span>${i18n.t('planFilesystem')}</span><strong>${i18n.t('planBtrfs',{count:plan.root_filesystem.Btrfs.subvolumes.length})}</strong></div>
     <div class="plan-row"><span>${i18n.t('planMemory')}</span><strong>${swap}</strong></div>
     ${erased.length?`<div class="plan-warning"><strong>${i18n.t('planErased')}</strong><ul>${erased.map(item=>`<li>${item}</li>`).join('')}</ul></div>`:''}

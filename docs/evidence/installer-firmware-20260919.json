@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "date": "2026-09-19",
+  "issue": "https://github.com/lyra-os-linux/lyraos-desktop/issues/89",
+  "checks": [
+    {
+      "case": "bios",
+      "phase": "install",
+      "status": "passed",
+      "log_sha256": "805c140bfcedbbb41600aa405dca52fa974b7e3bd6ffb9e34e05469c829e566a"
+    },
+    {
+      "case": "bios",
+      "phase": "boot",
+      "status": "passed",
+      "log_sha256": "6a6115ac4a8b817b1c5886c850f310e6409be9d39a776ef29358c0fd743fd826"
+    },
+    {
+      "case": "uefi",
+      "phase": "install",
+      "status": "passed",
+      "log_sha256": "50ee4959b9f2135607d56d26f902da609375e3113595ddef2f294046bbb61c92"
+    },
+    {
+      "case": "uefi",
+      "phase": "boot",
+      "status": "passed",
+      "log_sha256": "ae4b7714d63a3249905b400d3461e5ef86577d4b6fb1d9c9f08f0f2f0e1c4460"
+    },
+    {
+      "case": "uefi-no-nvram",
+      "phase": "install",
+      "status": "passed",
+      "log_sha256": "d846bab73b830f2ecba49857c15d91a3f51a60bcf396868678be43083038864d"
+    },
+    {
+      "case": "uefi-no-nvram",
+      "phase": "boot",
+      "status": "passed",
+      "log_sha256": "c174eeb92abbf2504191883f3e5347807775763f2750c0e254525642e4d21007"
+    },
+    {
+      "case": "secure-boot",
+      "phase": "install",
+      "status": "passed",
+      "log_sha256": "46681b195584c4079c6566c2978b9c0e22435b2fd87ec52aab49d28f20986827"
+    },
+    {
+      "case": "secure-boot",
+      "phase": "boot",
+      "status": "passed",
+      "log_sha256": "48d1897b1dd03224e4d4926868a475c284e9cec786beb28855dd7118534740d4"
+    }
+  ],
+  "validation": {
+    "rust_core": 124,
+    "rust_service": 1,
+    "python": 207,
+    "ui_languages": [
+      "pt-BR",
+      "en-US",
+      "es-ES"
+    ],
+    "clippy": "passed",
+    "mount_cleanup_vm": "25 faults, cancellation and retry passed"
+  },
+  "limits": [
+    "Minimal public boot-tool fixture, not a full ISO or GNOME session",
+    "Secure Boot uses OVMF SUSE keys",
+    "Exact ISO qualification pending; RPM/OBS promoted"
+  ],
+  "obs": {
+    "git": "28a7f1d7f209f81bbc2b4ef62f0da20dbaba86a5",
+    "request": 1379053,
+    "staging_revision": 38,
+    "release_revision": 34,
+    "srcmd5": "2e4aa67aff5df53795a5abf72c130ef0",
+    "rpm": "lyra-installer-0.1.0-lp161.34.1.x86_64.rpm",
+    "rpm_sha256": "60d181e75f62a77fff283bef5461597d53848adb46400c54e496fe85f2683fa7",
+    "signature": "RSA/SHA256 key 7edca82e verified",
+    "tests_core": 124,
+    "rpmlint_errors": 0,
+    "public_download_matches": true
+  }
+}

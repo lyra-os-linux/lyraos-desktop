@@ -47,6 +47,30 @@ class MinimumsTests(unittest.TestCase):
         self.assertFalse(minimums.version_at_least('5.1.33', '5.1.34'))
         self.assertFalse(minimums.version_at_least('5.1.34~rc1', '5.1.34'))
 
+    def test_rejects_firefox_handoff_packages_before_the_data_loss_fix(self):
+        for package, stale in (
+            ('lyra-downloads', '0.1.0'),
+            ('lyra-downloads', '0.1.1'),
+            ('lyra-downloads-firefox-integration', '0.1.1'),
+            ('lyra-downloads-firefox-integration', '0.1.2~rc1'),
+            ('lyra-firefox-ext', '0.1.0'),
+        ):
+            with self.subTest(package=package, version=stale):
+                def installed(name):
+                    return stale if name == package else minimums.MINIMUMS[name]
+                with patch.object(minimums, 'installed_version', side_effect=installed):
+                    with self.assertRaisesRegex(ValueError, package + ': need >='):
+                        minimums.main()
+
+    def test_missing_firefox_native_host_fails_before_image_finalization(self):
+        def installed(package):
+            if package == 'lyra-downloads-firefox-integration':
+                raise minimums.subprocess.CalledProcessError(1, ['rpm', '-q', package])
+            return minimums.MINIMUMS[package]
+        with patch.object(minimums, 'installed_version', side_effect=installed):
+            with self.assertRaises(minimums.subprocess.CalledProcessError):
+                minimums.main()
+
     def test_no_macro_or_lua_interpolation_from_versions(self):
         with patch.object(minimums.subprocess, 'check_output') as command:
             for version in ['%{lua:print(1)}', '\"); print(1)', '1\n2', '']:
