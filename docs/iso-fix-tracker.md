@@ -253,6 +253,41 @@ outro hardware aprovados por esses ensaios. Evidência compacta em
 [`evidence/vega-nvidia-20260916.json`](evidence/vega-nvidia-20260916.json);
 recibos locais em `analysis/2026-09-16/vega-nvidia/`.
 
+## SHELL-01 — Atores descartados durante o encerramento
+
+- **Sintoma:** Panel/Dock acessavam atores já destruídos durante o encerramento
+  do GNOME. O segfault físico de18/09 é contemporâneo, mas a causalidade nativa
+  continua não comprovada; não marcar a queda como resolvida por inferência.
+- **Escopo:** ciclo de vida geral dos componentes LyraExtension, reproduzido
+  com GNOME48.8/llvmpipe sem depender da NVIDIA da estação.
+- **Fontes:** [Sheliak#34](https://github.com/lyra-os-linux/lyraos-desktop-sheliak/issues/34),
+  [PR35](https://github.com/lyra-os-linux/lyraos-desktop-sheliak/pull/35),2.0.3.
+  Liberar providers e recursos antes dos filhos de uiGroup; manter restauração
+  na desativação normal e tolerar limpeza repetida/reentrante.
+- **Receita:** pacote já selecionado; gate passa a exigir>=2.0.3, rejeitando2.0.2
+  e pré-release. RPM publicado e verificado conforme registro abaixo.
+- **Evidência:** matriz nativa com componentes isolados, juntos e quatro perfis;
+  baseline41–168 acessos inválidos por cenário ativo, correção0.208 checks de
+  ciclo e69 de coexistência/restauração. Compositor privado encerrado porSIGTERM
+  e callback de disable tardio; não é logoutGNOME Session/rebootVM/ISO.
+- **Pendente:** integrar esta alteração, consumir RPM publicado e validar
+  logout/reboot na candidata por checksum e em hardware aplicável. DING e o
+  segfault nativo não têm resolução geral demonstrada por esse ensaio.
+- **Reversão:** reverter fontes e reconstruir pelo staging; manter a candidata
+  bloqueada em regressão, sem ocultar avisos ou desativar globalmente extensões.
+
+### SHELL-01 — RPM publicado em20/09/2026
+
+[OBS1379316](https://build.opensuse.org/request/show/1379316) aceito; staging24,
+release53, fontes223791a, srcmd5 `ce77f2c05e1c481a51826300a8b807ce`.
+RPM `sheliak-2.0.3-lp161.1.1.noarch.rpm`, SHA256 público
+`0f5b550ee95bedb469efd31779399d08f1d0dcaa89c656ef7191009ddd38e327`, assinatura
+verificada.131 arquivos conferem com bundle qualificado; matriz repetida no
+RPM extraído passou208checks/setecenários,zero acessosdisposed e saída normal.
+Gates completos staging/release passaram. Evidência portátil em
+`docs/shutdown-obs-evidence.json` noPR Sheliak35.208 testesPython doDesktop e
+CI35532855573 aprovados no commit5c8d2f5. Integração/ISO/hardware continuam
+pendentes; SHELL-01 não é encerrado pela publicação do pacote.
 ## UPD-01 — Coexistência offline com PackageKit
 
 - **Sintoma:** PackageKit conclui a atualização offline, mas a unit Lyra falha
