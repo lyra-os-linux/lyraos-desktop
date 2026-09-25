@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "stdout": "PASS: failure/retry, readonly/CLOEXEC/seals/data, private COW, shared compatibility, 1000 opens without leaks, free, empty file\n",
+  "source": "/tmp/lyra-input-mutter-source/src/core/meta-anonymous-file.c",
+  "upstream_test": {
+    "path": "src/tests/anonymous-file.c",
+    "rc": 0
+  },
+  "without_memfd_rc": 0
+}

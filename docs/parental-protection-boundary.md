@@ -60,6 +60,14 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso experimental em 25/09
 
+A [etapa de teclado, atalhos e fontes](evidence/parental-input/README.md)
+mantém Keyboard/MediaKeys no domínio restrito, verifica atalho autorizado e
+shell negado, recebe uma tecla em GTK Wayland e grava cache Fontconfig sem
+permitir execução dos dados. O auxiliar GIO faz os lançamentos do Shell entrarem
+no domínio da conta. Um patch de cópias de dados do Mutter preserva a restrição
+de escrita na memória executável do compositor. Restam 14 unidades de usuário
+com falha; sessão integral, evasão e integração de produção seguem pendentes.
+
 A [etapa de acessibilidade](evidence/parental-a11y/README.md) integra o daemon
 A11ySettings e propõe um hook AT-SPI nativo para X11. O ensaio verifica
 sincronização de preferências e leitura da árvore de uma janela GTK pelo

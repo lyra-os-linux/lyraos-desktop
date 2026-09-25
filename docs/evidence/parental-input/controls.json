@@ -1,0 +1,1147 @@
+[
+  {
+    "argv": [
+      "systemctl",
+      "stop",
+      "gdm"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "restorecon",
+      "/etc/X11/xorg.conf.d/00-keyboard.conf"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "systemctl",
+      "restart",
+      "systemd-localed.service"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=gnu17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "-Wl,-z,relro,-z,now",
+      "/root/trusted-shell.c",
+      "-lselinux",
+      "-o",
+      "/usr/libexec/lyra/trusted-shell-test",
+      "-pthread",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib64/glib-2.0/include",
+      "-DWITH_GZFILEOP",
+      "-I/usr/include/libmount",
+      "-I/usr/include/blkid",
+      "-lgio-2.0",
+      "-lgobject-2.0",
+      "-lglib-2.0"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/system-bus-probe.c",
+      "-lselinux",
+      "-o",
+      "/usr/libexec/lyra/parental-services-probe",
+      "-pthread",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib64/glib-2.0/include",
+      "-DWITH_GZFILEOP",
+      "-I/usr/include/libmount",
+      "-I/usr/include/blkid",
+      "-lgio-2.0",
+      "-lgobject-2.0",
+      "-lglib-2.0"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/launch-probe.c",
+      "-lselinux",
+      "-o",
+      "/usr/libexec/lyra/parental-launch-probe"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/a11y-settings-probe.c",
+      "-lselinux",
+      "-o",
+      "/opt/lyra-parental-probe/a11y-settings-probe",
+      "-pthread",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib64/glib-2.0/include",
+      "-DWITH_GZFILEOP",
+      "-I/usr/include/libmount",
+      "-I/usr/include/blkid",
+      "-lgio-2.0",
+      "-lgobject-2.0",
+      "-lglib-2.0"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/accessible-app.c",
+      "-lselinux",
+      "-o",
+      "/opt/lyra-parental-probe/accessible-app",
+      "-I/usr/include/gtk-3.0",
+      "-I/usr/include/pango-1.0",
+      "-I/usr/include/cairo",
+      "-I/usr/include/gdk-pixbuf-2.0",
+      "-I/usr/include/at-spi2-atk/2.0",
+      "-I/usr/include/at-spi-2.0",
+      "-I/usr/include/atk-1.0",
+      "-I/usr/include/dbus-1.0",
+      "-I/usr/lib64/dbus-1.0/include",
+      "-I/usr/include/libxkbcommon",
+      "-I/usr/include/wayland",
+      "-I/usr/include/fribidi",
+      "-I/usr/include/libpng16",
+      "-I/usr/include/pixman-1",
+      "-I/usr/include/harfbuzz",
+      "-I/usr/include/freetype2",
+      "-I/usr/include/gio-unix-2.0",
+      "-pthread",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib64/glib-2.0/include",
+      "-DWITH_GZFILEOP",
+      "-I/usr/include/libmount",
+      "-I/usr/include/blkid",
+      "-lgtk-3",
+      "-lgdk-3",
+      "-lpangocairo-1.0",
+      "-lcairo-gobject",
+      "-lgdk_pixbuf-2.0",
+      "-latk-1.0",
+      "-lwayland-client",
+      "-lm",
+      "-lpango-1.0",
+      "-lcairo",
+      "-lharfbuzz",
+      "-lgio-2.0",
+      "-lgobject-2.0",
+      "-lglib-2.0",
+      "-lz"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/accessible-client.c",
+      "-lselinux",
+      "-o",
+      "/opt/lyra-parental-probe/accessible-client",
+      "-I/usr/include/at-spi-2.0",
+      "-I/usr/include/dbus-1.0",
+      "-I/usr/lib64/dbus-1.0/include",
+      "-pthread",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib64/glib-2.0/include",
+      "-DWITH_GZFILEOP",
+      "-I/usr/include/libmount",
+      "-I/usr/include/blkid",
+      "-latspi",
+      "-ldbus-1",
+      "-lgobject-2.0",
+      "-lglib-2.0"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/settings-probe.c",
+      "-lselinux",
+      "-o",
+      "/opt/lyra-parental-probe/settings-probe",
+      "-I/usr/include/dconf",
+      "-pthread",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib64/glib-2.0/include",
+      "-DWITH_GZFILEOP",
+      "-I/usr/include/libmount",
+      "-I/usr/include/blkid",
+      "-ldconf",
+      "-lgio-2.0",
+      "-lgobject-2.0",
+      "-lglib-2.0"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/input-probe.c",
+      "-lselinux",
+      "-o",
+      "/opt/lyra-parental-probe/input-probe",
+      "-pthread",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib64/glib-2.0/include",
+      "-I/usr/include/libmount",
+      "-I/usr/include/blkid",
+      "-I/usr/include/freetype2",
+      "-DWITH_GZFILEOP",
+      "-lgio-2.0",
+      "-lgobject-2.0",
+      "-lglib-2.0",
+      "-lfontconfig",
+      "-lfreetype"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/input-window.c",
+      "-lselinux",
+      "-o",
+      "/opt/lyra-parental-probe/input-window",
+      "-I/usr/include/gtk-3.0",
+      "-I/usr/include/pango-1.0",
+      "-I/usr/include/cairo",
+      "-I/usr/include/gdk-pixbuf-2.0",
+      "-I/usr/include/at-spi2-atk/2.0",
+      "-I/usr/include/at-spi-2.0",
+      "-I/usr/include/atk-1.0",
+      "-I/usr/include/dbus-1.0",
+      "-I/usr/lib64/dbus-1.0/include",
+      "-I/usr/include/libxkbcommon",
+      "-I/usr/include/wayland",
+      "-I/usr/include/fribidi",
+      "-I/usr/include/libpng16",
+      "-I/usr/include/pixman-1",
+      "-I/usr/include/harfbuzz",
+      "-I/usr/include/freetype2",
+      "-I/usr/include/gio-unix-2.0",
+      "-pthread",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib64/glib-2.0/include",
+      "-DWITH_GZFILEOP",
+      "-I/usr/include/libmount",
+      "-I/usr/include/blkid",
+      "-lgtk-3",
+      "-lgdk-3",
+      "-lpangocairo-1.0",
+      "-lcairo-gobject",
+      "-lgdk_pixbuf-2.0",
+      "-latk-1.0",
+      "-lwayland-client",
+      "-lm",
+      "-lpango-1.0",
+      "-lcairo",
+      "-lharfbuzz",
+      "-lgio-2.0",
+      "-lgobject-2.0",
+      "-lglib-2.0",
+      "-lz"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/xwindow-test.c",
+      "-lX11",
+      "-lselinux",
+      "-o",
+      "/opt/lyra-parental-probe/xwindow-test"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "dconf",
+      "compile",
+      "/etc/dconf/db/lyra-supervised-test",
+      "/root/lyra-shell-test-db.d"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "user_tmp_t",
+      "/tmp/lyra-trusted-shell-test.log"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "restorecon",
+      "/etc/dconf/profile/lyra-supervised-test",
+      "/etc/dconf/profile/lyra-supervised-raw-test",
+      "/etc/dconf/db/lyra-supervised-test",
+      "/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "semodule",
+      "-i",
+      "/root/lyra-trusted-shell-test.cil"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_session_log_t",
+      "/tmp/lyra-trusted-shell-test.log"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_gdm_launcher_exec_t",
+      "/usr/libexec/gdm/gdm-wayland-session"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_gnome_session_exec_t",
+      "/usr/libexec/gnome-session-binary"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_gnome_session_exec_t",
+      "/usr/libexec/gnome-session-ctl"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_shell_payload_t",
+      "/usr/bin/gnome-shell"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_shell_entry_t",
+      "/usr/libexec/lyra/trusted-shell-test"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_xwayland_exec_t",
+      "/usr/bin/Xwayland"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_xclient_exec_t",
+      "/usr/bin/xprop",
+      "/opt/lyra-parental-probe/xwindow-test"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_xkb_exec_t",
+      "/usr/bin/xkbcomp"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_x11_ready_unit_t",
+      "/usr/lib/systemd/user/gnome-session-x11-services-ready.target"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_frames_exec_t",
+      "/usr/libexec/mutter-x11-frames"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_xsettings_exec_t",
+      "/usr/libexec/gsd-xsettings"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_a11y_exec_t",
+      "/usr/libexec/gsd-a11y-settings",
+      "/usr/etc/xdg/Xwayland-session.d/00-at-spi"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_probe_exec_t",
+      "/opt/lyra-parental-probe/a11y-settings-probe"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_probe_exec_t",
+      "/opt/lyra-parental-probe/accessible-app"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_probe_exec_t",
+      "/opt/lyra-parental-probe/accessible-client"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_dconf_exec_t",
+      "/usr/libexec/dconf-service"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_probe_exec_t",
+      "/opt/lyra-parental-probe/settings-probe"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_settings_t",
+      "/home/parentaltest/.config/dconf"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_input_exec_t",
+      "/usr/libexec/gsd-keyboard",
+      "/usr/libexec/gsd-media-keys"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_probe_exec_t",
+      "/opt/lyra-parental-probe/input-probe",
+      "/opt/lyra-parental-probe/input-window"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_fontcache_t",
+      "/home/parentaltest/.cache/fontconfig",
+      "/home/parentaltest/.cache/fontconfig/CACHEDIR.TAG",
+      "/home/parentaltest/.cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-x86_64.cache-9",
+      "/home/parentaltest/.cache/fontconfig/73965217f1b7b90ee0db9ebb30b3a964-x86_64.cache-9",
+      "/home/parentaltest/.cache/fontconfig/7ef2298fde41cc6eeb7af42e48b7d293-x86_64.cache-9"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_shell_entry_t",
+      "/usr/libexec/lyra/parental-services-probe",
+      "/usr/libexec/lyra/parental-launch-probe"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_gio_launcher_exec_t",
+      "/usr/libexec/gio-launch-desktop"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_atspi_exec_t",
+      "/usr/libexec/at-spi2/at-spi-bus-launcher"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chcon",
+      "-t",
+      "lyra_parental_atspi_exec_t",
+      "/usr/libexec/at-spi2/at-spi2-registryd"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "restorecon",
+      "/usr/libexec/gdm/gdm-session-worker"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "systemctl",
+      "start",
+      "auditd"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "auditctl",
+      "-b",
+      "8192"
+    ],
+    "rc": 0,
+    "stdout": "enabled 1\nfailure 1\npid 94301\nrate_limit 0\nbacklog_limit 8192\nlost 516602\nbacklog 2\nbacklog_wait_time 60000\nbacklog_wait_time_actual 0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "setenforce",
+      "1"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/approved"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/bin/true"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/home/parentaltest/copied-true"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/bin/bash",
+      "-c",
+      "true"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/bin/python3",
+      "-c",
+      "print(42)"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/lib64/ld-linux-x86-64.so.2",
+      "/home/parentaltest/copied-true"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "--anon"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nmprotect_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "--map",
+      "/home/parentaltest/copied-true"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nmmap_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/mutter-x11-frames"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/bin/Xwayland",
+      "-version"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/bin/xkbcomp",
+      "-version"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/trusted-shell-test",
+      "--invalid"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": "trusted-shell fixture refused: arguments are not accepted\n"
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/bin/gnome-shell",
+      "--version"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/parental-launch-probe",
+      "approved"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nlauncher-boundary uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/parental-launch-probe",
+      "shell"
+    ],
+    "rc": 255,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nlauncher-boundary uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/parental-launch-probe",
+      "python"
+    ],
+    "rc": 255,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nlauncher-boundary uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/parental-launch-probe",
+      "copy"
+    ],
+    "rc": 255,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nlauncher-boundary uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/parental-launch-probe",
+      "loader"
+    ],
+    "rc": 255,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nlauncher-boundary uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/parental-launch-probe",
+      "anonymous"
+    ],
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nlauncher-boundary uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nmprotect_errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "ordinaryuser",
+      "--",
+      "python3",
+      "-c",
+      "print(\"ordinary-account-ok\")"
+    ],
+    "rc": 0,
+    "stdout": "ordinary-account-ok\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "python3",
+      "/root/trusted-shell-config-faults.py"
+    ],
+    "rc": 0,
+    "stdout": "[\n  {\n    \"name\": \"writable-administrator-database\",\n    \"rc\": 126,\n    \"stdout\": \"uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\\n\",\n    \"stderr\": \"trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\\ntrusted-shell fixture refused: missing or untrusted administrator configuration\\n\"\n  },\n  {\n    \"name\": \"non-root-administrator-database\",\n    \"rc\": 126,\n    \"stdout\": \"uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\\n\",\n    \"stderr\": \"trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\\ntrusted-shell fixture refused: missing or untrusted administrator configuration\\n\"\n  },\n  {\n    \"name\": \"notification-socket-refused:'/tmp/untrusted-notify'\",\n    \"rc\": 126,\n    \"stdout\": \"uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\\n\",\n    \"stderr\": \"trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\\ntrusted-shell fixture refused: unexpected notification socket\\n\"\n  },\n  {\n    \"name\": \"notification-socket-refused:'/run/user/1002/systemd/notify'\",\n    \"rc\": 126,\n    \"stdout\": \"uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\\n\",\n    \"stderr\": \"trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\\ntrusted-shell fixture refused: unexpected notification socket\\n\"\n  },\n  {\n    \"name\": \"notification-socket-refused:'@untrusted-notify'\",\n    \"rc\": 126,\n    \"stdout\": \"uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\\n\",\n    \"stderr\": \"trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\\ntrusted-shell fixture refused: unexpected notification socket\\n\"\n  },\n  {\n    \"name\": \"notification-socket-refused:''\",\n    \"rc\": 126,\n    \"stdout\": \"uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\\n\",\n    \"stderr\": \"trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\\ntrusted-shell fixture refused: unexpected notification socket\\n\"\n  },\n  {\n    \"name\": \"profile-does-not-apply-locks\",\n    \"rc\": 126,\n    \"stdout\": \"uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\\n\",\n    \"stderr\": \"trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\\ntrusted-shell fixture refused: desktop restrictions are not locked and effective\\n\"\n  },\n  {\n    \"name\": \"corrupt-administrator-database\",\n    \"rc\": 126,\n    \"stdout\": \"uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\\n\",\n    \"stderr\": \"trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\\n\\n(process:94388): dconf-WARNING **: 22:01:18.054: unable to open file '/etc/dconf/db/lyra-supervised-test': /etc/dconf/db/lyra-supervised-test: invalid gvdb header; expect degraded performance\\ntrusted-shell fixture refused: desktop restrictions are not locked and effective\\n\"\n  },\n  {\n    \"name\": \"ordinary-account-cannot-enter-shell-domain\",\n    \"rc\": 126,\n    \"stdout\": \"\",\n    \"stderr\": \"trusted-shell fixture refused: not in trusted shell domain\\n\"\n  },\n  {\n    \"name\": \"permissive-mode-refused\",\n    \"rc\": 126,\n    \"stdout\": \"uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\\n\",\n    \"stderr\": \"trusted-shell fixture refused: SELinux is not enforcing\\n\"\n  }\n]\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=gnu17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/xwayland-fd-probe.c",
+      "-lselinux",
+      "-o",
+      "/root/xwayland-fd-probe"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/trusted-shell-test",
+      "rw"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\nmode=rw label=system_u:object_r:lyra_parental_shell_memory_t:s0 flags=32770 seals=0\nuid=1003 context=system_u:system_r:lyra_parental_xwayland_t:s0 enforcing=1\ndescriptor denied flags=8\nreceiver=126 expected=126\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/trusted-shell-test",
+      "sealed-rw"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\nmode=sealed-rw label=system_u:object_r:lyra_parental_shell_memory_t:s0 flags=32770 seals=14\nuid=1003 context=system_u:system_r:lyra_parental_xwayland_t:s0 enforcing=1\ndescriptor denied flags=8\nreceiver=126 expected=126\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/trusted-shell-test",
+      "sealed-ro"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\nmode=sealed-ro label=system_u:object_r:lyra_parental_shell_memory_t:s0 flags=32768 seals=14\nuid=1003 context=system_u:system_r:lyra_parental_xwayland_t:s0 enforcing=1\ndescriptor received data=keymap write=-1 errno=9 executable_map=denied errno=13\nreceiver=0 expected=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/trusted-shell-test",
+      "pixels-rw"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\npixel descriptor label=system_u:object_r:lyra_parental_xwayland_data_t:s0 shared_write=OK executable_map=denied errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "setenforce",
+      "0"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

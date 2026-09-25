@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "source_sha256": "dab5017dca8b169b81ebe4422018a460b582faddadbbefef57173ebe1b21ee08",
+  "patch_stdout": "patching file src/core/meta-anonymous-file.c\n"
+}
