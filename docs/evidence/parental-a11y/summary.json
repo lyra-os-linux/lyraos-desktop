@@ -1,0 +1,28 @@
+{
+  "round": "a11y3",
+  "previous_rounds": [
+    "a11y1",
+    "a11y2"
+  ],
+  "a11y_unit": "MainPID=88599\nNRestarts=0\nActiveState=active\nSubState=running\n",
+  "a11y_domain": "lyra_parental_probe_t",
+  "client_discovery_rc": [
+    0,
+    1,
+    0
+  ],
+  "hook_invalid_missing_bus_success_rc": [
+    64,
+    1,
+    0
+  ],
+  "gtk_ready": true,
+  "gtk_warnings": "Fontconfig: No writable cache directories (pending)",
+  "dconf_calls_passed": 9,
+  "remaining_failed_user_units": 16,
+  "audit_lost_delta": 0,
+  "audit_limited": false,
+  "repository_python_tests_passed": 221,
+  "raw_session_sha256": "c19cff0e6189c310d42661797a09ab469c48359cc294278213fdf28a1ec47d30",
+  "scope": "Native accessibility component only; full account/session not qualified"
+}

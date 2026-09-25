@@ -1,0 +1,10 @@
+[
+  {
+    "count": 1,
+    "line": "type=AVC msg=audit(1790368103.777:9621023): avc:  denied  { write } for  pid=88147 comm=\"probe\" path=\"/root/a11y-app-stdout.log\" dev=\"vda\" ino=50491 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:admin_home_t:s0 tclass=file permissive=0"
+  },
+  {
+    "count": 1,
+    "line": "type=AVC msg=audit(1790368103.777:9621024): avc:  denied  { write } for  pid=88147 comm=\"probe\" path=\"/root/a11y-app-stderr.log\" dev=\"vda\" ino=50492 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:admin_home_t:s0 tclass=file permissive=0"
+  }
+]

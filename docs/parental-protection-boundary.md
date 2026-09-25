@@ -60,6 +60,12 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso experimental em 25/09
 
+A [etapa de acessibilidade](evidence/parental-a11y/README.md) integra o daemon
+A11ySettings e propõe um hook AT-SPI nativo para X11. O ensaio verifica
+sincronização de preferências e leitura da árvore de uma janela GTK pelo
+cliente libatspi no domínio restrito. Não qualifica Orca ou acessibilidade
+integral; os demais serviços e a proteção de toda a conta continuam pendentes.
+
 A [etapa dconf](evidence/parental-dconf/README.md) iniciou o serviço oficial no
 domínio restrito e verificou gravação/leitura de preferência após reinício.
 As três configurações protegidas do Shell continuam efetivas com o perfil
