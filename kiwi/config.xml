@@ -38,7 +38,7 @@
       Selects lyra-os-theme's "Lyra-OS" assets. The
       bootloader theme is active in the live GRUB menu. The bootsplash
       selection records the desired default in the image root, but the
-      live initrd deliberately excludes Plymouth: adding plymouth-dracut
+      live initrd explicitly omits Plymouth: including its module
       makes the non-host-only dracut build pull every generic DRM driver
       and its firmware, producing a 138 MiB initrd that stalls visibly in
       GRUB. See the package-list comment and kiwi/README.md.
@@ -257,7 +257,7 @@
       componentes de rede explícitos, sem depender de recomendações opcionais.
       Nenhuma máquina ou disco é criado durante a instalação da ISO.
     -->
-    <package name="lyra-vms" version="&gt;=0.1.0"/>
+    <package name="lyra-vms"/>
     <package name="virt-viewer"/>
     <package name="virt-install"/>
     <package name="libvirt-daemon-qemu"/>
@@ -319,9 +319,9 @@
     <package name="pipewire"/>
     <package name="pipewire-pulseaudio"/>
     <package name="wireplumber"/>
-    <!-- Kept as a runtime/theme-package dependency. Do not add
-         plymouth-dracut here: its drm dependency inflates the generic live
-         initrd and caused the boot regression at "Loading initial ramdisk". -->
+    <!-- The theme requires plymouth-dracut for the installed system. The
+         conditional dracut config omits both Plymouth modules from the live initrd
+         to prevent the generic DRM/firmware boot-size regression. -->
     <package name="plymouth"/>
 
     <!--
@@ -448,14 +448,14 @@
     <!-- Download manager with parallel connections (aria2 backend). The
          Firefox integration subpackage registers the native messaging host
          globally; Firefox is the default browser. -->
-    <package name="lyra-downloads" version="&gt;=0.1.3"/>
-    <package name="lyra-downloads-firefox-integration" version="&gt;=0.1.3"/>
+    <package name="lyra-downloads"/>
+    <package name="lyra-downloads-firefox-integration"/>
     <!-- Mozilla-signed extension (AMO unlisted). Firefox installs it from
          /usr/share/lyra-firefox-ext through ExtensionSettings in the
          overlay's distribution/policies.json (normal_installed: the user
          can disable it, not remove it). -->
-    <package name="lyra-firefox-ext" version="&gt;=0.1.3"/>
-    <package name="lyra-firefox-theme" version="&gt;=0.1.0"/>
+    <package name="lyra-firefox-ext"/>
+    <package name="lyra-firefox-theme"/>
     <package name="gnome-calculator"/>
     <package name="gnome-characters"/>
     <package name="gnome-disk-utility"/>
@@ -553,8 +553,8 @@
       image checks their minimum versions. The terminal frontend vega-cli
       remains optional and is not required by the GTK frontend or this image.
     -->
-    <package name="vega-gtk" version="&gt;=5.1.45"/>
-    <package name="vegad" version="&gt;=5.1.32"/>
+    <package name="vega-gtk"/>
+    <package name="vegad"/>
 
     <!-- Lyra's native remote-access clients, pinned in the default GNOME
          favorites together with Vega and Firefox. -->
@@ -594,10 +594,11 @@
       names, dependency, and behavior confirmed against that repo's real
       packaging/opensuse/*.spec and install-rpm.sh, not assumed:
 
-      - lyra-os-theme's %post already sets GRUB_THEME in
-        /etc/default/grub + runs grub2-mkconfig, and selects the
-        Lyra-OS Plymouth theme. The live initrd intentionally omits
-        plymouth-dracut; only the GRUB theme is enabled on the live path.
+      - lyra-os-theme >= 1.9.4 keeps a config(noreplace) GRUB preference,
+        selects Lyra-OS Plymouth and regenerates GRUB after the initrd.
+        Its plymouth-dracut dependency supports the installed system.
+        A kiwi-live-specific dracut config omits both Plymouth modules from the
+        live initrd; the live GRUB theme stays enabled.
       - It also ships a compiled-in gsettings default
         (/usr/share/glib-2.0/schemas/99-lyra-os.gschema.override:
         icon-theme and both

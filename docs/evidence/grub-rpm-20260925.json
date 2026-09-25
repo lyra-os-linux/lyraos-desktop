@@ -1,0 +1,167 @@
+{
+  "date": "2026-09-25",
+  "source_commit": "26fb9e67c88b2dbc4f3bfa0d5a339f48a00cb9db",
+  "source_prs": [
+    17,
+    18
+  ],
+  "obs_project": "home:rodrigosbrito:lyra:staging",
+  "obs_package": "lyra-theme",
+  "obs_revision": "6532393c88e40adc804b7115ee1cb52b",
+  "rpm": "lyra-os-theme-1.9.4-lp161.2.1.noarch.rpm",
+  "sha256": "dafe3ff7e04b29c44b21ed559a6e86ab04d1e484d023dbf57645299517488979",
+  "signature": "digests signatures OK",
+  "fresh_checks": [
+    {
+      "name": "exact-rpm",
+      "pass_": true
+    },
+    {
+      "name": "lyra-os-theme-initially-absent",
+      "pass_": true
+    },
+    {
+      "name": "plymouth-dracut-initially-absent",
+      "pass_": true
+    },
+    {
+      "name": "install-no-dracut-errors",
+      "pass_": true
+    },
+    {
+      "name": "initrd-created",
+      "pass_": true
+    },
+    {
+      "name": "plymouth-modules",
+      "pass_": true
+    },
+    {
+      "name": "lyra-plymouth-assets",
+      "pass_": true
+    },
+    {
+      "name": "postinstall-menu-has-initrd",
+      "pass_": true
+    },
+    {
+      "name": "postinstall-menu-has-lyra",
+      "pass_": true
+    }
+  ],
+  "upgrade_checks": [
+    {
+      "name": "exact-staging-rpm",
+      "pass_": true
+    },
+    {
+      "name": "old-version",
+      "pass_": true
+    },
+    {
+      "name": "fixture-has-kernel-entries",
+      "pass_": true
+    },
+    {
+      "name": "new-version",
+      "pass_": true
+    },
+    {
+      "name": "upgrade-boot-entries",
+      "pass_": true
+    },
+    {
+      "name": "upgrade-theme",
+      "pass_": true
+    },
+    {
+      "name": "upgrade-backup",
+      "pass_": true
+    },
+    {
+      "name": "opensuse-reinstall-boot-entries",
+      "pass_": true
+    },
+    {
+      "name": "opensuse-reinstall-theme",
+      "pass_": true
+    },
+    {
+      "name": "opensuse-reinstall-backup",
+      "pass_": true
+    },
+    {
+      "name": "include-single",
+      "pass_": true
+    },
+    {
+      "name": "custom-config-preserved",
+      "pass_": true
+    },
+    {
+      "name": "custom-empty-boot-entries",
+      "pass_": true
+    },
+    {
+      "name": "custom-empty-theme",
+      "pass_": true
+    },
+    {
+      "name": "custom-empty-backup",
+      "pass_": true
+    },
+    {
+      "name": "before-removal-boot-entries",
+      "pass_": true
+    },
+    {
+      "name": "before-removal-theme",
+      "pass_": true
+    },
+    {
+      "name": "before-removal-backup",
+      "pass_": true
+    },
+    {
+      "name": "removal-restores-opensuse",
+      "pass_": true
+    },
+    {
+      "name": "removal-no-lyra-path",
+      "pass_": true
+    },
+    {
+      "name": "removal-no-include",
+      "pass_": true
+    },
+    {
+      "name": "removal-preserves-boot-entries",
+      "pass_": true
+    }
+  ],
+  "unit_tests": 19,
+  "ci_runs": [
+    36142638442,
+    36142647263
+  ],
+  "limitations": [
+    "Direct-kernel VM; generated GRUB configuration checked, not firmware/visual boot",
+    "Exact candidate ISO qualification remains pending",
+    "No host package installation"
+  ],
+  "rpmlint": {
+    "errors": 2,
+    "warnings": 4,
+    "notes": [
+      "config(lyra-os-theme) is RPM-generated and requires/provides the exact EVR; branding-requires-unversioned diagnostic despite versioned dependency",
+      "plymouth-theme-spinner dependency supplies inherited theme assets; existing branding-requires-specific-flavor diagnostic retained"
+    ]
+  },
+  "live_initrd_integration": {
+    "kiwi": "10.2.33-160100.3.1",
+    "recipe_schema": "PASS",
+    "generic_live_omits_both_plymouth_modules": true,
+    "installed_initrd_preserves_both_plymouth_modules": true,
+    "full_iso": "not built"
+  }
+}
