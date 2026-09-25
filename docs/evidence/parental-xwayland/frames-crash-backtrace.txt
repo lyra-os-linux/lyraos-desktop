@@ -1,0 +1,8 @@
+Thread 1 "gnome-shell" received signal SIGSEGV, Segmentation fault.
+0x00007f29f08e7837 in g_mutex_lock () from /lib64/libglib-2.0.so.0
+#0  0x00007f29f08e7837 in g_mutex_lock () at /lib64/libglib-2.0.so.0
+#1  0x00007f29f0ac7724 in g_subprocess_wait_async () at /lib64/libgio-2.0.so.0
+#2  0x00007f29f01c616e in meta_x11_display_init_frames_client (x11_display=0x55dd7f24c250) at ../mutter-patched/src/x11/meta-x11-display.c:1335
+#3  0x00007f29f01c7f57 in meta_x11_display_new (display=0x55dd81534550, error=0x7ffc1a0e74c8) at ../mutter-patched/src/x11/meta-x11-display.c:1734
+#4  0x00007f29f015486e in meta_display_init_x11_finish (display=0x55dd81534550, result=0x55dd84126ef0, error=0x7ffc1a0e74c8) at ../mutter-patched/src/core/display.c:847
+#5  0x00007f29f0261d79 in on_init_x11_cb (display=0x55dd81534550, result=0x55dd84126ef0, user_data=0x0) at ../mutter-patched/src/wayland/meta-xwayland.c:752

@@ -1,0 +1,35 @@
+[
+  {
+    "argv": [
+      "python3",
+      "/root/test-frames.py",
+      "/root/mutter-patched"
+    ],
+    "rc": 0,
+    "stdout": "{\n  \"passed\": true,\n  \"cases\": [\n    \"spawn failure returns error without async wait\",\n    \"failure without error destination\",\n    \"successful spawn and completion\"\n  ]\n}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "ninja",
+      "-C",
+      "/root/mutter-build",
+      "-j2",
+      "src/libmutter-16.so.0.0.0"
+    ],
+    "rc": 0,
+    "stdout": "ninja: Entering directory `/root/mutter-build'\n[1/2] Compiling C object src/libmutter-16.so.0.0.0.p/x11_meta-x11-display.c.o\n[2/2] Linking target src/libmutter-16.so.0.0.0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "chrpath",
+      "-r",
+      "/usr/lib64/mutter-16",
+      "/root/mutter-build/src/libmutter-16.so.0.0.0"
+    ],
+    "rc": 0,
+    "stdout": "/root/mutter-build/src/libmutter-16.so.0.0.0: RPATH=$ORIGIN/../cogl/cogl:$ORIGIN/../mtk/mtk:$ORIGIN/../clutter/clutter\n/root/mutter-build/src/libmutter-16.so.0.0.0: new RPATH: /usr/lib64/mutter-16\n",
+    "stderr": ""
+  }
+]

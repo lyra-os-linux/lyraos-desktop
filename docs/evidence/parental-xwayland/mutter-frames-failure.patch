@@ -1,0 +1,69 @@
+--- a/src/x11/meta-x11-display.c
++++ b/src/x11/meta-x11-display.c
+@@ -110,7 +110,8 @@
+ static void prefs_changed_callback (MetaPreference pref,
+                                     void          *data);
+ 
+-static void meta_x11_display_init_frames_client (MetaX11Display *x11_display);
++static gboolean meta_x11_display_init_frames_client (MetaX11Display *x11_display,
++                                                     GError        **error);
+ 
+ static void meta_x11_display_remove_cursor_later (MetaX11Display *x11_display);
+ 
+@@ -1266,7 +1267,11 @@
+ 
+       /* Bring it up again, unless it was forcibly closed */
+       if (signum != SIGTERM && signum != SIGKILL)
+-        meta_x11_display_init_frames_client (x11_display);
++        {
++          g_clear_error (&error);
++          if (!meta_x11_display_init_frames_client (x11_display, &error))
++            g_warning ("Could not restart X11 frames client: %s", error->message);
++        }
+     }
+ }
+ 
+@@ -1323,8 +1328,9 @@
+                                     us2ms (timestamp_us));
+ }
+ 
+-static void
+-meta_x11_display_init_frames_client (MetaX11Display *x11_display)
++static gboolean
++meta_x11_display_init_frames_client (MetaX11Display *x11_display,
++                                     GError        **error)
+ {
+   const char *display_name;
+ 
+@@ -1332,9 +1338,18 @@
+   x11_display->frames_client_cancellable = g_cancellable_new ();
+   x11_display->frames_client = meta_frame_launch_client (x11_display,
+                                                          display_name);
++  if (!x11_display->frames_client)
++    {
++      g_clear_object (&x11_display->frames_client_cancellable);
++      g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_FAILED,
++                           "Failed to launch X11 frames client");
++      return FALSE;
++    }
++
+   g_subprocess_wait_async (x11_display->frames_client,
+                            x11_display->frames_client_cancellable,
+                            on_frames_client_died, x11_display);
++  return TRUE;
+ }
+ 
+ static void
+@@ -1731,7 +1746,11 @@
+ 
+   init_event_masks (x11_display);
+ 
+-  meta_x11_display_init_frames_client (x11_display);
++  if (!meta_x11_display_init_frames_client (x11_display, error))
++    {
++      g_object_run_dispose (G_OBJECT (x11_display));
++      return NULL;
++    }
+ 
+   return g_steal_pointer (&x11_display);
+ }

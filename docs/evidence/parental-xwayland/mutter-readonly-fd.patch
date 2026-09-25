@@ -1,0 +1,49 @@
+--- a/src/core/meta-anonymous-file.c
++++ b/src/core/meta-anonymous-file.c
+@@ -28,6 +28,7 @@
+ struct _MetaAnonymousFile
+ {
+   int fd;
++  int readonly_fd;
+   size_t size;
+ };
+ 
+@@ -198,6 +199,7 @@
+       return NULL;
+     }
+ 
++  file->readonly_fd = -1;
+   file->size = size;
+   file->fd = create_anonymous_file (size);
+   if (file->fd == -1)
+@@ -245,6 +247,8 @@
+ meta_anonymous_file_free (MetaAnonymousFile *file)
+ {
+   close (file->fd);
++  if (file->readonly_fd >= 0)
++    close (file->readonly_fd);
+   g_free (file);
+ }
+ 
+@@ -306,7 +310,20 @@
+    */
+   if (seals != -1 && mapmode == META_ANONYMOUS_FILE_MAPMODE_PRIVATE &&
+       (seals & READONLY_SEALS) == READONLY_SEALS)
+-    return file->fd;
++    {
++      /* Seals prevent writes, but SCM_RIGHTS also checks the descriptor's
++       * access mode. Reopen read-only instead of delegating O_RDWR. Keep it
++       * owned by the MetaAnonymousFile, like the original sealed descriptor.
++       */
++      if (file->readonly_fd < 0)
++        {
++          char path[64];
++
++          g_snprintf (path, sizeof (path), "/proc/self/fd/%d", file->fd);
++          file->readonly_fd = open (path, O_RDONLY | O_CLOEXEC);
++        }
++      return file->readonly_fd;
++    }
+ #endif
+ 
+   /* for all other cases we create a new anonymous file that can be mapped

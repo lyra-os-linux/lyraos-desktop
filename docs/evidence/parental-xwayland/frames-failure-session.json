@@ -1,0 +1,20 @@
+{
+  "scenario": "Mutter frames helper remains denied by SELinux",
+  "shell_launches": 1,
+  "messages": [
+    "(gnome-shell:81835): libmutter-WARNING **: 19:35:16.069: Could not launch X11 frames client: Failed to execute child process \u201c/usr/libexec/mutter-x11-frames\u201d (Permission denied)",
+    "(gnome-shell:81835): libmutter-WARNING **: 19:35:16.070: Failed to initialize X11 display: Failed to launch X11 frames client"
+  ],
+  "observed_shell": [
+    {
+      "argv": [
+        "fixture",
+        "shell-processes"
+      ],
+      "rc": 0,
+      "stdout": "[{\"pid\": 81835, \"context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0\\u0000\", \"environment\": {\"NOTIFY_SOCKET\": \"/run/user/1003/systemd/notify\", \"XDG_DATA_DIRS\": \"/usr/local/share:/usr/share\", \"GNOME_SHELL_SESSION_MODE\": \"user\", \"DCONF_PROFILE\": \"/etc/dconf/profile/lyra-supervised-test\", \"GSETTINGS_BACKEND\": \"dconf\"}}]",
+      "stderr": ""
+    }
+  ],
+  "audit_lost_delta": 0
+}

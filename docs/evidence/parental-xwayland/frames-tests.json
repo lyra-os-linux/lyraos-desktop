@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "cases": [
+    "spawn failure returns error without async wait",
+    "failure without error destination",
+    "successful spawn and completion"
+  ]
+}
