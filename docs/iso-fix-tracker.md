@@ -467,12 +467,32 @@ da preferência Lyra, anulando-a. Reparo local recolocou a preferência por últ
 com backup, geração em candidato, grub2-script-check e preservação das seis
 linhas kernel/initrd. Não houve reboot nem alteração de pacote nesta correção.
 
-A simulação da reescrita de variáveis pelo activate-theme manteve Lyra efetivo
-com o include final. A persistência contra substituição integral da configuração
-e o comportamento da receita limpa ainda precisam de qualificação; não copiar
-esse reparo local para a imagem sem verificar a causa no ciclo de upgrade.
-Evidências locais: analysis/2026-09-25/grub-theme-repair. Item permanece aberto
-para auditoria de empacotamento e candidata exata; nenhuma ISO qualificada.
+Fontes corrigidas em Theme PR17/PR18, commit
+`26fb9e67c88b2dbc4f3bfa0d5a339f48a00cb9db`: preferência `%config(noreplace)`,
+atribuição antes do include final, remoção restaura o backup; dependência
+`plymouth-dracut` e geração do GRUB após o initrd. Receita exige tema >=1.9.4.
+
+RPM staging `1.9.4-lp161.2.1`: 10 verificações de instalação limpa e 22 de
+upgrade/branding/configuração/remoção passaram na VM Leap16.1; assinatura
+conferida, seis comandos kernel/initrd preservados. Evidência e limitações em
+`docs/evidence/grub-rpm-20260925.json`. O lint mantém 2 erros e 4 avisos
+explicitados nessa evidência.
+
+O overlay omite `plymouth` e `lyra-plymouth` somente quando o dracut recebe
+`kiwi-live` em `add_dracutmodules` (arquivo temporário 02-livecd.conf do KIWI).
+O KIWI remove esse arquivo antes de empacotar o sistema, preservando Plymouth
+nos initrds do sistema instalado. A omissão XML de initrd não é usada: o
+builder ISO do KIWI 10.2.33 não a aplica. A verificação do initrd extraído da
+ISO continua obrigatória.
+
+A validação nativa encontrou atributos `version` de pacote não aceitos pelo
+schema. Foram removidos, mantendo os pisos no verificador executado durante
+a configuração da imagem (incluindo lyra-vms e lyra-firefox-theme). O CI agora
+valida o XML com o schema do KIWI 10.2.33 oficial da base.
+
+Item permanece aberto: boot visual BIOS/UEFI, atualização na candidata exata
+e comportamento após substituição integral de `/etc/default/grub` ainda não
+foram qualificados. Nenhuma ISO foi gerada neste ensaio.
 
 
 ## DL-01 — arquivo apagado após repasse do Firefox (19/09/2026)

@@ -124,3 +124,21 @@ A receita explicita `firmware="uefi"` e `eficsm="true"`, com os módulos GRUB
 BIOS e UEFI. O instalador usa o modo da sessão live e cria os arquivos de boot
 no disco escolhido. O contrato e os limites de qualificação estão em
 [firmware do instalador](../docs/installer-firmware-requirements.md).
+
+## GRUB persistente e initrd live
+
+O tema >=1.9.4 mantém a preferência de GRUB fora do arquivo reescrito pelo
+branding openSUSE e gera o menu após o initrd. A dependência plymouth-dracut
+permanece instalada para suportar a regeneração do sistema no disco.
+
+`99-lyra-live-plymouth.conf` omite os módulos plymouth e lyra-plymouth apenas
+quando o KIWI adiciona kiwi-live por meio do arquivo temporário 02-livecd.conf.
+O builder remove esse arquivo antes de empacotar o sistema. Sem esse contexto,
+Plymouth continua disponível. Não usar `<type><initrd action="omit">` para
+resolver esse caso: o builder ISO do KIWI 10.2.33 não aplica essa configuração.
+A validação do initrd extraído da ISO continua sendo o gate final.
+
+`python3 scripts/check-kiwi-schema.py` valida a receita com o schema oficial
+(instalar `kiwi==10.2.33` em ambiente de teste). Os pisos de versão são aplicados
+por check-gnome-image.py durante config.sh; atributos version em package não
+fazem parte do schema e não devem substituir esse verificador.

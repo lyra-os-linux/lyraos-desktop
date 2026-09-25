@@ -129,3 +129,21 @@ class MinimumsTests(unittest.TestCase):
                 with patch.object(minimums, 'installed_version', side_effect=installed):
                     with self.assertRaisesRegex(ValueError, 'lyra-upgrade: need >= 0.2.5'):
                         minimums.main()
+
+    def test_grub_persistence_rejects_old_theme(self):
+        for version in ('1.9.3', '1.9.4~rc1'):
+            with self.subTest(version=version):
+                def installed(package):
+                    return version if package == 'lyra-os-theme' else minimums.MINIMUMS[package]
+                with patch.object(minimums, 'installed_version', side_effect=installed):
+                    with self.assertRaisesRegex(ValueError, 'lyra-os-theme: need >= 1.9.4'):
+                        minimums.main()
+
+    def test_virtualization_and_firefox_theme_minimums_are_enforced(self):
+        for package in ('lyra-vms', 'lyra-firefox-theme'):
+            with self.subTest(package=package):
+                def installed(name):
+                    return '0.0.9' if name == package else minimums.MINIMUMS[name]
+                with patch.object(minimums, 'installed_version', side_effect=installed):
+                    with self.assertRaisesRegex(ValueError, package + ': need >= 0.1.0'):
+                        minimums.main()

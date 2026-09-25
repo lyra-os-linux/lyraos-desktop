@@ -46,6 +46,10 @@ jobs:
           sudo install -m 0644 "$vm_kernel" "$RUNNER_TEMP/installer-mount-kernel"
           vm_version="${vm_kernel##*/vmlinuz-}"
           python3 scripts/check-installer-mount-vm.py --kernel "$RUNNER_TEMP/installer-mount-kernel" --modules-dir "/lib/modules/$vm_version"
+      - name: Validate recipe against the Leap KIWI schema
+        run: |
+          python3 -m pip install 'kiwi==10.2.33'
+          python3 scripts/check-kiwi-schema.py
       - name: Validate image and release contracts
         env:
           PYTHONDONTWRITEBYTECODE: "1"
