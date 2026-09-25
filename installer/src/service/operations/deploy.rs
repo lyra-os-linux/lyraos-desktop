@@ -14,8 +14,9 @@ use std::io::Read;
 use std::os::unix::fs::PermissionsExt;
 use std::path::{Path, PathBuf};
 
+use super::boot::InstallBootloader;
 use crate::InstallConfig;
-use crate::storage::SwapPlan;
+use crate::storage::{FirmwareMode, SwapPlan};
 
 use super::{ArgvCommand, Executor, OperationError, PrivilegedOperation, io_error, path_str};
 
@@ -62,6 +63,8 @@ const ENABLED_SERVICES: &[&str] = &[
 pub fn deployment_operations(
     config: &InstallConfig,
     swap: &SwapPlan,
+    firmware: FirmwareMode,
+    disk: &Path,
 ) -> Vec<Box<dyn PrivilegedOperation>> {
     let target_root = PathBuf::from(super::TARGET_ROOT);
 
@@ -124,10 +127,6 @@ pub fn deployment_operations(
             source: PathBuf::from("/run/udev"),
             dest: target_root.join("run/udev"),
         }),
-        Box::new(MountVirtualFs {
-            fstype: "efivarfs",
-            dest: target_root.join("sys/firmware/efi/efivars"),
-        }),
         Box::new(RunDracut {
             target_root: target_root.clone(),
         }),
@@ -168,8 +167,10 @@ pub fn deployment_operations(
         Box::new(GenerateGrubConfig {
             target_root: target_root.clone(),
         }),
-        Box::new(InstallShimAndGrub {
+        Box::new(InstallBootloader {
             target_root: target_root.clone(),
+            firmware,
+            disk: disk.to_path_buf(),
         }),
         Box::new(PrepareBtrfsRollback {
             target_root: target_root.clone(),
@@ -738,28 +739,8 @@ impl PrivilegedOperation for BindMount {
     }
 }
 
-/// Mounts a virtual filesystem whose device name is conventionally the same
-/// as its type (`tmpfs`, `efivarfs`) — matches `mount.conf`'s
-/// `extraMounts` entries for `/run` and `/sys/firmware/efi/efivars`.
-///
-/// The `efivarfs` one closes a real gap (issue #44's parity audit): a plain
-/// `mount --bind /sys <target>/sys` (the [`BindMount`] just above) does
-/// *not* carry over `/sys/firmware/efi/efivars` — that's a separate mount
-/// already sitting inside `/sys` on the live host, and non-recursive bind
-/// mounts only capture the directory entries visible at the bind source at
-/// mount time, not filesystems mounted inside it (that needs `--rbind`,
-/// which this deliberately isn't, matching every other bind mount in this
-/// file). `mount.conf`'s own comment says exactly why this matters:
-/// "grub/shim need it to create the UEFI NVRAM entry from inside the
-/// target system" — without it, `efibootmgr` (called internally by
-/// [`InstallShimAndGrub`]'s `shim-install`) has no UEFI variable store to
-/// write to inside the chroot, so the real NVRAM boot entry silently never
-/// gets created even though `shim-install` itself reports success (it
-/// still writes the removable-media fallback path unconditionally, which
-/// is why this wasn't caught by a successful-looking install). Mounted
-/// unconditionally here, not behind a UEFI check, because this codebase has
-/// no BIOS/legacy path anywhere else either (GPT/ESP-only partitioning,
-/// `firmware="uefi"` in `kiwi/config.xml`).
+/// Mounts the private runtime filesystem. EFI variables are optional and
+/// handled only by the UEFI bootloader operation.
 struct MountVirtualFs {
     fstype: &'static str,
     dest: PathBuf,
@@ -1250,34 +1231,6 @@ impl PrivilegedOperation for GenerateGrubConfig {
                 "grub2-mkconfig".to_string(),
                 "-o".to_string(),
                 "/boot/grub2/grub.cfg".to_string(),
-            ],
-        })?;
-        Ok(())
-    }
-}
-
-/// Native Leap `shim-install`. The script from package `shim` writes the
-/// fallback `/boot/efi/EFI/boot/bootx64.efi` itself whenever that path is
-/// missing or belongs to another distro's CA, and creates the NVRAM boot
-/// entry via `efibootmgr` internally - none of that needs reimplementing
-/// here; the installer invokes the distribution-native tool directly.
-struct InstallShimAndGrub {
-    target_root: PathBuf,
-}
-
-impl PrivilegedOperation for InstallShimAndGrub {
-    fn describe(&self) -> String {
-        "instalar shim e GRUB (Secure Boot)".to_string()
-    }
-
-    fn perform(&self, executor: &dyn Executor) -> Result<(), OperationError> {
-        executor.run(&ArgvCommand {
-            binary: "chroot".to_string(),
-            args: vec![
-                path_str(&self.target_root),
-                "shim-install".to_string(),
-                "--efi-directory=/boot/efi".to_string(),
-                "--config-file=/boot/grub2/grub.cfg".to_string(),
             ],
         })?;
         Ok(())
@@ -2552,21 +2505,6 @@ mod tests {
     }
 
     #[test]
-    fn install_shim_and_grub_argv_is_exact() {
-        let op = InstallShimAndGrub {
-            target_root: PathBuf::from("/run/lyra-installer/target"),
-        };
-        let executor = FakeExecutor::new();
-        op.perform(&executor).unwrap();
-        assert_eq!(
-            executor.calls(),
-            vec![
-                "chroot /run/lyra-installer/target shim-install --efi-directory=/boot/efi --config-file=/boot/grub2/grub.cfg"
-            ]
-        );
-    }
-
-    #[test]
     fn prepare_btrfs_rollback_sets_default_subvolume_and_strips_fstab_options() {
         let temp = TempRoot::new("prepare-rollback");
         let etc = temp.0.join("etc");
@@ -2758,10 +2696,15 @@ mod tests {
     #[test]
     fn deployment_operations_orders_timezone_before_keyboard_before_locale() {
         let config = InstallConfig::default();
-        let describe: Vec<String> = deployment_operations(&config, &SwapPlan::Zram)
-            .iter()
-            .map(|op| op.describe())
-            .collect();
+        let describe: Vec<String> = deployment_operations(
+            &config,
+            &SwapPlan::Zram,
+            FirmwareMode::Uefi,
+            Path::new("/dev/sda"),
+        )
+        .iter()
+        .map(|op| op.describe())
+        .collect();
 
         let timezone_index = describe
             .iter()
@@ -2788,10 +2731,15 @@ mod tests {
     #[test]
     fn deployment_operations_snapshots_only_after_all_live_cleanup() {
         let config = InstallConfig::default();
-        let describe: Vec<String> = deployment_operations(&config, &SwapPlan::Zram)
-            .iter()
-            .map(|op| op.describe())
-            .collect();
+        let describe: Vec<String> = deployment_operations(
+            &config,
+            &SwapPlan::Zram,
+            FirmwareMode::Uefi,
+            Path::new("/dev/sda"),
+        )
+        .iter()
+        .map(|op| op.describe())
+        .collect();
 
         let cleanup_index = describe
             .iter()

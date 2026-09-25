@@ -1,0 +1,86 @@
+{
+  "date": "2026-09-19",
+  "issue": "DL-01: Firefox handoff target can be unlinked during browser cleanup",
+  "scope": "general integration; independent of GPU and firmware",
+  "source_revision": "03fd5780a37f10d62d174bdbcafeed42e82acb39",
+  "obs_source_revision": "c509218b46a5eb8a385571ec4c9d5713",
+  "obs_request": "https://build.opensuse.org/request/show/1379046",
+  "rpm_version": "0.1.2-lp161.1.1",
+  "rpms": [
+    {
+      "name": "lyra-downloads",
+      "version": "0.1.2",
+      "release": "lp161.1.1",
+      "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1/x86_64/lyra-downloads-0.1.2-lp161.1.1.x86_64.rpm",
+      "sha256": "c2444f991559ba255f3ea881a493425449379a6441399ad8e3d21586067bc019",
+      "disturl": "obs://build.opensuse.org/home:rodrigosbrito:lyra/openSUSE_Leap_16.1/c509218b46a5eb8a385571ec4c9d5713-lyra-downloads"
+    },
+    {
+      "name": "lyra-downloads-firefox-integration",
+      "version": "0.1.2",
+      "release": "lp161.1.1",
+      "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1/x86_64/lyra-downloads-firefox-integration-0.1.2-lp161.1.1.x86_64.rpm",
+      "sha256": "8e328df42a6ec92817f039ca2813471ea484af1555621bbfb11c1b6191876eeb",
+      "disturl": "obs://build.opensuse.org/home:rodrigosbrito:lyra/openSUSE_Leap_16.1/c509218b46a5eb8a385571ec4c9d5713-lyra-downloads"
+    }
+  ],
+  "rust_tests": {
+    "staging": 45,
+    "release": 45
+  },
+  "workstation": {
+    "packages": [
+      "lyra-downloads 0.1.2-lp161.1.1",
+      "lyra-downloads-firefox-integration 0.1.2-lp161.1.1",
+      "lyra-firefox-ext 0.1.1-lp161.1.1"
+    ],
+    "task_states": {},
+    "rpm_integrity_passed": true,
+    "health": {
+      "backend": {
+        "backend_version": "0.1.2",
+        "engine_problem": null,
+        "engine_running": true,
+        "engine_version": "1.37.0",
+        "protocol": 1
+      },
+      "host_version": "0.1.2"
+    },
+    "task_states_after": {},
+    "xpi_sha256": "84c503e37de96bb832962a968ae706d3a96edf3c2c807ba628701f8bffb9e406",
+    "installed_disturls": {
+      "lyra-downloads": "obs://build.opensuse.org/home:rodrigosbrito:lyra/openSUSE_Leap_16.1/c509218b46a5eb8a385571ec4c9d5713-lyra-downloads",
+      "lyra-downloads-firefox-integration": "obs://build.opensuse.org/home:rodrigosbrito:lyra/openSUSE_Leap_16.1/c509218b46a5eb8a385571ec4c9d5713-lyra-downloads"
+    }
+  },
+  "browser": {
+    "firefox": "140.13.0 ESR",
+    "extension_version": "0.1.1",
+    "extension_signed_state": 2,
+    "passed": true,
+    "checks": [
+      "automatic capture leaves one Lyra task and removes Firefox entry",
+      "actual event-page suspension and session restore",
+      "seeded lost-reply crash boundary recovered through actual extension/native host",
+      "late duplicate rejected after recovery"
+    ],
+    "payload_sha256": "5bad9e43c4c27d633c39725473b45cf189e0baea9b8553715e6bf06e3a753b0a",
+    "limits": [
+      "temporary profile; does not certify personal profile settings",
+      "optional permissions granted by test controller",
+      "lost-reply recovery uses seeded session snapshot, not process crash",
+      "first installed test left download complete in Firefox without handoff; controller now awaits asynchronous download-list initialization"
+    ],
+    "independent_installed_runs_passed": 2
+  },
+  "iso": {
+    "included": false,
+    "qualified": false,
+    "checksum": null,
+    "remaining": [
+      "verify exact image package versions",
+      "shared-directory handoff and recovery in VM and additional applicable hardware",
+      "upgrade from previous installed image"
+    ]
+  }
+}

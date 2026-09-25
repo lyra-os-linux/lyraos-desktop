@@ -53,11 +53,12 @@ atual de integração é GNOME; nenhuma entrega Qt/XFCE é prometida para a 1.1.
 - `lyra-report` para diagnóstico local e sob demanda, sem telemetria ou envio
   automático de dados.
 
-O instalador desta imagem exige inicialização em **UEFI**. BIOS legado não é
-suportado; o planejamento e a revalidação recusam esse modo antes de escrever
-no disco. **Intel TDX não é requisito do Lyra Installer.** O teste dedicado
-comprova descoberta e planejamento em VM UEFI sem TDX; a instalação e o boot
-completos das novas ISOs continuam nos gates de release. Veja
+O instalador seleciona o caminho de **BIOS** ou **UEFI** pelo firmware da
+sessão live. BIOS usa GPT com uma partição de boot de 2 MiB; UEFI usa uma ESP
+no próprio disco e mantém um caminho de boot alternativo quando a NVRAM não
+está disponível. Secure Boot requer UEFI e usa shim/GRUB do openSUSE.
+**Intel TDX não é requisito do Lyra Installer.** A qualificação da ISO completa
+continua obrigatória; veja os testes e limites em
 [`docs/installer-firmware-requirements.md`](docs/installer-firmware-requirements.md).
 
 O desktop habilita somente o Packman Essentials para as compilações completas
