@@ -1,0 +1,21 @@
+{
+  "final": "services2",
+  "previous": "services1",
+  "raw_final_session_sha256": "99e64736eb7f5d18c8e7ae79d927e79e2eb9767ead516d8f3a0f486b9c814b71",
+  "final_observed": {
+    "gdm_session_registered": true,
+    "xsettings_active": true,
+    "continuity_seconds": 45,
+    "shell_pid": 84839,
+    "xsettings_pid": 85230,
+    "native_window": true,
+    "polkit_automatic_admin_authorization": false,
+    "audit_lost_delta": 0,
+    "failed_user_units": 18
+  },
+  "repository_tests": {
+    "command": "python3 -m unittest discover -s tests -p 'test_*.py'",
+    "passed": 221
+  },
+  "scope": "Diagnostic component experiment; full account/session remains unqualified"
+}

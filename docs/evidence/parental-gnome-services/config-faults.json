@@ -1,0 +1,62 @@
+[
+  {
+    "name": "writable-administrator-database",
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: missing or untrusted administrator configuration\n"
+  },
+  {
+    "name": "non-root-administrator-database",
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: missing or untrusted administrator configuration\n"
+  },
+  {
+    "name": "notification-socket-refused:'/tmp/untrusted-notify'",
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: unexpected notification socket\n"
+  },
+  {
+    "name": "notification-socket-refused:'/run/user/1002/systemd/notify'",
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: unexpected notification socket\n"
+  },
+  {
+    "name": "notification-socket-refused:'@untrusted-notify'",
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: unexpected notification socket\n"
+  },
+  {
+    "name": "notification-socket-refused:''",
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: unexpected notification socket\n"
+  },
+  {
+    "name": "profile-does-not-apply-locks",
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\ntrusted-shell fixture refused: desktop restrictions are not locked and effective\n"
+  },
+  {
+    "name": "corrupt-administrator-database",
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\n\n(process:84754): dconf-WARNING **: 19:53:33.837: unable to open file '/etc/dconf/db/lyra-supervised-test': /etc/dconf/db/lyra-supervised-test: invalid gvdb header; expect degraded performance\ntrusted-shell fixture refused: desktop restrictions are not locked and effective\n"
+  },
+  {
+    "name": "ordinary-account-cannot-enter-shell-domain",
+    "rc": 126,
+    "stdout": "",
+    "stderr": "trusted-shell fixture refused: not in trusted shell domain\n"
+  },
+  {
+    "name": "permissive-mode-refused",
+    "rc": 126,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": "trusted-shell fixture refused: SELinux is not enforcing\n"
+  }
+]

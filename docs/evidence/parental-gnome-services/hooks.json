@@ -1,0 +1,10 @@
+{
+  "/etc/xdg/Xwayland-session.d/00-xrdb": {
+    "content": "#!/bin/sh\n\nuserresources=$HOME/.Xresources\nsysresources=/etc/X11/Xresources\n\n# merge in defaults\n[ -r \"$sysresources\" ] && xrdb -nocpp -merge \"$sysresources\"\n[ -r \"$userresources\" ] && xrdb -merge \"$userresources\"\n\n",
+    "owner": "gnome-settings-daemon-48.1-160100.2.1.x86_64"
+  },
+  "/usr/etc/xdg/Xwayland-session.d/00-at-spi": {
+    "content": "#!/bin/sh\n\n# Copy a11y bus address from the DBus session bus to the X11 root property.\n# This is useful when Xwayland is started on demand and if the user has an\n# application with X11 access that does not have access to the session bus.\n\nADDR=\"$( busctl call --user org.a11y.Bus /org/a11y/bus org.a11y.Bus GetAddress )\" || exit 0\nADDR=\"$( echo $ADDR | sed 's/s \"\\(.*\\)\"/\\1/' )\" || exit 0\n\nexec xprop -root -format AT_SPI_BUS 8s -set AT_SPI_BUS \"$ADDR\"\n",
+    "owner": "at-spi2-core-2.58.7-160100.2.1.x86_64"
+  }
+}
