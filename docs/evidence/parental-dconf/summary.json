@@ -1,0 +1,15 @@
+{
+  "round": "dconf1",
+  "dconf_pids_before_after_restart": [
+    85696,
+    86143
+  ],
+  "dconf_domain": "lyra_parental_probe_t",
+  "settings_calls_passed": 9,
+  "remaining_failed_units": 17,
+  "audit_lost_delta": 0,
+  "audit_limited": false,
+  "repository_tests_passed": 221,
+  "raw_session_sha256": "c5c8b9e67e0774cd9bd1955ac7e3ca0f82a272e3d939bff3587f1c5181b68214",
+  "scope": "Native preferences component; full session/account still unqualified"
+}

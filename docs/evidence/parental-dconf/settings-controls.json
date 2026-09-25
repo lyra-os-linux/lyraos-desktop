@@ -1,0 +1,200 @@
+[
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "write"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\npreference-write accepted=1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "read"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\npreference-read clock-format=12h\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "locked"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nprotected key=allow-extension-installation value=0 writable=0 accepted=0\nprotected key=development-tools value=0 writable=0 accepted=0\nprotected key=disable-user-extensions value=1 writable=0 accepted=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-raw-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "raw-write"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nalternate-profile-write key=allow-extension-installation accepted=1 error=none\nalternate-profile-write key=development-tools accepted=1 error=none\nalternate-profile-write key=disable-user-extensions accepted=1 error=none\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "effective"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nprotected key=allow-extension-installation value=0 writable=0 accepted=0\nprotected key=development-tools value=0 writable=0 accepted=0\nprotected key=disable-user-extensions value=1 writable=0 accepted=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "system-write"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nsystem-write path=/etc/dconf/profile/lyra-supervised-test errno=13\nsystem-write path=/etc/dconf/db/lyra-supervised-test errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "data-not-code"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\ndata-label=system_u:object_r:lyra_parental_settings_t:s0 bytes=30832\ndata-exec-status=126 executable-map-errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "read"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\npreference-read clock-format=12h\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "effective"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nprotected key=allow-extension-installation value=0 writable=0 accepted=0\nprotected key=development-tools value=0 writable=0 accepted=0\nprotected key=disable-user-extensions value=1 writable=0 accepted=0\n",
+    "stderr": ""
+  }
+]

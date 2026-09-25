@@ -60,6 +60,13 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso experimental em 25/09
 
+A [etapa dconf](evidence/parental-dconf/README.md) iniciou o serviço oficial no
+domínio restrito e verificou gravação/leitura de preferência após reinício.
+As três configurações protegidas do Shell continuam efetivas com o perfil
+fixo, mesmo após escrita conflitante no banco do usuário por outro perfil.
+Arquivos no diretório de dados continuam sem execução. Ainda há 17 unidades
+da sessão com falha; proteção integral e migração de dados não estão qualificadas.
+
 A [etapa de serviços GNOME](evidence/parental-gnome-services/README.md) permite o transporte
 D-Bus entre Shell, GDM, AccountsService e Polkit. O GDM confirmou o registro
 efetivo da sessão e o XSettings oficial iniciou no domínio restrito da conta.
