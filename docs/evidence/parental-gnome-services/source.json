@@ -1,0 +1,11 @@
+{
+  "scope": "Official source inspection only; no new GSD build or source patch",
+  "url": "https://download.opensuse.org/source/distribution/leap/16.1/repo/oss/src/gnome-settings-daemon-48.1-160100.2.1.src.rpm",
+  "sha256": "a7776edc45ab8bf37c556fa7a17191e1dda61d3f32a67245f2e451eeef84bd92",
+  "signature": "analysis/2026-09-25/parental-services/gnome-settings-daemon.src.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+  "identity": "gnome-settings-daemon-48.1-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/2beb9cc10720148797570eedae5f208f-gnome-settings-daemon\n",
+  "inspection": [
+    "plugins/xsettings/gsd-xsettings-manager.c: launch_xwayland_services_on_dir executes sorted configuration-directory hooks synchronously",
+    "plugins/xsettings/00-xrdb: shell script, reads /etc/X11/Xresources and $HOME/.Xresources, invokes xrdb"
+  ]
+}

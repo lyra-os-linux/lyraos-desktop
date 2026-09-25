@@ -60,6 +60,13 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso experimental em 25/09
 
+A [etapa de serviços GNOME](evidence/parental-gnome-services/README.md) permite o transporte
+D-Bus entre Shell, GDM, AccountsService e Polkit. O GDM confirmou o registro
+efetivo da sessão e o XSettings oficial iniciou no domínio restrito da conta.
+As consultas Polkit continuaram exigindo autenticação para administração de
+contas/unidades. Hooks X11 de recursos/acessibilidade e outros serviços ainda
+falham; a sessão completa e a proteção da conta continuam sem qualificação.
+
 A [etapa XWayland](evidence/parental-xwayland/README.md) reproduziu a dependência
 de shell na compilação do teclado e a recusa de um descritor O_RDWR do Mutter.
 Patches experimentais usam execução direta do compilador e descritor privado
