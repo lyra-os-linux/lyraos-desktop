@@ -1,0 +1,127 @@
+{
+  "date": "2026-09-25",
+  "status": "experimental-incomplete",
+  "issues_open": [
+    6,
+    102
+  ],
+  "vm_marker": "lyra.parental-selinux-test=1",
+  "official_gdm": "48.0-160100.2.1",
+  "gnome_shell": "48.8-160100.2.1",
+  "gjs": "1.84.2-160100.2.1",
+  "mozjs": "128.14.0-160100.2.1",
+  "source_provenance": "source-provenance.json",
+  "diagnostic_build_matches_production_rpm_options": false,
+  "root_hooks": {
+    "PostLogin": {
+      "start": "Sep 25 14:27:53 lyra-virtualization-fixture gdm-autologin][28657]: Gdm: Running process: /etc/gdm/PostLogin/Default",
+      "exit": "Sep 25 14:27:53 lyra-virtualization-fixture gdm-autologin][28657]: Gdm: Process exit status: 0"
+    },
+    "PreSession": {
+      "start": "Sep 25 14:27:53 lyra-virtualization-fixture gdm-autologin][28657]: Gdm: Running process: /etc/gdm/PreSession/Default",
+      "exit": "Sep 25 14:27:53 lyra-virtualization-fixture gdm-autologin][28657]: Gdm: Process exit status: 0"
+    },
+    "PostSession": {
+      "start": "Sep 25 14:27:54 lyra-virtualization-fixture gdm-autologin][28657]: Gdm: Running process: /etc/gdm/PostSession/Default",
+      "exit": "Sep 25 14:27:54 lyra-virtualization-fixture gdm-autologin][28657]: Gdm: Process exit status: 0"
+    }
+  },
+  "ordinary_account_official_gnome_wayland_enforcing": [
+    "ordinar+   14252 unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 /usr/bin/gnome-shell"
+  ],
+  "restricted_gnome_session_qualified": false,
+  "full_account_protection": false,
+  "execution_regressions_before_split_domain": [
+    {
+      "name": "enforce",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "permissive-domains",
+      "rc": 0,
+      "stdout": "\nPermissive Types: 43\n   bootupd_t\n   coreos_boot_mount_generator_t\n   coreos_bootloader_migrate_generator_t\n   coreos_installer_generator_t\n   coreos_liveiso_autologin_generator_t\n   coreos_sulogin_force_generator_t\n   dhcpc_hook_t\n   go_fdo_server_t\n   health_checker_plugin_t\n   health_checker_t\n   newidmapd_t\n   pwaccessd_t\n   pwupdd_t\n   rhc_playbook_verifier_t\n   rhc_worker_playbook_t\n   sdbootutil_t\n   snapper_sdbootutil_plugin_t\n   systemd_btrfs_soft_reboot_generator_t\n   systemd_generic_generator_t\n   systemd_growpart_generator_t\n   systemd_hibernate_resume_generator_t\n   systemd_hibernate_resume_t\n   systemd_ibft_rule_generator_t\n   systemd_import_generator_t\n   systemd_integritysetup_generator_t\n   systemd_nfs_generator_t\n   systemd_nm_initrd_generator_t\n   systemd_pcrextend_t\n   systemd_pcrlock_t\n   systemd_run_generator_t\n   systemd_ssh_issue_t\n   systemd_status_mail_generator_t\n   systemd_system_update_generator_t\n   systemd_tpm2_generator_t\n   systemd_udev_trigger_generator_t\n   systemd_veritysetup_generator_t\n   systemd_zram_generator_t\n   virtqemud_t\n   virtsecretd_t\n   virtstoraged_t\n   virtvboxd_t\n   xrdp_sesman_t\n   xrdp_t\n",
+      "stderr": ""
+    },
+    {
+      "name": "approved-probe",
+      "rc": 0,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "approved-child",
+      "rc": 0,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "generic-system-binary",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "copy",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "shell",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "interpreter",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "elf-loader",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "anonymous-executable-memory",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nmprotect_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "executable-mapping",
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nmmap_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "same-uid-outside-domain",
+      "rc": 0,
+      "stdout": "outside-domain-ok\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-account",
+      "rc": 0,
+      "stdout": "ordinary-ok\n",
+      "stderr": ""
+    }
+  ],
+  "gnome_failure": "Sep 25 14:27:53 lyra-virtualization-fixture gnome-shell[28700]: Failed to create javascript context",
+  "original_worker_sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8",
+  "host_changed": false,
+  "published_package_changed": false,
+  "iso_qualified": false,
+  "artifact_sha256": {
+    "ordinary-enforcing.json": "7644acac70de06fe4b17d212aa6dcaecccff410f1dd2805a81678f336189649d",
+    "patched-gdm-official.parsed.json": "280ec7952bf409e6a045848d0b2166c588b715f82cdf7cf05f24369da6456c13",
+    "official-restoration.json": "8b223b28fd0052477c936dabc69a7c1d817930c4304208ee5d1a113128ab58d0",
+    "nojit-summary.json": "a7f0a6b19da03b56c59e3602b3ae50a3d148b384d63754d07f75af4678d8c63b",
+    "execution-regression.json": "e697420b09850a05c5c68bc14af530c4a66b6913cbb282b2ac9dff754c928af1",
+    "build-official.json": "9bc87f2d18ce2339c17b9dd1de30130f1a6fb2e600385b5688e4c9ca7295cc8f"
+  }
+}

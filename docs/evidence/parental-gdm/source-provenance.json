@@ -1,0 +1,51 @@
+{
+  "rpm": "gdm-48.0-160100.2.1.src.rpm",
+  "url": "https://download.opensuse.org/source/distribution/leap/16.1/repo/oss/src/gdm-48.0-160100.2.1.src.rpm",
+  "sha256": "02f00c50b9b842da6c208739d24667e39d1202c72bfe73b54b89d54f38da92da",
+  "signature": "digests signatures OK",
+  "disturl": "obs://build.suse.de/SUSE:SLFO:1.3/standard/b34b44318c94ed7eb2158a225a5ab527-gdm",
+  "patches_applied": [
+    [
+      1,
+      "gdm-sysconfig-settings.patch"
+    ],
+    [
+      2,
+      "gdm-suse-xsession.patch"
+    ],
+    [
+      4,
+      "gdm-xauthlocalhostname.patch"
+    ],
+    [
+      6,
+      "gdm-initial-setup-hardening.patch"
+    ],
+    [
+      7,
+      "gdm-settings-utils_rename-variable.patch"
+    ],
+    [
+      8,
+      "gdm-fix-wrong-path-gdm-config.patch"
+    ],
+    [
+      9,
+      "gdm-plymouth-quit-wait.patch"
+    ],
+    [
+      10,
+      "gdm-service-keytable.patch"
+    ],
+    [
+      11,
+      "gdm-fix-tty1-mode.patch"
+    ],
+    [
+      1000,
+      "gdm-disable-gnome-initial-setup.patch"
+    ]
+  ],
+  "diagnostic_patch_applies_without_fuzz": true,
+  "hook_fault_tests": "10 PASS"
+}

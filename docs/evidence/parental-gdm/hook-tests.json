@@ -1,0 +1,13 @@
+{
+  "function_sha256": "1c334c51398053266e2dc640f2060de6dc018a66b251e42d08f6d3f86a5a3273",
+  "results": [
+    {
+      "selinux_build": true,
+      "result": "8 SELinux hook cases PASS"
+    },
+    {
+      "selinux_build": false,
+      "result": "2 non-SELinux hook cases PASS"
+    }
+  ]
+}
