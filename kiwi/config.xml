@@ -581,6 +581,7 @@
     <!-- Snapshot, atualização normal e migração offline entre releases.
          O serviço privilegiado reaproveita zypper, Snapper, dracut e GRUB;
          a interface nunca recebe privilégios amplos. -->
+    <!-- Updater >= 0.2.5: PackageKit offline coexistence (Updater #22). -->
     <package name="lyra-upgrade"/>
     <package name="lyra-release"/>
 

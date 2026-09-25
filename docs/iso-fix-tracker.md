@@ -288,6 +288,39 @@ Gates completos staging/release passaram. Evidência portátil em
 `docs/shutdown-obs-evidence.json` noPR Sheliak35.208 testesPython doDesktop e
 CI35532855573 aprovados no commit5c8d2f5. Integração/ISO/hardware continuam
 pendentes; SHELL-01 não é encerrado pela publicação do pacote.
+## UPD-01 — Coexistência offline com PackageKit
+
+- **Sintoma:** PackageKit conclui a atualização offline, mas a unit Lyra falha
+  ao procurar seu diretório de operações, sem existir um pedido Lyra.
+- **Escopo:** integração geral systemd/PackageKit, independente do hardware.
+- **Fontes:** [Updater #22](https://github.com/lyra-os-linux/lyraos-desktop-updater/issues/22),
+  [PR23](https://github.com/lyra-os-linux/lyraos-desktop-updater/pull/23), versão0.2.5.
+  Verificação do proprietário de /system-update antes do lock/estado Lyra;
+  estado próprio inválido continua rejeitado.
+- **Receita:** pacote já selecionado; gate passa a exigir >=0.2.5 e rejeita
+  0.2.4 e pré-release. RPM publicado e qualificado conforme evidência abaixo.
+- **Ensaio:** VM mínima descartável com PackageKit/zypp/systemd nativos,
+  atualização de RPM inerte e dois reboots;0.2.4 reproduziu ENOENT,0.2.5 passou.
+  Casos negativos de estado e recuperação própria também passaram.
+- **Pendente:** integrar esta alteração;
+  verificar inventário e repetir ciclo na candidata identificada por checksum,
+  com interface GNOME e hardware aplicável. Não equivale a upgrade Lyra
+  completo para sucessor assinado. Nenhuma ISO foi construída neste ensaio.
+- **Risco/reversão:** preservar o processamento de pedidos próprios e o marcador
+  externo; não desabilitar a unit. Em regressão, reverter fontes e reconstruir
+  pelo staging, mantendo o item aberto e sem reduzir o gate da candidata.
+
+### UPD-01 — publicação verificada em20/09/2026
+
+[OBS1379300](https://build.opensuse.org/request/show/1379300) aceito; release rev12,
+fontes8cb542f, srcmd5 `7858b2697376f5c70a42e5796ee2e343`.
+RPM público `lyra-upgrade-0.2.5-lp161.1.1.x86_64.rpm`, SHA256
+`750ef116be969dc41521404049fef5fec443ae6458e8412e8883470dde3d5b55`;
+assinatura7edca82e e download verificados.127 testes Rust passaram em staging
+ e release; worker de release idêntico ao extraído do staging e testado na VM.
+208 testes Python do Desktop e CI35520704707 passaram para a integração do gate.
+Fonte de evidência: docs/packagekit-obs-evidence.json no PR Updater23.
+Nenhuma instalação no host nem candidata ISO qualificada; UPD-01 continua aberto.
 
 
 ## VEGA-01 — Atualização do Painel a cada clique, 20/09
