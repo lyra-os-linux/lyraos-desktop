@@ -20,7 +20,7 @@ class VirtualizationTests(unittest.TestCase):
         self.assertFalse(required - packages, required - packages)
         self.assertNotIn('virt-manager', packages)
         self.assertEqual(image.find(".//package[@name='lyra-vms']").get('version'), '>=0.1.0')
-        self.assertEqual(image.find(".//package[@name='vega-gtk']").get('version'), '>=5.1.44')
+        self.assertEqual(image.find(".//package[@name='vega-gtk']").get('version'), '>=5.1.45')
 
     def test_live_access_does_not_change_installed_account_policy(self):
         image = ET.parse(ROOT / 'kiwi/config.xml').getroot()

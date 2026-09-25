@@ -1,0 +1,80 @@
+{
+  "platform": "openSUSE Leap 16.1 x86_64 disposable QEMU/KVM",
+  "vegad": "5.1.32-lp161.1.1",
+  "vega_gtk": "5.1.45-lp161.1.1",
+  "fresh_rpm_install": "PASS",
+  "real_repositories": [
+    "official Leap 16.1",
+    "Lyra release",
+    "Vega staging",
+    "Packman Essentials"
+  ],
+  "preparation_without_package_upgrades": "PASS",
+  "pending_updates": 120,
+  "dbus_unprivileged_read": "PASS",
+  "gtk_completed_and_network_failure": "PASS (Broadway)",
+  "upgrade_completed_pending_skipped_states": "PASS",
+  "network_failure_and_authorized_retry": "PASS",
+  "rpm_lock_key_maintenance_automatic_retry": "PASS (5 minutes)",
+  "reboot_completed_skip_and_key_maintenance": "PASS",
+  "limits": [
+    "Not an installation from the full Lyra ISO",
+    "No full GDM login/Wayland qualification",
+    "Tumbleweed runtime not tested",
+    "Unknown-key approval and forced interruption covered by earlier controlled VM tests, not repeated here"
+  ],
+  "production_promotion": true,
+  "host_packages_changed": false,
+  "date": "2026-09-24",
+  "requests": {
+    "vegad": 1380263,
+    "vega-gtk": 1380264
+  },
+  "rpms": [
+    {
+      "package": "vegad",
+      "platform": "Leap",
+      "rpm": "vegad-5.1.32-lp161.1.1.x86_64.rpm",
+      "sha256": "56579e940944ff6464a7de390960f30d7e6579d7db862ff963cf70ce3c14cf5f",
+      "provenance": "obs://build.opensuse.org/home:rodrigosbrito:vega/openSUSE_Leap_16.1/abf9fd7e5c49ed12da3da5c574b6ee27-vegad",
+      "payload_and_scripts_identical_to_tested_staging": true,
+      "public_mirror_matches_build": true,
+      "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/vega/openSUSE_Leap_16.1/x86_64/vegad-5.1.32-lp161.1.1.x86_64.rpm",
+      "promotion_request": "1380263"
+    },
+    {
+      "package": "vega-gtk",
+      "platform": "Leap",
+      "rpm": "vega-gtk-5.1.45-lp161.1.1.x86_64.rpm",
+      "sha256": "bf5a32e7baeee0e893227792fa18b1329c51ecbc496fe9a6339c781c41cf8579",
+      "provenance": "obs://build.opensuse.org/home:rodrigosbrito:vega/openSUSE_Leap_16.1/63be22b278202ab67c450b4a3c942f97-vega-gtk",
+      "payload_and_scripts_identical_to_tested_staging": true,
+      "public_mirror_matches_build": true,
+      "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/vega/openSUSE_Leap_16.1/x86_64/vega-gtk-5.1.45-lp161.1.1.x86_64.rpm",
+      "promotion_request": "1380264"
+    },
+    {
+      "package": "vegad",
+      "platform": "Tumbleweed",
+      "rpm": "vegad-5.1.32-1.1.x86_64.rpm",
+      "sha256": "09eba2bcccc4738cc817181b08602477d3d9bda479bdfceb063d8e75be18f5b3",
+      "provenance": "obs://build.opensuse.org/home:rodrigosbrito:vega/openSUSE_Tumbleweed/abf9fd7e5c49ed12da3da5c574b6ee27-vegad",
+      "payload_and_scripts_identical_to_tested_staging": true,
+      "public_mirror_matches_build": true,
+      "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/vega/openSUSE_Tumbleweed/x86_64/vegad-5.1.32-1.1.x86_64.rpm",
+      "promotion_request": "1380263"
+    },
+    {
+      "package": "vega-gtk",
+      "platform": "Tumbleweed",
+      "rpm": "vega-gtk-5.1.45-1.1.x86_64.rpm",
+      "sha256": "72b087f3e7536fa0c4aa99380618a77d05f2d7808ace59b7d7fae2359840b9e6",
+      "provenance": "obs://build.opensuse.org/home:rodrigosbrito:vega/openSUSE_Tumbleweed/63be22b278202ab67c450b4a3c942f97-vega-gtk",
+      "payload_and_scripts_identical_to_tested_staging": true,
+      "public_mirror_matches_build": true,
+      "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/vega/openSUSE_Tumbleweed/x86_64/vega-gtk-5.1.45-1.1.x86_64.rpm",
+      "promotion_request": "1380264"
+    }
+  ],
+  "iso_qualified": false
+}

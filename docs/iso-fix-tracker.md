@@ -349,3 +349,44 @@ Pacote lyra-vms adicionado ao inventário obrigatório OBS. Vega 5.1.41 e Lyra V
 0.1.0 publicados pelas requests #1379483/#1379484, com RPMs públicos assinados
 e binários iguais aos testados. A qualificação da candidata permanece pendente;
 não gerar ISO antes da auditoria. Evidência em lyra-vms-staging-20260921.json.
+
+
+## PREP-01 — Preparação inicial dos repositórios
+
+A receita e a verificação de conteúdo da imagem exigem vegad >= 5.1.32 e
+Vega GTK >= 5.1.45. Isso evita uma candidata com o antigo job que atualizava
+pacotes automaticamente ou sem a interface de estado e recuperação.
+As issues vegad #56–#64 foram encerradas nas PRs #65–#73; SDK #7 e Vega #155
+completam a revisão de chaves desconhecidas por fingerprint e identidade.
+
+RPMs finais publicados pelas requests OBS [1380263](https://build.opensuse.org/request/show/1380263)
+e [1380264](https://build.opensuse.org/request/show/1380264). Fontes, assinaturas,
+proveniência, scripts e conteúdo conferidos; payload final idêntico ao staging.
+[Evidências portáveis](evidence/preparation-rpms-20260924.json).
+
+VM Leap 16.1: instalação dos RPMs e upgrade passaram, incluindo estados
+concluído/pendente/isento, repositórios reais com Packman, 120 atualizações
+pendentes sem upgrade automático de pacotes, falha de rede/Retry autorizado,
+recuperação automática do lock RPM e persistência no reboot. Interface do RPM
+GTK via Broadway mostrou os estados reais. Tumbleweed teve build e inspeção;
+a execução foi qualificada somente no Leap.
+
+Continua pendente na ISO exata: live sem preparação, instalação pelo Lyra
+Installer, primeiro login GDM/Wayland, diálogo Polkit e recuperação pela UI.
+Não marcar PREP-01 concluído com o ensaio de componentes. Reversão: bloquear
+novas candidatas e corrigir no staging; não reduzir os pisos para reintroduzir
+o job antigo de atualização automática.
+
+## GRUB-04 — Preferência local sobrescrita após atualização (25/09)
+
+Na estação física, uma atribuição GRUB_THEME=openSUSE apareceu após o include
+da preferência Lyra, anulando-a. Reparo local recolocou a preferência por último,
+com backup, geração em candidato, grub2-script-check e preservação das seis
+linhas kernel/initrd. Não houve reboot nem alteração de pacote nesta correção.
+
+A simulação da reescrita de variáveis pelo activate-theme manteve Lyra efetivo
+com o include final. A persistência contra substituição integral da configuração
+e o comportamento da receita limpa ainda precisam de qualificação; não copiar
+esse reparo local para a imagem sem verificar a causa no ciclo de upgrade.
+Evidências locais: analysis/2026-09-25/grub-theme-repair. Item permanece aberto
+para auditoria de empacotamento e candidata exata; nenhuma ISO qualificada.
