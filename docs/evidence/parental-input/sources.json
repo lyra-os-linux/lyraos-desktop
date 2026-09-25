@@ -1,0 +1,20 @@
+{
+  "sources": [
+    {
+      "file": "fontconfig.src.rpm",
+      "sha256": "6d2f29bb518b6fbb5b14d91650624341b0db0df78eda68ff5ebdf4558b9108d3",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-25/parental-input/fontconfig.src.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+      "metadata": "fontconfig 2.16.0-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/9d63096de5a5ec65e89a725b06a2791d-fontconfig\n"
+    },
+    {
+      "file": "glib2.src.rpm",
+      "sha256": "42c2b22b8645a76b77721bc1bfc312285df986b8d7dd2d860d8b2719c2acbae5",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-25/parental-input/glib2.src.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+      "metadata": "glib2 2.84.4-160100.2.2\nobs://build.suse.de/SUSE:SLFO:1.3/standard/a48839b61ebb4a73027a711c8ba72a2a-glib2\n"
+    }
+  ],
+  "glib_installed": "glib2-tools 2.84.4-160100.2.1",
+  "glib_note": "SRPM release 2.2 and installed binary release 2.1 share DISTURL a48839b61ebb4a73027a711c8ba72a2a (same source revision). No downstream patch touches gio-launch-desktop.c.",
+  "gsd_source": "../parental-services/source/gnome-settings-daemon-48.1.tar.zst",
+  "keyboard_downstream_patch": "gnome-settings-daemon-initial-keyboard.patch changes the missing-layout fallback; this minimal VM has no X11 layout config. The test supplies an isolated X11Layout=us fixture and removes it on recovery."
+}

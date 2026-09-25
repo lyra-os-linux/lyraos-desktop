@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "tag": "input6",
+  "keyboard_services": "MainPID=94530\nNRestarts=0\nId=org.gnome.SettingsDaemon.Keyboard.service\nActiveState=active\nSubState=running\n\nMainPID=94533\nNRestarts=0\nId=org.gnome.SettingsDaemon.MediaKeys.service\nActiveState=active\nSubState=running\n",
+  "failed_user_units": "  UNIT                                                LOAD   ACTIVE SUB    DESCRIPTION\n\u25cf org.gnome.SettingsDaemon.Color.service              loaded failed failed GNOME color management service\n\u25cf org.gnome.SettingsDaemon.Datetime.service           loaded failed failed GNOME date & time service\n\u25cf org.gnome.SettingsDaemon.Housekeeping.service       loaded failed failed GNOME maintenance of expirable data service\n\u25cf org.gnome.SettingsDaemon.Power.service              loaded failed failed GNOME power management service\n\u25cf org.gnome.SettingsDaemon.PrintNotifications.service loaded failed failed GNOME printer notifications service\n\u25cf org.gnome.SettingsDaemon.Rfkill.service             loaded failed failed GNOME RFKill support service\n\u25cf org.gnome.SettingsDaemon.ScreensaverProxy.service   loaded failed failed GNOME FreeDesktop screensaver service\n\u25cf org.gnome.SettingsDaemon.Sharing.service            loaded failed failed GNOME file sharing service\n\u25cf org.gnome.SettingsDaemon.Smartcard.service          loaded failed failed GNOME smartcard service\n\u25cf org.gnome.SettingsDaemon.Sound.service              loaded failed failed GNOME sound sample caching service\n\u25cf org.gnome.SettingsDaemon.UsbProtection.service      loaded failed failed GNOME USB protection service\n\u25cf org.gnome.SettingsDaemon.Wacom.service              loaded failed failed GNOME Wacom tablet support service\n\u25cf xdg-desktop-portal.service                          loaded failed failed Portal service\n\u25cf xdg-permission-store.service                        loaded failed failed sandboxed app permission store\n\nLegend: LOAD   \u2192 Reflects whether the unit definition was properly loaded.\n        ACTIVE \u2192 The high-level unit activation state, i.e. generalization of SUB.\n        SUB    \u2192 The low-level unit activation state, values depend on unit type.\n\n14 loaded units listed.\n",
+  "physical_vm_keys": [
+    "approved",
+    "blocked",
+    "typing"
+  ],
+  "shortcut_positive": true,
+  "shortcut_shell_denied": true,
+  "wayland_typing": true,
+  "font_cache": true,
+  "font_cache_nonexecutable": true,
+  "shell_launch_boundary_cases": 6,
+  "dconf_calls": 9,
+  "a11y_clients": [
+    0,
+    1,
+    0
+  ],
+  "audit_lost_delta": 0,
+  "audit_limited": false,
+  "production_enabled": false
+}

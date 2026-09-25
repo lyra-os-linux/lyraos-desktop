@@ -1,0 +1,25 @@
+--- a/src/core/meta-anonymous-file.c
++++ b/src/core/meta-anonymous-file.c
+@@ -95 +95,2 @@
+-create_anonymous_file (off_t size)
++create_anonymous_file (off_t    size,
++                       gboolean use_memfd)
+@@ -98,0 +100,3 @@
++#if !defined(HAVE_MEMFD_CREATE)
++  (void) use_memfd;
++#endif
+@@ -100 +104 @@
+-  fd = memfd_create ("mutter-shared", MFD_CLOEXEC | MFD_ALLOW_SEALING);
++  fd = use_memfd ? memfd_create ("mutter-shared", MFD_CLOEXEC | MFD_ALLOW_SEALING) : -1;
+@@ -204 +208 @@
+-  file->fd = create_anonymous_file (size);
++  file->fd = create_anonymous_file (size, TRUE);
+@@ -332 +336,7 @@
+-  fd = create_anonymous_file (file->size);
++  /* Legacy clients need a writable, client-private copy. Allocate it in the
++   * runtime directory so mandatory-access-control policy can distinguish
++   * shared data from executable anonymous memory owned by the compositor.
++   * The existing tempfile path unlinks immediately and keeps CLOEXEC.
++   */
++  fd = create_anonymous_file (file->size,
++                              mapmode != META_ANONYMOUS_FILE_MAPMODE_SHARED);
