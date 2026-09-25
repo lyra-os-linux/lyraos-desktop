@@ -1,53 +1,66 @@
-{
-  "enforcing": true,
-  "checks": [
-    {
-      "argv": [
-        "runuser",
-        "-u",
-        "parentaltest",
-        "--",
-        "runcon",
-        "system_u:system_r:lyra_parental_probe_t:s0",
-        "/opt/lyra-parental-probe/probe",
-        "/usr/libexec/lyra/trusted-shell-test",
-        "rw"
-      ],
-      "rc": 0,
-      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\nmode=rw label=system_u:object_r:lyra_parental_shell_memory_t:s0 flags=32770 seals=0\nuid=1003 context=system_u:system_r:lyra_parental_xwayland_t:s0 enforcing=1\ndescriptor denied flags=8\nreceiver=126 expected=126\n",
-      "stderr": ""
-    },
-    {
-      "argv": [
-        "runuser",
-        "-u",
-        "parentaltest",
-        "--",
-        "runcon",
-        "system_u:system_r:lyra_parental_probe_t:s0",
-        "/opt/lyra-parental-probe/probe",
-        "/usr/libexec/lyra/trusted-shell-test",
-        "sealed-rw"
-      ],
-      "rc": 0,
-      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\nmode=sealed-rw label=system_u:object_r:lyra_parental_shell_memory_t:s0 flags=32770 seals=14\nuid=1003 context=system_u:system_r:lyra_parental_xwayland_t:s0 enforcing=1\ndescriptor denied flags=8\nreceiver=126 expected=126\n",
-      "stderr": ""
-    },
-    {
-      "argv": [
-        "runuser",
-        "-u",
-        "parentaltest",
-        "--",
-        "runcon",
-        "system_u:system_r:lyra_parental_probe_t:s0",
-        "/opt/lyra-parental-probe/probe",
-        "/usr/libexec/lyra/trusted-shell-test",
-        "sealed-ro"
-      ],
-      "rc": 0,
-      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\nmode=sealed-ro label=system_u:object_r:lyra_parental_shell_memory_t:s0 flags=32768 seals=14\nuid=1003 context=system_u:system_r:lyra_parental_xwayland_t:s0 enforcing=1\ndescriptor received data=keymap write=-1 errno=9 executable_map=denied errno=13\nreceiver=0 expected=0\n",
-      "stderr": ""
-    }
-  ]
-}
+[
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/trusted-shell-test",
+      "rw"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\nmode=rw label=system_u:object_r:lyra_parental_shell_memory_t:s0 flags=32770 seals=0\nuid=1003 context=system_u:system_r:lyra_parental_xwayland_t:s0 enforcing=1\ndescriptor denied flags=8\nreceiver=126 expected=126\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/trusted-shell-test",
+      "sealed-rw"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\nmode=sealed-rw label=system_u:object_r:lyra_parental_shell_memory_t:s0 flags=32770 seals=14\nuid=1003 context=system_u:system_r:lyra_parental_xwayland_t:s0 enforcing=1\ndescriptor denied flags=8\nreceiver=126 expected=126\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/trusted-shell-test",
+      "sealed-ro"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\nmode=sealed-ro label=system_u:object_r:lyra_parental_shell_memory_t:s0 flags=32768 seals=14\nuid=1003 context=system_u:system_r:lyra_parental_xwayland_t:s0 enforcing=1\ndescriptor received data=keymap write=-1 errno=9 executable_map=denied errno=13\nreceiver=0 expected=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/trusted-shell-test",
+      "pixels-rw"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\npixel descriptor label=system_u:object_r:lyra_parental_xwayland_data_t:s0 shared_write=OK executable_map=denied errno=13\n",
+    "stderr": ""
+  }
+]

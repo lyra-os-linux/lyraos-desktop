@@ -60,6 +60,7 @@
     }
   ],
   "absent": [
+    "/opt/lyra-parental-probe/xwindow-test",
     "/root/lyra-xwayland-recovery/active.json",
     "/usr/libexec/lyra/trusted-shell-test",
     "/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf",

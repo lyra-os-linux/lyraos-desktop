@@ -15,6 +15,40 @@ int main(int argc,char **argv) {
  char *context=NULL;
  if (security_getenforce()!=1 || getcon(&context)<0) fail("context");
  printf("uid=%u context=%s enforcing=1\n",getuid(),context);freecon(context);fflush(stdout);
+
+ if ((argc==3 && !strcmp(argv[1],"sendback")) || (argc==2 && !strcmp(argv[1],"pixels-rw"))) {
+  int sock,child=-1;
+  if(argc==2) {
+   int pair[2];if(socketpair(AF_UNIX,SOCK_STREAM,0,pair))fail("pixel socketpair");
+   child=fork();if(child<0)fail("pixel fork");
+   if(!child){close(pair[0]);char number[32];snprintf(number,sizeof(number),"%d",pair[1]);execl("/usr/bin/Xwayland","Xwayland","sendback",number,NULL);fail("pixel exec");}
+   close(pair[1]);sock=pair[0];
+  } else sock=atoi(argv[2]);
+  char c='P',control[CMSG_SPACE(sizeof(int))]={0};struct iovec iov={&c,1};struct msghdr msg={0};
+  msg.msg_iov=&iov;msg.msg_iovlen=1;msg.msg_control=control;msg.msg_controllen=sizeof(control);
+  if(argc==3) {
+   int fd=memfd_create("xwayland-shared",MFD_CLOEXEC);
+   if(fd<0 || ftruncate(fd,4096) || pwrite(fd,"pixels",6,0)!=6)fail("pixel memfd");
+   struct cmsghdr *cm=CMSG_FIRSTHDR(&msg);cm->cmsg_level=SOL_SOCKET;cm->cmsg_type=SCM_RIGHTS;cm->cmsg_len=CMSG_LEN(sizeof(int));memcpy(CMSG_DATA(cm),&fd,sizeof(fd));
+   if(sendmsg(sock,&msg,0)!=1 || read(sock,&c,1)!=1)fail("pixel send/ack");
+   char value;if(pread(fd,&value,1,0)!=1 || value!='S')fail("pixel shared write");
+   close(fd);close(sock);return 0;
+  }
+  if(recvmsg(sock,&msg,0)!=1)fail("pixel recv");
+  struct cmsghdr *cm=CMSG_FIRSTHDR(&msg);
+  if(!cm || cm->cmsg_level!=SOL_SOCKET || cm->cmsg_type!=SCM_RIGHTS)fail("pixel descriptor denied");
+  int fd;memcpy(&fd,CMSG_DATA(cm),sizeof(fd));char *label=NULL;
+  if(fgetfilecon(fd,&label)<0 || !strstr(label,":lyra_parental_xwayland_data_t:"))fail("pixel label");
+  char bytes[7]={0};if(pread(fd,bytes,6,0)!=6 || strcmp(bytes,"pixels"))fail("pixel content");
+  char *mapping=mmap(NULL,4096,PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);if(mapping==MAP_FAILED)fail("pixel shared mmap");
+  mapping[0]='S';munmap(mapping,4096);
+  errno=0;void *executable=mmap(NULL,4096,PROT_READ|PROT_EXEC,MAP_PRIVATE,fd,0);int denied=errno;
+  printf("pixel descriptor label=%s shared_write=OK executable_map=%s errno=%d\n",label,executable==MAP_FAILED?"denied":"ALLOWED",denied);freecon(label);
+  if(write(sock,"D",1)!=1)fail("pixel ack");
+  close(fd);close(sock);
+  int status;if(waitpid(child,&status,0)<0)fail("pixel wait");
+  return executable==MAP_FAILED && denied==EACCES && WIFEXITED(status) && WEXITSTATUS(status)==0?0:1;
+ }
  if(argc==3 && !strcmp(argv[1],"receive")) {
   int sock=atoi(argv[2]);char c=0;char control[CMSG_SPACE(sizeof(int))]={0};
   struct iovec iov={&c,1};struct msghdr msg={0};

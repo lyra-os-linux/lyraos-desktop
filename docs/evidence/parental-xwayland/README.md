@@ -2,10 +2,11 @@
 
 **Ensaio de componentes; não habilita proteção parental de produção.**
 Continua [a etapa de callbacks](../parental-callbacks/README.md).
-O cliente X11 público conseguiu consultar o desktop em enforcing; o cliente
-interno conseguiu gravar e ler uma propriedade. A sessão completa continua
-reprovada: houve duas inicializações do Shell na mesma captura e os serviços
-GNOME ainda falham. #6/#102 permanecem abertas. Não altera receita ou RPMs.
+O cliente X11 público consultou o desktop, uma janela real recebeu moldura e
+o cliente interno gravou/leu uma propriedade, em enforcing. Na rodada final,
+o Shell permaneceu na mesma instância até o encerramento do ensaio. Os demais
+serviços GNOME ainda falham: a sessão completa e a conta inteira continuam sem
+qualificação. #6/#102 permanecem abertas. Não altera receita ou RPMs.
 
 ## Falhas reproduzidas e alterações experimentais
 
@@ -28,6 +29,19 @@ GNOME ainda falham. #6/#102 permanecem abertas. Não altera receita ou RPMs.
    usuário. Esse domínio ainda é compartilhado com a conta restrita; não há
    aqui uma alegação de mediação por método ou admissão integral da conta.
 
+5. Ao negar `mutter-x11-frames`, o Mutter passava um subprocesso nulo para
+   `g_subprocess_wait_async` e sofria SIGSEGV. A [pilha real](frames-crash-backtrace.txt)
+   e a [negação](frames-crash.json) identificaram essa causa. O
+   [patch de erro](mutter-frames-failure.patch) propaga a falha na inicialização,
+   libera o cancellable e trata a tentativa de reinício do helper. O caminho
+   negado passou a retornar erro sem derrubar o compositor. O helper oficial
+   recebe um tipo de executável específico e só o domínio Shell pode iniciá-lo;
+   permanece no domínio do compositor, com execução direta pela conta negada.
+6. Ao desenhar, o Mutter recebia buffers O_RDWR do XWayland com um tipo de
+   dados não executáveis. A política permite escrita nesse tipo ao compositor.
+   A prova reversa de SCM_RIGHTS confirma escrita compartilhada e recusa de
+   mapeamento executável, preservando a separação da memória privada do Shell.
+
 [As negações de inicialização](startup-denials.json) registram as duas últimas
 causas. Houve perda de auditoria nas capturas anteriores; elas demonstram as
 negações observadas, mas não uma auditoria completa.
@@ -42,8 +56,9 @@ Não foi concedida escrita à conta ou ao XWayland na memória privada do Shell.
 Os [fontes oficiais](source.json) tiveram assinaturas verificadas. O SRPM
 XWayland 2.2 disponível possui o mesmo DISTURL do binário instalado 2.1;
 isso não prova identidade entre os binários. Foram aplicados os 17 patches
-SUSE do XWayland, os quatro do Mutter e o gvdb do SRPM. As duas árvores
-preparadas foram reproduzidas byte a byte antes dos ensaios.
+SUSE do XWayland, os quatro do Mutter e o gvdb do SRPM. As árvores
+preparadas foram reproduzidas byte a byte; a versão final do Mutter contém
+2.079 arquivos iguais aos da árvore usada no build.
 
 - Oito [testes da implementação real de Popen/Pclose](popen-tests.json):
   metacaracteres literais, pipes de leitura/escrita, executável ausente, falha
@@ -52,13 +67,18 @@ preparadas foram reproduzidas byte a byte antes dos ensaios.
   conteúdo, flags e seals, COW privado, compatibilidade compartilhada,
   mil aberturas sem vazamento, destruição e arquivo vazio. Também passou
   o teste upstream `src/tests/anonymous-file.c`.
-- Três [provas reais de SCM_RIGHTS](descriptors.json): RW recusado com e sem
+- Quatro [provas reais de SCM_RIGHTS](descriptors.json): RW recusado com e sem
   selo; RO recebido/lido, escrita EBADF e mapeamento executável EACCES.
-  São programas instrumentados temporários, não launchers distribuíveis.
-- [Controles nativos da rodada final](native-controls.json): 14 verificações
-  de execução/conta comum, dez falhas de configuração e as três provas de
-  descritores passaram. A [sessão](session.json) registra os três comandos
+  No sentido inverso, o Shell recebe dados gráficos RW, altera o buffer
+  compartilhado e continua sem poder executá-lo. São programas instrumentados
+  temporários, não launchers distribuíveis.
+- [Controles nativos da rodada final](native-controls.json): 15 verificações
+  de execução/conta comum, dez falhas de configuração e quatro provas de
+  descritores passaram. A janela real obteve `_NET_FRAME_EXTENTS=0,0,37,0`. A [sessão](session.json) registra os três comandos
   X11 com retorno zero, contextos dos processos, unidades e limites.
+- O [teste da função real de inicialização](frames-tests.json) cobre falha
+  de spawn, ausência de destino de erro e sucesso assíncrono. O [ensaio real
+  com helper negado](frames-failure-session.json) preservou o Shell.
 - A [auditoria final](audit.json) registrou delta zero no contador de eventos
   perdidos e não atingiu os limites da coleta. Continua contendo negações
   esperadas dos testes e bloqueios reais ainda não resolvidos.
@@ -66,7 +86,8 @@ preparadas foram reproduzidas byte a byte antes dos ensaios.
   XWayland apresentou avisos upstream de cast e combinação crypto3/crypto56;
   não são RPMs qualificados. O RPATH do Mutter foi ajustado ao diretório oficial.
 
-O sucesso do cliente X11 não aprova estabilidade da sessão: XSettings ficou
+O sucesso do cliente e da janela X11 não aprova estabilidade prolongada nem
+a sessão completa: XSettings ficou
 em auto-restart, outros SettingsDaemon falharam e persistem negações para
 registro GDM, AccountsService, Polkit, dconf e permission-store. Também faltam
 aplicativos reais, acessibilidade, clipboard, compartilhamento de tela,
@@ -104,14 +125,16 @@ todo o inventário inicial foi restaurado.
 
 Extrair os SRPMs verificados; usar `prepare-source.py` e `prepare-mutter.py`
 com `--sources DIRETORIO_EXTRAIDO --output DIRETORIO_NOVO`. Executar
-`test-popen.py ARVORE_XWAYLAND` e `test-mutter.py ARVORE_MUTTER`.
+`test-popen.py ARVORE_XWAYLAND`, `test-mutter.py ARVORE_MUTTER` e
+`test-frames.py ARVORE_MUTTER`. `prepare-mutter.py` aplica também o patch
+`mutter-frames-failure.patch`; o [build incremental](frames-build.json) passou.
 
 O ensaio gráfico exige a VM marcada `lyra.parental-selinux-test=1` e os
 pré-requisitos PAM/SELinux/GDM das etapas anteriores. Copiar para `/root`:
 
 - `trusted-shell.c`, `fixture_recovery.py`, `audit_capture.py` e `test-recovery.py`;
 - `config-faults.py` como `trusted-shell-config-faults.py`;
-- `fd-probe.c` como `xwayland-fd-probe.c`;
+- `fd-probe.c` como `xwayland-fd-probe.c` e `xwindow-test.c` com o mesmo nome;
 - `session.py` como `restricted-xwayland-session.py`;
 - `exercise.py` como `xwayland-exercise.py`.
 

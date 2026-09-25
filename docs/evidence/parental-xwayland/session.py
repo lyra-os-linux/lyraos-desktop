@@ -32,6 +32,7 @@ try:
  rows.append(dict(argv=['fixture','display-environment'],rc=manager.returncode,stdout=json.dumps(selected),stderr=manager.stderr))
  if selected['DISPLAY'] and selected['XAUTHORITY']:
   run(['runuser','-u','parentaltest','--','env','DISPLAY='+selected['DISPLAY'],'XAUTHORITY='+selected['XAUTHORITY'],'runcon','system_u:system_r:lyra_parental_probe_t:s0','/opt/lyra-parental-probe/probe','/usr/bin/xprop','-root'])
+  run(['runuser','-u','parentaltest','--','env','DISPLAY='+selected['DISPLAY'],'XAUTHORITY='+selected['XAUTHORITY'],'runcon','system_u:system_r:lyra_parental_probe_t:s0','/opt/lyra-parental-probe/probe','/opt/lyra-parental-probe/xwindow-test'])
   import re
   logs=pathlib.Path('/tmp/lyra-trusted-shell-test.log').read_text(errors='replace')
   displays=re.findall(r'Using public X11 display ([^,]+), \(using ([^ ]+) for managed services\)',logs)

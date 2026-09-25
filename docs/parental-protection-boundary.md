@@ -66,8 +66,9 @@ Patches experimentais usam execução direta do compilador e descritor privado
 somente para leitura. Testes de passagem de descritores preservam o bloqueio
 de escrita e execução no domínio receptor. O cliente X11 público passou em
 enforcing após corrigir a aceitação do socket e a notificação de prontidão.
-Ainda houve reinício do Shell e falhas de serviços GNOME; a sessão completa
-continua sem aprovação. Os detalhes e limites estão no relatório da etapa.
+Uma falha de subprocesso nulo do helper de molduras foi corrigida; a janela
+X11 recebeu moldura sem reiniciar o Shell na rodada final. Os demais serviços
+GNOME e a sessão completa continuam sem aprovação. Os detalhes e limites estão no relatório da etapa.
 
 A [reprodução nativa dos callbacks](evidence/parental-callbacks/README.md)
 identificou que a libffi oficial precisa mapear `memfd:libffi` como executável.

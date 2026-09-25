@@ -10,4 +10,5 @@ for name in re.findall(r'^Patch\d+:\s+(\S+)',(a.sources/'mutter.spec').read_text
 with tarfile.open(a.sources/'gvdb-0.gitmodule.tar.xz') as t:t.extractall(root/'subprojects',filter='data')
 (root/'subprojects/gvdb-0.gitmodule').rename(root/'subprojects/gvdb')
 subprocess.run(['patch','--batch','-p1','-i',str(a.patch.resolve())],cwd=root,check=True)
+subprocess.run(['patch','--batch','-p1','-i',str(pathlib.Path(__file__).with_name('mutter-frames-failure.patch').resolve())],cwd=root,check=True)
 print(root)

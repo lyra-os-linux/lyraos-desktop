@@ -4,6 +4,7 @@ P=pathlib.Path
 assert 'lyra.parental-selinux-test=1' in P('/proc/cmdline').read_text().split()
 worker=P('/usr/libexec/gdm/gdm-session-worker')
 mutter=P('/usr/lib64/libmutter-16.so.0.0.0')
+frames=P('/usr/libexec/mutter-x11-frames')
 x11ready=P('/usr/lib/systemd/user/gnome-session-x11-services-ready.target')
 helper=P('/usr/libexec/gdm/gdm-wayland-session')
 native=P('/usr/libexec/gnome-session-binary')
@@ -15,13 +16,14 @@ xkbcomp=P('/usr/bin/xkbcomp')
 entry=P('/usr/share/wayland-sessions/gnome.desktop')
 application=P('/usr/share/applications/org.gnome.Shell.desktop')
 atspi=[P('/usr/libexec/at-spi2/at-spi-bus-launcher'),P('/usr/libexec/at-spi2/at-spi2-registryd')]
+window_test=P('/opt/lyra-parental-probe/xwindow-test')
 launcher=P('/usr/libexec/lyra/trusted-shell-test')
 dropin=P('/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf')
 profile=P('/etc/dconf/profile/lyra-supervised-test')
 database=P('/etc/dconf/db/lyra-supervised-test')
 debuglog=P('/tmp/lyra-trusted-shell-test.log')
 keydir=P('/root/lyra-shell-test-db.d')
-generated=[launcher,dropin,profile,database,debuglog,keydir/'00-policy',keydir/'locks/00-policy']
+generated=[window_test,launcher,dropin,profile,database,debuglog,keydir/'00-policy',keydir/'locks/00-policy']
 assert all(not p.exists() for p in generated)
 for p in atspi:
     owner=subprocess.check_output(['rpm','-qf','--qf','%{NAME}',str(p)],text=True)
@@ -38,7 +40,7 @@ assert mutter.is_file() and not mutter.is_symlink()
 subprocess.run(['rpm','-V','mutter'],check=True)
 import fixture_recovery
 backup = fixture_recovery.snapshot(
-    [worker,helper,native,ctl,shell,entry,application,xwayland,xclient,xkbcomp,mutter,x11ready]+atspi+[P('/etc/gdm/custom.conf')],
+    [worker,helper,native,ctl,shell,entry,application,xwayland,xclient,xkbcomp,mutter,x11ready,frames]+atspi+[P('/etc/gdm/custom.conf')],
     generated+[P('/etc/pam.d/gdm-autologin'),P('/etc/gdm/custom.conf.lyra-baseline')])
 created_dirs=[]
 loaded=False
@@ -73,6 +75,8 @@ try:
          '-Wl,-z,relro,-z,now','/root/trusted-shell.c','-lselinux','-o',str(launcher)]
         +shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','gio-2.0'],text=True)))
     launcher.chmod(0o755)
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/xwindow-test.c','-lX11','-lselinux','-o',str(window_test)])
+    window_test.chmod(0o755)
     profile.write_text('user-db:user\nsystem-db:lyra-supervised-test\n')
     (keydir/'00-policy').write_text("[org/gnome/shell]\nallow-extension-installation=false\ndevelopment-tools=false\ndisable-user-extensions=true\n")
     (keydir/'locks/00-policy').write_text('/org/gnome/shell/allow-extension-installation\n/org/gnome/shell/development-tools\n/org/gnome/shell/disable-user-extensions\n')
@@ -247,6 +251,13 @@ try:
 (allow lyra_parental_xkb_t lyra_parental_session_log_t (file (write append)))
 '''
     policy+='''
+; Wayland pixel buffers from XWayland are writable data, never executable.
+(allow lyra_parental_shell_t lyra_parental_xwayland_data_t (file (write)))
+; The fixed native frame helper shares the compositor trust boundary.
+(type lyra_parental_frames_exec_t)
+(typeattributeset file_type (lyra_parental_frames_exec_t))
+(typeattributeset exec_type (lyra_parental_frames_exec_t))
+(allow lyra_parental_shell_t lyra_parental_frames_exec_t (file (execute execute_no_trans)))
 ; The sanitized NOTIFY_SOCKET names only the current user manager endpoint.
 (allow lyra_parental_shell_t lyra_parental_probe_t (unix_dgram_socket (sendto)))
 ; Shell may notify readiness through exactly this packaged user target.
@@ -275,9 +286,10 @@ try:
                       (launcher,'lyra_parental_shell_entry_t')]:
         run(['chcon','-t',kind,str(path)])
     run(['chcon','-t','lyra_parental_xwayland_exec_t',str(xwayland)])
-    run(['chcon','-t','lyra_parental_xclient_exec_t',str(xclient)])
+    run(['chcon','-t','lyra_parental_xclient_exec_t',str(xclient),str(window_test)])
     run(['chcon','-t','lyra_parental_xkb_exec_t',str(xkbcomp)])
     run(['chcon','-t','lyra_parental_x11_ready_unit_t',str(x11ready)])
+    run(['chcon','-t','lyra_parental_frames_exec_t',str(frames)])
     for path in atspi:run(['chcon','-t','lyra_parental_atspi_exec_t',str(path)])
     entry.write_text(entry.read_text().replace('\nExec=/usr/bin/gnome-session\n','\nExec=/usr/libexec/gnome-session-binary\n'))
     assert '\nExec=/usr/bin/gnome-shell\n' in application.read_text()
@@ -296,7 +308,7 @@ try:
            (['/usr/bin/bash','-c','true'],126),(['/usr/bin/python3','-c','print(42)'],126),
            (['/usr/lib64/ld-linux-x86-64.so.2','/home/parentaltest/copied-true'],126),
            (['--anon'],126),(['--map','/home/parentaltest/copied-true'],126),
-           ([str(xwayland),'-version'],126),([str(xkbcomp),'-version'],126),([str(launcher),'--invalid'],126),([str(shell),'--version'],126)]
+           ([str(frames)],126),([str(xwayland),'-version'],126),([str(xkbcomp),'-version'],126),([str(launcher),'--invalid'],126),([str(shell),'--version'],126)]
     for args,expected in cases:
         cmd=['runuser','-u','parentaltest','--','runcon','system_u:system_r:lyra_parental_probe_t:s0',
              '/opt/lyra-parental-probe/probe']+args
@@ -312,7 +324,7 @@ try:
     try:
         shutil.copyfile('/root/xwayland-fd-probe',launcher)
         shutil.copyfile('/root/xwayland-fd-probe',xwayland)
-        for mode in ['rw','sealed-rw','sealed-ro']:
+        for mode in ['rw','sealed-rw','sealed-ro','pixels-rw']:
             run(['runuser','-u','parentaltest','--','runcon','system_u:system_r:lyra_parental_probe_t:s0','/opt/lyra-parental-probe/probe',str(launcher),mode],timeout=15)
     finally:
         launcher.write_bytes(saved_launcher)

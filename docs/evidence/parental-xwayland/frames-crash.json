@@ -1,0 +1,11 @@
+{
+  "signal": "SIGSEGV",
+  "baseline_pid": 79404,
+  "denial": {
+    "count": 1,
+    "line": "type=AVC msg=audit(1790364397.031:9391110): avc:  denied  { execute } for  pid=79796 comm=\"gnome-shell\" name=\"mutter-x11-frames\" dev=\"vda\" ino=39315 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+  },
+  "reproduced_under_gdb": true,
+  "source": "src/x11/meta-x11-display.c:1335",
+  "cause": "meta_frame_launch_client returned NULL after execution denial; passed to g_subprocess_wait_async"
+}

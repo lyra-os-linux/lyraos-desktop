@@ -7,7 +7,7 @@
         "display-environment"
       ],
       "rc": 0,
-      "stdout": "{\"DISPLAY\": \":0\", \"WAYLAND_DISPLAY\": \"wayland-0\", \"XAUTHORITY\": \"/run/user/1003/.mutter-Xwaylandauth.Y2SYV3\"}",
+      "stdout": "{\"DISPLAY\": \":0\", \"WAYLAND_DISPLAY\": \"wayland-0\", \"XAUTHORITY\": \"/run/user/1003/.mutter-Xwaylandauth.33QFW3\"}",
       "stderr": ""
     },
     {
@@ -18,7 +18,7 @@
         "--",
         "env",
         "DISPLAY=:0",
-        "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.Y2SYV3",
+        "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.33QFW3",
         "runcon",
         "system_u:system_r:lyra_parental_probe_t:s0",
         "/opt/lyra-parental-probe/probe",
@@ -27,6 +27,24 @@
       ],
       "rc": 0,
       "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n_NET_WORKAREA(CARDINAL) = 0, 32, 1280, 768, 0, 32, 1280, 768\n_GTK_WORKAREAS_D1(CARDINAL) = 0, 32, 1280, 768\n_GTK_WORKAREAS_D0(CARDINAL) = 0, 32, 1280, 768\n_NET_DESKTOP_NAMES(UTF8_STRING) = \"Workspace 1\", \"Workspace 2\"\n_NET_SHOWING_DESKTOP(CARDINAL) = 0\n_NET_NUMBER_OF_DESKTOPS(CARDINAL) = 2\n_NET_DESKTOP_GEOMETRY(CARDINAL) = 1280, 800\n_NET_DESKTOP_VIEWPORT(CARDINAL) = 0, 0\n_NET_SUPPORTING_WM_CHECK(WINDOW): window id # 0x200001\n_NET_SUPPORTED(ATOM) = _NET_WM_NAME, _NET_CLOSE_WINDOW, _NET_WM_STATE, _NET_WM_STATE_MAXIMIZED_HORZ, _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_DESKTOP, _NET_NUMBER_OF_DESKTOPS, _NET_CURRENT_DESKTOP, _NET_WM_WINDOW_TYPE, _NET_WM_WINDOW_TYPE_DESKTOP, _NET_WM_WINDOW_TYPE_DOCK, _NET_WM_WINDOW_TYPE_TOOLBAR, _NET_WM_WINDOW_TYPE_MENU, _NET_WM_WINDOW_TYPE_UTILITY, _NET_WM_WINDOW_TYPE_SPLASH, _NET_WM_WINDOW_TYPE_DIALOG, _NET_WM_WINDOW_TYPE_DROPDOWN_MENU, _NET_WM_WINDOW_TYPE_POPUP_MENU, _NET_WM_WINDOW_TYPE_TOOLTIP, _NET_WM_WINDOW_TYPE_NOTIFICATION, _NET_WM_WINDOW_TYPE_COMBO, _NET_WM_WINDOW_TYPE_DND, _NET_WM_WINDOW_TYPE_NORMAL, _NET_WM_STATE_MODAL, _NET_CLIENT_LIST, _NET_CLIENT_LIST_STACKING, _NET_WM_STATE_SKIP_TASKBAR, _NET_WM_STATE_SKIP_PAGER, _NET_WM_ICON, _NET_WM_ICON_GEOMETRY, _NET_WM_MOVERESIZE, _NET_ACTIVE_WINDOW, _NET_WM_STRUT, _NET_WM_STATE_HIDDEN, _NET_WM_STATE_FULLSCREEN, _NET_WM_PING, _NET_WM_PID, _NET_WORKAREA, _NET_SHOWING_DESKTOP, _NET_DESKTOP_LAYOUT, _NET_DESKTOP_NAMES, _NET_WM_ALLOWED_ACTIONS, _NET_WM_ACTION_MOVE, _NET_WM_ACTION_RESIZE, _NET_WM_ACTION_SHADE, _NET_WM_ACTION_STICK, _NET_WM_ACTION_MAXIMIZE_HORZ, _NET_WM_ACTION_MAXIMIZE_VERT, _NET_WM_ACTION_CHANGE_DESKTOP, _NET_WM_ACTION_CLOSE, _NET_WM_STATE_ABOVE, _NET_WM_STATE_BELOW, _NET_STARTUP_ID, _NET_WM_STRUT_PARTIAL, _NET_WM_ACTION_FULLSCREEN, _NET_WM_ACTION_MINIMIZE, _NET_FRAME_EXTENTS, _NET_REQUEST_FRAME_EXTENTS, _NET_WM_USER_TIME, _NET_WM_STATE_DEMANDS_ATTENTION, _NET_MOVERESIZE_WINDOW, _NET_DESKTOP_GEOMETRY, _NET_DESKTOP_VIEWPORT, _NET_WM_USER_TIME_WINDOW, _NET_WM_ACTION_ABOVE, _NET_WM_ACTION_BELOW, _NET_WM_STATE_STICKY, _NET_WM_FULLSCREEN_MONITORS, _NET_WM_STATE_FOCUSED, _NET_WM_BYPASS_COMPOSITOR, _NET_WM_OPAQUE_REGION, _NET_WM_FRAME_DRAWN, _NET_WM_FRAME_TIMINGS, _NET_WM_WINDOW_OPACITY, _NET_RESTACK_WINDOW, _GTK_FRAME_EXTENTS, _GTK_SHOW_WINDOW_MENU, _GTK_EDGE_CONSTRAINTS, _GTK_WORKAREAS\nWM_ICON_SIZE(CARDINAL):\n\t\tminimum icon size: 32 by 32\n\t\tmaximum icon size: 32 by 32\n\t\tincremental size change: 0 by 0\n_XKB_RULES_NAMES(STRING) = \"evdev\", \"pc105\", \"us\", \"\", \"\"\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "env",
+        "DISPLAY=:0",
+        "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.33QFW3",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/xwindow-test"
+      ],
+      "rc": 0,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\ncontext=system_u:system_r:lyra_parental_probe_t:s0\nframed-window=4194305 extents=0,0,37,0\n",
       "stderr": ""
     },
     {
@@ -46,7 +64,7 @@
         "--",
         "env",
         "DISPLAY=:1",
-        "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.Y2SYV3",
+        "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.33QFW3",
         "runcon",
         "system_u:system_r:lyra_parental_probe_t:s0",
         "/opt/lyra-parental-probe/probe",
@@ -71,7 +89,7 @@
         "--",
         "env",
         "DISPLAY=:1",
-        "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.Y2SYV3",
+        "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.33QFW3",
         "runcon",
         "system_u:system_r:lyra_parental_probe_t:s0",
         "/opt/lyra-parental-probe/probe",
@@ -98,7 +116,7 @@
         "--no-pager"
       ],
       "rc": 0,
-      "stdout": "No jobs running.\n",
+      "stdout": "JOB  UNIT                                       TYPE  STATE\n1269 org.gnome.SettingsDaemon.XSettings.service start running\n\n1 jobs listed.\n",
       "stderr": ""
     },
     {
@@ -162,7 +180,7 @@
         "SubState"
       ],
       "rc": 0,
-      "stdout": "Restart=no\nExecStart={ path=/usr/libexec/lyra/trusted-shell-test ; argv[]=/usr/libexec/lyra/trusted-shell-test ; ignore_errors=no ; start_time=[Fri 2026-09-25 19:26:37 UTC] ; stop_time=[n/a] ; pid=79873 ; code=(null) ; status=0/0 }\nEnvironment=GNOME_SHELL_JS=/home/parentaltest/untrusted-js GSETTINGS_BACKEND=memory DCONF_PROFILE=/home/parentaltest/untrusted-profile\nActiveState=active\nSubState=running\nDropInPaths=/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf\n",
+      "stdout": "Restart=no\nExecStart={ path=/usr/libexec/lyra/trusted-shell-test ; argv[]=/usr/libexec/lyra/trusted-shell-test ; ignore_errors=no ; start_time=[Fri 2026-09-25 19:38:37 UTC] ; stop_time=[n/a] ; pid=83284 ; code=(null) ; status=0/0 }\nEnvironment=GNOME_SHELL_JS=/home/parentaltest/untrusted-js GSETTINGS_BACKEND=memory DCONF_PROFILE=/home/parentaltest/untrusted-profile\nActiveState=active\nSubState=running\nDropInPaths=/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf\n",
       "stderr": ""
     },
     {
@@ -171,7 +189,7 @@
         "shell-processes"
       ],
       "rc": 0,
-      "stdout": "[{\"pid\": 79873, \"context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0\\u0000\", \"environment\": {\"NOTIFY_SOCKET\": \"/run/user/1003/systemd/notify\", \"XDG_DATA_DIRS\": \"/usr/local/share:/usr/share\", \"GNOME_SHELL_SESSION_MODE\": \"user\", \"DCONF_PROFILE\": \"/etc/dconf/profile/lyra-supervised-test\", \"GSETTINGS_BACKEND\": \"dconf\"}}]",
+      "stdout": "[{\"pid\": 83284, \"context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0\\u0000\", \"environment\": {\"NOTIFY_SOCKET\": \"/run/user/1003/systemd/notify\", \"XDG_DATA_DIRS\": \"/usr/local/share:/usr/share\", \"GNOME_SHELL_SESSION_MODE\": \"user\", \"DCONF_PROFILE\": \"/etc/dconf/profile/lyra-supervised-test\", \"GSETTINGS_BACKEND\": \"dconf\"}}]",
       "stderr": ""
     }
   ],
@@ -222,7 +240,7 @@
       "name": "corrupt-administrator-database",
       "rc": 126,
       "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
-      "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\n\n(process:79322): dconf-WARNING **: 19:26:21.584: unable to open file '/etc/dconf/db/lyra-supervised-test': /etc/dconf/db/lyra-supervised-test: invalid gvdb header; expect degraded performance\ntrusted-shell fixture refused: desktop restrictions are not locked and effective\n"
+      "stderr": "trusted-shell fixture: uid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 AT_SECURE=1\n\n(process:83199): dconf-WARNING **: 19:38:36.786: unable to open file '/etc/dconf/db/lyra-supervised-test': /etc/dconf/db/lyra-supervised-test: invalid gvdb header; expect degraded performance\ntrusted-shell fixture refused: desktop restrictions are not locked and effective\n"
     },
     {
       "name": "ordinary-account-cannot-enter-shell-domain",
@@ -251,15 +269,16 @@
     }
   ],
   "process_contexts": [
-    " 1003   79873 lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 /usr/bin/gnome-shell",
-    " 1003   79894 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/at-spi2/at-spi-bus-launcher",
-    " 1003   79900 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user",
-    " 1003   79902 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/at-spi2/at-spi2-registryd --use-gnome-session"
+    " 1003   83284 lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 /usr/bin/gnome-shell",
+    " 1003   83306 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/at-spi2/at-spi-bus-launcher",
+    " 1003   83312 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user",
+    " 1003   83314 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/at-spi2/at-spi2-registryd --use-gnome-session",
+    " 1003   83669 lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 /usr/bin/Xwayland :0 -rootless -noreset -accessx -core -auth /run/user/1003/.mutter-Xwaylandauth.33QFW3 -listenfd 4 -listenfd 5 -displayfd 6 -initfd 7 -byteswappedclients -enable-ei-portal",
+    " 1003   83676 lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 /usr/libexec/mutter-x11-frames"
   ],
-  "shell_launches_in_one_capture": 2,
+  "shell_launches_in_one_capture": 1,
   "full_session_qualified": false,
   "remaining_blockers": [
-    "Shell restarted during this capture; no uninterrupted session approval.",
     "GNOME SettingsDaemon helpers including XSettings cannot execute.",
     "GDM registration, AccountsService and Polkit messages denied.",
     "dconf-service, permission store, portal and screencast services remain unqualified.",
