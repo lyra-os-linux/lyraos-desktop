@@ -58,6 +58,17 @@ de utilizá-lo como uma camada complementar.
 
 ## Próxima implementação
 
+### Progresso experimental em 25/09
+
+O [ensaio nativo do GDM oficial](evidence/parental-gdm/README.md) localizou
+interferência do contexto SELinux pendente nos hooks de root antes do fork.
+Uma proposta de patch passou com o fonte oficial do openSUSE e em dez casos
+de falha. Não foi publicada nem aplicada à receita. A conta comum abriu
+GNOME Wayland em enforcing; a restrita ainda falha na inicialização do Shell,
+que precisa de memória executável mesmo com `GJS_DISABLE_JIT=1`. A separação
+de um domínio exclusivo do desktop está em investigação; não liberar essa
+permissão para o domínio inteiro nem declarar o controle parental concluído.
+
 ### Progresso experimental em 22/09
 
 O [ensaio do domínio e de sessão PAM](evidence/parental-selinux/README.md)

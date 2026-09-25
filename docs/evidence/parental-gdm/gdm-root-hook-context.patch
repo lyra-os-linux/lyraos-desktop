@@ -1,0 +1,51 @@
+--- a/daemon/gdm-session-worker.c
++++ b/daemon/gdm-session-worker.c
+@@ -1771,11 +1771,43 @@
+                 return TRUE;
+         }
+ 
+-        return gdm_run_script (dir,
+-                               worker->username,
+-                               worker->x11_display_name,
+-                               worker->display_is_local? NULL : worker->hostname,
+-                               worker->x11_authority_file);
++        gboolean result;
++#ifdef HAVE_SELINUX
++        char *session_exec_context = NULL;
++        gboolean restore_exec_context = FALSE;
++
++        /* PAM selects the user's context for the session executable. Root
++         * hooks must not consume that context; keep it for the session fork.
++         * Refuse to start a session if saving or restoring it fails. */
++        if (is_selinux_enabled () > 0) {
++                if (getexeccon (&session_exec_context) < 0) {
++                        g_warning ("Unable to save SELinux session exec context: %m");
++                        return FALSE;
++                }
++                if (session_exec_context != NULL) {
++                        if (setexeccon (NULL) < 0) {
++                                g_warning ("Unable to clear SELinux exec context for root hook: %m");
++                                freecon (session_exec_context);
++                                return FALSE;
++                        }
++                        restore_exec_context = TRUE;
++                }
++        }
++#endif
++
++        result = gdm_run_script (dir,
++                                 worker->username,
++                                 worker->x11_display_name,
++                                 worker->display_is_local? NULL : worker->hostname,
++                                 worker->x11_authority_file);
++#ifdef HAVE_SELINUX
++        if (restore_exec_context && setexeccon (session_exec_context) < 0) {
++                g_warning ("Unable to restore SELinux session exec context: %m");
++                result = FALSE;
++        }
++        freecon (session_exec_context);
++#endif
++        return result;
+ }
+ 
+ static void
