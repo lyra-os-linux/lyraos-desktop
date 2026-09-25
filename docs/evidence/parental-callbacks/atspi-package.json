@@ -1,0 +1,102 @@
+{
+  "package": {
+    "argv": [
+      "rpm",
+      "-q",
+      "--qf",
+      "%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}\n%{DISTURL}\n",
+      "at-spi2-core"
+    ],
+    "rc": 0,
+    "stdout": "at-spi2-core-2.58.7-160100.2.1.x86_64\nobs://build.suse.de/SUSE:SLFO:1.3/standard/13871be8cda026c5f789c98eb45909b7-at-spi2-core\n",
+    "stderr": ""
+  },
+  "verification": {
+    "argv": [
+      "rpm",
+      "-V",
+      "at-spi2-core"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "files": [
+    {
+      "path": "/usr/libexec/at-spi2/at-spi-bus-launcher",
+      "sha256": "ad51959df7b2e0d51b745ba8e463736aa5ef4e7d2dc47e5975e4fdbf4acc91c9",
+      "uid": 0,
+      "mode": "0o755",
+      "label": "system_u:object_r:bin_t:s0"
+    },
+    {
+      "path": "/usr/libexec/at-spi2/at-spi2-registryd",
+      "sha256": "5982c519d4d2272acd6787509383066285b15ed0b052a65fb455057a624493d4",
+      "uid": 0,
+      "mode": "0o755",
+      "label": "system_u:object_r:bin_t:s0"
+    }
+  ],
+  "removed_after_test": [
+    "/usr/libexec/lyra/trusted-shell-test",
+    "/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf",
+    "/etc/dconf/profile/lyra-supervised-test",
+    "/etc/dconf/db/lyra-supervised-test",
+    "/etc/pam.d/gdm-autologin",
+    "/tmp/lyra-trusted-shell-test.log",
+    "/run/user/1003",
+    "/etc/selinux/targeted/active/modules/400/lyra-trusted-shell-test"
+  ],
+  "services": [
+    {
+      "argv": [
+        "systemctl",
+        "is-active",
+        "gdm"
+      ],
+      "rc": 3,
+      "stdout": "inactive\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "is-active",
+        "user@1003.service"
+      ],
+      "rc": 3,
+      "stdout": "inactive\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "is-active",
+        "auditd"
+      ],
+      "rc": 3,
+      "stdout": "inactive\n",
+      "stderr": ""
+    }
+  ],
+  "selinux_after_cleanup": "permissive",
+  "official_worker_sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8",
+  "before_package": [
+    {
+      "path": "/usr/libexec/at-spi2/at-spi-bus-launcher",
+      "sha256": "ad51959df7b2e0d51b745ba8e463736aa5ef4e7d2dc47e5975e4fdbf4acc91c9",
+      "uid": 65534
+    },
+    {
+      "path": "/usr/libexec/at-spi2/at-spi2-registryd",
+      "sha256": "5982c519d4d2272acd6787509383066285b15ed0b052a65fb455057a624493d4",
+      "uid": 65534
+    },
+    {
+      "path": "/usr/lib/systemd/user/at-spi-dbus-bus.service",
+      "sha256": "97206c65c48b74ae2fb1ff144ec4f755dd021f287263c6fc26d1195803f74f83",
+      "uid": 65534
+    }
+  ]
+}
+

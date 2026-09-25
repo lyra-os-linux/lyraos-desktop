@@ -1,0 +1,33 @@
+{
+  "enforcing_before_start": true,
+  "diagnostic_wayland_only": false,
+  "full_session_qualified": false,
+  "xwayland_execution": "still denied",
+  "screen_reader_qualified": false,
+  "processes": [
+    " 1003   68350 lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 /usr/bin/gnome-shell",
+    " 1003   68371 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/at-spi2/at-spi-bus-launcher",
+    " 1003   68377 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user",
+    " 1003   68379 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/at-spi2/at-spi2-registryd --use-gnome-session"
+  ],
+  "shell_environment": [
+    {
+      "pid": 68350,
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0",
+      "environment": {
+        "XDG_DATA_DIRS": "/usr/local/share:/usr/share",
+        "GNOME_SHELL_SESSION_MODE": "user",
+        "DCONF_PROFILE": "/etc/dconf/profile/lyra-supervised-test",
+        "GSETTINGS_BACKEND": "dconf"
+      }
+    }
+  ],
+  "restored": true,
+  "official_worker_sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8",
+  "execution_controls_passed": 12,
+  "configuration_faults_passed": 6,
+  "capture_sha256": "09031f1b6b30dd7be544981e82fef83fd183cde03a3e301bb85bdf4feb0d4777",
+  "atspi_package": "at-spi2-core-2.58.7-160100.2.1.x86_64",
+  "package_verification": "atspi-package.json",
+  "xwayland_denial": "type=AVC msg=audit(1790356482.391:1217601): avc:  denied  { execute } for  pid=68350 comm=\"gnome-shell\" name=\"Xwayland\" dev=\"vda\" ino=38767 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:xserver_exec_t:s0 tclass=file permissive=0"
+}

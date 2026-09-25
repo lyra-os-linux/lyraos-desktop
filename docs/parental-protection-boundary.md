@@ -60,6 +60,13 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso experimental em 25/09
 
+A [reprodução nativa dos callbacks](evidence/parental-callbacks/README.md)
+identificou que a libffi oficial precisa mapear `memfd:libffi` como executável.
+Um tipo de memória exclusivo do Shell corrigiu essa falha sem permitir à conta
+restrita executar ou escrever esse tipo. O Shell iniciou no ensaio Wayland
+isolado; XWayland, acessibilidade e os serviços da sessão continuam pendentes.
+Não é qualificação de proteção da conta inteira ou mudança em pacotes publicados.
+
 O [ensaio nativo do GDM oficial](evidence/parental-gdm/README.md) localizou
 interferência do contexto SELinux pendente nos hooks de root antes do fork.
 Uma proposta de patch passou com o fonte oficial do openSUSE e em dez casos
