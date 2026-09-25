@@ -48,6 +48,14 @@ versioned `not-applicable` rationale.
 
 ## `feature-freeze-result.json`
 
+On 2026-09-22 the maintainer reaffirmed the delivery sequence: finish the
+approved functionality during Alpha 8 and reserve Beta 1 and Beta 2 primarily
+for bug fixes, regressions and stability. Defer new feature ideas to the next
+cycle by default. A proposed exception needs a concrete maintainer decision;
+the earlier general allowance for Beta improvements is not a reason to expand
+the current plan. Existing release qualification remains required. Do not
+move unfinished Alpha functionality into Beta under the label of a bug fix.
+
 This is a release-coordinator decision record, not an automatic claim. `GO`
 requires `open_p0: 0`, `open_p1: 0`, the fixed three-locale list,
 `all_features_implemented_or_removed: true` and

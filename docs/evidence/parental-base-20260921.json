@@ -1,0 +1,320 @@
+{
+  "date": "2026-09-21",
+  "repository": "https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/x86_64/",
+  "repomd_sha256": "cdf0938727de86566202d54b6234808e3e63d5a57270e382a00e66d8997c6641",
+  "primary_checksum_verified": true,
+  "packages": [
+    {
+      "name": "libmalcontent-0-0",
+      "arch": "x86_64",
+      "version": {
+        "epoch": "0",
+        "ver": "0.12.0",
+        "rel": "160100.2.1"
+      },
+      "url": "https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/x86_64/../x86_64/libmalcontent-0-0-0.12.0-160100.2.1.x86_64.rpm",
+      "sha256": "60644d603d91b0a8a07ae664c2b3fafab6666e616ed829fed608b9700cfccf0f",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/parental-base/rpms/libmalcontent-0-0-0.12.0-160100.2.1.x86_64.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+      "requires": [
+        "/sbin/ldconfig",
+        "/sbin/ldconfig",
+        "libc.so.6()(64bit)",
+        "libc.so.6(GLIBC_2.2.5)(64bit)",
+        "libc.so.6(GLIBC_2.4)(64bit)",
+        "libgio-2.0.so.0()(64bit)",
+        "libglib-2.0.so.0()(64bit)",
+        "libgobject-2.0.so.0()(64bit)",
+        "malcontent >= 0.12.0",
+        "rpmlib(CompressedFileNames) <= 3.0.4-1",
+        "rpmlib(FileDigests) <= 4.6.0-1",
+        "rpmlib(PayloadFilesHavePrefix) <= 4.0-1",
+        "rpmlib(PayloadIsZstd) <= 5.4.18-1"
+      ],
+      "disturl": "obs://build.suse.de/SUSE:SLFO:1.3/standard/c869ccba14dee8b2fa7d86b48361717e-malcontent"
+    },
+    {
+      "name": "libmalcontent-ui-1-1",
+      "arch": "x86_64",
+      "version": {
+        "epoch": "0",
+        "ver": "0.12.0",
+        "rel": "160100.2.1"
+      },
+      "url": "https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/x86_64/../x86_64/libmalcontent-ui-1-1-0.12.0-160100.2.1.x86_64.rpm",
+      "sha256": "0e5bcf5b808db987e31e1d3473002c6d17dba8df6292c51e3316da78da115421",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/parental-base/rpms/libmalcontent-ui-1-1-0.12.0-160100.2.1.x86_64.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+      "requires": [
+        "/sbin/ldconfig",
+        "/sbin/ldconfig",
+        "libaccountsservice.so.0()(64bit)",
+        "libadwaita-1.so.0()(64bit)",
+        "libadwaita-1.so.0(LIBADWAITA_1_0)(64bit)",
+        "libappstream.so.5()(64bit)",
+        "libc.so.6()(64bit)",
+        "libc.so.6(GLIBC_2.2.5)(64bit)",
+        "libc.so.6(GLIBC_2.4)(64bit)",
+        "libflatpak.so.0()(64bit)",
+        "libgio-2.0.so.0()(64bit)",
+        "libglib-2.0.so.0()(64bit)",
+        "libgobject-2.0.so.0()(64bit)",
+        "libgtk-4.so.1()(64bit)",
+        "libmalcontent-0.so.0()(64bit)",
+        "rpmlib(CompressedFileNames) <= 3.0.4-1",
+        "rpmlib(FileDigests) <= 4.6.0-1",
+        "rpmlib(PayloadFilesHavePrefix) <= 4.0-1",
+        "rpmlib(PayloadIsZstd) <= 5.4.18-1"
+      ],
+      "disturl": "obs://build.suse.de/SUSE:SLFO:1.3/standard/c869ccba14dee8b2fa7d86b48361717e-malcontent"
+    },
+    {
+      "name": "malcontent",
+      "arch": "x86_64",
+      "version": {
+        "epoch": "0",
+        "ver": "0.12.0",
+        "rel": "160100.2.1"
+      },
+      "url": "https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/x86_64/../x86_64/malcontent-0.12.0-160100.2.1.x86_64.rpm",
+      "sha256": "bda2d8fdb24ccb115b176b012c5e3c3608b53ae60f197b55dca2521b5ea1f7ec",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/parental-base/rpms/malcontent-0.12.0-160100.2.1.x86_64.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+      "requires": [
+        "/usr/bin/python3.13",
+        "libc.so.6()(64bit)",
+        "libc.so.6(GLIBC_2.2.5)(64bit)",
+        "libc.so.6(GLIBC_2.4)(64bit)",
+        "libgio-2.0.so.0()(64bit)",
+        "libglib-2.0.so.0()(64bit)",
+        "libgobject-2.0.so.0()(64bit)",
+        "libmalcontent-0.so.0()(64bit)",
+        "libpam.so.0()(64bit)",
+        "libpam.so.0(LIBPAM_1.0)(64bit)",
+        "libpam.so.0(LIBPAM_EXTENSION_1.0)(64bit)",
+        "libpam.so.0(LIBPAM_MODUTIL_1.0)(64bit)",
+        "rpmlib(CompressedFileNames) <= 3.0.4-1",
+        "rpmlib(FileDigests) <= 4.6.0-1",
+        "rpmlib(PayloadFilesHavePrefix) <= 4.0-1",
+        "rpmlib(PayloadIsZstd) <= 5.4.18-1",
+        "typelib(GLib)",
+        "typelib(Gio)",
+        "typelib(Malcontent) = 0"
+      ],
+      "disturl": "obs://build.suse.de/SUSE:SLFO:1.3/standard/c869ccba14dee8b2fa7d86b48361717e-malcontent"
+    },
+    {
+      "name": "malcontent-control",
+      "arch": "x86_64",
+      "version": {
+        "epoch": "0",
+        "ver": "0.12.0",
+        "rel": "160100.2.1"
+      },
+      "url": "https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/x86_64/../x86_64/malcontent-control-0.12.0-160100.2.1.x86_64.rpm",
+      "sha256": "c8a4634723c9c95a97690133d59c9a5a98a62f96aa8284a2243e553784a93c56",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/parental-base/rpms/malcontent-control-0.12.0-160100.2.1.x86_64.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+      "requires": [
+        "libaccountsservice.so.0()(64bit)",
+        "libadwaita-1.so.0()(64bit)",
+        "libadwaita-1.so.0(LIBADWAITA_1_0)(64bit)",
+        "libc.so.6()(64bit)",
+        "libc.so.6(GLIBC_2.2.5)(64bit)",
+        "libc.so.6(GLIBC_2.34)(64bit)",
+        "libc.so.6(GLIBC_2.4)(64bit)",
+        "libgio-2.0.so.0()(64bit)",
+        "libglib-2.0.so.0()(64bit)",
+        "libgobject-2.0.so.0()(64bit)",
+        "libgtk-4.so.1()(64bit)",
+        "libmalcontent-ui-1.so.1()(64bit)",
+        "libpolkit-gobject-1.so.0()(64bit)",
+        "malcontent >= 0.12.0",
+        "rpmlib(CompressedFileNames) <= 3.0.4-1",
+        "rpmlib(FileDigests) <= 4.6.0-1",
+        "rpmlib(PayloadFilesHavePrefix) <= 4.0-1",
+        "rpmlib(PayloadIsZstd) <= 5.4.18-1"
+      ],
+      "disturl": "obs://build.suse.de/SUSE:SLFO:1.3/standard/c869ccba14dee8b2fa7d86b48361717e-malcontent"
+    },
+    {
+      "name": "malcontent-lang",
+      "arch": "noarch",
+      "version": {
+        "epoch": "0",
+        "ver": "0.12.0",
+        "rel": "160100.2.1"
+      },
+      "url": "https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/x86_64/../noarch/malcontent-lang-0.12.0-160100.2.1.noarch.rpm",
+      "sha256": "20faef0b5e79ba13df67a52118734df5cd1436ef116bf5d634cda13ae80b67b9",
+      "signature": "/home/rodrigo/Git/LyraOS/analysis/2026-09-21/parental-base/rpms/malcontent-lang-0.12.0-160100.2.1.noarch.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+      "requires": [
+        "malcontent = 0.12.0",
+        "rpmlib(CompressedFileNames) <= 3.0.4-1",
+        "rpmlib(FileDigests) <= 4.6.0-1",
+        "rpmlib(PayloadFilesHavePrefix) <= 4.0-1",
+        "rpmlib(PayloadIsZstd) <= 5.4.18-1"
+      ],
+      "disturl": "obs://build.suse.de/SUSE:SLFO:1.3/standard/c869ccba14dee8b2fa7d86b48361717e-malcontent"
+    }
+  ],
+  "functional_qualification": false,
+  "host_modified": false,
+  "policy_probe": {
+    "scope": "disposable component VM; noninteractive authorization and policy storage",
+    "checks": [
+      {
+        "id": "cache-test-user",
+        "status": "passed",
+        "rc": 0,
+        "stdout": "(objectpath '/org/freedesktop/Accounts/User1003',)\n",
+        "stderr": ""
+      },
+      {
+        "id": "admin-set-policy",
+        "status": "passed",
+        "rc": 0,
+        "stdout": "App filter for user parentaltest set\n",
+        "stderr": ""
+      },
+      {
+        "id": "read-own-policy",
+        "status": "passed",
+        "rc": 0,
+        "stdout": "App filter for user parentaltest retrieved:\n  (No OARS values)\nApp installation is disallowed to user repository\nApp installation is disallowed to system repository\n",
+        "stderr": ""
+      },
+      {
+        "id": "blocked-path-query",
+        "status": "passed",
+        "rc": 3,
+        "stdout": "Path /usr/bin/true is not allowed by app filter for user parentaltest\n",
+        "stderr": ""
+      },
+      {
+        "id": "child-cannot-clear-policy",
+        "status": "passed",
+        "rc": 2,
+        "stdout": "",
+        "stderr": "Error setting app filter for user 1003: Not allowed to query parental controls data for user 1003\n"
+      },
+      {
+        "id": "policy-remains-after-denial",
+        "status": "passed",
+        "rc": 3,
+        "stdout": "Path /usr/bin/true is not allowed by app filter for user parentaltest\n",
+        "stderr": ""
+      },
+      {
+        "id": "direct-exec-still-succeeds",
+        "status": "passed",
+        "rc": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "id": "policy-persists-service-restart",
+        "status": "passed",
+        "rc": 3,
+        "stdout": "Path /usr/bin/true is not allowed by app filter for user parentaltest\n",
+        "stderr": ""
+      }
+    ],
+    "uid": 1003,
+    "policy_sha256": "3bab39026c10e9e3c5297cb725299a64a995a04418d242cb3a07cef6f0d28f38",
+    "direct_execution_enforced": false,
+    "full_qualification": false
+  },
+  "flatpak_probe": [
+    {
+      "argv": [
+        "rpm",
+        "-q",
+        "--requires",
+        "flatpak",
+        "libflatpak0"
+      ],
+      "rc": 0,
+      "stdout": "(flatpak-selinux = 1.16.6 if selinux-policy-targeted)\n/bin/sh\n/bin/sh\n/bin/sh\n/bin/sh\n/bin/sh\nbubblewrap >= 0.10.0\nconfig(flatpak) = 1.16.6-160100.2.3\nlibXau.so.6()(64bit)\nlibappstream.so.5()(64bit)\nlibarchive.so.13()(64bit)\nlibc.so.6()(64bit)\nlibc.so.6(GLIBC_2.10)(64bit)\nlibc.so.6(GLIBC_2.11)(64bit)\nlibc.so.6(GLIBC_2.14)(64bit)\nlibc.so.6(GLIBC_2.15)(64bit)\nlibc.so.6(GLIBC_2.2.5)(64bit)\nlibc.so.6(GLIBC_2.27)(64bit)\nlibc.so.6(GLIBC_2.28)(64bit)\nlibc.so.6(GLIBC_2.3)(64bit)\nlibc.so.6(GLIBC_2.3.4)(64bit)\nlibc.so.6(GLIBC_2.32)(64bit)\nlibc.so.6(GLIBC_2.33)(64bit)\nlibc.so.6(GLIBC_2.34)(64bit)\nlibc.so.6(GLIBC_2.38)(64bit)\nlibc.so.6(GLIBC_2.4)(64bit)\nlibc.so.6(GLIBC_2.5)(64bit)\nlibc.so.6(GLIBC_2.6)(64bit)\nlibc.so.6(GLIBC_2.7)(64bit)\nlibc.so.6(GLIBC_2.8)(64bit)\nlibc.so.6(GLIBC_2.9)(64bit)\nlibcurl.so.4()(64bit)\nlibdconf.so.1()(64bit)\nlibflatpak0 = 1.16.6\nlibfuse3.so.3()(64bit)\nlibfuse3.so.3(FUSE_3.0)(64bit)\nlibgdk_pixbuf-2.0.so.0()(64bit)\nlibgio-2.0.so.0()(64bit)\nlibglib-2.0.so.0()(64bit)\nlibgobject-2.0.so.0()(64bit)\nlibjson-glib-1.0.so.0()(64bit)\nlibjson-glib-1.0.so.0(libjson-glib-1.0.so.0)(64bit)\nlibostree-1.so.1()(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.14)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.3)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.4)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.5)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.6)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.7)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.8)(64bit)\nlibostree-1.so.1(LIBOSTREE_2017.10)(64bit)\nlibostree-1.so.1(LIBOSTREE_2017.12)(64bit)\nlibostree-1.so.1(LIBOSTREE_2017.15)(64bit)\nlibostree-1.so.1(LIBOSTREE_2017.2)(64bit)\nlibostree-1.so.1(LIBOSTREE_2017.6)(64bit)\nlibostree-1.so.1(LIBOSTREE_2018.6)(64bit)\nlibostree-1.so.1(LIBOSTREE_2018.9)(64bit)\nlibostree-1.so.1(LIBOSTREE_2019.4)(64bit)\nlibostree-1.so.1(LIBOSTREE_2020.8)(64bit)\nlibpolkit-agent-1.so.0()(64bit)\nlibpolkit-gobject-1.so.0()(64bit)\nlibseccomp.so.2()(64bit)\nlibsystemd.so.0()(64bit)\nlibsystemd.so.0(LIBSYSTEMD_209)(64bit)\nlibwayland-client.so.0()(64bit)\nlibxml2.so.2()(64bit)\nlibxml2.so.2(LIBXML2_2.4.30)(64bit)\nlibxml2.so.2(LIBXML2_2.6.0)(64bit)\nlibzstd.so.1()(64bit)\nostree >= 2020.8\nrpmlib(CompressedFileNames) <= 3.0.4-1\nrpmlib(FileDigests) <= 4.6.0-1\nrpmlib(PayloadFilesHavePrefix) <= 4.0-1\nrpmlib(PayloadIsZstd) <= 5.4.18-1\nrpmlib(RichDependencies) <= 4.12.0-1\nuser(flatpak)\nxdg-dbus-proxy >= 0.1.0\nxdg-desktop-portal >= 0.10\n/sbin/ldconfig\n/sbin/ldconfig\nlibXau.so.6()(64bit)\nlibarchive.so.13()(64bit)\nlibc.so.6()(64bit)\nlibc.so.6(GLIBC_2.10)(64bit)\nlibc.so.6(GLIBC_2.11)(64bit)\nlibc.so.6(GLIBC_2.14)(64bit)\nlibc.so.6(GLIBC_2.15)(64bit)\nlibc.so.6(GLIBC_2.2.5)(64bit)\nlibc.so.6(GLIBC_2.27)(64bit)\nlibc.so.6(GLIBC_2.28)(64bit)\nlibc.so.6(GLIBC_2.3)(64bit)\nlibc.so.6(GLIBC_2.3.4)(64bit)\nlibc.so.6(GLIBC_2.33)(64bit)\nlibc.so.6(GLIBC_2.38)(64bit)\nlibc.so.6(GLIBC_2.4)(64bit)\nlibc.so.6(GLIBC_2.5)(64bit)\nlibc.so.6(GLIBC_2.6)(64bit)\nlibc.so.6(GLIBC_2.7)(64bit)\nlibc.so.6(GLIBC_2.8)(64bit)\nlibc.so.6(GLIBC_2.9)(64bit)\nlibcurl.so.4()(64bit)\nlibdconf.so.1()(64bit)\nlibgio-2.0.so.0()(64bit)\nlibglib-2.0.so.0()(64bit)\nlibgobject-2.0.so.0()(64bit)\nlibjson-glib-1.0.so.0()(64bit)\nlibjson-glib-1.0.so.0(libjson-glib-1.0.so.0)(64bit)\nlibostree-1.so.1()(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.3)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.4)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.5)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.6)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.7)(64bit)\nlibostree-1.so.1(LIBOSTREE_2016.8)(64bit)\nlibostree-1.so.1(LIBOSTREE_2017.10)(64bit)\nlibostree-1.so.1(LIBOSTREE_2017.15)(64bit)\nlibostree-1.so.1(LIBOSTREE_2017.2)(64bit)\nlibostree-1.so.1(LIBOSTREE_2017.6)(64bit)\nlibostree-1.so.1(LIBOSTREE_2018.6)(64bit)\nlibostree-1.so.1(LIBOSTREE_2018.9)(64bit)\nlibseccomp.so.2()(64bit)\nlibsystemd.so.0()(64bit)\nlibsystemd.so.0(LIBSYSTEMD_209)(64bit)\nlibwayland-client.so.0()(64bit)\nlibxml2.so.2()(64bit)\nlibxml2.so.2(LIBXML2_2.4.30)(64bit)\nlibxml2.so.2(LIBXML2_2.6.0)(64bit)\nlibzstd.so.1()(64bit)\nrpmlib(CompressedFileNames) <= 3.0.4-1\nrpmlib(FileDigests) <= 4.6.0-1\nrpmlib(PayloadFilesHavePrefix) <= 4.0-1\nrpmlib(PayloadIsZstd) <= 5.4.18-1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ldd",
+        "/usr/bin/flatpak"
+      ],
+      "rc": 0,
+      "stdout": "\tlinux-vdso.so.1 (0x00007f82433a7000)\n\tlibglib-2.0.so.0 => /lib64/libglib-2.0.so.0 (0x00007f824310c000)\n\tlibgio-2.0.so.0 => /lib64/libgio-2.0.so.0 (0x00007f8242f1b000)\n\tlibgobject-2.0.so.0 => /lib64/libgobject-2.0.so.0 (0x00007f8242eb9000)\n\tlibappstream.so.5 => /lib64/libappstream.so.5 (0x00007f8242e05000)\n\tlibjson-glib-1.0.so.0 => /lib64/libjson-glib-1.0.so.0 (0x00007f8242dda000)\n\tlibostree-1.so.1 => /lib64/libostree-1.so.1 (0x00007f8242cf7000)\n\tlibsystemd.so.0 => /lib64/libsystemd.so.0 (0x00007f8242be2000)\n\tlibpolkit-agent-1.so.0 => /lib64/libpolkit-agent-1.so.0 (0x00007f8242bd5000)\n\tlibpolkit-gobject-1.so.0 => /lib64/libpolkit-gobject-1.so.0 (0x00007f8242bb2000)\n\tlibdconf.so.1 => /lib64/libdconf.so.1 (0x00007f8242b9e000)\n\tlibarchive.so.13 => /lib64/libarchive.so.13 (0x00007f8242ac7000)\n\tlibcurl.so.4 => /lib64/libcurl.so.4 (0x00007f82429d5000)\n\tlibseccomp.so.2 => /lib64/libseccomp.so.2 (0x00007f82429a8000)\n\tlibxml2.so.2 => /lib64/libxml2.so.2 (0x00007f8242842000)\n\tlibzstd.so.1 => /lib64/libzstd.so.1 (0x00007f8242783000)\n\tlibXau.so.6 => /lib64/libXau.so.6 (0x00007f824277c000)\n\tlibwayland-client.so.0 => /lib64/libwayland-client.so.0 (0x00007f824276a000)\n\tlibc.so.6 => /lib64/libc.so.6 (0x00007f8242571000)\n\tlibpcre2-8.so.0 => /lib64/libpcre2-8.so.0 (0x00007f82424b9000)\n\tlibgmodule-2.0.so.0 => /lib64/libgmodule-2.0.so.0 (0x00007f82424b2000)\n\tlibz.so.1 => /usr/lib64/zlib-ng-compat/libz.so.1 (0x00007f824248a000)\n\tlibmount.so.1 => /lib64/libmount.so.1 (0x00007f8242430000)\n\tlibselinux.so.1 => /lib64/libselinux.so.1 (0x00007f82423fd000)\n\tlibffi.so.8 => /lib64/libffi.so.8 (0x00007f82423f2000)\n\tlibxmlb.so.2 => /lib64/libxmlb.so.2 (0x00007f82423c6000)\n\tlibyaml-0.so.2 => /lib64/libyaml-0.so.2 (0x00007f82423a5000)\n\tlibgpgme.so.11 => /lib64/libgpgme.so.11 (0x00007f824234b000)\n\tlibgpg-error.so.0 => /lib64/libgpg-error.so.0 (0x00007f824231f000)\n\tliblzma.so.5 => /lib64/liblzma.so.5 (0x00007f82422e7000)\n\tlibcrypto.so.3 => /lib64/libcrypto.so.3 (0x00007f8241c00000)\n\tlibcomposefs.so.1 => /lib64/libcomposefs.so.1 (0x00007f82422d6000)\n\tlibcap.so.2 => /lib64/libcap.so.2 (0x00007f82422ca000)\n\tlibm.so.6 => /lib64/libm.so.6 (0x00007f8241b18000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f82433a9000)\n\tlibbz2.so.1 => /lib64/libbz2.so.1 (0x00007f82422b0000)\n\tliblz4.so.1 => /lib64/liblz4.so.1 (0x00007f8242288000)\n\tlibacl.so.1 => /lib64/libacl.so.1 (0x00007f824227f000)\n\tlibnghttp2.so.14 => /lib64/libnghttp2.so.14 (0x00007f8241aee000)\n\tlibidn2.so.0 => /lib64/libidn2.so.0 (0x00007f8241acc000)\n\tlibldap.so.2 => /lib64/libldap.so.2 (0x00007f8241a68000)\n\tliblber.so.2 => /lib64/liblber.so.2 (0x00007f8241a57000)\n\tlibssh.so.4 => /lib64/libssh.so.4 (0x00007f82419d8000)\n\tlibpsl.so.5 => /lib64/libpsl.so.5 (0x00007f82419c4000)\n\tlibssl.so.3 => /lib64/libssl.so.3 (0x00007f82418a3000)\n\tlibgssapi_krb5.so.2 => /lib64/libgssapi_krb5.so.2 (0x00007f824184f000)\n\tlibbrotlidec.so.1 => /lib64/libbrotlidec.so.1 (0x00007f8241841000)\n\tlibblkid.so.1 => /lib64/libblkid.so.1 (0x00007f8241802000)\n\tlibstemmer.so.1d => /lib64/libstemmer.so.1d (0x00007f8241737000)\n\tlibassuan.so.9 => /lib64/libassuan.so.9 (0x00007f8241722000)\n\tlibjitterentropy.so.3 => /lib64/libjitterentropy.so.3 (0x00007f8241715000)\n\tlibunistring.so.5 => /lib64/libunistring.so.5 (0x00007f824152e000)\n\tlibsasl2.so.3 => /lib64/libsasl2.so.3 (0x00007f824150f000)\n\tlibkrb5.so.3 => /lib64/libkrb5.so.3 (0x00007f824143f000)\n\tlibk5crypto.so.3 => /lib64/libk5crypto.so.3 (0x00007f8241427000)\n\tlibcom_err.so.2 => /lib64/libcom_err.so.2 (0x00007f824141f000)\n\tlibkrb5support.so.0 => /lib64/libkrb5support.so.0 (0x00007f8241411000)\n\tlibbrotlicommon.so.1 => /lib64/libbrotlicommon.so.1 (0x00007f82413ee000)\n\tlibeconf.so.0 => /lib64/libeconf.so.0 (0x00007f82413e0000)\n\tlibkeyutils.so.1 => /lib64/libkeyutils.so.1 (0x00007f82413d9000)\n\tlibresolv.so.2 => /lib64/libresolv.so.2 (0x00007f82413c6000)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "id"
+      ],
+      "rc": 0,
+      "stdout": "uid=1003(parentaltest) gid=1004(parentaltest) groups=1004(parentaltest)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "malcontent-client",
+        "check-app-filter",
+        "--no-interactive",
+        "parentaltest",
+        "app/org.lyra.TestApp/x86_64/stable"
+      ],
+      "rc": 3,
+      "stdout": "Flatpak ref app/org.lyra.TestApp/x86_64/stable is not allowed by app filter for user parentaltest\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "cat",
+        "/var/lib/AccountsService/users/parentaltest"
+      ],
+      "rc": 0,
+      "stdout": "[com.endlessm.ParentalControls.AppFilter]\nAppFilter=(false, ['app/org.lyra.TestApp/x86_64/stable'])\nOarsFilter=('oars-1.1', {})\nAllowUserInstallation=false\nAllowSystemInstallation=false\n\n[User]\nSession=\nIcon=/home/parentaltest/.face\nSystemAccount=false\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "env",
+        "XDG_RUNTIME_DIR=/run/user/1003",
+        "dbus-run-session",
+        "--",
+        "flatpak",
+        "-v",
+        "run",
+        "org.lyra.TestApp"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "F: No installations directory in /etc/flatpak/installations.d. Skipping\nF: Opening system flatpak installation at path /var/lib/flatpak\nF: Opening user flatpak installation at path /home/parentaltest/.local/share/flatpak\nF: Opening user flatpak installation at path /home/parentaltest/.local/share/flatpak\nF: Opening system flatpak installation at path /var/lib/flatpak\nF: Opening user flatpak installation at path /home/parentaltest/.local/share/flatpak\nF: Opening system flatpak installation at path /var/lib/flatpak\nF: /lib does not exist in runtime\nF: /lib32 does not exist in runtime\nF: /sbin does not exist in runtime\ndbus-daemon[1282]: [session uid=1003 pid=1282] Activating service name='org.freedesktop.Flatpak' requested by ':1.0' (uid=1003 pid=1283 comm=\"flatpak -v run org.lyra.TestApp\" label=\"kernel\")\n\n(/usr/libexec/flatpak-session-helper:1288): flatpak-WARNING **: 20:00:29.357: Unable to start p11-kit server: Child process exited with code 2\ndbus-daemon[1282]: [session uid=1003 pid=1282] Successfully activated service 'org.freedesktop.Flatpak'\nF: Cleaning up unused container id 3847124796\nF: Cleaning up per-app-ID state for org.lyra.TestApp\nF: Cleaning up unused container id 218145234\nF: Cleaning up per-app-ID state for org.lyra.TestApp\nF: Allocated instance id 15833586\nF: Add defaults in dir /org/lyra/TestApp/\nF: Add locks in dir /org/lyra/TestApp/\ndbus-daemon[1282]: [session uid=1003 pid=1282] Activating service name='org.freedesktop.portal.Documents' requested by ':1.0' (uid=1003 pid=1283 comm=\"flatpak -v run org.lyra.TestApp\" label=\"kernel\")\ndbus-daemon[1282]: [session uid=1003 pid=1282] Activating service name='org.freedesktop.impl.portal.PermissionStore' requested by ':1.2' (uid=1003 pid=1295 comm=\"/usr/libexec/xdg-document-portal\" label=\"kernel\")\ndbus-daemon[1282]: [session uid=1003 pid=1282] Successfully activated service 'org.freedesktop.impl.portal.PermissionStore'\ndbus-daemon[1282]: [session uid=1003 pid=1282] Successfully activated service 'org.freedesktop.portal.Documents'\nF: Disallowing ipc access\nF: Disallowing network access\ndbus-daemon[1282]: [session uid=1003 pid=1282] Activating service name='org.a11y.Bus' requested by ':1.0' (uid=1003 pid=1283 comm=\"flatpak -v run org.lyra.TestApp\" label=\"kernel\")\ndbus-daemon[1282]: [session uid=1003 pid=1282] Successfully activated service 'org.a11y.Bus'\nF: Failed to run in transient scope: No systemd user session available, cgroups not available\nF: Running '/usr/bin/bwrap --args 36 -- /usr/bin/xdg-dbus-proxy --args=38'\nF: Running '/usr/bin/bwrap --args 36 -- probe'\n"
+    }
+  ],
+  "flatpak_source": {
+    "url": "https://cdn.opensuse.org/source/distribution/leap/16.1/repo/oss/src/flatpak-1.16.6-160100.2.3.src.rpm",
+    "sha256": "cb51e0c8bd853fb3e3b415bd4778f314d2964a601d17e82cc5859168df45d5e6",
+    "signature_key": "09d9ea69",
+    "signature_verified": true,
+    "spec_option": "-Dmalcontent=disabled",
+    "spec_line": 228,
+    "changelog_reason": "2024-04-23: workaround for xdg-desktop-portal issues"
+  },
+  "decision": "NO-GO for parental integration: official Flatpak ignores malcontent policy in reproduced execution test",
+  "limitations": [
+    "No full GNOME session/UI authorization qualification",
+    "No browser/content filtering qualification",
+    "No reboot/upgrade/rollback qualification",
+    "Local unsigned Flatpak fixture, not a published application",
+    "Not Alpha8 ISO evidence"
+  ]
+}

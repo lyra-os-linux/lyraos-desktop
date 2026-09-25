@@ -1,0 +1,369 @@
+{
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "parentaltest-reload-policy",
+      "passed": true
+    },
+    {
+      "name": "parentaltest-approved",
+      "passed": true
+    },
+    {
+      "name": "parentaltest-python",
+      "passed": true
+    },
+    {
+      "name": "parentaltest-context",
+      "passed": true
+    },
+    {
+      "name": "written-unit-mediation",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-reload-policy",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-approved",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-python",
+      "passed": true
+    },
+    {
+      "name": "ordinaryuser-context",
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "name": "parentaltest-manager",
+      "argv": [
+        "systemctl",
+        "start",
+        "user@1003.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-unit-writer",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/unit-writer",
+        "/run/user/1003/systemd/user",
+        "lyra-written-approved-410dfcaf4a5d4c0cad729711a0c2760c.service",
+        "/opt/lyra-parental-probe/probe"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nlabel=lyra_parental_u:object_r:user_tmp_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-unit-writer",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/unit-writer",
+        "/run/user/1003/systemd/user",
+        "lyra-written-python-60b50243b3ce4a90b678cd8ef4cd63b7.service",
+        "/usr/bin/python3 -c \"print(42)\""
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nlabel=lyra_parental_u:object_r:user_tmp_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-unit-writer",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/unit-writer",
+        "/run/user/1003/systemd/user",
+        "lyra-written-context-8fd03b4030ea43f9bab84317dc6efad3.service",
+        "/opt/lyra-parental-probe/probe\nSELinuxContext=unconfined_u:unconfined_r:unconfined_t:s0"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\nlabel=lyra_parental_u:object_r:user_tmp_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-systemctl",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "rc": 1,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": "Reload daemon failed: Access denied\n"
+    },
+    {
+      "name": "parentaltest-systemctl",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "systemd-tmpfiles-setup.service"
+      ],
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-systemctl",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-written-approved-410dfcaf4a5d4c0cad729711a0c2760c.service"
+      ],
+      "rc": 4,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": "Failed to start lyra-written-approved-410dfcaf4a5d4c0cad729711a0c2760c.service: Access denied\nSee user logs and 'systemctl --user status lyra-written-approved-410dfcaf4a5d4c0cad729711a0c2760c.service' for details.\n"
+    },
+    {
+      "name": "parentaltest-systemctl",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-written-python-60b50243b3ce4a90b678cd8ef4cd63b7.service"
+      ],
+      "rc": 4,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": "Failed to start lyra-written-python-60b50243b3ce4a90b678cd8ef4cd63b7.service: Access denied\nSee user logs and 'systemctl --user status lyra-written-python-60b50243b3ce4a90b678cd8ef4cd63b7.service' for details.\n"
+    },
+    {
+      "name": "parentaltest-systemctl",
+      "argv": [
+        "python3",
+        "/root/lyra-parental-pam-probe.py",
+        "parentaltest",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-written-context-8fd03b4030ea43f9bab84317dc6efad3.service"
+      ],
+      "rc": 4,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": "Failed to start lyra-written-context-8fd03b4030ea43f9bab84317dc6efad3.service: Access denied\nSee user logs and 'systemctl --user status lyra-written-context-8fd03b4030ea43f9bab84317dc6efad3.service' for details.\n"
+    },
+    {
+      "name": "parentaltest-journal",
+      "argv": [
+        "journalctl",
+        "-u",
+        "user@1003.service",
+        "--since",
+        "2026-09-22 14:31:02",
+        "--no-pager"
+      ],
+      "rc": 0,
+      "stdout": "Sep 22 14:31:02 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1003...\nSep 22 14:31:02 lyra-virtualization-fixture (systemd)[777]: pam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Failed to create timezone change event source: Permission denied\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Failed to acquire watch file descriptor: Permission denied\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Failed to allocate device monitor: Permission denied\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Failed to connect to system bus: Permission denied\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Queued start job for default target Main User Target.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Created slice User Application Slice.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Started Daily Cleanup of User's Temporary Directories.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Reached target Paths.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Reached target Timers.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Starting D-Bus User Message Bus Socket...\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Starting Create User Files and Directories...\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Listening on D-Bus User Message Bus Socket.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Reached target Sockets.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Finished Create User Files and Directories.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Reached target Basic System.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Reached target Main User Target.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Startup finished in 46ms.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[1]: Started User Manager for UID 1003.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[1]: Stopping User Manager for UID 1003...\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Activating special unit Exit the Session...\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Stopped target Main User Target.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Stopped target Basic System.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Stopped target Paths.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Stopped target Sockets.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Stopped target Timers.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Stopped Daily Cleanup of User's Temporary Directories.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Closed D-Bus User Message Bus Socket.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Stopped Create User Files and Directories.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Removed slice User Application Slice.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Reached target Shutdown.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Finished Exit the Session.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[777]: Reached target Exit the Session.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[1]: user@1003.service: Deactivated successfully.\nSep 22 14:31:02 lyra-virtualization-fixture systemd[1]: Stopped User Manager for UID 1003.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1003...\nSep 22 14:31:03 lyra-virtualization-fixture (systemd)[805]: pam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Failed to copy os-release for propagation, ignoring: Permission denied\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Failed to create timezone change event source: Permission denied\nSep 22 14:31:03 lyra-virtualization-fixture (sd-exec-strv)[808]: /usr/lib/systemd/user-environment-generators/60-flatpak failed with exit status 1, ignoring.\nSep 22 14:31:03 lyra-virtualization-fixture systemd-xdg-autostart-generator[812]: Exec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\nSep 22 14:31:03 lyra-virtualization-fixture systemd-xdg-autostart-generator[812]: /usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Failed to acquire watch file descriptor: Permission denied\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Failed to allocate device monitor: Permission denied\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Failed to connect to system bus: Permission denied\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Queued start job for default target Main User Target.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Created slice User Application Slice.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Started Daily Cleanup of User's Temporary Directories.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Reached target Paths.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Reached target Timers.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Starting D-Bus User Message Bus Socket...\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Starting Create User Files and Directories...\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Listening on D-Bus User Message Bus Socket.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Reached target Sockets.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Finished Create User Files and Directories.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Reached target Basic System.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Reached target Main User Target.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: Startup finished in 39ms.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[1]: Started User Manager for UID 1003.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: selinux: avc:  denied  { start } for auid=n/a uid=1003 gid=1004 path=\"/run/user/1003/systemd/user/lyra-written-approved-410dfcaf4a5d4c0cad729711a0c2760c.service\" cmdline=\"\" function=\"bus_unit_method_start_generic\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:user_tmp_t:s0 tclass=service permissive=0\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: selinux: avc:  denied  { start } for auid=n/a uid=1003 gid=1004 path=\"/run/user/1003/systemd/user/lyra-written-python-60b50243b3ce4a90b678cd8ef4cd63b7.service\" cmdline=\"\" function=\"bus_unit_method_start_generic\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:user_tmp_t:s0 tclass=service permissive=0\nSep 22 14:31:03 lyra-virtualization-fixture systemd[805]: selinux: avc:  denied  { start } for auid=n/a uid=1003 gid=1004 path=\"/run/user/1003/systemd/user/lyra-written-context-8fd03b4030ea43f9bab84317dc6efad3.service\" cmdline=\"\" function=\"bus_unit_method_start_generic\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:user_tmp_t:s0 tclass=service permissive=0\n",
+      "stderr": ""
+    },
+    {
+      "name": "parentaltest-stop",
+      "argv": [
+        "systemctl",
+        "stop",
+        "user@1003.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-manager",
+      "argv": [
+        "systemctl",
+        "start",
+        "user@1002.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-unit-writer",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/opt/lyra-parental-probe/unit-writer",
+        "/run/user/1002/systemd/user",
+        "lyra-written-approved-0a033fb3cf4841feb938c049e6198d4f.service",
+        "/opt/lyra-parental-probe/probe"
+      ],
+      "rc": 0,
+      "stdout": "uid=1002 context=system_u:system_r:unconfined_service_t:s0\nlabel=system_u:object_r:user_tmp_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-unit-writer",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/opt/lyra-parental-probe/unit-writer",
+        "/run/user/1002/systemd/user",
+        "lyra-written-python-11d6086081854c948afb71ffc11a05e6.service",
+        "/usr/bin/python3 -c \"print(42)\""
+      ],
+      "rc": 0,
+      "stdout": "uid=1002 context=system_u:system_r:unconfined_service_t:s0\nlabel=system_u:object_r:user_tmp_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-unit-writer",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/opt/lyra-parental-probe/unit-writer",
+        "/run/user/1002/systemd/user",
+        "lyra-written-context-0d602aed2ad549848c8f062e2d84664e.service",
+        "/opt/lyra-parental-probe/probe\nSELinuxContext=unconfined_u:unconfined_r:unconfined_t:s0"
+      ],
+      "rc": 0,
+      "stdout": "uid=1002 context=system_u:system_r:unconfined_service_t:s0\nlabel=system_u:object_r:user_tmp_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "daemon-reload"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "systemd-tmpfiles-setup.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-written-approved-0a033fb3cf4841feb938c049e6198d4f.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-written-python-11d6086081854c948afb71ffc11a05e6.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-systemctl",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/systemctl",
+        "--user",
+        "start",
+        "lyra-written-context-0d602aed2ad549848c8f062e2d84664e.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-journal",
+      "argv": [
+        "journalctl",
+        "-u",
+        "user@1002.service",
+        "--since",
+        "2026-09-22 14:31:02",
+        "--no-pager"
+      ],
+      "rc": 0,
+      "stdout": "Sep 22 14:31:03 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1002...\nSep 22 14:31:03 lyra-virtualization-fixture (systemd)[840]: pam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Queued start job for default target Main User Target.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Created slice User Application Slice.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Started Daily Cleanup of User's Temporary Directories.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Reached target Paths.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Reached target Timers.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Starting D-Bus User Message Bus Socket...\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Starting Create User Files and Directories...\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Listening on D-Bus User Message Bus Socket.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Reached target Sockets.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Finished Create User Files and Directories.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Reached target Basic System.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Reached target Main User Target.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Startup finished in 71ms.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[1]: Started User Manager for UID 1002.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Reload requested from client PID 859 ('systemctl')...\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Reloading...\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Reloading finished in 28 ms.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Starting lyra-written-approved-0a033fb3cf4841feb938c049e6198d4f.service...\nSep 22 14:31:03 lyra-virtualization-fixture probe[869]: uid=1002 context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Finished lyra-written-approved-0a033fb3cf4841feb938c049e6198d4f.service.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Starting lyra-written-python-11d6086081854c948afb71ffc11a05e6.service...\nSep 22 14:31:03 lyra-virtualization-fixture python3[873]: 42\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Finished lyra-written-python-11d6086081854c948afb71ffc11a05e6.service.\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Starting lyra-written-context-0d602aed2ad549848c8f062e2d84664e.service...\nSep 22 14:31:03 lyra-virtualization-fixture probe[877]: uid=1002 context=unconfined_u:unconfined_r:unconfined_t:s0\nSep 22 14:31:03 lyra-virtualization-fixture systemd[840]: Finished lyra-written-context-0d602aed2ad549848c8f062e2d84664e.service.\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinaryuser-stop",
+      "argv": [
+        "systemctl",
+        "stop",
+        "user@1002.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

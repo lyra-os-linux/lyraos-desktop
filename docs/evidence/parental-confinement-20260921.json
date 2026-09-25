@@ -1,0 +1,42 @@
+{
+  "abi": 6,
+  "uid": 1003,
+  "kernel": "6.12.0-160100.4-default",
+  "checks": [
+    {
+      "name": "approved",
+      "rc": 0,
+      "stdout": "",
+      "denied": false
+    },
+    {
+      "name": "unapproved",
+      "errno": 13,
+      "denied": true
+    },
+    {
+      "name": "copied-approved",
+      "errno": 13,
+      "denied": true
+    },
+    {
+      "name": "approved-loader-copied-executable",
+      "rc": 0,
+      "stdout": "",
+      "denied": false
+    },
+    {
+      "name": "approved-interpreter-arbitrary-code",
+      "rc": 0,
+      "stdout": "ARBITRARY_CODE_EXECUTED\n",
+      "denied": false
+    }
+  ],
+  "supported": true,
+  "approved_paths": [
+    "/usr/bin/true",
+    "/usr/bin/python3.13",
+    "/usr/lib64/ld-linux-x86-64.so.2"
+  ],
+  "full_account_protection": false
+}

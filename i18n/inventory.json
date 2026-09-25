@@ -23,12 +23,12 @@
       "id": "beam",
       "project": "lyra",
       "wave": "alpha5",
-      "status": "scheduled",
+      "status": "complete",
       "format": "gettext",
       "domain": "beam",
-      "selection": "LC_ALL/LC_MESSAGES/LANG",
-      "lint": "package i18n test",
-      "rationale": "Second-wave user interface scheduled by the release plan."
+      "selection": "AccountsService session language, then LC_ALL/LC_MESSAGES/LANG; en-US fallback",
+      "lint": "Signed RPM MO catalog coverage and placeholder checks; package locale tests",
+      "rationale": "Published RPM catalogs checked on 2026-09-21: all supported messages are nonempty with matching keys and placeholders. English source provides fallback. Exact ISO locale smoke remains pending."
     },
     {
       "id": "linuxtoys",
@@ -45,23 +45,34 @@
       "id": "lyra-downloads",
       "project": "lyra",
       "wave": "alpha8",
-      "status": "scheduled",
+      "status": "complete",
       "format": "gettext",
       "domain": "lyra-downloads",
-      "selection": "LC_ALL/LC_MESSAGES/LANG",
-      "lint": "package i18n test",
-      "rationale": "Gettext template ships with pt-BR source strings; en-US and es-ES catalogs are not yet translated."
+      "selection": "LC_ALL/LC_MESSAGES/LANG and LANGUAGE; English source fallback",
+      "lint": "python3 scripts/update-pot.py --check; cargo test --locked --workspace",
+      "rationale": "Version 0.1.3 ships 194 translated messages in en-US/pt-BR/es-ES. Signed staging RPM backend locale checks and unsupported-locale English fallback passed. Existing history and external technical details retain their original language. Exact ISO qualification pending."
     },
     {
       "id": "lyra-firefox-ext",
       "project": "lyra",
       "wave": "alpha8",
-      "status": "scheduled",
+      "status": "complete",
       "format": "json",
       "domain": "webextension _locales",
-      "selection": "Firefox UI locale with pt-BR default_locale",
+      "selection": "Firefox UI locale with en-US default_locale and fallback",
       "lint": "npm test",
-      "rationale": "WebExtension _locales ships pt-BR only; en-US and es-ES messages are not yet translated."
+      "rationale": "Version 0.1.3 ships complete en-US/pt-BR/es-ES catalogs with placeholder checks. Mozilla-signed XPI passed real Firefox checks for all supported locales, English fallback, upgrade and handoff with Downloads 0.1.3. Existing stored messages retain their original language. Exact ISO qualification pending."
+    },
+    {
+      "id": "lyra-firefox-theme",
+      "project": "lyra",
+      "wave": "alpha8",
+      "status": "complete",
+      "format": "json",
+      "domain": "static theme _locales",
+      "selection": "Firefox UI locale with en-US fallback",
+      "lint": "python3 -m unittest discover -s test -p test_theme.py; web-ext lint --source-dir theme/static --self-hosted",
+      "rationale": "Theme name and description available in en-US, pt-BR and es-ES; no executable UI. Exact ISO qualification pending."
     },
     {
       "id": "lyra-fish-productivity",
@@ -188,12 +199,12 @@
       "id": "sulafat",
       "project": "lyra",
       "wave": "alpha5",
-      "status": "scheduled",
+      "status": "complete",
       "format": "gettext",
       "domain": "sulafat",
       "selection": "LC_ALL/LC_MESSAGES/LANG",
-      "lint": "package i18n test",
-      "rationale": "Second-wave user interface scheduled by the release plan."
+      "lint": "Signed RPM MO catalog coverage and placeholder checks; package locale tests",
+      "rationale": "Published RPM catalogs checked on 2026-09-21: all supported messages are nonempty with matching keys and placeholders. English source provides fallback. Exact ISO locale smoke remains pending."
     },
     {
       "id": "vscode-repo",
@@ -249,7 +260,7 @@
       "domain": "vega-qt",
       "selection": "QLocale with English fallback",
       "lint": "Qt translation catalog validation",
-      "rationale": "The native Qt frontend is now part of the reviewed OBS distribution contract; its translation catalogs remain scheduled for Alpha 7."
+      "rationale": "Qt translation work remains pending for the KDE frontend. The package stays in the global OBS contract but is not selected by the Alpha 8 GNOME recipe."
     },
     {
       "id": "vega-web",
@@ -305,6 +316,17 @@
       "selection": "Follows host application locale; artwork is language-neutral.",
       "lint": "python3 scripts/check-i18n-inventory.py",
       "rationale": "Brand artwork and proper product names only; progress messages and application UI remain translated by LibreOffice."
+    },
+    {
+      "project": "lyra",
+      "id": "lyra-vms",
+      "wave": "alpha8",
+      "status": "scheduled",
+      "format": "Rust locale strings + upstream gettext",
+      "domain": "lyra-vms / virt-viewer",
+      "selection": "LC_ALL, LANGUAGE, LC_MESSAGES, LANG; en-US fallback",
+      "lint": "cargo test --locked; desktop-file-validate; candidate locale smoke",
+      "rationale": "Launcher errors in en-US/pt-BR/es-ES; console translations supplied by virt-viewer. Candidate locale review pending."
     }
   ]
 }
