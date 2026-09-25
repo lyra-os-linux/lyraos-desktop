@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "commands": [
+    {
+      "argv": [
+        "rpm",
+        "-V",
+        "gdm",
+        "mutter",
+        "xwayland",
+        "gnome-shell",
+        "gnome-session-core",
+        "gnome-session-wayland",
+        "at-spi2-core",
+        "xprop",
+        "xkbcomp",
+        "gnome-settings-daemon",
+        "accountsservice",
+        "dconf",
+        "libdconf1"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "is-active",
+        "gdm"
+      ],
+      "rc": 3,
+      "stdout": "inactive\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "is-active",
+        "user@1003.service"
+      ],
+      "rc": 3,
+      "stdout": "inactive\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "is-active",
+        "auditd"
+      ],
+      "rc": 3,
+      "stdout": "inactive\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ls",
+        "-lZ",
+        "/usr/libexec/gsd-xsettings",
+        "/usr/libexec/dconf-service"
+      ],
+      "rc": 0,
+      "stdout": "-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0 75968 Dec 21  2022 /usr/libexec/dconf-service\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0 73472 Apr 19  2025 /usr/libexec/gsd-xsettings\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "auditctl",
+        "-s"
+      ],
+      "rc": 0,
+      "stdout": "enabled 0\nfailure 1\npid 0\nrate_limit 0\nbacklog_limit 64\nlost 516602\nbacklog 0\nbacklog_wait_time 60000\nbacklog_wait_time_actual 0\nloginuid_immutable 0 unlocked\n",
+      "stderr": ""
+    }
+  ],
+  "absent": [
+    "/opt/lyra-parental-probe/xwindow-test",
+    "/root/lyra-xwayland-recovery/active.json",
+    "/usr/libexec/lyra/trusted-shell-test",
+    "/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf",
+    "/etc/dconf/profile/lyra-supervised-test",
+    "/etc/dconf/db/lyra-supervised-test",
+    "/etc/pam.d/gdm-autologin",
+    "/etc/gdm/custom.conf.lyra-baseline",
+    "/tmp/lyra-trusted-shell-test.log",
+    "/run/user/1003",
+    "/etc/selinux/targeted/active/modules/400/lyra-trusted-shell-test",
+    "/usr/libexec/lyra/parental-services-probe",
+    "/opt/lyra-parental-probe/settings-probe",
+    "/etc/dconf/profile/lyra-supervised-raw-test",
+    "/home/parentaltest/.config/dconf"
+  ],
+  "selinux": "permissive outside test",
+  "worker_sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8"
+}

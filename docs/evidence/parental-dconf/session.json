@@ -1,0 +1,790 @@
+[
+  {
+    "argv": [
+      "systemctl",
+      "stop",
+      "gdm"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "loginctl",
+      "terminate-user",
+      "ordinaryuser"
+    ],
+    "rc": 1,
+    "stdout": "",
+    "stderr": "Could not terminate user: User ID 1002 is not logged in or lingering\n"
+  },
+  {
+    "argv": [
+      "restorecon",
+      "/etc/pam.d/gdm-autologin"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "setenforce",
+      "1"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "systemctl",
+      "start",
+      "gdm"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "systemctl",
+      "--user",
+      "show-environment"
+    ],
+    "rc": 0,
+    "stdout": "HOME=/home/parentaltest\nLANG=C.UTF-8\nLOGNAME=parentaltest\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin\nSHELL=/bin/bash\nUSER=parentaltest\nXDG_CACHE_HOME=/home/parentaltest/.cache\nXDG_CONFIG_HOME=/home/parentaltest/.config\nXDG_DATA_DIRS=/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/\nXDG_DATA_HOME=/home/parentaltest/.local/share\nXDG_RUNTIME_DIR=/run/user/1003\nXDG_STATE_HOME=/home/parentaltest/.local/state\nXDG_CONFIG_DIRS=/etc/xdg:/usr/local/etc/xdg:/usr/etc/xdg\nDBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus\nDESKTOP_SESSION=gnome\nDISPLAY=:0\nGDMSESSION=gnome\nGDM_LANG=C.UTF-8\nGNOME_SETUP_DISPLAY=:1\nPWD=/home/parentaltest\nSESSION_MANAGER=local/lyra-virtualization-fixture:@/tmp/.ICE-unix/85649,unix/lyra-virtualization-fixture:/tmp/.ICE-unix/85649\nUSERNAME=parentaltest\nWAYLAND_DISPLAY=wayland-0\nXAUTHLOCALHOSTNAME=lyra-virtualization-fixture\nXAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.G2D3V3\nXDG_CURRENT_DESKTOP=GNOME\nXDG_MENU_PREFIX=gnome-\nXDG_SESSION_CLASS=user\nXDG_SESSION_DESKTOP=gnome\nXDG_SESSION_TYPE=wayland\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "fixture",
+      "display-environment"
+    ],
+    "rc": 0,
+    "stdout": "{\"DISPLAY\": \":0\", \"WAYLAND_DISPLAY\": \"wayland-0\", \"XAUTHORITY\": \"/run/user/1003/.mutter-Xwaylandauth.G2D3V3\"}",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "DISPLAY=:0",
+      "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.G2D3V3",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/bin/xprop",
+      "-root"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n_NET_WORKAREA(CARDINAL) = 0, 32, 1280, 768, 0, 32, 1280, 768\n_GTK_WORKAREAS_D1(CARDINAL) = 0, 32, 1280, 768\n_GTK_WORKAREAS_D0(CARDINAL) = 0, 32, 1280, 768\n_NET_DESKTOP_NAMES(UTF8_STRING) = \"Workspace 1\", \"Workspace 2\"\n_NET_SHOWING_DESKTOP(CARDINAL) = 0\n_NET_NUMBER_OF_DESKTOPS(CARDINAL) = 2\nRESOURCE_MANAGER(STRING) = \"Xft.dpi:\\t96\\nXft.antialias:\\t1\\nXft.hinting:\\t1\\nXft.hintstyle:\\thintslight\\nXft.rgba:\\tnone\\nXcursor.size:\\t24\\nXcursor.theme:\\tAdwaita\\n\"\n_NET_DESKTOP_GEOMETRY(CARDINAL) = 1280, 800\n_NET_DESKTOP_VIEWPORT(CARDINAL) = 0, 0\n_NET_SUPPORTING_WM_CHECK(WINDOW): window id # 0x400001\n_NET_SUPPORTED(ATOM) = _NET_WM_NAME, _NET_CLOSE_WINDOW, _NET_WM_STATE, _NET_WM_STATE_MAXIMIZED_HORZ, _NET_WM_STATE_MAXIMIZED_VERT, _NET_WM_DESKTOP, _NET_NUMBER_OF_DESKTOPS, _NET_CURRENT_DESKTOP, _NET_WM_WINDOW_TYPE, _NET_WM_WINDOW_TYPE_DESKTOP, _NET_WM_WINDOW_TYPE_DOCK, _NET_WM_WINDOW_TYPE_TOOLBAR, _NET_WM_WINDOW_TYPE_MENU, _NET_WM_WINDOW_TYPE_UTILITY, _NET_WM_WINDOW_TYPE_SPLASH, _NET_WM_WINDOW_TYPE_DIALOG, _NET_WM_WINDOW_TYPE_DROPDOWN_MENU, _NET_WM_WINDOW_TYPE_POPUP_MENU, _NET_WM_WINDOW_TYPE_TOOLTIP, _NET_WM_WINDOW_TYPE_NOTIFICATION, _NET_WM_WINDOW_TYPE_COMBO, _NET_WM_WINDOW_TYPE_DND, _NET_WM_WINDOW_TYPE_NORMAL, _NET_WM_STATE_MODAL, _NET_CLIENT_LIST, _NET_CLIENT_LIST_STACKING, _NET_WM_STATE_SKIP_TASKBAR, _NET_WM_STATE_SKIP_PAGER, _NET_WM_ICON, _NET_WM_ICON_GEOMETRY, _NET_WM_MOVERESIZE, _NET_ACTIVE_WINDOW, _NET_WM_STRUT, _NET_WM_STATE_HIDDEN, _NET_WM_STATE_FULLSCREEN, _NET_WM_PING, _NET_WM_PID, _NET_WORKAREA, _NET_SHOWING_DESKTOP, _NET_DESKTOP_LAYOUT, _NET_DESKTOP_NAMES, _NET_WM_ALLOWED_ACTIONS, _NET_WM_ACTION_MOVE, _NET_WM_ACTION_RESIZE, _NET_WM_ACTION_SHADE, _NET_WM_ACTION_STICK, _NET_WM_ACTION_MAXIMIZE_HORZ, _NET_WM_ACTION_MAXIMIZE_VERT, _NET_WM_ACTION_CHANGE_DESKTOP, _NET_WM_ACTION_CLOSE, _NET_WM_STATE_ABOVE, _NET_WM_STATE_BELOW, _NET_STARTUP_ID, _NET_WM_STRUT_PARTIAL, _NET_WM_ACTION_FULLSCREEN, _NET_WM_ACTION_MINIMIZE, _NET_FRAME_EXTENTS, _NET_REQUEST_FRAME_EXTENTS, _NET_WM_USER_TIME, _NET_WM_STATE_DEMANDS_ATTENTION, _NET_MOVERESIZE_WINDOW, _NET_DESKTOP_GEOMETRY, _NET_DESKTOP_VIEWPORT, _NET_WM_USER_TIME_WINDOW, _NET_WM_ACTION_ABOVE, _NET_WM_ACTION_BELOW, _NET_WM_STATE_STICKY, _NET_WM_FULLSCREEN_MONITORS, _NET_WM_STATE_FOCUSED, _NET_WM_BYPASS_COMPOSITOR, _NET_WM_OPAQUE_REGION, _NET_WM_FRAME_DRAWN, _NET_WM_FRAME_TIMINGS, _NET_WM_WINDOW_OPACITY, _NET_RESTACK_WINDOW, _GTK_FRAME_EXTENTS, _GTK_SHOW_WINDOW_MENU, _GTK_EDGE_CONSTRAINTS, _GTK_WORKAREAS\nWM_ICON_SIZE(CARDINAL):\n\t\tminimum icon size: 32 by 32\n\t\tmaximum icon size: 32 by 32\n\t\tincremental size change: 0 by 0\nGDK_VISUALS(INTEGER) = 584, 727\n_XKB_RULES_NAMES(STRING) = \"evdev\", \"pc105\", \"us\", \"\", \"\"\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "DISPLAY=:0",
+      "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.G2D3V3",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/xwindow-test"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\ncontext=system_u:system_r:lyra_parental_probe_t:s0\nframed-window=6291457 extents=0,0,37,0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "fixture",
+      "managed-display-diagnostic"
+    ],
+    "rc": 0,
+    "stdout": "{\"public\": \":0\", \"managed\": \":1\"}",
+    "stderr": "Not qualification of the public desktop display"
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "DISPLAY=:1",
+      "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.G2D3V3",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/bin/xprop",
+      "-root",
+      "-f",
+      "LYRA_PARENTAL_PROBE",
+      "8s",
+      "-set",
+      "LYRA_PARENTAL_PROBE",
+      "restricted-client"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "DISPLAY=:1",
+      "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.G2D3V3",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/bin/xprop",
+      "-root",
+      "LYRA_PARENTAL_PROBE"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nLYRA_PARENTAL_PROBE(STRING) = \"restricted-client\"\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "systemctl",
+      "--user",
+      "list-jobs",
+      "--no-pager"
+    ],
+    "rc": 0,
+    "stdout": "No jobs running.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "systemctl",
+      "--user",
+      "show",
+      "gnome-session-initialized.target",
+      "gnome-session-x11-services-ready.target",
+      "org.gnome.SettingsDaemon.XSettings.service",
+      "-p",
+      "ActiveState",
+      "-p",
+      "SubState",
+      "-p",
+      "Job",
+      "-p",
+      "MainPID",
+      "-p",
+      "NRestarts",
+      "-p",
+      "ExecMainStatus"
+    ],
+    "rc": 0,
+    "stdout": "ActiveState=active\nSubState=active\nJob=\n\nActiveState=active\nSubState=active\nJob=\n\nMainPID=86048\nNRestarts=0\nExecMainStatus=0\nActiveState=active\nSubState=running\nJob=\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "pgrep",
+      "-u",
+      "1003",
+      "-x",
+      "gnome-shell"
+    ],
+    "rc": 0,
+    "stdout": "85657\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "pgrep",
+      "-u",
+      "1003",
+      "-x",
+      "gsd-xsettings"
+    ],
+    "rc": 0,
+    "stdout": "86048\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "pgrep",
+      "-u",
+      "1003",
+      "-x",
+      "gnome-shell"
+    ],
+    "rc": 0,
+    "stdout": "85657\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "pgrep",
+      "-u",
+      "1003",
+      "-x",
+      "gsd-xsettings"
+    ],
+    "rc": 0,
+    "stdout": "86048\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "fixture",
+      "continuity-45s"
+    ],
+    "rc": 0,
+    "stdout": "{\"shell_before\": \"85657\\n\", \"shell_after\": \"85657\\n\", \"xsettings_before\": \"86048\\n\", \"xsettings_after\": \"86048\\n\"}",
+    "stderr": "Short diagnostic interval, not prolonged stability qualification"
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "DISPLAY=:0",
+      "XAUTHORITY=/run/user/1003/.mutter-Xwaylandauth.G2D3V3",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/bin/xprop",
+      "-root",
+      "RESOURCE_MANAGER"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nRESOURCE_MANAGER(STRING) = \"Xft.dpi:\\t96\\nXft.antialias:\\t1\\nXft.hinting:\\t1\\nXft.hintstyle:\\thintslight\\nXft.rgba:\\tnone\\nXcursor.size:\\t24\\nXcursor.theme:\\tAdwaita\\n\"\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/usr/libexec/lyra/parental-services-probe"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_shell_t:s0 enforcing=1\ngdm-version-read=PASS\naccount-identity-read=PASS\nauthorization action=org.freedesktop.accounts.user-administration allowed=0 challenge=1\nauthorization action=org.freedesktop.systemd1.manage-units allowed=0 challenge=1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "write"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\npreference-write accepted=1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "read"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\npreference-read clock-format=12h\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "locked"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nprotected key=allow-extension-installation value=0 writable=0 accepted=0\nprotected key=development-tools value=0 writable=0 accepted=0\nprotected key=disable-user-extensions value=1 writable=0 accepted=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-raw-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "raw-write"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nalternate-profile-write key=allow-extension-installation accepted=1 error=none\nalternate-profile-write key=development-tools accepted=1 error=none\nalternate-profile-write key=disable-user-extensions accepted=1 error=none\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "effective"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nprotected key=allow-extension-installation value=0 writable=0 accepted=0\nprotected key=development-tools value=0 writable=0 accepted=0\nprotected key=disable-user-extensions value=1 writable=0 accepted=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "system-write"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nsystem-write path=/etc/dconf/profile/lyra-supervised-test errno=13\nsystem-write path=/etc/dconf/db/lyra-supervised-test errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "data-not-code"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\ndata-label=system_u:object_r:lyra_parental_settings_t:s0 bytes=30832\ndata-exec-status=126 executable-map-errno=13\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "systemctl",
+      "--user",
+      "show",
+      "dconf.service",
+      "-p",
+      "MainPID",
+      "-p",
+      "NRestarts",
+      "-p",
+      "ActiveState",
+      "-p",
+      "SubState"
+    ],
+    "rc": 0,
+    "stdout": "MainPID=85696\nNRestarts=0\nActiveState=active\nSubState=running\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "systemctl",
+      "--user",
+      "restart",
+      "dconf.service"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "read"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\npreference-read clock-format=12h\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "DCONF_PROFILE=/etc/dconf/profile/lyra-supervised-test",
+      "runcon",
+      "system_u:system_r:lyra_parental_probe_t:s0",
+      "/opt/lyra-parental-probe/probe",
+      "/opt/lyra-parental-probe/settings-probe",
+      "effective"
+    ],
+    "rc": 0,
+    "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nuid=1003 context=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nprotected key=allow-extension-installation value=0 writable=0 accepted=0\nprotected key=development-tools value=0 writable=0 accepted=0\nprotected key=disable-user-extensions value=1 writable=0 accepted=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "HOME=/home/parentaltest",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "GSETTINGS_BACKEND=dconf",
+      "systemctl",
+      "--user",
+      "show",
+      "dconf.service",
+      "-p",
+      "MainPID",
+      "-p",
+      "NRestarts",
+      "-p",
+      "ActiveState",
+      "-p",
+      "SubState"
+    ],
+    "rc": 0,
+    "stdout": "MainPID=86143\nNRestarts=0\nActiveState=active\nSubState=running\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "ls",
+      "-lZ",
+      "/home/parentaltest/.config/dconf",
+      "/usr/libexec/dconf-service"
+    ],
+    "rc": 0,
+    "stdout": "-rwxr-xr-x. 1 root         root         system_u:object_r:lyra_parental_dconf_exec_t:s0 75968 Dec 21  2022 /usr/libexec/dconf-service\n\n/home/parentaltest/.config/dconf:\ntotal 4\n-rw-r--r--. 1 parentaltest parentaltest lyra_parental_u:object_r:lyra_parental_settings_t:s0 1419 Sep 25 20:07 user\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "getenforce"
+    ],
+    "rc": 0,
+    "stdout": "Enforcing\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "loginctl",
+      "list-sessions"
+    ],
+    "rc": 0,
+    "stdout": "SESSION  UID USER         SEAT  LEADER CLASS   TTY  IDLE SINCE\n   2683 1003 parentaltest seat0 85612  user    tty2 no   -\n   2684 1003 parentaltest -     85620  manager -    no   -\n\n2 sessions listed.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "ps",
+      "-eo",
+      "uid,pid,label,args"
+    ],
+    "rc": 0,
+    "stdout": "  UID     PID LABEL                           COMMAND\n    0       1 system_u:system_r:init_t:s0     /usr/lib/systemd/systemd\n    0       2 system_u:system_r:kernel_t:s0   [kthreadd]\n    0       3 system_u:system_r:kernel_t:s0   [pool_workqueue_release]\n    0       4 system_u:system_r:kernel_t:s0   [kworker/R-kvfree_rcu_reclaim]\n    0       5 system_u:system_r:kernel_t:s0   [kworker/R-rcu_gp]\n    0       6 system_u:system_r:kernel_t:s0   [kworker/R-sync_wq]\n    0       7 system_u:system_r:kernel_t:s0   [kworker/R-slub_flushwq]\n    0       8 system_u:system_r:kernel_t:s0   [kworker/R-netns]\n    0      13 system_u:system_r:kernel_t:s0   [kworker/R-mm_percpu_wq]\n    0      14 system_u:system_r:kernel_t:s0   [rcu_tasks_kthread]\n    0      15 system_u:system_r:kernel_t:s0   [rcu_tasks_rude_kthread]\n    0      16 system_u:system_r:kernel_t:s0   [rcu_tasks_trace_kthread]\n    0      17 system_u:system_r:kernel_t:s0   [ksoftirqd/0]\n    0      18 system_u:system_r:kernel_t:s0   [rcu_preempt]\n    0      19 system_u:system_r:kernel_t:s0   [rcu_exp_par_gp_kthread_worker/0]\n    0      20 system_u:system_r:kernel_t:s0   [rcu_exp_gp_kthread_worker]\n    0      21 system_u:system_r:kernel_t:s0   [migration/0]\n    0      22 system_u:system_r:kernel_t:s0   [idle_inject/0]\n    0      23 system_u:system_r:kernel_t:s0   [cpuhp/0]\n    0      24 system_u:system_r:kernel_t:s0   [cpuhp/1]\n    0      25 system_u:system_r:kernel_t:s0   [idle_inject/1]\n    0      26 system_u:system_r:kernel_t:s0   [migration/1]\n    0      27 system_u:system_r:kernel_t:s0   [ksoftirqd/1]\n    0      29 system_u:system_r:kernel_t:s0   [kworker/1:0H-events_highpri]\n    0      32 system_u:system_r:kernel_t:s0   [kdevtmpfs]\n    0      33 system_u:system_r:kernel_t:s0   [kworker/R-inet_frag_wq]\n    0      34 system_u:system_r:kernel_t:s0   [kauditd]\n    0      35 system_u:system_r:kernel_t:s0   [khungtaskd]\n    0      36 system_u:system_r:kernel_t:s0   [oom_reaper]\n    0      38 system_u:system_r:kernel_t:s0   [kworker/R-writeback]\n    0      39 system_u:system_r:kernel_t:s0   [kcompactd0]\n    0      40 system_u:system_r:kernel_t:s0   [ksmd]\n    0      41 system_u:system_r:kernel_t:s0   [khugepaged]\n    0      42 system_u:system_r:kernel_t:s0   [kworker/R-kblockd]\n    0      43 system_u:system_r:kernel_t:s0   [kworker/R-blkcg_punt_bio]\n    0      44 system_u:system_r:kernel_t:s0   [kworker/R-kintegrityd]\n    0      45 system_u:system_r:kernel_t:s0   [irq/9-acpi]\n    0      47 system_u:system_r:kernel_t:s0   [kworker/R-tpm_dev_wq]\n    0      48 system_u:system_r:kernel_t:s0   [kworker/R-edac-poller]\n    0      49 system_u:system_r:kernel_t:s0   [kworker/R-devfreq_wq]\n    0      50 system_u:system_r:kernel_t:s0   [watchdogd]\n    0      51 system_u:system_r:kernel_t:s0   [kworker/R-quota_events_unbound]\n    0      52 system_u:system_r:kernel_t:s0   [kworker/1:1H-kblockd]\n    0      53 system_u:system_r:kernel_t:s0   [kswapd0]\n    0      70 system_u:system_r:kernel_t:s0   [kworker/R-kthrotld]\n    0      72 system_u:system_r:kernel_t:s0   [kworker/R-mld]\n    0      74 system_u:system_r:kernel_t:s0   [kworker/R-ipv6_addrconf]\n    0      75 system_u:system_r:kernel_t:s0   [kworker/0:1H-kblockd]\n    0      80 system_u:system_r:kernel_t:s0   [kworker/R-kstrp]\n    0      81 system_u:system_r:kernel_t:s0   [kworker/u9:0]\n    0     161 system_u:system_r:kernel_t:s0   [kworker/R-charger_manager]\n    0     171 system_u:system_r:kernel_t:s0   [jbd2/vda-8]\n    0     172 system_u:system_r:kernel_t:s0   [kworker/R-ext4-rsv-conversion]\n  479     244 system_u:system_r:systemd_timedated_t:s0 /usr/lib/systemd/systemd-timesyncd\n    0     276 system_u:system_r:kernel_t:s0   [kworker/R-cryptd]\n    0     358 system_u:system_r:kernel_t:s0   [kworker/R-ata_sff]\n    0     367 system_u:system_r:kernel_t:s0   [scsi_eh_0]\n    0     368 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_0]\n    0     370 system_u:system_r:kernel_t:s0   [scsi_eh_1]\n    0     371 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_1]\n    0     372 system_u:system_r:kernel_t:s0   [scsi_eh_2]\n    0     373 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_2]\n    0     375 system_u:system_r:kernel_t:s0   [scsi_eh_3]\n    0     376 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_3]\n    0     377 system_u:system_r:kernel_t:s0   [scsi_eh_4]\n    0     378 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_4]\n    0     379 system_u:system_r:kernel_t:s0   [scsi_eh_5]\n    0     380 system_u:system_r:kernel_t:s0   [kworker/R-scsi_tmf_5]\n    0     412 system_u:system_r:kernel_t:s0   [kworker/0:2H]\n  497     416 system_u:system_r:system_dbusd_t:s0-s0:c0.c1023 /usr/bin/dbus-broker-launch --scope system --audit\n  497     417 system_u:system_r:system_dbusd_t:s0-s0:c0.c1023 dbus-broker --log 4 --controller 9 --machine-id a3c5b5d6e9964b7fb4a79609f3e27e06 --max-bytes 536870912 --max-fds 4096 --max-matches 16384 --audit\n    0     422 system_u:system_r:unconfined_service_t:s0 /usr/bin/python3 /usr/local/libexec/lyra-guest-agent.py\n    0     432 system_u:system_r:systemd_logind_t:s0 /usr/lib/systemd/systemd-logind\n    0     489 system_u:system_r:firewalld_t:s0 /usr/bin/python3.13 /usr/sbin/firewalld --nofork --nopid\n    0     493 system_u:system_r:getty_t:s0-s0:c0.c1023 /sbin/agetty -o -- \\u --noreset --noclear - linux\n    0     494 system_u:system_r:getty_t:s0-s0:c0.c1023 /sbin/agetty -o -- \\u --noreset --noclear --keep-baud 115200,57600,38400,9600 - vt220\n  481     520 system_u:system_r:policykit_t:s0 /usr/libexec/polkit-1/polkitd --no-debug --log-level=notice\n    0     579 system_u:system_r:accountsd_t:s0 /usr/libexec/accounts-daemon\n    0   64352 system_u:system_r:kernel_t:s0   [psimon]\n    0   69628 system_u:system_r:syslogd_t:s0  /usr/lib/systemd/systemd-journald\n    0   69635 system_u:system_r:udev_t:s0-s0:c0.c1023 /usr/lib/systemd/systemd-udevd\n    0   69641 system_u:system_r:kernel_t:s0   [psimon]\n    0   78326 system_u:system_r:kernel_t:s0   [kworker/u8:0-ext4-rsv-conversion]\n    0   80632 system_u:system_r:kernel_t:s0   [kworker/0:0-events]\n    0   83398 system_u:system_r:kernel_t:s0   [kworker/u8:2-ext4-rsv-conversion]\n    0   83912 system_u:system_r:kernel_t:s0   [kworker/0:1-events]\n    0   84394 system_u:system_r:kernel_t:s0   [kworker/u8:3-kvfree_rcu_reclaim]\n    0   84540 system_u:system_r:kernel_t:s0   [kworker/1:2-events]\n    0   85389 system_u:system_r:kernel_t:s0   [kworker/1:1-events]\n    0   85401 system_u:system_r:kernel_t:s0   [kworker/1:0-cgroup_destroy]\n    0   85408 system_u:system_r:unconfined_service_t:s0 /usr/bin/python3 /root/xwayland-exercise.py\n    0   85496 system_u:system_r:auditd_t:s0   /sbin/auditd\n    0   85599 system_u:system_r:unconfined_service_t:s0 python3 /root/restricted-xwayland-session.py\n    0   85606 system_u:system_r:xdm_t:s0-s0:c0.c1023 /usr/sbin/gdm\n    0   85612 system_u:system_r:xdm_t:s0-s0:c0.c1023 gdm-session-worker [pam/gdm-autologin]\n 1003   85620 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/lib/systemd/systemd --user\n 1003   85622 system_u:system_r:init_t:s0     (sd-pam)\n    0   85632 system_u:system_r:kernel_t:s0   [kworker/1:3-mm_percpu_wq]\n 1003   85635 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/gdm/gdm-wayland-session /usr/libexec/gnome-session-binary\n 1003   85640 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/bin/dbus-broker-launch --scope user\n 1003   85641 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 dbus-broker --log 4 --controller 9 --machine-id a3c5b5d6e9964b7fb4a79609f3e27e06 --max-bytes 100000000000000 --max-fds 25000000000000 --max-matches 5000000000\n 1003   85643 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/gnome-session-binary\n 1003   85648 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/gnome-session-ctl --monitor\n 1003   85649 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/gnome-session-binary --systemd-service --session=gnome\n 1003   85657 lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 /usr/bin/gnome-shell\n 1003   85678 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/at-spi2/at-spi-bus-launcher\n 1003   85684 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user\n 1003   85685 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 dbus-broker --log 4 --controller 9 --machine-id a3c5b5d6e9964b7fb4a79609f3e27e06 --max-bytes 100000000000000 --max-fds 6400000 --max-matches 5000000000\n 1003   85686 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/at-spi2/at-spi2-registryd --use-gnome-session\n    0   85741 system_u:system_r:kernel_t:s0   [kworker/0:2-events]\n    0   85770 system_u:system_r:kernel_t:s0   [kworker/u8:1-flush-254:0]\n  477   85780 system_u:system_r:geoclue_t:s0  /usr/libexec/geoclue\n 1003   86045 lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 /usr/bin/Xwayland :0 -rootless -noreset -accessx -core -auth /run/user/1003/.mutter-Xwaylandauth.G2D3V3 -listenfd 4 -listenfd 5 -displayfd 6 -initfd 7 -byteswappedclients -enable-ei-portal\n 1003   86048 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/gsd-xsettings\n 1003   86054 lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 /usr/libexec/mutter-x11-frames\n 1003   86143 lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 /usr/libexec/dconf-service\n    0   86162 system_u:system_r:unconfined_service_t:s0 ps -eo uid,pid,label,args\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "systemctl",
+      "--user",
+      "--failed",
+      "--no-pager"
+    ],
+    "rc": 0,
+    "stdout": "  UNIT                                                LOAD   ACTIVE SUB    DESCRIPTION\n\u25cf org.gnome.SettingsDaemon.A11ySettings.service       loaded failed failed GNOME accessibility service\n\u25cf org.gnome.SettingsDaemon.Color.service              loaded failed failed GNOME color management service\n\u25cf org.gnome.SettingsDaemon.Datetime.service           loaded failed failed GNOME date & time service\n\u25cf org.gnome.SettingsDaemon.Housekeeping.service       loaded failed failed GNOME maintenance of expirable data service\n\u25cf org.gnome.SettingsDaemon.Keyboard.service           loaded failed failed GNOME keyboard configuration service\n\u25cf org.gnome.SettingsDaemon.MediaKeys.service          loaded failed failed GNOME keyboard shortcuts service\n\u25cf org.gnome.SettingsDaemon.Power.service              loaded failed failed GNOME power management service\n\u25cf org.gnome.SettingsDaemon.PrintNotifications.service loaded failed failed GNOME printer notifications service\n\u25cf org.gnome.SettingsDaemon.Rfkill.service             loaded failed failed GNOME RFKill support service\n\u25cf org.gnome.SettingsDaemon.ScreensaverProxy.service   loaded failed failed GNOME FreeDesktop screensaver service\n\u25cf org.gnome.SettingsDaemon.Sharing.service            loaded failed failed GNOME file sharing service\n\u25cf org.gnome.SettingsDaemon.Smartcard.service          loaded failed failed GNOME smartcard service\n\u25cf org.gnome.SettingsDaemon.Sound.service              loaded failed failed GNOME sound sample caching service\n\u25cf org.gnome.SettingsDaemon.UsbProtection.service      loaded failed failed GNOME USB protection service\n\u25cf org.gnome.SettingsDaemon.Wacom.service              loaded failed failed GNOME Wacom tablet support service\n\u25cf xdg-desktop-portal.service                          loaded failed failed Portal service\n\u25cf xdg-permission-store.service                        loaded failed failed sandboxed app permission store\n\nLegend: LOAD   \u2192 Reflects whether the unit definition was properly loaded.\n        ACTIVE \u2192 The high-level unit activation state, i.e. generalization of SUB.\n        SUB    \u2192 The low-level unit activation state, values depend on unit type.\n\n17 loaded units listed.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "parentaltest",
+      "--",
+      "env",
+      "XDG_RUNTIME_DIR=/run/user/1003",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+      "systemctl",
+      "--user",
+      "show",
+      "org.gnome.Shell@wayland.service",
+      "-p",
+      "ExecStart",
+      "-p",
+      "DropInPaths",
+      "-p",
+      "Restart",
+      "-p",
+      "Environment",
+      "-p",
+      "ActiveState",
+      "-p",
+      "SubState"
+    ],
+    "rc": 0,
+    "stdout": "Restart=no\nExecStart={ path=/usr/libexec/lyra/trusted-shell-test ; argv[]=/usr/libexec/lyra/trusted-shell-test ; ignore_errors=no ; start_time=[Fri 2026-09-25 20:06:04 UTC] ; stop_time=[n/a] ; pid=85657 ; code=(null) ; status=0/0 }\nEnvironment=GNOME_SHELL_JS=/home/parentaltest/untrusted-js GSETTINGS_BACKEND=memory DCONF_PROFILE=/home/parentaltest/untrusted-profile\nActiveState=active\nSubState=running\nDropInPaths=/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "fixture",
+      "shell-processes"
+    ],
+    "rc": 0,
+    "stdout": "[{\"pid\": 85657, \"context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0\\u0000\", \"environment\": {\"NOTIFY_SOCKET\": \"/run/user/1003/systemd/notify\", \"XDG_DATA_DIRS\": \"/usr/local/share:/usr/share\", \"GNOME_SHELL_SESSION_MODE\": \"user\", \"DCONF_PROFILE\": \"/etc/dconf/profile/lyra-supervised-test\", \"GSETTINGS_BACKEND\": \"dconf\"}}]",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "journalctl",
+      "-b",
+      "-u",
+      "gdm",
+      "--no-pager",
+      "--since",
+      "2026-09-25 20:06:03 UTC",
+      "--grep",
+      "Register|register|session|Session",
+      "-n",
+      "120"
+    ],
+    "rc": 0,
+    "stdout": "Sep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: GdmLocalDisplayFactory: session registered on display, looking for any background displays to kill\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: GdmDisplay: session registered: yes\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: GdmManager: trying to register new session on display 0x56192e9064c0\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: Considering session '2683'\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: Session '2684' is not a graphical session (type: 'unspecified')\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: Considering session '2684'\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: Finding a graphical session for user 1003\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: Writing wtmp session record to /var/log/wtmp\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Setting display device: tty2\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmCommon: Found session 2683 for PID 85635, using\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmManager: trying to register new display\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: Writing wtmp session record to /var/log/wtmp\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmManager: session started 85635\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Emitting 'session-started' signal with pid '85635'\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSession worker: watching pid 85635\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: state SESSION_STARTED\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: session opened creating reply...\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: Running process: /etc/gdm/PreSession/Default\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: Trying script /etc/gdm/PreSession/Default\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: script /etc/gdm/PreSession not found; skipping\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: Trying script /etc/gdm/PreSession\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: VT mode did need to be fixed\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: active VT is tty1, setting VT_AUTO + KD_TEXT\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: first setting graphics mode to prevent flicker\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: jumping to VT 2\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: opening user session with program '/usr/libexec/gdm/gdm-wayland-session'\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: attempting to change state to SESSION_STARTED\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: start program: /usr/libexec/gdm/gdm-wayland-session \"/usr/libexec/gnome-session-binary\"\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SESSION_DESKTOP=gnome'\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'DESKTOP_SESSION=gnome'\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XAUTHLOCALHOSTNAME=lyra-virtualization-fixture'\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'GDM_LANG=C.UTF-8'\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'GDMSESSION=gnome'\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_CURRENT_DESKTOP=GNOME'\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'LANG=C.UTF-8'\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: type wayland, program? no, seat seat0\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting desktop names for file 'gnome.desktop'\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Session (null) bypasses Xsession wrapper script\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: 'gnome.desktop' registers self\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: type wayland, program? no, seat seat0\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Stopping all conversations except for gdm-autologin\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Stopping all conversations\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Closing session\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Disposing session\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmDisplay: session id: 2683\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmDisplay: session class: user\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmDisplay: supported session types: (null)\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmDisplay: session class: greeter\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Created user session for user 0 on display /org/gnome/DisplayManager/Displays/94666155203792 (seat seat0)\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Setting display device: (null)\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: D-Bus server for greeters listening on unix:path=/run/gdm/dbus/dbus-83iH7XJi\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Creating D-Bus server for greeters and such for session (null) (0x56192e902e80)\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: D-Bus server for workers listening on unix:path=/run/gdm/dbus/dbus-UpjM8AvO\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Creating D-Bus server for worker for session\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmManager: session has its display server, reusing our server for another login screen\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: type wayland, program? no, seat seat0\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmManager: no matching sessions found\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Ignoring session (null) as requested\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmManager: start or jump to session\nSep 25 20:06:04 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Emitting 'session-opened' signal\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: state SESSION_OPENED\nSep 25 20:06:04 lyra-virtualization-fixture gdm-autologin][85612]: pam_unix(gdm-autologin:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_VTNR=2'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: attempting to change state to SESSION_OPENED\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: saving account details for user parentaltest\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: attempting to change state to ACCOUNT_DETAILS_SAVED\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SESSION_TYPE=wayland'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: session display mode set to new-vt\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: type wayland, program? no, seat seat0\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: state ACCREDITED\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'SHELL=/bin/bash'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'PWD=/home/parentaltest'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'HOME=/home/parentaltest'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'USERNAME=parentaltest'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'USER=parentaltest'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'LOGNAME=parentaltest'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: attempting to change state to ACCREDITED\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: state AUTHORIZED\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: determining if authenticated user (password required:0) is authorized to session\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: attempting to change state to AUTHORIZED\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: old-username='parentaltest' new-username='parentaltest'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: username is 'parentaltest'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: trying to get updated username\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: state AUTHENTICATED\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: authenticating user parentaltest\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: attempting to change state to AUTHENTICATED\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: state SETUP_COMPLETE\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SEAT=seat0'\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: initializing PAM; service=gdm-autologin username=parentaltest seat=seat0\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: attempting to change state to SETUP_COMPLETE\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: queuing setup for user: parentaltest (null)\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionSettings: saved language is\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionSettings: saved session is  (type )\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: accountsservice: Failed to identify the current session\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: accountsservice: Finding a graphical session for user 0\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Conversation started\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Beginning initialization\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: selecting user 'parentaltest' for session '(null)' (0x56192e8b9890)\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Set up service gdm-autologin for username parentaltest on session (0x56192e8b9890)\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: setting session to type 'wayland'\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmManager: session conversation started for service gdm-autologin on session\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Emitting conversation-started signal\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: worker connection is 0x7efffc000b70\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Authenticating new connection\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmSession: Handling new connection from worker\nSep 25 20:06:03 lyra-virtualization-fixture gdm-autologin][85612]: Gdm: GdmSessionWorker: connecting to address: unix:path=/run/gdm/dbus/dbus-iCexFV8M\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "journalctl",
+      "-b",
+      "--since",
+      "2026-09-25 20:06:03 UTC",
+      "--no-pager",
+      "--grep",
+      "XSettings|xsettings|[Rr]egister.*session",
+      "-n",
+      "100"
+    ],
+    "rc": 0,
+    "stdout": "Sep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Started GNOME XSettings service.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Starting GNOME XSettings service...\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: GdmManager: trying to register new session on display 0x56192e9064c0\nSep 25 20:06:04 lyra-virtualization-fixture systemd[85620]: Reached target GNOME XSettings target.\nSep 25 20:06:04 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.XSettings.service: Job org.gnome.SettingsDaemon.XSettings.service/start failed with result 'dependency'.\nSep 25 20:06:04 lyra-virtualization-fixture systemd[85620]: Dependency failed for GNOME XSettings service.\nSep 25 20:06:03 lyra-virtualization-fixture gdm[85606]: Gdm: GdmDBusUtils: Registered DBus error domain 'gdm-session-worker-error-quark'\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_xsettings_exec_t:s0 became valid (mapped).\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "journalctl",
+      "-b",
+      "--since",
+      "2026-09-25 20:06:03 UTC",
+      "--no-pager",
+      "-n",
+      "500"
+    ],
+    "rc": 0,
+    "stdout": "Sep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME keyboard configuration service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME keyboard shortcuts service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME power management service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME printer notifications service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME RFKill support service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME FreeDesktop screensaver service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME file sharing service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME smartcard service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME sound sample caching service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME USB protection service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME Wacom tablet support service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd-timesyncd[244]: Contacted time server 192.36.143.130:123 (2.opensuse.pool.ntp.org).\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Scheduled restart job, restart counter is at 2.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME accessibility service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME color management service...\nSep 25 20:06:05 lyra-virtualization-fixture dbus-broker[417]: A security policy denied :1.10091 to send method call /org/freedesktop/GeoClue2/Manager:org.freedesktop.DBus.Properties.GetAll to :1.10093.\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: Finding a graphical session for user 1003\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: Considering session '2684'\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: Session '2684' is not a graphical session (type: 'unspecified')\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: Considering session '2683'\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: GdmManager: trying to register new session on display 0x56192e9064c0\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: GdmDisplay: session registered: yes\nSep 25 20:06:05 lyra-virtualization-fixture gdm[85606]: Gdm: GdmLocalDisplayFactory: session registered on display, looking for any background displays to kill\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME date & time service...\nSep 25 20:06:05 lyra-virtualization-fixture (settings)[85858]: org.gnome.SettingsDaemon.A11ySettings.service: Unable to locate executable '/usr/libexec/gsd-a11y-settings': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (settings)[85858]: org.gnome.SettingsDaemon.A11ySettings.service: Failed at step EXEC spawning /usr/libexec/gsd-a11y-settings: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-color)[85859]: org.gnome.SettingsDaemon.Color.service: Unable to locate executable '/usr/libexec/gsd-color': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-color)[85859]: org.gnome.SettingsDaemon.Color.service: Failed at step EXEC spawning /usr/libexec/gsd-color: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME maintenance of expirable data service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME keyboard configuration service...\nSep 25 20:06:05 lyra-virtualization-fixture (datetime)[85860]: org.gnome.SettingsDaemon.Datetime.service: Unable to locate executable '/usr/libexec/gsd-datetime': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (datetime)[85860]: org.gnome.SettingsDaemon.Datetime.service: Failed at step EXEC spawning /usr/libexec/gsd-datetime: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME keyboard shortcuts service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME power management service...\nSep 25 20:06:05 lyra-virtualization-fixture (ekeeping)[85861]: org.gnome.SettingsDaemon.Housekeeping.service: Unable to locate executable '/usr/libexec/gsd-housekeeping': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (ekeeping)[85861]: org.gnome.SettingsDaemon.Housekeeping.service: Failed at step EXEC spawning /usr/libexec/gsd-housekeeping: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (keyboard)[85862]: org.gnome.SettingsDaemon.Keyboard.service: Unable to locate executable '/usr/libexec/gsd-keyboard': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (keyboard)[85862]: org.gnome.SettingsDaemon.Keyboard.service: Failed at step EXEC spawning /usr/libexec/gsd-keyboard: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME printer notifications service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME RFKill support service...\nSep 25 20:06:05 lyra-virtualization-fixture (sd-power)[85867]: org.gnome.SettingsDaemon.Power.service: Unable to locate executable '/usr/libexec/gsd-power': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (ications)[85868]: org.gnome.SettingsDaemon.PrintNotifications.service: Unable to locate executable '/usr/libexec/gsd-print-notifications': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-power)[85867]: org.gnome.SettingsDaemon.Power.service: Failed at step EXEC spawning /usr/libexec/gsd-power: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (ications)[85868]: org.gnome.SettingsDaemon.PrintNotifications.service: Failed at step EXEC spawning /usr/libexec/gsd-print-notifications: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (dia-keys)[85865]: org.gnome.SettingsDaemon.MediaKeys.service: Unable to locate executable '/usr/libexec/gsd-media-keys': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (dia-keys)[85865]: org.gnome.SettingsDaemon.MediaKeys.service: Failed at step EXEC spawning /usr/libexec/gsd-media-keys: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (d-rfkill)[85871]: org.gnome.SettingsDaemon.Rfkill.service: Unable to locate executable '/usr/libexec/gsd-rfkill': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (d-rfkill)[85871]: org.gnome.SettingsDaemon.Rfkill.service: Failed at step EXEC spawning /usr/libexec/gsd-rfkill: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME FreeDesktop screensaver service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME file sharing service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME smartcard service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME sound sample caching service...\nSep 25 20:06:05 lyra-virtualization-fixture (er-proxy)[85872]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Unable to locate executable '/usr/libexec/gsd-screensaver-proxy': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (er-proxy)[85872]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Failed at step EXEC spawning /usr/libexec/gsd-screensaver-proxy: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-sound)[85879]: org.gnome.SettingsDaemon.Sound.service: Unable to locate executable '/usr/libexec/gsd-sound': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-sound)[85879]: org.gnome.SettingsDaemon.Sound.service: Failed at step EXEC spawning /usr/libexec/gsd-sound: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME USB protection service...\nSep 25 20:06:05 lyra-virtualization-fixture (martcard)[85878]: org.gnome.SettingsDaemon.Smartcard.service: Unable to locate executable '/usr/libexec/gsd-smartcard': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (martcard)[85878]: org.gnome.SettingsDaemon.Smartcard.service: Failed at step EXEC spawning /usr/libexec/gsd-smartcard: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (-sharing)[85873]: org.gnome.SettingsDaemon.Sharing.service: Unable to locate executable '/usr/libexec/gsd-sharing': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (-sharing)[85873]: org.gnome.SettingsDaemon.Sharing.service: Failed at step EXEC spawning /usr/libexec/gsd-sharing: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME Wacom tablet support service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture (sd-wacom)[85883]: org.gnome.SettingsDaemon.Wacom.service: Unable to locate executable '/usr/libexec/gsd-wacom': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-wacom)[85883]: org.gnome.SettingsDaemon.Wacom.service: Failed at step EXEC spawning /usr/libexec/gsd-wacom: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (otection)[85881]: org.gnome.SettingsDaemon.UsbProtection.service: Unable to locate executable '/usr/libexec/gsd-usb-protection': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (otection)[85881]: org.gnome.SettingsDaemon.UsbProtection.service: Failed at step EXEC spawning /usr/libexec/gsd-usb-protection: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME accessibility service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME color management service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME date & time service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME maintenance of expirable data service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME keyboard configuration service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME keyboard shortcuts service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME power management service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME printer notifications service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME RFKill support service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME FreeDesktop screensaver service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME file sharing service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME smartcard service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME sound sample caching service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME USB protection service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME Wacom tablet support service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Scheduled restart job, restart counter is at 3.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME accessibility service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME color management service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME date & time service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME maintenance of expirable data service...\nSep 25 20:06:05 lyra-virtualization-fixture (settings)[85918]: org.gnome.SettingsDaemon.A11ySettings.service: Unable to locate executable '/usr/libexec/gsd-a11y-settings': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (settings)[85918]: org.gnome.SettingsDaemon.A11ySettings.service: Failed at step EXEC spawning /usr/libexec/gsd-a11y-settings: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (datetime)[85920]: org.gnome.SettingsDaemon.Datetime.service: Unable to locate executable '/usr/libexec/gsd-datetime': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-color)[85919]: org.gnome.SettingsDaemon.Color.service: Unable to locate executable '/usr/libexec/gsd-color': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (datetime)[85920]: org.gnome.SettingsDaemon.Datetime.service: Failed at step EXEC spawning /usr/libexec/gsd-datetime: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-color)[85919]: org.gnome.SettingsDaemon.Color.service: Failed at step EXEC spawning /usr/libexec/gsd-color: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME keyboard configuration service...\nSep 25 20:06:05 lyra-virtualization-fixture (ekeeping)[85921]: org.gnome.SettingsDaemon.Housekeeping.service: Unable to locate executable '/usr/libexec/gsd-housekeeping': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (ekeeping)[85921]: org.gnome.SettingsDaemon.Housekeeping.service: Failed at step EXEC spawning /usr/libexec/gsd-housekeeping: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME keyboard shortcuts service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME power management service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME printer notifications service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME RFKill support service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME FreeDesktop screensaver service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME file sharing service...\nSep 25 20:06:05 lyra-virtualization-fixture (keyboard)[85922]: org.gnome.SettingsDaemon.Keyboard.service: Unable to locate executable '/usr/libexec/gsd-keyboard': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (keyboard)[85922]: org.gnome.SettingsDaemon.Keyboard.service: Failed at step EXEC spawning /usr/libexec/gsd-keyboard: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (ications)[85928]: org.gnome.SettingsDaemon.PrintNotifications.service: Unable to locate executable '/usr/libexec/gsd-print-notifications': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (ications)[85928]: org.gnome.SettingsDaemon.PrintNotifications.service: Failed at step EXEC spawning /usr/libexec/gsd-print-notifications: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-power)[85924]: org.gnome.SettingsDaemon.Power.service: Unable to locate executable '/usr/libexec/gsd-power': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-power)[85924]: org.gnome.SettingsDaemon.Power.service: Failed at step EXEC spawning /usr/libexec/gsd-power: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (d-rfkill)[85929]: org.gnome.SettingsDaemon.Rfkill.service: Unable to locate executable '/usr/libexec/gsd-rfkill': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (d-rfkill)[85929]: org.gnome.SettingsDaemon.Rfkill.service: Failed at step EXEC spawning /usr/libexec/gsd-rfkill: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME smartcard service...\nSep 25 20:06:05 lyra-virtualization-fixture (dia-keys)[85923]: org.gnome.SettingsDaemon.MediaKeys.service: Unable to locate executable '/usr/libexec/gsd-media-keys': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (dia-keys)[85923]: org.gnome.SettingsDaemon.MediaKeys.service: Failed at step EXEC spawning /usr/libexec/gsd-media-keys: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME sound sample caching service...\nSep 25 20:06:05 lyra-virtualization-fixture (er-proxy)[85931]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Unable to locate executable '/usr/libexec/gsd-screensaver-proxy': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (er-proxy)[85931]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Failed at step EXEC spawning /usr/libexec/gsd-screensaver-proxy: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (-sharing)[85932]: org.gnome.SettingsDaemon.Sharing.service: Unable to locate executable '/usr/libexec/gsd-sharing': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (-sharing)[85932]: org.gnome.SettingsDaemon.Sharing.service: Failed at step EXEC spawning /usr/libexec/gsd-sharing: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-sound)[85938]: org.gnome.SettingsDaemon.Sound.service: Unable to locate executable '/usr/libexec/gsd-sound': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-sound)[85938]: org.gnome.SettingsDaemon.Sound.service: Failed at step EXEC spawning /usr/libexec/gsd-sound: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (martcard)[85934]: org.gnome.SettingsDaemon.Smartcard.service: Unable to locate executable '/usr/libexec/gsd-smartcard': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (martcard)[85934]: org.gnome.SettingsDaemon.Smartcard.service: Failed at step EXEC spawning /usr/libexec/gsd-smartcard: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME USB protection service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME Wacom tablet support service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture (sd-wacom)[85940]: org.gnome.SettingsDaemon.Wacom.service: Unable to locate executable '/usr/libexec/gsd-wacom': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (otection)[85939]: org.gnome.SettingsDaemon.UsbProtection.service: Unable to locate executable '/usr/libexec/gsd-usb-protection': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (otection)[85939]: org.gnome.SettingsDaemon.UsbProtection.service: Failed at step EXEC spawning /usr/libexec/gsd-usb-protection: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-wacom)[85940]: org.gnome.SettingsDaemon.Wacom.service: Failed at step EXEC spawning /usr/libexec/gsd-wacom: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME accessibility service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME color management service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME date & time service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME maintenance of expirable data service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME keyboard configuration service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME keyboard shortcuts service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME power management service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME printer notifications service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME RFKill support service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME FreeDesktop screensaver service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME file sharing service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME smartcard service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME sound sample caching service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME USB protection service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME Wacom tablet support service.\nSep 25 20:06:05 lyra-virtualization-fixture dbus-broker[417]: A security policy denied :1.10091 to send method call /org/freedesktop/GeoClue2/Manager:org.freedesktop.GeoClue2.Manager.AddAgent to :1.10093.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Scheduled restart job, restart counter is at 4.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME accessibility service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME color management service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME date & time service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME maintenance of expirable data service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME keyboard configuration service...\nSep 25 20:06:05 lyra-virtualization-fixture (settings)[85978]: org.gnome.SettingsDaemon.A11ySettings.service: Unable to locate executable '/usr/libexec/gsd-a11y-settings': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (settings)[85978]: org.gnome.SettingsDaemon.A11ySettings.service: Failed at step EXEC spawning /usr/libexec/gsd-a11y-settings: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (ekeeping)[85981]: org.gnome.SettingsDaemon.Housekeeping.service: Unable to locate executable '/usr/libexec/gsd-housekeeping': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (ekeeping)[85981]: org.gnome.SettingsDaemon.Housekeeping.service: Failed at step EXEC spawning /usr/libexec/gsd-housekeeping: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (datetime)[85980]: org.gnome.SettingsDaemon.Datetime.service: Unable to locate executable '/usr/libexec/gsd-datetime': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (datetime)[85980]: org.gnome.SettingsDaemon.Datetime.service: Failed at step EXEC spawning /usr/libexec/gsd-datetime: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-color)[85979]: org.gnome.SettingsDaemon.Color.service: Unable to locate executable '/usr/libexec/gsd-color': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-color)[85979]: org.gnome.SettingsDaemon.Color.service: Failed at step EXEC spawning /usr/libexec/gsd-color: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (keyboard)[85982]: org.gnome.SettingsDaemon.Keyboard.service: Unable to locate executable '/usr/libexec/gsd-keyboard': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (keyboard)[85982]: org.gnome.SettingsDaemon.Keyboard.service: Failed at step EXEC spawning /usr/libexec/gsd-keyboard: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME keyboard shortcuts service...\nSep 25 20:06:05 lyra-virtualization-fixture (dia-keys)[85984]: org.gnome.SettingsDaemon.MediaKeys.service: Unable to locate executable '/usr/libexec/gsd-media-keys': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (dia-keys)[85984]: org.gnome.SettingsDaemon.MediaKeys.service: Failed at step EXEC spawning /usr/libexec/gsd-media-keys: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME power management service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME printer notifications service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME RFKill support service...\nSep 25 20:06:05 lyra-virtualization-fixture (sd-power)[85987]: org.gnome.SettingsDaemon.Power.service: Unable to locate executable '/usr/libexec/gsd-power': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-power)[85987]: org.gnome.SettingsDaemon.Power.service: Failed at step EXEC spawning /usr/libexec/gsd-power: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME FreeDesktop screensaver service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME file sharing service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME smartcard service...\nSep 25 20:06:05 lyra-virtualization-fixture (er-proxy)[85993]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Unable to locate executable '/usr/libexec/gsd-screensaver-proxy': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (er-proxy)[85993]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Failed at step EXEC spawning /usr/libexec/gsd-screensaver-proxy: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (d-rfkill)[85991]: org.gnome.SettingsDaemon.Rfkill.service: Unable to locate executable '/usr/libexec/gsd-rfkill': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (d-rfkill)[85991]: org.gnome.SettingsDaemon.Rfkill.service: Failed at step EXEC spawning /usr/libexec/gsd-rfkill: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME sound sample caching service...\nSep 25 20:06:05 lyra-virtualization-fixture (ications)[85990]: org.gnome.SettingsDaemon.PrintNotifications.service: Unable to locate executable '/usr/libexec/gsd-print-notifications': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (ications)[85990]: org.gnome.SettingsDaemon.PrintNotifications.service: Failed at step EXEC spawning /usr/libexec/gsd-print-notifications: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (-sharing)[85995]: org.gnome.SettingsDaemon.Sharing.service: Unable to locate executable '/usr/libexec/gsd-sharing': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (-sharing)[85995]: org.gnome.SettingsDaemon.Sharing.service: Failed at step EXEC spawning /usr/libexec/gsd-sharing: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME USB protection service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Starting GNOME Wacom tablet support service...\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture (martcard)[85996]: org.gnome.SettingsDaemon.Smartcard.service: Unable to locate executable '/usr/libexec/gsd-smartcard': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (martcard)[85996]: org.gnome.SettingsDaemon.Smartcard.service: Failed at step EXEC spawning /usr/libexec/gsd-smartcard: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (otection)[86000]: org.gnome.SettingsDaemon.UsbProtection.service: Unable to locate executable '/usr/libexec/gsd-usb-protection': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-sound)[85997]: org.gnome.SettingsDaemon.Sound.service: Unable to locate executable '/usr/libexec/gsd-sound': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (otection)[86000]: org.gnome.SettingsDaemon.UsbProtection.service: Failed at step EXEC spawning /usr/libexec/gsd-usb-protection: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-sound)[85997]: org.gnome.SettingsDaemon.Sound.service: Failed at step EXEC spawning /usr/libexec/gsd-sound: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture (sd-wacom)[86001]: org.gnome.SettingsDaemon.Wacom.service: Unable to locate executable '/usr/libexec/gsd-wacom': Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture (sd-wacom)[86001]: org.gnome.SettingsDaemon.Wacom.service: Failed at step EXEC spawning /usr/libexec/gsd-wacom: Permission denied\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME accessibility service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME color management service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME date & time service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME maintenance of expirable data service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME keyboard configuration service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME keyboard shortcuts service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME power management service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME printer notifications service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME RFKill support service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME FreeDesktop screensaver service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME file sharing service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME smartcard service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME sound sample caching service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME USB protection service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME Wacom tablet support service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Scheduled restart job, restart counter is at 5.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.A11ySettings.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME accessibility service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Color.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME color management service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Datetime.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME date & time service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Housekeeping.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME maintenance of expirable data service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Keyboard.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME keyboard configuration service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.MediaKeys.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME keyboard shortcuts service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Power.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME power management service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.PrintNotifications.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME printer notifications service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Rfkill.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME RFKill support service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.ScreensaverProxy.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME FreeDesktop screensaver service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sharing.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME file sharing service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Smartcard.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME smartcard service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Sound.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME sound sample caching service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.UsbProtection.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME USB protection service.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Start request repeated too quickly.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: org.gnome.SettingsDaemon.Wacom.service: Failed with result 'exit-code'.\nSep 25 20:06:05 lyra-virtualization-fixture systemd[85620]: Failed to start GNOME Wacom tablet support service.\nSep 25 20:06:18 lyra-virtualization-fixture runuser[86041]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:06:18 lyra-virtualization-fixture runuser[86041]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:06:18 lyra-virtualization-fixture runuser[86043]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Reached target GNOME session X11 services.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Starting GNOME XSettings service...\nSep 25 20:06:19 lyra-virtualization-fixture gsd-xsettings[86048]: Fontconfig error: No writable cache directories\nSep 25 20:06:19 lyra-virtualization-fixture gsd-xsettings[86048]:         /var/cache/fontconfig\nSep 25 20:06:19 lyra-virtualization-fixture gsd-xsettings[86048]:         /home/parentaltest/.cache/fontconfig\nSep 25 20:06:19 lyra-virtualization-fixture gsd-xsettings[86048]:         /home/parentaltest/.fontconfig\nSep 25 20:06:19 lyra-virtualization-fixture gsd-xsettings[86048]: Fontconfig error: No writable cache directories\nSep 25 20:06:19 lyra-virtualization-fixture gsd-xsettings[86048]:         /var/cache/fontconfig\nSep 25 20:06:19 lyra-virtualization-fixture gsd-xsettings[86048]:         /home/parentaltest/.cache/fontconfig\nSep 25 20:06:19 lyra-virtualization-fixture gsd-xsettings[86048]:         /home/parentaltest/.fontconfig\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Started GNOME XSettings service.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Reached target GNOME session X11 services.\nSep 25 20:06:19 lyra-virtualization-fixture gsd-xsettings[86048]: Failed to get current UI scaling factor: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Destination does not exist\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86043]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86055]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Starting Portal service...\nSep 25 20:06:19 lyra-virtualization-fixture (p-portal)[86066]: xdg-desktop-portal.service: Unable to locate executable '/usr/libexec/xdg-desktop-portal': Permission denied\nSep 25 20:06:19 lyra-virtualization-fixture (p-portal)[86066]: xdg-desktop-portal.service: Failed at step EXEC spawning /usr/libexec/xdg-desktop-portal: Permission denied\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: xdg-desktop-portal.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: xdg-desktop-portal.service: Failed with result 'exit-code'.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Failed to start Portal service.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Starting Portal service...\nSep 25 20:06:19 lyra-virtualization-fixture (p-portal)[86068]: xdg-desktop-portal.service: Unable to locate executable '/usr/libexec/xdg-desktop-portal': Permission denied\nSep 25 20:06:19 lyra-virtualization-fixture (p-portal)[86068]: xdg-desktop-portal.service: Failed at step EXEC spawning /usr/libexec/xdg-desktop-portal: Permission denied\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: xdg-desktop-portal.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: xdg-desktop-portal.service: Failed with result 'exit-code'.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Failed to start Portal service.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Starting Portal service...\nSep 25 20:06:19 lyra-virtualization-fixture (p-portal)[86070]: xdg-desktop-portal.service: Unable to locate executable '/usr/libexec/xdg-desktop-portal': Permission denied\nSep 25 20:06:19 lyra-virtualization-fixture (p-portal)[86070]: xdg-desktop-portal.service: Failed at step EXEC spawning /usr/libexec/xdg-desktop-portal: Permission denied\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: xdg-desktop-portal.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: xdg-desktop-portal.service: Failed with result 'exit-code'.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Failed to start Portal service.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Starting Portal service...\nSep 25 20:06:19 lyra-virtualization-fixture (p-portal)[86072]: xdg-desktop-portal.service: Unable to locate executable '/usr/libexec/xdg-desktop-portal': Permission denied\nSep 25 20:06:19 lyra-virtualization-fixture (p-portal)[86072]: xdg-desktop-portal.service: Failed at step EXEC spawning /usr/libexec/xdg-desktop-portal: Permission denied\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: xdg-desktop-portal.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: xdg-desktop-portal.service: Failed with result 'exit-code'.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Failed to start Portal service.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Starting Portal service...\nSep 25 20:06:19 lyra-virtualization-fixture (p-portal)[86074]: xdg-desktop-portal.service: Unable to locate executable '/usr/libexec/xdg-desktop-portal': Permission denied\nSep 25 20:06:19 lyra-virtualization-fixture (p-portal)[86074]: xdg-desktop-portal.service: Failed at step EXEC spawning /usr/libexec/xdg-desktop-portal: Permission denied\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: xdg-desktop-portal.service: Main process exited, code=exited, status=203/EXEC\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: xdg-desktop-portal.service: Failed with result 'exit-code'.\nSep 25 20:06:19 lyra-virtualization-fixture systemd[85620]: Failed to start Portal service.\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86055]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86077]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86077]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86079]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86079]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86081]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86081]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86083]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:06:19 lyra-virtualization-fixture runuser[86083]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86092]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86092]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86094]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86094]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86105]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86105]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86111]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86111]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86116]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86116]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86121]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86121]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86127]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86127]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86132]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86132]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86134]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86134]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86137]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86137]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86139]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture systemd[85620]: Stopping User preferences database...\nSep 25 20:07:04 lyra-virtualization-fixture systemd[85620]: Stopped User preferences database.\nSep 25 20:07:04 lyra-virtualization-fixture systemd[85620]: Starting User preferences database...\nSep 25 20:07:04 lyra-virtualization-fixture systemd[85620]: Started User preferences database.\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86139]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86147]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86147]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86152]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86152]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86157]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86157]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86163]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86163]: pam_unix(runuser:session): session closed for user parentaltest\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86165]: pam_unix(runuser:session): session opened for user parentaltest(uid=1003) by (uid=0)\nSep 25 20:07:04 lyra-virtualization-fixture runuser[86165]: pam_unix(runuser:session): session closed for user parentaltest\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "journalctl",
+      "-b",
+      "-k",
+      "--no-pager",
+      "--since",
+      "2026-09-25 20:06:03 UTC",
+      "-n",
+      "500"
+    ],
+    "rc": 0,
+    "stdout": "Sep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Permission allowed in class io_uring not defined in policy.\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux: the above unknown classes and permissions will be allowed\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Converting 389 SID table entries...\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_gdm_launcher_exec_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_gnome_session_exec_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_shell_payload_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_shell_entry_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:system_r:lyra_parental_shell_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_shell_memory_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context lyra_parental_u:object_r:lyra_parental_shell_memory_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_atspi_exec_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context lyra_parental_u:object_r:lyra_parental_x11_lock_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_xwayland_exec_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_xclient_exec_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context lyra_parental_u:object_r:lyra_parental_xwayland_data_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_session_log_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_xkb_exec_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context lyra_parental_u:lyra_parental_r:lyra_parental_xkb_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context lyra_parental_u:object_r:lyra_parental_keymap_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:system_r:lyra_parental_xwayland_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_x11_ready_unit_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_frames_exec_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_xwayland_data_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  Context system_u:object_r:lyra_parental_xsettings_exec_t:s0 became valid (mapped).\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  policy capability network_peer_controls=1\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  policy capability open_perms=1\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  policy capability extended_socket_class=1\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  policy capability always_check_network=0\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  policy capability cgroup_seclabel=1\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  policy capability nnp_nosuid_transition=1\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  policy capability genfs_seclabel_symlinks=1\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  policy capability ioctl_skip_cloexec=0\nSep 25 20:06:03 lyra-virtualization-fixture kernel: SELinux:  policy capability userspace_initial_context=0\nSep 25 20:06:03 lyra-virtualization-fixture kernel: audit: type=1403 audit(1790366763.353:9558744): auid=4294967295 ses=4294967295 lsm=selinux res=1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "systemctl",
+      "stop",
+      "gdm"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "loginctl",
+      "terminate-user",
+      "parentaltest"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "systemctl",
+      "stop",
+      "user@1003.service"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "setenforce",
+      "0"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "loginctl",
+      "terminate-user",
+      "ordinaryuser"
+    ],
+    "rc": 1,
+    "stdout": "",
+    "stderr": "Could not terminate user: User ID 1002 is not logged in or lingering\n"
+  }
+]
