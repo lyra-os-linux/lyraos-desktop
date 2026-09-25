@@ -1,0 +1,71 @@
+; Disposable execution probe. NOT a desktop/account policy.
+(type lyra_parental_probe_t)
+(typeattributeset domain (lyra_parental_probe_t))
+(roletype system_r lyra_parental_probe_t)
+(type lyra_parental_probe_exec_t)
+(typeattributeset file_type (lyra_parental_probe_exec_t))
+(typeattributeset exec_type (lyra_parental_probe_exec_t))
+(allow lyra_parental_probe_t file_type (dir (search getattr)))
+(allow lyra_parental_probe_t file_type (lnk_file (read getattr)))
+; Read/map are deliberately broad in this execution-only experiment.
+(allow lyra_parental_probe_t file_type (file (read open getattr map)))
+(allow lyra_parental_probe_t lyra_parental_probe_exec_t (file (execute execute_no_trans entrypoint)))
+(allow lyra_parental_probe_t lib_t (file (execute)))
+(allow lyra_parental_probe_t ld_so_t (file (execute)))
+(allow lyra_parental_probe_t domain (fd (use)))
+(allow lyra_parental_probe_t domain (fifo_file (read write getattr ioctl)))
+(allow lyra_parental_probe_t file_type (fifo_file (read write getattr ioctl)))
+(allow lyra_parental_probe_t domain (process (sigchld)))
+(allow lyra_parental_probe_t self (process (getattr)))
+; Entry is allowed only from the disposable evidence service for this probe.
+(allow unconfined_service_t lyra_parental_probe_t (process (transition)))
+(allow lyra_parental_probe_t proc_type (dir (search getattr)))
+(allow lyra_parental_probe_t proc_type (file (read open getattr)))
+
+; Experimental PAM entry role. Not a complete login/session policy.
+(role lyra_parental_r)
+(roletype lyra_parental_r lyra_parental_probe_t)
+(roleallow system_r lyra_parental_r)
+(allow init_t lyra_parental_probe_t (process (transition)))
+(allow local_login_t lyra_parental_probe_t (process (transition)))
+(allow xdm_t lyra_parental_probe_t (process (transition)))
+
+; Test harness only: normal-account control from the evidence service.
+(allow unconfined_service_t unconfined_t (process (transition)))
+
+; Exact key-creation permission needed by PAM in user@.service.
+(allow init_t lyra_parental_probe_t (key (create)))
+
+; Permit the user-manager executable, not generic bin_t/shell_exec_t.
+(allow lyra_parental_probe_t init_exec_t (file (entrypoint execute execute_no_trans)))
+; Official policy requires a login target for UID/role transitions from init_t.
+(typeattributeset process_user_target (lyra_parental_probe_t))
+; Keyring lifecycle in PAM, scoped to keys labelled with this fixture domain.
+(allow init_t lyra_parental_probe_t (key (write setattr)))
+; Read-only manager discovery and configuration.
+(allow lyra_parental_probe_t cgroup_t (filesystem (getattr)))
+(allow lyra_parental_probe_t systemd_conf_t (dir (read open)))
+(allow lyra_parental_probe_t init_t (dir (search getattr)))
+(allow lyra_parental_probe_t init_t (file (read open getattr)))
+(allow lyra_parental_probe_t nsfs_t (file (getattr)))
+; Runtime data remains non-executable; DAC still isolates the private UID dir.
+(allow lyra_parental_probe_t self (process (setfscreate)))
+(allow lyra_parental_probe_t user_tmp_t (dir (read open write add_name remove_name create setattr)))
+(allow lyra_parental_probe_t user_tmp_t (file (create write append unlink setattr)))
+; Local notifications/logging; no network socket or generic process execution.
+(allow lyra_parental_probe_t self (unix_dgram_socket (create connect read write getattr getopt setopt bind shutdown)))
+(allow lyra_parental_probe_t init_t (unix_dgram_socket (sendto)))
+(allow lyra_parental_probe_t syslogd_t (unix_dgram_socket (sendto)))
+(allow lyra_parental_probe_t init_var_run_t (sock_file (write)))
+(allow lyra_parental_probe_t syslogd_var_run_t (sock_file (write)))
+(allow lyra_parental_probe_t user_tmp_t (fifo_file (create open unlink setattr)))
+(allow lyra_parental_probe_t user_tmp_t (sock_file (create write unlink setattr)))
+(allow lyra_parental_probe_t user_tmp_t (file (link)))
+; Inherited service-manager stdio, not permission to connect to its control API.
+(allow lyra_parental_probe_t init_t (unix_stream_socket (read write getattr getopt)))
+; User manager's cgroup subtree; normal ownership/delegation still applies.
+(allow lyra_parental_probe_t cgroup_t (dir (read open write add_name remove_name create rmdir)))
+(allow lyra_parental_probe_t cgroup_t (file (write)))
+; Read packaged unit directories and own local manager sockets.
+(allow lyra_parental_probe_t systemd_unit_file_t (dir (read open)))
+(allow lyra_parental_probe_t self (unix_stream_socket (create read write bind listen accept connect getattr getopt setopt shutdown)))

@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "checks": [
+    "virtqemud enabled",
+    "virtlogd enabled",
+    "virtlockd enabled",
+    "virtnetworkd enabled",
+    "virtstoraged enabled",
+    "virtsecretd enabled",
+    "virtnodedevd enabled",
+    "installed account requires authorization",
+    "live account in libvirt",
+    "root remains locked",
+    "live account connects without password",
+    "ordinaryuser denied without authentication agent",
+    "installeduser denied without authentication agent",
+    "installed account authenticates with its own password",
+    "no remote libvirt TCP or TLS",
+    "default network initially inactive",
+    "default NAT network starts with firewalld",
+    "nested KVM VM with qcow2 disk and virtio console starts",
+    "guest PXE obtains DHCP lease over default network",
+    "guest can stop and undefine",
+    "UEFI firmware available",
+    "UEFI domain starts",
+    "default network stops cleanly"
+  ],
+  "count": 23,
+  "dhcp_leases": " Expiry Time           MAC address         Protocol   IP address           Hostname   Client ID or DUID\n------------------------------------------------------------------------------------------------------------\n 2026-09-21 13:03:34   52:54:00:ef:e9:c7   ipv4       192.168.122.207/24   -          01:52:54:00:ef:e9:c7\n\n",
+  "limits": [
+    "component VM, not the final ISO",
+    "virt-manager GUI and installed-candidate lifecycle still require ISO qualification",
+    "Firmware start and PXE DHCP only; no nested guest OS installation, DNS or Internet connectivity qualification",
+    "No visual console or virt-manager GUI interaction in this headless component run",
+    "No candidate ISO generated; no host package installation or host libvirt configuration"
+  ],
+  "packages": "virt-manager-5.1.0-160100.2.1.noarch\nlibvirt-daemon-qemu-12.4.0-160100.3.2.x86_64\nqemu-x86-11.0.3-160100.2.1.x86_64\nqemu-ovmf-x86_64-202602-160100.2.3.noarch\n",
+  "cleanup": {
+    "domains": "Id   Name   State\n--------------------",
+    "networks": "Name      State      Autostart   Persistent\n----------------------------------------------\n default   inactive   no          yes",
+    "system": "running"
+  },
+  "date": "2026-09-21",
+  "source_commit": "c4c65cdea3a8669043cc53f6ecd05e016c54bd99",
+  "ci_run": 35596206091,
+  "kernel": "6.12.0-160100.4-default",
+  "outer_vm": "KVM, 2 vCPU, 3 GiB, dedicated 6 GiB ext4 disk, user-mode host networking",
+  "package_install_exit_code": 0,
+  "shutdown_exit_code": 0,
+  "fixture_corrections": [
+    "Create wheel group declared by KIWI in the minimal test root",
+    "Include ACPI/APIC in the UEFI test domain",
+    "Wait for terminal password input mode before submitting the public fixture password"
+  ],
+  "fixture_sha256": {
+    "prepare-root.py": "65be355d1d9196ee4af05f3af00175ee041de56bcabc7c0ccbedc6bfb53df2be",
+    "build-initrd.py": "fd8c13831ed55c1e77d7dee922f90de746c90f6c2f9fcb67e6f796ffe6fd3e8b",
+    "guest-agent.py": "92c61dc3c6277aeea84089a35e97d018ce818ab5c81ea8cf81df3a30aaeffc58",
+    "configure-root.py": "f0ade5761efda6091fe42531a408d6bdce76ebe8ce4cf2e296a8815ca7cc67fc",
+    "vm.py": "0dc63b1c6e522612c3b3176c791752d3928c747272caf64ef2bd8fa3e9185917",
+    "prepare-vm.py": "d35023a9e41ab39083d79b36c8389115e3cb7eaf955a9191e74f424482393fff",
+    "guest-exercise.py": "0ad41ceb550348fe669474fc9b1d152ad8dab0cd8a76c158c2ad0bcd0d245d04"
+  },
+  "tested_production_files_sha256": {
+    "kiwi/root/usr/libexec/lyra/configure-virtualization": "d4b30dc19cd7cbcbecb4bdb876153357f71a7d2b60a2ac82176b640d9dbfebd8",
+    "kiwi/root/etc/polkit-1/rules.d/51-lyra-wheel-admin.rules": "446b1f1c31c1b97d303b6cf195e7f4291af2a8965466687164dd4bc5ea052559"
+  }
+}

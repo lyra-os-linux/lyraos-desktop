@@ -78,7 +78,7 @@
       installer exists. Locked password, no relation to the installed
       system's user model.
     -->
-    <user name="liveuser" password="!" pwdformat="encrypted" home="/home/liveuser" shell="/usr/bin/fish" groups="wheel,video,audio"/>
+    <user name="liveuser" password="!" pwdformat="encrypted" home="/home/liveuser" shell="/usr/bin/fish" groups="wheel,video,audio,libvirt"/>
   </users>
 
   <!--
@@ -250,6 +250,26 @@
          in kiwi/config.sh, not the package set. -->
     <package name="NetworkManager"/>
     <package name="firewalld"/>
+
+    <!--
+      Virtualização Desktop pronta para uso: o Lyra OS entrega o gerenciador
+      gráfico e o instalador de máquinas para o QEMU/KVM, com libvirt e os
+      componentes de rede explícitos, sem depender de recomendações opcionais.
+      Nenhuma máquina ou disco é criado durante a instalação da ISO.
+    -->
+    <package name="lyra-vms" version="&gt;=0.1.0"/>
+    <package name="virt-viewer"/>
+    <package name="virt-install"/>
+    <package name="libvirt-daemon-qemu"/>
+    <package name="libvirt-daemon-config-network"/>
+    <package name="libvirt-client"/>
+    <package name="qemu"/>
+    <package name="qemu-x86"/>
+    <package name="qemu-img"/>
+    <package name="qemu-ovmf-x86_64"/>
+    <package name="qemu-ui-gtk"/>
+    <package name="qemu-ui-opengl"/>
+    <package name="qemu-hw-display-virtio-vga"/>
 
     <!--
       Filesystem / snapshots. Btrfs itself stays the Leap default; the
@@ -428,13 +448,14 @@
     <!-- Download manager with parallel connections (aria2 backend). The
          Firefox integration subpackage registers the native messaging host
          globally; Firefox is the default browser. -->
-    <package name="lyra-downloads"/>
-    <package name="lyra-downloads-firefox-integration"/>
+    <package name="lyra-downloads" version="&gt;=0.1.3"/>
+    <package name="lyra-downloads-firefox-integration" version="&gt;=0.1.3"/>
     <!-- Mozilla-signed extension (AMO unlisted). Firefox installs it from
          /usr/share/lyra-firefox-ext through ExtensionSettings in the
          overlay's distribution/policies.json (normal_installed: the user
          can disable it, not remove it). -->
-    <package name="lyra-firefox-ext"/>
+    <package name="lyra-firefox-ext" version="&gt;=0.1.3"/>
+    <package name="lyra-firefox-theme" version="&gt;=0.1.0"/>
     <package name="gnome-calculator"/>
     <package name="gnome-characters"/>
     <package name="gnome-disk-utility"/>
@@ -532,8 +553,8 @@
       image checks their minimum versions. The terminal frontend vega-cli
       remains optional and is not required by the GTK frontend or this image.
     -->
-    <package name="vega-gtk"/>
-    <package name="vegad"/>
+    <package name="vega-gtk" version="&gt;=5.1.45"/>
+    <package name="vegad" version="&gt;=5.1.32"/>
 
     <!-- Lyra's native remote-access clients, pinned in the default GNOME
          favorites together with Vega and Firefox. -->

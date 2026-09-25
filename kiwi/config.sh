@@ -68,6 +68,12 @@ ln -sfn ../proc/self/mounts /etc/mtab
 suseInsertService NetworkManager
 suseInsertService firewalld
 
+# Modular libvirt daemons are activated locally on demand. Keep remote
+# TCP/TLS listeners disabled and use the vendor Polkit rules. Only liveuser
+# belongs to libvirt; installed administrators authenticate with their own
+# password through the existing wheel admin rule.
+/usr/libexec/lyra/configure-virtualization
+
 # Display manager
 baseUpdateSysConfig /etc/sysconfig/displaymanager DISPLAYMANAGER gdm
 suseInsertService gdm

@@ -1,0 +1,209 @@
+{
+  "kernel": "6.12.0-160100.4-default",
+  "enforcing_during_tests": true,
+  "domain_permissive": false,
+  "checks": [
+    {
+      "name": "enforce",
+      "argv": [
+        "setenforce",
+        "1"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "permissive-domains",
+      "argv": [
+        "seinfo",
+        "--permissive"
+      ],
+      "rc": 0,
+      "stdout": "\nPermissive Types: 43\n   bootupd_t\n   coreos_boot_mount_generator_t\n   coreos_bootloader_migrate_generator_t\n   coreos_installer_generator_t\n   coreos_liveiso_autologin_generator_t\n   coreos_sulogin_force_generator_t\n   dhcpc_hook_t\n   go_fdo_server_t\n   health_checker_plugin_t\n   health_checker_t\n   newidmapd_t\n   pwaccessd_t\n   pwupdd_t\n   rhc_playbook_verifier_t\n   rhc_worker_playbook_t\n   sdbootutil_t\n   snapper_sdbootutil_plugin_t\n   systemd_btrfs_soft_reboot_generator_t\n   systemd_generic_generator_t\n   systemd_growpart_generator_t\n   systemd_hibernate_resume_generator_t\n   systemd_hibernate_resume_t\n   systemd_ibft_rule_generator_t\n   systemd_import_generator_t\n   systemd_integritysetup_generator_t\n   systemd_nfs_generator_t\n   systemd_nm_initrd_generator_t\n   systemd_pcrextend_t\n   systemd_pcrlock_t\n   systemd_run_generator_t\n   systemd_ssh_issue_t\n   systemd_status_mail_generator_t\n   systemd_system_update_generator_t\n   systemd_tpm2_generator_t\n   systemd_udev_trigger_generator_t\n   systemd_veritysetup_generator_t\n   systemd_zram_generator_t\n   virtqemud_t\n   virtsecretd_t\n   virtstoraged_t\n   virtvboxd_t\n   xrdp_sesman_t\n   xrdp_t\n",
+      "stderr": ""
+    },
+    {
+      "name": "approved-probe",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe"
+      ],
+      "rc": 0,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "approved-child",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/approved"
+      ],
+      "rc": 0,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "generic-system-binary",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/true"
+      ],
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "copy",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/home/parentaltest/copied-true"
+      ],
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "shell",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/bash",
+        "-c",
+        "true"
+      ],
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "interpreter",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/bin/python3",
+        "-c",
+        "print(42)"
+      ],
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "elf-loader",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/usr/lib64/ld-linux-x86-64.so.2",
+        "/home/parentaltest/copied-true"
+      ],
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nexec_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "anonymous-executable-memory",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "--anon"
+      ],
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nmprotect_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "executable-mapping",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "--map",
+        "/home/parentaltest/copied-true"
+      ],
+      "rc": 126,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\nmmap_errno=13\n",
+      "stderr": ""
+    },
+    {
+      "name": "same-uid-outside-domain",
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "/usr/bin/python3",
+        "-c",
+        "print(\"outside-domain-ok\")"
+      ],
+      "rc": 0,
+      "stdout": "outside-domain-ok\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-account",
+      "argv": [
+        "runuser",
+        "-u",
+        "ordinaryuser",
+        "--",
+        "/usr/bin/python3",
+        "-c",
+        "print(\"ordinary-ok\")"
+      ],
+      "rc": 0,
+      "stdout": "ordinary-ok\n",
+      "stderr": ""
+    }
+  ],
+  "full_account_protection": false,
+  "gnome_qualified": false,
+  "policy_sha256": "4dca69c71c5c680bd8486430ae9f85c17831080ad13a2afa09e5c7035bea7ccf"
+}
