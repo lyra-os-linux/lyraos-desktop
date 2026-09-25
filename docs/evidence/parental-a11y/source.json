@@ -1,0 +1,16 @@
+{
+  "url": "https://download.opensuse.org/source/distribution/leap/16.1/repo/oss/src/at-spi2-core-2.58.7-160100.2.1.src.rpm",
+  "sha256": "608890651f55f49f8bb8d20c6c6dfc657bb5e524d541710217cc971056cf9f6f",
+  "identity": "at-spi2-core-2.58.7-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/13871be8cda026c5f789c98eb45909b7-at-spi2-core\n",
+  "signature": "analysis/2026-09-25/parental-a11y/at-spi2-core.src.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+  "scope": "Official tarball with a diagnostic native replacement hook, built by the upstream Meson target; not a complete RPM build",
+  "gnome_settings_daemon_source": "../parental-gnome-services/source.json",
+  "inspection": [
+    "bus/00-at-spi: original shell hook obtains GetAddress and writes AT_SPI_BUS through busctl/sed/xprop",
+    "atspi/atspi-misc.c: atspi_get_a11y_bus checks X11 property before session D-Bus when DISPLAY is set and WAYLAND_DISPLAY absent",
+    "gnome-settings-daemon plugins/a11y-settings/gsd-a11y-settings-manager.c: changed GSettings callbacks synchronize toolkit-accessibility"
+  ],
+  "meson_installed_hook": {
+    "/root/atspi-hook-build/bus/00-at-spi": "/usr/etc/xdg/Xwayland-session.d/00-at-spi"
+  }
+}

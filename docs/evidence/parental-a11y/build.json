@@ -1,0 +1,31 @@
+[
+  {
+    "argv": [
+      "meson",
+      "setup",
+      "/root/atspi-hook-build",
+      "/root/at-spi2-core-2.58.7",
+      "--prefix=/usr",
+      "--sysconfdir=/usr/etc",
+      "--libexecdir=/usr/libexec",
+      "-Dgtk2_atk_adaptor=false",
+      "-Dintrospection=disabled",
+      "-Ddocs=false",
+      "-Dx11=enabled"
+    ],
+    "rc": 0,
+    "stdout": "The Meson build system\nVersion: 1.8.1\nSource dir: /root/at-spi2-core-2.58.7\nBuild dir: /root/atspi-hook-build\nBuild type: native build\nProject name: at-spi2-core\nProject version: 2.58.7\nC compiler for the host machine: cc (gcc 15.3.0 \"cc (SUSE Linux) 15.3.0\")\nC linker for the host machine: cc ld.bfd 2.45.0.20251103-1601002\nHost machine cpu family: x86_64\nHost machine cpu: x86_64\nCompiler for C supports arguments -fvisibility=hidden: YES \nCompiler for C supports link arguments -Wl,-Bsymbolic: YES \nCompiler for C supports link arguments -Wl,-z,relro: YES \nCompiler for C supports link arguments -Wl,-z,now: YES \nChecking for function \"bind_textdomain_codeset\" : YES \nFound pkg-config: YES (/usr/bin/pkg-config) 2.2.0\nRun-time dependency dbus-1 found: YES 1.14.10\nRun-time dependency glib-2.0 found: YES 2.84.4\nRun-time dependency gobject-2.0 found: YES 2.84.4\nRun-time dependency gio-2.0 found: YES 2.84.4\nChecking for function \"dlopen\" : YES \nRun-time dependency gmodule-2.0 found: YES 2.84.4\nRun-time dependency libxml-2.0 found: YES 2.13.8\nRun-time dependency x11 found: YES 1.8.12\nRun-time dependency xtst found: YES 1.2.5\nChecking for function \"XkbGetMap\" with dependencies x11, xtst: YES \nRun-time dependency xi found: YES 1.8.2\nChecking for alignment of \"char\" : 1 \nChecking for alignment of \"double\" : 8 \nChecking for alignment of \"dbus_bool_t\" with dependency dbus-1: 4 \nChecking for alignment of \"dbus_int16_t\" with dependency dbus-1: 2 \nChecking for alignment of \"dbus_int32_t\" with dependency dbus-1: 4 \nChecking for alignment of \"dbus_int64_t\" with dependency dbus-1: 8 \nChecking for alignment of \"dbind_pointer\" : 8 \nChecking for alignment of \"dbind_struct\" : 1 \nProgram g-ir-scanner skipped: feature introspection disabled\nProgram python3 found: YES (/usr/bin/python3)\nProgram xgettext found: YES (/usr/bin/xgettext)\nConfiguring config.h using configuration\nConfiguring atkversion.h using configuration\nDependency glib-2.0 found: YES 2.84.4 (cached)\nProgram /usr/bin/glib-genmarshal found: YES (/usr/bin/glib-genmarshal)\nDependency glib-2.0 found: YES 2.84.4 (cached)\nProgram /usr/bin/glib-mkenums found: YES (/usr/bin/glib-mkenums)\nDependency glib-2.0 found: YES 2.84.4 (cached)\nProgram /usr/bin/glib-mkenums found: YES (/usr/bin/glib-mkenums)\nProgram generate-introspection.py found: YES (/usr/bin/python3.13 /root/at-spi2-core-2.58.7/xml/generate-introspection.py)\nConfiguring atspi-version.h using configuration\nDependency glib-2.0 found: YES 2.84.4 (cached)\nProgram /usr/bin/glib-genmarshal found: YES (/usr/bin/glib-genmarshal)\nDependency glib-2.0 found: YES 2.84.4 (cached)\nProgram /usr/bin/glib-mkenums found: YES (/usr/bin/glib-mkenums)\nDependency glib-2.0 found: YES 2.84.4 (cached)\nProgram /usr/bin/glib-mkenums found: YES (/usr/bin/glib-mkenums)\nConfiguring accessibility.conf using configuration\nConfiguring at-spi-dbus-bus.desktop using configuration\nConfiguring org.a11y.Bus.service using configuration\nConfiguring at-spi-dbus-bus.service using configuration\nProgram dbus-daemon found: YES (/usr/bin/dbus-daemon)\nProgram dbus-broker-launch found: YES (/usr/bin/dbus-broker-launch)\nRun-time dependency libsystemd found: YES 257\nConfiguring org.a11y.atspi.Registry.service using configuration\nProgram msgfmt found: YES (/usr/bin/msgfmt)\nProgram msginit found: YES (/usr/bin/msginit)\nProgram msgmerge found: YES (/usr/bin/msgmerge)\nProgram xgettext found: YES (/usr/bin/xgettext)\nBuild targets in project: 139\n\nat-spi2-core 2.58.7\n\n  User defined options\n    docs            : false\n    gtk2_atk_adaptor: false\n    introspection   : disabled\n    libexecdir      : /usr/libexec\n    prefix          : /usr\n    sysconfdir      : /usr/etc\n    x11             : enabled\n\nFound ninja-1.12.1 at /usr/bin/ninja\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "ninja",
+      "-C",
+      "/root/atspi-hook-build",
+      "bus/00-at-spi"
+    ],
+    "rc": 0,
+    "stdout": "ninja: Entering directory `/root/atspi-hook-build'\n[1/2] Compiling C object bus/00-at-spi.p/at-spi-x11.c.o\n[2/2] Linking target bus/00-at-spi\n",
+    "stderr": ""
+  }
+]
