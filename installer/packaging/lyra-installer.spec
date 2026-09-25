@@ -42,6 +42,9 @@ Requires:       e2fsprogs
 Requires:       gptfdisk
 Requires:       grub2
 Requires:       grub2-common
+Requires:       grub2-i386-pc
+Requires:       grub2-x86_64-efi
+Requires:       efibootmgr
 Requires:       lvm2
 Requires:       mdadm
 # polkit ships the action/rule loader this package's .policy/.rules need at

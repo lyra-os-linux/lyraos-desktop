@@ -117,3 +117,10 @@ com prioridades 20 e 21, vencem futuras resoluções de nomes iguais. O gate
 
 O arquivo `config.xml` contém a lista única de pacotes. Não mantenha uma lista
 paralela em scripts ou documentação.
+
+## Firmware do instalador
+
+A receita explicita `firmware="uefi"` e `eficsm="true"`, com os módulos GRUB
+BIOS e UEFI. O instalador usa o modo da sessão live e cria os arquivos de boot
+no disco escolhido. O contrato e os limites de qualificação estão em
+[firmware do instalador](../docs/installer-firmware-requirements.md).

@@ -37,7 +37,8 @@ Exemplo reduzido:
 
 ```json
 {
-  "schema_version": 3,
+  "schema_version": 4,
+  "firmware": "Uefi",
   "raw_target": {"Disk": "/dev/sda"},
   "volume_layer": "Direct",
   "esp": {"Create": {"size_bytes": 314572800}},

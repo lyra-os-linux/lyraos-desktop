@@ -32,10 +32,10 @@ processos, logs ou arquivos temporários persistentes.
 
 ## Pipeline obrigatório
 
-1. Detectar UEFI, energia, memória, conectividade e discos elegíveis.
+1. Detectar BIOS/UEFI, energia, memória, conectividade e discos elegíveis.
 2. Produzir um plano imutável e mostrar exatamente quais partições serão
    removidas ou preservadas.
-3. Particionar em GPT e preparar ESP + Btrfs, com opção inicial de apagar o
+3. Particionar em GPT e preparar ESP (UEFI) ou BIOS Boot + Btrfs, com opção inicial de apagar o
    disco; particionamento manual fica bloqueado até ter cobertura própria.
 4. Criar o layout de subvolumes compatível com o Leap, aplicando NoCOW onde
    exigido, e montar o sistema-alvo de forma privada.
@@ -44,8 +44,9 @@ processos, logs ou arquivos temporários persistentes.
 6. Configurar locale, teclado, fuso, hostname, usuário administrativo via
    `wheel`/sudo e root bloqueado.
 7. Gerar `fstab`, machine-id, initramfs e configuração do GRUB.
-8. Instalar shim/GRUB pelo `shim-install` do Leap e validar o caminho de Secure
-   Boot antes de declarar sucesso.
+8. Instalar GRUB i386-pc no disco em BIOS; em UEFI, instalar shim/GRUB do Leap
+   no caminho Lyra e no caminho alternativo EFI/boot. Registrar NVRAM quando
+   disponível, preservando falhas fatais na preparação dos arquivos de boot.
 9. Configurar Snapper, criar o primeiro snapshot somente leitura e regenerar o
    menu de recuperação do GRUB.
 10. Desmontar em ordem reversa, sincronizar os dados e emitir um relatório
@@ -62,7 +63,7 @@ relevantes para diagnóstico.
 - frontend acessível por teclado e leitor de tela, em pt-BR e inglês;
 - backend com testes unitários de plano e testes de integração sobre loop
   devices/imagens descartáveis;
-- instalação completa em VM UEFI com boot do destino;
+- instalação completa e boot do destino em BIOS, UEFI com NVRAM e UEFI sem NVRAM;
 - repetição do teste com Secure Boot e chaves Microsoft do OVMF;
 - root bloqueado, sudo funcional e nenhum `liveuser`, autostart ou privilégio
   da sessão live presente no destino;

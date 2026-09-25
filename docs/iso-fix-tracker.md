@@ -253,6 +253,21 @@ outro hardware aprovados por esses ensaios. Evidência compacta em
 [`evidence/vega-nvidia-20260916.json`](evidence/vega-nvidia-20260916.json);
 recibos locais em `analysis/2026-09-16/vega-nvidia/`.
 
+## FW-01 — Instalador BIOS/UEFI e efivarfs, 19/09/2026
+
+Desktop #89: correção em fontes separa BIOS, UEFI com NVRAM e UEFI sem
+variáveis utilizáveis. Cada instalação usa somente o disco confirmado e
+mantém boot independente de ESPs de outros discos. Testes de componentes
+instalaram e iniciaram discos descartáveis nos três modos, incluindo um
+ensaio UEFI Secure Boot com chaves SUSE. Nenhuma alteração no firmware do host.
+
+**RPM/OBS entregue:** `lyra-installer-0.1.0-lp161.34.1`, pedido OBS
+1379053 aceito, Git `28a7f1d`, assinatura e origem conferidas.
+**Inclusão na ISO e qualificação do checksum exato pendentes.**
+Não encerrar este item pelos testes de componentes. Contrato, reprodução e
+limites em [firmware do instalador](installer-firmware-requirements.md);
+recibos locais em `analysis/2026-09-19/installer-firmware/boot-vm/`.
+
 
 ## VEGA-01 — Atualização do Painel a cada clique, 20/09
 

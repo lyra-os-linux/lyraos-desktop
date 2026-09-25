@@ -11,14 +11,17 @@ use std::fs;
 use std::path::{Path, PathBuf};
 
 use crate::storage::{
-    BTRFS_MOUNT_OPTIONS, EspPlan, FilesystemPlan, InstallPlan, RawTarget, StorageSnapshot,
-    SubvolumePlan, SwapPlan, VolumeLayer,
+    BIOS_BOOT_SIZE_BYTES, BTRFS_MOUNT_OPTIONS, EspPlan, FilesystemPlan, FirmwareMode, InstallPlan,
+    RawTarget, StorageSnapshot, SubvolumePlan, SwapPlan, VolumeLayer,
 };
 
 use super::executor::Executor;
 use super::operation::{ArgvCommand, OperationError, PrivilegedOperation};
 
+mod boot;
 mod deploy;
+#[cfg(test)]
+mod firmware_tests;
 #[cfg(test)]
 mod mount_cleanup_tests;
 
@@ -70,18 +73,20 @@ pub fn plan_to_operations(
 
     let esp_size_bytes = match &plan.esp {
         EspPlan::Create { size_bytes } => Some(*size_bytes),
-        EspPlan::Reuse { .. } => None,
+        EspPlan::Reuse { .. } | EspPlan::NotRequired => None,
     };
     let swap_size_bytes = match &plan.swap {
         SwapPlan::Partition { size_bytes } => Some(*size_bytes),
         SwapPlan::None | SwapPlan::Zram => None,
     };
-    let root_partition_number =
-        1 + u32::from(esp_size_bytes.is_some()) + u32::from(swap_size_bytes.is_some());
+    let bios_boot = plan.firmware == FirmwareMode::Bios;
+    let boot_partition_count = u32::from(bios_boot || esp_size_bytes.is_some());
+    let root_partition_number = 1 + boot_partition_count + u32::from(swap_size_bytes.is_some());
     let root_partition = partition_path(&disk, root_partition_number);
     let esp_partition = match &plan.esp {
-        EspPlan::Create { .. } => partition_path(&disk, 1),
-        EspPlan::Reuse { path } => path.clone(),
+        EspPlan::Create { .. } => Some(partition_path(&disk, 1)),
+        EspPlan::Reuse { path } => Some(path.clone()),
+        EspPlan::NotRequired => None,
     };
 
     let existing_partitions: Vec<PathBuf> = snapshot
@@ -99,17 +104,18 @@ pub fn plan_to_operations(
         disk: disk.clone(),
         existing_partitions,
         esp_size_bytes,
+        bios_boot,
         swap_size_bytes,
     }));
 
     if matches!(plan.esp, EspPlan::Create { .. }) {
         operations.push(Box::new(FormatEsp {
-            partition: esp_partition.clone(),
+            partition: esp_partition.clone().expect("new ESP has a partition"),
         }));
     }
 
     let swap_partition = swap_size_bytes.map(|_| {
-        let number = 1 + u32::from(esp_size_bytes.is_some());
+        let number = 1 + boot_partition_count;
         partition_path(&disk, number)
     });
     if let Some(partition) = &swap_partition {
@@ -146,10 +152,12 @@ pub fn plan_to_operations(
         }));
     }
 
-    operations.push(Box::new(MountEsp {
-        target_root: target_root.clone(),
-        partition: esp_partition.clone(),
-    }));
+    if let Some(partition) = &esp_partition {
+        operations.push(Box::new(MountEsp {
+            target_root: target_root.clone(),
+            partition: partition.clone(),
+        }));
+    }
     operations.push(Box::new(WriteFstab {
         target_root,
         root_partition,
@@ -173,6 +181,11 @@ pub fn build(
     operations.extend(deploy::deployment_operations(
         &request.config,
         &request.plan.swap,
+        request.plan.firmware,
+        match &request.plan.raw_target {
+            Some(RawTarget::Disk(disk)) => disk,
+            _ => unreachable!("validated disk plan"),
+        },
     ));
     operations.push(Box::new(SyncAndFinish));
     Ok(operations)
@@ -322,10 +335,9 @@ struct CreatePartitionTable {
     /// partition individually, before the table itself is touched, removes
     /// those signatures while their device nodes are still addressable.
     existing_partitions: Vec<PathBuf>,
-    /// `None` when the plan reuses an existing ESP elsewhere — #39's
-    /// eligibility rules already guarantee this disk has no partitions of
-    /// its own in that case, so only the root partition is created here.
+    /// Size of a new ESP; BIOS uses a separate unformatted embedding area.
     esp_size_bytes: Option<u64>,
+    bios_boot: bool,
     swap_size_bytes: Option<u64>,
 }
 
@@ -352,6 +364,17 @@ impl PrivilegedOperation for CreatePartitionTable {
         })?;
 
         let mut next_partition = 1u32;
+        if self.bios_boot {
+            executor.run(&ArgvCommand {
+                binary: "sgdisk".to_string(),
+                args: vec![
+                    format!("-n1:0:+{}M", BIOS_BOOT_SIZE_BYTES / (1024 * 1024)),
+                    "-t1:ef02".to_string(),
+                    disk.clone(),
+                ],
+            })?;
+            next_partition += 1;
+        }
         if let Some(esp_size_bytes) = self.esp_size_bytes {
             let esp_mib = esp_size_bytes / (1024 * 1024);
             executor.run(&ArgvCommand {
@@ -595,7 +618,7 @@ impl PrivilegedOperation for MountEsp {
 struct WriteFstab {
     target_root: PathBuf,
     root_partition: PathBuf,
-    esp_partition: PathBuf,
+    esp_partition: Option<PathBuf>,
     swap_partition: Option<PathBuf>,
     subvolumes: Vec<SubvolumePlan>,
 }
@@ -616,16 +639,6 @@ impl PrivilegedOperation for WriteFstab {
                 path_str(&self.root_partition),
             ],
         })?;
-        let esp_uuid = executor.run(&ArgvCommand {
-            binary: "blkid".to_string(),
-            args: vec![
-                "-s".to_string(),
-                "UUID".to_string(),
-                "-o".to_string(),
-                "value".to_string(),
-                path_str(&self.esp_partition),
-            ],
-        })?;
 
         let mut content = String::from("# Gerado pelo Lyra Installer\n");
         for subvolume in &self.subvolumes {
@@ -635,9 +648,22 @@ impl PrivilegedOperation for WriteFstab {
                 subvolume.subvolume,
             ));
         }
-        content.push_str(&format!(
-            "UUID={esp_uuid} /boot/efi vfat defaults,umask=0077 0 2\n"
-        ));
+        if let Some(partition) = &self.esp_partition {
+            let esp_uuid = executor.run(&ArgvCommand {
+                binary: "blkid".to_string(),
+                args: vec![
+                    "-s".into(),
+                    "UUID".into(),
+                    "-o".into(),
+                    "value".into(),
+                    path_str(partition),
+                ],
+            })?;
+            content.push_str(&format!(
+                "UUID={esp_uuid} /boot/efi vfat defaults,umask=0077 0 2\n"
+            ));
+        }
+
         if let Some(swap_partition) = &self.swap_partition {
             let swap_uuid = executor.run(&ArgvCommand {
                 binary: "blkid".to_string(),
@@ -917,7 +943,7 @@ mod tests {
     }
 
     #[test]
-    fn esp_reuse_never_formats_or_creates_an_esp_partition() {
+    fn whole_disk_install_never_uses_another_disks_esp() {
         let mut esp_disk = disk("sda", LARGE);
         esp_disk.partitions.push(crate::storage::Partition {
             path: PathBuf::from("/dev/sda1"),
@@ -947,10 +973,10 @@ mod tests {
 
         let operations = plan_to_operations(&plan, &snapshot).expect("plan should translate");
         assert!(
-            !operations
+            operations
                 .iter()
-                .any(|op| op.describe().contains("formatar ESP")),
-            "reusing an existing ESP must never format it"
+                .any(|op| op.describe() == "formatar ESP em /dev/sdb1"),
+            "only the selected disk gets a new ESP"
         );
 
         let executor = FakeExecutor::new();
@@ -960,9 +986,10 @@ mod tests {
             vec![
                 "wipefs -a /dev/sdb",
                 "sgdisk --zap-all /dev/sdb",
-                "sgdisk -n1:0:0 -t1:8300 /dev/sdb"
+                "sgdisk -n1:0:+300M -t1:ef00 /dev/sdb",
+                "sgdisk -n2:0:0 -t2:8300 /dev/sdb"
             ],
-            "the target disk gets only a root partition; the existing ESP on the other disk is untouched"
+            "the target disk gets its own ESP; the other disk is untouched"
         );
     }
 
@@ -1280,7 +1307,7 @@ mod tests {
         let op = WriteFstab {
             target_root: temp.0.clone(),
             root_partition: PathBuf::from("/dev/sda2"),
-            esp_partition: PathBuf::from("/dev/sda1"),
+            esp_partition: Some(PathBuf::from("/dev/sda1")),
             swap_partition: None,
             subvolumes,
         };
@@ -1304,7 +1331,7 @@ mod tests {
         let op = WriteFstab {
             target_root: temp.0.clone(),
             root_partition: PathBuf::from("/dev/sda3"),
-            esp_partition: PathBuf::from("/dev/sda1"),
+            esp_partition: Some(PathBuf::from("/dev/sda1")),
             swap_partition: Some(PathBuf::from("/dev/sda2")),
             subvolumes: vec![SubvolumePlan {
                 mount_point: PathBuf::from("/"),

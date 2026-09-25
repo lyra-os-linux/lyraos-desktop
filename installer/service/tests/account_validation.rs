@@ -20,6 +20,7 @@ fn request() -> ExecutionRequest {
         // this fixture cannot translate into disk operations on the test host.
         plan: InstallPlan {
             schema_version: 0,
+            firmware: lyra_installer_core::storage::FirmwareMode::Uefi,
             raw_target: None,
             volume_layer: VolumeLayer::Direct,
             esp: EspPlan::Create { size_bytes: 0 },

@@ -28,7 +28,7 @@ pub const ESP_MINIMUM_SIZE_BYTES: u64 = 32 * 1024 * 1024;
 /// Wire-format version for [`InstallPlan`]. Any structural or semantic change
 /// that an older privileged service could misinterpret must increment this
 /// value. The service rejects unknown versions before running an operation.
-pub const INSTALL_PLAN_SCHEMA_VERSION: u32 = 3;
+pub const INSTALL_PLAN_SCHEMA_VERSION: u32 = 4;
 
 /// Fixed size used by the guided "swap em disco" choice. Keeping the size
 /// in the typed plan makes the destructive layout explicit and lets the
@@ -103,6 +103,7 @@ impl Default for FilesystemPlan {
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum EspPlan {
+    NotRequired,
     Create {
         size_bytes: u64,
     },
@@ -189,9 +190,18 @@ pub struct DestructiveSummary {
     pub erased: Vec<String>,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum FirmwareMode {
+    Bios,
+    Uefi,
+}
+
+pub const BIOS_BOOT_SIZE_BYTES: u64 = 2 * 1024 * 1024;
+
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct InstallPlan {
     pub schema_version: u32,
+    pub firmware: FirmwareMode,
     pub raw_target: Option<RawTarget>,
     pub volume_layer: VolumeLayer,
     pub esp: EspPlan,
@@ -216,11 +226,6 @@ impl<'a> PlanBuilder<'a> {
     /// Pure function: validates `choice` against `snapshot` and produces a
     /// declarative plan, or every reason it's blocked. No I/O happens here.
     pub fn build(&self, choice: &GuidedChoice) -> Result<InstallPlan, PlanError> {
-        if !self.snapshot.uefi {
-            return Err(PlanError(vec![
-                "Esta imagem do Lyra OS requer inicialização UEFI. Reinicie a mídia em modo UEFI; BIOS legado não é suportado.".to_string(),
-            ]));
-        }
         let mut errors = Vec::new();
         let mut warnings = Vec::new();
         let mut erased = Vec::new();
@@ -274,21 +279,25 @@ impl<'a> PlanBuilder<'a> {
             }
         }
 
-        // A whole-disk install always recreates the target disk's partition
-        // table.  Do not reuse an ESP that lives on that disk: its path will
-        // be destroyed by sgdisk before the new layout is created.
-        let target_disk = match &choice.raw_target {
-            Some(RawTarget::Disk(path)) => Some(path.as_path()),
-            _ => None,
+        let firmware = if self.snapshot.uefi {
+            FirmwareMode::Uefi
+        } else {
+            FirmwareMode::Bios
         };
-        let esp = match self.existing_esp(target_disk) {
-            Some(path) => EspPlan::Reuse { path },
-            None => EspPlan::Create {
+        // Whole-disk installation keeps its boot files on the selected disk.
+        // A no-NVRAM fallback must never overwrite another disk's EFI/BOOT.
+        let esp = if firmware == FirmwareMode::Uefi {
+            EspPlan::Create {
                 size_bytes: ESP_RECOMMENDED_SIZE_BYTES,
-            },
+            }
+        } else {
+            EspPlan::NotRequired
         };
-        if matches!(esp, EspPlan::Create { .. }) {
-            warnings.push("nenhuma ESP existente encontrada — uma nova será criada".to_string());
+        if firmware == FirmwareMode::Bios {
+            warnings.push(
+                "BIOS: uma partição de boot de 2 MiB será criada; Secure Boot exige UEFI"
+                    .to_string(),
+            );
         }
 
         let swap = match choice.swap {
@@ -301,6 +310,7 @@ impl<'a> PlanBuilder<'a> {
         let reserved_bytes = match esp {
             EspPlan::Create { size_bytes } => size_bytes,
             EspPlan::Reuse { .. } => 0,
+            EspPlan::NotRequired => BIOS_BOOT_SIZE_BYTES,
         } + match swap {
             SwapPlan::Partition { size_bytes } => size_bytes,
             SwapPlan::None | SwapPlan::Zram => 0,
@@ -361,6 +371,7 @@ impl<'a> PlanBuilder<'a> {
 
         Ok(InstallPlan {
             schema_version: INSTALL_PLAN_SCHEMA_VERSION,
+            firmware,
             raw_target: choice.raw_target.clone(),
             volume_layer: choice.volume_layer.clone(),
             esp,
@@ -423,25 +434,6 @@ impl<'a> PlanBuilder<'a> {
             .iter()
             .find(|vg| vg.name == name)
             .ok_or_else(|| format!("{name}: volume group não encontrado"))
-    }
-
-    /// UEFI-only per `config.xml`'s `firmware="uefi"`, so ESP detection is
-    /// simply "an existing vfat/EFI-typed partition" — reused verbatim,
-    /// never reformatted (matches `partition.conf`'s ESP override).
-    fn existing_esp(&self, excluded_disk: Option<&std::path::Path>) -> Option<PathBuf> {
-        self.snapshot.disks.iter().find_map(|disk| {
-            if excluded_disk.is_some_and(|excluded| excluded == disk.path.as_path()) {
-                return None;
-            }
-            disk.partitions
-                .iter()
-                .find(|p| {
-                    p.mountpoints
-                        .iter()
-                        .any(|m| m == std::path::Path::new("/boot/efi"))
-                })
-                .map(|p| p.path.clone())
-        })
     }
 }
 
