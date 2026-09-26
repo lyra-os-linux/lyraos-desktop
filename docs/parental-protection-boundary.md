@@ -58,15 +58,25 @@ de utilizá-lo como uma camada complementar.
 
 ## Próxima implementação
 
-### Progresso experimental em 25/09
+### Progresso experimental em 26/09
+
+A [etapa de áudio, portais e busca](evidence/parental-session/README.md)
+integra os demais SettingsDaemon, PipeWire e portais, um lançador fixo do
+WirePlumber e o auxiliar FUSE em domínio privado. O ensaio completo confirmou
+seleção/cancelamento de arquivo, busca pelo conteúdo indexado, permissões
+persistentes e recuperação do portal após SIGKILL. Shell e execução de dados
+continuam negados; regressões de teclado, dconf, AT-SPI e XWayland passaram.
+A amostra terminou com zero unidades persistentes em falha, mas ainda registra
+recusas de auxiliares transitórios GJS e outros componentes. Não comprova
+sessão integral, isolamento de produção ou todos os recursos dos daemons.
 
 A [etapa de teclado, atalhos e fontes](evidence/parental-input/README.md)
 mantém Keyboard/MediaKeys no domínio restrito, verifica atalho autorizado e
 shell negado, recebe uma tecla em GTK Wayland e grava cache Fontconfig sem
 permitir execução dos dados. O auxiliar GIO faz os lançamentos do Shell entrarem
 no domínio da conta. Um patch de cópias de dados do Mutter preserva a restrição
-de escrita na memória executável do compositor. Restam 14 unidades de usuário
-com falha; sessão integral, evasão e integração de produção seguem pendentes.
+de escrita na memória executável do compositor. Essa rodada anterior registrou
+14 unidades de usuário com falha; sessão integral, evasão e integração de produção seguem pendentes.
 
 A [etapa de acessibilidade](evidence/parental-a11y/README.md) integra o daemon
 A11ySettings e propõe um hook AT-SPI nativo para X11. O ensaio verifica

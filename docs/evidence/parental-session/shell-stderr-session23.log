@@ -1,0 +1,59 @@
+trusted-shell fixture: uid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 AT_SECURE=1
+trusted-shell fixture: desktop restrictions locked and effective
+libmutter-Message: 21:59:49.082: Running GNOME Shell (using mutter 48.8) as a Wayland display server
+libmutter-Message: 21:59:49.128: Thread 'KMS thread' will be using high priority scheduling
+libEGL warning: egl: failed to create dri2 screen
+libEGL warning: egl: failed to create dri2 screen
+libEGL warning: NEEDS EXTENSION: falling back to kms_swrast
+libmutter-Message: 21:59:49.174: Added device '/dev/dri/card0' (virtio_gpu) using atomic mode setting.
+libmutter-Message: 21:59:49.175: Failed to initialize accelerated iGPU/dGPU framebuffer sharing: Not hardware accelerated
+libmutter-Message: 21:59:49.175: Created gbm renderer for '/dev/dri/card0'
+libmutter-Message: 21:59:49.175: Boot VGA GPU /dev/dri/card0 selected as primary
+libmutter-Message: 21:59:49.293: Using public X11 display :0, (using :1 for managed services)
+libmutter-Message: 21:59:49.293: Using Wayland display name 'wayland-0'
+
+(gnome-shell:17581): libmutter-WARNING **: 21:59:49.342: There is no colord server available
+GNOME Shell-Message: 21:59:49.624: Unset XDG_SESSION_ID, getCurrentSessionProxy() called outside a user session. Asking logind directly.
+
+(gnome-shell:17581): IBUS-WARNING **: 21:59:49.625: open /home/parentaltest/.config/ibus/bus failed: Permission denied
+GNOME Shell-Message: 21:59:49.670: Can not load calendars: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable
+GNOME Shell-Message: 21:59:49.721: Ignoring search provider /usr/share/gnome-shell/search-providers/org.gnome.Settings.search-provider.ini: missing DesktopId
+
+(gnome-shell:17581): libmutter-CRITICAL **: 21:59:49.742: Could not create session manager: Error opening session file: Permission denied
+GNOME Shell-Message: 21:59:49.752: Will monitor session 32
+GNOME Shell-Message: 21:59:49.764: Error looking up permission: GDBus.Error:org.freedesktop.portal.Error.NotFound: No entry for geolocation
+GNOME Shell-Message: 21:59:49.960: Ignoring search provider /usr/share/gnome-shell/search-providers/org.gnome.Settings.search-provider.ini: missing DesktopId
+
+(gnome-shell:17581): GNOME Shell-WARNING **: 21:59:50.082: Missing required core component Settings, expect trouble…
+Failed to load cookie file from cookie: No such file or directory
+GNOME Shell-Message: 21:59:50.169: No permission to control network connections: Polkit.Error: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Action org.freedesktop.NetworkManager.network-control is not registered
+GNOME Shell-Message: 21:59:50.169: Failed to get PolKit permission: Polkit.Error: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Action org.freedesktop.bolt.enroll is not registered
+GNOME Shell-Message: 21:59:50.277: GDBus.Error:org.freedesktop.DBus.Error.AccessDenied: Sender is not authorized to send message
+GNOME Shell-Message: 21:59:50.552: GNOME Shell started at Sat Sep 26 2026 21:59:49 GMT+0000 (Coordinated Universal Time)
+GNOME Shell-Message: 21:59:50.552: Registering session with GDM
+Xwayland glamor: GBM Wayland interfaces not available
+Failed to initialize glamor, falling back to sw
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Multiple symbols for level 1/group 1 on key <FK23>
+>                   Using F23, ignoring XF86TouchpadOff
+> Warning:          Symbol map for key <FK23> redefined
+>                   Using last definition for conflicting fields
+> Warning:          Symbol map for key <FK24> redefined
+>                   Using last definition for conflicting fields
+Errors from xkbcomp are not fatal to the X server
+
+** (gnome-shell:17581): WARNING **: 22:00:03.821: Could not issue 'GetUnit' systemd call
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Unsupported maximum keycode 709, clipping.
+>                   X11 cannot support keycodes above 255.
+Errors from xkbcomp are not fatal to the X server
+libEGL warning: DRI3 error: Could not get DRI3 device
+libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering
+
+(gnome-shell:17581): libmutter-WARNING **: 22:02:08.327: Invalid sequence for VSYNC frame info
+** Message: 22:02:29.661: Shutting down GNOME Shell
+
+(gnome-shell:17581): libmutter-WARNING **: 22:02:29.695: Connection to xwayland lost
+libmutter-Message: 22:02:29.696: Using public X11 display :0, (using :1 for managed services)
+
+(gnome-shell:17581): GNOME Shell-WARNING **: 22:02:29.698: Failed to store screen time limits data: Error opening file “/home/parentaltest/.local/share/gnome-shell/session-active-history.json”: Permission denied

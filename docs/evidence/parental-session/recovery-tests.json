@@ -1,0 +1,18 @@
+[
+  {
+    "fault": "kill",
+    "passed": true,
+    "rc": 255,
+    "stdout": "{\n  \"restored\": true,\n  \"pending\": false,\n  \"backup\": \"/root/lyra-xwayland-recovery/823051dad4954c408da478716bb8a16c\",\n  \"files\": 8\n}\n",
+    "stderr": "Running as unit: lyra-recovery-kill.service\nFinished with result: signal\nMain processes terminated with: code=killed, status=9/KILL\nService runtime: 232ms\nCPU time consumed: 144ms\n",
+    "restored_sha256": "e09db0f943a7e550da481e24cdfdf09c6f43bc19b0414b2221b0b24168b54d22"
+  },
+  {
+    "fault": "timeout",
+    "passed": true,
+    "rc": 1,
+    "stdout": "{\n  \"restored\": true,\n  \"pending\": false,\n  \"backup\": \"/root/lyra-xwayland-recovery/052657fd0726483687eb327a4604b27d\",\n  \"files\": 8\n}\n",
+    "stderr": "Running as unit: lyra-recovery-timeout.service\nFinished with result: timeout\nMain processes terminated with: code=killed, status=15/TERM\nService runtime: 3.197s\nCPU time consumed: 139ms\n",
+    "restored_sha256": "e09db0f943a7e550da481e24cdfdf09c6f43bc19b0414b2221b0b24168b54d22"
+  }
+]

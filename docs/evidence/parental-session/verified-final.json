@@ -1,0 +1,151 @@
+{
+  "passed": true,
+  "commands": [
+    {
+      "argv": [
+        "rpm",
+        "-V",
+        "gdm",
+        "mutter",
+        "xwayland",
+        "gnome-shell",
+        "gnome-session-core",
+        "gnome-session-wayland",
+        "at-spi2-core",
+        "xprop",
+        "xkbcomp",
+        "gnome-settings-daemon",
+        "accountsservice",
+        "dconf",
+        "libdconf1",
+        "glib2-tools",
+        "fontconfig",
+        "pipewire",
+        "wireplumber",
+        "xdg-desktop-portal",
+        "xdg-desktop-portal-gnome",
+        "xdg-desktop-portal-gtk",
+        "fuse3",
+        "nautilus",
+        "localsearch"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "is-active",
+        "gdm"
+      ],
+      "rc": 3,
+      "stdout": "inactive\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "is-active",
+        "user@1003.service"
+      ],
+      "rc": 3,
+      "stdout": "inactive\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "is-active",
+        "auditd"
+      ],
+      "rc": 3,
+      "stdout": "inactive\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "ls",
+        "-lZ",
+        "/usr/bin/localsearch",
+        "/usr/libexec/localsearch-3",
+        "/usr/libexec/localsearch-extractor-3",
+        "/usr/libexec/localsearch-control-3",
+        "/usr/bin/nautilus",
+        "/usr/libexec/gsd-color",
+        "/usr/libexec/gsd-datetime",
+        "/usr/libexec/gsd-housekeeping",
+        "/usr/libexec/gsd-power",
+        "/usr/libexec/gsd-print-notifications",
+        "/usr/libexec/gsd-rfkill",
+        "/usr/libexec/gsd-screensaver-proxy",
+        "/usr/libexec/gsd-sharing",
+        "/usr/libexec/gsd-smartcard",
+        "/usr/libexec/gsd-sound",
+        "/usr/libexec/gsd-usb-protection",
+        "/usr/libexec/gsd-wacom",
+        "/usr/libexec/gsd-wwan",
+        "/usr/bin/wireplumber",
+        "/usr/bin/pipewire",
+        "/usr/libexec/xdg-desktop-portal",
+        "/usr/libexec/xdg-desktop-portal-gnome",
+        "/usr/libexec/xdg-desktop-portal-gtk",
+        "/usr/libexec/xdg-document-portal",
+        "/usr/libexec/xdg-permission-store",
+        "/usr/libexec/gsd-xsettings",
+        "/usr/libexec/dconf-service",
+        "/usr/libexec/gsd-a11y-settings",
+        "/usr/libexec/gsd-keyboard",
+        "/usr/libexec/gsd-media-keys",
+        "/usr/libexec/gio-launch-desktop"
+      ],
+      "rc": 0,
+      "stdout": "-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0  128512 Feb  5  2026 /usr/bin/localsearch\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0 1481408 Apr 11 20:21 /usr/bin/nautilus\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   18616 Jul 14 15:40 /usr/bin/pipewire\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   18816 Jun 19 07:13 /usr/bin/wireplumber\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   75968 Dec 21  2022 /usr/libexec/dconf-service\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   14456 Jul 17 01:11 /usr/libexec/gio-launch-desktop\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   18760 Apr 19  2025 /usr/libexec/gsd-a11y-settings\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   51784 Apr 19  2025 /usr/libexec/gsd-color\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   51600 Apr 19  2025 /usr/libexec/gsd-datetime\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   55728 Apr 19  2025 /usr/libexec/gsd-housekeeping\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   35280 Apr 19  2025 /usr/libexec/gsd-keyboard\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0  191728 Apr 19  2025 /usr/libexec/gsd-media-keys\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   96792 Apr 19  2025 /usr/libexec/gsd-power\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   47536 Apr 19  2025 /usr/libexec/gsd-print-notifications\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   47504 Apr 19  2025 /usr/libexec/gsd-rfkill\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   27032 Apr 19  2025 /usr/libexec/gsd-screensaver-proxy\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   39384 Apr 19  2025 /usr/libexec/gsd-sharing\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   80272 Apr 19  2025 /usr/libexec/gsd-smartcard\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   26944 Apr 19  2025 /usr/libexec/gsd-sound\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   43416 Apr 19  2025 /usr/libexec/gsd-usb-protection\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   39448 Apr 19  2025 /usr/libexec/gsd-wacom\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   51592 Apr 19  2025 /usr/libexec/gsd-wwan\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   73472 Apr 19  2025 /usr/libexec/gsd-xsettings\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0  289704 Feb  5  2026 /usr/libexec/localsearch-3\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   55608 Feb  5  2026 /usr/libexec/localsearch-control-3\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0  121504 Feb  5  2026 /usr/libexec/localsearch-extractor-3\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0  975608 Apr  8 06:01 /usr/libexec/xdg-desktop-portal\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0  650032 Mar 28  2025 /usr/libexec/xdg-desktop-portal-gnome\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0  301680 Mar 21  2025 /usr/libexec/xdg-desktop-portal-gtk\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0  219944 Apr  8 06:01 /usr/libexec/xdg-document-portal\n-rwxr-xr-x. 1 root root system_u:object_r:bin_t:s0   76184 Apr  8 06:01 /usr/libexec/xdg-permission-store\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "auditctl",
+        "-s"
+      ],
+      "rc": 0,
+      "stdout": "enabled 0\nfailure 1\npid 0\nrate_limit 0\nbacklog_limit 64\nlost 0\nbacklog 0\nbacklog_wait_time 60000\nbacklog_wait_time_actual 0\nloginuid_immutable 0 unlocked\n",
+      "stderr": ""
+    }
+  ],
+  "absent": [
+    "/opt/lyra-parental-probe/xwindow-test",
+    "/root/lyra-xwayland-recovery/active.json",
+    "/usr/libexec/lyra/trusted-shell-test",
+    "/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf",
+    "/etc/dconf/profile/lyra-supervised-test",
+    "/etc/dconf/db/lyra-supervised-test",
+    "/etc/pam.d/gdm-autologin",
+    "/etc/gdm/custom.conf.lyra-baseline",
+    "/tmp/lyra-trusted-shell-test.log",
+    "/run/user/1003",
+    "/etc/selinux/targeted/active/modules/400/lyra-trusted-shell-test",
+    "/etc/systemd/user/localsearch-3.service.d/99-lyra-trusted-test.conf",
+    "/home/parentaltest/.cache/tracker3",
+    "/home/parentaltest/chooser.txt",
+    "/usr/libexec/lyra/nautilus-portal-test",
+    "/etc/systemd/user/xdg-document-portal.service.d/99-lyra-trusted-test.conf",
+    "/opt/lyra-parental-probe/audio-probe",
+    "/opt/lyra-parental-probe/portal-probe",
+    "/usr/libexec/lyra/trusted-wireplumber-test",
+    "/etc/systemd/user/wireplumber.service.d/99-lyra-trusted-test.conf",
+    "/usr/libexec/lyra/parental-launch-probe",
+    "/etc/X11/xorg.conf.d/00-keyboard.conf",
+    "/opt/lyra-parental-probe/input-probe",
+    "/opt/lyra-parental-probe/input-window",
+    "/usr/libexec/lyra/parental-services-probe",
+    "/opt/lyra-parental-probe/settings-probe",
+    "/etc/dconf/profile/lyra-supervised-raw-test",
+    "/home/parentaltest/.config/dconf",
+    "/opt/lyra-parental-probe/a11y-settings-probe",
+    "/opt/lyra-parental-probe/accessible-app",
+    "/opt/lyra-parental-probe/accessible-client"
+  ],
+  "selinux": "permissive outside test",
+  "worker_sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8"
+}
