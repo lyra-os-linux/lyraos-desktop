@@ -1,0 +1,1522 @@
+{
+  "since": 1790459988.0866647,
+  "before": {
+    "enabled": "1",
+    "failure": "1",
+    "pid": "17407",
+    "rate_limit": "0",
+    "backlog_limit": "8192",
+    "lost": "0",
+    "backlog": "0",
+    "backlog_wait_time": "60000",
+    "backlog_wait_time_actual": "0",
+    "loginuid_immutable": "0 unlocked"
+  },
+  "after": {
+    "enabled": "1",
+    "failure": "1",
+    "pid": "17407",
+    "rate_limit": "0",
+    "backlog_limit": "8192",
+    "lost": "0",
+    "backlog": "0",
+    "backlog_wait_time": "60000",
+    "backlog_wait_time_actual": "0",
+    "loginuid_immutable": "0 unlocked"
+  },
+  "lost_delta": 0,
+  "files": [
+    {
+      "path": "/var/log/audit/audit.log",
+      "size": 3195051,
+      "offset": 0
+    },
+    {
+      "path": "/var/log/audit/audit.log.3",
+      "size": 8388672,
+      "offset": 0
+    },
+    {
+      "path": "/var/log/audit/audit.log.1",
+      "size": 8388913,
+      "offset": 0
+    },
+    {
+      "path": "/var/log/audit/audit.log.2",
+      "size": 8388747,
+      "offset": 0
+    },
+    {
+      "path": "/var/log/audit/audit.log.4",
+      "size": 8388763,
+      "offset": 0
+    }
+  ],
+  "limited": false,
+  "denials": [
+    {
+      "count": 8222,
+      "line": "type=AVC msg=audit(1790459989.675:169646): avc:  denied  { ioctl } for  pid=17617 comm=\"9\" path=2F6D656D66643A73642D6578656375746F722D7374617465202864656C6574656429 dev=\"tmpfs\" ino=3087 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:lyra_parental_runtime_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 198,
+      "line": "type=AVC msg=audit(1790460145.729:176613): avc:  denied  { watch } for  pid=17581 comm=\"gmain\" path=\"/etc\" dev=\"vda\" ino=23 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 183,
+      "line": "type=AVC msg=audit(1790460149.697:178636): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/17581/status\" dev=\"proc\" ino=127828 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 149,
+      "line": "type=AVC msg=audit(1790459989.671:169595): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/1/cgroup\" dev=\"proc\" ino=433 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 87,
+      "line": "type=AVC msg=audit(1790459988.959:168085): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.XSettings.service\" dev=\"vda\" ino=39247 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 80,
+      "line": "type=AVC msg=audit(1790460149.724:178641): avc:  denied  { watch } for  pid=17581 comm=\"gmain\" path=\"/\" dev=\"vda\" ino=2 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:root_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 74,
+      "line": "type=AVC msg=audit(1790459988.865:167441): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/pipewire-pulse.service\" dev=\"vda\" ino=51030 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 68,
+      "line": "type=AVC msg=audit(1790459988.959:168034): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.Shell@wayland.service\" dev=\"vda\" ino=39461 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 67,
+      "line": "type=AVC msg=audit(1790459989.675:169634): avc:  denied  { ioctl } for  pid=17617 comm=\"9\" path=\"/proc/sys/fs/nr_open\" dev=\"proc\" ino=420 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:sysctl_fs_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 64,
+      "line": "type=AVC msg=audit(1790459988.863:167327): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/pipewire.service\" dev=\"vda\" ino=50986 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 54,
+      "line": "type=AVC msg=audit(1790459989.578:169454): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"gnome-control-center\" dev=\"vda\" ino=39338 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 52,
+      "line": "type=AVC msg=audit(1790459988.966:168522): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Keyboard.service\" dev=\"vda\" ino=39223 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 52,
+      "line": "type=AVC msg=audit(1790459988.966:168484): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.MediaKeys.service\" dev=\"vda\" ino=39225 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 52,
+      "line": "type=AVC msg=audit(1790459988.968:168674): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.A11ySettings.service\" dev=\"vda\" ino=39215 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 51,
+      "line": "type=AVC msg=audit(1790460144.337:175982): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/localsearch-3.service\" dev=\"vda\" ino=52054 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 48,
+      "line": "type=AVC msg=audit(1790459988.863:167351): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/wireplumber.service\" dev=\"vda\" ino=50854 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 40,
+      "line": "type=AVC msg=audit(1790460149.724:178637): avc:  denied  { read } for  pid=17581 comm=\"gmain\" name=\"bus\" dev=\"vda\" ino=150573 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:object_r:config_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 40,
+      "line": "type=AVC msg=audit(1790460149.724:178639): avc:  denied  { watch } for  pid=17581 comm=\"gmain\" path=\"/usr/etc/xdg\" dev=\"vda\" ino=1183 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 40,
+      "line": "type=AVC msg=audit(1790460149.724:178640): avc:  denied  { watch } for  pid=17581 comm=\"gmain\" path=\"/etc/xdg\" dev=\"vda\" ino=401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 39,
+      "line": "type=AVC msg=audit(1790460145.729:176607): avc:  denied  { read } for  pid=17673 comm=\"gmain\" name=\"sounds\" dev=\"vda\" ino=150579 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 39,
+      "line": "type=AVC msg=audit(1790459988.957:167973): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.Shell@x11.service\" dev=\"vda\" ino=39462 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 38,
+      "line": "type=AVC msg=audit(1790459988.954:167822): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-initialized.target\" dev=\"vda\" ino=38966 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 36,
+      "line": "type=AVC msg=audit(1790460147.729:176618): avc:  denied  { watch } for  pid=17813 comm=\"gmain\" path=\"/usr/lib64/gnome-settings-daemon-3.0/gtk-modules\" dev=\"vda\" ino=132023 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 36,
+      "line": "type=AVC msg=audit(1790460148.729:176620): avc:  denied  { watch } for  pid=17835 comm=\"gmain\" path=\"/run/user/1003\" dev=\"tmpfs\" ino=1 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:user_tmp_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 33,
+      "line": "type=AVC msg=audit(1790460144.455:176476): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/xdg-desktop-portal.service\" dev=\"vda\" ino=29897 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 33,
+      "line": "type=AVC msg=audit(1790460144.464:176524): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/xdg-document-portal.service\" dev=\"vda\" ino=29898 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 33,
+      "line": "type=AVC msg=audit(1790459989.669:169593): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/xdg-permission-store.service\" dev=\"vda\" ino=29899 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 33,
+      "line": "type=AVC msg=audit(1790459988.970:168759): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-shutdown.target\" dev=\"vda\" ino=38972 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 32,
+      "line": "type=AVC msg=audit(1790459988.955:167846): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/graphical-session-pre.target\" dev=\"vda\" ino=9524 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 30,
+      "line": "type=AVC msg=audit(1790460144.458:176492): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/xdg-desktop-portal-gnome.service\" dev=\"vda\" ino=50833 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 28,
+      "line": "type=AVC msg=audit(1790459989.670:169594): avc:  denied  { ioctl } for  pid=17581 comm=\"gnome-shell\" path=\"/tmp/lyra-trusted-shell-test.log\" dev=\"tmpfs\" ino=1432 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:lyra_parental_session_log_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 27,
+      "line": "type=AVC msg=audit(1790460144.461:176507): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/xdg-desktop-portal-gtk.service\" dev=\"vda\" ino=30821 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.961:168142): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Wacom.service\" dev=\"vda\" ino=39243 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.961:168180): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.UsbProtection.service\" dev=\"vda\" ino=39241 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.962:168218): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Sound.service\" dev=\"vda\" ino=39239 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.962:168256): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Smartcard.service\" dev=\"vda\" ino=39237 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.963:168294): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Sharing.service\" dev=\"vda\" ino=39235 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.963:168332): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.ScreensaverProxy.service\" dev=\"vda\" ino=39233 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.964:168370): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Rfkill.service\" dev=\"vda\" ino=39231 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.965:168408): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.PrintNotifications.service\" dev=\"vda\" ino=39229 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.965:168446): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Power.service\" dev=\"vda\" ino=39227 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.967:168560): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Housekeeping.service\" dev=\"vda\" ino=39221 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.967:168598): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Datetime.service\" dev=\"vda\" ino=39219 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 26,
+      "line": "type=AVC msg=audit(1790459988.968:168636): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Color.service\" dev=\"vda\" ino=39217 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 25,
+      "line": "type=AVC msg=audit(1790459988.860:167172): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/systemd-tmpfiles-setup.service\" dev=\"vda\" ino=9538 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 24,
+      "line": "type=AVC msg=audit(1790459989.297:169245): avc:  denied  { ioctl } for  pid=17581 comm=\"gnome-shell\" path=\"/proc/1/cgroup\" dev=\"proc\" ino=433 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 24,
+      "line": "type=AVC msg=audit(1790460049.960:174909): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/dconf.service\" dev=\"vda\" ino=9515 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 24,
+      "line": "type=AVC msg=audit(1790459988.960:168093): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-x11-services-ready.target\" dev=\"vda\" ino=38976 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_x11_ready_unit_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 24,
+      "line": "type=AVC msg=audit(1790459988.959:168056): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.XSettings.target\" dev=\"vda\" ino=39248 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 22,
+      "line": "type=AVC msg=audit(1790459989.021:168997): avc:  denied  { getattr } for  pid=17545 comm=\"systemd\" name=\"/\" dev=\"pidfs\" ino=1 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:pidfs_t:s0 tclass=filesystem permissive=0"
+    },
+    {
+      "count": 22,
+      "line": "type=AVC msg=audit(1790459988.960:168104): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-x11-services.target\" dev=\"vda\" ino=38977 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 22,
+      "line": "type=AVC msg=audit(1790459988.861:167255): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/systemd-tmpfiles-clean.service\" dev=\"vda\" ino=9536 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 20,
+      "line": "type=AVC msg=audit(1790460003.917:173858): avc:  denied  { getattr } for  pid=17819 comm=5B70616E676F5D20666F6E74636F6E name=\"/\" dev=\"vda\" ino=2 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:fs_t:s0 tclass=filesystem permissive=0"
+    },
+    {
+      "count": 20,
+      "line": "type=AVC msg=audit(1790459988.959:168044): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf\" dev=\"vda\" ino=52903 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 20,
+      "line": "type=AVC msg=audit(1790460149.783:179011): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/systemd-exit.service\" dev=\"vda\" ino=9535 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 20,
+      "line": "type=AVC msg=audit(1790459988.952:167759): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-wayland@.target\" dev=\"vda\" ino=38975 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 20,
+      "line": "type=AVC msg=audit(1790459988.957:167926): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session@gnome.target.d/gnome.session.conf\" dev=\"vda\" ino=38983 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 20,
+      "line": "type=AVC msg=audit(1790459989.270:169137): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/at-spi-dbus-bus.service\" dev=\"vda\" ino=41004 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 19,
+      "line": "type=AVC msg=audit(1790459988.861:167233): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/systemd-tmpfiles-clean.timer\" dev=\"vda\" ino=9537 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 19,
+      "line": "type=AVC msg=audit(1790459988.956:167877): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-failed.service\" dev=\"vda\" ino=38964 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 19,
+      "line": "type=AVC msg=audit(1790459988.969:168693): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-manager@.service\" dev=\"vda\" ino=38968 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 18,
+      "line": "type=AVC msg=audit(1790459988.864:167388): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/dbus-broker.service\" dev=\"vda\" ino=9511 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:dbusd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 18,
+      "line": "type=AVC msg=audit(1790459988.970:168726): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/spice-vdagent.service\" dev=\"vda\" ino=38630 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 16,
+      "line": "type=AVC msg=audit(1790460149.783:178991): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/exit.target\" dev=\"vda\" ino=9517 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 16,
+      "line": "type=AVC msg=audit(1790459988.956:167906): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session@.target\" dev=\"vda\" ino=38981 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 15,
+      "line": "type=AVC msg=audit(1790459988.859:167119): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/default.target\" dev=\"vda\" ino=9516 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 15,
+      "line": "type=AVC msg=audit(1790459988.860:167187): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/app.slice\" dev=\"vda\" ino=9506 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 15,
+      "line": "type=AVC msg=audit(1790459988.861:167214): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/timers.target\" dev=\"vda\" ino=9539 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 15,
+      "line": "type=AVC msg=audit(1790459988.861:167270): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/background.slice\" dev=\"vda\" ino=9507 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 15,
+      "line": "type=AVC msg=audit(1790459988.863:167370): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/session.slice\" dev=\"vda\" ino=9528 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 15,
+      "line": "type=AVC msg=audit(1790459988.953:167774): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session.target\" dev=\"vda\" ino=38980 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 15,
+      "line": "type=AVC msg=audit(1790459988.953:167789): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-monitor.service\" dev=\"vda\" ino=38969 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 15,
+      "line": "type=AVC msg=audit(1790459988.958:168000): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.Shell-disable-extensions.service\" dev=\"vda\" ino=39459 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 15,
+      "line": "type=AVC msg=audit(1790459988.970:168708): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/graphical-session.target\" dev=\"vda\" ino=9525 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 14,
+      "line": "type=AVC msg=audit(1790459988.860:167133): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/shutdown.target\" dev=\"vda\" ino=9529 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 14,
+      "line": "type=AVC msg=audit(1790459988.860:167147): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/basic.target\" dev=\"vda\" ino=9508 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 14,
+      "line": "type=AVC msg=audit(1790459988.954:167803): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-pre.target\" dev=\"vda\" ino=38970 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 13,
+      "line": "type=AVC msg=audit(1790459988.956:167890): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-wayland.target\" dev=\"vda\" ino=38974 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790460144.338:175986): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/etc/systemd/user/localsearch-3.service.d/99-lyra-trusted-test.conf\" dev=\"vda\" ino=52895 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.860:167199): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/paths.target\" dev=\"vda\" ino=9526 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.862:167282): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/sockets.target\" dev=\"vda\" ino=9531 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.955:167858): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-failed.target\" dev=\"vda\" ino=38965 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.958:167985): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-manager.target\" dev=\"vda\" ino=38967 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.961:168116): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Wacom.target\" dev=\"vda\" ino=39244 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.961:168154): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.UsbProtection.target\" dev=\"vda\" ino=39242 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.961:168192): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Sound.target\" dev=\"vda\" ino=39240 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.962:168230): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Smartcard.target\" dev=\"vda\" ino=39238 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.962:168268): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Sharing.target\" dev=\"vda\" ino=39236 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.963:168306): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.ScreensaverProxy.target\" dev=\"vda\" ino=39234 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.964:168344): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Rfkill.target\" dev=\"vda\" ino=39232 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.964:168382): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.PrintNotifications.target\" dev=\"vda\" ino=39230 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.965:168420): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Power.target\" dev=\"vda\" ino=39228 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.965:168458): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.MediaKeys.target\" dev=\"vda\" ino=39226 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.966:168496): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Keyboard.target\" dev=\"vda\" ino=39224 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.966:168534): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Housekeeping.target\" dev=\"vda\" ino=39222 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.967:168572): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Datetime.target\" dev=\"vda\" ino=39220 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.967:168610): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.Color.target\" dev=\"vda\" ino=39218 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 12,
+      "line": "type=AVC msg=audit(1790459988.968:168648): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.SettingsDaemon.A11ySettings.target\" dev=\"vda\" ino=39216 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 11,
+      "line": "type=AVC msg=audit(1790460123.731:175482): avc:  denied  { shutdown } for  pid=17810 comm=\"Xwayland\" path=002F746D702F2E5831312D756E69782F5830 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=unix_stream_socket permissive=0"
+    },
+    {
+      "count": 11,
+      "line": "type=AVC msg=audit(1790459988.862:167295): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/pipewire.socket\" dev=\"vda\" ino=50987 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 11,
+      "line": "type=AVC msg=audit(1790459988.864:167404): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/pipewire-pulse.socket\" dev=\"vda\" ino=51031 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 11,
+      "line": "type=AVC msg=audit(1790459988.971:168770): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-restart-dbus.service\" dev=\"vda\" ino=38971 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 8,
+      "line": "type=AVC msg=audit(1790460149.660:178505): avc:  denied  { shutdown } for  pid=17810 comm=\"Xwayland\" path=002F746D702F2E5831312D756E69782F5831 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=unix_stream_socket permissive=0"
+    },
+    {
+      "count": 8,
+      "line": "type=AVC msg=audit(1790459988.863:167355): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/etc/systemd/user/wireplumber.service.d/99-lyra-trusted-test.conf\" dev=\"vda\" ino=52896 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 8,
+      "line": "type=AVC msg=audit(1790459988.865:167450): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/dbus.socket\" dev=\"vda\" ino=9514 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 8,
+      "line": "type=AVC msg=audit(1790459988.954:167830): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/gnome-session-signal-init.service\" dev=\"vda\" ino=38973 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 8,
+      "line": "type=AVC msg=audit(1790459988.957:167934): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/org.gnome.Shell.target\" dev=\"vda\" ino=39460 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:xdm_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 7,
+      "line": "type=AVC msg=audit(1790460143.836:175944): avc:  denied  { write } for  pid=18240 comm=\"pool-0\" name=\"parentaltest\" dev=\"vda\" ino=131156 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_dir_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 6,
+      "line": "type=AVC msg=audit(1790459989.659:169569): avc:  denied  { execute } for  pid=17615 comm=\"(gjs)\" name=\"gjs-console\" dev=\"vda\" ino=38864 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 6,
+      "line": "type=AVC msg=audit(1790460144.465:176526): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/etc/systemd/user/xdg-document-portal.service.d/99-lyra-trusted-test.conf\" dev=\"vda\" ino=52894 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 5,
+      "line": "type=AVC msg=audit(1790459989.669:169582): avc:  denied  { watch } for  pid=17581 comm=\"gnome-shell\" path=\"/etc\" dev=\"vda\" ino=23 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 4,
+      "line": "type=AVC msg=audit(1790459989.710:169708): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"gnome-session\" dev=\"vda\" ino=38894 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 4,
+      "line": "type=AVC msg=audit(1790459989.938:171662): avc:  denied  { create } for  pid=17655 comm=\"gsd-print-notif\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=tcp_socket permissive=0"
+    },
+    {
+      "count": 4,
+      "line": "type=AVC msg=audit(1790460004.361:174605): avc:  denied  { read } for  pid=17835 comm=\"pool-0\" name=\"root\" dev=\"proc\" ino=130471 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=lnk_file permissive=0"
+    },
+    {
+      "count": 4,
+      "line": "type=AVC msg=audit(1790460004.362:174607): avc:  denied  { read } for  pid=17835 comm=\"pool-1\" name=\"root\" dev=\"proc\" ino=130471 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=lnk_file permissive=0"
+    },
+    {
+      "count": 4,
+      "line": "type=AVC msg=audit(1790460143.834:175938): avc:  denied  { getattr } for  pid=18240 comm=\"localsearch-3\" path=\"/dev/vda\" dev=\"devtmpfs\" ino=137 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:fixed_disk_device_t:s0 tclass=blk_file permissive=0"
+    },
+    {
+      "count": 4,
+      "line": "type=AVC msg=audit(1790459988.847:167090): avc:  denied  { prog_load } for  pid=17545 comm=\"systemd\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=bpf permissive=0"
+    },
+    {
+      "count": 4,
+      "line": "type=AVC msg=audit(1790459988.865:167449): avc:  denied  { read } for  pid=17545 comm=\"systemd\" name=\"net\" dev=\"proc\" ino=4026531845 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:proc_net_t:s0 tclass=lnk_file permissive=0"
+    },
+    {
+      "count": 4,
+      "line": "type=AVC msg=audit(1790459988.864:167392): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/usr/lib/systemd/user/dbus-broker.service.d/block-restart.conf\" dev=\"vda\" ino=9513 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:dbusd_unit_file_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 3,
+      "line": "type=AVC msg=audit(1790460128.242:175821): avc:  denied  { read } for  pid=18240 comm=\"gmain\" name=\"mount\" dev=\"tmpfs\" ino=2 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:mount_var_run_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 3,
+      "line": "type=AVC msg=audit(1790460004.350:174599): avc:  denied  { setrlimit } for  pid=17835 comm=\"module-rt\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=process permissive=0"
+    },
+    {
+      "count": 3,
+      "line": "type=USER_AVC msg=audit(1790459990.275:173552): pid=448 uid=497 auid=4294967295 ses=4294967295 subj=system_u:system_r:system_dbusd_t:s0-s0:c0.c1023 msg='avc:  denied  { send_msg } for  scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:system_r:geoclue_t:s0 tclass=dbus permissive=0 exe=\"/usr/bin/dbus-broker\" sauid=497 hostname=? addr=? terminal=?'"
+    },
+    {
+      "count": 3,
+      "line": "type=AVC msg=audit(1790460003.930:173861): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"17813\" dev=\"proc\" ino=129581 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 3,
+      "line": "type=AVC msg=audit(1790460082.350:175183): avc:  denied  { search } for  pid=17581 comm=\"gnome-shell\" name=\"18068\" dev=\"proc\" ino=132336 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 3,
+      "line": "type=AVC msg=audit(1790460083.429:175321): avc:  denied  { search } for  pid=17581 comm=\"gnome-shell\" name=\"18126\" dev=\"proc\" ino=131609 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 3,
+      "line": "type=AVC msg=audit(1790460134.824:175881): avc:  denied  { write } for  pid=18228 comm=\"nautilus\" name=\"share\" dev=\"vda\" ino=132467 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 3,
+      "line": "type=AVC msg=audit(1790459988.853:167100): avc:  denied  { ioctl } for  pid=17552 comm=\"(exec-inner)\" path=\"/proc/sys/fs/nr_open\" dev=\"proc\" ino=420 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:sysctl_fs_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460149.748:178644): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/17581/cgroup\" dev=\"proc\" ino=127759 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.840:170805): avc:  denied  { setattr } for  pid=17639 comm=5B70616E676F5D20666F6E74636F6E name=\"fontconfig\" dev=\"vda\" ino=131850 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:fonts_cache_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460149.801:179015): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/17748/cgroup\" dev=\"proc\" ino=129348 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_wireplumber_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460003.913:173848): avc:  denied  { read } for  pid=17819 comm=5B70616E676F5D20666F6E74636F6E name=\"fonts\" dev=\"vda\" ino=132468 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=unconfined_u:object_r:user_fonts_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460003.920:173860): avc:  denied  { search } for  pid=17581 comm=\"gnome-shell\" name=\"17825\" dev=\"proc\" ino=130352 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460004.556:174608): avc:  denied  { unix_read unix_write } for  pid=17810 comm=\"Xwayland\" ipc_key=0  scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=shm permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=USER_AVC msg=audit(1790460004.338:174597): pid=448 uid=497 auid=4294967295 ses=4294967295 subj=system_u:system_r:system_dbusd_t:s0-s0:c0.c1023 msg='avc:  denied  { send_msg } for  scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:accountsd_t:s0 tclass=dbus permissive=0 exe=\"/usr/bin/dbus-broker\" sauid=497 hostname=? addr=? terminal=?'"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460004.252:174363): avc:  denied  { create } for  pid=17835 comm=\"xdg-desktop-por\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=netlink_route_socket permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460078.628:175165): avc:  denied  { read } for  pid=17850 comm=\"xdg-desktop-por\" name=\"applications\" dev=\"vda\" ino=150577 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460144.288:175945): avc:  denied  { read } for  pid=17850 comm=\"xdg-desktop-por\" name=\"share\" dev=\"vda\" ino=132467 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460083.313:175258): avc:  denied  { ioctl } for  pid=17574 comm=\"gnome-session-b\" path=\"/proc/1/cgroup\" dev=\"proc\" ino=433 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460083.396:175315): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"18126\" dev=\"proc\" ino=131609 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460134.780:175879): avc:  denied  { ioctl } for  pid=17835 comm=\"pool-9\" path=\"/proc/1/cgroup\" dev=\"proc\" ino=433 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460124.016:175506): avc:  denied  { read } for  pid=17835 comm=\"pool-9\" name=\"applications\" dev=\"vda\" ino=150577 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460124.058:175531): avc:  denied  { read } for  pid=17840 comm=\"xdg-document-po\" name=\"applications\" dev=\"vda\" ino=150577 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460128.210:175665): avc:  denied  { write } for  pid=18228 comm=\"nautilus\" name=\".config\" dev=\"vda\" ino=132469 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:config_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460128.221:175711): avc:  denied  { read } for  pid=18228 comm=\"pool-1\" name=\"userdb\" dev=\"tmpfs\" ino=33 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_userdbd_runtime_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460128.318:175832): avc:  denied  { read } for  pid=18228 comm=\"nautilus\" name=\"applications\" dev=\"vda\" ino=150577 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460143.815:175923): avc:  denied  { write } for  pid=18228 comm=\"pool-13\" name=\"parentaltest\" dev=\"vda\" ino=131156 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_dir_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460149.537:176640): avc:  denied  { mounton } for  pid=18371 comm=\"fusermount3\" path=\"/\" dev=\"vda\" ino=2 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tcontext=system_u:object_r:root_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460144.353:175997): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/17846/comm\" dev=\"proc\" ino=134172 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460144.366:176115): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/18299/cgroup\" dev=\"proc\" ino=133353 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460144.366:176114): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/18299/comm\" dev=\"proc\" ino=133354 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460148.729:176619): avc:  denied  { read } for  pid=17850 comm=\"gmain\" name=\"share\" dev=\"vda\" ino=132467 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460149.637:178066): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/18372/cgroup\" dev=\"proc\" ino=134586 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460149.748:178643): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/17581/comm\" dev=\"proc\" ino=132839 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790460149.801:179014): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/17748/comm\" dev=\"proc\" ino=128959 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_wireplumber_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459988.242:167000): avc:  denied  { execmem } for  pid=17471 comm=\"probe\" scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=process permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459988.563:167056): avc:  denied  { write } for  pid=17514 comm=\"Xwayland\" path=2F6D656D66643A6D75747465722D736861726564202864656C6574656429 dev=\"tmpfs\" ino=2095 scontext=system_u:system_r:lyra_parental_xwayland_t:s0 tcontext=system_u:object_r:lyra_parental_shell_memory_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459988.875:167452): avc:  denied  { write } for  pid=17545 comm=\"systemd\" name=\"memory.pressure\" dev=\"cgroup2\" ino=26212 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:cgroup_memory_pressure_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459988.852:167097): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=2F6D656D66643A757365722D656E7669726F6E6D656E742D67656E657261746F7273202864656C6574656429 dev=\"tmpfs\" ino=2098 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:lyra_parental_runtime_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459988.852:167099): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/cpuinfo\" dev=\"proc\" ino=4026532016 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:proc_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.010:168980): avc:  denied  { execmem } for  pid=17574 comm=\"gnome-session-b\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=process permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.017:168985): avc:  denied  { read } for  pid=17574 comm=\"gnome-session-b\" name=\"applications\" dev=\"vda\" ino=150577 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.173:169113): avc:  denied  { ioctl } for  pid=17581 comm=4B4D5320746872656164 path=\"/tmp/lyra-trusted-shell-test.log\" dev=\"tmpfs\" ino=1432 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:lyra_parental_session_log_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.171:169112): avc:  denied  { read write } for  pid=17581 comm=\"gnome-shell\" name=\"udmabuf\" dev=\"devtmpfs\" ino=125 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:dma_device_t:s0 tclass=chr_file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.576:169364): avc:  denied  { read } for  pid=17581 comm=\"gnome-shell\" name=\"parentaltest\" dev=\"vda\" ino=131156 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=unconfined_u:object_r:user_home_dir_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.576:169365): avc:  denied  { read } for  pid=17581 comm=\"gnome-shell\" name=\"home\" dev=\"vda\" ino=410 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:home_root_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.576:169366): avc:  denied  { watch } for  pid=17581 comm=\"gnome-shell\" path=\"/\" dev=\"vda\" ino=2 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:root_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.576:169367): avc:  denied  { read } for  pid=17581 comm=\"gnome-shell\" name=\"applications\" dev=\"vda\" ino=150577 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.576:169374): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"nautilus-autorun-software\" dev=\"vda\" ino=52165 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.577:169378): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"malcontent-control\" dev=\"vda\" ino=29837 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.577:169382): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"fish\" dev=\"vda\" ino=594 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:shell_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.577:169384): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"tecla\" dev=\"vda\" ino=30084 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.577:169390): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"gtk3-demo\" dev=\"vda\" ino=45499 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.577:169394): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"gtk4-widget-factory\" dev=\"vda\" ino=30389 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.577:169397): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"openbox\" dev=\"vda\" ino=29428 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.577:169409): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"gtk3-widget-factory\" dev=\"vda\" ino=45501 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.577:169415): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"gtk4-node-editor\" dev=\"vda\" ino=30386 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.578:169423): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"gtk4-print-editor\" dev=\"vda\" ino=30387 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.578:169427): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"gtk3-icon-browser\" dev=\"vda\" ino=665 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.578:169431): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"remote-viewer\" dev=\"vda\" ino=29234 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.578:169433): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"nautilus\" dev=\"vda\" ino=51071 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:lyra_parental_nautilus_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.578:169436): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"gapplication\" dev=\"vda\" ino=603 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.578:169446): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"false\" dev=\"vda\" ino=576 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.578:169450): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"gtk4-demo\" dev=\"vda\" ino=30382 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 2,
+      "line": "type=AVC msg=audit(1790459989.625:169460): avc:  denied  { read } for  pid=17581 comm=\"gnome-shell\" name=\"bus\" dev=\"vda\" ino=150573 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:object_r:config_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.741:169834): avc:  denied  { write } for  pid=17581 comm=\"gnome-shell\" name=\"session.gvdb\" dev=\"vda\" ino=146809 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:object_r:data_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.794:170377): avc:  denied  { read } for  pid=17581 comm=\"gmain\" name=\"mount\" dev=\"tmpfs\" ino=2 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:mount_var_run_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.894:171546): avc:  denied  { ioctl } for  pid=17663 comm=\"gsd-sharing\" path=\"/proc/1/cgroup\" dev=\"proc\" ino=433 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.902:171547): avc:  denied  { read } for  pid=17673 comm=\"gsd-sound\" name=\"sounds\" dev=\"vda\" ino=150579 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.942:171664): avc:  denied  { execute } for  pid=17724 comm=\"gsd-print-notif\" name=\"gsd-printer\" dev=\"vda\" ino=39261 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459990.086:171895): avc:  denied  { setsched } for  pid=17581 comm=\"gnome-shell\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=process permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459990.087:171896): avc:  denied  { setrlimit } for  pid=17581 comm=\"module-rt\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=process permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459990.133:173417): avc:  denied  { ioctl } for  pid=17748 comm=\"wireplumber\" path=\"socket:[129340]\" dev=\"sockfs\" ino=129340 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_wireplumber_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=unix_stream_socket permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459990.144:173418): avc:  denied  { read } for  pid=17749 comm=\"pipewire-pulse\" name=\"root\" dev=\"proc\" ino=129374 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=lnk_file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459990.165:173420): avc:  denied  { read } for  pid=17747 comm=\"pipewire\" name=\"root\" dev=\"proc\" ino=129374 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=lnk_file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459990.165:173421): avc:  denied  { write } for  pid=17581 comm=\"gnome-shell\" name=\".config\" dev=\"vda\" ino=132469 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=unconfined_u:object_r:config_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459990.181:173424): avc:  denied  { watch } for  pid=17748 comm=\"wireplumber\" path=\"/run/systemd/users\" dev=\"tmpfs\" ino=825 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_wireplumber_t:s0 tcontext=system_u:object_r:systemd_logind_var_run_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459990.183:173425): avc:  denied  { module_request } for  pid=17747 comm=\"pipewire\" kmod=\"char-major-116-1\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=system permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=USER_AVC msg=audit(1790459990.224:173426): pid=448 uid=497 auid=4294967295 ses=4294967295 subj=system_u:system_r:system_dbusd_t:s0-s0:c0.c1023 msg='avc:  denied  { send_msg } for  scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=dbus permissive=0 exe=\"/usr/bin/dbus-broker\" sauid=497 hostname=? addr=? terminal=?'"
+    },
+    {
+      "count": 1,
+      "line": "type=USER_AVC msg=audit(1790459990.242:173439): pid=448 uid=497 auid=4294967295 ses=4294967295 subj=system_u:system_r:system_dbusd_t:s0-s0:c0.c1023 msg='avc:  denied  { send_msg } for  scontext=system_u:system_r:geoclue_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=dbus permissive=0 exe=\"/usr/bin/dbus-broker\" sauid=497 hostname=? addr=? terminal=?'"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459990.315:173554): avc:  denied  { write } for  pid=17652 comm=\"gsd-media-keys\" name=\".config\" dev=\"vda\" ino=132469 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:config_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.801:173599): avc:  denied  { read write } for  pid=17810 comm=\"Xwayland\" name=\"udmabuf\" dev=\"devtmpfs\" ino=125 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:object_r:dma_device_t:s0 tclass=chr_file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.861:173832): avc:  denied  { unix_read unix_write } for  pid=17810 comm=\"Xwayland\" ipc_key=0  scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=shm permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.863:173833): avc:  denied  { read write } for  pid=17813 comm=\"gsd-xsettings\" name=\"udmabuf\" dev=\"devtmpfs\" ino=125 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:dma_device_t:s0 tclass=chr_file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.875:173834): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"17581\" dev=\"proc\" ino=128478 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.878:173835): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"17809\" dev=\"proc\" ino=129560 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.879:173836): avc:  denied  { watch } for  pid=17813 comm=\"gsd-xsettings\" path=\"/usr/lib64/gnome-settings-daemon-3.0/gtk-modules\" dev=\"vda\" ino=132023 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.881:173839): avc:  denied  { execute } for  pid=17813 comm=\"gsd-xsettings\" name=\"00-xrdb\" dev=\"vda\" ino=39193 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.888:173842): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"17820\" dev=\"proc\" ino=129625 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.908:173847): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"17825\" dev=\"proc\" ino=130352 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.946:173863): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"17819\" dev=\"proc\" ino=130364 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.966:173865): avc:  denied  { read write } for  pid=17819 comm=\"mutter-x11-fram\" name=\"udmabuf\" dev=\"devtmpfs\" ino=125 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:dma_device_t:s0 tclass=chr_file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.970:173866): avc:  denied  { write } for  pid=17819 comm=\"mutter-x11-fram\" name=\"marker\" dev=\"vda\" ino=150546 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:object_r:cache_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460003.970:173867): avc:  denied  { write } for  pid=17819 comm=\"mutter-x11-fram\" name=\"index\" dev=\"vda\" ino=150547 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:object_r:cache_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460004.246:174361): avc:  denied  { execute } for  pid=17862 comm=\"(provider)\" name=\"gnome-control-center-global-shortcuts-provider\" dev=\"vda\" ino=39339 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460004.346:174598): avc:  denied  { watch } for  pid=17835 comm=\"xdg-desktop-por\" path=\"/run/user/1003\" dev=\"tmpfs\" ino=1 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:user_tmp_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460004.728:174614): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"17880\" dev=\"proc\" ino=129768 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460004.737:174620): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"17882\" dev=\"proc\" ino=129807 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460049.814:174856): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"17940\" dev=\"proc\" ino=130000 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460049.949:174890): avc:  denied  { execute } for  pid=17985 comm=\"settings-probe\" path=\"/home/parentaltest/.config/dconf/elf-probe\" dev=\"vda\" ino=146889 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_settings_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460049.949:174891): avc:  denied  { execute } for  pid=17986 comm=\"settings-probe\" name=\"elf-probe\" dev=\"vda\" ino=146889 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_settings_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460050.051:175046): avc:  denied  { setattr } for  pid=18016 comm=\"input-probe\" name=\"fontconfig\" dev=\"vda\" ino=131850 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:fonts_cache_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460050.060:175051): avc:  denied  { execute } for  pid=18018 comm=\"input-probe\" path=\"/home/parentaltest/.cache/fontconfig/elf-probe\" dev=\"vda\" ino=146889 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_fontcache_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460050.061:175052): avc:  denied  { execute } for  pid=18019 comm=\"input-probe\" name=\"elf-probe\" dev=\"vda\" ino=146889 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_fontcache_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460055.483:175073): avc:  denied  { ioctl } for  pid=17652 comm=\"gsd-media-keys\" path=\"/proc/1/cgroup\" dev=\"proc\" ino=433 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460060.121:175093): avc:  denied  { execute } for  pid=17652 comm=\"gsd-media-keys\" name=\"bash\" dev=\"vda\" ino=478 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:shell_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460078.628:175164): avc:  denied  { read } for  pid=17850 comm=\"xdg-desktop-por\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460078.628:175166): avc:  denied  { read } for  pid=17850 comm=\"xdg-desktop-por\" name=\"exports\" dev=\"vda\" ino=133046 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460078.628:175167): avc:  denied  { read } for  pid=17850 comm=\"xdg-desktop-por\" name=\"flatpak\" dev=\"vda\" ino=132964 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460078.628:175168): avc:  denied  { read } for  pid=17850 comm=\"xdg-desktop-por\" name=\"lib\" dev=\"vda\" ino=28178 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460078.628:175169): avc:  denied  { read } for  pid=17850 comm=\"xdg-desktop-por\" name=\"var\" dev=\"vda\" ino=27720 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460083.349:175300): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"18118\" dev=\"proc\" ino=132487 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460083.431:175322): avc:  denied  { unix_read unix_write } for  pid=17810 comm=\"Xwayland\" ipc_key=0  scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=shm permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460083.433:175323): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"18132\" dev=\"proc\" ino=132602 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460083.536:175329): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"18135\" dev=\"proc\" ino=131671 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460083.546:175335): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"18137\" dev=\"proc\" ino=132648 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460083.556:175341): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"18139\" dev=\"proc\" ino=132672 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460083.566:175347): avc:  denied  { search } for  pid=17810 comm=\"Xwayland\" name=\"18144\" dev=\"proc\" ino=132696 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460123.749:175487): avc:  denied  { write } for  pid=18185 comm=\"threaded-ml\" name=\".config\" dev=\"vda\" ino=132469 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:config_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460123.752:175488): avc:  denied  { read } for  pid=17748 comm=\"wireplumber\" name=\"18185\" dev=\"proc\" ino=132785 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_wireplumber_t:s0 tcontext=system_u:system_r:lyra_parental_probe_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460123.990:175493): avc:  denied  { execute } for  pid=18188 comm=\"probe\" name=\"wireplumber\" dev=\"vda\" ino=50851 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_wireplumber_payload_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.016:175504): avc:  denied  { read } for  pid=17835 comm=\"pool-9\" name=\"share\" dev=\"vda\" ino=132467 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.016:175505): avc:  denied  { read } for  pid=17835 comm=\"pool-9\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.016:175507): avc:  denied  { read } for  pid=17835 comm=\"pool-9\" name=\"exports\" dev=\"vda\" ino=133046 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.016:175508): avc:  denied  { read } for  pid=17835 comm=\"pool-9\" name=\"flatpak\" dev=\"vda\" ino=132964 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.016:175509): avc:  denied  { read } for  pid=17835 comm=\"pool-9\" name=\"lib\" dev=\"vda\" ino=28178 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.016:175510): avc:  denied  { read } for  pid=17835 comm=\"pool-9\" name=\"var\" dev=\"vda\" ino=27720 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.058:175527): avc:  denied  { ioctl } for  pid=17840 comm=\"xdg-document-po\" path=\"/proc/1/cgroup\" dev=\"proc\" ino=433 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.058:175529): avc:  denied  { read } for  pid=17840 comm=\"xdg-document-po\" name=\"share\" dev=\"vda\" ino=132467 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.058:175530): avc:  denied  { read } for  pid=17840 comm=\"xdg-document-po\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.058:175532): avc:  denied  { read } for  pid=17840 comm=\"xdg-document-po\" name=\"exports\" dev=\"vda\" ino=133046 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.058:175533): avc:  denied  { read } for  pid=17840 comm=\"xdg-document-po\" name=\"flatpak\" dev=\"vda\" ino=132964 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.058:175534): avc:  denied  { read } for  pid=17840 comm=\"xdg-document-po\" name=\"lib\" dev=\"vda\" ino=28178 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.058:175535): avc:  denied  { read } for  pid=17840 comm=\"xdg-document-po\" name=\"var\" dev=\"vda\" ino=27720 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.060:175536): avc:  denied  { execute } for  pid=18214 comm=\"portal-probe\" path=\"/run/user/1003/doc/31172746/elf-test\" dev=\"fuse\" ino=11599662617440399975 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:fusefs_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460124.060:175537): avc:  denied  { execute } for  pid=18218 comm=\"portal-probe\" name=\"elf-test\" dev=\"fuse\" ino=11599662617440399975 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:fusefs_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.072:175555): avc:  denied  { ioctl } for  pid=17835 comm=\"pool-8\" path=\"/proc/1/cgroup\" dev=\"proc\" ino=433 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.219:175708): avc:  denied  { read } for  pid=17545 comm=\"systemd\" name=\"userdb\" dev=\"tmpfs\" ino=33 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_userdbd_runtime_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.221:175712): avc:  denied  { write } for  pid=18228 comm=\"pool-1\" name=\"parentaltest\" dev=\"vda\" ino=131156 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_dir_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.318:175830): avc:  denied  { read } for  pid=18228 comm=\"nautilus\" name=\"share\" dev=\"vda\" ino=132467 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.318:175831): avc:  denied  { read } for  pid=18228 comm=\"nautilus\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.318:175833): avc:  denied  { read } for  pid=18228 comm=\"nautilus\" name=\"exports\" dev=\"vda\" ino=133046 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.318:175834): avc:  denied  { read } for  pid=18228 comm=\"nautilus\" name=\"flatpak\" dev=\"vda\" ino=132964 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.318:175835): avc:  denied  { read } for  pid=18228 comm=\"nautilus\" name=\"lib\" dev=\"vda\" ino=28178 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.318:175836): avc:  denied  { read } for  pid=18228 comm=\"nautilus\" name=\"var\" dev=\"vda\" ino=27720 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.326:175837): avc:  denied  { write } for  pid=18228 comm=\"pool-2\" name=\"parentaltest\" dev=\"vda\" ino=131156 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_dir_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.327:175839): avc:  denied  { write } for  pid=18228 comm=\"pool-2\" name=\".profile\" dev=\"vda\" ino=131157 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.327:175840): avc:  denied  { write } for  pid=18228 comm=\"pool-2\" name=\".bashrc\" dev=\"vda\" ino=131160 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.327:175841): avc:  denied  { read } for  pid=18228 comm=\"pool-2\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.327:175842): avc:  denied  { write } for  pid=18228 comm=\"pool-2\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.327:175843): avc:  denied  { write } for  pid=18228 comm=\"pool-2\" name=\".config\" dev=\"vda\" ino=132469 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:config_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.327:175844): avc:  denied  { read } for  pid=18228 comm=\"pool-2\" name=\".cache\" dev=\"vda\" ino=132470 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:cache_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.327:175845): avc:  denied  { write } for  pid=18228 comm=\"pool-2\" name=\".var\" dev=\"vda\" ino=133052 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.327:175846): avc:  denied  { write } for  pid=18228 comm=\"pool-2\" name=\"lyra-portal-fixture.txt\" dev=\"vda\" ino=133084 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.327:175847): avc:  denied  { execute } for  pid=18228 comm=\"pool-2\" name=\"copied-true\" dev=\"vda\" ino=146791 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460128.327:175848): avc:  denied  { write } for  pid=18228 comm=\"pool-2\" name=\"chooser.txt\" dev=\"vda\" ino=147121 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.790:175880): avc:  denied  { write } for  pid=18228 comm=\"pool-9\" name=\"parentaltest\" dev=\"vda\" ino=131156 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_dir_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175883): avc:  denied  { write } for  pid=18228 comm=\"pool-6\" name=\"parentaltest\" dev=\"vda\" ino=131156 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_dir_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175884): avc:  denied  { write } for  pid=18228 comm=\"pool-6\" name=\".profile\" dev=\"vda\" ino=131157 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175885): avc:  denied  { write } for  pid=18228 comm=\"pool-6\" name=\".bashrc\" dev=\"vda\" ino=131160 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175886): avc:  denied  { read } for  pid=18228 comm=\"pool-6\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175887): avc:  denied  { write } for  pid=18228 comm=\"pool-6\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175888): avc:  denied  { write } for  pid=18228 comm=\"pool-6\" name=\".config\" dev=\"vda\" ino=132469 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:config_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175889): avc:  denied  { read } for  pid=18228 comm=\"pool-6\" name=\".cache\" dev=\"vda\" ino=132470 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:cache_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175890): avc:  denied  { write } for  pid=18228 comm=\"pool-6\" name=\".var\" dev=\"vda\" ino=133052 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175891): avc:  denied  { write } for  pid=18228 comm=\"pool-6\" name=\"lyra-portal-fixture.txt\" dev=\"vda\" ino=133084 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175892): avc:  denied  { execute } for  pid=18228 comm=\"pool-6\" name=\"copied-true\" dev=\"vda\" ino=146791 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460134.837:175893): avc:  denied  { write } for  pid=18228 comm=\"pool-6\" name=\"chooser.txt\" dev=\"vda\" ino=147121 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460139.962:175908): avc:  denied  { read } for  pid=18228 comm=\"pool-13\" name=\"home\" dev=\"vda\" ino=410 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:home_root_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460143.815:175924): avc:  denied  { write } for  pid=18228 comm=\"pool-13\" name=\".profile\" dev=\"vda\" ino=131157 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460143.816:175925): avc:  denied  { write } for  pid=18228 comm=\"pool-13\" name=\".bashrc\" dev=\"vda\" ino=131160 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460143.816:175926): avc:  denied  { read } for  pid=18228 comm=\"pool-13\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460143.816:175927): avc:  denied  { write } for  pid=18228 comm=\"pool-13\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460143.816:175928): avc:  denied  { write } for  pid=18228 comm=\"pool-13\" name=\".config\" dev=\"vda\" ino=132469 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:config_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460143.816:175929): avc:  denied  { read } for  pid=18228 comm=\"pool-13\" name=\".cache\" dev=\"vda\" ino=132470 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:cache_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460143.816:175930): avc:  denied  { write } for  pid=18228 comm=\"pool-13\" name=\".var\" dev=\"vda\" ino=133052 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460143.816:175931): avc:  denied  { write } for  pid=18228 comm=\"pool-13\" name=\"lyra-portal-fixture.txt\" dev=\"vda\" ino=133084 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460143.816:175932): avc:  denied  { execute } for  pid=18228 comm=\"pool-13\" name=\"copied-true\" dev=\"vda\" ino=146791 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460143.816:175933): avc:  denied  { write } for  pid=18228 comm=\"pool-13\" name=\"chooser.txt\" dev=\"vda\" ino=147121 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460144.326:175954): avc:  denied  { execute } for  pid=18290 comm=\"input-probe\" path=\"/home/parentaltest/.cache/tracker3/elf-probe\" dev=\"vda\" ino=147135 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_searchcache_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460144.326:175955): avc:  denied  { execute } for  pid=18291 comm=\"input-probe\" name=\"elf-probe\" dev=\"vda\" ino=147135 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_searchcache_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460144.351:175992): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/17846/stat\" dev=\"proc\" ino=130627 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460144.351:175993): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/18296/stat\" dev=\"proc\" ino=134169 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460144.353:175998): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/17846/cgroup\" dev=\"proc\" ino=130631 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460144.383:176222): avc:  denied  { getattr } for  pid=18303 comm=\"xdg-document-po\" name=\"/\" dev=\"tmpfs\" ino=1 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:tmpfs_t:s0 tclass=filesystem permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460144.539:176604): avc:  denied  { write } for  pid=17850 comm=\"xdg-desktop-por\" name=\"share\" dev=\"vda\" ino=132467 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.526:176639): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/18309/stat\" dev=\"proc\" ino=134344 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.539:176641): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/18309/comm\" dev=\"proc\" ino=133583 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.539:176642): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/18309/cgroup\" dev=\"proc\" ino=133584 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.637:178065): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/18372/comm\" dev=\"proc\" ino=134579 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_fusermount_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.660:178503): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/17810/stat\" dev=\"proc\" ino=130611 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_xwayland_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.662:178506): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/17819/stat\" dev=\"proc\" ino=130616 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.695:178531): avc:  denied  { write } for  pid=17581 comm=\"gnome-shell\" name=\"session-active-history.json\" dev=\"vda\" ino=146892 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:object_r:data_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.756:178759): avc:  denied  { execute } for  pid=18442 comm=\"(sh)\" name=\"bash\" dev=\"vda\" ino=478 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:shell_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.782:178975): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/1/comm\" dev=\"proc\" ino=1346 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.871:179016): avc:  denied  { getattr } for  pid=17545 comm=\"systemd\" name=\"/\" dev=\"tmpfs\" ino=1 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:tmpfs_t:s0 tclass=filesystem permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790460149.880:179017): avc:  denied  { signal } for  pid=17545 comm=\"systemd\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=process permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=USER_MAC_STATUS msg=audit(1790460149.889:179020): pid=448 uid=497 auid=4294967295 ses=4294967295 subj=system_u:system_r:system_dbusd_t:s0-s0:c0.c1023 msg='avc:  op=setenforce lsm=selinux enforcing=0 res=1 exe=\"/usr/bin/dbus-broker\" sauid=497 hostname=? addr=? terminal=?'"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.132:166917): avc:  denied  { execute } for  pid=17437 comm=\"probe\" name=\"true\" dev=\"vda\" ino=1013 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.138:166922): avc:  denied  { execute } for  pid=17439 comm=\"probe\" name=\"copied-true\" dev=\"vda\" ino=146791 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.144:166927): avc:  denied  { execute } for  pid=17441 comm=\"probe\" name=\"bash\" dev=\"vda\" ino=478 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:shell_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.150:166932): avc:  denied  { execute } for  pid=17443 comm=\"probe\" name=\"python3.13\" dev=\"vda\" ino=862 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.155:166937): avc:  denied  { execute_no_trans } for  pid=17445 comm=\"probe\" path=\"/usr/lib64/ld-linux-x86-64.so.2\" dev=\"vda\" ino=9947 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:ld_so_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.167:166947): avc:  denied  { execute } for  pid=17449 comm=\"probe\" path=\"/home/parentaltest/copied-true\" dev=\"vda\" ino=146791 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.173:166952): avc:  denied  { execute } for  pid=17451 comm=\"probe\" name=\"mutter-x11-frames\" dev=\"vda\" ino=39315 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_frames_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.179:166957): avc:  denied  { execute } for  pid=17453 comm=\"probe\" name=\"Xwayland\" dev=\"vda\" ino=38767 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_xwayland_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.186:166962): avc:  denied  { execute } for  pid=17455 comm=\"probe\" name=\"xkbcomp\" dev=\"vda\" ino=27729 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_xkb_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.201:166971): avc:  denied  { execute } for  pid=17459 comm=\"probe\" name=\"gnome-shell\" dev=\"vda\" ino=39456 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lyra_parental_shell_payload_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.216:166980): avc:  denied  { execute } for  pid=17463 comm=\"gio-launch-desk\" name=\"bash\" dev=\"vda\" ino=478 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:shell_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.223:166985): avc:  denied  { execute } for  pid=17465 comm=\"gio-launch-desk\" name=\"python3.13\" dev=\"vda\" ino=862 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.230:166990): avc:  denied  { execute } for  pid=17467 comm=\"gio-launch-desk\" name=\"copied-true\" dev=\"vda\" ino=146791 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:user_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.236:166995): avc:  denied  { execute_no_trans } for  pid=17469 comm=\"gio-launch-desk\" path=\"/usr/lib64/ld-linux-x86-64.so.2\" dev=\"vda\" ino=9947 scontext=system_u:system_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:ld_so_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.572:167061): avc:  denied  { execute } for  pid=17517 comm=\"Xwayland\" path=2F6D656D66643A6D75747465722D736861726564202864656C6574656429 dev=\"tmpfs\" ino=2096 scontext=system_u:system_r:lyra_parental_xwayland_t:s0 tcontext=system_u:object_r:lyra_parental_shell_memory_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.580:167066): avc:  denied  { execute } for  pid=17519 comm=\"trusted-shell-t\" path=2F6D656D66643A787761796C616E642D736861726564202864656C6574656429 dev=\"tmpfs\" ino=2047 scontext=system_u:system_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:lyra_parental_xwayland_data_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=USER_MAC_STATUS msg=audit(1790459988.703:167071): pid=448 uid=497 auid=4294967295 ses=4294967295 subj=system_u:system_r:system_dbusd_t:s0-s0:c0.c1023 msg='avc:  op=setenforce lsm=selinux enforcing=1 res=1 exe=\"/usr/bin/dbus-broker\" sauid=497 hostname=? addr=? terminal=?'"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.837:167084): avc:  denied  { create } for  pid=17545 comm=\"systemd\" name=\"chr\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:user_tmp_t:s0 tclass=chr_file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.838:167085): avc:  denied  { ioctl } for  pid=17545 comm=\"systemd\" path=\"/proc/sys/fs/nr_open\" dev=\"proc\" ino=420 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:sysctl_fs_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.847:167091): avc:  denied  { watch } for  pid=17545 comm=\"systemd\" path=\"/etc/localtime\" dev=\"vda\" ino=191 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:locale_t:s0 tclass=lnk_file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.851:167095): avc:  denied  { execute_no_trans } for  pid=17550 comm=\"(exec-inner)\" path=\"/usr/lib/systemd/user-environment-generators/60-flatpak\" dev=\"vda\" ino=29974 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:lib_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.855:167101): avc:  denied  { ioctl } for  pid=17552 comm=\"systemd-xdg-aut\" path=\"/proc/1/cgroup\" dev=\"proc\" ino=433 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.855:167102): avc:  denied  { execute } for  pid=17552 comm=\"systemd-xdg-aut\" name=\"agent\" dev=\"vda\" ino=38818 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.856:167103): avc:  denied  { read } for  pid=17545 comm=\"systemd\" name=\"mount\" dev=\"tmpfs\" ino=2 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:mount_var_run_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.856:167104): avc:  denied  { read } for  pid=17545 comm=\"systemd\" name=\"systemd\" dev=\"tmpfs\" ino=124 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:udev_var_run_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459988.888:167636): avc:  denied  { read } for  pid=17553 comm=\"systemctl\" name=\"root\" dev=\"proc\" ino=421 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=lnk_file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.014:168981): avc:  denied  { read } for  pid=17574 comm=\"gnome-session-b\" name=\"sessions\" dev=\"tmpfs\" ino=824 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:systemd_logind_sessions_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.017:168983): avc:  denied  { read } for  pid=17574 comm=\"gnome-session-b\" name=\"share\" dev=\"vda\" ino=132467 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.017:168984): avc:  denied  { read } for  pid=17574 comm=\"gnome-session-b\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.017:168986): avc:  denied  { read } for  pid=17574 comm=\"gnome-session-b\" name=\"exports\" dev=\"vda\" ino=133046 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.017:168987): avc:  denied  { read } for  pid=17574 comm=\"gnome-session-b\" name=\"flatpak\" dev=\"vda\" ino=132964 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.017:168988): avc:  denied  { read } for  pid=17574 comm=\"gnome-session-b\" name=\"lib\" dev=\"vda\" ino=28178 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_lib_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.017:168989): avc:  denied  { read } for  pid=17574 comm=\"gnome-session-b\" name=\"var\" dev=\"vda\" ino=27720 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:var_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.019:168990): avc:  denied  { execute } for  pid=17574 comm=\"gnome-session-b\" name=\"spice-vdagent\" dev=\"vda\" ino=38624 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.019:168991): avc:  denied  { execute } for  pid=17574 comm=\"gnome-session-b\" name=\"agent\" dev=\"vda\" ino=38818 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.133:169110): avc:  denied  { write } for  pid=17581 comm=\"gnome-shell\" name=\"marker\" dev=\"vda\" ino=150546 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:object_r:cache_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.133:169111): avc:  denied  { write } for  pid=17581 comm=\"gnome-shell\" name=\"index\" dev=\"vda\" ino=150547 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:object_r:cache_home_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.288:169240): avc:  denied  { ioctl } for  pid=17603 comm=\"at-spi-bus-laun\" path=\"/proc/1/cgroup\" dev=\"proc\" ino=433 ioctlcmd=0x5401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=system_u:system_r:init_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.576:169354): avc:  denied  { getattr } for  pid=17581 comm=\"gnome-shell\" name=\"/\" dev=\"vda\" ino=2 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:fs_t:s0 tclass=filesystem permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.576:169355): avc:  denied  { read } for  pid=17581 comm=\"gnome-shell\" name=\".config\" dev=\"vda\" ino=132469 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=unconfined_u:object_r:config_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.576:169359): avc:  denied  { watch } for  pid=17581 comm=\"gnome-shell\" path=\"/etc/xdg\" dev=\"vda\" ino=401 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.576:169360): avc:  denied  { watch } for  pid=17581 comm=\"gnome-shell\" path=\"/usr/etc/xdg\" dev=\"vda\" ino=1183 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:etc_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.576:169362): avc:  denied  { read } for  pid=17581 comm=\"gnome-shell\" name=\"share\" dev=\"vda\" ino=132467 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=unconfined_u:object_r:data_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.576:169363): avc:  denied  { read } for  pid=17581 comm=\"gnome-shell\" name=\".local\" dev=\"vda\" ino=131161 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=unconfined_u:object_r:gconf_home_t:s0 tclass=dir permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.576:169370): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"where-am-i\" dev=\"vda\" ino=38819 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.576:169371): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"xdg-desktop-portal-gtk\" dev=\"vda\" ino=30822 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:lyra_parental_portal_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.576:169372): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"xdg-desktop-portal-gnome\" dev=\"vda\" ino=50834 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:lyra_parental_portal_exec_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.577:169395): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"virt-manager\" dev=\"vda\" ino=1047 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    },
+    {
+      "count": 1,
+      "line": "type=AVC msg=audit(1790459989.578:169434): avc:  denied  { execute } for  pid=17581 comm=\"gnome-shell\" name=\"agent\" dev=\"vda\" ino=38818 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=system_u:object_r:bin_t:s0 tclass=file permissive=0"
+    }
+  ]
+}
