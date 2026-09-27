@@ -1,0 +1,6 @@
+{
+  "id": "e4e3aa85d2cf47a0b6be8ab84857b357",
+  "rc": 0,
+  "stdout": "gjs 1.84.2-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/196df9febd46e7c896ec9781f7b13fea-gjs\ngnome-shell 48.8-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/15a1bf4c2b0676617b93a1c460c58ef5-gnome-shell\npipewire 1.6.8-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/4ab81cae90b93456dd99ee704d49dc2c-pipewire\nlibffi8 3.4.6-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/758c7f0c36d470754e87aad21a90ad62-libffi\ngstreamer 1.28.5-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/208f7be541a8b2220e1f62a765aaa163-gstreamer\ngstreamer-plugins-good 1.28.5-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/dac685f549beae5cb05567950cf43552-gstreamer-plugins-good\ntypelib-1_0-Gst-1_0 1.28.5-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/208f7be541a8b2220e1f62a765aaa163-gstreamer\n",
+  "stderr": ""
+}

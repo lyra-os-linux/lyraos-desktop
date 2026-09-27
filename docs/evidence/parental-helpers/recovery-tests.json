@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "tag": "faultKill2",
+      "injection": {
+        "enforcing": true,
+        "phase": "preparechooser",
+        "fault": "SIGKILL",
+        "action": "SIGKILL main"
+      },
+      "unit": {
+        "unit": "lyra-parental-faultKill2",
+        "state": "Result=signal\nActiveState=failed\nSubState=failed\n"
+      },
+      "restoration": {
+        "restored": true,
+        "pending": false,
+        "backup": "/root/lyra-xwayland-recovery/561201a8b4fc48e498f4b2553bbf4ae3",
+        "files": 101
+      },
+      "passed": true
+    },
+    {
+      "tag": "faultTimeout3",
+      "injection": {
+        "enforcing": true,
+        "phase": "preparechooser",
+        "fault": "timeout",
+        "action": "SIGSTOP until configured RuntimeMaxSec=300"
+      },
+      "unit": {
+        "unit": "lyra-parental-faultTimeout3",
+        "state": "Result=timeout\nActiveState=failed\nSubState=failed\n"
+      },
+      "restoration": {
+        "restored": true,
+        "pending": false,
+        "backup": "/root/lyra-xwayland-recovery/836e6d96e9f34f6ba9a1575cef092f86",
+        "files": 101
+      },
+      "passed": true
+    }
+  ],
+  "production_enabled": false
+}

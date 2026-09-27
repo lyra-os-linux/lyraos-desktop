@@ -1,0 +1,15 @@
+; Native indexer/control/extractor stay in the restricted account domain.
+; Writeback is not approved. Writable extraction modules cannot be mapped as code.
+(type lyra_parental_localsearch_exec_t)
+(typeattributeset file_type (lyra_parental_localsearch_exec_t))
+(typeattributeset exec_type (lyra_parental_localsearch_exec_t))
+(allow lyra_parental_probe_t lyra_parental_localsearch_exec_t (file (execute execute_no_trans)))
+(type lyra_parental_searchcache_t)
+(typeattributeset file_type (lyra_parental_searchcache_t))
+(typetransition lyra_parental_probe_t cache_home_t dir "tracker3" lyra_parental_searchcache_t)
+(typetransition lyra_parental_probe_t user_tmp_t dir "lyra-search-tmp" lyra_parental_searchcache_t)
+(typetransition lyra_parental_probe_t lyra_parental_searchcache_t dir lyra_parental_searchcache_t)
+(typetransition lyra_parental_probe_t lyra_parental_searchcache_t file lyra_parental_searchcache_t)
+(allow lyra_parental_probe_t cache_home_t (dir (write add_name)))
+(allow lyra_parental_probe_t lyra_parental_searchcache_t (dir (create read open write add_name remove_name watch setattr rmdir)))
+(allow lyra_parental_probe_t lyra_parental_searchcache_t (file (create write append rename unlink setattr lock)))
