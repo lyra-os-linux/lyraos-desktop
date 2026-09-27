@@ -100,7 +100,8 @@ Delivery requires a reviewed portal manifest with
 entries. Sign it through the existing release key workflow and exercise the real
 portal with/without translations through the Updater in a complete Btrfs
 baseline, including authorization and recovery. The existing parental portal VM
-uses ext4 and is not that baseline. Staging now contains 0.2.7; release remains
+uses ext4 and is not that baseline. Staging0.2.7 passed its earlier component checks; the Snapper discovery fix in
+0.2.8 is now building under staging revision41. Release remains
 on 0.2.5, revision 12. Do not raise the image minimum to an unavailable release
 RPM. The normal vegad update command retains its existing policy.
 
@@ -110,8 +111,10 @@ Its seven public repository keys and exact policy passed preflight review.
 Sequence 1 is reserved here only for a fresh disposable testing baseline, with
 no consumed sequence; the document is not a production sequence allocation.
 The official detached signature has been verified against the unchanged key in
-the 0.2.7 RPM. A dedicated immutable HTTPS testing endpoint and the full VM
-migration remain execution gates. Never substitute a test key for the shipped
+the 0.2.7 RPM. The dedicated immutable HTTPS endpoint and unprivileged signed
+preview passed with the Snapper correction, as did native UEFI/GRUB boot and
+Polkit authorization with a separate native agent. The full packaged migration,
+offline cycle, recovery and translation-present case remain execution gates. Never substitute a test key for the shipped
 key or use this handoff as evidence of a completed delivery.
 
 A production transition must also handle running user sessions and service

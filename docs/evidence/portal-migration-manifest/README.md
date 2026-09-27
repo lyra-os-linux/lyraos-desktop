@@ -90,3 +90,36 @@ recovery with and without translations. Record the exact RPM/manifest hashes,
 installed inventories, repository hashes and sequence through every boot.
 Production promotion, parental protection and the exact candidate ISO remain
 separate gates.
+
+
+## Runtime checkpoint — 2026-09-27
+
+The immutable HTTPS endpoint at commit
+`085f91bce424172df1ab717ce0664a6bb919f0bc` was verified in the private Btrfs
+VM with the unchanged official release key. The first reduced baseline lacked
+the Packman key already required by the product recipe; its pinned fingerprint
+and metadata signature were verified before completing that baseline prerequisite.
+No signature checks were disabled.
+
+The unprivileged plan then exposed a real Snapper discovery bug in Updater0.2.7.
+[Updater PR28](https://github.com/lyra-os-linux/lyraos-desktop-updater/pull/28)
+fixed the query using the existing read broker, without granting snapshot access.
+The [signed preview](signed-preview.json) passed with that local candidate:
+only the main portal package, unchanged identity, unchanged installed inventory
+and repository files. This test temporarily replaced the service executable over
+RPM0.2.7 and does not qualify a published0.2.8 RPM or an applied migration.
+
+[Native UEFI/GRUB boot](native-boot.json) and [Polkit authorization/cancellation](polkit-native.json)
+passed. The authorization test used a separate unprivileged `pkttyagent`, the
+shipped action and PAM password verification; the private fixture password was
+restored. No authorization rule or `PKEXEC_UID` fixture was substituted.
+The built-in text agent of Polkit127 reproduced the known
+[upstream cookie regression](https://github.com/polkit-org/polkit/issues/686).
+The separate native agent avoids that failing path without changing policy.
+These checks do not qualify the GNOME graphical dialog or the final ISO;
+the inherited fixture still runs SELinux permissively.
+
+Updater0.2.8 is building in OBS staging revision41, source
+`c071d8390617191a38eb27d6f861151e`; release remains0.2.5 revision12.
+The actual0.2.8 RPM, authenticated portal staging, offline unit, verified boot,
+rollback and the translation-present case remain required execution gates.
