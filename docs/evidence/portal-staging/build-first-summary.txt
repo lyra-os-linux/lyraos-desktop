@@ -1,0 +1,43 @@
+[   15s] build-mkbaselibs-20260415-160100.2.2  ########################################
+[   15s] libdb-4_8-4.8.30-160100.2.1           ########################################
+[   15s] kernel-obs-build-6.12.0-160100.5.1    ########################################
+[   16s] now finalizing build dir...
+[   16s] ... running 01-add_abuild_user_to_trusted_group
+[   16s] ... running 02-set_timezone_to_utc
+[   16s] ... running 03-set-permissions-secure
+[   16s] ... running 11-hack_uname_version_to_kernel_version
+[   16s] WARNING could not set SOURCE_DATE_EPOCH, ensure mtime is in $TOPDIR/SOURCES/_scmsync.obsinfo or BUILD_CHANGELOG_TIMESTAMP is set in /.buildenv
+[   16s] WARNING could not set SOURCE_DATE_EPOCH, ensure BUILD_RELEASE is set in /.buildenv
+[   17s] -----------------------------------------------------------------
+[   17s] I have the following modifications for xdg-desktop-portal-gnome.spec:
+[   17s] 22c22
+[   17s] < Release:        160100.2.1.lyra1
+[   17s] ---
+[   17s] > Release:        lp161.160100.1
+[   17s] -----------------------------------------------------------------
+[   17s] ----- building xdg-desktop-portal-gnome.spec (user abuild)
+[   17s] -----------------------------------------------------------------
+[   17s] -----------------------------------------------------------------
+[   17s] WARNING could not set SOURCE_DATE_EPOCH, ensure mtime is in $TOPDIR/SOURCES/_scmsync.obsinfo or BUILD_CHANGELOG_TIMESTAMP is set in /.buildenv
+[   17s] WARNING could not set SOURCE_DATE_EPOCH, ensure BUILD_RELEASE is set in /.buildenv
+[   17s] + exec rpmbuild -ba --define '_srcdefattr (-,root,root)' --nosignature --undefine _enable_debug_packages --define 'disturl obs://build.opensuse.org/home:rodrigosbrito:lyra:staging/openSUSE_Leap_16.1/be02caab80345ec0b473f0ab1d78f9e1-xdg-desktop-portal-gnome' /home/abuild/rpmbuild/SOURCES/xdg-desktop-portal-gnome.spec
+[   17s] Executing(%mkbuilddir): /usr/bin/bash -e /var/tmp/rpm-tmp.QS3FpZ
+[   17s] Executing(%prep): /usr/bin/bash -e /var/tmp/rpm-tmp.kns82j
+[   17s] + umask 022
+[   17s] + cd /home/abuild/rpmbuild/BUILD/xdg-desktop-portal-gnome-48.0-build
+[   17s] + cd /home/abuild/rpmbuild/BUILD/xdg-desktop-portal-gnome-48.0-build
+[   17s] + rm -rf xdg-desktop-portal-gnome-48.0
+[   17s] + /usr/lib/rpm/rpmuncompress -x /home/abuild/rpmbuild/SOURCES/xdg-desktop-portal-gnome-48.0.tar.zst
+[   17s] sh: line 1: /usr/bin/zstd: No such file or directory
+[   17s] /usr/bin/tar: This does not look like a tar archive
+[   17s] /usr/bin/tar: Exiting with failure status due to previous errors
+[   17s] error: Bad exit status from /var/tmp/rpm-tmp.kns82j (%prep)
+[   17s]
+[   17s] RPM build errors:
+[   17s]     Bad exit status from /var/tmp/rpm-tmp.kns82j (%prep)
+[   17s] ### VM INTERACTION START ###
+[   17s] Powering off.
+[   17s] ### VM INTERACTION END ###
+[   17s]
+[   17s] i02-ch1a failed "build xdg-desktop-portal-gnome.spec" at Sun Sep 27 11:51:55 UTC 2026.
+[   17s]

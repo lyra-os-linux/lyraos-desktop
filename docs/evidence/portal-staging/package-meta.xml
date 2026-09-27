@@ -1,0 +1,4 @@
+<package name="xdg-desktop-portal-gnome" project="home:rodrigosbrito:lyra:staging">
+  <title>GNOME portal: upstream global-shortcuts success fix</title>
+  <description>Exact SUSE 48.0 source plus GNOME commit 54087ebf0b467b4193f1b40f3177f55d415eaa9c. Staging candidate for lyraos-desktop issue 125; not released or ISO-qualified.</description>
+</package>

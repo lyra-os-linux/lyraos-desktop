@@ -10,6 +10,9 @@ RPM SHA-256: `a4a5e1c0ebf5fa35b125e003190869f7c636c365b579d1109cacbf7ae1a43b30`.
 Installed executable SHA-256:
 `d3496c21d966d3c1813d14c4049c786601b2d51243432b09959347d009a52994`.
 
+The exact historical spec is preserved in `local-build.spec`; subsequent OBS
+packaging changes do not rewrite this qualification.
+
 The [recipe](../../../packaging/xdg-desktop-portal-gnome/README.md) reuses the
 signed SUSE source and libgxdp submodule and adds only the upstream fix.
 `build.json` records a dependency-checked `rpmbuild -ba`, including source

@@ -1,0 +1,7 @@
+<directory name="xdg-desktop-portal-gnome" rev="2" vrev="160101" srcmd5="077471ed2335bc96dcb5b43fef6e1334">
+  <entry name="globalshortcuts-success.patch" md5="583c39447b5302d93272f25564b99bf8" size="2713" mtime="1790509873"/>
+  <entry name="libgxdp-0.gitmodule.tar.zst" md5="80b02ea2b80000e1eb6e47928ddb429a" size="10346" mtime="1790509874"/>
+  <entry name="xdg-desktop-portal-gnome-48.0.tar.zst" md5="24afba6f9e4a0b7d1890729f34484b33" size="200589" mtime="1790509875"/>
+  <entry name="xdg-desktop-portal-gnome.changes" md5="d5f94647c517af32acf5f880f4a9993e" size="13352" mtime="1790510092"/>
+  <entry name="xdg-desktop-portal-gnome.spec" md5="e4d3a06a23fedef8ccf8944e31476a65" size="12592" mtime="1790510093"/>
+</directory>

@@ -1,0 +1,349 @@
+[
+  {
+    "argv": [
+      "rpm",
+      "-K",
+      "/root/portal-original.rpm"
+    ],
+    "rc": 0,
+    "stdout": "/root/portal-original.rpm: digests signatures OK\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-q",
+      "--qf",
+      "%{VERSION}-%{RELEASE}",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "48.0-160100.2.1",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-V",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-qa",
+      "gpg-pubkey"
+    ],
+    "rc": 0,
+    "stdout": "gpg-pubkey-8ede3e07-5c755f3a\ngpg-pubkey-3fa1d6ce-67c856ee\ngpg-pubkey-09d9ea69-68595a8c\ngpg-pubkey-29b700a4-6a17fa38\ngpg-pubkey-287a0027-682477e3\ngpg-pubkey-25db7ae0-645bae34\ngpg-pubkey-39db7c82-66c5d91a\ngpg-pubkey-f6ab3975-66f622c2\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "--import",
+      "/root/portal-staging.key"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-K",
+      "/root/portal-staging.rpm"
+    ],
+    "rc": 0,
+    "stdout": "/root/portal-staging.rpm: digests signatures OK\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-K",
+      "/root/portal-staging-lang.rpm"
+    ],
+    "rc": 0,
+    "stdout": "/root/portal-staging-lang.rpm: digests signatures OK\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-qlp",
+      "/root/portal-original.rpm"
+    ],
+    "rc": 0,
+    "stdout": "/usr/lib/systemd/user/xdg-desktop-portal-gnome.service\n/usr/libexec/xdg-desktop-portal-gnome\n/usr/share/applications/xdg-desktop-portal-gnome.desktop\n/usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gnome.service\n/usr/share/doc/packages/xdg-desktop-portal-gnome\n/usr/share/doc/packages/xdg-desktop-portal-gnome/NEWS\n/usr/share/doc/packages/xdg-desktop-portal-gnome/README.md\n/usr/share/glib-2.0/schemas/xdg-desktop-portal-gnome.gschema.xml\n/usr/share/licenses/xdg-desktop-portal-gnome\n/usr/share/licenses/xdg-desktop-portal-gnome/COPYING\n/usr/share/xdg-desktop-portal/portals/gnome.portal\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-qlp",
+      "/root/portal-staging.rpm"
+    ],
+    "rc": 0,
+    "stdout": "/usr/lib/systemd/user/xdg-desktop-portal-gnome.service\n/usr/libexec/xdg-desktop-portal-gnome\n/usr/share/applications/xdg-desktop-portal-gnome.desktop\n/usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gnome.service\n/usr/share/doc/packages/xdg-desktop-portal-gnome\n/usr/share/doc/packages/xdg-desktop-portal-gnome/NEWS\n/usr/share/doc/packages/xdg-desktop-portal-gnome/README.md\n/usr/share/glib-2.0/schemas/xdg-desktop-portal-gnome.gschema.xml\n/usr/share/licenses/xdg-desktop-portal-gnome\n/usr/share/licenses/xdg-desktop-portal-gnome/COPYING\n/usr/share/xdg-desktop-portal/portals/gnome.portal\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-qp",
+      "--scripts",
+      "/root/portal-original.rpm"
+    ],
+    "rc": 0,
+    "stdout": "postinstall scriptlet (using /bin/sh):\n\n\t\nif [ -x /usr/lib/systemd/systemd-update-helper ]; then\t\t\t\t\n\t/usr/lib/systemd/systemd-update-helper install-user-units xdg-desktop-portal-gnome.service || :\t\nfi\npreuninstall scriptlet (using /bin/sh):\n\n\t\nif [ $1 -eq 0 ] && [ -x /usr/lib/systemd/systemd-update-helper ]; then\t\t\n\t# Package removal, not upgrade\t\t\t\t\t\t\n\t/usr/lib/systemd/systemd-update-helper remove-user-units xdg-desktop-portal-gnome.service || :\t\nfi\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-qp",
+      "--scripts",
+      "/root/portal-staging.rpm"
+    ],
+    "rc": 0,
+    "stdout": "postinstall scriptlet (using /bin/sh):\n\n\t\nif [ -x /usr/lib/systemd/systemd-update-helper ]; then\t\t\t\t\n\t/usr/lib/systemd/systemd-update-helper install-user-units xdg-desktop-portal-gnome.service || :\t\nfi\npreuninstall scriptlet (using /bin/sh):\n\n\t\nif [ $1 -eq 0 ] && [ -x /usr/lib/systemd/systemd-update-helper ]; then\t\t\n\t# Package removal, not upgrade\t\t\t\t\t\t\n\t/usr/lib/systemd/systemd-update-helper remove-user-units xdg-desktop-portal-gnome.service || :\t\nfi\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-qp",
+      "--qf",
+      "%{RELEASE}",
+      "/root/portal-staging.rpm"
+    ],
+    "rc": 0,
+    "stdout": "160100.2.1.lyra1.160101.1",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "--eval",
+      "%{lua:print(rpm.vercmp(\"160100.2.1.lyra1.160101.1\",\"160100.2.1\"))}"
+    ],
+    "rc": 0,
+    "stdout": "1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "--eval",
+      "%{lua:print(rpm.vercmp(\"160100.2.2\",\"160100.2.1.lyra1.160101.1\"))}"
+    ],
+    "rc": 0,
+    "stdout": "1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-Uvh",
+      "--test",
+      "/root/portal-staging.rpm",
+      "/root/portal-staging-lang.rpm"
+    ],
+    "rc": 0,
+    "stdout": "Verifying...                          ########################################\nPreparing...                          ########################################\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-Uvh",
+      "/root/portal-staging.rpm",
+      "/root/portal-staging-lang.rpm"
+    ],
+    "rc": 0,
+    "stdout": "Verifying...                          ########################################\nPreparing...                          ########################################\nUpdating / installing...\nxdg-desktop-portal-gnome-48.0-160100.2########################################\nxdg-desktop-portal-gnome-lang-48.0-160########################################\nCleaning up / removing...\nxdg-desktop-portal-gnome-48.0-160100.2########################################\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-V",
+      "xdg-desktop-portal-gnome",
+      "xdg-desktop-portal-gnome-lang"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-e",
+      "xdg-desktop-portal-gnome-lang"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-Uvh",
+      "--oldpackage",
+      "/root/portal-original.rpm"
+    ],
+    "rc": 0,
+    "stdout": "Verifying...                          ########################################\nPreparing...                          ########################################\nUpdating / installing...\nxdg-desktop-portal-gnome-48.0-160100.2########################################\nCleaning up / removing...\nxdg-desktop-portal-gnome-48.0-160100.2########################################\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-V",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-e",
+      "--test",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-e",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-ivh",
+      "/root/portal-staging.rpm",
+      "/root/portal-staging-lang.rpm"
+    ],
+    "rc": 0,
+    "stdout": "Verifying...                          ########################################\nPreparing...                          ########################################\nUpdating / installing...\nxdg-desktop-portal-gnome-48.0-160100.2########################################\nxdg-desktop-portal-gnome-lang-48.0-160########################################\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-V",
+      "xdg-desktop-portal-gnome",
+      "xdg-desktop-portal-gnome-lang"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-q",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.160101.1.x86_64\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-K",
+      "/root/portal-original.rpm"
+    ],
+    "rc": 0,
+    "stdout": "/root/portal-original.rpm: digests signatures OK\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-e",
+      "xdg-desktop-portal-gnome-lang"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-Uvh",
+      "--oldpackage",
+      "/root/portal-original.rpm"
+    ],
+    "rc": 0,
+    "stdout": "Verifying...                          ########################################\nPreparing...                          ########################################\nUpdating / installing...\nxdg-desktop-portal-gnome-48.0-160100.2########################################\nCleaning up / removing...\nxdg-desktop-portal-gnome-48.0-160100.2########################################\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-V",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-q",
+      "--qf",
+      "%{VERSION}-%{RELEASE}",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "48.0-160100.2.1",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-qa",
+      "gpg-pubkey"
+    ],
+    "rc": 0,
+    "stdout": "gpg-pubkey-8ede3e07-5c755f3a\ngpg-pubkey-3fa1d6ce-67c856ee\ngpg-pubkey-09d9ea69-68595a8c\ngpg-pubkey-29b700a4-6a17fa38\ngpg-pubkey-287a0027-682477e3\ngpg-pubkey-25db7ae0-645bae34\ngpg-pubkey-39db7c82-66c5d91a\ngpg-pubkey-f6ab3975-66f622c2\ngpg-pubkey-7edca82e-6a60ee1f\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-e",
+      "gpg-pubkey-7edca82e-6a60ee1f"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-qa",
+      "gpg-pubkey"
+    ],
+    "rc": 0,
+    "stdout": "gpg-pubkey-8ede3e07-5c755f3a\ngpg-pubkey-3fa1d6ce-67c856ee\ngpg-pubkey-09d9ea69-68595a8c\ngpg-pubkey-29b700a4-6a17fa38\ngpg-pubkey-287a0027-682477e3\ngpg-pubkey-25db7ae0-645bae34\ngpg-pubkey-39db7c82-66c5d91a\ngpg-pubkey-f6ab3975-66f622c2\n",
+    "stderr": ""
+  }
+]

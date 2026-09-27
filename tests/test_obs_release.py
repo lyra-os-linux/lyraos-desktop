@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import argparse
+import dataclasses
 import importlib.util
 import json
 import sys
@@ -243,7 +245,7 @@ class RetiredStagingTests(unittest.TestCase):
     def test_retired_build_must_be_disabled_on_each_target(self) -> None:
         active = "".join(
             f'<status package="{package}" code="succeeded"/>'
-            for package in self.project.packages
+            for package in obs_release.active_source_packages(self.project, self.remote)
         )
         for target in self.project.targets:
             path = f"/build/{self.remote}/_result?repository={target.name}&arch=x86_64&view=status"
@@ -259,6 +261,51 @@ class RetiredStagingTests(unittest.TestCase):
                     else:
                         with self.assertRaisesRegex(obs_release.PolicyError, "must remain disabled"):
                             obs_release.check_target_result(obs, self.project, self.remote, target, "x86_64")
+
+
+class StagingCandidateTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.manifest = obs_release.Manifest.load()
+        self.project = self.manifest.project("lyra")
+        self.package = "xdg-desktop-portal-gnome"
+
+    def test_candidate_is_required_only_in_staging(self) -> None:
+        self.assertEqual(self.project.staging_only_packages, (self.package,))
+        self.assertIn(self.package, obs_release.expected_source_packages(self.project, self.project.staging))
+        self.assertNotIn(self.package, obs_release.expected_source_packages(self.project, self.project.release))
+        self.assertNotIn(self.package, obs_release.active_source_packages(self.project, self.project.release))
+
+    def test_candidate_is_not_promotable_or_rollbackable(self) -> None:
+        args = argparse.Namespace(project="lyra", package=self.package)
+        for operation in [obs_release.promote, obs_release.rollback]:
+            with self.subTest(operation=operation.__name__), self.assertRaisesRegex(obs_release.PolicyError, "not owned"):
+                operation(FakeObs({}), self.manifest, args)
+
+    def test_candidate_cannot_overlap_other_categories_or_repeat(self) -> None:
+        for candidates in [(self.package, self.package), (self.project.packages[0],),
+                           (self.project.legacy_packages[0],), (self.project.retired_staging_packages[0],),
+                           ("../invalid",)]:
+            project = dataclasses.replace(self.project, staging_only_packages=candidates)
+            manifest = dataclasses.replace(self.manifest, projects=(project, *self.manifest.projects[1:]))
+            with self.subTest(candidates=candidates), self.assertRaisesRegex(obs_release.PolicyError, "staging-only"):
+                manifest.validate()
+
+    def test_candidate_build_must_succeed_even_if_repository_is_published(self) -> None:
+        project = self.project
+        target = project.targets[0]
+        path = f"/build/{project.staging}/_result?repository={target.name}&arch=x86_64&view=status"
+        others = "".join(f'<status package="{p}" code="succeeded"/>' for p in project.packages)
+        others += "".join(f'<status package="{p}" code="disabled"/>' for p in project.retired_staging_packages)
+        for code in [None, "failed", "disabled", "excluded", "unresolvable", "succeeded"]:
+            candidate = "" if code is None else f'<status package="{self.package}" code="{code}"/>'
+            obs = FakeObs({path: '<resultlist><result code="published">' + others + candidate + '</result></resultlist>'})
+            with self.subTest(code=code):
+                if code == "succeeded":
+                    states = obs_release.check_target_result(obs, project, project.staging, target, "x86_64")
+                    self.assertEqual(states[self.package]["state"], "succeeded")
+                else:
+                    with self.assertRaisesRegex(obs_release.PolicyError, "build gate failed"):
+                        obs_release.check_target_result(obs, project, project.staging, target, "x86_64")
 
 
 class SafetyTests(unittest.TestCase):

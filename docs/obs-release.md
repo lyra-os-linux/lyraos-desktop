@@ -45,6 +45,15 @@ for every target. These packages are never eligible for promotion or selected
 by the ISO. The standalone DING package is retained this way after its replacement
 by Lyra Desktop Icons in Sheliak; its source history is not deleted.
 
+`staging_only_packages` declares active candidates that must exist and build
+successfully in staging, without being required by release or eligible for
+promotion/rollback. It cannot overlap active, legacy or retired packages.
+After qualification, a reviewed manifest change moves a candidate into
+`packages` before the normal revision-pinned promotion. Until that promotion
+is accepted, the release gate deliberately reports the newly required package
+as missing; complete the handoff before building a release candidate. This keeps a new
+staging package from silently becoming part of the ISO release inventory.
+
 ## Repository priorities
 
 During image construction, KIWI uses priorities 1, 2, and 3 for Lyra, Vega,

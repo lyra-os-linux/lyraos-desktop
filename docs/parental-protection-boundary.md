@@ -65,9 +65,10 @@ provedor nativo do GNOME e testa consentimento, sinais reais de teclado,
 propriedade da sessão e encerramento. Encontrou também um erro na resposta de
 sucesso do backend GNOME 48.0 da base; o ensaio usa o backport oficial com
 restauração do binário original. A [qualificação do RPM local](evidence/portal-rpm/README.md)
-passou instalação, atualização, reversão e sessões comum/supervisionada. O RPM
-ainda não foi assinado ou publicado; qualificação do artefato assinado em staging
-e inclusão na candidata por checksum continuam pendentes.
+passou instalação, atualização, reversão e sessões comum/supervisionada. O [RPM assinado em staging](evidence/portal-staging/README.md) também passou
+nas duas contas, instalação, atualização e reversão. O zypper mantém o pacote
+SUSE nas atualizações normais por causa da troca de fornecedor: a migração
+específica, promoção revisada e candidata por checksum continuam pendentes.
 
 A [etapa de auxiliares GNOME](evidence/parental-helpers/README.md) separa
 Notifications, ScreenSaver e Screencast em domínios privados com entradas fixas.

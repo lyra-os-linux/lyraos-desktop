@@ -7,7 +7,8 @@ package=OUT.parents[2]/'packaging/xdg-desktop-portal-gnome'
 inputs=read('inputs.json')
 sources=json.loads((package/'sources.json').read_text())
 for name in ['xdg-desktop-portal-gnome.spec','globalshortcuts-success.patch']:
- assert hashlib.sha256((package/name).read_bytes()).hexdigest()==inputs[name]
+ source=OUT/'local-build.spec' if name=='xdg-desktop-portal-gnome.spec' else package/name
+ assert hashlib.sha256(source.read_bytes()).hexdigest()==inputs[name]
 for name,digest in sources['inputs'].items():assert inputs[name]==digest
 expected=read('expected.json');artifacts=read('artifacts.json')
 assert expected['signed'] is False

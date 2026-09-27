@@ -53,6 +53,7 @@ class Project:
     legacy_packages: tuple[str, ...]
     targets: tuple[Target, ...]
     retired_staging_packages: tuple[str, ...] = ()
+    staging_only_packages: tuple[str, ...] = ()
 
 
 @dataclasses.dataclass(frozen=True)
@@ -81,6 +82,7 @@ class Manifest:
                 packages=tuple(item["packages"]),
                 legacy_packages=tuple(item.get("legacy_packages", [])),
                 retired_staging_packages=tuple(item.get("retired_staging_packages", [])),
+                staging_only_packages=tuple(item.get("staging_only_packages", [])),
                 targets=tuple(
                     Target(
                         name=target["name"],
@@ -151,6 +153,13 @@ class Manifest:
                 raise PolicyError(f"{project.id}: retired staging packages overlap or repeat")
             if any(not re.fullmatch(r"[a-zA-Z0-9_.+-]+", name) for name in retired):
                 raise PolicyError(f"{project.id}: invalid retired staging package name")
+            candidates = set(project.staging_only_packages)
+            if len(candidates) != len(project.staging_only_packages) or candidates & (
+                set(project.packages) | set(project.legacy_packages) | retired
+            ):
+                raise PolicyError(f"{project.id}: staging-only packages overlap or repeat")
+            if any(not re.fullmatch(r"[a-zA-Z0-9_.+-]+", name) for name in candidates):
+                raise PolicyError(f"{project.id}: invalid staging-only package name")
             if not project.targets:
                 raise PolicyError(f"{project.id}: at least one target is required")
             if project.iso_consumer and not any(target.iso_consumer for target in project.targets):
@@ -218,8 +227,13 @@ class Obs:
             raise PolicyError(f"OBS returned invalid XML for {path}: {error}") from error
 
 
+def active_source_packages(project: Project, remote: str) -> tuple[str, ...]:
+    """Candidates must build in staging, but are not released or promotable yet."""
+    return project.packages + (project.staging_only_packages if remote == project.staging else ())
+
+
 def expected_source_packages(project: Project, remote: str) -> set[str]:
-    expected = set(project.packages)
+    expected = set(active_source_packages(project, remote))
     if remote == project.release:
         expected.update(project.legacy_packages)
     elif remote == project.staging:
@@ -530,7 +544,7 @@ def check_target_result(
             ):
                 raise PolicyError(f"{remote}/{package}: retired package must remain disabled")
     checked: dict[str, dict[str, Any]] = {}
-    for package in project.packages:
+    for package in active_source_packages(project, remote):
         state = statuses.get(package)
         flavors = {
             name: code for name, code in statuses.items() if name.startswith(f"{package}:")
@@ -778,7 +792,7 @@ def check_remote(obs: Obs, manifest: Manifest, channel: str) -> None:
             for target in project.targets:
                 for arch in target.architectures:
                     check_target_result(obs, project, remote, target, arch)
-            print(f"OK: {remote} ({len(project.packages)} source packages, all targets published)")
+            print(f"OK: {remote} ({len(active_source_packages(project, remote))} source packages, all targets published)")
 
 
 def init_staging(obs: Obs, manifest: Manifest) -> None:

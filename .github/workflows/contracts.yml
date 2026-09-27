@@ -54,3 +54,7 @@ jobs:
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: python3 -m unittest discover -s tests -v
+      - name: Recheck collected portal package qualifications
+        run: |
+          python3 docs/evidence/portal-rpm/qualify.py
+          python3 docs/evidence/portal-staging/qualify.py
