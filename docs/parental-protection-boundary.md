@@ -64,8 +64,10 @@ A [etapa de atalhos globais](evidence/parental-shortcuts/README.md) integra o
 provedor nativo do GNOME e testa consentimento, sinais reais de teclado,
 propriedade da sessão e encerramento. Encontrou também um erro na resposta de
 sucesso do backend GNOME 48.0 da base; o ensaio usa o backport oficial com
-restauração do binário original. Empacotamento desse backport, qualificação
-para contas comuns e inclusão na candidata continuam pendentes.
+restauração do binário original. A [qualificação do RPM local](evidence/portal-rpm/README.md)
+passou instalação, atualização, reversão e sessões comum/supervisionada. O RPM
+ainda não foi assinado ou publicado; qualificação do artefato assinado em staging
+e inclusão na candidata por checksum continuam pendentes.
 
 A [etapa de auxiliares GNOME](evidence/parental-helpers/README.md) separa
 Notifications, ScreenSaver e Screencast em domínios privados com entradas fixas.

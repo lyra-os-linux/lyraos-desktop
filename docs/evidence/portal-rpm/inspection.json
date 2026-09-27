@@ -1,0 +1,155 @@
+{
+  "--requires": {
+    "original": [
+      "/bin/sh",
+      "/bin/sh",
+      "libX11.so.6()(64bit)",
+      "libadwaita-1.so.0()(64bit)",
+      "libadwaita-1.so.0(LIBADWAITA_1_0)(64bit)",
+      "libc.so.6()(64bit)",
+      "libc.so.6(GLIBC_2.14)(64bit)",
+      "libc.so.6(GLIBC_2.2.5)(64bit)",
+      "libc.so.6(GLIBC_2.3.4)(64bit)",
+      "libc.so.6(GLIBC_2.34)(64bit)",
+      "libc.so.6(GLIBC_2.4)(64bit)",
+      "libcairo.so.2()(64bit)",
+      "libfontconfig.so.1()(64bit)",
+      "libgdk_pixbuf-2.0.so.0()(64bit)",
+      "libgio-2.0.so.0()(64bit)",
+      "libglib-2.0.so.0()(64bit)",
+      "libgnome-bg-4.so.2()(64bit)",
+      "libgnome-desktop-4.so.2()(64bit)",
+      "libgobject-2.0.so.0()(64bit)",
+      "libgraphene-1.0.so.0()(64bit)",
+      "libgtk-4.so.1()(64bit)",
+      "libm.so.6()(64bit)",
+      "libm.so.6(GLIBC_2.2.5)(64bit)",
+      "libwayland-client.so.0()(64bit)",
+      "rpmlib(CompressedFileNames) <= 3.0.4-1",
+      "rpmlib(FileDigests) <= 4.6.0-1",
+      "rpmlib(PayloadFilesHavePrefix) <= 4.0-1",
+      "rpmlib(PayloadIsZstd) <= 5.4.18-1",
+      "rpmlib(RichDependencies) <= 4.12.0-1",
+      "xdg-desktop-portal"
+    ],
+    "candidate": [
+      "/bin/sh",
+      "/bin/sh",
+      "libX11.so.6()(64bit)",
+      "libadwaita-1.so.0()(64bit)",
+      "libadwaita-1.so.0(LIBADWAITA_1_0)(64bit)",
+      "libc.so.6()(64bit)",
+      "libc.so.6(GLIBC_2.14)(64bit)",
+      "libc.so.6(GLIBC_2.2.5)(64bit)",
+      "libc.so.6(GLIBC_2.3.4)(64bit)",
+      "libc.so.6(GLIBC_2.34)(64bit)",
+      "libc.so.6(GLIBC_2.38)(64bit)",
+      "libc.so.6(GLIBC_2.4)(64bit)",
+      "libcairo.so.2()(64bit)",
+      "libfontconfig.so.1()(64bit)",
+      "libgdk_pixbuf-2.0.so.0()(64bit)",
+      "libgio-2.0.so.0()(64bit)",
+      "libglib-2.0.so.0()(64bit)",
+      "libgnome-bg-4.so.2()(64bit)",
+      "libgnome-desktop-4.so.2()(64bit)",
+      "libgobject-2.0.so.0()(64bit)",
+      "libgraphene-1.0.so.0()(64bit)",
+      "libgtk-4.so.1()(64bit)",
+      "libm.so.6()(64bit)",
+      "libm.so.6(GLIBC_2.2.5)(64bit)",
+      "libwayland-client.so.0()(64bit)",
+      "rpmlib(CompressedFileNames) <= 3.0.4-1",
+      "rpmlib(FileDigests) <= 4.6.0-1",
+      "rpmlib(PayloadFilesHavePrefix) <= 4.0-1",
+      "rpmlib(PayloadIsZstd) <= 5.4.18-1",
+      "rpmlib(RichDependencies) <= 4.12.0-1",
+      "xdg-desktop-portal"
+    ]
+  },
+  "--provides": {
+    "original": [
+      "application()",
+      "application(xdg-desktop-portal-gnome.desktop)",
+      "xdg-desktop-portal-gnome = 48.0-160100.2.1",
+      "xdg-desktop-portal-gnome(x86-64) = 48.0-160100.2.1"
+    ],
+    "candidate": [
+      "application()",
+      "application(xdg-desktop-portal-gnome.desktop)",
+      "xdg-desktop-portal-gnome = 48.0-160100.2.1.lyra1",
+      "xdg-desktop-portal-gnome(x86-64) = 48.0-160100.2.1.lyra1"
+    ]
+  },
+  "--scripts": {
+    "original": [
+      "postinstall scriptlet (using /bin/sh):",
+      "",
+      "\t",
+      "if [ -x /usr/lib/systemd/systemd-update-helper ]; then\t\t\t\t",
+      "\t/usr/lib/systemd/systemd-update-helper install-user-units xdg-desktop-portal-gnome.service || :\t",
+      "fi",
+      "preuninstall scriptlet (using /bin/sh):",
+      "",
+      "\t",
+      "if [ $1 -eq 0 ] && [ -x /usr/lib/systemd/systemd-update-helper ]; then\t\t",
+      "\t# Package removal, not upgrade\t\t\t\t\t\t",
+      "\t/usr/lib/systemd/systemd-update-helper remove-user-units xdg-desktop-portal-gnome.service || :\t",
+      "fi"
+    ],
+    "candidate": [
+      "postinstall scriptlet (using /bin/sh):",
+      "",
+      "\t",
+      "if [ -x /usr/lib/systemd/systemd-update-helper ]; then\t\t\t\t",
+      "\t/usr/lib/systemd/systemd-update-helper install-user-units xdg-desktop-portal-gnome.service || :\t",
+      "fi",
+      "preuninstall scriptlet (using /bin/sh):",
+      "",
+      "\t",
+      "if [ $1 -eq 0 ] && [ -x /usr/lib/systemd/systemd-update-helper ]; then\t\t",
+      "\t# Package removal, not upgrade\t\t\t\t\t\t",
+      "\t/usr/lib/systemd/systemd-update-helper remove-user-units xdg-desktop-portal-gnome.service || :\t",
+      "fi"
+    ]
+  },
+  "--dump": {
+    "original": [
+      "/usr/lib/systemd/user/xdg-desktop-portal-gnome.service 274 1743161432 90186c4beb33eb3c63c359ebdbff649cf7048f56ef3a2e3964e0e7b29457eecb 0100644 root root 0 0 0 X",
+      "/usr/libexec/xdg-desktop-portal-gnome 650032 1743161432 71d2fb90d4cea4f928e25e984e80c5aa1f242ee5f79c63c1490cec6fdd58a0f7 0100755 root root 0 0 0 X",
+      "/usr/share/applications/xdg-desktop-portal-gnome.desktop 1191 1743161432 6bc7e4f152eac288e0fe79a2ef2b483b8baf62223173810742630238faa544b0 0100644 root root 0 0 0 X",
+      "/usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gnome.service 154 1743161432 7c2f09636109e1c8a96db6a6dc8fad47878980892b6da12e6f375d1b474cad59 0100644 root root 0 0 0 X",
+      "/usr/share/doc/packages/xdg-desktop-portal-gnome 0 1743161432 0000000000000000000000000000000000000000000000000000000000000000 040755 root root 0 0 0 X",
+      "/usr/share/doc/packages/xdg-desktop-portal-gnome/NEWS 5066 1742213387 63581e5d197300dbbec0df15339f070942fd57d43c0140403098c3ef8d878f81 0100644 root root 0 1 0 X",
+      "/usr/share/doc/packages/xdg-desktop-portal-gnome/README.md 393 1742213387 968df7dfd53c79e810033c96ea19af7e622cf208c2eedf8469592f4d2c86ecbb 0100644 root root 0 1 0 X",
+      "/usr/share/glib-2.0/schemas/xdg-desktop-portal-gnome.gschema.xml 391 1742213387 a75f3fa4230660238ae832f690128e0cd3782214d02fa74363da3fe52e828ee6 0100644 root root 0 0 0 X",
+      "/usr/share/licenses/xdg-desktop-portal-gnome 0 1743161432 0000000000000000000000000000000000000000000000000000000000000000 040755 root root 0 0 0 X",
+      "/usr/share/licenses/xdg-desktop-portal-gnome/COPYING 26530 1742213387 dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551 0100644 root root 0 0 0 X",
+      "/usr/share/xdg-desktop-portal/portals/gnome.portal 779 1743161432 083689a607bedd576bf865d8511d628792164d8336f336b29d72ca0596398cd1 0100644 root root 0 0 0 X"
+    ],
+    "candidate": [
+      "/usr/lib/systemd/user/xdg-desktop-portal-gnome.service 274 1790508353 90186c4beb33eb3c63c359ebdbff649cf7048f56ef3a2e3964e0e7b29457eecb 0100644 root root 0 0 0 X",
+      "/usr/libexec/xdg-desktop-portal-gnome 827224 1790508370 d3496c21d966d3c1813d14c4049c786601b2d51243432b09959347d009a52994 0100755 root root 0 0 0 X",
+      "/usr/share/applications/xdg-desktop-portal-gnome.desktop 1191 1790508369 6bc7e4f152eac288e0fe79a2ef2b483b8baf62223173810742630238faa544b0 0100644 root root 0 0 0 X",
+      "/usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.gnome.service 154 1790508353 7c2f09636109e1c8a96db6a6dc8fad47878980892b6da12e6f375d1b474cad59 0100644 root root 0 0 0 X",
+      "/usr/share/doc/packages/xdg-desktop-portal-gnome 0 1790508370 0000000000000000000000000000000000000000000000000000000000000000 040755 root root 0 0 0 X",
+      "/usr/share/doc/packages/xdg-desktop-portal-gnome/NEWS 5066 1742213387 63581e5d197300dbbec0df15339f070942fd57d43c0140403098c3ef8d878f81 0100644 root root 0 1 0 X",
+      "/usr/share/doc/packages/xdg-desktop-portal-gnome/README.md 393 1742213387 968df7dfd53c79e810033c96ea19af7e622cf208c2eedf8469592f4d2c86ecbb 0100644 root root 0 1 0 X",
+      "/usr/share/glib-2.0/schemas/xdg-desktop-portal-gnome.gschema.xml 391 1742213387 a75f3fa4230660238ae832f690128e0cd3782214d02fa74363da3fe52e828ee6 0100644 root root 0 0 0 X",
+      "/usr/share/licenses/xdg-desktop-portal-gnome 0 1790508370 0000000000000000000000000000000000000000000000000000000000000000 040755 root root 0 0 0 X",
+      "/usr/share/licenses/xdg-desktop-portal-gnome/COPYING 26530 1742213387 dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551 0100644 root root 0 0 0 X",
+      "/usr/share/xdg-desktop-portal/portals/gnome.portal 779 1790508353 083689a607bedd576bf865d8511d628792164d8336f336b29d72ca0596398cd1 0100644 root root 0 0 0 X"
+    ]
+  },
+  "dependency_delta": {
+    "removed": [],
+    "added": [
+      "libc.so.6(GLIBC_2.38)(64bit)"
+    ],
+    "installed_provider": "glibc-2.40-160100.2.1.x86_64"
+  },
+  "passed": true,
+  "changed_payload_digests": [
+    "/usr/libexec/xdg-desktop-portal-gnome"
+  ],
+  "release_order_validated": true
+}

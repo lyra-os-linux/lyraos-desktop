@@ -1,0 +1,32 @@
+[
+  {
+    "path": "/root/portal-rpmbuild/RPMS/noarch/xdg-desktop-portal-gnome-lang-48.0-160100.2.1.lyra1.noarch.rpm",
+    "sha256": "3926225009abc41b06ec6591ab4c032db88ce63b3700f29d7f962aa03ed6b0e6",
+    "size": 84551,
+    "nevra": "xdg-desktop-portal-gnome-lang-48.0-160100.2.1.lyra1.noarch"
+  },
+  {
+    "path": "/root/portal-rpmbuild/RPMS/x86_64/xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.x86_64.rpm",
+    "sha256": "a4a5e1c0ebf5fa35b125e003190869f7c636c365b579d1109cacbf7ae1a43b30",
+    "size": 204517,
+    "nevra": "xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.x86_64"
+  },
+  {
+    "path": "/root/portal-rpmbuild/RPMS/x86_64/xdg-desktop-portal-gnome-debuginfo-48.0-160100.2.1.lyra1.x86_64.rpm",
+    "sha256": "58f74f8cff8ff7825e803c47a05237588a7f7fe6af5a34e6a4c4990c3afe5ed7",
+    "size": 740453,
+    "nevra": "xdg-desktop-portal-gnome-debuginfo-48.0-160100.2.1.lyra1.x86_64"
+  },
+  {
+    "path": "/root/portal-rpmbuild/RPMS/x86_64/xdg-desktop-portal-gnome-debugsource-48.0-160100.2.1.lyra1.x86_64.rpm",
+    "sha256": "653b7122793c41d32b81b1033ee20c86bb8210091130c3e6994a7510ece65654",
+    "size": 239488,
+    "nevra": "xdg-desktop-portal-gnome-debugsource-48.0-160100.2.1.lyra1.x86_64"
+  },
+  {
+    "path": "/root/portal-rpmbuild/SRPMS/xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.src.rpm",
+    "sha256": "d90055de2485d4833bb1432525faf532a05012a0489168b280ad68c0bf45b0d8",
+    "size": 248494,
+    "nevra": "xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.x86_64"
+  }
+]

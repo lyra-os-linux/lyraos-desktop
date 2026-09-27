@@ -1,0 +1,19 @@
+{
+  "portal_gnome": {
+    "url": "https://cdn.opensuse.org/source/distribution/leap/16.1/repo/oss/src/xdg-desktop-portal-gnome-48.0-160100.2.1.src.rpm",
+    "sha256": "fe04ca23fac46c3efdea0d0cf49c4a7d3cc3917083e5c11a8a65bca19c4e124f",
+    "signature": "/tmp/lyra-parental-portal-gnome.src.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+    "metadata": "xdg-desktop-portal-gnome 48.0-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/72cd43a13a9c54a67bb1efb06cd46ed4-xdg-desktop-portal-gnome\n"
+  },
+  "upstream_fix": {
+    "commit": "54087ebf0b467b4193f1b40f3177f55d415eaa9c",
+    "url": "https://github.com/GNOME/xdg-desktop-portal-gnome/commit/54087ebf0b467b4193f1b40f3177f55d415eaa9c",
+    "sha256": "fec1059820db03ee20378cf5e3c7b550c36149b0291fb40df0ad77e41ae3993a",
+    "scope": "Local RPM candidate; requires staging signature and final artifact qualification before production"
+  },
+  "inputs": {
+    "xdg-desktop-portal-gnome-48.0.tar.zst": "c4721841fd8b6e3f0cb123f37e396e8c56f659476695e6c2fc0df441dddee4cd",
+    "libgxdp-0.gitmodule.tar.zst": "8c47a22908fe51ad0814e989e8f001836e28fc6fc1288ce75513c854eccb8657",
+    "globalshortcuts-success.patch": "fec1059820db03ee20378cf5e3c7b550c36149b0291fb40df0ad77e41ae3993a"
+  }
+}

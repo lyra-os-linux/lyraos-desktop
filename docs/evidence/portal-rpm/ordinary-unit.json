@@ -1,0 +1,9 @@
+{
+  "state": "Result=success\nActiveState=inactive\nSubState=dead\n",
+  "keys": [
+    "shortcuts-cancel",
+    "shortcuts-bind",
+    "shortcuts-activate",
+    "shortcuts-released"
+  ]
+}
