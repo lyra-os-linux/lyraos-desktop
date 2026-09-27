@@ -82,15 +82,27 @@ rollback restored inventory and retained the replay sequence. These tests use
 inert packages, an ephemeral guest signing key and an authenticated UID fixture;
 they do not qualify interactive Polkit or the actual portal migration.
 
-Next, build and qualify the signed **0.2.7 OBS staging RPM**, then prepare the
-reviewed portal manifest with `minimum_updater_version >= 0.2.7`, unchanged Lyra
-identity and the exact artifact entries. Sign it through the existing release
-key workflow and exercise the real portal with/without translations through the
-Updater in a complete Btrfs baseline, including authorization and recovery.
-The existing parental portal VM uses ext4 and is not that baseline. Staging
-remains on 0.2.6 and release on 0.2.5 until their respective delivery gates pass;
-do not raise the image minimum to an unavailable release RPM. The normal vegad
-update command retains its existing policy.
+The signed **0.2.7 OBS staging RPM** was subsequently qualified on 2026-09-27:
+`lyra-upgrade-0.2.7-lp161.1.1.x86_64.rpm`, SHA256
+`ce703c2adffd04c2a98d2430bc22663a1b3d838424f1820e465e443ed15114d6`, OBS revision 40,
+srcmd5 `69dca165aed45064db106ae96dc015fc`, built from merge
+`9ddc4000c5b8a051dba1bfa365b1c5db824cac0d`. The offline OBS build passed 145 Rust
+tests. Binaries extracted from that verified RPM passed the three-boot migration,
+four-boot Snapper recovery and three-boot PackageKit regression. External
+dependencies, the manifest key and rpmlint findings are unchanged from 0.2.6;
+all Lyra/Vega/Fina staging targets are published. See the
+[0.2.7 staging qualification](https://github.com/lyra-os-linux/lyraos-desktop-updater/blob/9bcb6249e112a4f26c11402e87460f52d95feb4e/docs/package-migration-staging-qualification.md)
+and [structured evidence](https://github.com/lyra-os-linux/lyraos-desktop-updater/blob/9bcb6249e112a4f26c11402e87460f52d95feb4e/docs/package-migration-staging-evidence.json).
+These packaged-component tests retain the fixture and authorization limits above.
+
+Next, prepare the reviewed portal manifest with
+`minimum_updater_version >= 0.2.7`, unchanged Lyra identity and the exact artifact
+entries. Sign it through the existing release key workflow and exercise the real
+portal with/without translations through the Updater in a complete Btrfs
+baseline, including authorization and recovery. The existing parental portal VM
+uses ext4 and is not that baseline. Staging now contains 0.2.7; release remains
+on 0.2.5, revision 12. Do not raise the image minimum to an unavailable release
+RPM. The normal vegad update command retains its existing policy.
 
 A production transition must also handle running user sessions and service
 restart/reboot behavior. The native fixture intentionally uses inactive GDM and
