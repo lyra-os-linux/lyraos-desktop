@@ -1,0 +1,14 @@
+[
+  {
+    "file": "original.rpm",
+    "sha256": "6613e7d4f1b3acd5c0f9a36636ec61e9cb57b6cc902b52d1e550b8605cfe486b",
+    "signature": "analysis/2026-09-27/portal-transition/original.rpm: digests signatures OK\n",
+    "metadata": "xdg-desktop-portal-gnome-48.0-160100.2.1.x86_64\nSUSE LLC <https://www.suse.com/>\nobs://build.suse.de/SUSE:SLFO:1.3/standard/72cd43a13a9c54a67bb1efb06cd46ed4-xdg-desktop-portal-gnome"
+  },
+  {
+    "file": "original-lang.rpm",
+    "sha256": "1af37ebcaf15c3d0ba30d59fd3643ccfc5414b274005b67ca0289c2ba81ce0ab",
+    "signature": "analysis/2026-09-27/portal-transition/original-lang.rpm: digests signatures OK\n",
+    "metadata": "xdg-desktop-portal-gnome-lang-48.0-160100.2.1.noarch\nSUSE LLC <https://www.suse.com/>\nobs://build.suse.de/SUSE:SLFO:1.3/standard/72cd43a13a9c54a67bb1efb06cd46ed4-xdg-desktop-portal-gnome"
+  }
+]

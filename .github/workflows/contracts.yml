@@ -58,3 +58,4 @@ jobs:
         run: |
           python3 docs/evidence/portal-rpm/qualify.py
           python3 docs/evidence/portal-staging/qualify.py
+          python3 docs/evidence/portal-transition/qualify.py
