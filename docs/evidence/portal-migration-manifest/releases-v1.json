@@ -1,0 +1,108 @@
+{
+  "allowed_removals": [],
+  "allowed_vendor_transitions": [
+    {
+      "from": "SUSE LLC <https://www.suse.com/>",
+      "packages": [
+        "xdg-desktop-portal-gnome",
+        "xdg-desktop-portal-gnome-lang"
+      ],
+      "to": "obs://build.opensuse.org/home:rodrigosbrito"
+    }
+  ],
+  "lockstep_packages": [],
+  "minimum_free_space_bytes": 4294967296,
+  "minimum_updater_version": "0.2.7",
+  "package_migration": [
+    {
+      "architecture": "x86_64",
+      "from_vendor": "SUSE LLC <https://www.suse.com/>",
+      "from_version": "48.0-160100.2.1",
+      "if_installed": false,
+      "name": "xdg-desktop-portal-gnome",
+      "repository_alias": "lyra-portal-staging",
+      "sha256": "9e7f6622e12cc8c343f772b5900d4ca7e4be01c9a20ef9477cf24373e55b1670",
+      "to_vendor": "obs://build.opensuse.org/home:rodrigosbrito",
+      "to_version": "48.0-160100.2.1.lyra1.160101.1"
+    },
+    {
+      "architecture": "noarch",
+      "from_vendor": "SUSE LLC <https://www.suse.com/>",
+      "from_version": "48.0-160100.2.1",
+      "if_installed": true,
+      "name": "xdg-desktop-portal-gnome-lang",
+      "repository_alias": "lyra-portal-staging",
+      "sha256": "ba84d6486f3b5907c86e0a38e17d93e939e0dbb674cd3ea4754deac256f50a28",
+      "to_vendor": "obs://build.opensuse.org/home:rodrigosbrito",
+      "to_version": "48.0-160100.2.1.lyra1.160101.1"
+    }
+  ],
+  "repositories": [
+    {
+      "alias": "repo-oss",
+      "base_url": "https://download.opensuse.org/distribution/leap/16.1/repo/oss/",
+      "priority": 20,
+      "signing_key_fingerprint": "AD485664E901B867051AB15F35A2F86E29B700A4",
+      "signing_key_url": "https://download.opensuse.org/distribution/leap/16.1/repo/oss/repodata/repomd.xml.key"
+    },
+    {
+      "alias": "repo-non-oss",
+      "base_url": "https://download.opensuse.org/distribution/leap/16.1/repo/non-oss/",
+      "priority": 21,
+      "signing_key_fingerprint": "AD485664E901B867051AB15F35A2F86E29B700A4",
+      "signing_key_url": "https://download.opensuse.org/distribution/leap/16.1/repo/non-oss/repodata/repomd.xml.key"
+    },
+    {
+      "alias": "repo-packman-essentials",
+      "base_url": "https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_16.1/Essentials/",
+      "priority": 15,
+      "signing_key_fingerprint": "F8875B880D518B6B8C530D1345A1D0671ABD1AFB",
+      "signing_key_url": "https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_16.1/Essentials/repodata/repomd.xml.key"
+    },
+    {
+      "alias": "repo-lyra",
+      "base_url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1/",
+      "priority": 90,
+      "signing_key_fingerprint": "399218A6E088C4053F4533BE58097F767EDCA82E",
+      "signing_key_url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1/repodata/repomd.xml.key"
+    },
+    {
+      "alias": "repo-vega",
+      "base_url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/vega/openSUSE_Leap_16.1/",
+      "priority": 90,
+      "signing_key_fingerprint": "399218A6E088C4053F4533BE58097F767EDCA82E",
+      "signing_key_url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/vega/openSUSE_Leap_16.1/repodata/repomd.xml.key"
+    },
+    {
+      "alias": "repo-fina",
+      "base_url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/fina/openSUSE_Leap_16.1/",
+      "priority": 90,
+      "signing_key_fingerprint": "399218A6E088C4053F4533BE58097F767EDCA82E",
+      "signing_key_url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/fina/openSUSE_Leap_16.1/repodata/repomd.xml.key"
+    },
+    {
+      "alias": "lyra-portal-staging",
+      "base_url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1/",
+      "priority": 99,
+      "signing_key_fingerprint": "399218A6E088C4053F4533BE58097F767EDCA82E",
+      "signing_key_url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1/repodata/repomd.xml.key"
+    }
+  ],
+  "schema_version": 1,
+  "sequence": 1,
+  "source": {
+    "architecture": "x86_64",
+    "build_id": "lyra-release-1.1",
+    "edition": "desktop",
+    "version": "1.1"
+  },
+  "status": "testing",
+  "target": {
+    "architecture": "x86_64",
+    "build_id": "lyra-release-1.1",
+    "edition": "desktop",
+    "version": "1.1"
+  },
+  "valid_from": "2026-09-27T00:00:00Z",
+  "valid_until": "2026-10-11T00:00:00Z"
+}

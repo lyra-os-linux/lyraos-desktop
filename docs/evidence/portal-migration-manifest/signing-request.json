@@ -1,0 +1,9 @@
+{
+  "manifest_filename": "releases-v1.json",
+  "manifest_sha256": "da4b5e61554a553397c307943711343441b2c1b4070b244f1cc287ab98e2ed29",
+  "schema": 1,
+  "signature_filename": "releases-v1.json.asc",
+  "signature_format": "OpenPGP ASCII-armored detached signature",
+  "signing_key_fingerprint": "01B63EEDBE6B079126A0116EFA7353A131ECEFEB",
+  "status": "awaiting-signature"
+}

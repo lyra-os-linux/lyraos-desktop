@@ -95,7 +95,7 @@ all Lyra/Vega/Fina staging targets are published. See the
 and [structured evidence](https://github.com/lyra-os-linux/lyraos-desktop-updater/blob/9bcb6249e112a4f26c11402e87460f52d95feb4e/docs/package-migration-staging-evidence.json).
 These packaged-component tests retain the fixture and authorization limits above.
 
-Next, prepare the reviewed portal manifest with
+Delivery requires a reviewed portal manifest with
 `minimum_updater_version >= 0.2.7`, unchanged Lyra identity and the exact artifact
 entries. Sign it through the existing release key workflow and exercise the real
 portal with/without translations through the Updater in a complete Btrfs
@@ -103,6 +103,15 @@ baseline, including authorization and recovery. The existing parental portal VM
 uses ext4 and is not that baseline. Staging now contains 0.2.7; release remains
 on 0.2.5, revision 12. Do not raise the image minimum to an unavailable release
 RPM. The normal vegad update command retains its existing policy.
+
+An [unsigned testing manifest and signing handoff](evidence/portal-migration-manifest/README.md)
+now pins those artifact entries, unchanged identity and minimum Updater 0.2.7.
+Its seven public repository keys and exact policy passed preflight review.
+Sequence 1 is reserved here only for a fresh disposable testing baseline, with
+no consumed sequence; the document is not a production sequence allocation.
+The official detached signature and a dedicated HTTPS testing endpoint are still
+required before the full VM migration. Never substitute a test key for the
+shipped key or use this handoff as evidence of a completed delivery.
 
 A production transition must also handle running user sessions and service
 restart/reboot behavior. The native fixture intentionally uses inactive GDM and
