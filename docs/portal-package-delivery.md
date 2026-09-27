@@ -63,10 +63,32 @@ and [structured evidence](https://github.com/lyra-os-linux/lyraos-desktop-update
 This qualifies the package and PackageKit coexistence; the real signed portal
 migration has not been exercised.
 
-Next, prepare a reviewed migration manifest with `minimum_updater_version`
-at least `0.2.6` and exact package names, preserve translation presence, inspect
-the complete solver plan, and qualify signed staging/offline execution with
-snapshot and recovery. Release remains on 0.2.5 until the promotion gates pass;
+Package scopes alone do not provide a same-release route or exclude unrelated
+same-vendor updates. The maintainer chose to deliver this correction within the
+existing Lyra 1.1 identity. Updater 0.2.7 implements an explicit signed
+`PackageMigration` operation with `source == target`, exact source/target RPM
+identity, repository and SHA256, and `if_installed` for translations. Its complete
+solver plan must match the pending entries; no additional dependencies, removals,
+downgrades or forced same-edition replacement are permitted. Repositories remain
+unchanged, and confirmation, snapshot, offline execution and boot/rollback
+verification use the existing service. See
+[the implementation contract](https://github.com/lyra-os-linux/lyraos-desktop-updater/blob/9e861a2b5228b9e67d64baa786afdc8450c5e1de/docs/package-migration.md)
+and [component qualification](https://github.com/lyra-os-linux/lyraos-desktop-updater/blob/9e861a2b5228b9e67d64baa786afdc8450c5e1de/docs/evidence/package-migration/README.md).
+
+The local 0.2.7 binaries passed 145 Rust tests, 35 Python/UI tests, native signed
+fixture RPM transitions, three cold boots for success and four for explicit
+Snapper recovery. Signature/payload tampering blocked before application;
+rollback restored inventory and retained the replay sequence. These tests use
+inert packages, an ephemeral guest signing key and an authenticated UID fixture;
+they do not qualify interactive Polkit or the actual portal migration.
+
+Next, build and qualify the signed **0.2.7 OBS staging RPM**, then prepare the
+reviewed portal manifest with `minimum_updater_version >= 0.2.7`, unchanged Lyra
+identity and the exact artifact entries. Sign it through the existing release
+key workflow and exercise the real portal with/without translations through the
+Updater in a complete Btrfs baseline, including authorization and recovery.
+The existing parental portal VM uses ext4 and is not that baseline. Staging
+remains on 0.2.6 and release on 0.2.5 until their respective delivery gates pass;
 do not raise the image minimum to an unavailable release RPM. The normal vegad
 update command retains its existing policy.
 
