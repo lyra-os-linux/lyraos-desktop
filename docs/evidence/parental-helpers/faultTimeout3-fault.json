@@ -1,0 +1,1 @@
+{"enforcing": true, "phase": "preparechooser", "fault": "timeout", "action": "SIGSTOP until configured RuntimeMaxSec=300"}

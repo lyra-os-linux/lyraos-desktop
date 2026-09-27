@@ -58,7 +58,15 @@ de utilizá-lo como uma camada complementar.
 
 ## Próxima implementação
 
-### Progresso experimental em 26/09
+### Progresso experimental em 27/09
+
+A [etapa de auxiliares GNOME](evidence/parental-helpers/README.md) separa
+Notifications, ScreenSaver e Screencast em domínios privados com entradas fixas.
+PipeWire e o servidor Pulse também usam configuração fixa e domínio próprio,
+para receber buffers do compositor sem dar à conta escrita na memória privada.
+Os ensaios exigem notificação com controle de proprietário, bloqueio de tela,
+gravação e decodificação, controles de memória e regressões anteriores. Isso
+não comprova autenticação, resistência a abuso das APIs nem proteção integral.
 
 A [etapa de áudio, portais e busca](evidence/parental-session/README.md)
 integra os demais SettingsDaemon, PipeWire e portais, um lançador fixo do

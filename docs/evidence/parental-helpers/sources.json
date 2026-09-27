@@ -1,0 +1,26 @@
+{
+  "sources": [
+    {
+      "file": "fuse3.src.rpm",
+      "sha256": "09d6115fcaef45050093665ceae51054c73116ee6e76b907d4072f516549c330",
+      "signature": "analysis/2026-09-25/parental-session/fuse3.src.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+      "metadata": "fuse3 3.16.2-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/e7105ee040eab748d963cc9ecf259cdb-fuse3\n"
+    },
+    {
+      "file": "wireplumber.src.rpm",
+      "sha256": "3bb1df7eb36b02761dfb1cdd8253b60012a348d50020899ff256fdf34b175ea0",
+      "signature": "analysis/2026-09-25/parental-session/wireplumber.src.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+      "metadata": "wireplumber 0.5.15-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/7c8b394c8dd009bc471515e25e2cf3ad-wireplumber\n"
+    },
+    {
+      "file": "lyra-parental-localsearch.src.rpm",
+      "url": "https://cdn.opensuse.org/source/distribution/leap/16.1/repo/oss/src/localsearch-3.9.0+59-160100.2.1.src.rpm",
+      "sha256": "27a82a82a197d61f4613664df997fbf43f07890ec6588cf97a92f42d5569d77f",
+      "signature": "/tmp/lyra-parental-localsearch.src.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+      "metadata": "localsearch 3.9.0+59-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/27bf158174acc09c8fca63e813975564-localsearch\n"
+    }
+  ],
+  "fuse_note": "Exact installed source revision. SUSE patch changes configuration filename to fuse3.conf; upstream checks real UID ownership/write permissions, then restores effective privileges for mount. Only the native setuid helper gets private-domain mount and dac_read_search permissions.",
+  "wireplumber_note": "Official source 0.5.15: explicit CONFIG/DATA/MODULE overrides skip user search directories. Fixed launcher discards caller environment and arguments. This remains a fixture for UID1003.",
+  "localsearch_note": "Exact installed source revision; native CLI/indexer/control/extractor, fixed extractor path, compiled native modules; writable module execution remains denied. Writeback and Python test-sandbox not approved."
+}

@@ -1,0 +1,62 @@
+{
+  "packages": [
+    {
+      "file": "gstreamer-plugins-good-1.28.5-160100.2.1.x86_64.rpm",
+      "sha256": "f6a6fde44116fa3ad1efa2190a4a7be8dce54c7ccdcf7ba16ebdbb8d07d960f6",
+      "signature": "/root/parental-gstreamer/gstreamer-plugins-good-1.28.5-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    },
+    {
+      "file": "libgstfft-1_0-0-1.28.5-160100.2.1.x86_64.rpm",
+      "sha256": "ef7d3456dcc99b04c2364ef82aeb0da1da664c03e7f6b9fcecb4618ed7db1fdf",
+      "signature": "/root/parental-gstreamer/libgstfft-1_0-0-1.28.5-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    },
+    {
+      "file": "libgstrtp-1_0-0-1.28.5-160100.2.1.x86_64.rpm",
+      "sha256": "7f32960ade3d6fe2eaee89f743c848b8f436265aa75a9e8436fcb52cfd431a73",
+      "signature": "/root/parental-gstreamer/libgstrtp-1_0-0-1.28.5-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    },
+    {
+      "file": "libgstrtsp-1_0-0-1.28.5-160100.2.1.x86_64.rpm",
+      "sha256": "bf66fe91398e0acba15b2676c7e232282bab140baa54ac45f3a8eab6828a98c1",
+      "signature": "/root/parental-gstreamer/libgstrtsp-1_0-0-1.28.5-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    },
+    {
+      "file": "libgstsdp-1_0-0-1.28.5-160100.2.1.x86_64.rpm",
+      "sha256": "6a0425c52286a1b72ba9c66eedf0f66b78e969dc5f8980691ef193bf68263d1c",
+      "signature": "/root/parental-gstreamer/libgstsdp-1_0-0-1.28.5-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    },
+    {
+      "file": "libtag2-2.1.1-160100.2.1.x86_64.rpm",
+      "sha256": "c233f2855004ccc735c90b38cffbddd22c0aba73d86c5cd96a4923a58584c84f",
+      "signature": "/root/parental-gstreamer/libtag2-2.1.1-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    },
+    {
+      "file": "libv4l-1.30.1-160100.2.1.x86_64.rpm",
+      "sha256": "9ef4b52c8b0575511384c63e7a9fdecd63f05e5d2b9ad81a0df390803d52b7e0",
+      "signature": "/root/parental-gstreamer/libv4l-1.30.1-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    },
+    {
+      "file": "libv4l1-0-1.30.1-160100.2.1.x86_64.rpm",
+      "sha256": "6c303c9df71034d4d03ff0ffc6cca16e6acb1c82fbf5f7db80904acf6cfde7cf",
+      "signature": "/root/parental-gstreamer/libv4l1-0-1.30.1-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    },
+    {
+      "file": "libv4l2-0-1.30.1-160100.2.1.x86_64.rpm",
+      "sha256": "41eaf7828e276e0bad904f3604d14c888e45f7c4706f7a5b93a08065b039bf03",
+      "signature": "/root/parental-gstreamer/libv4l2-0-1.30.1-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    },
+    {
+      "file": "libv4lconvert0-1.30.1-160100.2.1.x86_64.rpm",
+      "sha256": "ee8fc8952bb4b5eb1d169007005ce5974ef29f14c48a52807d0226a1dfa5c111",
+      "signature": "/root/parental-gstreamer/libv4lconvert0-1.30.1-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    },
+    {
+      "file": "libwavpack1-5.7.0-160100.2.1.x86_64.rpm",
+      "sha256": "f3310eb23a626f8d0a2c94612b06f49fcd6918d857b2e2ee83090a4108e06e58",
+      "signature": "/root/parental-gstreamer/libwavpack1-5.7.0-160100.2.1.x86_64.rpm: digests signatures OK\n"
+    }
+  ],
+  "rc": 0,
+  "stdout": "'/root/parental-gstreamer/gstreamer-plugins-good-1.28.5-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\n'/root/parental-gstreamer/libgstfft-1_0-0-1.28.5-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\n'/root/parental-gstreamer/libgstrtp-1_0-0-1.28.5-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\n'/root/parental-gstreamer/libgstrtsp-1_0-0-1.28.5-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\n'/root/parental-gstreamer/libgstsdp-1_0-0-1.28.5-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\n'/root/parental-gstreamer/libtag2-2.1.1-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\n'/root/parental-gstreamer/libv4l-1.30.1-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\n'/root/parental-gstreamer/libv4l1-0-1.30.1-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\n'/root/parental-gstreamer/libv4l2-0-1.30.1-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\n'/root/parental-gstreamer/libv4lconvert0-1.30.1-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\n'/root/parental-gstreamer/libwavpack1-5.7.0-160100.2.1.x86_64.rpm' looks like an RPM file. Will try to use it.\nLoading repository data...\nReading installed packages...\nResolving package dependencies...\n\nThe following 11 NEW packages are going to be installed:\n  gstreamer-plugins-good libgstfft-1_0-0 libgstrtp-1_0-0 libgstrtsp-1_0-0 libgstsdp-1_0-0 libtag2 libv4l libv4l1-0 libv4l2-0 libv4lconvert0 libwavpack1\n\n11 new packages to install.\n\nPackage download size:     4.1 MiB\n\nPackage install size change:\n              |       9.4 MiB  required by packages that will be installed\n     9.4 MiB  |  -      0 B    released by packages that will be removed\n\nBackend:  classic_rpmtrans\nContinue? [y/n/v/...? shows all options] (y): y\nRetrieving: libgstfft-1_0-0-1.28.5-160100.2.1.x86_64 (Plain RPM files cache) (1/11), 167.8 KiB    \nRetrieving: libgstrtp-1_0-0-1.28.5-160100.2.1.x86_64 (Plain RPM files cache) (2/11), 216.2 KiB    \nRetrieving: libgstrtsp-1_0-0-1.28.5-160100.2.1.x86_64 (Plain RPM files cache) (3/11), 209.3 KiB    \nRetrieving: libtag2-2.1.1-160100.2.1.x86_64 (Plain RPM files cache) (4/11), 405.0 KiB    \nRetrieving: libv4l2-0-1.30.1-160100.2.1.x86_64 (Plain RPM files cache) (5/11),  87.7 KiB    \nRetrieving: libv4l-1.30.1-160100.2.1.x86_64 (Plain RPM files cache) (6/11), 164.7 KiB    \nRetrieving: libv4l1-0-1.30.1-160100.2.1.x86_64 (Plain RPM files cache) (7/11),  79.6 KiB    \nRetrieving: libv4lconvert0-1.30.1-160100.2.1.x86_64 (Plain RPM files cache) (8/11), 133.3 KiB    \nRetrieving: libwavpack1-5.7.0-160100.2.1.x86_64 (Plain RPM files cache) (9/11),  97.2 KiB    \nRetrieving: libgstsdp-1_0-0-1.28.5-160100.2.1.x86_64 (Plain RPM files cache) (10/11), 190.3 KiB    \nRetrieving: gstreamer-plugins-good-1.28.5-160100.2.1.x86_64 (Plain RPM files cache) (11/11),   2.4 MiB    \n\nChecking for file conflicts: [..done]\n( 1/11) Installing: libgstfft-1_0-0-1.28.5-160100.2.1.x86_64 [..done]\n( 2/11) Installing: libgstrtp-1_0-0-1.28.5-160100.2.1.x86_64 [..done]\n( 3/11) Installing: libgstrtsp-1_0-0-1.28.5-160100.2.1.x86_64 [..done]\n( 4/11) Installing: libtag2-2.1.1-160100.2.1.x86_64 [..done]\n( 5/11) Installing: libv4l2-0-1.30.1-160100.2.1.x86_64 [..done]\n( 6/11) Installing: libv4l-1.30.1-160100.2.1.x86_64 [..done]\n( 7/11) Installing: libv4l1-0-1.30.1-160100.2.1.x86_64 [..done]\n( 8/11) Installing: libv4lconvert0-1.30.1-160100.2.1.x86_64 [..done]\n( 9/11) Installing: libwavpack1-5.7.0-160100.2.1.x86_64 [..done]\n(10/11) Installing: libgstsdp-1_0-0-1.28.5-160100.2.1.x86_64 [..done]\n(11/11) Installing: gstreamer-plugins-good-1.28.5-160100.2.1.x86_64 [..done]\nRunning post-transaction scripts [...done]\n",
+  "stderr": ""
+}

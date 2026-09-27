@@ -1,0 +1,46 @@
+[
+  {
+    "tag": "diagH3",
+    "audit_lost": 0,
+    "audit_limited": false,
+    "denials": [
+      {
+        "count": 2,
+        "line": "type=AVC msg=audit(1790461111.706:187835): avc:  denied  { execmem } for  pid=20038 comm=\"gjs\" scontext=lyra_parental_u:lyra_parental_r:lyra_parental_screencast_t:s0 tcontext=lyra_parental_u:lyra_parental_r:lyra_parental_screencast_t:s0 tclass=process permissive=0"
+      }
+    ]
+  },
+  {
+    "tag": "diagH7",
+    "audit_lost": 0,
+    "audit_limited": false,
+    "denials": [
+      {
+        "count": 2,
+        "line": "type=AVC msg=audit(1790461771.813:230051): avc:  denied  { write } for  pid=24391 comm=\"gnome-shell\" path=2F6D656D66643A7761796C616E642D637572736F72202864656C6574656429 dev=\"tmpfs\" ino=2558 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_shell_t:s0 tcontext=lyra_parental_u:object_r:lyra_parental_screencast_memory_t:s0 tclass=file permissive=0"
+      }
+    ]
+  },
+  {
+    "tag": "diagH10",
+    "audit_lost": 0,
+    "audit_limited": false,
+    "denials": [
+      {
+        "count": 1,
+        "line": "type=AVC msg=audit(1790462103.326:261942): avc:  denied  { write } for  pid=28003 comm=\"pipewire\" path=2F6D656D66643A6D75747465722D73637265656E2D636173742D6D656D6664202864656C6574656429 dev=\"tmpfs\" ino=2809 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0 tcontext=lyra_parental_u:object_r:lyra_parental_shell_memory_t:s0 tclass=file permissive=0"
+      }
+    ]
+  },
+  {
+    "tag": "diagH14",
+    "audit_lost": 0,
+    "audit_limited": false,
+    "denials": [
+      {
+        "count": 1,
+        "line": "type=AVC msg=audit(1790462565.333:295598): avc:  denied  { write } for  pid=32029 comm=\"pipewire-main-l\" path=2F6D656D66643A6D75747465722D73637265656E2D636173742D6D656D6664202864656C6574656429 dev=\"tmpfs\" ino=3070 scontext=lyra_parental_u:lyra_parental_r:lyra_parental_screencast_t:s0 tcontext=lyra_parental_u:object_r:lyra_parental_shell_memory_t:s0 tclass=file permissive=0"
+      }
+    ]
+  }
+]
