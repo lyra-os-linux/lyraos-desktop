@@ -1,0 +1,29 @@
+{
+  "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1",
+  "metadata_signature": "verified",
+  "signing_fingerprint": "399218A6E088C4053F4533BE58097F767EDCA82E",
+  "packages": [
+    {
+      "filename": "xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.160101.1.x86_64.rpm",
+      "name": "xdg-desktop-portal-gnome",
+      "version": "48.0-160100.2.1.lyra1.160101.1",
+      "architecture": "x86_64",
+      "size": 210917,
+      "sha256": "9e7f6622e12cc8c343f772b5900d4ca7e4be01c9a20ef9477cf24373e55b1670",
+      "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1/x86_64/xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.160101.1.x86_64.rpm",
+      "signature": "verified",
+      "disturl": "obs://build.opensuse.org/home:rodrigosbrito:lyra:staging/openSUSE_Leap_16.1/077471ed2335bc96dcb5b43fef6e1334-xdg-desktop-portal-gnome"
+    },
+    {
+      "filename": "xdg-desktop-portal-gnome-lang-48.0-160100.2.1.lyra1.160101.1.noarch.rpm",
+      "name": "xdg-desktop-portal-gnome-lang",
+      "version": "48.0-160100.2.1.lyra1.160101.1",
+      "architecture": "noarch",
+      "size": 85015,
+      "sha256": "ba84d6486f3b5907c86e0a38e17d93e939e0dbb674cd3ea4754deac256f50a28",
+      "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1/noarch/xdg-desktop-portal-gnome-lang-48.0-160100.2.1.lyra1.160101.1.noarch.rpm",
+      "signature": "verified",
+      "disturl": "obs://build.opensuse.org/home:rodrigosbrito:lyra:staging/openSUSE_Leap_16.1/077471ed2335bc96dcb5b43fef6e1334-xdg-desktop-portal-gnome"
+    }
+  ]
+}

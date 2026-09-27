@@ -1,0 +1,492 @@
+<buildinfo project="home:rodrigosbrito:lyra:staging" repository="openSUSE_Leap_16.1" package="xdg-desktop-portal-gnome" downloadurl="https://download.opensuse.org/repositories">
+  <arch>x86_64</arch>
+  <srcmd5>077471ed2335bc96dcb5b43fef6e1334</srcmd5>
+  <verifymd5>077471ed2335bc96dcb5b43fef6e1334</verifymd5>
+  <rev>2</rev>
+  <specfile>xdg-desktop-portal-gnome.spec</specfile>
+  <file>xdg-desktop-portal-gnome.spec</file>
+  <versrel>48.0-160101</versrel>
+  <bcnt>2</bcnt>
+  <release>lp161.160101.2</release>
+  <debuginfo>0</debuginfo>
+  <subpack>xdg-desktop-portal-gnome</subpack>
+  <subpack>xdg-desktop-portal-gnome-debuginfo</subpack>
+  <subpack>xdg-desktop-portal-gnome-debugsource</subpack>
+  <subpack>xdg-desktop-portal-gnome-lang</subpack>
+  <bdep name="liblua5_4-5" preinstall="1" notmeta="1" version="5.4.7" release="160100.2.1" arch="x86_64" hdrmd5="ba960a3dabd078a8280b407cd02f1a83" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="aaa_base" preinstall="1" notmeta="1" version="84.87+git20260610.3b5a868c" release="160100.2.1" arch="x86_64" hdrmd5="7468f7f1e89c523a6defd2246fa5b206" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="filesystem" preinstall="1" notmeta="1" version="84.87" release="160100.2.1" arch="x86_64" hdrmd5="dbc9652ed58cb84a56cd59eef8bf235a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="attr" preinstall="1" notmeta="1" version="2.5.2" release="160100.2.1" arch="x86_64" hdrmd5="db991b8e6815b897af651266b2ba731f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="bash" preinstall="1" notmeta="1" version="5.2.37" release="160100.2.1" arch="x86_64" hdrmd5="15d645a1952a8fb2d74e57485101ed95" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="bash-sh" preinstall="1" notmeta="1" version="5.2.37" release="160100.2.1" arch="noarch" hdrmd5="05623cefcb4efc595375f87d0ec22135" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="coreutils" preinstall="1" notmeta="1" version="9.6" release="160100.3.1" arch="x86_64" hdrmd5="89e82d65ab2ea929bff0e235eac5da5b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="diffutils" preinstall="1" notmeta="1" version="3.12" release="160100.2.1" arch="x86_64" hdrmd5="52bf87c6614f6b073d946f698234e904" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="fillup" preinstall="1" notmeta="1" version="1.42" release="160100.2.1" arch="x86_64" hdrmd5="4b48785c7863d8cff585a52ba3cf2d7f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="glibc" preinstall="1" notmeta="1" version="2.40" release="160100.3.1" arch="x86_64" hdrmd5="79c7b57d936ba5f63badcc1216bcb834" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="grep" preinstall="1" notmeta="1" version="3.11" release="160100.2.1" arch="x86_64" hdrmd5="8b73f9f8e46bbbf61f9a9bd82e111a75" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="pam" preinstall="1" notmeta="1" version="1.7.2+git12" release="160100.2.1" arch="x86_64" hdrmd5="bc910f36e46980d4439a89056576609e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="permissions" preinstall="1" notmeta="1" version="1699_20260518" release="160100.2.1" arch="x86_64" hdrmd5="55888e3edd71a52d9f4ae9a21719b352" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="rpm" preinstall="1" notmeta="1" version="4.20.1" release="160100.3.2" arch="x86_64" hdrmd5="cf6aa7bcba921555db738dafe6df6337" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="sed" preinstall="1" notmeta="1" version="4.9" release="160100.2.1" arch="x86_64" hdrmd5="3f64c61ef7e6ce3addda793b880cf6cb" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="tar" preinstall="1" notmeta="1" version="1.35" release="160100.2.3" arch="x86_64" hdrmd5="f2f6f6ba25368c1f8c22501ffb41cffb" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libbz2-1" preinstall="1" notmeta="1" version="1.0.8" release="160100.3.1" arch="x86_64" hdrmd5="1467470e93e569a8823a601156c74bcc" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgcc_s1" preinstall="1" notmeta="1" version="16.2.0+git9497" release="160100.2.1" arch="x86_64" hdrmd5="1fde58ba34fe2c36338305147f2bd3b9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libncurses6" preinstall="1" notmeta="1" version="6.5.20250531" release="160100.2.1" arch="x86_64" hdrmd5="d931f6297c43526159209cf2540738e2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libreadline8" preinstall="1" notmeta="1" version="8.2.13" release="160100.2.1" arch="x86_64" hdrmd5="731d52f9933cadc1f213931a7dbefed7" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libz1" preinstall="1" notmeta="1" version="1.2.13" release="160100.2.1" arch="x86_64" hdrmd5="90532cd4337d18357bee458de8e4a179" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libselinux1" preinstall="1" notmeta="1" version="3.11" release="160100.2.1" arch="x86_64" hdrmd5="32190c558d9c196ca5bd3ec84149dc51" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgcrypt20" preinstall="1" notmeta="1" version="1.12.1" release="160100.2.3" arch="x86_64" hdrmd5="872115e676b3085424191e6a084a4b3f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgpg-error0" preinstall="1" notmeta="1" version="1.58" release="160100.2.1" arch="x86_64" hdrmd5="7e3f1ab4e7cfc2c83c912379d3c96fe0" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="liblzma5" preinstall="1" notmeta="1" version="5.8.1" release="160100.2.1" arch="x86_64" hdrmd5="15e0d7f60d3d6876fc15a6d3eb4d6603" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcap2" preinstall="1" notmeta="1" version="2.78" release="160100.2.1" arch="x86_64" hdrmd5="e21f195bf9c2c7bb42b3366f93309e67" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libacl1" preinstall="1" notmeta="1" version="2.3.2" release="160100.2.1" arch="x86_64" hdrmd5="5c968d65c6441549d3c9e25b8f7ede44" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libattr1" preinstall="1" notmeta="1" version="2.5.2" release="160100.2.1" arch="x86_64" hdrmd5="d0b808aaa4ce0bf896acd183ec4ed668" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpopt0" preinstall="1" notmeta="1" version="1.19" release="160100.2.1" arch="x86_64" hdrmd5="2b8a8d20aebfc2164af15e805be86182" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libelf1" preinstall="1" notmeta="1" version="0.192" release="160100.2.1" arch="x86_64" hdrmd5="853b02e97b5c771a3979742700f6b8e7" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libzstd1" preinstall="1" notmeta="1" version="1.5.7" release="160100.2.1" arch="x86_64" hdrmd5="3086f68a5451e849c45404216275f7df" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpcre2-8-0" preinstall="1" notmeta="1" version="10.45" release="160100.3.1" arch="x86_64" hdrmd5="8afa766a5d98fc44b01a05c57cf9136f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libeconf0" preinstall="1" notmeta="1" version="0.7.9" release="160100.2.1" arch="x86_64" hdrmd5="59bb69a1fb48a870f6651d45d15096dd" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libjitterentropy3" preinstall="1" notmeta="1" version="3.6.3" release="160100.2.1" arch="x86_64" hdrmd5="e57cda5155ab17296e48df673493c9fe" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="util-linux" vminstall="1" version="2.42.1" release="160100.2.1" arch="x86_64" hdrmd5="84527e5606c0f02612d11b83cf4e4cdd" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libmount1" vminstall="1" version="2.42.1" release="160100.2.1" arch="x86_64" hdrmd5="c72e53fcdb5fd720ab04f09458c49f4d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="perl-base" vminstall="1" notmeta="1" version="5.42.1" release="160100.2.1" arch="x86_64" hdrmd5="9fd6099d5111032a47d3e543d23f6041" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libdb-4_8" vminstall="1" notmeta="1" version="4.8.30" release="160100.2.1" arch="x86_64" hdrmd5="22f001272aa75e3545c047d4d8deb5ad" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libblkid1" vminstall="1" version="2.42.1" release="160100.2.1" arch="x86_64" hdrmd5="c09c253e0ed5acae6c4e14a9611d5822" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libuuid1" vminstall="1" version="2.42.1" release="160100.2.1" arch="x86_64" hdrmd5="aae67b47dff9281844bfb082c1f05e18" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsmartcols1" vminstall="1" version="2.42.1" release="160100.2.1" arch="x86_64" hdrmd5="6a6bad96cb690ac241935d12f4939c1a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcrypt1" vminstall="1" version="4.4.38" release="160100.2.1" arch="x86_64" hdrmd5="ee947451e66b2fe78025510254b14788" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="kernel-obs-build" vminstall="1" notmeta="1" version="6.12.0" release="160100.5.1" arch="x86_64" hdrmd5="c76605ce81346450a4de701386bd5c99" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="zstd" version="1.5.7" release="160100.2.1" arch="x86_64" hdrmd5="db0f024ad5484567b579dd616f2c05f2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="fontconfig" version="2.16.0" release="160100.2.1" arch="x86_64" hdrmd5="bf5bafe61e0b93a6413ee9a2060ff0b7" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="meson" version="1.8.1" release="160100.2.1" arch="noarch" hdrmd5="af49b83ba1a6176c84e65cac38b0d609" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="xdg-desktop-portal-gtk" version="1.15.3" release="160100.2.1" arch="x86_64" hdrmd5="9db208a26323ff14f3da33857f4ccd3f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="pkgconf-pkg-config" version="2.2.0" release="160100.2.1" arch="x86_64" hdrmd5="09c16d2f0d2ea8cef09fd692d5556d99" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="dbus-1-devel" version="1.14.10" release="160100.2.1" arch="x86_64" hdrmd5="3fc87f3e88194502fd833c12ff3d17e0" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgnome-desktop-4-devel" version="44.3" release="160100.2.1" arch="x86_64" hdrmd5="77cb7e16dab76aebba0104bfbb7c57c5" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gsettings-desktop-schemas-devel" version="48.0" release="160100.2.1" arch="x86_64" hdrmd5="99303b465dd190b486a59246651169a3" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gtk4-devel" version="4.18.6" release="160100.2.1" arch="x86_64" hdrmd5="4bc5cc68b39e1fa96640224abed45e92" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libadwaita-devel" version="1.7.5" release="160100.2.1" arch="x86_64" hdrmd5="e9b8ba8638569e08903e3dcfeb398427" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="xdg-desktop-portal-devel" version="1.20.4" release="160100.2.1" arch="x86_64" hdrmd5="47736444c3f3e43bc914c462d7b67178" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libfreetype6" version="2.14.3" release="160100.2.1" arch="x86_64" hdrmd5="e00c8cbef4d3b5a12614f915c697ab5d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libfontconfig1" version="2.16.0" release="160100.2.1" arch="x86_64" hdrmd5="79cb75b9a4c564955f65cccf98949375" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="python313-base" version="3.13.13" release="160100.2.1" arch="x86_64" hdrmd5="59a24566bb69aee6fea2055eb9fc34fb" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="ninja" version="1.12.1" release="160100.2.1" arch="x86_64" hdrmd5="9c223723ca8a0b201dc0f2fdf60a61b9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgtk-3-0" version="3.24.52" release="160100.2.1" arch="x86_64" hdrmd5="d02506300033c50c19d502bf122431a2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgdk_pixbuf-2_0-0" version="2.42.12" release="160100.2.1" arch="x86_64" hdrmd5="41d527757bec1b572d59c3c1d8bdf657" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gsettings-desktop-schemas" version="48.0" release="160100.2.1" arch="x86_64" hdrmd5="334d2b7409db55ceaa71b79f4577293b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="xdg-desktop-portal" version="1.20.4" release="160100.2.1" arch="x86_64" hdrmd5="3b467d406b5665ed260c7d639c44eafa" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="pkgconf-m4" version="2.2.0" release="160100.2.1" arch="noarch" hdrmd5="bc2398c186b43bd6abe817b1f87318ad" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="pkgconf" version="2.2.0" release="160100.2.1" arch="x86_64" hdrmd5="eda5abe68f88fcf1a9c3e5e9f67716bc" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="glibc-devel" version="2.40" release="160100.3.1" arch="x86_64" hdrmd5="2d4f0f6ad3c98a6f16f10e2e7d95f5ed" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libdbus-1-3" version="1.14.10" release="160100.2.1" arch="x86_64" hdrmd5="2cd6a5fe66ed4ec4b25afc5ac5fe5b2e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="dbus-1" version="1.14.10" release="160100.2.1" arch="x86_64" hdrmd5="3b5561e80667046d3a09ce0d34c34387" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libseccomp-devel" version="2.6.0" release="160100.3.1" arch="x86_64" hdrmd5="a3b0b42a16cad79873d408d5d8ed02ec" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="iso-codes-devel" version="4.16.0" release="160100.2.1" arch="noarch" hdrmd5="8781477c1ce57e4b8703cf5c90f2342f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxkbregistry-devel" version="1.8.0" release="160100.2.1" arch="x86_64" hdrmd5="353082273e44929e5176c725fb20af17" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="xkeyboard-config" version="2.47" release="160100.2.1" arch="noarch" hdrmd5="e0098eb5009a7e6a272690f83c2f0ded" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gdk-pixbuf-devel" version="2.42.12" release="160100.2.1" arch="x86_64" hdrmd5="d722dab853774a78086b92b49d7b7633" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgnome-desktop-4-2" version="44.3" release="160100.2.1" arch="x86_64" hdrmd5="620e00cfcabdcef69de22b9a75300a5e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-GnomeBG-4_0" version="44.3" release="160100.2.1" arch="x86_64" hdrmd5="4487f6dbd07bb4b7eee0707939927801" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-GnomeDesktop-4_0" version="44.3" release="160100.2.1" arch="x86_64" hdrmd5="1b5a5bc03a45ebaa655f9b7c6ef69749" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-GnomeRR-4_0" version="44.3" release="160100.2.1" arch="x86_64" hdrmd5="0707d51b2a9394216528870c28d2c7c9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libX11-devel" version="1.8.12" release="160100.2.1" arch="x86_64" hdrmd5="30a0790c1e18543795ce395d66c794a0" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="vulkan-devel" version="1.4.341" release="160100.2.1" arch="x86_64" hdrmd5="e78c4876797cae19926c501e4bfe9ef4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="wayland-devel" version="1.24.0" release="160100.2.1" arch="x86_64" hdrmd5="3688a2c7789ef4ffb78639b82807bc0d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxkbcommon-devel" version="1.8.0" release="160100.2.1" arch="x86_64" hdrmd5="a8f5de7fb004e142ab98b94525ff48e1" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgtk-4-1" version="4.18.6" release="160100.2.1" arch="x86_64" hdrmd5="189c860362417fcc52acf447cb295bea" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gettext-its-gtk4" version="4.18.6" release="160100.2.1" arch="x86_64" hdrmd5="d71cb49e45927b9de0acfd5e5a9aa6d8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gtk4-devel-tools" version="4.18.6" release="160100.2.1" arch="x86_64" hdrmd5="c2fe90d7bfaddb239199ec8daae558d3" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gtk4-tools" version="4.18.6" release="160100.2.1" arch="x86_64" hdrmd5="70fbcbfb11edc4f5fff27e3587bb19b9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="cairo-devel" version="1.18.4" release="160100.2.1" arch="x86_64" hdrmd5="2561b0de92ce5dd68b3383f60edff7ff" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgraphene-devel" version="1.10.8" release="160100.2.1" arch="x86_64" hdrmd5="b0a1ab213f9afaf6afcf011136ab6b7c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="pango-devel" version="1.56.4" release="160100.2.1" arch="x86_64" hdrmd5="09814257641907358d60e7a5b768fe50" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-Gtk-4_0" version="4.18.6" release="160100.2.1" arch="x86_64" hdrmd5="d27fc1b59fa611109a913b0d22b17ab2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="fribidi-devel" version="1.0.15" release="160100.2.1" arch="x86_64" hdrmd5="cb91f7d9b621485814867611bfaeaf64" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="AppStream-devel" version="1.0.5" release="160100.2.1" arch="x86_64" hdrmd5="e3426bee36f86de38f8f611f082a4777" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libadwaita-1-0" version="1.7.5" release="160100.2.1" arch="x86_64" hdrmd5="2a36bc80c147bc6a4fd801fd6d514502" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-Adw-1" version="1.7.5" release="160100.2.1" arch="x86_64" hdrmd5="56065b9ed2634e9a287702c93e6030a3" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpng16-16" version="1.6.58" release="160100.2.1" arch="x86_64" hdrmd5="3c889276e499c866bfdaa3e44e893f89" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libbrotlidec1" version="1.1.0" release="160100.2.1" arch="x86_64" hdrmd5="fb65bd76d2d81bcbafbcbd1a17c82c16" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libexpat1" version="2.7.4" release="160100.2.1" arch="x86_64" hdrmd5="a770fd61698d515abcc6c2632b0f901d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libopenssl3" version="3.5.0" release="160100.3.2" arch="x86_64" hdrmd5="f5aa02f59846ea6d3471b49a40147e24" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="python3-base" version="3.13.13" release="160100.2.1" arch="x86_64" hdrmd5="e8975aca6333034f88dbc6e2a5b18a89" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpython3_13-1_0" version="3.13.13" release="160100.2.1" arch="x86_64" hdrmd5="fafef4c69f1c5a5143b995330f1b308c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libffi8" version="3.4.6" release="160100.2.1" arch="x86_64" hdrmd5="13265997949bb61e711550274f31e75d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libmpdec4" version="4.0.1" release="160100.2.1" arch="x86_64" hdrmd5="97371b095c4853be84cfccc25c995a6a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libX11-6" version="1.8.12" release="160100.2.1" arch="x86_64" hdrmd5="ae8b18bf14995396ba471068a89727da" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcairo2" version="1.18.4" release="160100.2.1" arch="x86_64" hdrmd5="5c46f36dd1f7541b348dd2e0a119ed25" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpango-1_0-0" version="1.56.4" release="160100.2.1" arch="x86_64" hdrmd5="53849c62dc7de1aa388ac32cdd6e08ea" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXext6" version="1.3.6" release="160100.2.1" arch="x86_64" hdrmd5="51aaa48ad6dee1c0bb5f156e6666b921" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libwayland-client0" version="1.24.0" release="160100.2.1" arch="x86_64" hdrmd5="2ff090401034a06a5e383a0a1681d11d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXi6" version="1.8.2" release="160100.2.1" arch="x86_64" hdrmd5="662d9d7273a895cb66194f70b28ca548" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libharfbuzz0" version="12.3.1" release="160100.2.1" arch="x86_64" hdrmd5="c5aa384e941167061c0a0967d85ab651" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxkbcommon0" version="1.8.0" release="160100.2.1" arch="x86_64" hdrmd5="5ac24b7bdef90c28b7844f9185c4f98c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXfixes3" version="6.0.2" release="160100.2.1" arch="x86_64" hdrmd5="967a56e655f2b32801cb04227d59b7e1" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libatk-1_0-0" version="2.58.7" release="160100.2.1" arch="x86_64" hdrmd5="981564eacfc0dc67fb45190932f43736" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcups2" version="2.4.19" release="160100.3.1" arch="x86_64" hdrmd5="d238d58f19c8893c4e9d31a987105273" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libepoxy0" version="1.5.10" release="160100.2.1" arch="x86_64" hdrmd5="87adc2aa7a016237a0dbf0b157411cef" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXrandr2" version="1.5.4" release="160100.2.1" arch="x86_64" hdrmd5="fb09889c960cf0652d1aec153e4f2a28" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="hicolor-icon-theme" version="0.18" release="160100.2.1" arch="noarch" hdrmd5="5f5649a27cde3b15eeb790d66a5afae9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXinerama1" version="1.1.5" release="160100.2.1" arch="x86_64" hdrmd5="b4a67f6a201b9b460463bb4f0975dec6" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcairo-gobject2" version="1.18.4" release="160100.2.1" arch="x86_64" hdrmd5="849adbfa4f7f69204b3ac4a47f48ec52" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libfribidi0" version="1.0.15" release="160100.2.1" arch="x86_64" hdrmd5="a68ec11ea2c61538095072f22e06a0ab" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXdamage1" version="1.1.6" release="160100.2.1" arch="x86_64" hdrmd5="ca4ddaa36d7309c4a15f6cf4ddbeba36" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcolord2" version="1.4.8" release="160100.2.1" arch="x86_64" hdrmd5="892895f686843276772fbc1fcc051cf8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libwayland-egl1" version="1.24.0" release="160100.2.1" arch="x86_64" hdrmd5="14189e61dad39d5086ddc464a48d8800" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXcursor1" version="1.2.3" release="160100.2.1" arch="x86_64" hdrmd5="1283a41f1de6355ea36b08480ca0ec10" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXcomposite1" version="0.4.6" release="160100.2.1" arch="x86_64" hdrmd5="5d957afed6efa5d3552dfbfb90bd9ddb" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="glycin-loaders" version="1.2.4" release="160100.2.1" arch="x86_64" hdrmd5="88374adf6aa20799ab2115980954ddf1" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libwayland-cursor0" version="1.24.0" release="160100.2.1" arch="x86_64" hdrmd5="e38f601dd9b48e90fc4cc825f58ed11f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libatk-bridge-2_0-0" version="2.58.7" release="160100.2.1" arch="x86_64" hdrmd5="4d57fe3b05640d8fc306cd061e67c6de" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gtk3-data" version="3.24.52" release="160100.2.1" arch="noarch" hdrmd5="b88c330b5c448aa7cf9e50f72450a7ea" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gtk3-schema" version="3.24.52" release="160100.2.1" arch="noarch" hdrmd5="48969e07a86a15bddc92192f31f57eda" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gtk3-tools" version="3.24.52" release="160100.2.1" arch="x86_64" hdrmd5="73bbbb676c473aeccf69046340923633" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libjpeg8" version="8.3.2" release="160100.2.1" arch="x86_64" hdrmd5="38f3b5821691398f79c9e12db967aacd" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libtiff6" version="4.7.2" release="160100.2.1" arch="x86_64" hdrmd5="55b2db4f1ee91b16ad3e4b50558a711c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gdk-pixbuf-query-loaders" version="2.42.12" release="160100.2.1" arch="x86_64" hdrmd5="b576725cc3219d8a03f12918266de22a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgstreamer-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="aa6b9478fe77bf3bdfe8c5e15a9d1cde" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libjson-glib-1_0-0" version="1.10.6" release="160100.2.1" arch="x86_64" hdrmd5="3e32dbe3408fe5df9660109a68e62eba" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libfuse3-3" version="3.16.2" release="160100.2.1" arch="x86_64" hdrmd5="3f9e523b58f2eae539b4e31326cb4785" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgudev-1_0-0" version="238" release="160100.2.1" arch="x86_64" hdrmd5="0c8555984571ac808e3f81154df357b5" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgstpbutils-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="8df06f9e642292a1a9c90354a5543cc5" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpipewire-0_3-0" version="1.6.8" release="160100.2.1" arch="x86_64" hdrmd5="698324501e611d7c81edd04a103a20ff" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="fuse3" version="3.16.2" release="160100.2.1" arch="x86_64" hdrmd5="111ef54bdc09748eb771d1b6b3c50767" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpkgconf5" version="2.2.0" release="160100.2.1" arch="x86_64" hdrmd5="81d53fc708eca7c0b757de5371244709" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="linux-glibc-devel" version="6.12" release="160100.2.1" arch="x86_64" hdrmd5="52da7c937782db9b3bf147ed630d483d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcrypt-devel" version="4.4.38" release="160100.2.1" arch="x86_64" hdrmd5="39f859fa7ed1f0b79d92517e8cefbf55" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="dbus-1-common" version="1.14.10" release="160100.2.1" arch="noarch" hdrmd5="60cb970cc32d63e3371e4d160088b05b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="alts" version="1.2+30.a5431e9" release="160100.2.1" arch="x86_64" hdrmd5="1fe24382d337b6876175289f7f6ec721" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="dbus-broker" version="36" release="160100.2.1" arch="x86_64" hdrmd5="41ed340cac963e54dae6514be78b11b9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="dbus-1-tools" version="1.14.10" release="160100.2.1" arch="x86_64" hdrmd5="0b55a291eb2aee3e3068e97408642e6b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libseccomp2" version="2.6.0" release="160100.3.1" arch="x86_64" hdrmd5="b15b0ad4192b2bf47bf94320c8e61450" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="iso-codes" version="4.16.0" release="160100.2.1" arch="noarch" hdrmd5="9768cf1530223629f46ab96edce0a468" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxml2-devel" version="2.13.8" release="160100.2.1" arch="x86_64" hdrmd5="e29ef24b57548c9f549c518d4804a70e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxkbregistry0" version="1.8.0" release="160100.2.1" arch="x86_64" hdrmd5="c40cb79e4b5fe837322771375281d38b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libtiff-devel" version="4.7.2" release="160100.2.1" arch="x86_64" hdrmd5="c3b44a48f73b8c09cef56f4ebe492d5f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="shared-mime-info" version="2.4" release="160100.2.1" arch="x86_64" hdrmd5="f03714978f950a46107dd493d46e54cb" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-GdkPixbuf-2_0" version="2.42.12" release="160100.2.1" arch="x86_64" hdrmd5="352484fafd580315e3749579dbfd64ad" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-GdkPixdata-2_0" version="2.42.12" release="160100.2.1" arch="x86_64" hdrmd5="eecf4e1166bd68349102f609ecdef961" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="bubblewrap" version="0.11.2" release="160100.2.1" arch="x86_64" hdrmd5="a4634c99f47dc5aaf1ce13e831ece1f3" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgnome-desktop-3_0-common" version="44.3" release="160100.2.1" arch="x86_64" hdrmd5="c2ae434e7e7c3562e5ded080f6d38b4b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-GLib-2_0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="773ab837654d77a9c0b1cd727ed31b6b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-GObject-2_0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="9b4c3f0057a2fd0b95ec022eff4b2d83" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-GModule-2_0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="082ef8e2539c7622d0791d16a442ddb8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-Gio-2_0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="055a62dd31af3deff1d1c47a7a21ffa8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="girepository-1_0" version="1.84.0" release="160100.2.1" arch="x86_64" hdrmd5="1b7e76e3e89fc2a5745181fe204e834b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-HarfBuzz-0_0" version="12.3.1" release="160100.2.1" arch="x86_64" hdrmd5="c906cf19767993fdfef811710d484645" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-Pango-1_0" version="1.56.4" release="160100.2.1" arch="x86_64" hdrmd5="69f34004194aa2c4f402f6d7340823c4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="xorgproto-devel" version="2025.1" release="160100.2.1" arch="noarch" hdrmd5="22f5bf65e03d78e7f2aff12095801e14" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libX11-xcb1" version="1.8.12" release="160100.2.1" arch="x86_64" hdrmd5="610228ae9db2e6d156188159d584b59c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-devel" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="9efc6b918800641706733cca124d486d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libvulkan1" version="1.4.341" release="160100.2.1" arch="x86_64" hdrmd5="93652441b0dc80d1f11588108f4ecda8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="vulkan-headers" version="1.4.341" release="160100.2.1" arch="noarch" hdrmd5="148bde8c36f32a248f99d7c2a9c9e3e2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxml2-2" version="2.13.8" release="160100.2.1" arch="x86_64" hdrmd5="bb76f77348e183715101bb25e2ca913b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libffi-devel" version="3.4.6" release="160100.2.1" arch="x86_64" hdrmd5="cbcd461d318b6e04df2d0d2b3a18a0fa" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libwayland-server0" version="1.24.0" release="160100.2.1" arch="x86_64" hdrmd5="1b35d028d4735bf7f9f3d72c6d834d69" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgstvideo-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="19b3e8d578ef533a72da0dc2e6b3030c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgraphene-1_0-0" version="1.10.8" release="160100.2.1" arch="x86_64" hdrmd5="d9b399d0deb2ba60b7934a477d3a09fb" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgstallocators-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="2998e66ef9713027d5ccc9c0a9a06117" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgstgl-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="3f8d5cb77ac9d6072462411e678b2523" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libtracker-sparql-3_0-0" version="3.9.2" release="160100.2.1" arch="x86_64" hdrmd5="f72d1a73abacd51775662e17eb08183f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="adwaita-icon-theme" version="48.1" release="160100.1.1" arch="noarch" hdrmd5="b1e22e047317f8d11fa8375e865d8811" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcloudproviders0" version="0.3.6" release="160100.2.1" arch="x86_64" hdrmd5="96783877c94d87ed706ec55ef88566a9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libharfbuzz-subset0" version="12.3.1" release="160100.2.1" arch="x86_64" hdrmd5="9c624581ebd9d26b07372d00857eef3c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcairo-script-interpreter2" version="1.18.4" release="160100.2.1" arch="x86_64" hdrmd5="de752543d3f5cdb4d02a736dece2ec7a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgstplayer-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="0cfaf10bba33384383a55341ddfe368b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gtk4-schema" version="4.18.6" release="160100.2.1" arch="noarch" hdrmd5="62a9fdbaee9f544d6614449cc81e0e33" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXext-devel" version="1.3.6" release="160100.2.1" arch="x86_64" hdrmd5="13e164f0f5eb5d1a041be51ca76d2798" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="lzo-devel" version="2.10" release="160100.2.1" arch="x86_64" hdrmd5="33b8bfd87f15d74cd64ca6115a8d727c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="fontconfig-devel" version="2.16.0" release="160100.2.1" arch="x86_64" hdrmd5="1edd8eed491c0bde1a1cba42bac12545" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="freetype2-devel" version="2.14.3" release="160100.2.1" arch="x86_64" hdrmd5="b19dc9b929c1e9612d0e5f9db2a27701" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpng16-compat-devel" version="1.6.58" release="160100.2.1" arch="x86_64" hdrmd5="39eebce77d5ed40706a8bc23cc394daf" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpixman-1-0-devel" version="0.46.4" release="160100.2.1" arch="x86_64" hdrmd5="83d20de82c6adc6fb9141cf9b074397a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXrender-devel" version="0.9.12" release="160100.2.1" arch="x86_64" hdrmd5="c85ca80a31866ee9c5eb2410006eabce" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-Graphene-1_0" version="1.10.8" release="160100.2.1" arch="x86_64" hdrmd5="25d2edd13927c850c3d79571897fe5a1" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="harfbuzz-devel" version="12.3.1" release="160100.2.1" arch="x86_64" hdrmd5="7aad21026d67572851efcacf9916cb32" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libthai-devel" version="0.1.29" release="160100.2.1" arch="x86_64" hdrmd5="c27418a6c73517fa6aa0f2d3cb0477ab" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXft-devel" version="2.3.8" release="160100.2.1" arch="x86_64" hdrmd5="8c6862390d29e3c9e98ff3cb4fda45d0" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="AppStream" version="1.0.5" release="160100.2.1" arch="x86_64" hdrmd5="72ef74ac096f8b453415798e957c734f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libappstream5" version="1.0.5" release="160100.2.1" arch="x86_64" hdrmd5="dd7c29a0a09c34246d4b8577eb303594" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="system-user-root" version="20190513" release="160100.2.1" arch="noarch" hdrmd5="de890ca9ddd81f1787d8b652201d1cc4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="compat-usrmerge-tools" version="84.87" release="160100.2.2" arch="x86_64" hdrmd5="3c773158f1bc841646450bb3659b1d48" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libbrotlicommon1" version="1.1.0" release="160100.2.1" arch="x86_64" hdrmd5="f51871d83a67b6ce8fdbd84b2be3c390" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="crypto-policies" version="20250714.cd6043a" release="160100.2.1" arch="noarch" hdrmd5="751bf0bd3f8146903f0fba48e6098756" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb1" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="162a5a281256922d0da2f8d46598bf28" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libX11-data" version="1.8.12" release="160100.2.1" arch="noarch" hdrmd5="d33abacd846d50582faaae3100455013" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpixman-1-0" version="0.46.4" release="160100.2.1" arch="x86_64" hdrmd5="383a0d8954615354180f06365768e730" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXrender1" version="0.9.12" release="160100.2.1" arch="x86_64" hdrmd5="0f7c740f161f7530029c59f70d05ec21" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-shm0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="845556e69b6618c4c1f973926fc1b31a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-render0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="1d6a99941911bcf7c6ef534cdcb11999" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXft2" version="2.3.8" release="160100.2.1" arch="x86_64" hdrmd5="6774c3ea2799ecb6d82f158d6b766c7b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libthai0" version="0.1.29" release="160100.2.1" arch="x86_64" hdrmd5="0e4d22be92189ba60bdf03b807c89519" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgraphite2-3" version="1.3.14" release="160100.2.1" arch="x86_64" hdrmd5="f8bb5ac0a95090da8d97446d74fff258" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgnutls30" version="3.8.10" release="160100.2.6" arch="x86_64" hdrmd5="c6dd5b1ae96ff1173c83c1f4ad132414" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libavahi-common3" version="0.8" release="160100.2.1" arch="x86_64" hdrmd5="43febfd9fba3c1e765ddfdf3c7ae79a1" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libavahi-client3" version="0.8" release="160100.2.1" arch="x86_64" hdrmd5="79920f5f2785d3a1f00f0840b376eaf0" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="cups-config" version="2.4.19" release="160100.3.1" arch="x86_64" hdrmd5="4f2b90088e0ab8de55d41f591100e5dc" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="liblcms2-2" version="2.16" release="160100.3.1" arch="x86_64" hdrmd5="b079f56200e1e08766eed2a147e29ef0" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="librsvg-2-2" version="2.60.2" release="160100.2.1" arch="x86_64" hdrmd5="df46c45972502c5063daeb727eafa034" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libheif1" version="1.23.4" release="160100.1.1" arch="x86_64" hdrmd5="68f9c9ef8f41c471bff7c3aa40445764" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libjxl0_11" version="0.11.2" release="160100.3.1" arch="x86_64" hdrmd5="7226b577d9b4cdf9132cad555040f51b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libatspi0" version="2.58.7" release="160100.2.1" arch="x86_64" hdrmd5="e81794a8569b3c7b9e26dd4b39e917ce" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libjbig2" version="2.1" release="160100.2.1" arch="x86_64" hdrmd5="368afcd882c218e4d63724cbef1148e3" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gstreamer" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="1571978bd9f567ea6bedc1f93fabecb9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libdw1" version="0.192" release="160100.2.1" arch="x86_64" hdrmd5="c3f5a0c87b2155aea559ca3a6a023364" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libunwind8" version="1.8.1" release="160100.2.1" arch="x86_64" hdrmd5="695c7bcf8f542e76fa8281856620d590" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gstreamer-plugins-base" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="3de50d15e3952594dbfb3e641db7bc3b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgstaudio-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="d8d53e21d32c91d43728a901db23054f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgsttag-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="6cc8fa19279d2e0f126e15ade58604ab" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="pipewire-modules-0_3" version="1.6.8" release="160100.2.1" arch="x86_64" hdrmd5="9d97a47738deeb3de59b3a380963de22" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="pipewire-spa-plugins-0_2" version="1.6.8" release="160100.2.1" arch="x86_64" hdrmd5="f0cf03e4244f9e30e80cb76ec6925343" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="sysuser-shadow" version="3.3" release="160100.2.1" arch="noarch" hdrmd5="c0e612445c1cb49cc36a6a3799fafbca" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libalternatives1" version="1.2+30.a5431e9" release="160100.2.1" arch="x86_64" hdrmd5="a1ae3cafca519e05a8937d8eb42bc7e5" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libaudit1" version="4.0" release="160100.2.1" arch="x86_64" hdrmd5="ce052f27557db6b0c5f946017ae6e5aa" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcap-ng0" version="0.8.5" release="160100.2.1" arch="x86_64" hdrmd5="b369da78f9dfd8ee8d40d218e1c0fc7a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="permctl" version="1699_20260518" release="160100.2.1" arch="x86_64" hdrmd5="fc3d58bcef2d5ba9cb134937e55ba7b5" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="permissions-config" version="1699_20260518" release="160100.2.1" arch="noarch" hdrmd5="221475b8e930371aa11fe949e14c8f44" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="xz-devel" version="5.8.1" release="160100.2.1" arch="x86_64" hdrmd5="1b417a5a932c3715fcf019ca003644b9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxml2-tools" version="2.13.8" release="160100.2.1" arch="x86_64" hdrmd5="eaf55a84b118ce3a874086015016aede" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libzstd-devel" version="1.5.7" release="160100.2.1" arch="x86_64" hdrmd5="68690fe5111a4d185d7a142fd606e77d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgnome-desktop-3-20" version="44.3" release="160100.2.1" arch="x86_64" hdrmd5="3ba36169e04129f944871f3436a8b1d6" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgirepository-1_0-1" version="1.84.0" release="160100.2.1" arch="x86_64" hdrmd5="703b690c2934e0c1b65049570f20aaf3" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libharfbuzz-gobject0" version="12.3.1" release="160100.2.1" arch="x86_64" hdrmd5="b69d310df13d7404b19b0b4f1af2f9ea" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-composite0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="a69414d5505c31f3f6a29a9f193b7b21" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-damage0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="3ac665aeba3cff6374f6b2cb904b1617" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-dbe0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="39a368f7d4beba7e8a33280137c7ebbb" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-dpms0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="7c87ad55483b658cf4367e4766a685e2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-dri2-0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="3fe0df16bafb75103d928d4e8f0331d2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-dri3-0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="d460994d1db18d5d8fe147b0e00e31d4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-glx0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="f13d1b00ca79383b2b3d1bd547b4e57b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-present0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="202adb5e9359f2fcb1d0b81d095c52bf" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-randr0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="ad899c13a586e3a7fbdbe1d338433385" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-record0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="7b74591e5e72e8a5110ea7a18dcbb006" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-res0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="598c2d910fa45acaaf1a881490df8756" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-screensaver0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="4c8cb800fbb6570a85d508aff345e346" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-shape0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="ca1be056d1698a45e7684a17751b899f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-sync1" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="fb74f042554b604094993cc53d20a263" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-xf86dri0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="1c1ccda7fa1c5ee9c2d7f164cfb9caad" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-xfixes0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="a40229412cce48784127faa3ca9301b9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-xinerama0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="084c771ab9984c8bb9b64968a5bb7003" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-xinput0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="f2dd7992b313d128e9462bbb7f8fdbf7" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-xkb1" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="4187d16cc1aa3d082609e1d2c78722e4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-xtest0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="4e456ccc72e9e0fef13411bafe092eb4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-xv0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="d5fc1a500177cf4523a5493e3f6b7340" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxcb-xvmc0" version="1.17.0" release="160100.2.1" arch="x86_64" hdrmd5="fd0f5a446796c0c6e9b49963c667594f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXau-devel" version="1.0.12" release="160100.2.1" arch="x86_64" hdrmd5="f9ee585cf0d8bd99087d9534997fe25d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXrandr-devel" version="1.5.4" release="160100.2.1" arch="x86_64" hdrmd5="5940c06691d833acad1b92399bc2a382" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="liborc-0_4-0" version="0.4.41" release="160100.2.1" arch="x86_64" hdrmd5="5ce27526ec09468a5f4631b418d332ad" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libdrm2" version="2.4.131" release="160100.2.1" arch="x86_64" hdrmd5="f130a9feae8826a33bfb677ce4105ea3" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgbm1" version="26.0.7" release="160100.2.1" arch="x86_64" hdrmd5="ea1073e702b285eced285f8ba5cb329f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libglvnd" version="1.7.0" release="160100.2.1" arch="x86_64" hdrmd5="1a4dbc35ebcfe24a6f082724587bef60" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsqlite3-0" version="3.53.2" release="160100.2.1" arch="x86_64" hdrmd5="6fab0040f1c3d9d679763ca78cee04c6" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="liblzo2-2" version="2.10" release="160100.2.1" arch="x86_64" hdrmd5="e7b276bf60664e8c86b14460229ed2c5" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgstplay-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="9ad64fb3fea418a2cb29ebfa8c859a51" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libexpat-devel" version="2.7.4" release="160100.2.1" arch="x86_64" hdrmd5="8a4f3ea5072cb6351d5287c4b54d9294" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libbrotli-devel" version="1.1.0" release="160100.2.1" arch="x86_64" hdrmd5="80798cee8840abb31cb4bedb32d69e20" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libbz2-devel" version="1.0.8" release="160100.3.1" arch="x86_64" hdrmd5="5aa4d088c36cfebc095efd28712fff55" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpng16-devel" version="1.6.58" release="160100.2.1" arch="x86_64" hdrmd5="a518f44026d57df698dce0aef51ec055" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libharfbuzz-cairo0" version="12.3.1" release="160100.2.1" arch="x86_64" hdrmd5="cf6fd821696e8f3a1ae3e928c011e239" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libharfbuzz-icu0" version="12.3.1" release="160100.2.1" arch="x86_64" hdrmd5="5530b37c52ab080aca3c474ecb95c6e8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="graphite2-devel" version="1.3.14" release="160100.2.1" arch="x86_64" hdrmd5="644f69318357cb4ab4d875b8a7adc000" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libicu-devel" version="77.1" release="160100.2.1" arch="x86_64" hdrmd5="96065076aa58c3a8c658cacbd7d4f450" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libdatrie-devel" version="0.2.13" release="160100.2.1" arch="x86_64" hdrmd5="d31cece0f004885128c9366c28603c81" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libyaml-0-2" version="0.2.5" release="160100.2.1" arch="x86_64" hdrmd5="ad47c19e983e29e77a4c63a797d68d5d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxmlb2" version="0.3.21" release="160100.2.1" arch="x86_64" hdrmd5="d423365fd91dcac3564434994392cf3e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXau6" version="1.0.12" release="160100.2.1" arch="x86_64" hdrmd5="de1dd7b4db9116e15551fd50dd70d3ff" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libdatrie1" version="0.2.13" release="160100.2.1" arch="x86_64" hdrmd5="edfd4af24a925336ce63c38ee0ab9bf2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libthai-data" version="0.1.29" release="160100.2.1" arch="x86_64" hdrmd5="b895c74baa6d22ccd4278b4c7d61faba" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgmp10" version="6.3.0" release="160100.2.1" arch="x86_64" hdrmd5="71a968a9508d68c589f71179bb5fd98a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libnettle8" version="3.10.1" release="160100.2.1" arch="x86_64" hdrmd5="f4f3eb68a4f03e3bd32e224fb50f1379" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libidn2-0" version="2.3.8" release="160100.2.1" arch="x86_64" hdrmd5="ae9f610c4a20e94d348763e120b41d4e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libunistring5" version="1.3" release="160100.2.1" arch="x86_64" hdrmd5="66a753a6d5cd8d4ab5267f4847e88b6b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libtasn1-6" version="4.21.0" release="160100.2.1" arch="x86_64" hdrmd5="7e3070e96569222b80d7d602043298dc" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libhogweed6" version="3.10.1" release="160100.2.1" arch="x86_64" hdrmd5="f901db09e7e4a034681789e51ec7f86b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libp11-kit0" version="0.26.2" release="160100.2.1" arch="x86_64" hdrmd5="140ce3df7ece642a31a8c35fb58cd75d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libleancrypto1" version="1.7.2" release="160100.3.1" arch="x86_64" hdrmd5="b0594d628846c8ea6832425689e3f941" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="system-user-lp" version="20170617" release="160100.2.1" arch="noarch" hdrmd5="e6ffb3e5cd2a065b9f57dbfcdcd050ad" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libdav1d7" version="1.5.1" release="160100.2.1" arch="x86_64" hdrmd5="84eb58e3149ef1ca88c2f864b4f08915" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libbrotlienc1" version="1.1.0" release="160100.2.1" arch="x86_64" hdrmd5="12321a30bac19788a2ec8c2b7049932a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsharpyuv0" version="1.5.0" release="160100.2.1" arch="x86_64" hdrmd5="8799afbe724b6d78966c59736c3854ad" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libhwy1" version="1.2.0" release="160100.2.1" arch="x86_64" hdrmd5="027037469e85a273f0ad3b2c6545065f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libasound2" version="1.2.16.1" release="160100.3.1" arch="x86_64" hdrmd5="9de1153e94661c8b19c626cfcde58009" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgstapp-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="aaef64265b6a6023ec77341ad522be9e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libopus0" version="1.5.2" release="160100.2.1" arch="x86_64" hdrmd5="d37f2e1be052a650163778354070033b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libogg0" version="1.3.5" release="160100.2.1" arch="x86_64" hdrmd5="19b1bfe7fbaacc2e6df622a8ec9a1cfc" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libvorbis0" version="1.3.7" release="160100.2.1" arch="x86_64" hdrmd5="aef166a8601a873ca97883036801b0fd" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXv1" version="1.0.12" release="160100.2.1" arch="x86_64" hdrmd5="a4e22cc654c44ba12a105884e5a5c88e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libvorbisenc2" version="1.3.7" release="160100.2.1" arch="x86_64" hdrmd5="0c2ff1872339066aef0de42bd5d10155" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgstriff-1_0-0" version="1.28.5" release="160100.2.1" arch="x86_64" hdrmd5="d3aa9f95cdceb587bbf716d84b402777" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libtheoradec1" version="1.1.1" release="160100.2.1" arch="x86_64" hdrmd5="9cc1cbf13961e8190383e4179416fee3" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libtheoraenc1" version="1.1.1" release="160100.2.1" arch="x86_64" hdrmd5="3ceb6d505a0c85bb7bcfc54ac7ca7022" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpulse0" version="17.0" release="160100.2.1" arch="x86_64" hdrmd5="b1b66eeac1655899be0b43347a450a78" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libffado2" version="2.4.9" release="160100.2.1" arch="x86_64" hdrmd5="90a8f41e004a51d4bed09ae9e43b8fde" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libusb-1_0-0" version="1.0.28" release="160100.3.1" arch="x86_64" hdrmd5="a6f5f74374307b4db1f59a143b4cb2d2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsndfile1" version="1.2.2" release="160100.2.1" arch="x86_64" hdrmd5="2f68d988f4ee7bf7c60208bb8c4f535d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libbluetooth3" version="5.82" release="160100.2.1" arch="x86_64" hdrmd5="6eaaa51534012c0ef4d2927d17ea94d4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libfftw3-3" version="3.3.10" release="160100.2.1" arch="x86_64" hdrmd5="4b65c118d9229f7ef8eb310f9dab165e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcamera-base0_5" version="0.5.1" release="160100.2.1" arch="x86_64" hdrmd5="72b1d9ffb084306a2a822489af471c4e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcamera0_5" version="0.5.1" release="160100.2.1" arch="x86_64" hdrmd5="d0d04831ac7919b3a0b042586a45ab75" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="liblilv-0-0" version="0.24.24" release="160100.2.1" arch="x86_64" hdrmd5="e9cf945f0f7891857bc36b56f3281b78" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libmysofa1" version="1.3.2" release="160100.2.1" arch="x86_64" hdrmd5="a4a070b5a35647e320415204261df0dc" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsbc1" version="1.5" release="160100.2.1" arch="x86_64" hdrmd5="596776e6e30089ab3cc51dbaf70142e3" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libfdk-aac2" version="2.0.0" release="160100.2.1" arch="x86_64" hdrmd5="607a35b3e17e901cca969c0863d6e35f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="liblc3-1" version="1.1.1" release="160100.2.1" arch="x86_64" hdrmd5="f26764b50971ab137c69c45ad2a92d6c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libldac2" version="2.0.2.3" release="160100.2.1" arch="x86_64" hdrmd5="7ae1e4d9785b7d34c0ba828c2ea4215e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libspandsp3" version="3.0.0+g57" release="160100.2.1" arch="x86_64" hdrmd5="93ff422ddf5bedff15f37eb6cf3a64fb" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libwebrtc-audio-processing-1-3" version="1.3" release="160100.2.1" arch="x86_64" hdrmd5="c19c1847a4fec3085cd33db9de9e4e2e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libebur128-1" version="1.2.6" release="160100.2.1" arch="x86_64" hdrmd5="3581bddd5fdd7ae4dd428dcd41e065c5" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libfdisk1" version="2.42.1" release="160100.2.1" arch="x86_64" hdrmd5="baaad78a2e1e836fb2b19faee0826837" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="Mesa-dri" version="26.0.7" release="160100.2.1" arch="x86_64" hdrmd5="5ce743d255a3da7b68fe0a9c53d7434a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libicu77" version="77.1" release="160100.2.1" arch="x86_64" hdrmd5="b65c31abf7647f60cbeac3684fd39dc8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libstemmer1d" version="2.2.0" release="160100.2.1" arch="x86_64" hdrmd5="12897d472a76aeb8b9c0785f1c4e9b12" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libglibmm-2_4-1" version="2.66.6" release="160100.2.1" arch="x86_64" hdrmd5="a487d7e9c37144e8aef9278b326d4866" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libraw1394-11" version="2.1.2" release="160100.2.1" arch="x86_64" hdrmd5="703effbe068d13fddad13e9d495ce03d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libiec61883-0" version="1.2.0" release="160100.2.1" arch="x86_64" hdrmd5="5f09360387aa4046d1443e7d70d6475b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libavc1394-0" version="0.5.4" release="160100.2.1" arch="x86_64" hdrmd5="c0468992af8657aac633dbfc3fba4c99" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libconfig++11" version="1.7.3" release="160100.2.1" arch="x86_64" hdrmd5="d23126a11ecfa0d217df0530d6c74d87" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxml++-3_0-1" version="3.2.5" release="160100.2.1" arch="x86_64" hdrmd5="09acd597073a1c9d2de535b7c30f153f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libFLAC12" version="1.4.3" release="160100.2.1" arch="x86_64" hdrmd5="9cc541c0722336913277a6db95f1bccc" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libserd-0-0" version="0.32.4" release="160100.2.1" arch="x86_64" hdrmd5="21d26aa9f1423e6b826948ec2db51bb8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsord-0-0" version="0.16.18" release="160100.2.1" arch="x86_64" hdrmd5="d05c8b9978f4d4ca7e61d04a1d6fd2b0" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libzix-0-0" version="0.6.2" release="160100.2.1" arch="x86_64" hdrmd5="8d2cd3c4c74c59f322d2592b608c28e2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsratom-0-0" version="0.6.14" release="160100.2.1" arch="x86_64" hdrmd5="38e7a4ff5b6baeb5541e0164e9992793" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="terminfo-base" version="6.5.20250531" release="160100.2.1" arch="x86_64" hdrmd5="c6b2df885aef2c469e58e8cc2950dde9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libLLVM21" version="21.1.8" release="160100.2.1" arch="x86_64" hdrmd5="3e49bf6de8c98d0687137f08b06eb681" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libSPIRV-Tools-2026_1" version="2026.1" release="160100.2.1" arch="x86_64" hdrmd5="be05947091edff7f34e5cc0d9b0aeb91" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libdrm_amdgpu1" version="2.4.131" release="160100.2.1" arch="x86_64" hdrmd5="00cffd8b7c7ccc173a5514f6b88913bd" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libxshmfence1" version="1.3.2" release="160100.2.1" arch="x86_64" hdrmd5="53064f5251b61c02341698c62d667c06" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libdrm_intel1" version="2.4.131" release="160100.2.1" arch="x86_64" hdrmd5="e19d50e3066d3f00e53ef584383a84a4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libvulkan_lvp" version="26.0.7" release="160100.2.1" arch="x86_64" hdrmd5="1d2bab0ac3a93f99deb517ee312841f5" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="Mesa" version="26.0.7" release="160100.2.1" arch="x86_64" hdrmd5="65af8589a4de25e58c33894aeebaa63f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="timezone" version="2026c" release="160100.3.1" arch="x86_64" hdrmd5="8c10cc35642bf80753f820fe19b9fdc9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libicu77-ledata" version="77.1" release="160100.2.1" arch="noarch" hdrmd5="56f51e4857b6e884cf45b2f8cb302fea" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsigc-2_0-0" version="2.12.1" release="160100.2.1" arch="x86_64" hdrmd5="c335c7f7efc8c05878ebcdbd2c327cc8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libedit0" version="20210910.3.1" release="160100.2.1" arch="x86_64" hdrmd5="e38df8b5fc66b9ab99a7781dd4d48cf4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpciaccess0" version="0.18.1" release="160100.2.1" arch="x86_64" hdrmd5="1dd55b1285efb8e6ceb178830770a758" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libdisplay-info2" version="0.2.0" release="160100.2.1" arch="x86_64" hdrmd5="ff3e1c3411c0fcf59b96371201d79be5" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="Mesa-vulkan-device-select" version="26.0.7" release="160100.2.1" arch="x86_64" hdrmd5="fd5f8688d03d38a8087f5e9abeee0ac4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="Mesa-libGL1" version="26.0.7" release="160100.2.1" arch="x86_64" hdrmd5="bf25faa17cb5c167c5594fdb33ef36fa" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="Mesa-libEGL1" version="26.0.7" release="160100.2.1" arch="x86_64" hdrmd5="facabefba2b84eae45458a782e8b6f71" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libXxf86vm1" version="1.1.6" release="160100.2.1" arch="x86_64" hdrmd5="ff622f5021f358d52fd7b00fbd52fe99" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gcc-build" version="13" release="160100.2.1" arch="x86_64" hdrmd5="12be7aeab470fbe86c369c06068669a2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libstdc++-build-devel" version="13" release="160100.2.1" arch="x86_64" hdrmd5="e7e0c225c1ec22d25666b78dfbc39adb" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gcc13" version="13.4.0+git9739" release="160100.2.1" arch="x86_64" hdrmd5="33a81fe5c2b991f18a6c409bd29a9b18" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="cpp-build" version="13" release="160100.2.1" arch="x86_64" hdrmd5="031869224ea761602a5af054f31f1901" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libstdc++6-devel-gcc13" version="13.4.0+git9739" release="160100.2.1" arch="x86_64" hdrmd5="d671aa8753c069459d3d8a652c19c3be" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libmpfr6" version="4.2.1" release="160100.2.1" arch="x86_64" hdrmd5="759aebf8c750cba5423368aff8a4447d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libmpc3" version="1.3.1" release="160100.2.1" arch="x86_64" hdrmd5="e3881821a72255f20837706516cb71d1" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libisl23" version="0.26" release="160100.2.1" arch="x86_64" hdrmd5="55883e514c6bbdcabb476b712d576274" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="binutils" version="2.45" release="160100.2.1" arch="x86_64" hdrmd5="ced612ca8c2cb8f9c84ae74d81f86e6e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="cpp13" version="13.4.0+git9739" release="160100.2.1" arch="x86_64" hdrmd5="bc2a61deb6009c5c13fb8404f27303d7" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsframe2" version="2.45" release="160100.2.1" arch="x86_64" hdrmd5="ab2f723822b948c17c7694f05a13532f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libctf0" version="2.45" release="160100.2.1" arch="x86_64" hdrmd5="e6c3cc11d35fc78917f74458e92d374c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libctf-nobfd0" version="2.45" release="160100.2.1" arch="x86_64" hdrmd5="e52b653764f90c4d844e5c3abe7272e7" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="glib2-devel" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="3b83a09643d071cebbba4f739086b111" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="systemd-mini" version="257.13" release="160100.3.1" arch="x86_64" hdrmd5="d7787ab73d865f53c3072660c9fd402b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libstdc++6" version="16.2.0+git9497" release="160100.2.1" arch="x86_64" hdrmd5="0efa75d27da7a0c25a1528683dc67239" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libglib-2_0-0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="76dfe698f69b679af08dad8840427b8d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgobject-2_0-0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="b15c2aa45a4c48d412ee3f107ff42001" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgio-2_0-0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="23b8d4281385e03b067f78fec6ed3178" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="systemd-mini-devel" version="257.13" release="160100.3.1" arch="x86_64" hdrmd5="41953b10b8591e03ca130c780e5d4e3c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgmodule-2_0-0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="a27d6f0b70380836f6fdd0f9b07c10b9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsystemd0-mini" version="257.13" release="160100.3.1" arch="x86_64" hdrmd5="df0d0d83691edb0fab2580815de129c8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libjpeg8-devel" version="8.3.2" release="160100.2.1" arch="x86_64" hdrmd5="065060e7a93e973adfbe41237717484d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libudev-mini1" version="257.13" release="160100.3.1" arch="x86_64" hdrmd5="57f28934b9fd4706cc1256e927023e45" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="zlib-devel" version="1.2.13" release="160100.2.1" arch="x86_64" hdrmd5="6e3fcdefd752a3e5aae7ce11bd07ebf9" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="krb5-mini" version="1.22.2" release="160100.2.1" arch="x86_64" hdrmd5="37c383184f9d729dc9ab942363e961db" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="dbus-broker-block-restart" version="36" release="160100.2.1" arch="noarch" hdrmd5="a60af7644086d2b23e1fc2dc09d12e04" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gettext-tools-mini" version="0.22.5" release="160100.2.1" arch="x86_64" hdrmd5="109321df56f0d9f5c78139bb9c1c660d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcurl4" version="8.21.0" release="160100.2.1" arch="x86_64" hdrmd5="92fb81d0b703ddb9e9485caf5eb00083" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="shadow" version="4.19.4" release="160100.2.1" arch="x86_64" hdrmd5="0631f7dc3189aa30a1e8cc54230a34e6" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgomp1" version="16.2.0+git9497" release="160100.2.1" arch="x86_64" hdrmd5="1fe916ada3e65c503098a0e7a1e4099d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libasan8" version="16.2.0+git9497" release="160100.2.1" arch="x86_64" hdrmd5="ab4fcc68b32eb3177cc7a774d7fd9c41" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libatomic1" version="16.2.0+git9497" release="160100.2.1" arch="x86_64" hdrmd5="767780057a5689c20d13e4c0cafcac38" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libhwasan0" version="16.2.0+git9497" release="160100.2.1" arch="x86_64" hdrmd5="8595ef79f2c7f2b78d89f1b6426c9eec" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libitm1" version="16.2.0+git9497" release="160100.2.1" arch="x86_64" hdrmd5="fa20acdc134dc8c7ed458d55a49c4133" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="liblsan0" version="16.2.0+git9497" release="160100.2.1" arch="x86_64" hdrmd5="21eac46009da7976580713e17745e880" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libtsan2" version="16.2.0+git9497" release="160100.2.1" arch="x86_64" hdrmd5="dd5f2649481fa28b203b6f4aad4f3e25" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libubsan1" version="16.2.0+git9497" release="160100.2.1" arch="x86_64" hdrmd5="028e80167dd82e386634509204dafa16" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="dbus-1-daemon" version="1.14.10" release="160100.2.1" arch="x86_64" hdrmd5="302baa14ae7a5ffd4751b657dc29170c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="pcre2-devel" version="10.45" release="160100.3.1" arch="x86_64" hdrmd5="323e22650dac22db04c0e8bdd1010018" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libmount-devel" version="2.42.1" release="160100.2.1" arch="x86_64" hdrmd5="8287de46f2034ed4da268df44143cc46" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="glib2-tools" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="dd01bdf0a43f7c09958e24183a48f890" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgirepository-2_0-0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="35caf1a07604a5aacd2c00a836887665" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgthread-2_0-0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="1d4d76716c1c405a17a03ace45253bab" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libselinux-devel" version="3.11" release="160100.2.1" arch="x86_64" hdrmd5="b8deddd8b63053eac90b00d6fce59a14" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-GIRepository-3_0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="30592c836e37f8344954343405001452" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="typelib-1_0-GLibUnix-2_0" version="2.84.4" release="160100.2.2" arch="x86_64" hdrmd5="d9dae48643849c217d44b5f3542de629" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="systemd-rpm-macros" version="26" release="160100.2.1" arch="noarch" hdrmd5="006ac9031535c81968493c9560d01b4a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libturbojpeg0" version="8.3.2" release="160100.2.1" arch="x86_64" hdrmd5="944d86bc891672e6583774dfeed40f41" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libcom_err2" version="1.47.0" release="160100.2.1" arch="x86_64" hdrmd5="e33d0ad79f1780358fc1dba1ffa3bf00" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libverto1" version="0.3.2" release="160100.2.1" arch="x86_64" hdrmd5="3a2ed96b9a2eb9155b40d1e94cf338ee" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="findutils" version="4.10.0" release="160100.2.1" arch="x86_64" hdrmd5="456f290b9e2ea2194b5af6d5352e9e4a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="xz" version="5.8.1" release="160100.2.1" arch="x86_64" hdrmd5="dfc270319c616de2d15bfe4fee4f336f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="glibc-gconv-modules-extra" version="2.40" release="160100.3.1" arch="x86_64" hdrmd5="ba886e081a3a4db149904e32668a0db4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gettext-runtime-mini" version="0.22.5" release="160100.2.1" arch="x86_64" hdrmd5="66663aad471a073809a9772d7621dbfe" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libldap-2" version="2.6.13+57" release="160100.2.2" arch="x86_64" hdrmd5="c56c44a5a4e04e34d1d0f710242187d4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libnghttp2-14" version="1.68.1" release="160100.2.1" arch="x86_64" hdrmd5="87752ecdfcf88ca3e9af6448d034c30f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libssh4" version="0.11.5" release="160100.3.1" arch="x86_64" hdrmd5="5df3746f5b5cc6e1221114ed1cecb555" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpsl5" version="0.21.5" release="160100.2.1" arch="x86_64" hdrmd5="c0416613ad165e712aa2f970463d4ec6" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsemanage2" version="3.11" release="160100.2.1" arch="x86_64" hdrmd5="1ad87c028468b95c9496ac96b489984a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsubid5" version="4.19.4" release="160100.2.1" arch="x86_64" hdrmd5="495ecc9436bb1edff2066ad5f89b99b7" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="shadow-pw-mgmt" version="4.19.4" release="160100.2.1" arch="x86_64" hdrmd5="bb792f0c30aded3fb9afc34fde8e3dfd" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="login_defs" version="4.19.4" release="160100.2.1" arch="noarch" hdrmd5="86d455af813bd31cf47308b5986b542d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpcre2-16-0" version="10.45" release="160100.3.1" arch="x86_64" hdrmd5="efc1701819f38fc7e3f1c7175ab13792" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpcre2-32-0" version="10.45" release="160100.3.1" arch="x86_64" hdrmd5="2eb4d9efc07a82a9542e23803ee2f5f2" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libpcre2-posix3" version="10.45" release="160100.3.1" arch="x86_64" hdrmd5="b3c40858fa4883b28ec81c49ad8b8cff" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libblkid-devel" version="2.42.1" release="160100.2.1" arch="x86_64" hdrmd5="ad075038435eed7b7b6f9d35d790635e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libeconf-devel" version="0.7.9" release="160100.2.1" arch="x86_64" hdrmd5="adc090b6bb8b569e2f1a30ba5f8d4e2c" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsepol-devel" version="3.11" release="160100.2.1" arch="x86_64" hdrmd5="691c2369dad7b9c123c6b8fe026494ad" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="envsubst-mini" version="0.22.5" release="160100.2.1" arch="x86_64" hdrmd5="a2c46f91ff9f51cf6d98841ef80b232b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsasl2-3" version="2.1.28" release="160100.2.1" arch="x86_64" hdrmd5="62842e79323169fbe6141695d344f1e8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libldap-data" version="2.6.13+57" release="160100.2.2" arch="noarch" hdrmd5="2aab5b7646f89a39be168b1d0de30fb1" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libssh-config" version="0.11.5" release="160100.3.1" arch="noarch" hdrmd5="7be2af0846f6f939a21768d0a4a92fd6" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsepol2" version="3.11" release="160100.2.1" arch="x86_64" hdrmd5="8709d9ee4d35e8bc2dd753537b262503" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libsemanage-conf" version="3.11" release="160100.2.1" arch="x86_64" hdrmd5="82e2c5b04612ac34a061ffc9dd90678f" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gio-branding-upstream" version="2.84.4" release="160100.2.2" arch="noarch" hdrmd5="c9ad35e03228ba16d8bfcd05357a75c3" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="rpm-build" notmeta="1" version="4.20.1" release="160100.3.2" arch="x86_64" hdrmd5="6bb8ae4921d9948fa165e78743817fbc" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="perl" notmeta="1" version="5.42.1" release="160100.2.1" arch="x86_64" hdrmd5="e78c43e9f69cbda4ed2d58afb699f5fa" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="build-mkbaselibs" notmeta="1" version="20260415" release="160100.2.2" arch="noarch" hdrmd5="834328a21ec87710b18b576ae749e46a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="compat-usrmerge-build" notmeta="1" version="84.87" release="160100.2.2" arch="x86_64" hdrmd5="06fcdedec370d7e990b1bdbc121ea2f7" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="brp-check-suse" notmeta="1" version="84.87+git20230324.8680ce4" release="160100.2.1" arch="x86_64" hdrmd5="57697ad4f934ff23f04a933e0738de42" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="post-build-checks" notmeta="1" version="84.87+git20250725.0c3a172" release="160100.2.1" arch="noarch" hdrmd5="49ba55faa727db168c2df87f044ad6ae" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="build-compare" notmeta="1" version="20240801T083050.024a3a7" release="160100.2.1" arch="noarch" hdrmd5="58b1b84732ab2b71f783fed5eab91b87" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="rpmlint-mini" notmeta="1" version="2.7.0+git20260429.56a0c16e" release="160100.2.5" arch="x86_64" hdrmd5="04bbc86c6e301a82a473bb1d3694607e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="python-rpm-macros" notmeta="1" version="20260629.bcd36db" release="160100.2.1" arch="noarch" hdrmd5="09666cccd1ca913e8c360cb50fd46ac7" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="ncurses-utils" notmeta="1" version="6.5.20250531" release="160100.2.1" arch="x86_64" hdrmd5="d44e1b8d01a88e903f97893e5bd27f1d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="rpm-config-SUSE" notmeta="1" version="20250328" release="160100.2.1" arch="noarch" hdrmd5="992f0644d3dd16d657f81136f76c1bfc" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="cpio" notmeta="1" version="2.15" release="160100.3.2" arch="x86_64" hdrmd5="6caffcb69b677d779189688f7eb34348" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="make" notmeta="1" version="4.4.1" release="160100.2.1" arch="x86_64" hdrmd5="8e54bad1ea817a182e677b50233c04fa" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="file" notmeta="1" version="5.46" release="160100.2.1" arch="x86_64" hdrmd5="0ca71602dddaa3cee792165fd080a724" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gawk" notmeta="1" version="5.3.2" release="160100.2.1" arch="x86_64" hdrmd5="bb14991b034028ac4511c31bdfc2fb0a" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libarchive13" notmeta="1" version="3.8.7" release="160100.2.1" arch="x86_64" hdrmd5="403c89e8cffab5e564dc602ce7677f12" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="bzip2" notmeta="1" version="1.0.8" release="160100.3.1" arch="x86_64" hdrmd5="fd4a63cc2412a50d1ab2f8f3f1df2ed4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="which" notmeta="1" version="2.23" release="160100.2.1" arch="x86_64" hdrmd5="5f59a6700e84a796bc2bd4f0cc26eb01" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="glibc-locale-base" notmeta="1" version="2.40" release="160100.3.1" arch="x86_64" hdrmd5="79bc99e118c526f40f2347ecefb4abf4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="patch" notmeta="1" version="2.7.6" release="160100.2.1" arch="x86_64" hdrmd5="6e8cf7340c5f5f2497b5c5f06cfe96c4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="dwz" notmeta="1" version="0.15" release="160100.2.2" arch="x86_64" hdrmd5="147e07e8ae4a31d26d73e8329ab54857" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="librpmbuild10" notmeta="1" version="4.20.1" release="160100.3.2" arch="x86_64" hdrmd5="1daee2310268201eab0f142a00932d4b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="debugedit" notmeta="1" version="5.0" release="160100.2.1" arch="x86_64" hdrmd5="b3df0e0956fa9374c00dbb0cf2ecc074" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgdbm6" notmeta="1" version="1.24" release="160100.2.1" arch="x86_64" hdrmd5="b5568b40a7672e3c36716a6725fade69" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libgdbm_compat4" notmeta="1" version="1.24" release="160100.2.1" arch="x86_64" hdrmd5="434f0b1da4d79b5355c3c0c76332f381" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="aaa_base-malloccheck" notmeta="1" version="84.87+git20260610.3b5a868c" release="160100.2.1" arch="x86_64" hdrmd5="4dd6c3d79906513a2bcb8ecfd15d15ef" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="polkit-default-privs" notmeta="1" version="1550+20260709.b1b58aa" release="160100.2.1" arch="noarch" hdrmd5="3a2a5ae52dad74af79b51c0b787ff23e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="perl-rpm-packaging" notmeta="1" version="1.2" release="160100.2.1" arch="noarch" hdrmd5="acabd7db62c1fd2f1eab7e1200021aab" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="python-rpm-packaging" notmeta="1" version="20210526+a18ca48" release="160100.2.1" arch="noarch" hdrmd5="4167385725af93f108ee36f9856202d5" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libmagic1" notmeta="1" version="5.46" release="160100.2.1" arch="x86_64" hdrmd5="2334b221a5f85d39897fd8ec4eef4cd4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="liblz4-1" notmeta="1" version="1.10.0" release="160100.2.1" arch="x86_64" hdrmd5="3d3927929b579b132cc52b47a6c3b7d8" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="elfutils" notmeta="1" version="0.192" release="160100.2.1" arch="x86_64" hdrmd5="f7bb804ac2e0e4d2183721ff7162e976" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="python313-packaging" notmeta="1" version="26.0" release="160100.2.1" arch="noarch" hdrmd5="f9e99ab4d539ef389a7cf3ceb86707c4" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="liblz1" notmeta="1" version="1.15" release="160100.2.1" arch="x86_64" hdrmd5="283bf846387d81c02edf7e6fdd257a8e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="file-magic" notmeta="1" version="5.46" release="160100.2.1" arch="noarch" hdrmd5="39a5f2454359d335a561fa395e34ee3e" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="libasm1" notmeta="1" version="0.192" release="160100.2.1" arch="x86_64" hdrmd5="6d081679d33ed7827d62aabc595226ec" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gcc-build-PIE" notmeta="1" version="13" release="160100.2.1" arch="x86_64" hdrmd5="f25169c5a2e8a72c39882ab50306839b" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gcc13-PIE" notmeta="1" version="13.4.0+git9739" release="160100.2.1" arch="x86_64" hdrmd5="feec4304a8cf155d5eecbb21055fad3d" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="gzip" notmeta="1" version="1.14" release="160100.2.1" arch="x86_64" hdrmd5="00e716996333f3fcfd24912d89167f54" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="lua54" notmeta="1" version="5.4.7" release="160100.2.1" arch="x86_64" hdrmd5="87ba270f7ff1188520d770898a61f146" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <bdep name="update-alternatives" notmeta="1" version="1.22.22" release="160100.2.1" arch="x86_64" hdrmd5="84f15bde0bd956cd18ab193936c720ba" project="SUSE:SLFO:1.3" repository="leap_16"/>
+  <path project="home:rodrigosbrito:lyra:staging" repository="openSUSE_Leap_16.1" url="https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1/"/>
+  <path project="openSUSE:Leap:16.1" repository="standard" url="https://download.opensuse.org/distribution/leap/16.1/repo/oss/"/>
+  <path project="openSUSE:Backports:SLE-16.1" repository="standard" url="https://download.opensuse.org/repositories/openSUSE:/Backports:/SLE-16.1/standard/"/>
+  <path project="SUSE:SLFO:1.3" repository="leap_16" url="https://download.opensuse.org/repositories/SUSE:/SLFO:/1.3/leap_16/"/>
+</buildinfo>

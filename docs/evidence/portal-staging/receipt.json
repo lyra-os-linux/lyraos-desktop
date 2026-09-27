@@ -1,0 +1,15 @@
+{
+  "project": "home:rodrigosbrito:lyra:staging",
+  "package": "xdg-desktop-portal-gnome",
+  "revision": "2",
+  "srcmd5": "077471ed2335bc96dcb5b43fef6e1334",
+  "release_promoted": false,
+  "iso_qualified": false,
+  "first_revision": "be02caab80345ec0b473f0ab1d78f9e1",
+  "first_failure": "zstd missing in clean build; automatic release lp161.160100.1 would sort below SUSE",
+  "corrections": [
+    "BuildRequires zstd",
+    "OBS CI_CNT/B_CNT release template",
+    "OBS-format changelog preserving source history"
+  ]
+}

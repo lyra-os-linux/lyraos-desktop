@@ -99,6 +99,8 @@ legacy_packages = ["calco", "prosa"]
 # Historical standalone DING sources retained only in staging for rollback
 # provenance. Both build and publication must remain globally disabled.
 retired_staging_packages = ["gnome-shell-extension-desktop-icons"]
+# #125: qualify the signed backport before release ownership/promotion.
+staging_only_packages = ["xdg-desktop-portal-gnome"]
 
 [[projects.targets]]
 name = "openSUSE_Leap_16.1"

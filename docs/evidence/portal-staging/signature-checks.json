@@ -1,0 +1,76 @@
+[
+  {
+    "argv": [
+      "gpg",
+      "--batch",
+      "--homedir",
+      "/tmp/lyra-portal-signatures-u8ula1gq/gnupg",
+      "--import",
+      "/home/rodrigo/Git/LyraOS/analysis/2026-09-27/portal-staging/repository.key"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": "gpg: keybox '/tmp/lyra-portal-signatures-u8ula1gq/gnupg/pubring.kbx' created\ngpg: key 58097F767EDCA82E: 1 signature not checked due to a missing key\ngpg: /tmp/lyra-portal-signatures-u8ula1gq/gnupg/trustdb.gpg: trustdb created\ngpg: key 58097F767EDCA82E: public key \"home:rodrigosbrito OBS Project <home:rodrigosbrito@build.opensuse.org>\" imported\ngpg: Total number processed: 1\ngpg:               imported: 1\ngpg: no ultimately trusted keys found\n"
+  },
+  {
+    "argv": [
+      "gpg",
+      "--batch",
+      "--homedir",
+      "/tmp/lyra-portal-signatures-u8ula1gq/gnupg",
+      "--with-colons",
+      "--fingerprint"
+    ],
+    "rc": 0,
+    "stdout": "tru::1:1790510594:0:3:1:5\npub:-:4096:1:58097F767EDCA82E:1784737311:1853857311::-:::scSC::::::23::0:\nfpr:::::::::399218A6E088C4053F4533BE58097F767EDCA82E:\nuid:-::::1784737311::3C1345ACD3FA036347E22056448B904E073C71A4::home\\x3arodrigosbrito OBS Project <home\\x3arodrigosbrito@build.opensuse.org>::::::::::0:\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gpgv",
+      "--keyring",
+      "/tmp/lyra-portal-signatures-u8ula1gq/gnupg/pubring.kbx",
+      "/home/rodrigo/Git/LyraOS/analysis/2026-09-27/portal-staging/repomd.xml.asc",
+      "/home/rodrigo/Git/LyraOS/analysis/2026-09-27/portal-staging/repomd.xml"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": "gpgv: Signature made Sun Sep 27 08:55:40 2026 -03\ngpgv:                using RSA key 399218A6E088C4053F4533BE58097F767EDCA82E\ngpgv: Good signature from \"home:rodrigosbrito OBS Project <home:rodrigosbrito@build.opensuse.org>\"\n"
+  },
+  {
+    "argv": [
+      "rpmkeys",
+      "--dbpath",
+      "/tmp/lyra-portal-signatures-u8ula1gq/rpmdb",
+      "--import",
+      "/home/rodrigo/Git/LyraOS/analysis/2026-09-27/portal-staging/repository.key"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpmkeys",
+      "--dbpath",
+      "/tmp/lyra-portal-signatures-u8ula1gq/rpmdb",
+      "--checksig",
+      "/home/rodrigo/Git/LyraOS/analysis/2026-09-27/portal-staging/xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.160101.1.x86_64.rpm"
+    ],
+    "rc": 0,
+    "stdout": "/home/rodrigo/Git/LyraOS/analysis/2026-09-27/portal-staging/xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.160101.1.x86_64.rpm: digests signatures OK\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpmkeys",
+      "--dbpath",
+      "/tmp/lyra-portal-signatures-u8ula1gq/rpmdb",
+      "--checksig",
+      "/home/rodrigo/Git/LyraOS/analysis/2026-09-27/portal-staging/xdg-desktop-portal-gnome-lang-48.0-160100.2.1.lyra1.160101.1.noarch.rpm"
+    ],
+    "rc": 0,
+    "stdout": "/home/rodrigo/Git/LyraOS/analysis/2026-09-27/portal-staging/xdg-desktop-portal-gnome-lang-48.0-160100.2.1.lyra1.160101.1.noarch.rpm: digests signatures OK\n",
+    "stderr": ""
+  }
+]

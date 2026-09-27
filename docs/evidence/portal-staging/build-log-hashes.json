@@ -1,0 +1,12 @@
+{
+  "build-signed.log": {
+    "raw_sha256": "0a8013e7738564b22a26b7d2ce0f4a56b322f681612dbd62214ed1982d46ad3a",
+    "normalized_sha256": "1892b603fb8840d65fae86c30e76246ff65fc0e9fbf5b079b185c3e5f2ee38d2",
+    "normalization": "strip trailing whitespace and use LF"
+  },
+  "build-first-summary.txt": {
+    "raw_sha256": "88d3b186c1fda3fc1c1038a9bbe00ada4cb50cd7f53e8a4e3a6e2184fd99797b",
+    "normalized_sha256": "be14cf9ea18a9a33b77234e2eefe4a14d03e5d20511d92d93f24ce0f666b4631",
+    "normalization": "strip trailing whitespace and use LF"
+  }
+}

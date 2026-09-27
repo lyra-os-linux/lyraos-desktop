@@ -1,0 +1,3 @@
+OK: home:rodrigosbrito:lyra (22 source packages, all targets published)
+OK: home:rodrigosbrito:vega (6 source packages, all targets published)
+OK: home:rodrigosbrito:fina (1 source packages, all targets published)

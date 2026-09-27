@@ -1,0 +1,164 @@
+[
+  {
+    "argv": [
+      "rpm",
+      "-qa",
+      "gpg-pubkey"
+    ],
+    "rc": 0,
+    "stdout": "gpg-pubkey-8ede3e07-5c755f3a\ngpg-pubkey-3fa1d6ce-67c856ee\ngpg-pubkey-09d9ea69-68595a8c\ngpg-pubkey-29b700a4-6a17fa38\ngpg-pubkey-287a0027-682477e3\ngpg-pubkey-25db7ae0-645bae34\ngpg-pubkey-39db7c82-66c5d91a\ngpg-pubkey-f6ab3975-66f622c2\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "--import",
+      "/root/portal-staging.key"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "zypper",
+      "--non-interactive",
+      "modifyrepo",
+      "--priority",
+      "20",
+      "parental-official"
+    ],
+    "rc": 0,
+    "stdout": "Repository 'parental-official' priority has been set to 20.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "zypper",
+      "--non-interactive",
+      "refresh",
+      "portal-staging-test"
+    ],
+    "rc": 0,
+    "stdout": "Retrieving repository 'Disposable signed portal solver test' metadata [...\nLooking for gpg keys in repository Disposable signed portal solver test.\n  gpgkey=https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1/repodata/repomd.xml.key\n.....done]\nBuilding repository 'Disposable signed portal solver test' cache [....done]\nSpecified repositories have been refreshed.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "zypper",
+      "--no-refresh",
+      "lr",
+      "-u"
+    ],
+    "rc": 0,
+    "stdout": "Repository priorities in effect: (See 'zypper lr -P' for details)\n      20 (raised priority)  :  1 repository\n      90 (raised priority)  :  1 repository\n      99 (default priority) :  0 repositories\n\n# | Alias               | Name                                 | Enabled | GPG Check | Refresh | URI\n--+---------------------+--------------------------------------+---------+-----------+---------+--------------------------------------------------------------------------------------------------\n1 | parental-official   | Official Leap 16.1 disposable test   | Yes     | (rp) Yes  | No      | https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/\n2 | portal-staging-test | Disposable signed portal solver test | Yes     | (r ) Yes  | No      | https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1/\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-q",
+      "--qf",
+      "%{NEVRA}\n%{VENDOR}",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "xdg-desktop-portal-gnome-48.0-160100.2.1.x86_64\nSUSE LLC <https://www.suse.com/>",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "zypper",
+      "--xmlout",
+      "--non-interactive",
+      "--no-refresh",
+      "update",
+      "--dry-run",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "<?xml version='1.0'?>\n<stream>\n<message type=\"info\">Loading repository data...</message>\n<message type=\"info\">Reading installed packages...</message>\n<message type=\"info\">There is an update candidate for &apos;xdg-desktop-portal-gnome&apos; from vendor &apos;obs://build.opensuse.org/home:rodrigosbrito&apos;, while the current vendor is &apos;SUSE LLC &lt;https://www.suse.com/&gt;&apos;. Use &apos;zypper install xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.160101.1.x86_64&apos; to install this candidate.</message>\n<message type=\"info\">There is an update candidate for &apos;xdg-desktop-portal-gnome&apos;, but it comes from a repository with a lower priority. Use &apos;zypper install xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.160101.1.x86_64&apos; to install this candidate.</message>\n<message type=\"info\">Resolving package dependencies...</message>\n<install-summary download-size=\"0\" space-usage-diff=\"0\" space-usage-installed=\"0\" space-usage-removed=\"0\" packages-to-change=\"0\" need-restart=\"0\" need-reboot=\"0\">\n</install-summary>\n<message type=\"info\">Nothing to do.</message>\n</stream>\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "zypper",
+      "--xmlout",
+      "--non-interactive",
+      "--no-refresh",
+      "update",
+      "--dry-run",
+      "--repo",
+      "portal-staging-test",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "<?xml version='1.0'?>\n<stream>\n<message type=\"info\">Loading repository data...</message>\n<message type=\"info\">Reading installed packages...</message>\n<message type=\"info\">There is an update candidate for &apos;xdg-desktop-portal-gnome&apos; from vendor &apos;obs://build.opensuse.org/home:rodrigosbrito&apos;, while the current vendor is &apos;SUSE LLC &lt;https://www.suse.com/&gt;&apos;. Use &apos;zypper install xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.160101.1.x86_64&apos; to install this candidate.</message>\n<message type=\"info\">Resolving package dependencies...</message>\n<install-summary download-size=\"0\" space-usage-diff=\"0\" space-usage-installed=\"0\" space-usage-removed=\"0\" packages-to-change=\"0\" need-restart=\"0\" need-reboot=\"0\">\n</install-summary>\n<message type=\"info\">Nothing to do.</message>\n</stream>\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "zypper",
+      "--xmlout",
+      "--non-interactive",
+      "--no-refresh",
+      "install",
+      "--dry-run",
+      "--no-recommends",
+      "--allow-vendor-change",
+      "--from",
+      "portal-staging-test",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "<?xml version='1.0'?>\n<stream>\n<message type=\"info\">Loading repository data...</message>\n<message type=\"info\">Reading installed packages...</message>\n<message type=\"info\">Resolving package dependencies...</message>\n<install-summary download-size=\"210917\" space-usage-diff=\"246456\" space-usage-installed=\"931266\" space-usage-removed=\"684810\" packages-to-change=\"1\" need-restart=\"0\" need-reboot=\"0\">\n<to-upgrade>\n<solvable type=\"package\" name=\"xdg-desktop-portal-gnome\" edition=\"48.0-160100.2.1.lyra1.160101.1\" arch=\"x86_64\" repository=\"portal-staging-test\" edition-old=\"48.0-160100.2.1\" arch-old=\"x86_64\" summary=\"A backend implementation for xdg-desktop-portal\">\n<description>A backend implementation for xdg-desktop-portal for the GNOME\ndesktop environment.</description></solvable>\n</to-upgrade>\n<to-change-vendor>\n<solvable type=\"package\" name=\"xdg-desktop-portal-gnome\" edition=\"48.0-160100.2.1.lyra1.160101.1\" arch=\"x86_64\" repository=\"portal-staging-test\" edition-old=\"48.0-160100.2.1\" arch-old=\"x86_64\" summary=\"A backend implementation for xdg-desktop-portal\">\n<description>A backend implementation for xdg-desktop-portal for the GNOME\ndesktop environment.</description></solvable>\n</to-change-vendor>\n</install-summary>\n<prompt id=\"0\">\n<text>Backend:  classic_rpmtrans --dry-run\nContinue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts:\"/>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts:\" value=\"0\"/>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts: (1 skipped)\" value=\"0\"/>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts: (1 skipped)\" done=\"1\"/>\n<fileconflict-summary><message type=\"warning\">1 package had to be excluded from file conflicts check because it is not yet download.</message>\n<message type=\"info\">    Note: Checking for file conflicts requires not installed packages to be downloaded in advance in\n    order to access their file lists. See option &apos;--download-in-advance / --dry-run --download-only&apos;\n    in the zypper manual page for details.</message>\n</fileconflict-summary></stream>\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "zypper",
+      "--xmlout",
+      "--non-interactive",
+      "--no-refresh",
+      "install",
+      "--dry-run",
+      "--no-recommends",
+      "--force",
+      "--allow-vendor-change",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "<?xml version='1.0'?>\n<stream>\n<message type=\"info\">Loading repository data...</message>\n<message type=\"info\">Reading installed packages...</message>\n<message type=\"info\">Forcing installation of &apos;xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.160101.1.x86_64&apos; from repository &apos;Disposable signed portal solver test&apos;.</message>\n<message type=\"info\">Resolving package dependencies...</message>\n<install-summary download-size=\"210917\" space-usage-diff=\"246456\" space-usage-installed=\"931266\" space-usage-removed=\"684810\" packages-to-change=\"1\" need-restart=\"0\" need-reboot=\"0\">\n<to-upgrade>\n<solvable type=\"package\" name=\"xdg-desktop-portal-gnome\" edition=\"48.0-160100.2.1.lyra1.160101.1\" arch=\"x86_64\" repository=\"portal-staging-test\" edition-old=\"48.0-160100.2.1\" arch-old=\"x86_64\" summary=\"A backend implementation for xdg-desktop-portal\">\n<description>A backend implementation for xdg-desktop-portal for the GNOME\ndesktop environment.</description></solvable>\n</to-upgrade>\n<to-change-vendor>\n<solvable type=\"package\" name=\"xdg-desktop-portal-gnome\" edition=\"48.0-160100.2.1.lyra1.160101.1\" arch=\"x86_64\" repository=\"portal-staging-test\" edition-old=\"48.0-160100.2.1\" arch-old=\"x86_64\" summary=\"A backend implementation for xdg-desktop-portal\">\n<description>A backend implementation for xdg-desktop-portal for the GNOME\ndesktop environment.</description></solvable>\n</to-change-vendor>\n</install-summary>\n<prompt id=\"0\">\n<text>Backend:  classic_rpmtrans --dry-run\nContinue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts:\"/>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts:\" value=\"0\"/>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts: (1 skipped)\" value=\"0\"/>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts: (1 skipped)\" done=\"1\"/>\n<fileconflict-summary><message type=\"warning\">1 package had to be excluded from file conflicts check because it is not yet download.</message>\n<message type=\"info\">    Note: Checking for file conflicts requires not installed packages to be downloaded in advance in\n    order to access their file lists. See option &apos;--download-in-advance / --dry-run --download-only&apos;\n    in the zypper manual page for details.</message>\n</fileconflict-summary></stream>\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "zypper",
+      "--non-interactive",
+      "modifyrepo",
+      "--priority",
+      "1",
+      "portal-staging-test"
+    ],
+    "rc": 0,
+    "stdout": "Repository 'portal-staging-test' priority has been set to 1.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "zypper",
+      "--xmlout",
+      "--non-interactive",
+      "--no-refresh",
+      "install",
+      "--dry-run",
+      "--no-recommends",
+      "--force",
+      "--allow-vendor-change",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "<?xml version='1.0'?>\n<stream>\n<message type=\"info\">Loading repository data...</message>\n<message type=\"info\">Reading installed packages...</message>\n<message type=\"info\">Forcing installation of &apos;xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.160101.1.x86_64&apos; from repository &apos;Disposable signed portal solver test&apos;.</message>\n<message type=\"info\">Resolving package dependencies...</message>\n<install-summary download-size=\"210917\" space-usage-diff=\"246456\" space-usage-installed=\"931266\" space-usage-removed=\"684810\" packages-to-change=\"1\" need-restart=\"0\" need-reboot=\"0\">\n<to-upgrade>\n<solvable type=\"package\" name=\"xdg-desktop-portal-gnome\" edition=\"48.0-160100.2.1.lyra1.160101.1\" arch=\"x86_64\" repository=\"portal-staging-test\" edition-old=\"48.0-160100.2.1\" arch-old=\"x86_64\" summary=\"A backend implementation for xdg-desktop-portal\">\n<description>A backend implementation for xdg-desktop-portal for the GNOME\ndesktop environment.</description></solvable>\n</to-upgrade>\n<to-change-vendor>\n<solvable type=\"package\" name=\"xdg-desktop-portal-gnome\" edition=\"48.0-160100.2.1.lyra1.160101.1\" arch=\"x86_64\" repository=\"portal-staging-test\" edition-old=\"48.0-160100.2.1\" arch-old=\"x86_64\" summary=\"A backend implementation for xdg-desktop-portal\">\n<description>A backend implementation for xdg-desktop-portal for the GNOME\ndesktop environment.</description></solvable>\n</to-change-vendor>\n</install-summary>\n<prompt id=\"0\">\n<text>Backend:  classic_rpmtrans --dry-run\nContinue?</text>\n<option default=\"1\" value=\"y\" desc=\"Yes, accept the summary and proceed with installation/removal of packages.\"/>\n<option value=\"n\" desc=\"No, cancel the operation.\"/>\n<option value=\"v\" desc=\"Toggle display of package versions.\"/>\n<option value=\"a\" desc=\"Toggle display of package architectures.\"/>\n<option value=\"r\" desc=\"Toggle display of repositories from which the packages will be installed.\"/>\n<option value=\"m\" desc=\"Toggle display of package vendor names.\"/>\n<option value=\"d\" desc=\"Toggle between showing all details and as few details as possible.\"/>\n<option value=\"g\" desc=\"View the summary in pager.\"/>\n</prompt>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts:\"/>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts:\" value=\"0\"/>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts: (1 skipped)\" value=\"0\"/>\n<progress id=\"fileconflict-check\" name=\"Checking for file conflicts: (1 skipped)\" done=\"1\"/>\n<fileconflict-summary><message type=\"warning\">1 package had to be excluded from file conflicts check because it is not yet download.</message>\n<message type=\"info\">    Note: Checking for file conflicts requires not installed packages to be downloaded in advance in\n    order to access their file lists. See option &apos;--download-in-advance / --dry-run --download-only&apos;\n    in the zypper manual page for details.</message>\n</fileconflict-summary></stream>\n",
+    "stderr": ""
+  }
+]

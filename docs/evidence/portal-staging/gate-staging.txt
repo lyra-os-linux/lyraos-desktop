@@ -1,0 +1,3 @@
+OK: home:rodrigosbrito:lyra:staging (23 source packages, all targets published)
+OK: home:rodrigosbrito:vega:staging (6 source packages, all targets published)
+OK: home:rodrigosbrito:fina:staging (1 source packages, all targets published)

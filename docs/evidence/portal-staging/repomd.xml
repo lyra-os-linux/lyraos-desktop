@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repomd xmlns="http://linux.duke.edu/metadata/repo" xmlns:rpm="http://linux.duke.edu/metadata/rpm">
+  <revision>1790510140</revision>
+  <tags>
+    <repo>obsrepository://build.opensuse.org/home:rodrigosbrito:lyra:staging/openSUSE_Leap_16.1</repo>
+    <repo>obsbuildid:1787745117</repo>
+  </tags>
+  <data type="primary">
+    <checksum type="sha512">44a2997ce680e89f3db03202a82d1d5bac6bdb360943f1de8e44df89ec016e72c9d4e7e0eb2e77f423b09e04093fa5e84215ff4d1c6ec85471b01376b274827f</checksum>
+    <open-checksum type="sha512">4dbf28fb92dd899e677c974a659da59bce7374b4798c2c61db5484eef10820638481199f3f2269aaadcea99e2efe1b334c7edfbe6d0f38b6996e78e0bd422f1e</open-checksum>
+    <location href="repodata/44a2997ce680e89f3db03202a82d1d5bac6bdb360943f1de8e44df89ec016e72c9d4e7e0eb2e77f423b09e04093fa5e84215ff4d1c6ec85471b01376b274827f-primary.xml.gz"/>
+    <timestamp>1790510140</timestamp>
+    <size>32923</size>
+    <open-size>258211</open-size>
+  </data>
+  <data type="filelists">
+    <checksum type="sha512">5d315a4c20163b0f691c855588e98b8b9fe4e20c6cbecd390db42896d294f76cc14da5ccd406c357c84baaa492ad75739368d11c1bd9286579eca67a82cb5b58</checksum>
+    <open-checksum type="sha512">c2ad17eecb2da9f983065cfc8b6a98083487cc6ae36d9a40b50bc848458ffa2ebd282a4d8130bba24d9b7fe287aa9231eaff3881c0665d9859c78750ef98e561</open-checksum>
+    <location href="repodata/5d315a4c20163b0f691c855588e98b8b9fe4e20c6cbecd390db42896d294f76cc14da5ccd406c357c84baaa492ad75739368d11c1bd9286579eca67a82cb5b58-filelists.xml.gz"/>
+    <timestamp>1790510140</timestamp>
+    <size>16908</size>
+    <open-size>147288</open-size>
+  </data>
+  <data type="other">
+    <checksum type="sha512">2cf6a59a12e05ca649daff6c098df2f035c1b8969d54304900fa0d2665c8a0a2a5fd9b4104985ea59ebeb04562a0c60302f1a05df70aa5518a541aad4b47fe6e</checksum>
+    <open-checksum type="sha512">3479e275f4aff0ebcc8fce749d3b8525883948d61fe419c6fea03f8db4e4aa38500db60ac4300079ed445153f487e28825030b4f2e205bc36cab9601d71c868f</open-checksum>
+    <location href="repodata/2cf6a59a12e05ca649daff6c098df2f035c1b8969d54304900fa0d2665c8a0a2a5fd9b4104985ea59ebeb04562a0c60302f1a05df70aa5518a541aad4b47fe6e-other.xml.gz"/>
+    <timestamp>1790510140</timestamp>
+    <size>27945</size>
+    <open-size>154360</open-size>
+  </data>
+  <data type="filelists-ext">
+    <checksum type="sha512">c03280263b452bb517a46de91b39d73a397c57e0873cc89b97ef7be08baefcf06f40728216aa57d383f355155853d770a5bb0cc7022bac746ff3f366364979e9</checksum>
+    <open-checksum type="sha512">7130ecbce29e2c0054dcf31a32adcd83f617d217aababb40fb6db07337cd5739dd4d0f4bb51d1dd97e7681400568340952b839015ae71e1f49ebdf265e722c77</open-checksum>
+    <location href="repodata/c03280263b452bb517a46de91b39d73a397c57e0873cc89b97ef7be08baefcf06f40728216aa57d383f355155853d770a5bb0cc7022bac746ff3f366364979e9-filelists-ext.xml.gz"/>
+    <timestamp>1790510140</timestamp>
+    <size>19794</size>
+    <open-size>153180</open-size>
+  </data>
+</repomd>

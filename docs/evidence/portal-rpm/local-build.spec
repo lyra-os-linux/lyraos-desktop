@@ -19,7 +19,7 @@
 Name:           xdg-desktop-portal-gnome
 VCS: https://src.suse.de/pool/xdg-desktop-portal-gnome?trackingbranch=slfo-1.3#708df855464e1720e1b78f1c99dacb919d3be3f720660253a54cf3fa6f6efd00
 Version:        48.0
-Release:        160100.2.1.lyra1.<CI_CNT>.<B_CNT>
+Release:        160100.2.1.lyra1
 Summary:        A backend implementation for xdg-desktop-portal
 License:        LGPL-2.1-or-later
 URL:            https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome
@@ -28,7 +28,6 @@ Source1:        libgxdp-0.gitmodule.tar.zst
 # GNOME MR223, upstream commit 54087ebf0b467b4193f1b40f3177f55d415eaa9c
 Patch0:         globalshortcuts-success.patch
 
-BuildRequires:  zstd
 BuildRequires:  c_compiler
 BuildRequires:  fontconfig
 BuildRequires:  meson
@@ -89,8 +88,6 @@ popd
 
 %changelog
 * Sun Sep 27 2026 Lyra OS <https://github.com/lyra-os-linux>
-- Preserve the SUSE release prefix with OBS CI/build counters.
-- Declare zstd explicitly for the clean OBS source-unpack environment.
 - Backport upstream success-response initialization for global shortcuts.
   Fixes consent returning an error after successful registration (#125).
   Preserve the SUSE 48.0 sources, submodule and packaging behavior.
