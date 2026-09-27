@@ -49,11 +49,26 @@ or epoch is introduced.
 
 The real zypper transitions establish package-level feasibility; they do not
 complete delivery to users. The automatic path must reuse the existing upgrade
-service's snapshot, authorization, offline execution and recovery flow. Its
-current signed manifest authorizes vendor **pairs**, without a package scope.
-A global SUSE-to-OBS pair would be too broad for this exception: add and test
-package-scoped authorization before generating a migration manifest. The normal
-vegad update command should retain its existing policy.
+service's snapshot, authorization, offline execution and recovery flow. The
+published release Updater 0.2.5 authorizes vendor **pairs**, without a package
+scope. A global SUSE-to-OBS pair would be too broad for this exception.
+
+Updater 0.2.6 adds exact package scopes and was qualified in staging on
+2026-09-27: signed RPM `lyra-upgrade-0.2.6-lp161.1.1.x86_64.rpm`, SHA256
+`30740d14ec768d54e5444034411d89baa6480b0ec7804b265c1d42fd3da2d65e`, OBS revision 39
+with srcmd5 `8263d6f2a9e64f2b2af9ee8f9a196730`. Its 133 Rust tests and the native
+PackageKit regression with the extracted RPM worker and two reboots passed.
+See the [Updater staging qualification](https://github.com/lyra-os-linux/lyraos-desktop-updater/blob/ca8f6d085ac1041c9e6b21091670ba059b79185e/docs/vendor-scope-staging-qualification.md)
+and [structured evidence](https://github.com/lyra-os-linux/lyraos-desktop-updater/blob/ca8f6d085ac1041c9e6b21091670ba059b79185e/docs/vendor-scope-staging-evidence.json).
+This qualifies the package and PackageKit coexistence; the real signed portal
+migration has not been exercised.
+
+Next, prepare a reviewed migration manifest with `minimum_updater_version`
+at least `0.2.6` and exact package names, preserve translation presence, inspect
+the complete solver plan, and qualify signed staging/offline execution with
+snapshot and recovery. Release remains on 0.2.5 until the promotion gates pass;
+do not raise the image minimum to an unavailable release RPM. The normal vegad
+update command retains its existing policy.
 
 A production transition must also handle running user sessions and service
 restart/reboot behavior. The native fixture intentionally uses inactive GDM and
