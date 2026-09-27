@@ -1,0 +1,254 @@
+[
+  {
+    "argv": [
+      "systemctl",
+      "is-active",
+      "gdm"
+    ],
+    "rc": 3,
+    "stdout": "inactive\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "systemctl",
+      "is-active",
+      "user@1002.service"
+    ],
+    "rc": 3,
+    "stdout": "inactive\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "systemctl",
+      "is-active",
+      "user@1003.service"
+    ],
+    "rc": 3,
+    "stdout": "inactive\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-q",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "xdg-desktop-portal-gnome-48.0-160100.2.1.lyra1.x86_64\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-V",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "tar",
+      "--xattrs",
+      "--selinux",
+      "--acls",
+      "-cpf",
+      "/root/portal-ordinary-backup/home.tar",
+      "-C",
+      "/home",
+      "ordinaryuser"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "pkg-config",
+      "--cflags",
+      "--libs",
+      "gio-2.0"
+    ],
+    "rc": 0,
+    "stdout": "-pthread -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -DWITH_GZFILEOP -I/usr/include/libmount -I/usr/include/blkid -lgio-2.0 -lgobject-2.0 -lglib-2.0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "gcc",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-O2",
+      "/root/ordinary-shortcuts-probe.c",
+      "-lselinux",
+      "-o",
+      "/usr/local/libexec/portal-rpm-shortcuts-probe",
+      "-pthread",
+      "-I/usr/include/glib-2.0",
+      "-I/usr/lib64/glib-2.0/include",
+      "-DWITH_GZFILEOP",
+      "-I/usr/include/libmount",
+      "-I/usr/include/blkid",
+      "-lgio-2.0",
+      "-lgobject-2.0",
+      "-lglib-2.0"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "restorecon",
+      "/usr/local/libexec/portal-rpm-shortcuts-probe",
+      "/usr/share/applications/org.lyra.ShortcutsFixture.desktop"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "setenforce",
+      "1"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "systemctl",
+      "start",
+      "gdm"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "ordinaryuser",
+      "--",
+      "env",
+      "HOME=/home/ordinaryuser",
+      "XDG_RUNTIME_DIR=/run/user/1002",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1002/bus",
+      "systemctl",
+      "--user",
+      "show-environment"
+    ],
+    "rc": 0,
+    "stdout": "HOME=/home/ordinaryuser\nLANG=C.UTF-8\nLOGNAME=ordinaryuser\nPATH=/home/ordinaryuser/.local/bin:/usr/local/bin:/usr/bin:/bin\nSHELL=/bin/bash\nUSER=ordinaryuser\nXDG_CACHE_HOME=/home/ordinaryuser/.cache\nXDG_CONFIG_HOME=/home/ordinaryuser/.config\nXDG_DATA_DIRS=/home/ordinaryuser/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/\nXDG_DATA_HOME=/home/ordinaryuser/.local/share\nXDG_RUNTIME_DIR=/run/user/1002\nXDG_STATE_HOME=/home/ordinaryuser/.local/state\nXDG_CONFIG_DIRS=/etc/xdg:/usr/local/etc/xdg:/usr/etc/xdg\nCPU=x86_64\nCSHEDIT=emacs\nDBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1002/bus\nDESKTOP_SESSION=gnome\nDISPLAY=:0\nGDMSESSION=gnome\nGNOME_SETUP_DISPLAY=:1\nGPG_TTY=$'not a tty'\nG_BROKEN_FILENAMES=1\nHISTSIZE=1000\nHOST=lyra-virtualization-fixture\nHOSTNAME=lyra-virtualization-fixture\nHOSTTYPE=x86_64\nLESS=$'-M -I -R'\nLESSCLOSE=$'lessclose.sh %s %s'\nLESSKEY=/usr/etc/lesskey.bin\nLESSOPEN=$'lessopen.sh %s'\nLESS_ADVANCED_PREPROCESSOR=no\nMACHTYPE=x86_64-suse-linux\nMAIL=/var/mail/ordinaryuser\nMANPATH=/usr/local/man:/usr/share/man\nMANPATHISSET=yes\nMINICOM=$'-c on'\nMORE=-sl\nOSTYPE=linux\nPAGER=less\nPROFILEREAD=true\nPWD=/home/ordinaryuser\nSESSION_MANAGER=local/lyra-virtualization-fixture:@/tmp/.ICE-unix/4228,unix/lyra-virtualization-fixture:/tmp/.ICE-unix/4228\nSHLVL=0\nUSERNAME=ordinaryuser\nVENDOR=suse\nWAYLAND_DISPLAY=wayland-0\nWINDOWMANAGER=xterm\nXAUTHLOCALHOSTNAME=lyra-virtualization-fixture\nXAUTHORITY=/run/user/1002/.mutter-Xwaylandauth.A1LBW3\nXDG_CURRENT_DESKTOP=GNOME\nXDG_MENU_PREFIX=gnome-\nXDG_SESSION_CLASS=user\nXDG_SESSION_DESKTOP=gnome\nXDG_SESSION_TYPE=wayland\nXKEYSYMDB=/usr/X11R6/lib/X11/XKeysymDB\nXNLSPATH=/usr/X11R6/lib/X11/nls\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "ordinaryuser",
+      "--",
+      "env",
+      "HOME=/home/ordinaryuser",
+      "XDG_RUNTIME_DIR=/run/user/1002",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1002/bus",
+      "gdbus",
+      "call",
+      "--session",
+      "--dest",
+      "org.gnome.Shell",
+      "--object-path",
+      "/org/gnome/Shell",
+      "--method",
+      "org.freedesktop.DBus.Properties.Set",
+      "org.gnome.Shell",
+      "OverviewActive",
+      "<false>"
+    ],
+    "rc": 0,
+    "stdout": "()\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "ordinaryuser",
+      "--",
+      "env",
+      "HOME=/home/ordinaryuser",
+      "XDG_RUNTIME_DIR=/run/user/1002",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1002/bus",
+      "runcon",
+      "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "/usr/local/libexec/portal-rpm-shortcuts-probe",
+      "cancel"
+    ],
+    "rc": 0,
+    "stdout": "context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 enforcing=1\nCreateSession-response=0\nsession=/org/freedesktop/portal/desktop/session/1_50/lyra_shortcuts\nListShortcuts-response=0\nlisted-shortcuts=0 expected=0 matches=1\nphase=shortcuts-cancel\nBindShortcuts-response=2\nListShortcuts-response=0\nlisted-shortcuts=0 expected=0 matches=1\ncancel-left-no-bindings=1\nshortcuts-probe-passed=1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "ordinaryuser",
+      "--",
+      "env",
+      "HOME=/home/ordinaryuser",
+      "XDG_RUNTIME_DIR=/run/user/1002",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1002/bus",
+      "runcon",
+      "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "/usr/local/libexec/portal-rpm-shortcuts-probe",
+      "activate"
+    ],
+    "rc": 0,
+    "stdout": "context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 enforcing=1\nCreateSession-response=0\nsession=/org/freedesktop/portal/desktop/session/1_63/lyra_shortcuts\nListShortcuts-response=0\nlisted-shortcuts=0 expected=0 matches=1\nforeign-ListShortcuts-denied=1\nforeign-BindShortcuts-denied=1\nphase=shortcuts-bind\nBindShortcuts-response=0\nListShortcuts-response=0\nlisted-shortcuts=1 expected=1 matches=1\nphase=shortcuts-activate\nshortcut-signal=Activated timestamp=1095266\nshortcut-signal=Deactivated timestamp=1095346\nphase=shortcuts-released\nclosed-session-no-signals=1\nforeign-ListShortcuts-denied=1\nshortcuts-probe-passed=1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "runuser",
+      "-u",
+      "ordinaryuser",
+      "--",
+      "env",
+      "HOME=/home/ordinaryuser",
+      "XDG_RUNTIME_DIR=/run/user/1002",
+      "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1002/bus",
+      "systemctl",
+      "--user",
+      "show",
+      "xdg-desktop-portal-gnome.service",
+      "-p",
+      "ActiveState",
+      "-p",
+      "MainPID",
+      "-p",
+      "NRestarts"
+    ],
+    "rc": 0,
+    "stdout": "MainPID=4536\nNRestarts=0\nActiveState=active\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "rpm",
+      "-V",
+      "gdm",
+      "gnome-control-center",
+      "xdg-desktop-portal-gnome"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]
