@@ -60,6 +60,13 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso experimental em 27/09
 
+A [etapa de atalhos globais](evidence/parental-shortcuts/README.md) integra o
+provedor nativo do GNOME e testa consentimento, sinais reais de teclado,
+propriedade da sessão e encerramento. Encontrou também um erro na resposta de
+sucesso do backend GNOME 48.0 da base; o ensaio usa o backport oficial com
+restauração do binário original. Empacotamento desse backport, qualificação
+para contas comuns e inclusão na candidata continuam pendentes.
+
 A [etapa de auxiliares GNOME](evidence/parental-helpers/README.md) separa
 Notifications, ScreenSaver e Screencast em domínios privados com entradas fixas.
 PipeWire e o servidor Pulse também usam configuração fixa e domínio próprio,

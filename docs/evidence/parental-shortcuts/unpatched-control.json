@@ -1,0 +1,50 @@
+{
+  "tag": "diagS2",
+  "upstream_rpm": "xdg-desktop-portal-gnome-48.0-160100.2.1",
+  "cases": [
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "env",
+        "HOME=/home/parentaltest",
+        "XDG_RUNTIME_DIR=/run/user/1003",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+        "GSETTINGS_BACKEND=dconf",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/shortcuts-probe",
+        "cancel"
+      ],
+      "rc": 0,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\ncontext=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nCreateSession-response=0\nsession=/org/freedesktop/portal/desktop/session/1_70/lyra_shortcuts\nListShortcuts-response=0\nlisted-shortcuts=0 expected=0 matches=1\nphase=shortcuts-cancel\nBindShortcuts-response=2\nListShortcuts-response=0\nlisted-shortcuts=0 expected=0 matches=1\ncancel-left-no-bindings=1\nshortcuts-probe-passed=1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "runuser",
+        "-u",
+        "parentaltest",
+        "--",
+        "env",
+        "HOME=/home/parentaltest",
+        "XDG_RUNTIME_DIR=/run/user/1003",
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1003/bus",
+        "GSETTINGS_BACKEND=dconf",
+        "runcon",
+        "system_u:system_r:lyra_parental_probe_t:s0",
+        "/opt/lyra-parental-probe/probe",
+        "/opt/lyra-parental-probe/shortcuts-probe",
+        "activate"
+      ],
+      "rc": 8,
+      "stdout": "uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0\ncontext=system_u:system_r:lyra_parental_probe_t:s0 enforcing=1\nCreateSession-response=0\nsession=/org/freedesktop/portal/desktop/session/1_71/lyra_shortcuts\nListShortcuts-response=0\nlisted-shortcuts=0 expected=0 matches=1\nforeign-ListShortcuts-denied=1\nforeign-BindShortcuts-denied=1\nphase=shortcuts-bind\nBindShortcuts-response=2\n",
+      "stderr": ""
+    }
+  ],
+  "qualification_passed": false,
+  "note": "Original RPM: dialog displayed, cancellation and foreign-session rejection work; accepted BindShortcuts incorrectly replies 2. Official upstream correction is required."
+}

@@ -1,0 +1,626 @@
+"""Disposable VM-only split-domain experiment; never install on a host."""
+import bz2, hashlib, json, os, pathlib, re, shlex, shutil, stat, subprocess
+P=pathlib.Path
+assert 'lyra.parental-selinux-test=1' in P('/proc/cmdline').read_text().split()
+screencast_dir=P('/usr/libexec/lyra-gnome-screencast')
+screencast_files=[screencast_dir/'org.gnome.Shell.Screencast',screencast_dir/'gstreamerCompat.js']
+assert not screencast_dir.exists()
+gjs=P('/usr/bin/gjs-console')
+assert P('/usr/bin/gjs').resolve()==gjs
+subprocess.run(['rpm','-V','gjs','gnome-shell','gstreamer-plugins-good'],check=True)
+helper_names={'notifications':'org.gnome.Shell.Notifications','screensaver':'org.gnome.ScreenSaver','screencast':'org.gnome.Shell.Screencast'}
+helper_entries={k:P('/usr/libexec/lyra/trusted-'+k+'-test') for k in helper_names}
+helper_services=[P('/usr/share/dbus-1/services/'+v+'.service') for v in helper_names.values()]
+helper_probe=P('/opt/lyra-parental-probe/helper-probe')
+shortcuts_payload=P('/usr/libexec/gnome-control-center-global-shortcuts-provider')
+shortcuts_service=P('/usr/share/dbus-1/services/org.gnome.Settings.GlobalShortcutsProvider.service')
+shortcuts_entry=P('/usr/libexec/lyra/shortcuts-provider-test')
+shortcuts_probe=P('/opt/lyra-parental-probe/shortcuts-probe')
+shortcuts_desktop=P('/usr/share/applications/org.lyra.ShortcutsFixture.desktop')
+subprocess.run(['rpm','-V','gnome-control-center'],check=True)
+worker=P('/usr/libexec/gdm/gdm-session-worker')
+mutter=P('/usr/lib64/libmutter-16.so.0.0.0')
+frames=P('/usr/libexec/mutter-x11-frames')
+xsettings=P('/usr/libexec/gsd-xsettings')
+input_services=[P('/usr/libexec/gsd-keyboard'),P('/usr/libexec/gsd-media-keys')]
+remaining_services=[P('/usr/libexec/gsd-'+n) for n in ['color','datetime','housekeeping','power','print-notifications','rfkill','screensaver-proxy','sharing','smartcard','sound','usb-protection','wacom','wwan']]
+chooser_file=P('/home/parentaltest/chooser.txt')
+nautilus=P('/usr/bin/nautilus')
+nautilus_entry=P('/usr/libexec/lyra/nautilus-portal-test')
+nautilus_service=P('/usr/share/dbus-1/services/org.gnome.Nautilus.service')
+search_services=[P('/usr/libexec/'+n) for n in ['localsearch-3','localsearch-extractor-3','localsearch-control-3']]+[P('/usr/bin/localsearch')]
+search_cache=P('/home/parentaltest/.cache/tracker3')
+search_dropin=P('/etc/systemd/user/localsearch-3.service.d/99-lyra-trusted-test.conf')
+audio_services=[P('/usr/bin/pipewire')]
+pw_entries=[P('/usr/libexec/lyra/trusted-'+n+'-test') for n in ['pipewire','pipewire-pulse']]
+pw_dropins=[P('/etc/systemd/user/'+n+'.service.d/99-lyra-trusted-test.conf') for n in ['pipewire','pipewire-pulse']]
+wp_state=P('/home/parentaltest/.local/state/wireplumber')
+portal_db=P('/home/parentaltest/.local/share/flatpak/db')
+wp_payload=P('/usr/bin/wireplumber')
+wp_launcher=P('/usr/libexec/lyra/trusted-wireplumber-test')
+doc_dropin=P('/etc/systemd/user/xdg-document-portal.service.d/99-lyra-trusted-test.conf')
+wp_dropin=P('/etc/systemd/user/wireplumber.service.d/99-lyra-trusted-test.conf')
+portal_services=[P('/usr/libexec/'+n) for n in ['xdg-desktop-portal','xdg-desktop-portal-gnome','xdg-desktop-portal-gtk','xdg-document-portal','xdg-permission-store']]
+gio_launcher=P('/usr/libexec/gio-launch-desktop')
+launch_probe=P('/usr/libexec/lyra/parental-launch-probe')
+input_window=P('/opt/lyra-parental-probe/input-window')
+input_probe=P('/opt/lyra-parental-probe/input-probe')
+keyboard_config=P('/etc/X11/xorg.conf.d/00-keyboard.conf')
+font_cache=P('/home/parentaltest/.cache/fontconfig')
+a11y_settings=P('/usr/libexec/gsd-a11y-settings')
+a11y_hook=P('/usr/etc/xdg/Xwayland-session.d/00-at-spi')
+a11y_probes=[P('/opt/lyra-parental-probe')/n for n in ['a11y-settings-probe','accessible-app','accessible-client']]
+dconf_service=P('/usr/libexec/dconf-service')
+settings_probe=P('/opt/lyra-parental-probe/settings-probe')
+settings_dir=P('/home/parentaltest/.config/dconf')
+raw_profile=P('/etc/dconf/profile/lyra-supervised-raw-test')
+assert not settings_dir.exists(), 'This diagnostic requires the disposable account with no existing dconf directory'
+bus_probe=P('/usr/libexec/lyra/parental-services-probe')
+x11ready=P('/usr/lib/systemd/user/gnome-session-x11-services-ready.target')
+helper=P('/usr/libexec/gdm/gdm-wayland-session')
+native=P('/usr/libexec/gnome-session-binary')
+ctl=P('/usr/libexec/gnome-session-ctl')
+shell=P('/usr/bin/gnome-shell')
+xwayland=P('/usr/bin/Xwayland')
+xclient=P('/usr/bin/xprop')
+xkbcomp=P('/usr/bin/xkbcomp')
+entry=P('/usr/share/wayland-sessions/gnome.desktop')
+application=P('/usr/share/applications/org.gnome.Shell.desktop')
+atspi=[P('/usr/libexec/at-spi2/at-spi-bus-launcher'),P('/usr/libexec/at-spi2/at-spi2-registryd')]
+window_test=P('/opt/lyra-parental-probe/xwindow-test')
+launcher=P('/usr/libexec/lyra/trusted-shell-test')
+dropin=P('/etc/systemd/user/org.gnome.Shell@wayland.service.d/99-lyra-trusted-test.conf')
+profile=P('/etc/dconf/profile/lyra-supervised-test')
+database=P('/etc/dconf/db/lyra-supervised-test')
+debuglog=P('/tmp/lyra-trusted-shell-test.log')
+keydir=P('/root/lyra-shell-test-db.d')
+audio_probe=P('/opt/lyra-parental-probe/audio-probe')
+portal_probe=P('/opt/lyra-parental-probe/portal-probe')
+generated=[shortcuts_entry,shortcuts_probe,shortcuts_desktop,*pw_entries,*pw_dropins,*screencast_files,helper_probe,*helper_entries.values(),search_dropin,chooser_file,nautilus_entry,doc_dropin,audio_probe,portal_probe,wp_launcher,wp_dropin,launch_probe,keyboard_config,input_window,input_probe,settings_dir/'shortcut-approved',settings_dir/'shortcut-blocked']+a11y_probes+[settings_probe,raw_profile,settings_dir/'user',settings_dir/'elf-probe',bus_probe,window_test,launcher,dropin,profile,database,debuglog,keydir/'00-policy',keydir/'locks/00-policy']
+assert all(not p.exists() for p in generated)
+for p in atspi:
+    owner=subprocess.check_output(['rpm','-qf','--qf','%{NAME}',str(p)],text=True)
+    assert owner=='at-spi2-core' and p.stat().st_uid==0,(str(p),owner)
+subprocess.run(['rpm','-V','at-spi2-core'],check=True)
+assert subprocess.check_output(['rpm','-qf','--qf','%{NAME}',str(xwayland)],text=True)=='xwayland'
+assert xwayland.stat().st_uid==0
+subprocess.run(['rpm','-V','xwayland'],check=True)
+assert subprocess.check_output(['rpm','-qf','--qf','%{NAME}',str(xclient)],text=True)=='xprop'
+subprocess.run(['rpm','-V','xprop'],check=True)
+assert subprocess.check_output(['rpm','-qf','--qf','%{NAME}',str(xkbcomp)],text=True)=='xkbcomp'
+subprocess.run(['rpm','-V','xkbcomp'],check=True)
+assert mutter.is_file() and not mutter.is_symlink()
+subprocess.run(['rpm','-V','mutter','gnome-settings-daemon','accountsservice','dconf','libdconf1','glib2-tools'],check=True)
+assert subprocess.check_output(['rpm','-qf','--qf','%{NAME}',str(dconf_service)],text=True)=='dconf'
+assert dconf_service.stat().st_uid==0 and not dconf_service.is_symlink()
+assert xsettings.stat().st_uid==0 and not xsettings.is_symlink()
+assert subprocess.check_output(['rpm','-qf','--qf','%{NAME}',str(xsettings)],text=True)=='gnome-settings-daemon'
+# The official Leap zlib-ng loader path is fixed, root-owned and immutable to the account.
+libz=P('/usr/lib64/zlib-ng-compat/libz.so.1').resolve(strict=True)
+for item in [libz,*libz.parents]:
+    assert item.stat().st_uid==0 and not item.stat().st_mode & 0o022,item
+import fixture_recovery
+backup = fixture_recovery.snapshot(
+    [shortcuts_payload,shortcuts_service,gjs,*helper_services]+search_services+[nautilus,nautilus_service,wp_payload]+audio_services+portal_services+remaining_services+input_services+[gio_launcher,worker,helper,native,ctl,shell,entry,application,xwayland,xclient,xkbcomp,mutter,x11ready,frames,xsettings,dconf_service,a11y_settings,a11y_hook]+atspi+[P('/etc/gdm/custom.conf')],
+    generated+[P('/etc/pam.d/gdm-autologin'),P('/etc/gdm/custom.conf.lyra-baseline')], cache_directory=font_cache, data_directories=[wp_state,portal_db], generated_trees=[search_cache])
+created_dirs=[]
+loaded=False
+audit_started=False
+audit_disabled=False
+records=[]
+def run(args,timeout=180):
+    r=subprocess.run(args,capture_output=True,text=True,timeout=timeout)
+    records.append(dict(argv=args,rc=r.returncode,stdout=r.stdout,stderr=r.stderr))
+    P('/root/trusted-shell-progress.json').write_text(json.dumps(records,indent=2))
+    assert r.returncode==0,records[-1]
+    return r.stdout
+def make_parent(path):
+    missing=[]
+    p=path.parent
+    while not p.exists(): missing.append(p);p=p.parent
+    for p in reversed(missing):p.mkdir();created_dirs.append(p)
+def forms(text):
+    text='\n'.join(line.split(';',1)[0] for line in text.splitlines())
+    depth=0;start=0
+    for i,char in enumerate(text):
+        if char=='(':
+            if depth==0:start=i
+            depth+=1
+        elif char==')':
+            depth-=1
+            if depth==0:yield text[start:i+1]
+run(['systemctl','stop','gdm'])
+try:
+    for p in generated:make_parent(p)
+    # Reuse the existing image compatibility launcher, absent in this older VM.
+    # Exact SUSE source plus upstream success-response fix; original is snapshotted.
+    shutil.copyfile('/root/shortcuts-portal-build/src/xdg-desktop-portal-gnome','/usr/libexec/xdg-desktop-portal-gnome')
+    for name in ['org.gnome.Shell.Screencast','gstreamerCompat.js']:
+        shutil.copyfile('/root/'+name,screencast_dir/name)
+        (screencast_dir/name).chmod(0o644)
+    run(['restorecon','-RF',str(screencast_dir)])
+    records.append(dict(fixture='screencast-compatibility',source='existing Desktop kiwi overlay',
+        files={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in screencast_files}))
+    for i,(name,service) in enumerate(helper_names.items(),1):
+        helper_entry=helper_entries[name]
+        run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','-Wl,-z,relro,-z,now','-DHELPER_KIND='+str(i),'/root/trusted-helper.c','-lselinux','-o',str(helper_entry)])
+        helper_entry.chmod(0o755)
+        service_file=P('/usr/share/dbus-1/services/'+service+'.service')
+        old='Exec=/usr/bin/gjs -m /usr/share/gnome-shell/'+service
+        assert old in service_file.read_text()
+        service_file.write_text(service_file.read_text().replace(old,'Exec='+str(helper_entry)))
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/helper-probe.c','-lselinux','-o',str(helper_probe)]+shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','gio-2.0'],text=True)))
+    helper_probe.chmod(0o755)
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/shortcuts-probe.c','-lselinux','-o',str(shortcuts_probe)]+shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','gio-2.0'],text=True)))
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/shortcuts-provider.c','-lselinux','-o',str(shortcuts_entry)])
+    shortcuts_probe.chmod(0o755);shortcuts_entry.chmod(0o755)
+    shortcuts_desktop.write_text('[Desktop Entry]\nType=Application\nName=Lyra Shortcuts Fixture\nExec=/opt/lyra-parental-probe/shortcuts-probe activate\nNoDisplay=true\n')
+    run(['restorecon',str(shortcuts_desktop)])
+    original='Exec=/usr/libexec/gnome-control-center-global-shortcuts-provider'
+    assert original in shortcuts_service.read_text()
+    shortcuts_service.write_text(shortcuts_service.read_text().replace(original,'Exec='+str(shortcuts_entry)))
+
+
+    chooser_file.write_text('Lyra disposable file chooser evidence\n')
+    os.chown(chooser_file,1003,1004);chooser_file.chmod(0o600)
+    run(['restorecon',str(chooser_file)])
+    for p in [wp_state,portal_db]:
+        p.mkdir(parents=True,exist_ok=True)
+        os.chown(p,1003,1004);p.chmod(0o700)
+    keyboard_config.write_text('Section "InputClass"\n Identifier "Lyra disposable keyboard"\n MatchIsKeyboard "on"\n Option "XkbLayout" "us"\nEndSection\n')
+    run(['restorecon',str(keyboard_config)])
+    run(['systemctl','restart','systemd-localed.service'])
+    run(['gcc','-std=gnu17','-Wall','-Wextra','-Werror','-O2',
+         '-Wl,-z,relro,-z,now','/root/trusted-shell.c','-lselinux','-o',str(launcher)]
+        +shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','gio-2.0'],text=True)))
+    launcher.chmod(0o755)
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/system-bus-probe.c','-lselinux','-o',str(bus_probe)] + shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','gio-2.0'],text=True)))
+    bus_probe.chmod(0o755)
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/launch-probe.c','-lselinux','-o',str(launch_probe)])
+    launch_probe.chmod(0o755)
+    for path,packages in zip(a11y_probes,[['gio-2.0'],['gtk+-3.0'],['atspi-2']]):
+        run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/'+path.name+'.c','-lselinux','-o',str(path)] + shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs',*packages],text=True)))
+        path.chmod(0o755)
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/settings-probe.c','-lselinux','-o',str(settings_probe)] + shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','gio-2.0','dconf'],text=True)))
+    settings_probe.chmod(0o755)
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/input-probe.c','-lselinux','-o',str(input_probe)] + shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','gio-2.0','fontconfig'],text=True)))
+    input_probe.chmod(0o755)
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/input-window.c','-lselinux','-o',str(input_window)] + shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','gtk+-3.0'],text=True)))
+    input_window.chmod(0o755)
+    for index,pw_entry in enumerate(pw_entries):
+        run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','-Wl,-z,relro,-z,now']+(['-DPULSE=1'] if index else [])+['/root/trusted-pipewire.c','-lselinux','-o',str(pw_entry)])
+        pw_entry.chmod(0o755)
+        pw_dropins[index].write_text('[Service]\nExecStart=\nExecStart='+str(pw_entry)+'\nEnvironment=PIPEWIRE_CONFIG_DIR=/home/parentaltest/evil SPA_PLUGIN_DIR=/home/parentaltest/evil\n')
+        run(['restorecon',str(pw_dropins[index])])
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/trusted-wireplumber.c','-lselinux','-o',str(wp_launcher)])
+    wp_launcher.chmod(0o755)
+    doc_dropin.write_text('[Service]\nExecStopPost=-/usr/bin/fusermount3 -u -z %t/doc\n')
+    search_dropin.write_text('[Service]\nRuntimeDirectory=lyra-search-tmp\nRuntimeDirectoryMode=0700\nEnvironment=SQLITE_TMPDIR=%t/lyra-search-tmp TMPDIR=%t/lyra-search-tmp LD_LIBRARY_PATH=/usr/lib64/zlib-ng-compat\n')
+    run(['restorecon',str(search_dropin)])
+    run(['restorecon',str(doc_dropin)])
+    wp_dropin.write_text('[Service]\nExecStart=\nExecStart=/usr/libexec/lyra/trusted-wireplumber-test\nEnvironment=WIREPLUMBER_CONFIG_DIR=/home/parentaltest/untrusted LUA_PATH=/home/parentaltest/evil.lua\n')
+    run(['restorecon',str(wp_dropin)])
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/portal-probe.c','-lselinux','-o',str(portal_probe)] + shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','gio-unix-2.0'],text=True)))
+    portal_probe.chmod(0o755)
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/nautilus-portal.c','-lselinux','-o',str(nautilus_entry)])
+    nautilus_entry.chmod(0o755)
+    assert 'Exec=/usr/bin/nautilus --gapplication-service' in nautilus_service.read_text()
+    nautilus_service.write_text(nautilus_service.read_text().replace('Exec=/usr/bin/nautilus --gapplication-service','Exec=/usr/libexec/lyra/nautilus-portal-test'))
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/audio-probe.c','-lselinux','-o',str(audio_probe)] + shlex.split(subprocess.check_output(['pkg-config','--cflags','--libs','libpulse-simple'],text=True)))
+    audio_probe.chmod(0o755)
+    raw_profile.write_text('user-db:user\n')
+    os.chown(settings_dir,1003,1004);settings_dir.chmod(0o700)
+    run(['gcc','-std=c17','-Wall','-Wextra','-Werror','-O2','/root/xwindow-test.c','-lX11','-lselinux','-o',str(window_test)])
+    window_test.chmod(0o755)
+    profile.write_text('user-db:user\nsystem-db:lyra-supervised-test\n')
+    (keydir/'00-policy').write_text("[org/gnome/shell]\nallow-extension-installation=false\ndevelopment-tools=false\ndisable-user-extensions=true\n")
+    (keydir/'locks/00-policy').write_text('/org/gnome/shell/allow-extension-installation\n/org/gnome/shell/development-tools\n/org/gnome/shell/disable-user-extensions\n')
+    run(['dconf','compile',str(database),str(keydir)])
+    debuglog.touch();os.chown(debuglog,1003,1004);debuglog.chmod(0o600)
+    run(['chcon','-t','user_tmp_t',str(debuglog)])
+    dropin.write_text('[Unit]\nStartLimitIntervalSec=60\nStartLimitBurst=1\n[Service]\nRestart=no\nExecStart=\nExecStart=/usr/libexec/lyra/trusted-shell-test\n'
+                     'StandardOutput=append:/tmp/lyra-trusted-shell-test.log\nStandardError=inherit\n'
+                     'Environment=GNOME_SHELL_JS=/home/parentaltest/untrusted-js GSETTINGS_BACKEND=memory DCONF_PROFILE=/home/parentaltest/untrusted-profile\n')
+    run(['restorecon',str(profile),str(raw_profile),str(database),str(dropin)])
+    policy='''
+(type lyra_parental_shell_t)
+(typeattributeset domain (lyra_parental_shell_t))
+(roletype lyra_parental_r lyra_parental_shell_t)
+(roletype system_r lyra_parental_shell_t)
+(type lyra_parental_shell_entry_t)
+(typeattributeset file_type (lyra_parental_shell_entry_t))
+(typeattributeset exec_type (lyra_parental_shell_entry_t))
+(type lyra_parental_shell_payload_t)
+(typeattributeset file_type (lyra_parental_shell_payload_t))
+(typeattributeset exec_type (lyra_parental_shell_payload_t))
+(allow lyra_parental_probe_t lyra_parental_shell_entry_t (file (execute)))
+(allow lyra_parental_probe_t lyra_parental_shell_t (process (transition signal sigkill sigstop)))
+(typetransition lyra_parental_probe_t lyra_parental_shell_entry_t process lyra_parental_shell_t)
+(allow lyra_parental_shell_t lyra_parental_shell_entry_t (file (entrypoint execute)))
+(allow lyra_parental_shell_t lyra_parental_shell_payload_t (file (execute execute_no_trans)))
+(allow lyra_parental_shell_t lib_t (file (execute)))
+(allow lyra_parental_shell_t ld_so_t (file (execute)))
+(allow lyra_parental_shell_t self (process (execmem)))
+(allow lyra_parental_shell_t lib_t (dir (read open)))
+; Mutter enumerates DRM devices through sysfs/udev and opens the virtual GPU.
+(allow lyra_parental_shell_t sysfs_t (dir (read open)))
+(allow lyra_parental_shell_t udev_var_run_t (dir (read open)))
+(allow lyra_parental_shell_t device_t (dir (read open)))
+(allow lyra_parental_shell_t dri_device_t (chr_file (read write open getattr ioctl map)))
+; libinput receives udev device events and reads the seat's input devices.
+(allow lyra_parental_shell_t self (netlink_kobject_uevent_socket (create bind read getattr getopt setopt)))
+(allow lyra_parental_shell_t event_device_t (chr_file (read write open getattr ioctl)))
+(allow lyra_parental_shell_t systemd_logind_sessions_t (dir (read open)))
+(allow lyra_parental_shell_t systemd_logind_var_run_t (dir (read open)))
+(allow lyra_parental_shell_t system_dbusd_var_run_t (sock_file (write)))
+(allow lyra_parental_shell_t system_dbusd_t (unix_stream_socket (connectto)))
+(allow lyra_parental_shell_t system_dbusd_t (dbus (send_msg)))
+(allow system_dbusd_t lyra_parental_shell_t (dbus (send_msg)))
+(allow lyra_parental_shell_t systemd_logind_t (dbus (send_msg)))
+(allow systemd_logind_t lyra_parental_shell_t (dbus (send_msg)))
+(allow lyra_parental_probe_t lyra_parental_shell_t (dir (search getattr)))
+(allow lyra_parental_probe_t lyra_parental_shell_t (file (read open getattr)))
+; Dedicated non-executable files for Mutter's XWayland lock files.
+(type lyra_parental_atspi_exec_t)
+(typeattributeset file_type (lyra_parental_atspi_exec_t))
+(typeattributeset exec_type (lyra_parental_atspi_exec_t))
+(allow lyra_parental_probe_t lyra_parental_atspi_exec_t (file (execute execute_no_trans)))
+(type lyra_parental_x11_lock_t)
+(typeattributeset file_type (lyra_parental_x11_lock_t))
+(typetransition lyra_parental_shell_t tmp_t file lyra_parental_x11_lock_t)
+(allow lyra_parental_shell_t tmp_t (dir (write add_name remove_name)))
+(allow lyra_parental_shell_t lyra_parental_x11_lock_t (file (create read open getattr write unlink setattr)))
+(type lyra_parental_shell_memory_t)
+(typeattributeset file_type (lyra_parental_shell_memory_t))
+; Executable memory files belong to the trusted desktop, never to the account domain.
+(typetransition lyra_parental_shell_t tmpfs_t file lyra_parental_shell_memory_t)
+(allow lyra_parental_shell_t lyra_parental_shell_memory_t (file (create read open getattr map write append setattr unlink execute)))
+(allow lyra_parental_shell_t lyra_parental_probe_t (dbus (send_msg acquire_svc)))
+(allow lyra_parental_shell_t lyra_parental_probe_t (unix_stream_socket (connectto)))
+(allow lyra_parental_probe_t lyra_parental_shell_t (dbus (send_msg)))
+(allow lyra_parental_probe_t tty_device_t (chr_file (read write)))
+(allow lyra_parental_probe_t devlog_t (sock_file (write)))
+(allow lyra_parental_probe_t system_dbusd_var_run_t (sock_file (write)))
+(allow lyra_parental_probe_t system_dbusd_t (unix_stream_socket (connectto)))
+(allow lyra_parental_probe_t system_dbusd_t (dbus (send_msg)))
+(allow system_dbusd_t lyra_parental_probe_t (dbus (send_msg)))
+(allow lyra_parental_probe_t xdm_t (dbus (send_msg)))
+(allow xdm_t lyra_parental_probe_t (dbus (send_msg)))
+(allow lyra_parental_probe_t systemd_logind_t (dbus (send_msg)))
+(allow systemd_logind_t lyra_parental_probe_t (dbus (send_msg)))
+(allow lyra_parental_probe_t xdm_unit_file_t (service (start status)))
+(allow lyra_parental_probe_t config_home_t (dir (open read watch)))
+(allow lyra_parental_probe_t root_t (dir (watch)))
+(allow lyra_parental_probe_t etc_t (dir (watch)))
+(type lyra_parental_gnome_session_exec_t)
+(typeattributeset file_type (lyra_parental_gnome_session_exec_t))
+(typeattributeset exec_type (lyra_parental_gnome_session_exec_t))
+(allow lyra_parental_probe_t lyra_parental_gnome_session_exec_t (file (execute execute_no_trans)))
+(type lyra_parental_gdm_launcher_exec_t)
+(typeattributeset file_type (lyra_parental_gdm_launcher_exec_t))
+(typeattributeset exec_type (lyra_parental_gdm_launcher_exec_t))
+(allow xdm_t lyra_parental_gdm_launcher_exec_t (file (getattr open read map execute)))
+(allow lyra_parental_probe_t lyra_parental_gdm_launcher_exec_t (file (entrypoint execute execute_no_trans)))
+'''
+    policy+='''
+; XWayland is a separate trusted native server, entered only by the Shell.
+(type lyra_parental_xwayland_t)
+(typeattributeset domain (lyra_parental_xwayland_t))
+(roletype lyra_parental_r lyra_parental_xwayland_t)
+(roletype system_r lyra_parental_xwayland_t)
+(type lyra_parental_xwayland_exec_t)
+(typeattributeset file_type (lyra_parental_xwayland_exec_t))
+(typeattributeset exec_type (lyra_parental_xwayland_exec_t))
+(typetransition lyra_parental_shell_t lyra_parental_xwayland_exec_t process lyra_parental_xwayland_t)
+(allow lyra_parental_shell_t lyra_parental_xwayland_exec_t (file (execute)))
+(allow lyra_parental_shell_t lyra_parental_xwayland_t (process (transition signal sigkill sigstop)))
+(allow lyra_parental_xwayland_t lyra_parental_xwayland_exec_t (file (entrypoint execute)))
+(allow lyra_parental_xwayland_t lyra_parental_shell_t (process (sigchld)))
+; Dynamic libraries may be mapped, but not used as an executable loader.
+(allow lyra_parental_xwayland_t file_type (dir (search getattr read open)))
+(allow lyra_parental_xwayland_t file_type (lnk_file (read getattr)))
+(allow lyra_parental_xwayland_t file_type (file (read open getattr map)))
+(allow lyra_parental_xwayland_t lib_t (file (execute)))
+(allow lyra_parental_xwayland_t ld_so_t (file (execute)))
+; Inherit compositor channels, no generic outbound network permission.
+(allow lyra_parental_xwayland_t lyra_parental_shell_t (fd (use)))
+(allow lyra_parental_xwayland_t lyra_parental_shell_t (unix_stream_socket (read write getattr getopt setopt accept)))
+(allow lyra_parental_xwayland_t lyra_parental_shell_t (fifo_file (read write getattr ioctl)))
+(allow lyra_parental_xwayland_t lyra_parental_probe_t (fd (use)))
+(allow lyra_parental_xwayland_t lyra_parental_probe_t (fifo_file (read write getattr ioctl)))
+(allow lyra_parental_xwayland_t self (unix_stream_socket (create read write bind listen accept connect getattr getopt setopt shutdown)))
+(allow lyra_parental_xwayland_t self (unix_dgram_socket (create read write bind connect getattr getopt setopt shutdown)))
+(allow lyra_parental_xwayland_t self (process (getattr)))
+(allow lyra_parental_xwayland_t dri_device_t (chr_file (read write open getattr ioctl map)))
+(allow lyra_parental_xwayland_t null_device_t (chr_file (read write open getattr)))
+(allow lyra_parental_xwayland_t urandom_device_t (chr_file (read open getattr)))
+(type lyra_parental_xwayland_data_t)
+(typeattributeset file_type (lyra_parental_xwayland_data_t))
+(typetransition lyra_parental_xwayland_t tmpfs_t file lyra_parental_xwayland_data_t)
+(allow lyra_parental_xwayland_t lyra_parental_xwayland_data_t (file (create read write open getattr map append setattr unlink)))
+'''
+    policy+='''
+(type lyra_parental_xclient_exec_t)
+(typeattributeset file_type (lyra_parental_xclient_exec_t))
+(typeattributeset exec_type (lyra_parental_xclient_exec_t))
+(allow lyra_parental_probe_t lyra_parental_xclient_exec_t (file (execute execute_no_trans)))
+; Mutter owns the on-demand X11 listen socket before XWayland is started.
+(allow lyra_parental_probe_t lyra_parental_shell_t (unix_stream_socket (connectto)))
+'''
+    policy+='''
+; Fixed native keymap compiler, not a shell or general executable domain.
+(type lyra_parental_xkb_t)
+(typeattributeset domain (lyra_parental_xkb_t))
+(roletype lyra_parental_r lyra_parental_xkb_t)
+(roletype system_r lyra_parental_xkb_t)
+(type lyra_parental_xkb_exec_t)
+(typeattributeset file_type (lyra_parental_xkb_exec_t))
+(typeattributeset exec_type (lyra_parental_xkb_exec_t))
+(typetransition lyra_parental_xwayland_t lyra_parental_xkb_exec_t process lyra_parental_xkb_t)
+(allow lyra_parental_xwayland_t lyra_parental_xkb_exec_t (file (execute)))
+(allow lyra_parental_xwayland_t lyra_parental_xkb_t (process (transition signal)))
+(allow lyra_parental_xkb_t lyra_parental_xkb_exec_t (file (entrypoint execute)))
+(allow lyra_parental_xkb_t lyra_parental_xwayland_t (process (sigchld)))
+(allow lyra_parental_xkb_t file_type (dir (search getattr read open)))
+(allow lyra_parental_xkb_t file_type (lnk_file (read getattr)))
+(allow lyra_parental_xkb_t file_type (file (read open getattr map)))
+(allow lyra_parental_xkb_t lib_t (file (execute)))
+(allow lyra_parental_xkb_t ld_so_t (file (execute)))
+(allow lyra_parental_xkb_t lyra_parental_xwayland_t (fd (use)))
+(allow lyra_parental_xkb_t lyra_parental_xwayland_t (fifo_file (read write getattr ioctl)))
+(allow lyra_parental_xkb_t lyra_parental_shell_t (fd (use)))
+(allow lyra_parental_xkb_t lyra_parental_probe_t (fd (use)))
+(type lyra_parental_keymap_t)
+(typeattributeset file_type (lyra_parental_keymap_t))
+(typetransition lyra_parental_xkb_t user_tmp_t file lyra_parental_keymap_t)
+(allow lyra_parental_xwayland_t user_tmp_t (dir (write add_name remove_name)))
+(allow lyra_parental_xkb_t user_tmp_t (dir (write add_name remove_name)))
+(allow lyra_parental_xkb_t lyra_parental_keymap_t (file (create write open getattr read setattr unlink)))
+(allow lyra_parental_xwayland_t lyra_parental_keymap_t (file (read open getattr unlink)))
+; Dedicated diagnostic log instead of write access to arbitrary account files.
+(type lyra_parental_session_log_t)
+(typeattributeset file_type (lyra_parental_session_log_t))
+(allow lyra_parental_probe_t lyra_parental_session_log_t (file (write append)))
+(allow lyra_parental_shell_t lyra_parental_session_log_t (file (write append)))
+(allow lyra_parental_xwayland_t lyra_parental_session_log_t (file (write append)))
+(allow lyra_parental_xkb_t lyra_parental_session_log_t (file (write append)))
+'''
+    policy+='''
+; Official a11y settings daemon and native replacement of the packaged X11 hook.
+(type lyra_parental_a11y_exec_t)
+(typeattributeset file_type (lyra_parental_a11y_exec_t))
+(typeattributeset exec_type (lyra_parental_a11y_exec_t))
+(allow lyra_parental_probe_t lyra_parental_a11y_exec_t (file (execute execute_no_trans)))
+; Exact native preferences service; keep it inside the account domain.
+(type lyra_parental_dconf_exec_t)
+(typeattributeset file_type (lyra_parental_dconf_exec_t))
+(typeattributeset exec_type (lyra_parental_dconf_exec_t))
+(allow lyra_parental_probe_t lyra_parental_dconf_exec_t (file (execute execute_no_trans)))
+; Only the disposable dconf data directory and its children are writable here.
+(type lyra_parental_settings_t)
+(typeattributeset file_type (lyra_parental_settings_t))
+(typetransition lyra_parental_probe_t lyra_parental_settings_t file lyra_parental_settings_t)
+(allow lyra_parental_probe_t lyra_parental_settings_t (dir (read open write add_name remove_name watch)))
+(allow lyra_parental_probe_t lyra_parental_settings_t (file (create write append rename unlink setattr)))
+(allow lyra_parental_shell_t lyra_parental_settings_t (dir (read open watch)))
+; Desktop integration: transport only, service-side authorization remains required.
+(allow lyra_parental_shell_t xdm_t (dbus (send_msg)))
+(allow xdm_t lyra_parental_shell_t (dbus (send_msg)))
+(allow lyra_parental_shell_t accountsd_t (dbus (send_msg)))
+(allow accountsd_t lyra_parental_shell_t (dbus (send_msg)))
+(allow lyra_parental_shell_t policykit_t (dbus (send_msg)))
+(allow policykit_t lyra_parental_shell_t (dbus (send_msg)))
+; The packaged native XSettings helper keeps the account's restricted domain.
+(type lyra_parental_xsettings_exec_t)
+(typeattributeset file_type (lyra_parental_xsettings_exec_t))
+(typeattributeset exec_type (lyra_parental_xsettings_exec_t))
+(allow lyra_parental_probe_t lyra_parental_xsettings_exec_t (file (execute execute_no_trans)))
+; Wayland pixel buffers from XWayland are writable data, never executable.
+(allow lyra_parental_shell_t lyra_parental_xwayland_data_t (file (write)))
+; The fixed native frame helper shares the compositor trust boundary.
+(type lyra_parental_frames_exec_t)
+(typeattributeset file_type (lyra_parental_frames_exec_t))
+(typeattributeset exec_type (lyra_parental_frames_exec_t))
+(allow lyra_parental_shell_t lyra_parental_frames_exec_t (file (execute execute_no_trans)))
+; The sanitized NOTIFY_SOCKET names only the current user manager endpoint.
+(allow lyra_parental_shell_t lyra_parental_probe_t (unix_dgram_socket (sendto)))
+; Shell may notify readiness through exactly this packaged user target.
+(type lyra_parental_x11_ready_unit_t)
+(typeattributeset file_type (lyra_parental_x11_ready_unit_t))
+(allow lyra_parental_shell_t lyra_parental_x11_ready_unit_t (service (start status)))
+; The user manager must be able to inspect and stop its native X11 child.
+(allow lyra_parental_probe_t lyra_parental_xwayland_t (dir (search getattr)))
+(allow lyra_parental_probe_t lyra_parental_xwayland_t (file (read open getattr)))
+(allow lyra_parental_probe_t lyra_parental_xwayland_t (process (signal sigkill sigstop)))
+'''
+    policy+='\n; Exact native keyboard services retain the account domain.\n(type lyra_parental_input_exec_t)\n(typeattributeset file_type (lyra_parental_input_exec_t))\n(typeattributeset exec_type (lyra_parental_input_exec_t))\n(allow lyra_parental_probe_t lyra_parental_input_exec_t (file (execute execute_no_trans)))\n; Keyboard reads system locale defaults; D-Bus methods remain service-authorized.\n(allow lyra_parental_probe_t systemd_localed_t (dbus (send_msg)))\n(allow systemd_localed_t lyra_parental_probe_t (dbus (send_msg)))\n; Fontconfig uses temporary files, hard links and atomic rename on this filesystem.\n; No execution permission and no generic write to cache_home_t.\n(type lyra_parental_fontcache_t)\n(typeattributeset file_type (lyra_parental_fontcache_t))\n(typetransition lyra_parental_probe_t lyra_parental_fontcache_t file lyra_parental_fontcache_t)\n(typetransition lyra_parental_shell_t lyra_parental_fontcache_t file lyra_parental_fontcache_t)\n(allow lyra_parental_probe_t lyra_parental_fontcache_t (dir (read open write add_name remove_name watch)))\n(allow lyra_parental_probe_t lyra_parental_fontcache_t (file (create write append rename unlink setattr link lock)))\n(allow lyra_parental_shell_t lyra_parental_fontcache_t (dir (read open write add_name remove_name watch)))\n(allow lyra_parental_shell_t lyra_parental_fontcache_t (file (create write append rename unlink setattr link lock)))\n'
+    policy+='\n; MediaKeys watches input hotplug through libgudev and reads the chassis class.\n(allow lyra_parental_probe_t self (netlink_kobject_uevent_socket (create bind read getattr getopt setopt)))\n(allow lyra_parental_probe_t systemd_hostnamed_t (dbus (send_msg)))\n(allow systemd_hostnamed_t lyra_parental_probe_t (dbus (send_msg)))\n; Fontconfig metadata discovery does not grant writes or execution of fonts.\n(allow lyra_parental_probe_t fs_t (filesystem (getattr)))\n(allow lyra_parental_probe_t user_fonts_t (dir (read open watch)))\n(allow lyra_parental_probe_t fonts_t (dir (watch)))\n'
+    policy+="\n; A launch from the trusted Shell must enter the restricted account domain.\n; Direct use from that account stays confined. The upstream wrapper execvp's\n; the requested target; the target remains subject to normal SELinux checks.\n(type lyra_parental_gio_launcher_exec_t)\n(typeattributeset file_type (lyra_parental_gio_launcher_exec_t))\n(typeattributeset exec_type (lyra_parental_gio_launcher_exec_t))\n(allow lyra_parental_probe_t lyra_parental_gio_launcher_exec_t (file (execute execute_no_trans entrypoint)))\n(allow lyra_parental_shell_t lyra_parental_gio_launcher_exec_t (file (execute)))\n(allow lyra_parental_shell_t lyra_parental_probe_t (process (transition signal sigkill sigstop)))\n(typetransition lyra_parental_shell_t lyra_parental_gio_launcher_exec_t process lyra_parental_probe_t)\n"
+    policy+='\n; Native upstream settings services stay confined; helper children are not\n; implicitly approved. Each privileged D-Bus method still requires authorization.\n(type lyra_parental_settings_daemon_exec_t)\n(typeattributeset file_type (lyra_parental_settings_daemon_exec_t))\n(typeattributeset exec_type (lyra_parental_settings_daemon_exec_t))\n(allow lyra_parental_probe_t lyra_parental_settings_daemon_exec_t (file (execute execute_no_trans)))\n'
+    policy+="\n; Portal binaries also retain the account's restrictions. No sandbox exemption.\n(type lyra_parental_portal_exec_t)\n(typeattributeset file_type (lyra_parental_portal_exec_t))\n(typeattributeset exec_type (lyra_parental_portal_exec_t))\n(allow lyra_parental_probe_t lyra_parental_portal_exec_t (file (execute execute_no_trans)))\n"
+    policy+='\n; The portal backend receives a Wayland service socket through the session bus.\n; dbus-broker and the receiver stay in the account domain. These permissions\n; cover socket data only, never executable compositor memory.\n(allow lyra_parental_probe_t lyra_parental_shell_t (unix_stream_socket (read write)))\n'
+    policy+="\n; The document portal opens the FUSE device within its own restricted domain.\n(allow lyra_parental_probe_t fuse_device_t (chr_file (open read write getattr ioctl)))\n; Bounded real-time requests continue to be authorized by the official RTKit.\n(allow lyra_parental_probe_t rtkit_daemon_t (dbus (send_msg)))\n(allow rtkit_daemon_t lyra_parental_probe_t (dbus (send_msg)))\n(allow lyra_parental_shell_t rtkit_daemon_t (dbus (send_msg)))\n(allow rtkit_daemon_t lyra_parental_shell_t (dbus (send_msg)))\n"
+    policy+=P('/root/wireplumber.cil').read_text()
+    policy+=P('/root/pipewire.cil').read_text()
+    policy+=P('/root/session-data.cil').read_text()
+    policy+='\n(type lyra_parental_nautilus_exec_t)\n(typeattributeset file_type (lyra_parental_nautilus_exec_t))\n(typeattributeset exec_type (lyra_parental_nautilus_exec_t))\n(allow lyra_parental_probe_t lyra_parental_nautilus_exec_t (file (execute execute_no_trans)))\n'
+    policy+='\n; Only runtime directories named doc become mount points; data is not executable.\n(type lyra_parental_document_mount_t)\n(typeattributeset file_type (lyra_parental_document_mount_t))\n(typetransition lyra_parental_probe_t user_tmp_t dir "doc" lyra_parental_document_mount_t)\n(allow lyra_parental_probe_t lyra_parental_document_mount_t (dir (create read open write add_name remove_name setattr mounton rmdir)))\n(allow lyra_parental_probe_t fusefs_t (filesystem (mount unmount getattr)))\n(allow lyra_parental_probe_t fusefs_t (dir (read open)))\n'
+    policy+=P('/root/fusermount.cil').read_text()
+    policy+=P('/root/localsearch.cil').read_text()
+    policy+=P('/root/helpers.cil').read_text()
+    policy+='\n(type lyra_parental_shortcuts_exec_t)\n(typeattributeset file_type (lyra_parental_shortcuts_exec_t))\n(typeattributeset exec_type (lyra_parental_shortcuts_exec_t))\n(allow lyra_parental_probe_t lyra_parental_shortcuts_exec_t (file (execute execute_no_trans)))\n'
+    # Share only the current experiment's discovery/runtime permissions.
+    # Do not copy execution, service-management or system-management grants.
+    base=bz2.decompress(P('/etc/selinux/targeted/active/modules/400/lyra-parental-probe/cil').read_bytes()).decode()
+    for form in forms(base):
+        if not re.match(r'^\(allow\s+lyra_parental_probe_t\s',form):continue
+        if re.search(r'\bexecute\b|\bexecute_no_trans\b|\bentrypoint\b|\(\s*(?:service|system)\s',form):continue
+        policy+='\n'+re.sub(r'^(\(allow\s+)lyra_parental_probe_t\b',r'\1lyra_parental_shell_t',form)
+    for form in forms(base):
+        if not re.match(r'^\(allow\s+lyra_parental_probe_t\s',form):continue
+        if re.search(r'\bexecute\b|\bexecute_no_trans\b|\bentrypoint\b|\(\s*(?:service|system)\s',form):continue
+        policy+='\n'+form.replace('lyra_parental_probe_t','lyra_parental_wireplumber_t')
+        policy+='\n'+form.replace('lyra_parental_probe_t','lyra_parental_pipewire_t')
+    for name in helper_names:
+        for form in forms(base):
+            if not re.match(r'^\(allow\s+lyra_parental_probe_t\s',form):continue
+            if re.search(r'\bexecute\b|\bexecute_no_trans\b|\bentrypoint\b|\(\s*(?:service|system)\s',form):continue
+            policy+='\n'+form.replace('lyra_parental_probe_t','lyra_parental_'+name+'_t')
+    policy_path=P('/root/lyra-trusted-shell-test.cil');policy_path.write_text(policy)
+    run(['semodule','-i',str(policy_path)]);loaded=True
+    forbidden = [
+        ('lyra_parental_probe_t','bin_t','file','execute'),
+        ('lyra_parental_probe_t','shell_exec_t','file','execute'),
+        ('lyra_parental_probe_t','lyra_parental_wireplumber_payload_t','file','execute'),
+        ('lyra_parental_wireplumber_t','lyra_parental_wireplumber_state_t','file','execute'),
+        ('lyra_parental_probe_t','lyra_parental_portal_data_t','file','execute'),
+        ('lyra_parental_probe_t','fusefs_t','file','execute'),
+        ('lyra_parental_probe_t','lyra_parental_searchcache_t','file','execute'),
+        ('lyra_parental_fusermount_t','user_tmp_t','dir','mounton'),
+        ('lyra_parental_fusermount_t','shell_exec_t','file','execute'),
+        ('lyra_parental_probe_t','lyra_parental_probe_t','capability','sys_admin'),
+        ('lyra_parental_probe_t','lyra_parental_gjs_payload_t','file','execute'),
+        ('lyra_parental_probe_t','lyra_parental_probe_t','process','execmem')]
+    for name in helper_names:
+        for permission in ['write','execute']:
+            forbidden.append(('lyra_parental_probe_t','lyra_parental_'+name+'_memory_t','file',permission))
+        forbidden.append(('lyra_parental_probe_t','lyra_parental_'+name+'_t','process','ptrace'))
+    forbidden.extend([('lyra_parental_screencast_t','lyra_parental_shell_memory_t','file','execute'),
+        ('lyra_parental_shell_t','lyra_parental_screencast_memory_t','file','execute')])
+    forbidden.extend([('lyra_parental_probe_t','lyra_parental_pipewire_payload_t','file','execute'),
+        ('lyra_parental_pipewire_t','lyra_parental_pipewire_t','process','execmem'),
+        ('lyra_parental_pipewire_t','lyra_parental_shell_memory_t','file','execute'),
+        ('lyra_parental_pipewire_t','lyra_parental_screencast_memory_t','file','execute')])
+    forbidden.extend([('lyra_parental_probe_t','lyra_parental_screencast_cache_t','file','write'),
+        ('lyra_parental_probe_t','lyra_parental_screencast_cache_t','file','execute'),
+        ('lyra_parental_screencast_t','lyra_parental_screencast_cache_t','file','execute'),
+        ('lyra_parental_screencast_t','user_tmp_t','file','execute')])
+    # Load the binary policy once; include indirect attribute matches, like sesearch.
+    import setools
+    active_policy=setools.SELinuxPolicy()
+    positive_key=('lyra_parental_probe_t','lib_t','file','execute')
+    queries={key:[] for key in [*forbidden,positive_key]}
+    source_types={key[0] for key in queries}
+    expansions={}
+    def members(symbol):
+        name=str(symbol)
+        if name not in expansions:expansions[name]={str(t) for t in symbol.expand()}
+        return expansions[name]
+    # One pass handles type attributes on both sides without repeated policy scans.
+    query=setools.TERuleQuery(active_policy,ruletype=['allow'],
+        tclass=list({key[2] for key in queries}),perms=list({key[3] for key in queries}))
+    for rule in query.results():
+        sources=members(rule.source)&source_types
+        if not sources:continue
+        targets=members(rule.target)
+        for key,matches in queries.items():
+            source,target,kind,permission=key
+            if source in sources and target in targets and kind==str(rule.tclass) and permission in rule.perms:
+                matches.append(str(rule))
+    positive=queries[positive_key]
+    assert positive, 'Policy query positive control failed'
+    boundaries=[]
+    for source,target,kind,permission in forbidden:
+        matches=queries[(source,target,kind,permission)]
+        boundaries.append(dict(source=source,target=target,kind=kind,permission=permission,matches=matches))
+        assert not matches, boundaries[-1]
+    records.append(dict(fixture='policy-boundaries',positive_control=positive,checks=boundaries))
+    P('/root/trusted-shell-progress.json').write_text(json.dumps(records,indent=2))
+    del active_policy
+    for name in helper_names:
+        run(['chcon','-t','lyra_parental_'+name+'_entry_t',str(helper_entries[name])])
+    run(['chcon','-t','lyra_parental_gjs_payload_t',str(gjs)])
+    run(['chcon','-t','lyra_parental_probe_exec_t',str(helper_probe),str(shortcuts_probe)])
+    run(['chcon','-t','lyra_parental_shortcuts_exec_t',str(shortcuts_entry),str(shortcuts_payload)])
+    run(['chcon','-t','lyra_parental_session_log_t',str(debuglog)])
+    shutil.copyfile('/root/xwayland-build/hw/xwayland/Xwayland',xwayland)
+    shutil.copyfile('/root/mutter-build/src/libmutter-16.so.0.0.0',mutter)
+    for path,kind in [(helper,'lyra_parental_gdm_launcher_exec_t'),(native,'lyra_parental_gnome_session_exec_t'),
+                      (ctl,'lyra_parental_gnome_session_exec_t'),(shell,'lyra_parental_shell_payload_t'),
+                      (launcher,'lyra_parental_shell_entry_t')]:
+        run(['chcon','-t',kind,str(path)])
+    run(['chcon','-t','lyra_parental_xwayland_exec_t',str(xwayland)])
+    run(['chcon','-t','lyra_parental_xclient_exec_t',str(xclient),str(window_test)])
+    run(['chcon','-t','lyra_parental_xkb_exec_t',str(xkbcomp)])
+    run(['chcon','-t','lyra_parental_x11_ready_unit_t',str(x11ready)])
+    run(['chcon','-t','lyra_parental_frames_exec_t',str(frames)])
+    run(['chcon','-t','lyra_parental_xsettings_exec_t',str(xsettings)])
+    shutil.copyfile('/root/atspi-hook-build/bus/00-at-spi',a11y_hook)
+    run(['chcon','-t','lyra_parental_a11y_exec_t',str(a11y_settings),str(a11y_hook)])
+    for path in a11y_probes:run(['chcon','-t','lyra_parental_probe_exec_t',str(path)])
+    run(['chcon','-t','lyra_parental_dconf_exec_t',str(dconf_service)])
+    run(['chcon','-t','lyra_parental_probe_exec_t',str(settings_probe)])
+    run(['chcon','-t','lyra_parental_settings_t',str(settings_dir)])
+    run(['chcon','-t','lyra_parental_input_exec_t',*map(str,input_services)])
+    run(['chcon','-t','lyra_parental_settings_daemon_exec_t',*map(str,remaining_services)])
+    run(['chcon','-t','lyra_parental_portal_exec_t',*map(str,portal_services)])
+    run(['chcon','-t','lyra_parental_nautilus_exec_t',str(nautilus),str(nautilus_entry)])
+    run(['chcon','-t','lyra_parental_localsearch_exec_t',*map(str,search_services)])
+    run(['chcon','-t','lyra_parental_pipewire_payload_t',*map(str,audio_services)])
+    run(['chcon','-t','lyra_parental_pipewire_entry_t',*map(str,pw_entries)])
+    run(['chcon','-t','lyra_parental_wireplumber_entry_t',str(wp_launcher)])
+    run(['chcon','-t','lyra_parental_wireplumber_payload_t',str(wp_payload)])
+    run(['chcon','-t','lyra_parental_wireplumber_state_t',str(wp_state),*map(str,wp_state.iterdir())])
+    run(['chcon','-t','lyra_parental_portal_data_t',str(portal_db),*map(str,portal_db.iterdir())])
+    run(['chcon','-t','lyra_parental_probe_exec_t',str(input_probe),str(input_window),str(portal_probe),str(audio_probe)])
+    run(['chcon','-t','lyra_parental_fontcache_t',str(font_cache),*map(str,font_cache.iterdir())])
+    run(['chcon','-t','lyra_parental_shell_entry_t',str(bus_probe),str(launch_probe)])
+    run(['chcon','-t','lyra_parental_gio_launcher_exec_t',str(gio_launcher)])
+    for path in atspi:run(['chcon','-t','lyra_parental_atspi_exec_t',str(path)])
+    entry.write_text(entry.read_text().replace('\nExec=/usr/bin/gnome-session\n','\nExec=/usr/libexec/gnome-session-binary\n'))
+    assert '\nExec=/usr/bin/gnome-shell\n' in application.read_text()
+    application.write_text(application.read_text().replace('\nExec=/usr/bin/gnome-shell\n','\nExec='+str(launcher)+'\n'))
+    shutil.copyfile('/root/gdm-official-build/daemon/gdm-session-worker',worker)
+    run(['restorecon',str(worker)])
+    run(['systemctl','start','auditd'])
+    run(['auditctl','-b','8192'])
+    import audit_capture
+    audit_before = audit_capture.status()
+    import time
+    audit_since = time.time()
+    run(['setenforce','1'])
+    cases=[([],0),(['/opt/lyra-parental-probe/approved'],0),
+           (['/usr/bin/true'],126),(['/home/parentaltest/copied-true'],126),
+           (['/usr/bin/bash','-c','true'],126),(['/usr/bin/python3','-c','print(42)'],126),
+           (['/usr/lib64/ld-linux-x86-64.so.2','/home/parentaltest/copied-true'],126),
+           (['--anon'],126),(['--map','/home/parentaltest/copied-true'],126),
+           ([str(frames)],126),([str(xwayland),'-version'],126),([str(xkbcomp),'-version'],126),([str(launcher),'--invalid'],126),([str(shell),'--version'],126)]
+    for args,expected in cases:
+        cmd=['runuser','-u','parentaltest','--','runcon','system_u:system_r:lyra_parental_probe_t:s0',
+             '/opt/lyra-parental-probe/probe']+args
+        r=subprocess.run(cmd,capture_output=True,text=True,timeout=15)
+        records.append(dict(argv=cmd,rc=r.returncode,stdout=r.stdout,stderr=r.stderr))
+        assert r.returncode==expected and 'uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0' in r.stdout,records[-1]
+    for mode,expected in [('approved',0),('shell',255),('python',255),('copy',255),('loader',255),('anonymous',126)]:
+        cmd=['runuser','-u','parentaltest','--','runcon','system_u:system_r:lyra_parental_probe_t:s0','/opt/lyra-parental-probe/probe',str(launch_probe),mode]
+        r=subprocess.run(cmd,capture_output=True,text=True,timeout=15)
+        records.append(dict(argv=cmd,rc=r.returncode,stdout=r.stdout,stderr=r.stderr))
+        assert r.returncode==expected,records[-1]
+        if mode in ['approved','anonymous']:
+            assert 'uid=1003 context=system_u:system_r:lyra_parental_probe_t:s0' in r.stdout.split('launcher-boundary',1)[-1],records[-1]
+    run(['runuser','-u','ordinaryuser','--','python3','-c','print("ordinary-account-ok")'])
+    run(['python3','/root/trusted-shell-config-faults.py'])
+    # Instrumented entrypoints are confined test programs, never product launchers.
+    run(['gcc','-std=gnu17','-Wall','-Wextra','-Werror','-O2','/root/xwayland-fd-probe.c','-lselinux','-o','/root/xwayland-fd-probe'])
+    saved_launcher=launcher.read_bytes()
+    saved_xwayland=xwayland.read_bytes()
+    try:
+        shutil.copyfile('/root/xwayland-fd-probe',launcher)
+        shutil.copyfile('/root/xwayland-fd-probe',xwayland)
+        for mode in ['rw','sealed-rw','sealed-ro','pixels-rw']:
+            run(['runuser','-u','parentaltest','--','runcon','system_u:system_r:lyra_parental_probe_t:s0','/opt/lyra-parental-probe/probe',str(launcher),mode],timeout=15)
+    finally:
+        launcher.write_bytes(saved_launcher)
+        xwayland.write_bytes(saved_xwayland)
+    run(['setenforce','0'])
+    import datetime
+    audit_stamp=datetime.datetime.now().strftime('%H:%M:%S')
+    with P('/root/trusted-shell-session.json').open('w') as log:
+        subprocess.run(['python3','/root/restricted-xwayland-session.py'],check=True,stdout=log,timeout=280)
+    import time
+    time.sleep(1)
+    P('/root/trusted-shell-audit.json').write_text(json.dumps(audit_capture.collect(audit_since, audit_before),indent=2))
+finally:
+    fixture_recovery.recover()
+
+print(json.dumps({'wayland_only_diagnostic':False,'restored':True,'official_worker_sha256':hashlib.sha256(worker.read_bytes()).hexdigest(),'commands':records},indent=2))

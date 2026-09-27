@@ -1,0 +1,48 @@
+{
+  "control_center": {
+    "url": "https://cdn.opensuse.org/source/distribution/leap/16.1/repo/oss/src/gnome-control-center-48.7-160100.2.1.src.rpm",
+    "sha256": "daeb1cb1fee9cd1a296d8841bb19bbdb7118fc96cd2ec0b3293dd2d7a41ae18c",
+    "signature": "/tmp/lyra-parental-control-center.src.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+    "metadata": "gnome-control-center 48.7-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/b179ada3cf9efa842d7b27d3f2c7639c-gnome-control-center\n"
+  },
+  "references": [
+    {
+      "file": "portal-core-shortcuts.c",
+      "sha256": "29bdfe835e80a6878d1a6322b26604f840e1ae5d372fc80d1eca94b093d40764",
+      "url": "https://raw.githubusercontent.com/flatpak/xdg-desktop-portal/1.20.4/src/global-shortcuts.c"
+    },
+    {
+      "file": "portal-globalshortcuts.c",
+      "sha256": "d22c0e98f47d8a40081a6f82ad68ec8033400fd6fc8b9da2fdf8deba72751268",
+      "url": "https://raw.githubusercontent.com/GNOME/xdg-desktop-portal-gnome/48.0/src/globalshortcuts.c"
+    },
+    {
+      "file": "registry.xml",
+      "sha256": "dbb1a35b43fd26d32ef2e21cb442dc4e0d9071deef0d0e9c97011eb754daa351",
+      "url": "https://raw.githubusercontent.com/flatpak/xdg-desktop-portal/1.20.4/data/org.freedesktop.host.portal.Registry.xml"
+    },
+    {
+      "file": "xdp-app-info-host.c",
+      "sha256": "d5d020c085cc4e5d48ac950a06941644781674746097f7e5465b1595ae6c9cee",
+      "url": "https://raw.githubusercontent.com/flatpak/xdg-desktop-portal/1.20.4/src/xdp-app-info-host.c"
+    }
+  ],
+  "note": "Both Control Center and portal GNOME are exact SUSE source revisions installed in the VM. Portal core reference files are upstream 1.20.4. SUSE globalshortcuts.c equals upstream 48.0 byte for byte; the linked upstream fix is applied with --fuzz=0.",
+  "portal_gnome": {
+    "url": "https://cdn.opensuse.org/source/distribution/leap/16.1/repo/oss/src/xdg-desktop-portal-gnome-48.0-160100.2.1.src.rpm",
+    "sha256": "fe04ca23fac46c3efdea0d0cf49c4a7d3cc3917083e5c11a8a65bca19c4e124f",
+    "signature": "/tmp/lyra-parental-portal-gnome.src.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n",
+    "metadata": "xdg-desktop-portal-gnome 48.0-160100.2.1\nobs://build.suse.de/SUSE:SLFO:1.3/standard/72cd43a13a9c54a67bb1efb06cd46ed4-xdg-desktop-portal-gnome\n"
+  },
+  "upstream_fix": {
+    "commit": "54087ebf0b467b4193f1b40f3177f55d415eaa9c",
+    "url": "https://github.com/GNOME/xdg-desktop-portal-gnome/commit/54087ebf0b467b4193f1b40f3177f55d415eaa9c",
+    "sha256": "fec1059820db03ee20378cf5e3c7b550c36149b0291fb40df0ad77e41ae3993a",
+    "scope": "VM fixture only; no production RPM/OBS/ISO promotion"
+  },
+  "build_dependency": {
+    "url": "https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/x86_64/xdg-desktop-portal-devel-1.20.4-160100.2.1.x86_64.rpm",
+    "sha256": "dd83422fc77a5b2f3978d067646c50c19563214122f1e81d0c10560b64052cac",
+    "signature": "/tmp/lyra-parental-portal-devel.rpm:\n    Header V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    Header SHA256 digest: OK\n    Header SHA1 digest: OK\n    Payload SHA256 digest: OK\n    V3 RSA/SHA512 Signature, key ID 09d9ea69: OK\n    MD5 digest: OK\n"
+  }
+}
