@@ -55,7 +55,8 @@ The [signed staging qualification](../../docs/evidence/portal-staging/README.md)
 passed main/language installation, upgrade, rollback and native tests in both
 account types. Normal zypper updates, including the vegad repository update
 path, do not cross from the SUSE vendor to this candidate. A package-specific
-migration and return-to-SUSE policy still need review and execution tests;
+[delivery policy](../../docs/portal-package-delivery.md) now has real zypper
+upgrade/idempotency/return tests; automatic package-scoped integration is pending;
 do not globally relax vendor stickiness or change repository priorities.
 Prefer an official fixed SUSE package when one is available.
 

@@ -1,0 +1,37 @@
+[
+  {
+    "time": 1790511216.9906545,
+    "argv": [
+      "zypper",
+      "--non-interactive",
+      "refresh",
+      "parental-official"
+    ],
+    "result": {
+      "id": "3840da5e9fcb481e91027ed18f1f7c68",
+      "rc": 0,
+      "stdout": "Repository 'Official Leap 16.1 disposable test' is up to date.\nSpecified repositories have been refreshed.\n",
+      "stderr": ""
+    }
+  },
+  {
+    "time": 1790511228.438331,
+    "argv": [
+      "zypper",
+      "--xmlout",
+      "--non-interactive",
+      "--no-refresh",
+      "search",
+      "--details",
+      "--match-exact",
+      "xdg-desktop-portal-gnome",
+      "xdg-desktop-portal-gnome-lang"
+    ],
+    "result": {
+      "id": "8de6bb8e2f5841028406006f156d11ca",
+      "rc": 0,
+      "stdout": "<?xml version='1.0'?>\n<stream>\n<message type=\"info\">Loading repository data...</message>\n<message type=\"info\">Reading installed packages...</message>\n\n<search-result version=\"0.0\">\n<solvable-list>\n<solvable status=\"installed\" name=\"xdg-desktop-portal-gnome\" kind=\"package\" edition=\"48.0-160100.2.1\" arch=\"x86_64\" repository=\"Official Leap 16.1 disposable test\"/>\n<solvable status=\"not-installed\" name=\"xdg-desktop-portal-gnome-lang\" kind=\"package\" edition=\"48.0-160100.2.1\" arch=\"noarch\" repository=\"Official Leap 16.1 disposable test\"/>\n</solvable-list>\n</search-result>\n</stream>\n",
+      "stderr": ""
+    }
+  }
+]

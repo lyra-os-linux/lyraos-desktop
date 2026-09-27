@@ -68,7 +68,11 @@ restauração do binário original. A [qualificação do RPM local](evidence/por
 passou instalação, atualização, reversão e sessões comum/supervisionada. O [RPM assinado em staging](evidence/portal-staging/README.md) também passou
 nas duas contas, instalação, atualização e reversão. O zypper mantém o pacote
 SUSE nas atualizações normais por causa da troca de fornecedor: a migração
-específica, promoção revisada e candidata por checksum continuam pendentes.
+automática, promoção revisada e candidata por checksum continuam pendentes.
+A [transição explícita pelo zypper](evidence/portal-transition/README.md) já passou
+com e sem traduções, preservando os demais pacotes e permitindo retorno ao SUSE.
+A [política de entrega](portal-package-delivery.md) exige autorização por pacote
+no atualizador existente antes de automatizar essa exceção.
 
 A [etapa de auxiliares GNOME](evidence/parental-helpers/README.md) separa
 Notifications, ScreenSaver e Screencast em domínios privados com entradas fixas.
