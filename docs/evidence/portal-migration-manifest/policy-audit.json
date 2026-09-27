@@ -1,0 +1,20 @@
+{
+  "adding_absent_language_refused": true,
+  "already_applied_empty": true,
+  "consumed_sequence_refused": true,
+  "kind": "real candidate manifest parsed by Updater 0.2.7 core; no signature or VM execution",
+  "lower_sequence_refused": true,
+  "older_updater_refused": true,
+  "omitting_present_language_refused": true,
+  "passed": true,
+  "stable_refused": true,
+  "testing_route": true,
+  "unchanged_product_identity": true,
+  "unknown_source_refused": true,
+  "unrelated_same_vendor_change_refused": true,
+  "with_language": true,
+  "without_language": true,
+  "manifest_sha256": "da4b5e61554a553397c307943711343441b2c1b4070b244f1cc287ab98e2ed29",
+  "updater_source": "9ddc4000c5b8a051dba1bfa365b1c5db824cac0d",
+  "audit_source_sha256": "d23cceb6d2e30b18a5169ac12466dffbaa41a736c9d1fb12cbf226acf3137673"
+}
