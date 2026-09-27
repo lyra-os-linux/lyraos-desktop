@@ -1,0 +1,2 @@
+# Keep the upstream patch byte-identical, including blank context-line markers.
+globalshortcuts-success.patch whitespace=-blank-at-eol

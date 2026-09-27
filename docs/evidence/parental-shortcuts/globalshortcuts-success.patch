@@ -1,0 +1,74 @@
+From 54087ebf0b467b4193f1b40f3177f55d415eaa9c Mon Sep 17 00:00:00 2001
+From: stupidduos <stupidduos@gmail.com>
+Date: Sat, 5 Jul 2025 23:10:24 +0200
+Subject: [PATCH] globalshortcuts: Fix BindShortcut success response
+
+It was not being set in the correct scope
+
+Part-of: <https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/-/merge_requests/223>
+---
+ src/globalshortcuts.c | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
+
+diff --git a/src/globalshortcuts.c b/src/globalshortcuts.c
+index eb37115..59efe6e 100644
+--- a/src/globalshortcuts.c
++++ b/src/globalshortcuts.c
+@@ -533,6 +533,8 @@ shell_grab_accelerators_done (GObject      *source,
+                                                         g_variant_ref (shortcuts));
+     }
+ 
++  response = 0;
++
+  out:
+   g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
+ 
+@@ -606,7 +608,6 @@ handle_bind_shortcuts (XdpImplGlobalShortcuts *object,
+   Session *session;
+   GlobalShortcutsSession *shortcuts_session;
+   GVariantBuilder results_builder;
+-  int response;
+   g_autoptr(GVariant) settings_shortcuts = NULL;
+   g_autoptr(BindShortcutsHandle) handle = NULL;
+ 
+@@ -616,14 +617,12 @@ handle_bind_shortcuts (XdpImplGlobalShortcuts *object,
+   if (!session)
+     {
+       g_warning ("Tried to bind shortcuts on non-existing %s", arg_session_handle);
+-      response = 2;
+       goto out;
+     }
+ 
+   if (!is_global_shortcuts_session (session))
+     {
+       g_warning ("Tried to bind shortcuts on the wrong session type");
+-      response = 2;
+       goto out;
+     }
+ 
+@@ -632,7 +631,6 @@ handle_bind_shortcuts (XdpImplGlobalShortcuts *object,
+   if (shortcuts_session->bound)
+     {
+       g_warning ("Session already has bound shortcuts");
+-      response = 2;
+       goto out;
+     }
+ 
+@@ -655,8 +653,6 @@ handle_bind_shortcuts (XdpImplGlobalShortcuts *object,
+ 
+   settings_shortcuts = portal_shortcuts_to_settings (arg_shortcuts);
+ 
+-  response = 0;
+-
+   org_gnome_settings_global_shortcuts_provider_call_bind_shortcuts (settings,
+                                                                     shortcuts_session->app_id,
+                                                                     arg_parent_window,
+@@ -670,7 +666,7 @@ handle_bind_shortcuts (XdpImplGlobalShortcuts *object,
+   g_variant_builder_init (&results_builder, G_VARIANT_TYPE_VARDICT);
+   xdp_impl_global_shortcuts_complete_bind_shortcuts (object,
+                                                      invocation,
+-                                                     response,
++                                                     2,
+                                                      g_variant_builder_end (&results_builder));
+   return TRUE;
+ }

@@ -1,0 +1,24 @@
+; Persistent state is data, never an executable, library, or service entrypoint.
+(type lyra_parental_wireplumber_state_t)
+(typeattributeset file_type (lyra_parental_wireplumber_state_t))
+(typetransition lyra_parental_wireplumber_t lyra_parental_wireplumber_state_t file lyra_parental_wireplumber_state_t)
+(allow lyra_parental_wireplumber_t lyra_parental_wireplumber_state_t (dir (read open write add_name remove_name watch)))
+(allow lyra_parental_wireplumber_t lyra_parental_wireplumber_state_t (file (create write append rename unlink setattr lock)))
+(type lyra_parental_portal_data_t)
+(typeattributeset file_type (lyra_parental_portal_data_t))
+(typetransition lyra_parental_probe_t lyra_parental_portal_data_t file lyra_parental_portal_data_t)
+(allow lyra_parental_probe_t lyra_parental_portal_data_t (dir (read open write add_name remove_name watch)))
+(allow lyra_parental_probe_t lyra_parental_portal_data_t (file (create write append rename unlink setattr lock)))
+; Normal scheduling still obeys RLIMITs and RTKit's authorization.
+(allow lyra_parental_probe_t self (process (setsched)))
+(allow lyra_parental_wireplumber_t self (process (setrlimit)))
+(allow rtkit_daemon_t lyra_parental_wireplumber_t (process (getsched setsched)))
+(allow rtkit_daemon_t lyra_parental_probe_t (process (getsched setsched)))
+(allow rtkit_daemon_t lyra_parental_shell_t (process (getsched setsched)))
+(allow lyra_parental_wireplumber_t systemd_logind_var_run_t (dir (read open)))
+(allow lyra_parental_wireplumber_t lyra_parental_probe_t (unix_stream_socket (getattr)))
+(allow lyra_parental_probe_t sound_device_t (chr_file (read write open getattr ioctl map)))
+
+; The native file chooser can enumerate account data without executing it.
+(allow lyra_parental_probe_t user_home_dir_t (dir (read open watch)))
+(allow lyra_parental_probe_t user_home_t (dir (read open watch)))
