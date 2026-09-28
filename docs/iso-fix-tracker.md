@@ -580,7 +580,12 @@ Promoções OBS aceitas, exclusivamente Leap 16.1:
 O RPM final do tema instala o auxiliar como executável e preserva o autostart
 como config(noreplace); fontes em Theme PR20. O Vega extraído do RPM assinado
 passou as seis etapas e também claro/escuro com a paleta global ativada no
-perfil temporário. Publicação pública e instalação local ainda em conferência.
+perfil temporário. RPMs públicos `lyra-os-theme-1.10.0-lp161.1.1` e
+`vega-gtk-5.1.46-lp161.1.1` baixados e assinaturas conferidas. Conteúdo, modos
+e scripts correspondem ao staging qualificado; no tema, somente a dependência
+do próprio config reflete o contador de release diferente. Vega 5.1.46 instalado na estação com transação de um único pacote e
+`rpm -V` sem diferenças. Modo escuro, papel de parede e serviço de cores
+preservados. Isso não substitui a qualificação da candidata.
 A receita seleciona ambos os pacotes e o verificador exige tema >=1.10.0 e
 Vega >=5.1.46, sem ativar a paleta global por padrão. Não houve construção de ISO.
 Inclusão e qualificação na candidata exata permanecem pendentes: conferir

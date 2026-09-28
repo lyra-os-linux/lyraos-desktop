@@ -363,5 +363,31 @@
         "capture": "vega-light.png"
       }
     ]
+  },
+  "public_rpms": {
+    "theme": {
+      "payload": "identical digests, modes and flags",
+      "requirements": "identical except own config(lyra-os-theme) release counter 1.1 vs staging 2.1",
+      "scripts": "identical",
+      "signature": "digests signatures OK",
+      "sha256": "9a20bc4645715a9ca89d2bfc387245bf2f2f6bc50d9593e7b645b80b159b311f",
+      "nevra": "lyra-os-theme-1.10.0-lp161.1.1.noarch"
+    },
+    "vega": {
+      "payload": "identical to qualified staging RPM",
+      "requirements": "identical to qualified staging RPM",
+      "scripts": "identical to qualified staging RPM",
+      "signature": "digests signatures OK",
+      "sha256": "88fd3296b613ccdd289b81e51ee6d09efde5ee1fecf2a6062a79beb294f4621e",
+      "nevra": "vega-gtk-5.1.46-lp161.1.1.x86_64"
+    }
+  },
+  "host_install": {
+    "package": "vega-gtk-5.1.46-lp161.1.1.x86_64",
+    "only_package_updated": "vega-gtk",
+    "rpm_verify": "no differences",
+    "color_scheme": "prefer-dark",
+    "wallpaper": "file:///usr/share/backgrounds/lyra/2702-dawn.png",
+    "native_color_service": "active"
   }
 }
