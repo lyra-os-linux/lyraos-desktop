@@ -541,3 +541,43 @@ Relatórios locais: `analysis/2026-09-19/host-downloads-0.1.2/` (correção) e
 Integração em 25/09: preservados os pisos 0.1.3 já presentes no main. As
 versões 0.1.2/0.1.1 acima identificam os RPMs do ensaio histórico, não o
 inventário final da candidata. Revalidar o repasse no artefato exato.
+
+
+## GTK-01 — Papel de parede oculto e modo claro sem trocar cores (28/09)
+
+O protótipo local de cores usava CSS GTK 3 na prioridade do usuário, acima
+da transparência da janela de ícones, e cores GTK 4 fixas. O reparo da estação
+restaurou a transparência e a alternância sem reiniciar os aplicativos.
+Alcance geral da integração GNOME, independente de GPU; não copiar o perfil
+pessoal nem os backups da estação para a imagem.
+
+Fontes: [Theme PR19](https://github.com/lyra-os-linux/lyraos-desktop-theme/pull/19),
+1.10.0, temas GTK 3 na prioridade normal, variáveis GTK 4 adaptativas e auxiliar
+reversível `lyra-native-colors --install`. A paleta global permanece opcional por
+usuário; o refresh só atualiza serviços habilitados e ainda gerenciados.
+[Vega PR156](https://github.com/lyra-os-linux/vega/pull/156), 5.1.46, incorpora a
+mesma paleta clara/escura e acompanha o StyleManager, com retorno às cores
+semânticas do sistema em alto contraste.
+
+Validação Leap 16.1: 22 testes do tema; 57 testes comuns do Vega, fmt e clippy;
+RPM local do tema construído e conteúdo extraído ensaiado com Nautilus, Console
+e Terminal reais em Mutter/portais isolados. Nove capturas verificam pixels e
+mesmo PID em escuro/claro/escuro. Janela de ícones com CSS real conserva alfa
+zero; a regra antiga reproduz a cobertura opaca. Vega real passa seis etapas
+incluindo alto contraste claro/escuro e retorno à paleta. Reaplicação e reversão
+preservam CSS anterior. Evidência: `docs/evidence/native-colors-20260928.json`.
+
+Riscos/reversão: a integração global GTK 4 depende do contrato libadwaita 1.7
+`--standalone-color-oklab`; requalificar ao atualizar a base. Desfazer a paleta
+global antes de usar alto contraste; esse limite não se aplica ao Vega sem CSS
+global. `lyra-native-colors --undo` preserva edições posteriores e backups de
+conflitos. Retornar o Vega ao RPM 5.1.45 reverte apenas suas cores. Não aplicar
+ajustes do Console custom-liveries: há erro no leitor da versão 48.0.1 da base.
+
+Publicação OBS: em qualificação no staging, exclusivamente Leap 16.1.
+A receita seleciona ambos os pacotes e o verificador exige tema >=1.10.0 e
+Vega >=5.1.46, sem ativar a paleta global por padrão. Não houve construção de ISO.
+Inclusão e qualificação na candidata exata permanecem pendentes: conferir
+versões/assinaturas, conta nova, migração da personalização opt-in, papel de
+parede, claro/escuro e acessibilidade em VM e outro hardware aplicável. O
+protótipo fixo era um resíduo local; verificar sua ausência na imagem limpa.

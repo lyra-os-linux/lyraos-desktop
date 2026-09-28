@@ -95,12 +95,12 @@ class MinimumsTests(unittest.TestCase):
                 minimums.main()
 
     def test_dashboard_refresh_rejects_stale_and_prerelease_vega(self):
-        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.43', '5.1.44', '5.1.45~rc1'):
+        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.43', '5.1.44', '5.1.45~rc1', '5.1.45', '5.1.46~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vega-gtk' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.1.45'):
+                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.1.46'):
                         minimums.main()
 
     def test_preparation_rejects_daemon_before_recovery_release(self):
@@ -131,12 +131,12 @@ class MinimumsTests(unittest.TestCase):
                         minimums.main()
 
     def test_grub_persistence_rejects_old_theme(self):
-        for version in ('1.9.3', '1.9.4~rc1'):
+        for version in ('1.9.3', '1.9.4~rc1', '1.9.4', '1.10.0~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'lyra-os-theme' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'lyra-os-theme: need >= 1.9.4'):
+                    with self.assertRaisesRegex(ValueError, 'lyra-os-theme: need >= 1.10.0'):
                         minimums.main()
 
     def test_virtualization_and_firefox_theme_minimums_are_enforced(self):
