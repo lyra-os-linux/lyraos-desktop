@@ -207,5 +207,161 @@
     "Component qualification on Leap 16.1; no candidate ISO built",
     "Global opt-in GTK palette is not qualified for high contrast; undo first",
     "Vega high contrast qualified independently without global CSS"
-  ]
+  ],
+  "vega_packaged": {
+    "passed": true,
+    "binary": "/tmp/lyra-native-obs-vega/usr/bin/vega-gtk",
+    "checks": [
+      {
+        "mode": "dark",
+        "high_contrast": false,
+        "sample": [
+          17,
+          25,
+          37
+        ],
+        "pid": 26011,
+        "capture": "vega-dark.png"
+      },
+      {
+        "mode": "light",
+        "high_contrast": false,
+        "sample": [
+          246,
+          248,
+          252
+        ],
+        "pid": 26011,
+        "capture": "vega-light.png"
+      },
+      {
+        "mode": "dark",
+        "high_contrast": false,
+        "sample": [
+          17,
+          25,
+          37
+        ],
+        "pid": 26011,
+        "capture": "vega-dark.png"
+      },
+      {
+        "mode": "light",
+        "high_contrast": true,
+        "sample": [
+          250,
+          250,
+          251
+        ],
+        "pid": 26011,
+        "capture": "vega-light-hc.png"
+      },
+      {
+        "mode": "dark",
+        "high_contrast": true,
+        "sample": [
+          34,
+          34,
+          38
+        ],
+        "pid": 26011,
+        "capture": "vega-dark-hc.png"
+      },
+      {
+        "mode": "light",
+        "high_contrast": false,
+        "sample": [
+          246,
+          248,
+          252
+        ],
+        "pid": 26011,
+        "capture": "vega-light.png"
+      }
+    ]
+  },
+  "staging": {
+    "theme": {
+      "rpm": "lyra-os-theme-1.10.0-lp161.2.1.noarch.rpm",
+      "sha256": "6134dd38ab58b16e70b03560c2cce1bb1157515f3bca3be33a4c43b3e9238602",
+      "source_revision": "4a1bcc14a6900deed045a68fc6478af0",
+      "signature": "digests signatures OK"
+    },
+    "vega": {
+      "rpm": "vega-gtk-5.1.46-lp161.1.1.x86_64.rpm",
+      "sha256": "6f20e197d4072f31745968a376902bd47763dc27cdff37b4ff18e91b1bb32f77",
+      "source_revision": "5570d00f610919a1d1393b438ef06f54",
+      "signature": "digests signatures OK"
+    }
+  },
+  "theme_packaging": {
+    "helper_mode": "0755",
+    "autostart_config": "noreplace",
+    "boot_scriptlets": "identical to VM-qualified 1.9.4",
+    "native_payload": "byte-identical to natively tested local RPM",
+    "lint": "2 pre-existing branding errors and 4 warnings; no added lint findings"
+  },
+  "promotions": {
+    "theme": {
+      "version": "1.10.0",
+      "staging_srcmd5": "4a1bcc14a6900deed045a68fc6478af0",
+      "request": 1381260
+    },
+    "vega": {
+      "version": "5.1.46",
+      "staging_srcmd5": "5570d00f610919a1d1393b438ef06f54",
+      "request": 1381261
+    }
+  },
+  "vega_with_global_palette": {
+    "passed": true,
+    "binary": "/tmp/lyra-native-obs-vega/usr/bin/vega-gtk",
+    "global_palette": true,
+    "checks": [
+      {
+        "mode": "dark",
+        "high_contrast": false,
+        "sample": [
+          17,
+          25,
+          37
+        ],
+        "pid": 26343,
+        "capture": "vega-dark.png"
+      },
+      {
+        "mode": "light",
+        "high_contrast": false,
+        "sample": [
+          246,
+          248,
+          252
+        ],
+        "pid": 26343,
+        "capture": "vega-light.png"
+      },
+      {
+        "mode": "dark",
+        "high_contrast": false,
+        "sample": [
+          17,
+          25,
+          37
+        ],
+        "pid": 26343,
+        "capture": "vega-dark.png"
+      },
+      {
+        "mode": "light",
+        "high_contrast": false,
+        "sample": [
+          246,
+          248,
+          252
+        ],
+        "pid": 26343,
+        "capture": "vega-light.png"
+      }
+    ]
+  }
 }

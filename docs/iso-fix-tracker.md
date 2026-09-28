@@ -574,7 +574,13 @@ global. `lyra-native-colors --undo` preserva edições posteriores e backups de
 conflitos. Retornar o Vega ao RPM 5.1.45 reverte apenas suas cores. Não aplicar
 ajustes do Console custom-liveries: há erro no leitor da versão 48.0.1 da base.
 
-Publicação OBS: em qualificação no staging, exclusivamente Leap 16.1.
+Promoções OBS aceitas, exclusivamente Leap 16.1:
+[tema SR1381260](https://build.opensuse.org/request/show/1381260) e
+[Vega SR1381261](https://build.opensuse.org/request/show/1381261).
+O RPM final do tema instala o auxiliar como executável e preserva o autostart
+como config(noreplace); fontes em Theme PR20. O Vega extraído do RPM assinado
+passou as seis etapas e também claro/escuro com a paleta global ativada no
+perfil temporário. Publicação pública e instalação local ainda em conferência.
 A receita seleciona ambos os pacotes e o verificador exige tema >=1.10.0 e
 Vega >=5.1.46, sem ativar a paleta global por padrão. Não houve construção de ISO.
 Inclusão e qualificação na candidata exata permanecem pendentes: conferir
