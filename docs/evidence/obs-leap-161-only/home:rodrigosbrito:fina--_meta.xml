@@ -1,0 +1,20 @@
+<project name="home:rodrigosbrito:fina">
+  <title>Fina</title>
+  <description>Fina is a modern, intuitive, and open-source personal finance manager designed to help you take back control of your money. By simplifying expense tracking, budgeting, and income management, Fina transforms complex financial data into clear, actionable insights. Whether you are planning your monthly budget, analyzing spending habits, or setting long-term savings goals, Fina provides a clean, user-friendly interface that makes managing your personal wealth straightforward and stress-free.</description>
+  <person userid="rodrigosbrito" role="maintainer" />
+  <build>
+    <disable repository="openSUSE_Tumbleweed" />
+  </build>
+  <publish>
+    <enable arch="x86_64" repository="openSUSE_Leap_16.1" />
+    <disable repository="openSUSE_Tumbleweed" />
+  </publish>
+  <repository name="openSUSE_Tumbleweed">
+    <path project="openSUSE:Factory" repository="snapshot" />
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="openSUSE_Leap_16.1">
+    <path project="openSUSE:Leap:16.1" repository="standard" />
+    <arch>x86_64</arch>
+  </repository>
+</project>

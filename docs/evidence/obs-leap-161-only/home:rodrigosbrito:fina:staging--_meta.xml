@@ -1,0 +1,20 @@
+<project name="home:rodrigosbrito:fina:staging">
+  <title>Lyra fina staging</title>
+  <description>Build and test gate for home:rodrigosbrito:fina. Not consumed by Lyra ISO. Changes reach release only through reviewed submit requests.</description>
+  <person userid="rodrigosbrito" role="maintainer" />
+  <build>
+    <disable repository="openSUSE_Tumbleweed" />
+  </build>
+  <publish>
+    <enable arch="x86_64" repository="openSUSE_Leap_16.1" />
+    <disable repository="openSUSE_Tumbleweed" />
+  </publish>
+  <repository name="openSUSE_Tumbleweed">
+    <path project="openSUSE:Factory" repository="snapshot" />
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="openSUSE_Leap_16.1">
+    <path project="openSUSE:Leap:16.1" repository="standard" />
+    <arch>x86_64</arch>
+  </repository>
+</project>

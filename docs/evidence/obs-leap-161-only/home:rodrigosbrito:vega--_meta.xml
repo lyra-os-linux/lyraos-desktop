@@ -1,0 +1,20 @@
+<project name="home:rodrigosbrito:vega">
+  <title>Vega: Enterprise Control Center for Linux. </title>
+  <description>The Vega Enterprise Control Center for Linux is an advanced enterprise platform designed to simplify, unify, and scale the management of Linux infrastructures. Built to meet modern IT demands, Vega transforms the complexity of managing hundreds or thousands of servers into a centralized and intuitive experience. With real-time monitoring, automated security policy enforcement, and critical task orchestration, Vega ensures your Linux fleet operates with maximum stability, security, and efficiency, reducing operational costs and downtime.</description>
+  <person userid="rodrigosbrito" role="maintainer" />
+  <build>
+    <disable repository="openSUSE_Tumbleweed" />
+  </build>
+  <publish>
+    <enable arch="x86_64" repository="openSUSE_Leap_16.1" />
+    <disable repository="openSUSE_Tumbleweed" />
+  </publish>
+  <repository name="openSUSE_Tumbleweed">
+    <path project="openSUSE:Factory" repository="snapshot" />
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="openSUSE_Leap_16.1">
+    <path project="openSUSE:Leap:16.1" repository="standard" />
+    <arch>x86_64</arch>
+  </repository>
+</project>

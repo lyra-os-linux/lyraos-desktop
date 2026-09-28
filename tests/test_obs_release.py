@@ -67,6 +67,52 @@ class ManifestTests(unittest.TestCase):
             )
         self.assertEqual(self.manifest.project("fina").targets[1].name, "openSUSE_Tumbleweed")
         self.assertEqual(self.manifest.project("vega").targets[1].name, "openSUSE_Tumbleweed")
+        self.assertFalse(self.manifest.project("vega").targets[1].enabled)
+        self.assertFalse(self.manifest.project("fina").targets[1].enabled)
+
+    def test_non_leap_publication_and_redirected_base_are_rejected(self) -> None:
+        project = self.manifest.project("vega")
+        for targets in (
+            (project.targets[0], dataclasses.replace(project.targets[1], enabled=True)),
+            (dataclasses.replace(project.targets[0], upstream_project="openSUSE:Factory"),),
+            (dataclasses.replace(project.targets[0], enabled="false"),),
+        ):
+            changed = dataclasses.replace(project, targets=targets)
+            manifest = dataclasses.replace(self.manifest, projects=tuple(
+                changed if item.id == project.id else item for item in self.manifest.projects
+            ))
+            with self.assertRaises(obs_release.PolicyError):
+                manifest.validate()
+
+    def test_disabled_target_requires_build_and_publish_guards(self) -> None:
+        project = self.manifest.project("vega")
+        xml = obs_release.render_project_meta(self.manifest, project)
+        root = ET.fromstring(xml)
+        obs_release.check_project_meta(project, project.staging, root)
+        for flag in ("build", "publish"):
+            root = ET.fromstring(xml)
+            node = root.find(flag)
+            node.remove(node.find("disable"))
+            with self.assertRaises(obs_release.PolicyError):
+                obs_release.check_project_meta(project, project.staging, root)
+            root = ET.fromstring(xml)
+            ET.SubElement(root.find(flag), "enable", {
+                "repository": "openSUSE_Tumbleweed", "arch": "x86_64"
+            })
+            with self.assertRaises(obs_release.PolicyError):
+                obs_release.check_project_meta(project, project.staging, root)
+
+    def test_package_override_cannot_reenable_retained_target(self) -> None:
+        target = self.manifest.project("vega").targets[1]
+        for content in ("<enable/>", '<enable repository="openSUSE_Tumbleweed"/>',
+                        '<enable arch="x86_64"/>'):
+            root = ET.fromstring(f"<package><build>{content}</build></package>")
+            with self.assertRaises(obs_release.PolicyError):
+                obs_release.check_disabled_flag(root, "build", target, "fixture", require_disable=False)
+        for content in ("", '<enable repository="openSUSE_Leap_16.1"/>',
+                        '<enable/><disable repository="openSUSE_Tumbleweed"/>'):
+            root = ET.fromstring(f"<package><build>{content}</build></package>")
+            obs_release.check_disabled_flag(root, "build", target, "fixture", require_disable=False)
 
     def test_staging_is_never_an_iso_consumer(self) -> None:
         for project in self.manifest.projects:
