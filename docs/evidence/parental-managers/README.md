@@ -43,9 +43,12 @@ processos antes de publicar `active` novamente.
 [Resultado systemd](systemd-result.json), [resultado GDM](gdm-result.json) e
 [proveniência](provenance.json). A recusa systemd exige `ExecMainStatus=224`
 (falha PAM); a do GDM exige mensagem do guard ou falha de carga do módulo
-na conversa `gdm-autologin`, além de ausência do executável de sessão. Os
+Lyra exato, abertura tentada e retorno a `NONE` no mesmo worker, seguidos pela
+falha de início e saída desse worker observadas no PID real do gerenciador.
+O teste acompanha mais dois segundos sem encerrar o GDM, exige ausência do
+executável e rejeita qualquer início de sessão registrado depois do cursor. Os
 controles positivos antes/depois evitam confundir uma sessão quebrada com
-negação bem-sucedida. A suíte Python do repositório passou com **249 testes**.
+negação bem-sucedida. A suíte Python do repositório passou com **255 testes**.
 
 ## Condições do ensaio
 
@@ -75,6 +78,15 @@ trataram unidade já descarregada ao chamar `reset-failed` e o byte NUL retornad
 pelo kernel no contexto SELinux. Essas primeiras rodadas não contam como
 aprovação; os resultados vinculados são das rodadas finais, com limpeza.
 
+A revisão também encontrou um critério fraco no teste de módulo ausente:
+qualquer aviso `dlopen` podia encerrá-lo, inclusive o de `pam_gnome_keyring.so`,
+opcional e ausente nessa VM. O [verificador](gdm-evidence.py) agora exige a
+causa exata e o desfecho completo da mesma conversa. Seis regressões cobrem
+avisos opcionais, conversas incompletas, processos/contas diferentes, ordem
+incorreta e início posterior de sessão. A matriz GDM foi repetida com esse
+critério; a evidência anterior foi substituída. Nenhuma correção do mecanismo
+de admissão foi necessária nessa revisão.
+
 Os harnesses restauraram PAM, configuração GDM, entradas de sessão, arquivos
 AccountsService, rótulo do launcher e bytes oficiais do worker. Removeram módulo
 PAM, estado, executável e módulo CIL temporários. GDM e gerenciadores estão
@@ -86,7 +98,8 @@ documentado, copiar `../parental-transitions/{transition.py,pam-guard.c}`
 para `/root/{transition.py,transition-pam-guard.c}` e
 `../parental-identity/bindings.py` para `/root/identity-bindings.py`. Copiar
 `session.c` e `launcher.cil` para `/root/manager-session.c` e
-`/root/lyra-manager-launcher.cil`. Executar os dois harnesses como root
+`/root/lyra-manager-launcher.cil`, e `gdm-evidence.py` para
+`/root/manager-gdm-evidence.py`. Executar os dois harnesses como root
 exclusivamente nessa VM, um por vez. Eles recusam disco/marcador incorretos,
 sessões ativas e colisões com seus arquivos temporários.
 

@@ -11,12 +11,13 @@
     "../parental-identity/bindings.py": "6dfa2c274aad36b8d9deb110d827cfb12b1f2a310710ee7eacd6b976d2110f5b",
     "session.c": "1fa5c0150c566cc51191b8af0bea7507a85f9b2707efac65c276bf710451742a",
     "launcher.cil": "671d01ea8cd4183085ed5306f321006c3ac13e8bdf4f56bd135a3746aa2cb396",
+    "gdm-evidence.py": "dbcb2bb6365a36de3bdee6a152c0b289e94cbf90aac1f97037cf9f58d47b2956",
     "exercise-systemd.py": "f80fe097e2cf283cb2d519d57d4428b224ce9b057c5e5067ff6c53c5993ac240",
-    "exercise-gdm.py": "beb6bf7796b26e7762c5d9553cfb1c9a373aeea4ff3293ce8546da3ca2c4c5ca"
+    "exercise-gdm.py": "50962cd005df7146a16225d6bf74d59bd7add93af6a5d45c186edf1904c2bb5f"
   },
   "raw_result_sha256": {
     "systemd": "053f370c1ef14c9edf6c4687ad8c9fe4a8cf916103ef9860ea1c3c6a941eb30a",
-    "gdm": "88f75d2ef742df9522b5662d75ef4646e68316febcb0adec59bb27a1becdbc85"
+    "gdm": "104fc65b297ffd64703dd5fcbfb326e985cc0b21a2bcb6deaeb4fa75d1cbb9bb"
   },
   "enforcement_after_cleanup": "Permissive",
   "disk_serial": "lyra-admission-test",
@@ -28,8 +29,9 @@
   "full_account_protection": false,
   "native_execution_ids": {
     "exercise-systemd.py": "c84b3680a4d5413cb3631460a0c5961d",
-    "exercise-gdm.py": "38b8fa2b0e0d4a4eb9e5fffda683ae7b"
+    "exercise-gdm.py": "e8a03033fff54673aa14f0496dec744e"
   },
   "launcher_policy_removed": true,
-  "base_commit": "a619b9637335d08476f67797cf65c260052fb49a"
+  "base_commit": "a619b9637335d08476f67797cf65c260052fb49a",
+  "gdm_retest_after_criterion_fix": true
 }

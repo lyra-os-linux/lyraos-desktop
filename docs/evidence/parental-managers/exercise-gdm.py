@@ -2,7 +2,7 @@
 
 VM-only: minimal ELF session, not a GNOME or password-authentication test.
 Requires /root/{transition.py,identity-bindings.py,transition-pam-guard.c,
-manager-session.c,lyra-manager-launcher.cil} plus the prior GDM build.
+manager-session.c,lyra-manager-launcher.cil,manager-gdm-evidence.py} plus the prior GDM build.
 """
 import hashlib
 import importlib.util
@@ -24,6 +24,9 @@ gate.check_identity()
 spec = importlib.util.spec_from_file_location('bindings', '/root/identity-bindings.py')
 bindings = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bindings)
+spec = importlib.util.spec_from_file_location('gdm_evidence', '/root/manager-gdm-evidence.py')
+gdm_evidence = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(gdm_evidence)
 MODULE = Path('/usr/lib64/security/pam_lyra_transition_fixture.so')
 WORKER = Path('/usr/libexec/gdm/gdm-session-worker')
 PATCHED = Path('/root/gdm-official-build/daemon/gdm-session-worker')
@@ -113,18 +116,22 @@ def start(name, user='parentaltest', allowed=True, missing_module=False):
     if value('gdm.service', 'ActiveState') == 'failed':
         run(['systemctl', 'reset-failed', 'gdm.service'])
     run(['systemctl', 'start', 'gdm.service'])
+    manager_pid = int(value('gdm.service', 'MainPID'))
+    assert manager_pid > 0
     observed = None
+    denial_evidence = None
     for _ in range(100):
         current = session_processes()
         log = journal(cursor)
         if allowed and current:
             observed = current
             break
-        denial = 'PAM unable to dlopen' if missing_module else 'Experimental supervised admission rejected session'
-        if not allowed and any('gdm-autologin][' in line and denial in line for line in log.splitlines()):
+        if not allowed:
             assert not current, current
-            observed = []
-            break
+            denial_evidence = gdm_evidence.rejection(log, manager_pid, user, missing_module)
+            if denial_evidence:
+                observed = []
+                break
         time.sleep(.1)
     assert observed is not None, dict(name=name, journal=journal(cursor), processes=session_processes())
     if allowed:
@@ -133,7 +140,17 @@ def start(name, user='parentaltest', allowed=True, missing_module=False):
         uid = 1003 if user == 'parentaltest' else 1002
         assert all(row['uids'] == [uid] * 4 for row in observed), observed
         assert all(row['context'] == CONTEXT if uid == 1003 else ':unconfined_t:' in row['context'] for row in observed)
-    record(name, processes=observed, journal=journal(cursor),
+    else:
+        # Observe beyond completion, without stopping GDM to manufacture denial.
+        deadline = time.monotonic() + 2
+        while time.monotonic() < deadline:
+            assert not session_processes(), 'payload appeared after rejection'
+            time.sleep(.05)
+        assert value('gdm.service', 'MainPID') == str(manager_pid)
+        denial_evidence = gdm_evidence.rejection(journal(cursor), manager_pid, user, missing_module)
+        assert denial_evidence, 'rejection lost or a later session started'
+    record(name, processes=observed, rejection=denial_evidence,
+           post_rejection_observation_seconds=2 if not allowed else None, journal=journal(cursor),
            sessions=run(['loginctl', 'list-sessions', '--no-legend'])['stdout'])
 
 
