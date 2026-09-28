@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "worker_source": "public OBS RPM0.2.9",
+  "worker_sha256": "4cf940d9b7b290f5a3d03d582bd6ea0628781be7a5bf68e0e4665493e31db3e8",
+  "phases": {
+    "prepare.log": "6b17e7bd221d4ce12c92b56b47cb445ea76a6325d1de85c6891cb31883c5d629",
+    "offline.log": "bcc919b50e6fe43df13c3f4919acbe3bb6a24f84cd209c4186a077f5859fad1b",
+    "verify.log": "245ea8c3d5a783eebf07d4365a8477154cfd9e9dcc02620ffcc2efc77c3b3eec"
+  }
+}

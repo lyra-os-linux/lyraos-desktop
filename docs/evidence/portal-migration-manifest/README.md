@@ -2,7 +2,8 @@
 
 Prepared on 2026-09-27 for the first disposable Btrfs desktop rehearsal.
 The official detached signature was returned and verified on 2026-09-27.
-This remains a testing offer, not a completed migration or production delivery.
+This remains a testing offer, not a production delivery. The runtime continuation
+below links the completed native migration and rollback evidence.
 
 `releases-v1.json` is canonical output of Updater 0.2.7's producer. SHA256:
 `da4b5e61554a553397c307943711343441b2c1b4070b244f1cc287ab98e2ed29`.
@@ -123,3 +124,13 @@ Updater0.2.8 is building in OBS staging revision41, source
 `c071d8390617191a38eb27d6f861151e`; release remains0.2.5 revision12.
 The actual0.2.8 RPM, authenticated portal staging, offline unit, verified boot,
 rollback and the translation-present case remain required execution gates.
+
+## Runtime continuation — 2026-09-28
+
+The checkpoint above is historical. RPM 0.2.8 applied the migration but failed
+to request the final offline reboot. Updater PR29 corrected that behavior in
+0.2.9, now published and verified in Leap 16.1 staging.
+[Published-RPM lifecycle evidence](../portal-updater-native/README.md) records
+the subsequent native boots and remaining gates. The signed bytes in this
+directory remain unchanged for reproducibility; the final delivery must raise
+the minimum Updater to at least 0.2.9 and obtain a new official signature.

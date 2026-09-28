@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "added": [
+    "xdg-desktop-portal-gnome-lang|noarch|48.0-160100.2.1"
+  ],
+  "log": "'/root/portal-baseline/original-lang.rpm' looks like an RPM file. Will try to use it.\nLoading repository data...\nReading installed packages...\nResolving package dependencies...\n\nThe following NEW package is going to be installed:\n  xdg-desktop-portal-gnome-lang\n\n1 new package to install.\n\nPackage download size:    82.6 KiB\n\nPackage install size change:\n              |     288.4 KiB  required by packages that will be installed\n   288.4 KiB  |  -      0 B    released by packages that will be removed\n\nBackend:  classic_rpmtrans\nContinue? [y/n/v/...? shows all options] (y): y\nRetrieving: xdg-desktop-portal-gnome-lang-48.0-160100.2.1.noarch (Plain RPM files cache) (1/1),  82.6 KiB    \n\nChecking for file conflicts: [..done]\n(1/1) Installing: xdg-desktop-portal-gnome-lang-48.0-160100.2.1.noarch [..done]\nRunning post-transaction scripts [...done]\n"
+}

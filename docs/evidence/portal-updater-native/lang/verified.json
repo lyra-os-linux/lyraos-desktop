@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "rpm": "0.2.9-lp161.1.1",
+  "rpm_sha256": "92c149a89959cb52ddd214ab4a99b761c6a8bc8a76d85e6873ff8dfde3ddf2b0",
+  "operation_id": "6bee9088-3db4-45a6-9fa7-d7db0dd6065e",
+  "native_uefi_grub_boot": true,
+  "automatic_offline_reboot": true,
+  "offline_qemu_exit_code": 0,
+  "manual_reboot_during_offline_phase": false,
+  "hashes": {
+    "before-main.json": "1b0e1f5a20001b57a7139f301214ecdc2246e86bc6e3cd8de3393cf0686ca2fb",
+    "install-original-lang.json": "fcd567029ab88a82e3df51b1e729dec5443ece20cb3bbcd0c183a854a369dff7",
+    "lang-success.json": "5925c473b85ef3031e1dd9b1b14c5dfff93de639f5cd46cab6dab024d7df1d90",
+    "offline-serial.log": "1a2ac5c631c34fb108123a2736278abef6657f7959535b9b0e3c034764f07b1c",
+    "polkit-stage-main.json": "d4c5ce3d73f1d6ade32123bf09bdc06c698c678dfd8cbb800481a288b9db9bb2",
+    "pre-offline-serial.log": "5b67a9dbad3ebc688a127d2ab91c5c69a8d2dd50dcb0a76f674f5bcdaae40a2d",
+    "published-029.json": "9f03483cda7fc4389d88410d55afea97d6835e35ca5909d9c6a0fdc0443aef4c",
+    "stage-main-state.json": "4cbf27df9e8d313a9c166cc1ce0dae274dd3213adeacca5eac9506290b03db57",
+    "verified-serial.log": "60b5a7f6a0fc0840fc9cf11784f1d9c7a9dd028cc8199261f4043009e4cabc61"
+  },
+  "limitations": [
+    "SELinux permissive in disposable fixture",
+    "Native TTY Polkit agent; GNOME dialog not qualified",
+    "Official testing manifest still has minimum Updater 0.2.7; final delivery must raise it and be re-signed"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "operation_id": "36e0e56c-722a-4d11-8619-7c4a68a7a6d2",
+  "snapshot_number": 2,
+  "fault": "/etc/systemd/system/lyra-portal-test-failure.service",
+  "absent_from_snapshot": true
+}
