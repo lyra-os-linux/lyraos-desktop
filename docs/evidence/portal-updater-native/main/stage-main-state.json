@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "operation_id": "375e9ca3-fe61-4cb5-8e2b-58368289db5d",
+  "sequence": 4,
+  "operation": "PackageMigration",
+  "state": "ReadyToReboot",
+  "source": {
+    "version": "1.1",
+    "edition": "desktop",
+    "architecture": "x86_64",
+    "build_id": "lyra-release-1.1"
+  },
+  "target": {
+    "version": "1.1",
+    "edition": "desktop",
+    "architecture": "x86_64",
+    "build_id": "lyra-release-1.1"
+  },
+  "plan_sha256": "cd047ef4278b7e9e6f2b317fc5309dc509a711ba5d60d364914cff3b6a09e8f5",
+  "manifest_sha256": "5ec508afcb89358572c3b1cdd15d0543dce092f5a49f563b1f3fa914f557ac70",
+  "snapshot_number": 2,
+  "last_completed_step": "planned",
+  "error_code": null,
+  "boot_verification": "Pending",
+  "created_at": "2026-09-28T12:33:03.305106713Z",
+  "updated_at": "2026-09-28T12:33:03.305106713Z"
+}

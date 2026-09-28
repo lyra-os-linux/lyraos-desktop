@@ -47,6 +47,13 @@ or epoch is introduced.
 
 ## Remaining integration gates
 
+Current staging baseline (2026-09-28): **Updater 0.2.9**, published only for
+Leap 16.1. [Native portal migration and rollback](evidence/portal-updater-native/README.md)
+passed with the actual signed RPM, native Polkit authentication, UEFI/GRUB,
+automatic offline reboot, both translation states and explicit recovery after
+a controlled post-boot failure. The final testing manifest now requires 0.2.9;
+the earlier 0.2.6/0.2.7 results below are historical component qualifications.
+
 The real zypper transitions establish package-level feasibility; they do not
 complete delivery to users. The automatic path must reuse the existing upgrade
 service's snapshot, authorization, offline execution and recovery flow. The
@@ -60,8 +67,8 @@ with srcmd5 `8263d6f2a9e64f2b2af9ee8f9a196730`. Its 133 Rust tests and the nativ
 PackageKit regression with the extracted RPM worker and two reboots passed.
 See the [Updater staging qualification](https://github.com/lyra-os-linux/lyraos-desktop-updater/blob/ca8f6d085ac1041c9e6b21091670ba059b79185e/docs/vendor-scope-staging-qualification.md)
 and [structured evidence](https://github.com/lyra-os-linux/lyraos-desktop-updater/blob/ca8f6d085ac1041c9e6b21091670ba059b79185e/docs/vendor-scope-staging-evidence.json).
-This qualifies the package and PackageKit coexistence; the real signed portal
-migration has not been exercised.
+This qualified the package and PackageKit coexistence; the real signed portal
+migration had not been exercised at that stage.
 
 Package scopes alone do not provide a same-release route or exclude unrelated
 same-vendor updates. The maintainer chose to deliver this correction within the
@@ -96,22 +103,27 @@ and [structured evidence](https://github.com/lyra-os-linux/lyraos-desktop-update
 These packaged-component tests retain the fixture and authorization limits above.
 
 Delivery requires a reviewed portal manifest with
-`minimum_updater_version >= 0.2.7`, unchanged Lyra identity and the exact artifact
+`minimum_updater_version >= 0.2.9`, unchanged Lyra identity and the exact artifact
 entries. Sign it through the existing release key workflow and exercise the real
 portal with/without translations through the Updater in a complete Btrfs
-baseline, including authorization and recovery. The existing parental portal VM
-uses ext4 and is not that baseline. Staging now contains 0.2.7; release remains
-on 0.2.5, revision 12. Do not raise the image minimum to an unavailable release
-RPM. The normal vegad update command retains its existing policy.
+baseline, including authorization and recovery. Those runtime tests now pass
+with 0.2.9 in a separate Btrfs VM; the original ext4 parental fixture is preserved.
+0.2.8 fixed unprivileged Snapper discovery, and 0.2.9 fixed the missing offline
+reboot found during the real lifecycle. Release remains on 0.2.5, revision 12.
+Do not raise the image minimum to an unavailable release RPM. The normal vegad
+update command retains its existing policy.
 
-An [unsigned testing manifest and signing handoff](evidence/portal-migration-manifest/README.md)
-now pins those artifact entries, unchanged identity and minimum Updater 0.2.7.
-Its seven public repository keys and exact policy passed preflight review.
-Sequence 1 is reserved here only for a fresh disposable testing baseline, with
-no consumed sequence; the document is not a production sequence allocation.
-The official detached signature and a dedicated HTTPS testing endpoint are still
-required before the full VM migration. Never substitute a test key for the
-shipped key or use this handoff as evidence of a completed delivery.
+The [sequence-2 testing manifest](evidence/portal-migration-manifest-029/README.md)
+raises the minimum to 0.2.9 and retains the exact same portal artifacts,
+identity, repository policy and validity window. Its official signature was
+verified against the unchanged key shipped in the 0.2.9 RPM; clients 0.2.5–0.2.8
+are rejected by the audited policy. The [sequence-1 manifest](evidence/portal-migration-manifest/README.md)
+is retained solely with its historical lifecycle evidence. Neither is a
+production sequence allocation. The exact sequence-2 signed bytes passed the
+native lifecycle with both portal packages, automatic reboot and sequence
+consumption, followed by refusal to reapply the completed manifest. Never
+substitute a test key for the shipped key or clear
+the replay state of a real installation to accept a testing offer.
 
 A production transition must also handle running user sessions and service
 restart/reboot behavior. The native fixture intentionally uses inactive GDM and

@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "operation_id": "6bee9088-3db4-45a6-9fa7-d7db0dd6065e",
+  "state": {
+    "schema_version": 1,
+    "operation_id": "6bee9088-3db4-45a6-9fa7-d7db0dd6065e",
+    "sequence": 8,
+    "operation": "PackageMigration",
+    "state": "Completed",
+    "source": {
+      "version": "1.1",
+      "edition": "desktop",
+      "architecture": "x86_64",
+      "build_id": "lyra-release-1.1"
+    },
+    "target": {
+      "version": "1.1",
+      "edition": "desktop",
+      "architecture": "x86_64",
+      "build_id": "lyra-release-1.1"
+    },
+    "plan_sha256": "c1d542b81b084f1a096f7e4e4aa39185f836164d61b9e76709c80002ffe7c322",
+    "manifest_sha256": "5ec508afcb89358572c3b1cdd15d0543dce092f5a49f563b1f3fa914f557ac70",
+    "snapshot_number": 2,
+    "last_completed_step": "post-boot-verification",
+    "error_code": null,
+    "boot_verification": "Passed",
+    "created_at": "2026-09-28T12:40:29.515557593Z",
+    "updated_at": "2026-09-28T12:40:29.515557593Z"
+  },
+  "added": [
+    "xdg-desktop-portal-gnome-lang|noarch|48.0-160100.2.1.lyra1.160101.1|obs://build.opensuse.org/home:rodrigosbrito",
+    "xdg-desktop-portal-gnome|x86_64|48.0-160100.2.1.lyra1.160101.1|obs://build.opensuse.org/home:rodrigosbrito"
+  ],
+  "removed": [
+    "xdg-desktop-portal-gnome-lang|noarch|48.0-160100.2.1|SUSE LLC <https://www.suse.com/>",
+    "xdg-desktop-portal-gnome|x86_64|48.0-160100.2.1|SUSE LLC <https://www.suse.com/>"
+  ],
+  "repositories_unchanged": true,
+  "boot_files_unchanged": true,
+  "translations_migrated_together": true,
+  "trust": {
+    "kind": "TrustState",
+    "request_id": "post-main-trust",
+    "last_manifest_sequence": 1
+  },
+  "portal_rpm_verify_passed": true
+}

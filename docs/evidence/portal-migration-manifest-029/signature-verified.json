@@ -1,0 +1,10 @@
+{
+  "status": "verified",
+  "manifest_sha256": "da0e5194f24d78fdbcfd9174f9dc79dce8d1c832d54053c2917ce5f4e1196218",
+  "signature_sha256": "0a467e9c59e5171a7971f99f91150d74b9177ce385b150508d6852e46a5c2f03",
+  "official_fingerprint": "01B63EEDBE6B079126A0116EFA7353A131ECEFEB",
+  "verified_against_shipped_key": true,
+  "verified_at": "2026-09-28T12:57:38.581836+00:00",
+  "private_material_retained": false,
+  "stable_endpoint_published": false
+}

@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "previous_sha256": "da4b5e61554a553397c307943711343441b2c1b4070b244f1cc287ab98e2ed29",
+  "manifest_sha256": "da0e5194f24d78fdbcfd9174f9dc79dce8d1c832d54053c2917ce5f4e1196218",
+  "changes": {
+    "minimum_updater_version": {
+      "before": "0.2.7",
+      "after": "0.2.9"
+    },
+    "sequence": {
+      "before": 1,
+      "after": 2
+    }
+  },
+  "unchanged_package_hashes": true,
+  "unchanged_repositories": true,
+  "testing_only": true,
+  "updater_source": "3cc51f7d051ab77a8f751ec8d4e705a7b633e751"
+}

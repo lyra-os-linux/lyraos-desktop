@@ -1,0 +1,2 @@
+# Preserve exact serial bytes (CRLF and terminal escapes) used by the receipts.
+*.log -text -diff -whitespace

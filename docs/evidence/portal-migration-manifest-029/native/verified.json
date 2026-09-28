@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "operation_id": "c3a0a753-6898-4a5f-8467-4c49223910ff",
+  "sequence": 2,
+  "minimum_updater": "0.2.9",
+  "endpoint": {
+    "url": "https://raw.githubusercontent.com/lyra-os-linux/lyraos-desktop/e1600a3f8cbd4967f5806a23e851942d4a818932/docs/evidence/portal-migration-manifest-029/",
+    "manifest_sha256": "da0e5194f24d78fdbcfd9174f9dc79dce8d1c832d54053c2917ce5f4e1196218",
+    "signature_sha256": "0a467e9c59e5171a7971f99f91150d74b9177ce385b150508d6852e46a5c2f03",
+    "sequence": 2,
+    "minimum_updater": "0.2.9"
+  },
+  "rpm_sha256": "92c149a89959cb52ddd214ab4a99b761c6a8bc8a76d85e6873ff8dfde3ddf2b0",
+  "native_uefi_grub": true,
+  "automatic_offline_reboot": true,
+  "offline_qemu_exit_code": 0,
+  "native_polkit": true,
+  "translations_migrated_together": true,
+  "replay_refused": true,
+  "hashes": {
+    "before-main.json": "b8f49578d46ad50d1574145ded72bb142f63cfaf3fd0df26f90a14683e551ef0",
+    "lang-success.json": "92806f2889ed980570058f8cb34113558cb3d6260bc739aeb88546fb8e290ac3",
+    "manifest-verification.json": "a4a31dffe3ed985d7d6c192eb7e118a510bd4d550c539387e8b42fd75df46fe6",
+    "offline-serial.log": "eaeddf5519689d4eab35043116416aae79ac15a4a02cd93ea663c0d59d0c9a48",
+    "polkit-stage-main.json": "6d05f51db7c2ca62db7f5b5779b59d25ab53f5c0a0ecd6c6ce41ee561b6b72f0",
+    "pre-offline-serial.log": "07a8e80408fae4af150ab59c296672e7e4695bdf6d34f0b13b3a7c824c9874f5",
+    "published-029.json": "9f03483cda7fc4389d88410d55afea97d6835e35ca5909d9c6a0fdc0443aef4c",
+    "replay-sequence2.json": "927bd13d801f0dab1f47f2a54d1cc2b16e920d458abefaa5abca9e5ebf2800b1",
+    "stage-main-state.json": "0b6ee4b6e674997d2b0727b4d95708851a4987e49a901adea696763c00f60734",
+    "verified-serial.log": "2a21831b4b984b7e71396731d2391ecb23be92e108b26a9543a32ca2bc394fb2"
+  },
+  "limitations": [
+    "Testing offer; no production promotion",
+    "SELinux permissive fixture",
+    "Native TTY Polkit, not GNOME graphical dialog"
+  ]
+}

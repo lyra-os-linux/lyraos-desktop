@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "version": "0.2.9-lp161.1.1",
+  "sha256": {
+    "/usr/libexec/lyra-upgrade-service": "a758621036520edfd2585f0d22bb2e0c61c46f6846e12d8457f61bc7665b2e1e",
+    "/usr/libexec/lyra-upgrade-offline": "4cf940d9b7b290f5a3d03d582bd6ea0628781be7a5bf68e0e4665493e31db3e8",
+    "/usr/libexec/lyra-upgrade-verify": "83ad885351cd49a74861b469d85161fa30e2aadf397caeca80a0858a6656e6ed",
+    "/usr/share/lyra-upgrade/release-signing-key.gpg": "f8bd374b5c218881cb731a706144d10ac5cb5b4e65f1d711f153b836788307fc"
+  },
+  "unit": "[Unit]\nDescription=Apply a staged Lyra OS release upgrade\nDocumentation=https://github.com/lyra-os-linux/lyraos-desktop-updater\nDefaultDependencies=no\nConditionPathIsSymbolicLink=/system-update\nAfter=local-fs.target\nBefore=system-update.target shutdown.target\nConflicts=shutdown.target\n\n[Service]\nType=oneshot\nPrivateNetwork=yes\nExecStart=/usr/libexec/lyra-upgrade-offline --reboot\nStandardOutput=journal\nStandardError=journal\nTimeoutStartSec=infinity\n\n[Install]\nWantedBy=system-update.target\n",
+  "published_rpm_sha256": "92c149a89959cb52ddd214ab4a99b761c6a8bc8a76d85e6873ff8dfde3ddf2b0"
+}

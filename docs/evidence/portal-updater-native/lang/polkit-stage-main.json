@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "method": "native pkexec with separate unprivileged pkttyagent",
+  "results": [
+    {
+      "cancel": false,
+      "password_prompt": true,
+      "authentication_completed": true,
+      "exit_code": 0,
+      "response": {
+        "kind": "Accepted",
+        "request_id": "native-polkit",
+        "operation_id": "6bee9088-3db4-45a6-9fa7-d7db0dd6065e"
+      },
+      "fixture_hash_restored_before_start": true
+    }
+  ],
+  "injected_uid": false,
+  "authorization_policy_relaxed": false,
+  "fixture_password_restored": true,
+  "limits": [
+    "Does not qualify GNOME graphical password dialog"
+  ]
+}

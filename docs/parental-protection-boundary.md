@@ -58,6 +58,20 @@ de utilizá-lo como uma camada complementar.
 
 ## Próxima implementação
 
+### Progresso em 28/09
+
+A [migração nativa pelo Updater publicado](evidence/portal-updater-native/README.md)
+passou com o RPM0.2.9 de staging: autorização Polkit, snapshot, aplicação offline,
+reinício automático e verificação pós-boot, com e sem traduções. Uma falha
+controlada foi detectada e o rollback autenticado restaurou todo o inventário
+original pelo boot UEFI/GRUB. A [sequência2 do manifesto de teste](evidence/portal-migration-manifest-029/README.md)
+já exige mínimo0.2.9 e possui nova assinatura oficial; a evidência vinculada
+registra a qualificação desses novos bytes. A publicação OBS fica restrita a
+Leap16.1. Promoção para release e candidata por checksum continuam pendentes.
+Esses resultados qualificam a dependência do portal no atualizador, sem encerrar
+admissão, identidade dos aplicativos, resistência a evasão ou integração de
+produção do controle parental.
+
 ### Progresso experimental em 27/09
 
 A [etapa de atalhos globais](evidence/parental-shortcuts/README.md) integra o

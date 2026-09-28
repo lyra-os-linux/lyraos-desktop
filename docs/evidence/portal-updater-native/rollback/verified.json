@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "operation_id": "36e0e56c-722a-4d11-8619-7c4a68a7a6d2",
+  "rpm_sha256": "92c149a89959cb52ddd214ab4a99b761c6a8bc8a76d85e6873ff8dfde3ddf2b0",
+  "automatic_offline_reboot": true,
+  "offline_qemu_exit_code": 0,
+  "native_polkit_rollback": true,
+  "native_uefi_grub_rollback": true,
+  "snapshot_selected_by_product": true,
+  "manual_snapshot_selection": false,
+  "complete_inventory_restored": true,
+  "translations_restored": true,
+  "replay_not_consumed": true,
+  "hashes": {
+    "before-main.json": "1e65b6cc8ae48b4451580d89823829864d68f1b67001be455666053401bb0f59",
+    "before-rollback-state.json": "1ee8130e7361e670e420947fb84e6e75d262ab2f001feab1ad6867919ce9ee9d",
+    "failed-boot-serial.log": "41bd9fc294def03f838319ea47037327e9ed9ae97df617bd26c111ef42c1e12f",
+    "offline-serial.log": "97f87300e35e4b3cd94eca6d8b66382027d7b30ed26ab3e64271251428c878d9",
+    "polkit-rollback.json": "36d96748d3a6ed13a60213b8d3d0654c33324e44f61d445ee760f39616777fc3",
+    "polkit-stage-main.json": "9035c941704a76a3fc6414de7b2e1b5d6fc8d9a1a31157600eccc3e01ddee6c9",
+    "postboot-fault.json": "ab6aacc2bef28383cddeedd6523d7774732692409a22f6425dbee3ec0557401b",
+    "pre-offline-serial.log": "1993dbf8faaeac1dae24679ce6fb7826b124c72d3a313d4065770c16223aa080",
+    "published-029.json": "9f03483cda7fc4389d88410d55afea97d6835e35ca5909d9c6a0fdc0443aef4c",
+    "restored-serial.log": "a55bf6cde548c9e83d70363935d22e4e24e1fd23b3f2b980b01d23f81a008bd5",
+    "rollback-completed.json": "dff49766808df169db9161ed72452c9803e40e79149c83fc5b3f911e3cb5e395",
+    "rollback-scheduled.json": "fab4d465b4d364be26282f61f6e1d04e8282c86d2cbb6ba30cf14f12e6f69c6c",
+    "stage-main-state.json": "17634a3a3113fa485adbb26bae40f51493bcc672b805db834bfaf8ad39b6d2c0"
+  },
+  "limitations": [
+    "Disposable VM with SELinux permissive",
+    "TTY Polkit, not GNOME graphical dialog",
+    "Testing manifest; final minimum Updater must rise from 0.2.7"
+  ]
+}

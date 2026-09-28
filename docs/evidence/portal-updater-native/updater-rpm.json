@@ -1,0 +1,36 @@
+{
+  "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1",
+  "metadata_signature": "verified",
+  "signing_fingerprint": "399218A6E088C4053F4533BE58097F767EDCA82E",
+  "packages": [
+    {
+      "filename": "lyra-upgrade-0.2.9-lp161.1.1.x86_64.rpm",
+      "name": "lyra-upgrade",
+      "version": "0.2.9-lp161.1.1",
+      "architecture": "x86_64",
+      "size": 4050815,
+      "sha256": "92c149a89959cb52ddd214ab4a99b761c6a8bc8a76d85e6873ff8dfde3ddf2b0",
+      "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1/x86_64/lyra-upgrade-0.2.9-lp161.1.1.x86_64.rpm",
+      "signature": "verified"
+    }
+  ],
+  "passed": true,
+  "srcmd5": "9864fa402b29194eb7db345837877ce0",
+  "source_commit": "3cc51f7d051ab77a8f751ec8d4e705a7b633e751",
+  "identity": [
+    "lyra-upgrade",
+    "0.2.9",
+    "lp161.1.1",
+    "obs://build.opensuse.org/home:rodrigosbrito:lyra:staging/openSUSE_Leap_16.1/9864fa402b29194eb7db345837877ce0-lyra-upgrade"
+  ],
+  "provenance": "commit=3cc51f7d051ab77a8f751ec8d4e705a7b633e751\nsource_epoch=1790550073\ncargo_lock_sha256=5289a34aee6c6311faba5487e8b96aade5eecc7f86473c3fa6b1d1c2f784500e\n",
+  "units_match_git": true,
+  "release_key_unchanged": true,
+  "public_matches_build_api": true,
+  "offline_worker_sha256": "4cf940d9b7b290f5a3d03d582bd6ea0628781be7a5bf68e0e4665493e31db3e8",
+  "binaries_sha256": {
+    "lyra-upgrade-service": "a758621036520edfd2585f0d22bb2e0c61c46f6846e12d8457f61bc7665b2e1e",
+    "lyra-upgrade-offline": "4cf940d9b7b290f5a3d03d582bd6ea0628781be7a5bf68e0e4665493e31db3e8",
+    "lyra-upgrade-verify": "83ad885351cd49a74861b469d85161fa30e2aadf397caeca80a0858a6656e6ed"
+  }
+}
