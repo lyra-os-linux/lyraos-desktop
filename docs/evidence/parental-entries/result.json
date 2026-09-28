@@ -1,0 +1,250 @@
+{
+  "kind": "native-login-and-openssh-account-denial",
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "baseline-login-clirestricted",
+      "passed": true,
+      "allowed": true,
+      "authenticated_shell": true,
+      "transcript": "Password: \r\nHave a lot of fun...\r\nclirestricted@lyra-virtualization-fixture:~> \r<:~> printf 'LYRA_%s\\n' ENTRY_OK; id -u; id -Z; exit\r\nLYRA_ENTRY_OK\r\n31000\r\nunconfined_u:unconfined_r:unconfined_t:s0\r\nlogout\r\n",
+      "exit_code": 0
+    },
+    {
+      "name": "baseline-ssh-clirestricted",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n31000\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": ""
+    },
+    {
+      "name": "baseline-login-clicontrol",
+      "passed": true,
+      "allowed": true,
+      "authenticated_shell": true,
+      "transcript": "Password: \r\nHave a lot of fun...\r\nclicontrol@lyra-virtualization-fixture:~> \r<:~> printf 'LYRA_%s\\n' ENTRY_OK; id -u; id -Z; exit\r\nLYRA_ENTRY_OK\r\n31001\r\nunconfined_u:unconfined_r:unconfined_t:s0\r\nlogout\r\n",
+      "exit_code": 0
+    },
+    {
+      "name": "baseline-ssh-clicontrol",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n31001\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": ""
+    },
+    {
+      "name": "baseline-sftp-restricted-fixture",
+      "passed": true,
+      "rc": 0,
+      "downloaded": true,
+      "stderr": ""
+    },
+    {
+      "name": "baseline-forward-before-policy",
+      "passed": true,
+      "forwarded": true,
+      "no_session": true
+    },
+    {
+      "name": "existing-forward-survives-policy-change",
+      "passed": true,
+      "qualification": "known-revocation-gap",
+      "forwarded": true
+    },
+    {
+      "name": "policy-login-clirestricted",
+      "passed": true,
+      "allowed": false,
+      "authenticated_shell": false,
+      "transcript": "Password: \r\n\r\nAuthentication failure\r\n",
+      "exit_code": 1
+    },
+    {
+      "name": "policy-ssh-clirestricted",
+      "passed": true,
+      "rc": 255,
+      "stdout": "",
+      "stderr": "Connection closed by 127.0.0.1 port 22\n"
+    },
+    {
+      "name": "policy-sftp-clirestricted",
+      "passed": true,
+      "rc": 255,
+      "downloaded": false,
+      "stderr": "Connection closed by 127.0.0.1 port 22\nConnection closed\n"
+    },
+    {
+      "name": "policy-no-session-forward-clirestricted",
+      "passed": true,
+      "rc": 255,
+      "forwarded": false,
+      "stderr": "Connection closed by 127.0.0.1 port 22\n"
+    },
+    {
+      "name": "policy-login-clicontrol",
+      "passed": true,
+      "allowed": true,
+      "authenticated_shell": true,
+      "transcript": "Password: \r\nHave a lot of fun...\r\nclicontrol@lyra-virtualization-fixture:~> \r<:~> printf 'LYRA_%s\\n' ENTRY_OK; id -u; id -Z; exit\r\nLYRA_ENTRY_OK\r\n31001\r\nunconfined_u:unconfined_r:unconfined_t:s0\r\nlogout\r\n",
+      "exit_code": 0
+    },
+    {
+      "name": "policy-ssh-clicontrol",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n31001\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": ""
+    },
+    {
+      "name": "policy-sftp-clicontrol",
+      "passed": true,
+      "rc": 0,
+      "downloaded": true,
+      "stderr": ""
+    },
+    {
+      "name": "policy-no-session-forward-clicontrol",
+      "passed": true,
+      "forwarded": true,
+      "no_session": true
+    },
+    {
+      "name": "permissive-ssh-still-denied",
+      "passed": true,
+      "rc": 255,
+      "stdout": "",
+      "stderr": "Connection closed by 127.0.0.1 port 22\n"
+    },
+    {
+      "name": "permissive-login-still-denied",
+      "passed": true,
+      "allowed": false,
+      "authenticated_shell": false,
+      "transcript": "Password: \r\n\r\nAuthentication failure\r\n",
+      "exit_code": 1
+    },
+    {
+      "name": "permissive-ordinary-preserved",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n31001\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": ""
+    },
+    {
+      "name": "primary-gid-drift-still-denied",
+      "passed": true,
+      "rc": 255,
+      "stdout": "",
+      "stderr": "Connection closed by 127.0.0.1 port 22\n"
+    },
+    {
+      "name": "ordinary-gid-drift-preserved",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n31001\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": ""
+    },
+    {
+      "name": "restored-vendor-login",
+      "passed": true,
+      "allowed": true,
+      "authenticated_shell": true,
+      "transcript": "Password: \r\nHave a lot of fun...\r\nclirestricted@lyra-virtualization-fixture:~> \r<:~> printf 'LYRA_%s\\n' ENTRY_OK; id -u; id -Z; exit\r\nLYRA_ENTRY_OK\r\n31000\r\nunconfined_u:unconfined_r:unconfined_t:s0\r\nlogout\r\n",
+      "exit_code": 0
+    },
+    {
+      "name": "restored-vendor-ssh",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n31000\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": ""
+    },
+    {
+      "name": "restored-vendor-sftp",
+      "passed": true,
+      "rc": 0,
+      "downloaded": true,
+      "stderr": ""
+    },
+    {
+      "name": "restored-vendor-forward",
+      "passed": true,
+      "forwarded": true,
+      "no_session": true
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "stop-fixture-sshd",
+      "passed": true
+    },
+    {
+      "name": "restore-permissive",
+      "passed": true
+    },
+    {
+      "name": "restore-vendor-login",
+      "passed": true
+    },
+    {
+      "name": "restore-vendor-sshd",
+      "passed": true
+    },
+    {
+      "name": "remove-clirestricted",
+      "passed": true
+    },
+    {
+      "name": "remove-clicontrol",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-entry-fixture.conf",
+      "passed": true
+    },
+    {
+      "name": "remove-ssh_host_lyra_entry_key",
+      "passed": true
+    },
+    {
+      "name": "remove-ssh_host_lyra_entry_key.pub",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-entry-fixture",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-entry-keys",
+      "passed": true
+    }
+  ],
+  "vendor_sha256": {
+    "login": "d36714a1bf24548f55f5a4472c518209b229f4189fb4f944375a6511a8941afd",
+    "sshd": "a5250dc12be1db2f035aefca45789f3c1e0e744ba5e28b5dde540ac8e72deea0"
+  },
+  "bindings": [
+    {
+      "user": "clirestricted",
+      "uid": 31000,
+      "gid": 41000,
+      "group": "clirestricted"
+    }
+  ],
+  "penalty_spacing_seconds": 6.0,
+  "effective_sshd": "port 22\nlistenaddress 127.0.0.1:22\nusepam yes\npubkeyauthentication yes\npasswordauthentication no\nallowtcpforwarding yes\nallowusers clirestricted\nallowusers clicontrol\nsubsystem sftp internal-sftp\npersourcepenalties crash:90.000000 authfail:5.000000 noauth:1.000000 invaliduser:5.000000 grace-exceeded:10.000000 refuseconnection:10.000000 max:600.000000 min:15.000000 max-sources4:65536 max-sources6:65536 overflow:permissive overflow6:permissive",
+  "server_invocation": "372b204a8d964bfa96155e2f59b2d8fd",
+  "sshd_context": "system_u:system_r:sshd_t:s0-s0:c0.c1023",
+  "ssh_account_denials": [
+    "Access denied for user clirestricted by PAM account configuration [preauth]",
+    "Access denied for user clirestricted by PAM account configuration [preauth]",
+    "Access denied for user clirestricted by PAM account configuration [preauth]",
+    "Access denied for user clirestricted by PAM account configuration [preauth]",
+    "Access denied for user clirestricted by PAM account configuration [preauth]"
+  ],
+  "passed": true,
+  "server_journal": "Server listening on 127.0.0.1 port 22.\nConnection from 127.0.0.1 port 39696 on 127.0.0.1 port 22 rdomain \"\"\nkex_exchange_identification: Connection closed by remote host [preauth]\nConnection closed by 127.0.0.1 port 39696 [preauth]\nsrclimit_penalise: ipv4: new 127.0.0.1/32 deferred penalty of 1.000 seconds for penalty: connections without attempting authentication\nConnection from 127.0.0.1 port 39706 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 39706 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nAccepted publickey for clirestricted from 127.0.0.1 port 39706 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 39716 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nPostponed publickey for clicontrol from 127.0.0.1 port 39716 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nAccepted publickey for clicontrol from 127.0.0.1 port 39716 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 39728 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 39728 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nAccepted publickey for clirestricted from 127.0.0.1 port 39728 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 39742 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 39742 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nAccepted publickey for clirestricted from 127.0.0.1 port 39742 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 57832 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 57832 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nFailed publickey for clirestricted from 127.0.0.1 port 57832 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nAccess denied for user clirestricted by PAM account configuration [preauth]\nsrclimit_penalise: ipv4: new 127.0.0.1/32 deferred penalty of 5.000 seconds for penalty: failed authentication\nConnection from 127.0.0.1 port 57848 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 57848 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nFailed publickey for clirestricted from 127.0.0.1 port 57848 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nAccess denied for user clirestricted by PAM account configuration [preauth]\nsrclimit_penalise: ipv4: new 127.0.0.1/32 deferred penalty of 5.000 seconds for penalty: failed authentication\nConnection from 127.0.0.1 port 57442 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 57442 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nFailed publickey for clirestricted from 127.0.0.1 port 57442 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nAccess denied for user clirestricted by PAM account configuration [preauth]\nsrclimit_penalise: ipv4: new 127.0.0.1/32 deferred penalty of 5.000 seconds for penalty: failed authentication\nConnection from 127.0.0.1 port 57456 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nPostponed publickey for clicontrol from 127.0.0.1 port 57456 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nAccepted publickey for clicontrol from 127.0.0.1 port 57456 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 57470 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nPostponed publickey for clicontrol from 127.0.0.1 port 57470 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nAccepted publickey for clicontrol from 127.0.0.1 port 57470 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 57480 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nPostponed publickey for clicontrol from 127.0.0.1 port 57480 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nAccepted publickey for clicontrol from 127.0.0.1 port 57480 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 57490 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 57490 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nFailed publickey for clirestricted from 127.0.0.1 port 57490 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nAccess denied for user clirestricted by PAM account configuration [preauth]\nsrclimit_penalise: ipv4: new 127.0.0.1/32 deferred penalty of 5.000 seconds for penalty: failed authentication\nConnection from 127.0.0.1 port 48522 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nPostponed publickey for clicontrol from 127.0.0.1 port 48522 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nAccepted publickey for clicontrol from 127.0.0.1 port 48522 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 48538 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 48538 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nFailed publickey for clirestricted from 127.0.0.1 port 48538 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nAccess denied for user clirestricted by PAM account configuration [preauth]\nsrclimit_penalise: ipv4: new 127.0.0.1/32 deferred penalty of 5.000 seconds for penalty: failed authentication\nConnection from 127.0.0.1 port 38078 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nPostponed publickey for clicontrol from 127.0.0.1 port 38078 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clicontrol:1\nAccepted publickey for clicontrol from 127.0.0.1 port 38078 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 38086 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 38086 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nAccepted publickey for clirestricted from 127.0.0.1 port 38086 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 38090 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 38090 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nAccepted publickey for clirestricted from 127.0.0.1 port 38090 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\nConnection from 127.0.0.1 port 38096 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nPostponed publickey for clirestricted from 127.0.0.1 port 38096 ssh2 [preauth]\nAccepted key ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY found at /etc/ssh/lyra-entry-keys/clirestricted:1\nAccepted publickey for clirestricted from 127.0.0.1 port 38096 ssh2: ED25519 SHA256:94aRdtRjCTM0jtvhxKslfAZIn3g4IRcaBDd797F/aXY\n",
+  "original_accounts_preserved": true,
+  "pam_vendor_restored": true,
+  "fixture_accounts_removed": true
+}

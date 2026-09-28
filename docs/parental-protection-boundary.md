@@ -60,6 +60,15 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso em 28/09
 
+A [integração nativa de login e SSH](evidence/parental-entries/README.md) testou
+recusa de novas entradas de terminal para a conta supervisionada na fase PAM
+account, usando módulos oficiais. Login real com senha, comando SSH, SFTP e
+túnel sem shell foram recusados; a conta comum e a restauração passaram.
+Dos 24 cenários, um reproduz a limitação de revogação: um túnel autenticado antes
+da mudança continua vivo. Não autorizar migração de supervisão até tratar
+conexões/processos e autenticações em andamento. GDM/systemd-user e as demais
+entradas reais ainda precisam da integração; não houve ativação na receita.
+
 A [barreira experimental de transições](evidence/parental-transitions/README.md)
 mantém bloqueio persistente, conserva uma trava durante a sessão PAM e recusa
 a operação enquanto `/proc` indicar processos da conta. 55 cenários passaram,
