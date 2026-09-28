@@ -60,6 +60,15 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso em 28/09
 
+A [barreira experimental de transições](evidence/parental-transitions/README.md)
+mantém bloqueio persistente, conserva uma trava durante a sessão PAM e recusa
+a operação enquanto `/proc` indicar processos da conta. 55 cenários passaram,
+incluindo handle anterior ao bloqueio, SIGKILL, recuperação e processo fora do
+logind. O ensaio exige identidade estável; não implementa criação, migração ou
+remoção de supervisão. Todas as entradas reais precisam participar antes de
+essa barreira autorizar alterações no cadastro; varredura de processos sozinha
+não impede que um produtor fora da fronteira inicie outro processo.
+
 A [revisão de identidade/admissão](evidence/parental-identity/README.md) remove
 o GID compilado do guard experimental e usa vínculos explícitos de nome, UID,
 GID e grupo privado. Duas contas distintas passaram por 47 cenários PAM reais:

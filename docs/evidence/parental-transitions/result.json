@@ -1,0 +1,439 @@
+{
+  "kind": "experimental-admission-transition",
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "approved-parentaltest",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "python-denied-parentaltest",
+      "passed": true,
+      "rc": 126,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\n{\"exec_errno\": 13}\n",
+      "stderr": ""
+    },
+    {
+      "name": "approved-identitytest",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\nuid=21000 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "python-denied-identitytest",
+      "passed": true,
+      "rc": 126,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n{\"exec_errno\": 13}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-healthy",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "during-transition-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "other-supervised-during-transition",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"parentaltest\"}\nuid=1003 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-during-transition",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "concurrent-writer-refused",
+      "passed": true,
+      "reason": "PAM session or transition still active"
+    },
+    {
+      "name": "after-transition-approved",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\nuid=21000 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "hold-live-pam-lease",
+      "passed": true,
+      "reason": "PAM session or transition still active"
+    },
+    {
+      "name": "hold-new-session-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "hold-recovered",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\nuid=21000 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "end-live-pam-lease",
+      "passed": true,
+      "reason": "PAM session or transition still active"
+    },
+    {
+      "name": "end-new-session-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "end-recovered",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\nuid=21000 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "fork-end-live-pam-lease",
+      "passed": true,
+      "reason": "PAM session or transition still active"
+    },
+    {
+      "name": "fork-end-new-session-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "child-pam-end-preserves-parent-lease",
+      "passed": true,
+      "reason": "PAM session or transition still active"
+    },
+    {
+      "name": "fork-end-recovered",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\nuid=21000 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "preexisting-pam-handle-observes-persistent-block",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "sigkill-leaves-admission-blocked",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-after-writer-sigkill",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "fresh-controller-recovers-after-sigkill",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\nuid=21000 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "process-outside-logind-survives-terminate-user",
+      "passed": true,
+      "pid": 777,
+      "logout_rc": 1
+    },
+    {
+      "name": "remaining-process-refuses-transition",
+      "passed": true,
+      "reason": "account still owns processes: [777]"
+    },
+    {
+      "name": "remaining-process-new-admission-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-with-other-process-remaining",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "after-process-stopped-approved",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\nuid=21000 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "identity-change-refuses-commit",
+      "passed": true
+    },
+    {
+      "name": "changed-identity-stays-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "restoring-identity-alone-does-not-open",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "failed-final-publication-restores-block",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-after-final-publication-error",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "gate-corrupt",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-gate-corrupt",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "gate-other-identity",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-gate-other-identity",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "gate-trailing-data",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-gate-trailing-data",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "writable-state-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-writable-state",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-state-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-missing-state",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "symlink-state-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "hardlink-state-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing-lease-file-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-missing-lease-file",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "writable-directory-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-writable-directory",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "permissive-still-denied",
+      "passed": true,
+      "rc": 70,
+      "stdout": "{\"pam_open_rc\": 14, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "failed-selinux-check-releases-lease",
+      "passed": true
+    },
+    {
+      "name": "final-approved",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\nuid=21000 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "name": "final-python-denied",
+      "passed": true,
+      "rc": 126,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\n{\"exec_errno\": 13}\n",
+      "stderr": ""
+    },
+    {
+      "name": "final-ordinary",
+      "passed": true,
+      "rc": 0,
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"unconfined_u:unconfined_r:unconfined_t:s0\", \"user\": \"ordinaryuser\"}\nPAYLOAD_EXECUTED\n",
+      "stderr": ""
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "restore-permissive",
+      "passed": true
+    },
+    {
+      "name": "remove-fixture-mapping",
+      "passed": true
+    },
+    {
+      "name": "remove-fixture-account",
+      "passed": true
+    },
+    {
+      "name": "remove-fixture-pam",
+      "passed": true
+    },
+    {
+      "name": "remove-fixture-module",
+      "passed": true
+    },
+    {
+      "name": "remove-21000.lock",
+      "passed": true
+    },
+    {
+      "name": "remove-1003.state",
+      "passed": true
+    },
+    {
+      "name": "remove-21000.writer",
+      "passed": true
+    },
+    {
+      "name": "remove-21000.state",
+      "passed": true
+    },
+    {
+      "name": "remove-1003.writer",
+      "passed": true
+    },
+    {
+      "name": "remove-1003.lock",
+      "passed": true
+    },
+    {
+      "name": "remove-fixture-directory",
+      "passed": true
+    }
+  ],
+  "bindings": [
+    {
+      "user": "parentaltest",
+      "uid": 1003,
+      "gid": 1004,
+      "group": "parentaltest"
+    },
+    {
+      "user": "identitytest",
+      "uid": 21000,
+      "gid": 23000,
+      "group": "identitytest"
+    }
+  ],
+  "passed": true,
+  "original_accounts_preserved": true,
+  "fixture_removed": true
+}
