@@ -1,0 +1,13 @@
+{
+  "kernel": "6.12.0-160100.4-default",
+  "packages": "pam-1.7.2+git12-160100.2.1.x86_64\nlibselinux1-3.11-160100.2.1.x86_64\nselinux-policy-targeted-20260826+git0.492b478c7-160100.1.1.noarch\ngcc-15-160100.2.1.x86_64",
+  "source_sha256": {
+    "pam-guard.c": "debcd8b6513e0ddf498105975448b07123aba131a8d2bc4940fa2f3ad5abca19",
+    "bindings.py": "6dfa2c274aad36b8d9deb110d827cfb12b1f2a310710ee7eacd6b976d2110f5b",
+    "pam-probe.py": "1470cf45bff3cbea7dbf1659938872a8fb6cfd55552df20368b4c639578e5e80",
+    "exercise.py": "ff86fa517dbb060b58e274e3b5d213c86a03873df06d75f781eac1745eb10e62"
+  },
+  "enforcement_after_cleanup": "Permissive",
+  "kernel_marker": "lyra.parental-identity-test=1",
+  "disk_serial": "lyra-admission-test"
+}
