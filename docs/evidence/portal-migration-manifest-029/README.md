@@ -42,8 +42,34 @@ gpg --armor --detach-sign \
   --output releases-v1.json.asc -- releases-v1.json
 ```
 
-Verify against the public key shipped by the signed 0.2.9 RPM before hosting
-the pair at an immutable HTTPS testing URL. The earlier lifecycle receipts
-use sequence 1 and remain historical evidence; runtime validation of these
-new exact signed bytes is still required. Never clear a real installation's
-sequence or relax signature verification to accept this testing document.
+The pair is hosted through the immutable HTTPS URL of commit
+`e1600a3f8cbd4967f5806a23e851942d4a818932`, under this directory. The earlier
+sequence-1 lifecycle receipts remain historical evidence.
+
+## Native result for these exact signed bytes
+
+The [complete native lifecycle](native/verified.json) passed in a fresh private
+Btrfs baseline with the published Updater0.2.9 RPM and both original SUSE portal
+packages installed. The guest downloaded the exact manifest/signature over
+HTTPS and verified them with the shipped key. Preview and authenticated Start
+selected only the two intended RPMs. The real offline service applied them,
+requested its own reboot, and the next UEFI/GRUB boot completed `Passed`.
+
+The original repository and boot hashes remained unchanged. Sequence2 was
+consumed only after successful verification. A subsequent read-only
+`CheckRelease` returned `MIGRATION_ALREADY_APPLIED`, with completed state
+unchanged and no new offline transaction. No private key, relaxed Polkit rule
+or injected administrator identity was used. The state file's typed manifest
+hash differs from the raw signed-file hash by serialization; both raw signed
+files were checked explicitly before staging.
+
+Recheck the official signature and all retained native receipt hashes with
+`python3 docs/evidence/portal-migration-manifest-029/qualify.py`. The included
+key is public and byte-identical to the verified RPM key. CI also rechecks the
+earlier main/lang/rollback/PackageKit evidence.
+
+The fixture is SELinux permissive and uses native TTY Polkit. These results do
+not qualify the GNOME graphical password dialog, live desktop replacement,
+production promotion, parental enforcement or a candidate ISO. Never clear a
+real installation's sequence or relax signature verification to accept this
+testing document.

@@ -1,0 +1,3 @@
+# Retain serial logs and public key exactly as hashed in the receipts.
+*.log -text -diff -whitespace
+*.gpg -text -diff

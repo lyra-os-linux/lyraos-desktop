@@ -1,0 +1,9 @@
+{
+  "base_url": "https://raw.githubusercontent.com/lyra-os-linux/lyraos-desktop/e1600a3f8cbd4967f5806a23e851942d4a818932/docs/evidence/portal-migration-manifest-029/",
+  "hashes": {
+    "releases-v1.json": "da0e5194f24d78fdbcfd9174f9dc79dce8d1c832d54053c2917ce5f4e1196218",
+    "releases-v1.json.asc": "0a467e9c59e5171a7971f99f91150d74b9177ce385b150508d6852e46a5c2f03"
+  },
+  "rc": 0,
+  "status": "[GNUPG:] NEWSIG\n[GNUPG:] KEY_CONSIDERED 01B63EEDBE6B079126A0116EFA7353A131ECEFEB 0\n[GNUPG:] SIG_ID 4pokyEAnPDvs1DZCvoTz2DTTMD8 2026-09-28 1790600253\n[GNUPG:] GOODSIG FA7353A131ECEFEB Lyra OS Release <rodrigo@w3ti.com.br>\n[GNUPG:] VALIDSIG 01B63EEDBE6B079126A0116EFA7353A131ECEFEB 2026-09-28 1790600253 0 4 0 1 8 00 01B63EEDBE6B079126A0116EFA7353A131ECEFEB\n"
+}

@@ -59,3 +59,5 @@ jobs:
           python3 docs/evidence/portal-rpm/qualify.py
           python3 docs/evidence/portal-staging/qualify.py
           python3 docs/evidence/portal-transition/qualify.py
+          python3 docs/evidence/portal-updater-native/qualify.py
+          python3 docs/evidence/portal-migration-manifest-029/qualify.py

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "response": {
+    "kind": "Rejected",
+    "request_id": "replay-sequence2",
+    "error_code": "MIGRATION_ALREADY_APPLIED"
+  },
+  "completed_state_unchanged": true,
+  "new_offline_transaction": false
+}

@@ -72,10 +72,12 @@ the published 0.2.9 RPM.
 
 These tests use the existing [official testing manifest](../portal-migration-manifest/README.md)
 at immutable commit `085f91bce424172df1ab717ce0664a6bb919f0bc`, unchanged signed
-bytes and shipped public key. Its minimum Updater is still 0.2.7. The final
-delivery must require at least 0.2.9 and obtain a new signature: the 0.2.7
-unprivileged Snapper check and 0.2.8 automatic reboot path failed in the native
-rehearsal and were corrected by Updater PRs 28 and 29.
+bytes and shipped public key. Its minimum Updater is still 0.2.7. The
+[new sequence-2 manifest](../portal-migration-manifest-029/README.md) requires
+0.2.9 and has a new official signature, with separate runtime evidence. The
+0.2.7 unprivileged Snapper check and 0.2.8 automatic reboot path failed in the
+native rehearsal and were corrected by Updater PRs 28 and 29. Do not use the
+historical minimum as the requirement for a new delivery.
 
 The guest runs SELinux permissively and uses TTY authorization. This does not
 qualify the GNOME graphical dialog, enforcing parental policy, production
