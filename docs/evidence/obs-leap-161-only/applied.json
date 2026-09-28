@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "changes": [
+    {
+      "path": "/source/home:rodrigosbrito:vega:staging/_meta",
+      "file": "home:rodrigosbrito:vega:staging--_meta.xml",
+      "before_sha256": "3ccb3982e243b8a5caff128d9f946f35a1d644f821fa64a07b8a30e3683344c1",
+      "after_sha256": "96461cc07dab7eb9c8374b322af0f9ba84d6a8a2f05ded0d7d76bd313b99874f"
+    },
+    {
+      "path": "/source/home:rodrigosbrito:vega/_meta",
+      "file": "home:rodrigosbrito:vega--_meta.xml",
+      "before_sha256": "b35796e1669162e47ccadf03c66d6c229cce99d825b325f65d1d91865ce3522e",
+      "after_sha256": "90e2b1ffb0ea74db527afeba78d7031f8201dc2c242f495135dc1b258a81d408"
+    },
+    {
+      "path": "/source/home:rodrigosbrito:fina:staging/_meta",
+      "file": "home:rodrigosbrito:fina:staging--_meta.xml",
+      "before_sha256": "b927c1a07f736f2801727a8538c4acd0e4a3290411d82ef1af4af941c6199cf0",
+      "after_sha256": "e73e4c23ce95383cf8eaeb736c0ab1194bfb67a4bfa4bfe2ee437e85a005e56d"
+    },
+    {
+      "path": "/source/home:rodrigosbrito:fina/_meta",
+      "file": "home:rodrigosbrito:fina--_meta.xml",
+      "before_sha256": "c0c85a40a8d7bf0b8ce2a2d80beb0f5181aadaf21d5b48d20ef4306a74d02a2e",
+      "after_sha256": "72857418c6edcc6b1c27c6a8dfe11e1155fcbac1547498e46c527ac26f625c4e"
+    }
+  ]
+}

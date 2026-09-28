@@ -22,15 +22,27 @@ latest coordinated suite and remaining candidate qualification.
 | Component | Staging project | Release project | Target | ISO |
 |---|---|---|---|---|
 | Lyra base and apps | `home:rodrigosbrito:lyra:staging` | `home:rodrigosbrito:lyra` | Leap 16.1, x86_64 | Leap 16.1 release only |
-| Vega | `home:rodrigosbrito:vega:staging` | `home:rodrigosbrito:vega` | Leap 16.1 and Tumbleweed, x86_64 | Leap 16.1 release only |
-| Fina | `home:rodrigosbrito:fina:staging` | `home:rodrigosbrito:fina` | Leap 16.1 and Tumbleweed, x86_64 | Leap 16.1 release only |
+| Vega | `home:rodrigosbrito:vega:staging` | `home:rodrigosbrito:vega` | Leap 16.1, x86_64 | Leap 16.1 release only |
+| Fina | `home:rodrigosbrito:fina:staging` | `home:rodrigosbrito:fina` | Leap 16.1, x86_64 | Leap 16.1 release only |
 
 Staging repositories build directly against their official openSUSE targets.
 They are published so testers can install the exact RPMs, but neither KIWI nor
 an installed Lyra system contains a staging URL. The release projects remain
 the stable URLs consumed by `kiwi/config.xml`.
 
-Leap 16.1 is the only active Leap target and the ISO consumer. The retired
+By maintainer decision on 2026-09-28, Leap 16.1 is the only enabled build and
+publication target in staging and release. Tumbleweed repository definitions in
+Vega and Fina are retained for historical provenance with `enabled = false`;
+both `build` and `publish` must explicitly disable them. Package overrides that
+would enable a retained target fail the release gate. Active artifact checks
+and promotions require only the enabled Leap 16.1 target. No sources or
+repositories are deleted by this restriction.
+
+The [OBS flag documentation](https://openbuildservice.org/help/manuals/obs-user-guide/cha-obs-concepts)
+describes the separate build and publication controls. The local gate also
+rejects newly enabled targets outside the official Leap 16.1 `standard` base.
+
+Leap 16.1 is the ISO consumer. The retired
 Leap 16.0 repositories are absent from both release and staging projects.
 
 Package ownership is explicit in the manifest. The visual identity is split

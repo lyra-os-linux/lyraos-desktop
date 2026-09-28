@@ -41,6 +41,7 @@ class Target:
     upstream_repository: str
     architectures: tuple[str, ...]
     iso_consumer: bool
+    enabled: bool = True
 
 
 @dataclasses.dataclass(frozen=True)
@@ -90,6 +91,7 @@ class Manifest:
                         upstream_repository=target["upstream_repository"],
                         architectures=tuple(target["architectures"]),
                         iso_consumer=target["iso_consumer"],
+                        enabled=target.get("enabled", True),
                     )
                     for target in item["targets"]
                 ),
@@ -162,6 +164,19 @@ class Manifest:
                 raise PolicyError(f"{project.id}: invalid staging-only package name")
             if not project.targets:
                 raise PolicyError(f"{project.id}: at least one target is required")
+            for target in project.targets:
+                if type(target.enabled) is not bool:
+                    raise PolicyError(f"{project.id}: target enabled must be boolean")
+                if target.enabled and (
+                    target.name != "openSUSE_Leap_16.1"
+                    or target.upstream_project != "openSUSE:Leap:16.1"
+                    or target.upstream_repository != "standard"
+                ):
+                    raise PolicyError(f"{project.id}: only Leap 16.1 publication is allowed")
+                if not target.enabled and target.iso_consumer:
+                    raise PolicyError(f"{project.id}: disabled target cannot supply the ISO")
+            if not any(target.enabled for target in project.targets):
+                raise PolicyError(f"{project.id}: at least one enabled target is required")
             if project.iso_consumer and not any(target.iso_consumer for target in project.targets):
                 raise PolicyError(f"{project.id}: ISO consumer has no ISO target")
             baseline = self.approved_baselines.get(project.id)
@@ -467,10 +482,14 @@ def render_project_meta(manifest: Manifest, project: Project) -> str:
         "Changes reach release only through reviewed submit requests."
     )
     ET.SubElement(root, "person", {"userid": manifest.maintainer, "role": "maintainer"})
-    publish = ET.SubElement(root, "publish")
-    for target in project.targets:
-        for arch in target.architectures:
-            ET.SubElement(publish, "enable", {"repository": target.name, "arch": arch})
+    for flag in ("build", "publish"):
+        node = ET.SubElement(root, flag)
+        for target in project.targets:
+            if target.enabled:
+                for arch in target.architectures:
+                    ET.SubElement(node, "enable", {"repository": target.name, "arch": arch})
+            else:
+                ET.SubElement(node, "disable", {"repository": target.name})
     for target in project.targets:
         repository = ET.SubElement(root, "repository", {"name": target.name})
         ET.SubElement(
@@ -524,6 +543,40 @@ def check_project_meta(project: Project, remote: str, root: ET.Element) -> None:
     }
     if actual != expected:
         raise PolicyError(f"{remote}: repositories/targets differ from manifest")
+    for target in project.targets:
+        if not target.enabled:
+            for flag in ("build", "publish"):
+                check_disabled_flag(root, flag, target, remote, require_disable=True)
+
+
+def check_disabled_flag(
+    root: ET.Element, flag: str, target: Target, label: str, *, require_disable: bool
+) -> None:
+    """Require an explicit repository-wide disable; reject narrower enables."""
+    node = root.find(flag)
+    rules = list(node) if node is not None else []
+    disabled = any(rule.tag == "disable" and rule.attrib == {"repository": target.name}
+                   for rule in rules)
+    for rule in rules:
+        if rule.tag != "enable" or rule.get("repository") not in (None, target.name):
+            continue
+        if rule.get("arch") not in (None, *target.architectures):
+            continue
+        if rule.get("repository") == target.name or rule.get("arch") is not None or not disabled:
+            raise PolicyError(f"{label}: {flag} enables disabled target {target.name}")
+    if require_disable and not disabled:
+        raise PolicyError(f"{label}: {flag} must disable {target.name}")
+
+
+def check_disabled_package_overrides(obs: Obs, project: Project, remote: str) -> None:
+    disabled = [target for target in project.targets if not target.enabled]
+    if not disabled:
+        return
+    for package in sorted(expected_source_packages(project, remote)):
+        root = obs.api_xml(f"/source/{remote}/{package}/_meta")
+        for target in disabled:
+            for flag in ("build", "publish"):
+                check_disabled_flag(root, flag, target, f"{remote}/{package}", require_disable=False)
 
 
 def check_target_result(
@@ -738,7 +791,10 @@ def health_report(
                 }
             )
 
+        check_disabled_package_overrides(obs, project, project.release)
         for target in project.targets:
+            if not target.enabled:
+                continue
             for arch in target.architectures:
                 states = check_target_result(obs, project, project.release, target, arch)
                 filenames: list[str] = []
@@ -789,10 +845,13 @@ def check_remote(obs: Obs, manifest: Manifest, channel: str) -> None:
             if missing or extra:
                 raise PolicyError(f"{remote}: package inventory mismatch; missing={missing}, extra={extra}")
             check_retired_staging(obs, project, remote)
+            check_disabled_package_overrides(obs, project, remote)
             for target in project.targets:
+                if not target.enabled:
+                    continue
                 for arch in target.architectures:
                     check_target_result(obs, project, remote, target, arch)
-            print(f"OK: {remote} ({len(active_source_packages(project, remote))} source packages, all targets published)")
+            print(f"OK: {remote} ({len(active_source_packages(project, remote))} source packages, enabled targets published)")
 
 
 def init_staging(obs: Obs, manifest: Manifest) -> None:
@@ -869,7 +928,10 @@ def check_remote_project(obs: Obs, project: Project, remote: str) -> None:
     if missing or extra:
         raise PolicyError(f"{remote}: package inventory mismatch; missing={missing}, extra={extra}")
     check_retired_staging(obs, project, remote)
+    check_disabled_package_overrides(obs, project, remote)
     for target in project.targets:
+        if not target.enabled:
+            continue
         for arch in target.architectures:
             check_target_result(obs, project, remote, target, arch)
 

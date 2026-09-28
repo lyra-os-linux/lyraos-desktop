@@ -125,6 +125,8 @@ iso_consumer = true
 
 [[projects.targets]]
 name = "openSUSE_Tumbleweed"
+# Kept for historical provenance; maintainer restricts publication to Leap 16.1.
+enabled = false
 upstream_project = "openSUSE:Factory"
 upstream_repository = "snapshot"
 architectures = ["x86_64"]
@@ -146,6 +148,8 @@ iso_consumer = true
 
 [[projects.targets]]
 name = "openSUSE_Tumbleweed"
+# Kept for historical provenance; maintainer restricts publication to Leap 16.1.
+enabled = false
 upstream_project = "openSUSE:Factory"
 upstream_repository = "snapshot"
 architectures = ["x86_64"]

@@ -1,0 +1,17 @@
+<project name="home:rodrigosbrito:vega:staging">
+  <title>Lyra vega staging</title>
+  <description>Build and test gate for home:rodrigosbrito:vega. Not consumed by Lyra ISO. Changes reach release only through reviewed submit requests.</description>
+  <person userid="rodrigosbrito" role="maintainer"/>
+  <publish>
+    <enable arch="x86_64" repository="openSUSE_Leap_16.1"/>
+    <enable arch="x86_64" repository="openSUSE_Tumbleweed"/>
+  </publish>
+  <repository name="openSUSE_Tumbleweed">
+    <path project="openSUSE:Factory" repository="snapshot"/>
+    <arch>x86_64</arch>
+  </repository>
+  <repository name="openSUSE_Leap_16.1">
+    <path project="openSUSE:Leap:16.1" repository="standard"/>
+    <arch>x86_64</arch>
+  </repository>
+</project>
