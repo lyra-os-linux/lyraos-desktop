@@ -1,0 +1,268 @@
+{
+  "kind": "native-systemd-user-admission",
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "supervised-active",
+      "passed": true,
+      "unit": {
+        "MainPID": "1775",
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0"
+    },
+    {
+      "name": "ordinary-active",
+      "passed": true,
+      "unit": {
+        "MainPID": "1792",
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "native-sd-pam-retains-lease",
+      "passed": true,
+      "holders": [
+        {
+          "pid": 1777,
+          "fd": "9",
+          "comm": "(sd-pam)",
+          "context": "system_u:system_r:init_t:s0"
+        }
+      ]
+    },
+    {
+      "name": "active-manager-prevents-transition-and-remains-alive",
+      "passed": true,
+      "pid": "1775"
+    },
+    {
+      "name": "ordinary-during-persistent-block",
+      "passed": true,
+      "unit": {
+        "MainPID": "1813",
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "manager-stop-releases-lease",
+      "passed": true
+    },
+    {
+      "name": "stopping-manager-does-not-clear-block",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "Result": "exit-code",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+      }
+    },
+    {
+      "name": "explicit-recovery-admits-supervised",
+      "passed": true,
+      "unit": {
+        "MainPID": "1840",
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0"
+    },
+    {
+      "name": "vendor-reexec-retains-lease",
+      "passed": true,
+      "holders": [
+        {
+          "pid": 1842,
+          "fd": "9",
+          "comm": "(sd-pam)",
+          "context": "system_u:system_r:init_t:s0"
+        }
+      ]
+    },
+    {
+      "name": "missing-state-supervised-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "Result": "exit-code",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+      }
+    },
+    {
+      "name": "missing-state-ordinary-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "1877",
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "corrupt-state-supervised-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "Result": "exit-code",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+      }
+    },
+    {
+      "name": "corrupt-state-ordinary-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "1906",
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "missing-module-supervised-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "Result": "exit-code",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+      }
+    },
+    {
+      "name": "missing-module-ordinary-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "1935",
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "permissive-supervised-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "Result": "exit-code",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+      }
+    },
+    {
+      "name": "permissive-ordinary-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "1964",
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "final-supervised-recovered",
+      "passed": true,
+      "unit": {
+        "MainPID": "1985",
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0"
+    },
+    {
+      "name": "final-ordinary-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "2000",
+        "Result": "success",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "stop-manager-1003",
+      "passed": true
+    },
+    {
+      "name": "stop-manager-1002",
+      "passed": true
+    },
+    {
+      "name": "restore-permissive",
+      "passed": true
+    },
+    {
+      "name": "restore-pam",
+      "passed": true
+    },
+    {
+      "name": "remove-module",
+      "passed": true
+    },
+    {
+      "name": "remove-1003.state",
+      "passed": true
+    },
+    {
+      "name": "remove-1003.writer",
+      "passed": true
+    },
+    {
+      "name": "remove-1003.lock",
+      "passed": true
+    },
+    {
+      "name": "remove-state-directory",
+      "passed": true
+    }
+  ],
+  "journal": "Sep 28 14:11:49 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1003...\nSep 28 14:11:49 lyra-virtualization-fixture (systemd)[1928]: PAM unable to dlopen(/usr/lib64/security/pam_lyra_transition_fixture.so): /usr/lib64/security/pam_lyra_transition_fixture.so: cannot open shared object file: No such file or directory\nSep 28 14:11:49 lyra-virtualization-fixture (systemd)[1928]: PAM adding faulty module: /usr/lib64/security/pam_lyra_transition_fixture.so\nSep 28 14:11:49 lyra-virtualization-fixture (systemd)[1928]: pam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nSep 28 14:11:49 lyra-virtualization-fixture (systemd)[1928]: PAM failed: Module is unknown\nSep 28 14:11:49 lyra-virtualization-fixture (systemd)[1928]: user@1003.service: Failed to set up PAM session: Operation not permitted\nSep 28 14:11:49 lyra-virtualization-fixture (systemd)[1928]: user@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nSep 28 14:11:49 lyra-virtualization-fixture systemd[1]: user@1003.service: Main process exited, code=exited, status=224/PAM\nSep 28 14:11:49 lyra-virtualization-fixture systemd[1]: user@1003.service: Failed with result 'exit-code'.\nSep 28 14:11:49 lyra-virtualization-fixture systemd[1]: Failed to start User Manager for UID 1003.\nSep 28 14:11:49 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1003...\nSep 28 14:11:50 lyra-virtualization-fixture (systemd)[1958]: pam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nSep 28 14:11:50 lyra-virtualization-fixture (systemd)[1958]: pam_lyra_transition_fixture(systemd-user:session): Experimental supervised admission rejected session\nSep 28 14:11:50 lyra-virtualization-fixture (systemd)[1958]: PAM failed: Cannot make/remove an entry for the specified session\nSep 28 14:11:50 lyra-virtualization-fixture (systemd)[1958]: user@1003.service: Failed to set up PAM session: Operation not permitted\nSep 28 14:11:50 lyra-virtualization-fixture (systemd)[1958]: user@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1]: user@1003.service: Main process exited, code=exited, status=224/PAM\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1]: user@1003.service: Failed with result 'exit-code'.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1]: Failed to start User Manager for UID 1003.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1]: Starting User Manager for UID 1003...\nSep 28 14:11:50 lyra-virtualization-fixture (systemd)[1985]: pam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Failed to copy os-release for propagation, ignoring: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Failed to create timezone change event source: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-color' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Color.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-media-keys' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.MediaKeys.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-sharing' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Sharing.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-usb-protection' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.UsbProtection.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-smartcard' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-housekeeping' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Housekeeping.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-print-notifications' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.PrintNotifications.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-xsettings' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-power' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Power.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-datetime' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Datetime.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-rfkill' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Rfkill.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-sound' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Sound.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-wwan' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Wwan.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-a11y-settings' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.A11ySettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-screensaver-proxy' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-keyboard' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Keyboard.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/geoclue-2.0/demos/agent' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /usr/etc/xdg/autostart/geoclue-demo-agent.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: Exec binary '/usr/libexec/gsd-wacom' does not exist: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd-xdg-autostart-generator[1992]: /etc/xdg/autostart/org.gnome.SettingsDaemon.Wacom.desktop: not generating unit, error parsing Exec= line: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Failed to acquire watch file descriptor: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Failed to allocate device monitor: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Failed to connect to system bus: Permission denied\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Queued start job for default target Main User Target.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Created slice User Application Slice.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Started Daily Cleanup of User's Temporary Directories.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Reached target Paths.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Reached target Timers.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Starting D-Bus User Message Bus Socket...\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Listening on PipeWire PulseAudio.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Listening on PipeWire Multimedia System Sockets.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Starting Create User Files and Directories...\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Listening on D-Bus User Message Bus Socket.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Reached target Sockets.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Finished Create User Files and Directories.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Reached target Basic System.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Reached target Main User Target.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1985]: Startup finished in 44ms.\nSep 28 14:11:50 lyra-virtualization-fixture systemd[1]: Started User Manager for UID 1003.\n",
+  "versions": "systemd-257.13-160100.2.5.x86_64\npam-1.7.2+git12-160100.2.1.x86_64\nselinux-policy-targeted-20260826+git0.492b478c7-160100.1.1.noarch\n",
+  "passed": true,
+  "vendor_preserved": true,
+  "override_restored": true,
+  "fixture_removed": true
+}
