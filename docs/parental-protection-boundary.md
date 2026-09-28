@@ -60,6 +60,14 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso em 28/09
 
+A [conversa nativa GDM com senha](evidence/parental-password/README.md)
+passou 18 cenários, incluindo senha errada, conta comum, falhas de proteção e
+autenticação iniciada antes de um bloqueio persistente. A senha correta foi
+aceita por PAM, mas a sessão permaneceu recusada após o bloqueio; recuperação
+explícita permitiu nova entrada. A automação usa o protocolo do greeter, worker
+de diagnóstico e sessão mínima. Não qualifica UX, desbloqueio, sessão GNOME
+supervisionada completa ou migração de contas sem o guard previamente instalado.
+
 A [admissão nativa nos gerenciadores](evidence/parental-managers/README.md)
 passou 33 cenários em `systemd-user` e `gdm-autologin`: travas mantidas pelos
 processos nativos, recusa durante bloqueio persistente, recuperação explícita
@@ -74,8 +82,8 @@ account, usando módulos oficiais. Login real com senha, comando SSH, SFTP e
 túnel sem shell foram recusados; a conta comum e a restauração passaram.
 Dos 24 cenários, um reproduz a limitação de revogação: um túnel autenticado antes
 da mudança continua vivo. Não autorizar migração de supervisão até tratar
-conexões/processos e autenticações em andamento. GDM com senha e as demais
-entradas reais ainda precisam de qualificação; não houve ativação na receita.
+conexões/processos e as corridas restantes de autenticação. As demais entradas
+reais ainda precisam de qualificação; não houve ativação na receita.
 
 A [barreira experimental de transições](evidence/parental-transitions/README.md)
 mantém bloqueio persistente, conserva uma trava durante a sessão PAM e recusa
