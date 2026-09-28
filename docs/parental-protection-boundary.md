@@ -60,6 +60,14 @@ de utilizá-lo como uma camada complementar.
 
 ### Progresso em 28/09
 
+A [revisão de identidade/admissão](evidence/parental-identity/README.md) remove
+o GID compilado do guard experimental e usa vínculos explícitos de nome, UID,
+GID e grupo privado. Duas contas distintas passaram por 47 cenários PAM reais:
+divergências parciais e falhas recusam a supervisionada, enquanto a comum
+continua executando, inclusive com o módulo experimental ausente. Ainda falta
+o ciclo autorizado de criação/migração/remoção e a integração nas entradas reais;
+troca de todos os identificadores, reutilização e concorrência não estão resolvidas.
+
 A [migração nativa pelo Updater publicado](evidence/portal-updater-native/README.md)
 passou com o RPM0.2.9 de staging: autorização Polkit, snapshot, aplicação offline,
 reinício automático e verificação pós-boot, com e sem traduções. Uma falha
