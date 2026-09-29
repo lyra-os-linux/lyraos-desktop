@@ -1,0 +1,10 @@
+{
+  "pretty_name": "Lyra OS 1.1",
+  "id": "lyra-os",
+  "version_id": "1.1",
+  "logo": "distributor-logo-lyra",
+  "base_os_release_unchanged": true,
+  "base_product_unchanged": true,
+  "backup": "/var/lib/lyra-os-theme/system-identity-20260929",
+  "persistence_across_base_rpm_updates": "not yet fixed"
+}

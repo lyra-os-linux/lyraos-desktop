@@ -592,3 +592,31 @@ Inclusão e qualificação na candidata exata permanecem pendentes: conferir
 versões/assinaturas, conta nova, migração da personalização opt-in, papel de
 parede, claro/escuro e acessibilidade em VM e outro hardware aplicável. O
 protótipo fixo era um resíduo local; verificar sua ausência na imagem limpa.
+
+
+## ID-01 — Identificação volta a openSUSE após atualização de Leap-release (29/09)
+
+A estação voltou a apresentar openSUSE Leap 16.1. `/etc/os-release` era um
+symlink para `../usr/lib/os-release`; ambos pertencem ao Leap-release
+16.1-lp161.150.1. O lyra-release 1.1 instalado contém apenas a identidade de
+produto em `/usr/lib/lyra-os/product-release`, sem proteção para os-release.
+É uma recorrência da correção local registrada em 09/09, não um problema de GPU.
+
+Reparo local solicitado: restaurar `/etc/os-release` como arquivo independente
+com NAME=Lyra OS, PRETTY_NAME=Lyra OS 1.1, VERSION_ID=1.1, ID=lyra-os,
+ID_LIKE="opensuse suse" e LOGO=distributor-logo-lyra. A identidade anterior
+conhecida fornece os campos de imagem; os rótulos de exibição foram ajustados
+para 1.1 conforme pedido, sem declarar uma nova imagem ou estágio de release.
+Backup em `/var/lib/lyra-os-theme/system-identity-20260929`; arquivos upstream
+`/usr/lib/os-release` e `/etc/products.d/Leap.prod` preservados byte a byte.
+
+Limite: o pacote Leap-release ainda possui `/etc/os-release` sem tratamento de
+configuração. Uma atualização posterior pode substituir novamente o reparo.
+Correção permanente nas fontes/RPMs, migração de propriedade, upgrade em VM e
+inclusão/qualificação na ISO exata continuam pendentes. Não usar immutable,
+bloquear atualizações da base ou duplicar a propriedade RPM como atalho.
+
+Reversão local: conferir que o arquivo ainda corresponde ao reparo registrado,
+e então restaurar o symlink salvo no backup. Não substituir edições posteriores.
+Evidências locais: `analysis/2026-09-29/system-identity/`. Este registro não
+qualifica uma ISO nem afirma persistência contra futuras atualizações.
