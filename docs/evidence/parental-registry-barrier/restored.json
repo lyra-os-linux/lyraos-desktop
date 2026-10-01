@@ -1,0 +1,31 @@
+{
+  "units": {
+    "gdm.service": "0",
+    "user@1003.service": "0",
+    "user@1002.service": "0",
+    "user@476.service": "0"
+  },
+  "sessions": "",
+  "absent_paths": {
+    "/var/lib/lyra-parental-test": true,
+    "/usr/lib64/security/pam_lyra_identity_registry_fixture.so": true,
+    "/usr/lib64/security/pam_lyra_identity_registry_fixture.lifetime-saved": true,
+    "/usr/lib64/security/pam_lyra_identity_registry_fixture.manager-saved": true,
+    "/etc/pam.d/lyra-identity-probe": true,
+    "/etc/pam.d/lyra-identity-probe.new": true,
+    "/root/manager-worker.backup": true,
+    "/opt/lyra-parental-probe/manager-session": true,
+    "/var/lib/systemd/linger/parentaltest": true,
+    "/var/lib/systemd/linger/ordinaryuser": true
+  },
+  "fixture_account_absent": true,
+  "policy_removed": true,
+  "enforce": "Permissive",
+  "uid_processes": [],
+  "worker_sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8",
+  "worker_label": "system_u:object_r:bin_t:s0",
+  "kernel": "6.12.0-160100.4-default",
+  "complete_kernel_audit": false,
+  "audit_backlog_warnings": "Oct 01 16:30:43 lyra-virtualization-fixture kernel: audit: audit_lost=1 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:30:43 lyra-virtualization-fixture kernel: audit: audit_lost=2 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:30:44 lyra-virtualization-fixture kernel: audit: audit_lost=3 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:30:44 lyra-virtualization-fixture kernel: audit: audit_lost=4 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:30:56 lyra-virtualization-fixture kernel: audit: audit_lost=225 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:30:56 lyra-virtualization-fixture kernel: audit: audit_lost=226 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:30:56 lyra-virtualization-fixture kernel: audit: audit_lost=227 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:32:26 lyra-virtualization-fixture kernel: audit: audit_lost=228 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:32:26 lyra-virtualization-fixture kernel: audit: audit_lost=229 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:32:26 lyra-virtualization-fixture kernel: audit: audit_lost=230 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:32:46 lyra-virtualization-fixture kernel: audit: audit_lost=378 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:32:46 lyra-virtualization-fixture kernel: audit: audit_lost=379 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:32:46 lyra-virtualization-fixture kernel: audit: audit_lost=380 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:33:16 lyra-virtualization-fixture kernel: audit: audit_lost=451 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:33:16 lyra-virtualization-fixture kernel: audit: audit_lost=452 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:33:16 lyra-virtualization-fixture kernel: audit: audit_lost=453 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:33:27 lyra-virtualization-fixture kernel: audit: audit_lost=484 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:33:27 lyra-virtualization-fixture kernel: audit: audit_lost=485 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:33:27 lyra-virtualization-fixture kernel: audit: audit_lost=486 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:33:39 lyra-virtualization-fixture kernel: audit: audit_lost=518 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:33:39 lyra-virtualization-fixture kernel: audit: audit_lost=519 audit_rate_limit=0 audit_backlog_limit=64\nOct 01 16:33:39 lyra-virtualization-fixture kernel: audit: audit_lost=520 audit_rate_limit=0 audit_backlog_limit=64\n",
+  "passed": true
+}

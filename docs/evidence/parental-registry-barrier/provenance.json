@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-01",
+  "base_commit": "23c398d822b10e220658a4cdd7ae3f9d2813e981",
+  "executions": {
+    "39304511336d483abbb6ab620f76019e": {
+      "timestamp": 1790872233.5232296,
+      "argv": [
+        "python3",
+        "/root/barrier-diagnostic.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "7f1fcd0fc0dcc6e74da79e27c57e68dfaca0e4cf30c8d5b09d2de8d5c0af8694"
+    },
+    "9548c3d81da34cba88ec8b4312240c0b": {
+      "timestamp": 1790872257.1508505,
+      "argv": [
+        "python3",
+        "/root/barrier-native-manager.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "1434cc5105dea160558f94d86f183873cc2305dc36d5b5b357c2a1d89ca34ca1"
+    },
+    "6ea12f0fadf346748c8fd8973556f266": {
+      "timestamp": 1790872431.7393725,
+      "argv": [
+        "python3",
+        "/root/barrier-gdm.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "ca01da5f99c836b3be4ecd83a8bec4fd74925c2ebc75e7ebab06e5d9bfa5979e"
+    },
+    "125f2cde143641baba7f9888f432b77d": {
+      "timestamp": 1790872502.304196,
+      "argv": [
+        "python3",
+        "/root/barrier-two-account-pam.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "b202491aea89bbf2b6ee059225acd8ced09c9933455a6f704c81717a6aba1cdd"
+    },
+    "50266ec0745848aca690d61ca4570a52": {
+      "timestamp": 1790872581.442419,
+      "argv": [
+        "python3",
+        "/root/barrier-restore-check.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "bab7e33af0c70a6342325ad59cac0b0038f3096fd8d4ad054f4281cdba9f6052"
+    },
+    "ab54dad120684e95929071fb070c6664": {
+      "timestamp": 1790872581.6851158,
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "rc": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "source_sha256": {
+    "writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "diagnostic.py": "0bbd6aea73e644629d8a9911358746c4f3ae3de08a716b8374a8e6aa3d8c04d8",
+    "native-manager.py": "28217cf26bba232af26f3b1646a3a0130586bffb5926638da62ce5a5dd3d0ccd",
+    "two-account-pam.py": "b424e832e7e3d9301f7769e05e70fb722ae90b498c4f78682c1b78e22d730276",
+    "gdm.py": "4ccb316e2c6ea986639cb08c34227b511ac66985f27b35717ebecaee662b00e7",
+    "restore-check.py": "8ae384a4162e2128124bb642299f460d9be3a67f906914a9be6a8333797f2de7",
+    "verify-evidence.py": "dedd75bbb56354591e728528fba91d866cf29fee5c3477ce95758c24dad9aa80",
+    "pam-guard.c": "c50aa20cce8b2b081b858bca389cb705dd1f786791047c135a63868c99626e10",
+    "../parental-registry-gdm/evidence.py": "c7880454ee5a21df5b3fcb2def701d7ee9b50d2451d658606cc876ffbeb74071",
+    "../parental-registry-gdm/launcher.cil": "c131eca08fd60bc6493b8a34348d155b1f91f43c0526e59f1258c467b72c55eb",
+    "../parental-password/client.py": "1a745d8e2baa5c712570006337376a3bc314fefecb7b77facb5a2c0d65b88497",
+    "../parental-managers/session.c": "1fa5c0150c566cc51191b8af0bea7507a85f9b2707efac65c276bf710451742a",
+    "../parental-transitions/transition.py": "53d846873c8b4bdb114b05da50fb31b72db1337f69f7cac808b3c282f2afaabc",
+    "../parental-identity/pam-probe.py": "1470cf45bff3cbea7dbf1659938872a8fb6cfd55552df20368b4c639578e5e80",
+    "../parental-identity/pam-lease-holder.py": "1691621a6a7a092f94c7b545b2da9a3a6e4eb3146fa1e73b5968d57eea0ebdd8"
+  },
+  "artifact_sha256": {
+    "writer-result.json": "c0072092febdee29c33ea3627421788f1fd92c2a5aca0ee24f1ce68fd68ec32d",
+    "native-manager-result.json": "78358a4269a6d10e068528cd87d929f1a94a84c8d97f1f1f1d0885ad27cc8421",
+    "two-account-pam-result.json": "fb02e20d01e7f259494427cecbac5b7dabdaa41bbdfcea5313f3a9a38e0b9348",
+    "gdm-result.json": "570045ec8e25c7cfe0ebafd6b6a7cb2166a81b6e1b1039f8e456d12664b58391",
+    "restored.json": "a682713281ae712a40e92c80688265de2ea7aa48665bc3d9d3de762c2619bfcb"
+  },
+  "checks": {
+    "writer": 52,
+    "native_manager": 30,
+    "two_account_pam": 18,
+    "gdm": 22
+  },
+  "python_tests": 270,
+  "python_suite_command": "python3 -m unittest discover -s tests -p 'test_*.py'",
+  "python_suite_exit_code": 0,
+  "complete_kernel_audit": false,
+  "full_account_protection": false,
+  "power_loss_tested": false,
+  "production_changed": false,
+  "vm": {
+    "disk": "/tmp/lyra-parental-identity-20260928/system.raw",
+    "serial": "lyra-admission-test",
+    "kernel": "6.12.0-160100.4-default",
+    "final_state": "powered-off",
+    "qemu_exit_code": 0,
+    "iso_boot": false
+  }
+}

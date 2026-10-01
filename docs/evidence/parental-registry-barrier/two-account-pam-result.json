@@ -1,0 +1,179 @@
+{
+  "kind": "two-account-generation-barrier-pam-integration",
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "active-session-admitted",
+      "passed": true,
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "expected_admission": true,
+      "generation": "a9c048090a7220b5742711bb67c5e307",
+      "user": "identitytest"
+    },
+    {
+      "name": "barrier-only-fixture-keeps-registry-active",
+      "passed": true
+    },
+    {
+      "name": "durable-barrier-denies-even-active-registry",
+      "passed": true,
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "expected_admission": false,
+      "generation": "a9c048090a7220b5742711bb67c5e307",
+      "user": "identitytest"
+    },
+    {
+      "name": "barrier-only-a-preserves-b-admission",
+      "passed": true,
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "expected_admission": true,
+      "generation": "14ff29382751e58ab1de084c6c8c2e9c",
+      "user": "parentaltest"
+    },
+    {
+      "name": "barrier-only-fixture-reset-recovers-a",
+      "passed": true,
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "expected_admission": true,
+      "generation": "a9c048090a7220b5742711bb67c5e307",
+      "user": "identitytest"
+    },
+    {
+      "name": "lease-holder-opened-session",
+      "passed": true,
+      "event": {
+        "event": "opened",
+        "pam_open_rc": 0
+      }
+    },
+    {
+      "name": "transition-refused-while-session-live",
+      "passed": true,
+      "error": "busy: generation has admitted sessions; barrier remains durable"
+    },
+    {
+      "name": "new-a-admission-denied-while-a-lease-still-live",
+      "passed": true,
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "expected_admission": false,
+      "generation": "a9c048090a7220b5742711bb67c5e307",
+      "user": "identitytest"
+    },
+    {
+      "name": "unrelated-b-admission-with-a-live-and-blocked",
+      "passed": true,
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "expected_admission": true,
+      "generation": "14ff29382751e58ab1de084c6c8c2e9c",
+      "user": "parentaltest"
+    },
+    {
+      "name": "b-transition-denies-only-b",
+      "passed": true,
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "expected_admission": false,
+      "generation": "14ff29382751e58ab1de084c6c8c2e9c",
+      "user": "parentaltest"
+    },
+    {
+      "name": "b-new-enrollment-admitted-while-a-live-and-blocked",
+      "passed": true,
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "expected_admission": true,
+      "generation": "930b1bdee155ca6001118f7ec8c5d268",
+      "user": "parentaltest"
+    },
+    {
+      "name": "a-session-survives-unrelated-b-transition",
+      "passed": true
+    },
+    {
+      "name": "pam-close-releases-session-lease",
+      "passed": true,
+      "event": {
+        "event": "closed",
+        "pam_close_rc": 0
+      }
+    },
+    {
+      "name": "transition-starts-after-session-close",
+      "passed": true
+    },
+    {
+      "name": "new-session-denied-during-transition",
+      "passed": true,
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "expected_admission": false,
+      "generation": "a9c048090a7220b5742711bb67c5e307",
+      "user": "identitytest"
+    },
+    {
+      "name": "same-unix-tuple-recreated",
+      "passed": true,
+      "uid": 24000,
+      "gid": 25000
+    },
+    {
+      "name": "tombstoned-old-generation-denied",
+      "passed": true,
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "expected_admission": false,
+      "generation": "a9c048090a7220b5742711bb67c5e307",
+      "user": "identitytest"
+    },
+    {
+      "name": "new-generation-admitted-after-explicit-enrollment",
+      "passed": true,
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "expected_admission": true,
+      "generation": "620fb022bd21f380b0dab321615591f9",
+      "user": "identitytest"
+    }
+  ],
+  "harness_source_sha256": "b424e832e7e3d9301f7769e05e70fb722ae90b498c4f78682c1b78e22d730276",
+  "probe_sha256": "1470cf45bff3cbea7dbf1659938872a8fb6cfd55552df20368b4c639578e5e80",
+  "holder_sha256": "1691621a6a7a092f94c7b545b2da9a3a6e4eb3146fa1e73b5968d57eea0ebdd8",
+  "module_sha256": "15341a5aa75559edc2e4920d7b1c92d0addfa473bb1a77d3a5b9206a6329270c",
+  "guard_source_sha256": "c50aa20cce8b2b081b858bca389cb705dd1f786791047c135a63868c99626e10",
+  "store_source_sha256": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+  "passed": true,
+  "cleanup": [
+    {
+      "name": "restore-selinux-mode",
+      "passed": true
+    },
+    {
+      "name": "delete-login-mapping",
+      "passed": true
+    },
+    {
+      "name": "delete-fixture-user",
+      "passed": true
+    },
+    {
+      "name": "remove-pam-stack",
+      "passed": true
+    },
+    {
+      "name": "remove-pam-module",
+      "passed": true
+    },
+    {
+      "name": "remove-state-directory",
+      "passed": true
+    }
+  ],
+  "fixtures_removed": true,
+  "selinux_mode_restored": true
+}

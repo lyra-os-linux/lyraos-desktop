@@ -1,0 +1,328 @@
+{
+  "kind": "generation-barrier-writer-interruption",
+  "checks": [
+    {
+      "name": "busy-persists-barrier-and-transitioning",
+      "passed": true,
+      "error": "busy: generation has admitted sessions; barrier remains durable"
+    },
+    {
+      "name": "unrelated-account-still-admissible",
+      "passed": true
+    },
+    {
+      "name": "busy-does-not-tombstone-live-generation",
+      "passed": true
+    },
+    {
+      "name": "cannot-reuse-identity-with-live-transition",
+      "passed": true
+    },
+    {
+      "name": "unrelated-transition-completes-with-a-live-and-pending",
+      "passed": true
+    },
+    {
+      "name": "active-session-lease-inode-preserved",
+      "passed": true
+    },
+    {
+      "name": "resume-after-session-release-enrolls-new-generation",
+      "passed": true
+    },
+    {
+      "name": "crash-barrier-old-temp-synced",
+      "passed": true,
+      "outcome": "clean",
+      "old_before_recovery": true,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-barrier-old-temp-synced",
+      "passed": true
+    },
+    {
+      "name": "crash-barrier-old-published",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-barrier-old-published",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-prepared-temp-synced",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-journal-prepared-temp-synced",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-prepared-published",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-journal-prepared-published",
+      "passed": true
+    },
+    {
+      "name": "crash-registry-blocked-temp-synced",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-registry-blocked-temp-synced",
+      "passed": true
+    },
+    {
+      "name": "crash-registry-blocked-published",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-registry-blocked-published",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-blocked-temp-synced",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-journal-blocked-temp-synced",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-blocked-published",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-journal-blocked-published",
+      "passed": true
+    },
+    {
+      "name": "crash-registry-tombstone-temp-synced",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-registry-tombstone-temp-synced",
+      "passed": true
+    },
+    {
+      "name": "crash-registry-tombstone-published",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-registry-tombstone-published",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-tombstoned-temp-synced",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-journal-tombstoned-temp-synced",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-tombstoned-published",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-journal-tombstoned-published",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-target-temp-synced",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-journal-target-temp-synced",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-target-published",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-journal-target-published",
+      "passed": true
+    },
+    {
+      "name": "crash-barrier-new-temp-synced",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-barrier-new-temp-synced",
+      "passed": true
+    },
+    {
+      "name": "crash-barrier-new-published",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-barrier-new-published",
+      "passed": true
+    },
+    {
+      "name": "crash-registry-new-active-temp-synced",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-registry-new-active-temp-synced",
+      "passed": true
+    },
+    {
+      "name": "crash-registry-new-active-published",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-registry-new-active-published",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-committed-temp-synced",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "blocked"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-journal-committed-temp-synced",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-committed-published",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "committed"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": false
+    },
+    {
+      "name": "repeat-recovery-journal-committed-published",
+      "passed": true
+    },
+    {
+      "name": "crash-barrier-new-removed",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "committed"
+      },
+      "old_before_recovery": false,
+      "new_before_recovery": true
+    },
+    {
+      "name": "repeat-recovery-barrier-new-removed",
+      "passed": true
+    },
+    {
+      "name": "crash-journal-removed",
+      "passed": true,
+      "outcome": "clean",
+      "old_before_recovery": false,
+      "new_before_recovery": true
+    },
+    {
+      "name": "repeat-recovery-journal-removed",
+      "passed": true
+    },
+    {
+      "name": "committed-recovery-preserves-newer-orphan-barrier",
+      "passed": true,
+      "outcome": {
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "committed",
+        "cccccccccccccccccccccccccccccccc": "blocked"
+      }
+    }
+  ],
+  "source_sha256": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+  "power_loss_tested": false,
+  "native_pam_tested": false,
+  "passed": true
+}
