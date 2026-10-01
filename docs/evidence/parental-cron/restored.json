@@ -1,0 +1,39 @@
+{
+  "units": {
+    "sshd.service": "0",
+    "user@31300.service": "0",
+    "user@31301.service": "0",
+    "user-runtime-dir@31300.service": "0",
+    "user-runtime-dir@31301.service": "0"
+  },
+  "absent_paths": {
+    "/var/lib/lyra-parental-test": true,
+    "/usr/lib64/security/pam_lyra_producer_registry_fixture.so": true,
+    "/etc/pam.d/crond": true,
+    "/home/cronfixture": true,
+    "/home/croncontrol": true,
+    "/usr/bin/lyra-cron-identity-fixture": true,
+    "/etc/cron.d/lyra-parental-fixture": true,
+    "/var/spool/cron/tabs/cronfixture": true,
+    "/var/spool/cron/tabs/croncontrol": true,
+    "/etc/systemd/system/multi-user.target.wants/cron.service": true
+  },
+  "accounts_removed": true,
+  "groups_removed": true,
+  "processes": [],
+  "sessions": "",
+  "policy_removed": true,
+  "enforce": "Permissive",
+  "sshd_enabled": "disabled",
+  "vendor_pam_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+  "kernel": "6.12.0-160100.4-default",
+  "packages": "openssh-server-10.3p1-160100.2.4.x86_64\nopenssh-clients-10.3p1-160100.2.4.x86_64\nsystemd-257.13-160100.2.5.x86_64\npam-1.7.2+git12-160100.2.1.x86_64\nselinux-policy-targeted-20260826+git0.492b478c7-160100.1.1.noarch\n",
+  "complete_kernel_audit": false,
+  "audit_backlog_warnings": "-- No entries --\n",
+  "package_set_restored": true,
+  "introduced_packages_removed": true,
+  "cron_binary_removed": true,
+  "cron_pam_removed": true,
+  "common_pam_preserved": true,
+  "passed": true
+}

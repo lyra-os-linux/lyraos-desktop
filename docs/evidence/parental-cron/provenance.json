@@ -1,0 +1,212 @@
+{
+  "date": "2026-10-01",
+  "base_commit": "e83b3629206cb7fcaba141cb460e55ba0b1765b1",
+  "executions": {
+    "d81a86f498da49a980bfef83c42c0ccf": {
+      "timestamp": 1790879189.5326457,
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import subprocess,json; assert Path('/sys/block/vda/serial').read_text().strip()=='lyra-admission-test'; print(json.dumps({x:subprocess.run(x.split(),capture_output=True,text=True).stdout for x in ['rpm -q cronie cron','zypper --no-refresh se -s -x cronie','systemctl is-enabled cron.service','getenforce']}))"
+      ],
+      "stdout_sha256": "5b78837417dc85ba5a2405bac66063c1f8e4f6b8ec0ea54d036b3a368010b0db",
+      "rc": 0
+    },
+    "b0e80a44bd3a48ddb6ffa16cd1074bdc": {
+      "timestamp": 1790879261.2974017,
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import subprocess; assert Path('/sys/block/vda/serial').read_text().strip()=='lyra-admission-test'; Path('/root/cron-packages-before.txt').write_text(subprocess.check_output(['rpm','-qa','--qf','%{NAME}\\n'],text=True)); p=subprocess.run(['zypper','--non-interactive','--no-refresh','install','--dry-run','--no-recommends','cronie'],capture_output=True,text=True); print(p.stdout,p.stderr); raise SystemExit(p.returncode)"
+      ],
+      "stdout_sha256": "e32138fa3115b77765ac07f3f914c06ca6f6e66bbe9776f288baf1156253379f",
+      "rc": 0
+    },
+    "e711ea9b67564a8688a187b6f50e03a1": {
+      "timestamp": 1790879336.768472,
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import subprocess,json; assert Path('/sys/block/vda/serial').read_text().strip()=='lyra-admission-test'; p=subprocess.run(['zypper','--non-interactive','--no-refresh','install','--no-recommends','cronie'],capture_output=True,text=True); print(p.stdout,p.stderr); raise SystemExit(p.returncode)"
+      ],
+      "stdout_sha256": "719eddcf1e4df47d4597a57d86dbe2378a8f2403f8a873c1133d1fccec7ef28b",
+      "rc": 4
+    },
+    "354a142bb1a94cbea82b62bc0de525e3": {
+      "timestamp": 1790879401.6968844,
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import subprocess; assert Path('/sys/block/vda/serial').read_text().strip()=='lyra-admission-test'; files=[str(p) for p in Path('/root').glob('*.rpm') if p.name.startswith(('cronie-','cron-','debianutils-'))]; assert len(files)==3; p=subprocess.run(['rpm','--checksig',*files],capture_output=True,text=True); print(p.stdout,p.stderr); assert p.returncode==0 and 'NOKEY' not in p.stdout; p=subprocess.run(['zypper','--non-interactive','--no-refresh','install','--no-recommends',*files],capture_output=True,text=True); print(p.stdout,p.stderr); raise SystemExit(p.returncode)"
+      ],
+      "stdout_sha256": "0cbbe268b0fd5320313d2f194e43be71a6e4b785485daf9707f791781960e108",
+      "rc": 0
+    },
+    "4574efe726d04e76a1c4ca3940a94a64": {
+      "timestamp": 1790879412.377957,
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import subprocess,json; assert Path('/sys/block/vda/serial').read_text().strip()=='lyra-admission-test'; print(json.dumps({'commands':{x:subprocess.run(x.split(),capture_output=True,text=True).stdout for x in ['rpm -q cron cronie debianutils','systemctl cat cron.service','systemctl is-active cron.service','ls -Z /usr/sbin/cron','ls -l /var/spool/cron/tabs']},'pam':{str(p):p.read_text() for p in [Path('/usr/lib/pam.d/cron'),Path('/usr/lib/pam.d/crond'),Path('/etc/pam.d/cron'),Path('/etc/pam.d/crond')] if p.exists()}}))"
+      ],
+      "stdout_sha256": "f6235d4d3be0cb578220af3ce260c56b3f74b8fe0f4fd195dd81be6e71711e5e",
+      "rc": 0
+    },
+    "60cfa674e193473a85e06387fecaa771": {
+      "timestamp": 1790879730.579931,
+      "argv": [
+        "python3",
+        "/root/cron-exercise.py"
+      ],
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 1
+    },
+    "b5652a8d3ab24ac29dd6097a9455e6b5": {
+      "timestamp": 1790879989.3974483,
+      "argv": [
+        "python3",
+        "/root/cron-exercise.py"
+      ],
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "error": "TimeoutExpired(['python3', '/root/cron-exercise.py'], 120)"
+    },
+    "99127df6d21f486bb116687126615b1b": {
+      "timestamp": 1790880133.944447,
+      "argv": [
+        "python3",
+        "/root/cron-interrupted-cleanup.py"
+      ],
+      "stdout_sha256": "7f9df674d3aa0604b33dc8495aefa57bf142562737f70214f63dd1ee5f549f38",
+      "rc": 0
+    },
+    "d245f50c975a408ea6c324b2da668399": {
+      "timestamp": 1790880134.1170998,
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import subprocess; assert Path('/sys/block/vda/serial').read_text().strip()=='lyra-admission-test'; Path('/root/cron-result.json').unlink(missing_ok=True); subprocess.run(['systemd-run','--unit=lyra-cron-qualification','--property=Type=exec','--property=RuntimeMaxSec=600','/usr/bin/python3','/root/cron-exercise.py'],check=True)"
+      ],
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    "2d6b6c992ab7480bbf6b42fc2440232f": {
+      "timestamp": 1790881102.308334,
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import subprocess,json; assert Path('/sys/block/vda/serial').read_text().strip()=='lyra-admission-test'; r=json.loads(Path('/root/cron-result.json').read_text()); print(json.dumps({'source_sha256':r.get('source_sha256'),'spool_labels':r.get('fixture_spool_labels'),'restored':r.get('restored'),'cleanup_failed':[x for x in r['cleanup'] if not x['passed']]})); print(subprocess.run(['journalctl','-b','-k','--since=-5min','--no-pager','-g','avc:.*denied'],capture_output=True,text=True).stdout); print(subprocess.run(['systemctl','show','lyra-cron-qualification.service','-p','ActiveEnterTimestamp','-p','ExecMainStartTimestamp','-p','ExecMainExitTimestamp'],capture_output=True,text=True).stdout)"
+      ],
+      "stdout_sha256": "55d2f20992ebed47c15aea50dad19dfdbe3828e4b6f32df643eeee0aac332fc9",
+      "rc": 0
+    },
+    "544e77d41b2749f98d0ccfcd651fc4e9": {
+      "timestamp": 1790881288.6474278,
+      "argv": [
+        "python3",
+        "/root/cron-launch.py"
+      ],
+      "stdout_sha256": "b7e4445d5c471fec235177b5699559ee0a7ee4b995ff340a4e8760388e5e6557",
+      "rc": 0
+    },
+    "83653180ad00475cb79f0fe71afcff63": {
+      "timestamp": 1790881548.7538774,
+      "argv": [
+        "python3",
+        "/root/cron-capture.py"
+      ],
+      "stdout_sha256": "b39bf60218eb0605c46620b124f2f85ee8b63fe121779dd99893d571203cc2f2",
+      "rc": 0
+    },
+    "dd22f1e0272148ab8a6618fa25f16449": {
+      "timestamp": 1790881552.002414,
+      "argv": [
+        "python3",
+        "/root/cron-restore-packages.py"
+      ],
+      "stdout_sha256": "362cf2ad6f4f76865f6746cd99fea73ce26d6cecca4ba992182b3507eade5037",
+      "rc": 0
+    },
+    "9dfc4d225bfd48ff82a4c83d5737b59d": {
+      "timestamp": 1790881566.4338334,
+      "argv": [
+        "python3",
+        "/root/cron-restore-check.py"
+      ],
+      "stdout_sha256": "da7740f6b0e72058bb1fcaf73e0d4b7cc997c8713a81854e4868b828675e1f0d",
+      "rc": 0
+    },
+    "543267084a5a4bf7b5eb2a72bd1e602f": {
+      "timestamp": 1790881605.5522196,
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    }
+  },
+  "downloads": {
+    "cronie-1.7.2-160100.2.3.x86_64.rpm": {
+      "url": "https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/x86_64/cronie-1.7.2-160100.2.3.x86_64.rpm",
+      "sha256": "aa53553ba999be46210940ead47a991ca217b30e149cbbd58dfaac5ede87dab2"
+    },
+    "debianutils-5.4-160100.2.1.x86_64.rpm": {
+      "url": "https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/x86_64/debianutils-5.4-160100.2.1.x86_64.rpm",
+      "sha256": "61acb7e75001dae04302288f1b962c6e7dfd0af3f4dd6de56beb740eb27ea6ad"
+    },
+    "cron-4.2-160100.2.3.x86_64.rpm": {
+      "url": "https://cdn.opensuse.org/distribution/leap/16.1/repo/oss/x86_64/cron-4.2-160100.2.3.x86_64.rpm",
+      "sha256": "688bc9fdc241b38c744dd9cc63ab4d30405977a95b25e36ad312f3ab126387a0"
+    }
+  },
+  "source_sha256": {
+    "exercise.py": "38c49cc81640a15b7714e9a371f8a6148f9e2f57f325e1b28db80f595b5b7f1c",
+    "payload.c": "55586fb4e2fd8ac8cc3625c835c1d990fa6715c52e9acc713c90bfd3c18ccd00",
+    "registry.cil": "392be917621e510e886a2fdd2993d6c75f6e3688eb6e1c3936024973666c7276",
+    "launch.py": "274c6677cd9f680897831e75aa30fb38fdb54b657f87ee15f1079238d0c13920",
+    "capture.py": "acb543e38643ac4857d597c312b634ba25ddeecf7aaad1184338eb44879ef07c",
+    "restore-packages.py": "e89e2686931ce4bf14e9bbab5192290a645cce9941a90a46f469cc5f356262b9",
+    "restore-check.py": "e986444eccd7433b8efb9c0126b796833219e9f6ccd4de8f431a128079e09824",
+    "interrupted-cleanup.py": "61dea28bd88de4956da6cd0a718eb092fbb654dc782092ec41bc3709427deee4",
+    "verify-evidence.py": "59994ea1a1ee7462b90aff8df845427cbc57a44ee7b935f5d433ea2bfe65f9d8",
+    "../parental-producers/pam-account-guard.c": "b3773740fffbf0354567db7d0bc1867e11df5a2b5970f47a2b413058e18c582c",
+    "../parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3"
+  },
+  "artifact_sha256": {
+    "result.json": "a65a1e25be111699afda98815fce5266f2ada2f70745870d3657d8ee3d46e352",
+    "capture.json": "f244e63ae63bee30ff0313e0edbcceeeb3ac91a578a290cae68bd7cefc1bd7c6",
+    "packages-before.txt": "4d588f09ccd4f7ee0fd5d3f2792ec66390792f076de192428b97cec660793b98",
+    "packages-restored.json": "2129a91645da323395efae01257eea2c759b0835f962d081878eff1be069bd17",
+    "restored.json": "edbc02fae22d45c22aa5e0e270c31e10e37ac08773eaf4fdeef34fec439e0adc",
+    "inventory.json": "f6235d4d3be0cb578220af3ce260c56b3f74b8fe0f4fd195dd81be6e71711e5e",
+    "preliminary-label-result.json": "104542befae9f3cf3d840cb0fd1aaf54dd4981e68d228068d2f8b04d7268687c",
+    "preliminary-unit-result.json": "4d2a6289ab7ea881e773aedba2b3d0f1c001577df3557ff0b3d4dfaabf6d13d7",
+    "installation.json": "53d186c697a05c1a9c79df14a69c44e9ebbbe5229b034554a37a3e410a30cd31",
+    "spool-policy.json": "462d90c2572986143a619a40c51b78a6058385116a58c94e33eecd3e54eea0ef"
+  },
+  "native_checks": 9,
+  "account_denials": 4,
+  "exited_payload_pidfds": 2,
+  "known_gap_assertions": 1,
+  "python_tests": 270,
+  "python_suite_command": "python3 -m unittest discover -s tests -p 'test_*.py'",
+  "python_suite_exit_code": 0,
+  "production_changed": false,
+  "full_account_protection": false,
+  "complete_kernel_audit": false,
+  "clock_modified": false,
+  "fixture_spool_restorecon": true,
+  "stock_spool_labeling_qualified": false,
+  "temporary_systemd_launcher_timing_qualified": false,
+  "vm": {
+    "disk": "/tmp/lyra-parental-identity-20260928/system.raw",
+    "serial": "lyra-admission-test",
+    "kernel": "6.12.0-160100.4-default",
+    "cronie_version": "1.7.2-160100.2.3",
+    "final_state": "powered-off",
+    "qemu_exit_code": 0,
+    "iso_boot": false,
+    "temporary_packages_removed": true,
+    "package_name_set_restored": true
+  }
+}

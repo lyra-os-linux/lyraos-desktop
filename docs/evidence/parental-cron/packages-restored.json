@@ -1,0 +1,56 @@
+{
+  "packages_before_sha256": "4d588f09ccd4f7ee0fd5d3f2792ec66390792f076de192428b97cec660793b98",
+  "introduced": [
+    "cron",
+    "cronie",
+    "debianutils"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "rpm",
+        "-e",
+        "--test",
+        "cronie",
+        "cron",
+        "debianutils"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "disable",
+        "cron.service"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": "Removed '/etc/systemd/system/multi-user.target.wants/cron.service'.\n"
+    },
+    {
+      "argv": [
+        "rpm",
+        "-e",
+        "cronie",
+        "cron",
+        "debianutils"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "daemon-reload"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "package_set_restored": true,
+  "passed": true
+}

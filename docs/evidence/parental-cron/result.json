@@ -1,0 +1,318 @@
+{
+  "kind": "native-cronie-user-and-system-crontabs",
+  "checks": [
+    {
+      "name": "baseline-real-user-and-system-crontabs-admitted",
+      "passed": true,
+      "supervised": [
+        {
+          "pid": 1262,
+          "uids": [
+            31300,
+            31300,
+            31300,
+            31300
+          ],
+          "exe": "/usr/bin/lyra-cron-identity-fixture",
+          "cgroup": "0::/system.slice/cron.service",
+          "parent": 1257
+        },
+        {
+          "pid": 1261,
+          "uids": [
+            31300,
+            31300,
+            31300,
+            31300
+          ],
+          "exe": "/usr/bin/lyra-cron-identity-fixture",
+          "cgroup": "0::/system.slice/cron.service",
+          "parent": 1256
+        }
+      ],
+      "ordinary": [
+        {
+          "pid": 1260,
+          "uids": [
+            31301,
+            31301,
+            31301,
+            31301
+          ],
+          "exe": "/usr/bin/lyra-cron-identity-fixture",
+          "cgroup": "0::/system.slice/cron.service",
+          "parent": 1258
+        },
+        {
+          "pid": 1259,
+          "uids": [
+            31301,
+            31301,
+            31301,
+            31301
+          ],
+          "exe": "/usr/bin/lyra-cron-identity-fixture",
+          "cgroup": "0::/system.slice/cron.service",
+          "parent": 1255
+        }
+      ],
+      "cron_pid": "1252"
+    },
+    {
+      "name": "root-cron-monitors-retain-generation-lease",
+      "passed": true,
+      "holders": [
+        {
+          "pid": 1256,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "exe": "/usr/sbin/cron",
+          "cgroup": "0::/system.slice/cron.service",
+          "parent": 1252
+        },
+        {
+          "pid": 1257,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "exe": "/usr/sbin/cron",
+          "cgroup": "0::/system.slice/cron.service",
+          "parent": 1252
+        }
+      ]
+    },
+    {
+      "name": "live-cron-keeps-durable-busy-barrier",
+      "passed": true,
+      "error": "busy: generation has admitted sessions; barrier remains durable"
+    },
+    {
+      "name": "blocked-next-user-and-system-cron-denied",
+      "passed": true,
+      "guard_rejections": [
+        "pam_lyra_producer_registry_fixture(crond:account): Experimental producer registry admission rejected account",
+        "pam_lyra_producer_registry_fixture(crond:account): Experimental producer registry admission rejected account"
+      ],
+      "cron_account_errors": [
+        "(cronfixture) FAILED to authorize user with PAM (Permission denied)",
+        "(cronfixture) FAILED to authorize user with PAM (Permission denied)"
+      ],
+      "ordinary_count": 2,
+      "supervised_count": 1,
+      "journal_after_cursor": "s=a8399850ab4e4fa59389f6db45327c53;i=c2e27;b=eade9e7c168e466a800d32922c661259;m=7f5093bb;t=65ccc0cf7283f;x=119782f89c95b688"
+    },
+    {
+      "name": "logind-does-not-revoke-nonlogin-cron-jobs",
+      "passed": true,
+      "qualification": "known-producer-gap",
+      "logind": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Could not terminate user: User ID 31300 is not logged in or lingering\n"
+      }
+    },
+    {
+      "name": "trusted-fixture-payload-stop-releases-root-monitor-leases",
+      "passed": true,
+      "payload_pidfds_exited": 2,
+      "signaled_uid": 31300,
+      "root_signals": false
+    },
+    {
+      "name": "stale-generation-user-and-system-cron-denied",
+      "passed": true,
+      "guard_rejections": [
+        "pam_lyra_producer_registry_fixture(crond:account): Experimental producer registry admission rejected account",
+        "pam_lyra_producer_registry_fixture(crond:account): Experimental producer registry admission rejected account"
+      ],
+      "cron_account_errors": [
+        "(cronfixture) FAILED to authorize user with PAM (Permission denied)",
+        "(cronfixture) FAILED to authorize user with PAM (Permission denied)"
+      ],
+      "ordinary_count": 3,
+      "supervised_count": 1,
+      "journal_after_cursor": "s=a8399850ab4e4fa59389f6db45327c53;i=c2e35;b=eade9e7c168e466a800d32922c661259;m=82ebd749;t=65ccc10926bcd;x=3f45aacb37f0de1f"
+    },
+    {
+      "name": "updated-generation-user-and-system-cron-admitted",
+      "passed": true,
+      "supervised": [
+        {
+          "pid": 1295,
+          "uids": [
+            31300,
+            31300,
+            31300,
+            31300
+          ],
+          "exe": "/usr/bin/lyra-cron-identity-fixture",
+          "cgroup": "0::/system.slice/cron.service",
+          "parent": 1290
+        },
+        {
+          "pid": 1294,
+          "uids": [
+            31300,
+            31300,
+            31300,
+            31300
+          ],
+          "exe": "/usr/bin/lyra-cron-identity-fixture",
+          "cgroup": "0::/system.slice/cron.service",
+          "parent": 1289
+        }
+      ]
+    },
+    {
+      "name": "ordinary-original-jobs-and-shared-daemon-preserved",
+      "passed": true,
+      "ordinary": [
+        {
+          "pid": 1260,
+          "uids": [
+            31301,
+            31301,
+            31301,
+            31301
+          ],
+          "exe": "/usr/bin/lyra-cron-identity-fixture",
+          "cgroup": "0::/system.slice/cron.service",
+          "parent": 1258
+        },
+        {
+          "pid": 1259,
+          "uids": [
+            31301,
+            31301,
+            31301,
+            31301
+          ],
+          "exe": "/usr/bin/lyra-cron-identity-fixture",
+          "cgroup": "0::/system.slice/cron.service",
+          "parent": 1255
+        }
+      ],
+      "cron_pid": "1252"
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "remove-system-fixture",
+      "passed": true
+    },
+    {
+      "name": "remove-user-table-cronfixture",
+      "passed": true
+    },
+    {
+      "name": "remove-user-table-croncontrol",
+      "passed": true
+    },
+    {
+      "name": "stop-native-cron",
+      "passed": true
+    },
+    {
+      "name": "restore-permissive",
+      "passed": true
+    },
+    {
+      "name": "stop-fixture-payloads-cronfixture",
+      "passed": true
+    },
+    {
+      "name": "delete-account-cronfixture",
+      "passed": true
+    },
+    {
+      "name": "remove-home-cronfixture",
+      "passed": true
+    },
+    {
+      "name": "stop-fixture-payloads-croncontrol",
+      "passed": true
+    },
+    {
+      "name": "delete-account-croncontrol",
+      "passed": true
+    },
+    {
+      "name": "remove-home-croncontrol",
+      "passed": true
+    },
+    {
+      "name": "remove-pam",
+      "passed": true
+    },
+    {
+      "name": "remove-module",
+      "passed": true
+    },
+    {
+      "name": "remove-binary",
+      "passed": true
+    },
+    {
+      "name": "remove-state",
+      "passed": true
+    },
+    {
+      "name": "remove-policy",
+      "passed": true
+    }
+  ],
+  "full_account_protection": false,
+  "complete_kernel_audit": false,
+  "clock_modified": false,
+  "source_sha256": {
+    "cron-exercise.py": "38c49cc81640a15b7714e9a371f8a6148f9e2f57f325e1b28db80f595b5b7f1c",
+    "producer-pam-account-guard.c": "b3773740fffbf0354567db7d0bc1867e11df5a2b5970f47a2b413058e18c582c",
+    "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "lyra-cron-registry.cil": "392be917621e510e886a2fdd2993d6c75f6e3688eb6e1c3936024973666c7276",
+    "cron-fixture.c": "55586fb4e2fd8ac8cc3625c835c1d990fa6715c52e9acc713c90bfd3c18ccd00"
+  },
+  "vendor_pam_sha256": "fa098d6e1d39671cabc9b8f46bccad816c3ce9394ce529102df46333bbef6457",
+  "common_pam_sha256": {
+    "/etc/pam.d/common-session-nonlogin-pc": "c5dee05a325034065604d822120dd869ff7c3aaa3bb35036ea6dc01e99bf8b91",
+    "/etc/pam.d/common-account": "a88109cffad53170bc57397b42e2ccddaacd06a649261c4593d05f6aed7ee5cb",
+    "/etc/pam.d/common-session-pc": "d055caaa7946731969e860772682d4d5a294aa8e61672904e727d4be4c019876",
+    "/etc/pam.d/common-auth": "3d64dcbf34d28bd8c4a2a01c0b0b8ea99b82b230abc3cc5b4e606462aecc2c2e",
+    "/etc/pam.d/common-session-nonlogin": "c5dee05a325034065604d822120dd869ff7c3aaa3bb35036ea6dc01e99bf8b91",
+    "/etc/pam.d/common-account-pc": "a88109cffad53170bc57397b42e2ccddaacd06a649261c4593d05f6aed7ee5cb",
+    "/etc/pam.d/common-password": "d55adaed5057bafc1413d0bbd4df728a89e4b9a7be5576b0049cd1d875e46b30",
+    "/etc/pam.d/common-password-pc": "d55adaed5057bafc1413d0bbd4df728a89e4b9a7be5576b0049cd1d875e46b30",
+    "/etc/pam.d/common-auth-pc": "3d64dcbf34d28bd8c4a2a01c0b0b8ea99b82b230abc3cc5b4e606462aecc2c2e",
+    "/etc/pam.d/common-session": "d055caaa7946731969e860772682d4d5a294aa8e61672904e727d4be4c019876"
+  },
+  "payload_sha256": "83bd7ff9b4941093cbd5fe6730215017426f84910427ce366bd2ec7077d624ed",
+  "fixture_spool_labels": [
+    {
+      "user": "cronfixture",
+      "before": "system_u:object_r:cron_spool_t:s0 /var/spool/cron/tabs/cronfixture",
+      "after": "system_u:object_r:user_cron_spool_t:s0 /var/spool/cron/tabs/cronfixture"
+    },
+    {
+      "user": "croncontrol",
+      "before": "system_u:object_r:cron_spool_t:s0 /var/spool/cron/tabs/croncontrol",
+      "after": "system_u:object_r:user_cron_spool_t:s0 /var/spool/cron/tabs/croncontrol"
+    }
+  ],
+  "passed": true,
+  "restored": {
+    "accounts_removed": true,
+    "groups_removed": true,
+    "fixtures_removed": true,
+    "vendor_preserved": true,
+    "common_preserved": true,
+    "original_accounts_preserved": true,
+    "permissive": true,
+    "cron_stopped": true
+  }
+}

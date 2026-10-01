@@ -1,0 +1,5 @@
+; Disposable crond registry read/lock only; no product policy.
+(type lyra_cron_registry_state_t)
+(typeattributeset file_type (lyra_cron_registry_state_t))
+(allow crond_t lyra_cron_registry_state_t (dir (getattr search open read)))
+(allow crond_t lyra_cron_registry_state_t (file (getattr open read lock)))

@@ -1,0 +1,117 @@
+{
+  "kind": "native-cronie-user-and-system-crontabs",
+  "checks": [],
+  "cleanup": [
+    {
+      "name": "remove-system-fixture",
+      "passed": true
+    },
+    {
+      "name": "remove-user-table-cronfixture",
+      "passed": true
+    },
+    {
+      "name": "remove-user-table-croncontrol",
+      "passed": true
+    },
+    {
+      "name": "stop-native-cron",
+      "passed": true
+    },
+    {
+      "name": "restore-permissive",
+      "passed": true
+    },
+    {
+      "name": "stop-fixture-payloads-cronfixture",
+      "passed": true
+    },
+    {
+      "name": "delete-account-cronfixture",
+      "passed": true
+    },
+    {
+      "name": "remove-home-cronfixture",
+      "passed": true
+    },
+    {
+      "name": "stop-fixture-payloads-croncontrol",
+      "passed": true
+    },
+    {
+      "name": "delete-account-croncontrol",
+      "passed": true
+    },
+    {
+      "name": "remove-home-croncontrol",
+      "passed": true
+    },
+    {
+      "name": "remove-pam",
+      "passed": true
+    },
+    {
+      "name": "remove-module",
+      "passed": true
+    },
+    {
+      "name": "remove-binary",
+      "passed": true
+    },
+    {
+      "name": "remove-state",
+      "passed": true
+    },
+    {
+      "name": "remove-policy",
+      "passed": true
+    }
+  ],
+  "full_account_protection": false,
+  "complete_kernel_audit": false,
+  "clock_modified": false,
+  "source_sha256": {
+    "cron-exercise.py": "a00a9ff161f313b48e86d5543f386849633396c7bd9c4e8d1a60f7309602bec7",
+    "producer-pam-account-guard.c": "b3773740fffbf0354567db7d0bc1867e11df5a2b5970f47a2b413058e18c582c",
+    "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "lyra-cron-registry.cil": "392be917621e510e886a2fdd2993d6c75f6e3688eb6e1c3936024973666c7276",
+    "cron-fixture.c": "f0df2edd5bf1dbe2a6489555c7ea85b0b23eb8d1d2c21c9bf3ca1d6995182679"
+  },
+  "vendor_pam_sha256": "fa098d6e1d39671cabc9b8f46bccad816c3ce9394ce529102df46333bbef6457",
+  "common_pam_sha256": {
+    "/etc/pam.d/common-session-nonlogin-pc": "c5dee05a325034065604d822120dd869ff7c3aaa3bb35036ea6dc01e99bf8b91",
+    "/etc/pam.d/common-account": "a88109cffad53170bc57397b42e2ccddaacd06a649261c4593d05f6aed7ee5cb",
+    "/etc/pam.d/common-session-pc": "d055caaa7946731969e860772682d4d5a294aa8e61672904e727d4be4c019876",
+    "/etc/pam.d/common-auth": "3d64dcbf34d28bd8c4a2a01c0b0b8ea99b82b230abc3cc5b4e606462aecc2c2e",
+    "/etc/pam.d/common-session-nonlogin": "c5dee05a325034065604d822120dd869ff7c3aaa3bb35036ea6dc01e99bf8b91",
+    "/etc/pam.d/common-account-pc": "a88109cffad53170bc57397b42e2ccddaacd06a649261c4593d05f6aed7ee5cb",
+    "/etc/pam.d/common-password": "d55adaed5057bafc1413d0bbd4df728a89e4b9a7be5576b0049cd1d875e46b30",
+    "/etc/pam.d/common-password-pc": "d55adaed5057bafc1413d0bbd4df728a89e4b9a7be5576b0049cd1d875e46b30",
+    "/etc/pam.d/common-auth-pc": "3d64dcbf34d28bd8c4a2a01c0b0b8ea99b82b230abc3cc5b4e606462aecc2c2e",
+    "/etc/pam.d/common-session": "d055caaa7946731969e860772682d4d5a294aa8e61672904e727d4be4c019876"
+  },
+  "payload_sha256": "8b1fe097e645dae76d313cc1d595fd86744e45f03ba7264f703d0b82aa5556e7",
+  "fixture_spool_labels": [
+    {
+      "user": "cronfixture",
+      "before": "system_u:object_r:cron_spool_t:s0 /var/spool/cron/tabs/cronfixture",
+      "after": "system_u:object_r:user_cron_spool_t:s0 /var/spool/cron/tabs/cronfixture"
+    },
+    {
+      "user": "croncontrol",
+      "before": "system_u:object_r:cron_spool_t:s0 /var/spool/cron/tabs/croncontrol",
+      "after": "system_u:object_r:user_cron_spool_t:s0 /var/spool/cron/tabs/croncontrol"
+    }
+  ],
+  "restored": {
+    "accounts_removed": true,
+    "groups_removed": true,
+    "fixtures_removed": true,
+    "vendor_preserved": true,
+    "common_preserved": true,
+    "original_accounts_preserved": true,
+    "permissive": true,
+    "cron_stopped": true
+  },
+  "passed": false
+}
