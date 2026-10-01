@@ -1,0 +1,557 @@
+{
+  "kind": "native-system-bus-generation-admission",
+  "checks": [
+    {
+      "name": "baseline-systemd-dbus-without-pam",
+      "passed": true,
+      "short": "PlainA",
+      "pid": 1126,
+      "uid": 31200,
+      "uids": [
+        31200,
+        31200,
+        31200,
+        31200
+      ],
+      "cgroup": "0::/system.slice/lyra-dbus-fixture-plaina.service",
+      "unit_name": "lyra-dbus-fixture-plaina.service",
+      "unit": {
+        "MainPID": "1126",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-dbus-fixture-plaina.service",
+        "User": "producerfixture",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "baseline-systemd-dbus-with-pam",
+      "passed": true,
+      "short": "GuardedA",
+      "pid": 1129,
+      "uid": 31200,
+      "uids": [
+        31200,
+        31200,
+        31200,
+        31200
+      ],
+      "cgroup": "0::/user.slice/user-31200.slice/session-5.scope",
+      "unit_name": "lyra-dbus-fixture-guardeda.service",
+      "unit": {
+        "MainPID": "1129",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-dbus-fixture-guardeda.service",
+        "User": "producerfixture",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "baseline-exec-user-broker-transient-without-pam",
+      "passed": true,
+      "short": "DirectA",
+      "pid": 1148,
+      "uid": 31200,
+      "uids": [
+        31200,
+        31200,
+        31200,
+        31200
+      ],
+      "cgroup": "0::/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.ParentalDbusFixture.DirectA.slice/dbus-:1.2-org.lyra.ParentalDbusFixture.DirectA@0.service",
+      "unit_name": "dbus-:1.2-org.lyra.ParentalDbusFixture.DirectA@0.service",
+      "unit": {
+        "MainPID": "1148",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.ParentalDbusFixture.DirectA.slice/dbus-:1.2-org.lyra.ParentalDbusFixture.DirectA@0.service",
+        "User": "31200",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "baseline-ordinary-dbus-with-pam",
+      "passed": true,
+      "short": "OrdinaryB",
+      "pid": 1151,
+      "uid": 31201,
+      "uids": [
+        31201,
+        31201,
+        31201,
+        31201
+      ],
+      "cgroup": "0::/user.slice/user-31201.slice/session-7.scope",
+      "unit_name": "lyra-dbus-fixture-ordinaryb.service",
+      "unit": {
+        "MainPID": "1151",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-dbus-fixture-ordinaryb.service",
+        "User": "producercontrol",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "live-dbus-pam-lease-retains-durable-barrier",
+      "passed": true,
+      "error": "busy: generation has admitted sessions; barrier remains durable"
+    },
+    {
+      "name": "barrier-does-not-revoke-already-owned-dbus-names",
+      "passed": true,
+      "qualification": "known-producer-gap"
+    },
+    {
+      "name": "new-systemd-dbus-with-pam-denied",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: Could not activate remote peer 'org.lyra.ParentalDbusFixture.GuardedBlockedA': startup job failed\n"
+      },
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ControlGroup": "",
+        "User": "producerfixture",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "failed"
+      },
+      "guard_rejection": [
+        "pam_lyra_producer_registry_fixture(lyra-producer-fixture:account): Experimental producer registry admission rejected account"
+      ]
+    },
+    {
+      "name": "new-systemd-dbus-without-pam-bypasses-barrier",
+      "passed": true,
+      "qualification": "known-producer-gap",
+      "short": "PlainBlockedA",
+      "pid": 1183,
+      "uid": 31200,
+      "uids": [
+        31200,
+        31200,
+        31200,
+        31200
+      ],
+      "cgroup": "0::/system.slice/lyra-dbus-fixture-plainblockeda.service",
+      "unit_name": "lyra-dbus-fixture-plainblockeda.service",
+      "unit": {
+        "MainPID": "1183",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-dbus-fixture-plainblockeda.service",
+        "User": "producerfixture",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "new-exec-user-dbus-bypasses-barrier",
+      "passed": true,
+      "qualification": "known-producer-gap",
+      "short": "DirectBlockedA",
+      "pid": 1186,
+      "uid": 31200,
+      "uids": [
+        31200,
+        31200,
+        31200,
+        31200
+      ],
+      "cgroup": "0::/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.ParentalDbusFixture.DirectBlockedA.slice/dbus-:1.2-org.lyra.ParentalDbusFixture.DirectBlockedA@0.service",
+      "unit_name": "dbus-:1.2-org.lyra.ParentalDbusFixture.DirectBlockedA@0.service",
+      "unit": {
+        "MainPID": "1186",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.ParentalDbusFixture.DirectBlockedA.slice/dbus-:1.2-org.lyra.ParentalDbusFixture.DirectBlockedA@0.service",
+        "User": "31200",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "logind-does-not-revoke-unguarded-system-bus-producers",
+      "passed": true,
+      "qualification": "known-producer-gap",
+      "logind": {
+        "rc": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "ordinary-dbus-and-shared-broker-preserved",
+      "passed": true,
+      "broker_pid": "449"
+    },
+    {
+      "name": "fixture-activation-routes-disarmed-before-stop",
+      "passed": true,
+      "routes": [
+        "PlainA",
+        "GuardedA",
+        "PlainBlockedA",
+        "GuardedBlockedA",
+        "DirectA",
+        "DirectBlockedA",
+        "StaleA",
+        "NewA"
+      ]
+    },
+    {
+      "name": "fixture-dbus-producers-revoked-without-shared-broker-restart",
+      "passed": true,
+      "stopped": [
+        {
+          "unit": "lyra-dbus-fixture-plaina.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "0",
+            "ControlGroup": "",
+            "User": "producerfixture",
+            "PAMName": "",
+            "LoadState": "loaded",
+            "ActiveState": "inactive"
+          }
+        },
+        {
+          "unit": "lyra-dbus-fixture-guardeda.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "0",
+            "ControlGroup": "",
+            "User": "producerfixture",
+            "PAMName": "lyra-producer-fixture",
+            "LoadState": "loaded",
+            "ActiveState": "inactive"
+          }
+        },
+        {
+          "unit": "lyra-dbus-fixture-plainblockeda.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "0",
+            "ControlGroup": "",
+            "User": "producerfixture",
+            "PAMName": "",
+            "LoadState": "loaded",
+            "ActiveState": "inactive"
+          }
+        },
+        {
+          "unit": "lyra-dbus-fixture-guardedblockeda.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "224",
+            "ControlGroup": "",
+            "User": "producerfixture",
+            "PAMName": "lyra-producer-fixture",
+            "LoadState": "loaded",
+            "ActiveState": "failed"
+          }
+        },
+        {
+          "unit": "dbus-:1.2-org.lyra.ParentalDbusFixture.DirectA@0.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "0",
+            "ControlGroup": "",
+            "User": "",
+            "PAMName": "",
+            "LoadState": "not-found",
+            "ActiveState": "inactive"
+          }
+        },
+        {
+          "unit": "dbus-:1.2-org.lyra.ParentalDbusFixture.DirectBlockedA@0.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "0",
+            "ControlGroup": "",
+            "User": "",
+            "PAMName": "",
+            "LoadState": "not-found",
+            "ActiveState": "inactive"
+          }
+        },
+        {
+          "unit": "lyra-dbus-fixture-stalea.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "0",
+            "ControlGroup": "",
+            "User": "producerfixture",
+            "PAMName": "lyra-producer-fixture",
+            "LoadState": "loaded",
+            "ActiveState": "inactive"
+          }
+        },
+        {
+          "unit": "lyra-dbus-fixture-newa.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "0",
+            "ControlGroup": "",
+            "User": "producerfixture",
+            "PAMName": "lyra-producer-fixture",
+            "LoadState": "loaded",
+            "ActiveState": "inactive"
+          }
+        }
+      ],
+      "pidfds_exited": 4
+    },
+    {
+      "name": "disarmed-route-cannot-reactivate",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "stale-generation-dbus-pam-denied",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: Could not activate remote peer 'org.lyra.ParentalDbusFixture.StaleA': startup job failed\n"
+      },
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ControlGroup": "",
+        "User": "producerfixture",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "failed"
+      },
+      "guard_rejection": [
+        "pam_lyra_producer_registry_fixture(lyra-producer-fixture:account): Experimental producer registry admission rejected account"
+      ]
+    },
+    {
+      "name": "new-generation-dbus-pam-admitted",
+      "passed": true,
+      "short": "NewA",
+      "pid": 1320,
+      "uid": 31200,
+      "uids": [
+        31200,
+        31200,
+        31200,
+        31200
+      ],
+      "cgroup": "0::/user.slice/user-31200.slice/session-9.scope",
+      "unit_name": "lyra-dbus-fixture-newa.service",
+      "unit": {
+        "MainPID": "1320",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-dbus-fixture-newa.service",
+        "User": "producerfixture",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "ordinary-owner-and-shared-broker-survive-entire-transition",
+      "passed": true,
+      "ordinary_pid": 1151,
+      "broker_pid": "449"
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "disarm-fixture-activation",
+      "passed": true
+    },
+    {
+      "name": "stop-fixture-producers",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-parental-dbus-fixture.conf",
+      "passed": true
+    },
+    {
+      "name": "remove-org.lyra.ParentalDbusFixture.NewA.service",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-dbus-fixture-newa.service",
+      "passed": true
+    },
+    {
+      "name": "remove-org.lyra.ParentalDbusFixture.StaleA.service",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-dbus-fixture-stalea.service",
+      "passed": true
+    },
+    {
+      "name": "remove-org.lyra.ParentalDbusFixture.OrdinaryB.service",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-dbus-fixture-ordinaryb.service",
+      "passed": true
+    },
+    {
+      "name": "remove-org.lyra.ParentalDbusFixture.DirectBlockedA.service",
+      "passed": true
+    },
+    {
+      "name": "remove-org.lyra.ParentalDbusFixture.DirectA.service",
+      "passed": true
+    },
+    {
+      "name": "remove-org.lyra.ParentalDbusFixture.GuardedBlockedA.service",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-dbus-fixture-guardedblockeda.service",
+      "passed": true
+    },
+    {
+      "name": "remove-org.lyra.ParentalDbusFixture.PlainBlockedA.service",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-dbus-fixture-plainblockeda.service",
+      "passed": true
+    },
+    {
+      "name": "remove-org.lyra.ParentalDbusFixture.GuardedA.service",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-dbus-fixture-guardeda.service",
+      "passed": true
+    },
+    {
+      "name": "remove-org.lyra.ParentalDbusFixture.PlainA.service",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-dbus-fixture-plaina.service",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-dbus-activation-fixture",
+      "passed": true
+    },
+    {
+      "name": "reload-after-fixture-removal",
+      "passed": true
+    },
+    {
+      "name": "restore-permissive",
+      "passed": true
+    },
+    {
+      "name": "stop-manager-producerfixture",
+      "passed": true
+    },
+    {
+      "name": "delete-account-producerfixture",
+      "passed": true
+    },
+    {
+      "name": "stop-manager-producercontrol",
+      "passed": true
+    },
+    {
+      "name": "delete-account-producercontrol",
+      "passed": true
+    },
+    {
+      "name": "remove-pam-fixture",
+      "passed": true
+    },
+    {
+      "name": "remove-module",
+      "passed": true
+    },
+    {
+      "name": "remove-state",
+      "passed": true
+    },
+    {
+      "name": "remove-policy",
+      "passed": true
+    }
+  ],
+  "full_account_protection": false,
+  "cron_tested": false,
+  "dbus_activation_tested": true,
+  "source_sha256": {
+    "dbus-activation-exercise.py": "d4294de6789c4a2c306224582a06d032bd89976b1c0ce67ed2d05246ec0d92bb",
+    "producer-pam-account-guard.c": "b3773740fffbf0354567db7d0bc1867e11df5a2b5970f47a2b413058e18c582c",
+    "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "lyra-producer-registry.cil": "41998308f805ca726bd687cb6823ff27112e8e4586320341b30d2dbe4fa84f66",
+    "dbus-fixture-service.c": "680da9b9d69ca8296adf8685c9e928751d497f5b7762a44666331918cc65c78e"
+  },
+  "payload_sha256": "7fd570e5160d95d3194c30588a72aee5bf74e8e093574be9427f6c349d648680",
+  "passed": true,
+  "restored": {
+    "accounts_removed": true,
+    "groups_removed": true,
+    "fixtures_removed": true,
+    "broker_preserved": true,
+    "vendor_preserved": true,
+    "original_accounts_preserved": true,
+    "permissive": true
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-01",
+  "base_commit": "2521b1d606b11d1a3ae2723823697757b4467844",
+  "executions": {
+    "2ad05cd9ff584283999e4cf620f82fec": {
+      "timestamp": 1790878392.0051825,
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import subprocess,json; assert Path('/sys/block/vda/serial').read_text().strip()=='lyra-admission-test'; print(json.dumps({x:subprocess.run(x.split(),capture_output=True,text=True).stdout for x in ['systemctl show dbus.service -p MainPID -p FragmentPath','systemctl cat dbus.service','rpm -q dbus-broker libsystemd-devel','getenforce']}))"
+      ],
+      "rc": 0,
+      "stdout_sha256": "f4c547290ec6d24db8f638a489b7a72f82b1f41199247ea187978ed156d20118"
+    },
+    "be770056a1a64706a1ce058bfbeb8ffe": {
+      "timestamp": 1790878561.8798215,
+      "argv": [
+        "python3",
+        "/root/dbus-activation-exercise.py"
+      ],
+      "rc": 1,
+      "stdout_sha256": "a02fa2e317ca5edc99df99cfb41b8101ea3ef3abead3d69146aecb0fa23edb80"
+    },
+    "23dbb38150e04b388274db2a4e9796b8": {
+      "timestamp": 1790878622.292922,
+      "argv": [
+        "python3",
+        "/root/dbus-activation-exercise.py"
+      ],
+      "rc": 1,
+      "stdout_sha256": "c655b01c78820b51734760cfa809f908b32bf8170d0b4d78f0452d3e2acf8c13"
+    },
+    "3ef57a408ed24991a3547ef79b88c790": {
+      "timestamp": 1790878670.1278682,
+      "argv": [
+        "python3",
+        "/root/dbus-activation-exercise.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "7296d520bcc370d2df538f72ad758cb7895acc0eac41769945e3d1a50ae381e7"
+    },
+    "aad190074b784fbf908e4627324d8769": {
+      "timestamp": 1790878736.712096,
+      "argv": [
+        "python3",
+        "/root/dbus-activation-restore-check.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "b53a6375e97c8dbe158489dc92a9bccf8764473f9da316b59f7f4d5a481afaae"
+    },
+    "fc2517e476b248b68aead66db0fb1a5f": {
+      "timestamp": 1790878772.6210318,
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "rc": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "source_sha256": {
+    "exercise.py": "d4294de6789c4a2c306224582a06d032bd89976b1c0ce67ed2d05246ec0d92bb",
+    "service.c": "680da9b9d69ca8296adf8685c9e928751d497f5b7762a44666331918cc65c78e",
+    "restore-check.py": "9b1154260696721a7c96aa84d8ce9e186f63b35b84acbf3aa4d8bb3329c1679c",
+    "verify-evidence.py": "e3356fd0f71281bf4bb0ea4590bb5f0ebd13236ade48b6678cecaa2547d2429d",
+    "../parental-producers/pam-account-guard.c": "b3773740fffbf0354567db7d0bc1867e11df5a2b5970f47a2b413058e18c582c",
+    "../parental-producers/registry.cil": "41998308f805ca726bd687cb6823ff27112e8e4586320341b30d2dbe4fa84f66",
+    "../parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3"
+  },
+  "artifact_sha256": {
+    "result.json": "9e1aff2b5b7583f104a5377b4e3e13244df2039910e47d92c6123463ebe07c01",
+    "restored.json": "8cc67a9e525357a1b940ec8ec7b4125748b1a921ba9ccea48ba05c4e792398d7",
+    "inventory.json": "f4c547290ec6d24db8f638a489b7a72f82b1f41199247ea187978ed156d20118"
+  },
+  "native_checks": 17,
+  "known_gap_assertions": 4,
+  "exited_payload_pidfds": 4,
+  "python_tests": 270,
+  "python_suite_command": "python3 -m unittest discover -s tests -p 'test_*.py'",
+  "python_suite_exit_code": 0,
+  "production_changed": false,
+  "full_account_protection": false,
+  "complete_kernel_audit": false,
+  "cron_tested": false,
+  "dbus_activation_tested": true,
+  "untrusted_client_authorization_tested": false,
+  "pending_activation_races_tested": false,
+  "vm": {
+    "disk": "/tmp/lyra-parental-identity-20260928/system.raw",
+    "serial": "lyra-admission-test",
+    "kernel": "6.12.0-160100.4-default",
+    "broker_package": "dbus-broker-36-160100.2.1.x86_64",
+    "final_state": "powered-off",
+    "qemu_exit_code": 0,
+    "iso_boot": false
+  }
+}
