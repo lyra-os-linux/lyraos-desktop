@@ -1,0 +1,35 @@
+{
+  "units": {
+    "lyra-parental-revoke-sshd.service": "0",
+    "sshd.service": "0",
+    "user@31000.service": "0",
+    "user@31001.service": "0",
+    "user-runtime-dir@31000.service": "0",
+    "user-runtime-dir@31001.service": "0"
+  },
+  "absent_paths": {
+    "/run/lyra-revoke-fixture": true,
+    "/etc/ssh/lyra-revoke-keys": true,
+    "/etc/ssh/ssh_host_lyra_revoke_key": true,
+    "/etc/ssh/ssh_host_lyra_revoke_key.pub": true,
+    "/etc/ssh/lyra-revoke-fixture.conf": true,
+    "/var/lib/lyra-parental-test": true,
+    "/usr/lib64/security/pam_lyra_ssh_registry_fixture.so": true,
+    "/etc/pam.d/sshd": true,
+    "/home/clirestricted": true,
+    "/home/clicontrol": true
+  },
+  "accounts_removed": true,
+  "groups_removed": true,
+  "processes": [],
+  "sessions": "",
+  "policy_removed": true,
+  "enforce": "Permissive",
+  "sshd_enabled": "disabled",
+  "vendor_pam_sha256": "a5250dc12be1db2f035aefca45789f3c1e0e744ba5e28b5dde540ac8e72deea0",
+  "kernel": "6.12.0-160100.4-default",
+  "packages": "openssh-server-10.3p1-160100.2.4.x86_64\nopenssh-clients-10.3p1-160100.2.4.x86_64\nsystemd-257.13-160100.2.5.x86_64\npam-1.7.2+git12-160100.2.1.x86_64\nselinux-policy-targeted-20260826+git0.492b478c7-160100.1.1.noarch\n",
+  "complete_kernel_audit": false,
+  "audit_backlog_warnings": "-- No entries --\n",
+  "passed": true
+}

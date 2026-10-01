@@ -1,0 +1,9 @@
+; Only the disposable root-owned registry. Does not grant session confinement.
+(type lyra_ssh_registry_state_t)
+(typeattributeset file_type (lyra_ssh_registry_state_t))
+(allow sshd_t lyra_ssh_registry_state_t (dir (getattr search open read)))
+(allow sshd_t lyra_ssh_registry_state_t (file (getattr open read lock)))
+(allow sshd_auth_t lyra_ssh_registry_state_t (dir (getattr search open read)))
+(allow sshd_auth_t lyra_ssh_registry_state_t (file (getattr open read lock)))
+(allow sshd_session_t lyra_ssh_registry_state_t (dir (getattr search open read)))
+(allow sshd_session_t lyra_ssh_registry_state_t (file (getattr open read lock)))

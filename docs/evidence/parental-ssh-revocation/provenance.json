@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-01",
+  "base_commit": "3b960009973178e35c11654715420e1706bc89ae",
+  "executions": {
+    "57d91d15dfba4e3ca36475474addc21f": {
+      "timestamp": 1790874171.3455427,
+      "argv": [
+        "python3",
+        "/root/ssh-revocation-exercise.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "fe7afa6a835899296de1df6e2f8c35d30f480592fd14d752426ed4754a54d4d3"
+    },
+    "e7c7dfbbf73a41e3866725429daf6637": {
+      "timestamp": 1790874251.9280055,
+      "argv": [
+        "python3",
+        "/root/ssh-revocation-restore-check.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "a60d37c200dfa8e98903e6c05632014ba50879c06b69788edc74173285237c59"
+    },
+    "7fa72433ce30451cbf6f2b646834dd7d": {
+      "timestamp": 1790874252.1602569,
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "rc": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "source_sha256": {
+    "revoke.py": "9d72f3c1f9804ce44c60df91e9ac4577ae80a0c7d81122f3a2d40505e07786b9",
+    "exercise.py": "f602327406a39ac6fd82de2f56d115ed44ee429324cd88ca66a1b704ceb366ca",
+    "restore-check.py": "04032b9c19efb5c5c12b0f67fdba5290ea6e5f6e2559396cf711c7cef2b3e176",
+    "verify-evidence.py": "9577e50af9ef409cc922ecc93aba181758506a2652437421b5c65814b6445668",
+    "pam-account-guard.c": "91b760c1cbed9543105b3371c2cb20a715a4c4e888579d61c71ea1e36e315361",
+    "registry.cil": "519abe94b820d67b728d8b19605a8686127eb91ee525001e3aca198dd13292cb",
+    "../parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3"
+  },
+  "artifact_sha256": {
+    "result.json": "1751557612303c9d42d10689f811322eb4a482d80cd42df8ff152188d1d9511c",
+    "restored.json": "c634036c00a5c231278322e3382533d218c54c428d70ad92233c28f97ffbdb81"
+  },
+  "native_checks": 24,
+  "account_denials": 6,
+  "exited_pidfds": 6,
+  "python_tests": 270,
+  "python_suite_command": "python3 -m unittest discover -s tests -p 'test_*.py'",
+  "python_suite_exit_code": 0,
+  "production_changed": false,
+  "full_account_protection": false,
+  "complete_kernel_audit": false,
+  "cli_baseline_is_not_product_policy": true,
+  "vm": {
+    "disk": "/tmp/lyra-parental-identity-20260928/system.raw",
+    "serial": "lyra-admission-test",
+    "kernel": "6.12.0-160100.4-default",
+    "final_state": "powered-off",
+    "qemu_exit_code": 0,
+    "iso_boot": false
+  }
+}
