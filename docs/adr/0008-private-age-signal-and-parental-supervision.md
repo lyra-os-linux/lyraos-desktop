@@ -170,3 +170,14 @@ o mantenedor escolheu **conta restrita, com aplicativos aprovados e proteção
 contra evasão**. Essa decisão não qualifica automaticamente um mecanismo de
 confinamento nem reduz os critérios de evasão porque a biblioteca upstream é cooperativa.
 Não expor “Supervisão ativa” antes da qualificação das camadas obrigatórias.
+
+## Recuperação e ciclo de contas — proposta de 01/10
+
+O [contrato técnico complementar](../parental-lifecycle-recovery-contract.md)
+consolida os ensaios de barreira, produtores, boot e saída normal da sessão.
+Propõe coordenador integrado, root/admin irrestrito como autoridade confiável,
+papéis separados e reparo técnico sem mudar a política. Bloqueio persistente,
+inibição de produtores e quiescência comprovada antecedem mutações Unix;
+recuperação no boot não cria enrollment. A direção requer decisão explícita
+do mantenedor e não muda o status desta ADR, não aprova publicação nem resolve
+aferição, retenção, vínculo de responsáveis ou retirada de supervisão.
