@@ -1,0 +1,53 @@
+{
+  "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+  "original_pam_mode": 420,
+  "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+  "account_sha256": {
+    "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+    "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+  },
+  "source_sha256": {
+    "barrier-pam-guard.c": "c50aa20cce8b2b081b858bca389cb705dd1f786791047c135a63868c99626e10",
+    "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "prepare.py": "7da58481314c96ec0658990d040779b4264cb9b56a1473cb0ded6009a97c2367",
+    "common.py": "b24b738f3b9dcc2f3430a012324b84be22378ec3b3558b3198ecb94eccc50a67",
+    "recover-at-boot.py": "cc85719ab497a58ea1b78df8caf490f2ad716626ee9122f3a45f24f909f0fcd3"
+  },
+  "fault": true,
+  "initial_boot_id": "9e0ab6a2-79a8-4ecc-a326-cd4320d12d74",
+  "generation_a": "2e4d04e648fa9f8bc62f4ce99e3d15dd",
+  "generation_b": "a2819efe81553b0a6678e3bbe07f6810",
+  "before_reboot_files": {
+    ".barrier-a2819efe81553b0a6678e3bbe07f6810": {
+      "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+      "mode": 384,
+      "uid": 0
+    },
+    ".barrier-2e4d04e648fa9f8bc62f4ce99e3d15dd": {
+      "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+      "mode": 384,
+      "uid": 0
+    },
+    "identity-registry": {
+      "sha256": "54fe94807ba6580e080f4cb84a61168669572d59e797924b08f3c448cc973216",
+      "mode": 384,
+      "uid": 0
+    },
+    ".lease-a2819efe81553b0a6678e3bbe07f6810.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 384,
+      "uid": 0
+    },
+    ".lease-2e4d04e648fa9f8bc62f4ce99e3d15dd.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 384,
+      "uid": 0
+    },
+    ".transaction.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": 384,
+      "uid": 0
+    }
+  },
+  "verified_boot_id": "f4da0c23-b6e2-48c4-a8bb-95573f17309c"
+}

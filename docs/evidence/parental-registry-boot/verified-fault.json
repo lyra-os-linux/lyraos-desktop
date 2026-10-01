@@ -1,0 +1,325 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "new-kernel-boot-and-enforcing-recovery-hook-observed",
+      "passed": true,
+      "hook": {
+        "boot_id": "724f8a5e-6011-4e0f-b981-18846baeba63",
+        "fault": true,
+        "snapshot_before": [
+          [
+            {
+              "state": "tombstone",
+              "user": "parentaltest",
+              "uid": 1003,
+              "gid": 1004,
+              "group": "parentaltest",
+              "generation": "2e4d04e648fa9f8bc62f4ce99e3d15dd"
+            },
+            {
+              "state": "recovering",
+              "user": "parentaltest",
+              "uid": 1003,
+              "gid": 1004,
+              "group": "parentaltest",
+              "generation": "a2819efe81553b0a6678e3bbe07f6810"
+            }
+          ],
+          {}
+        ],
+        "files_before": {
+          ".barrier-a2819efe81553b0a6678e3bbe07f6810": {
+            "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+            "mode": 384,
+            "uid": 0
+          },
+          ".barrier-2e4d04e648fa9f8bc62f4ce99e3d15dd": {
+            "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+            "mode": 384,
+            "uid": 0
+          },
+          "identity-registry": {
+            "sha256": "54fe94807ba6580e080f4cb84a61168669572d59e797924b08f3c448cc973216",
+            "mode": 384,
+            "uid": 0
+          },
+          ".lease-a2819efe81553b0a6678e3bbe07f6810.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0
+          },
+          ".lease-2e4d04e648fa9f8bc62f4ce99e3d15dd.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0
+          },
+          ".transaction.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0
+          }
+        },
+        "enforcing": "Enforcing",
+        "source_sha256": "cc85719ab497a58ea1b78df8caf490f2ad716626ee9122f3a45f24f909f0fcd3",
+        "recovery_executed": false,
+        "snapshot_after": [
+          [
+            {
+              "state": "tombstone",
+              "user": "parentaltest",
+              "uid": 1003,
+              "gid": 1004,
+              "group": "parentaltest",
+              "generation": "2e4d04e648fa9f8bc62f4ce99e3d15dd"
+            },
+            {
+              "state": "recovering",
+              "user": "parentaltest",
+              "uid": 1003,
+              "gid": 1004,
+              "group": "parentaltest",
+              "generation": "a2819efe81553b0a6678e3bbe07f6810"
+            }
+          ],
+          {}
+        ],
+        "files_after": {
+          ".barrier-a2819efe81553b0a6678e3bbe07f6810": {
+            "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+            "mode": 384,
+            "uid": 0
+          },
+          ".barrier-2e4d04e648fa9f8bc62f4ce99e3d15dd": {
+            "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+            "mode": 384,
+            "uid": 0
+          },
+          "identity-registry": {
+            "sha256": "54fe94807ba6580e080f4cb84a61168669572d59e797924b08f3c448cc973216",
+            "mode": 384,
+            "uid": 0
+          },
+          ".lease-a2819efe81553b0a6678e3bbe07f6810.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0
+          },
+          ".lease-2e4d04e648fa9f8bc62f4ce99e3d15dd.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0
+          },
+          ".transaction.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "durable-registry-barriers-journal-and-leases-survive-real-reboot",
+      "passed": true,
+      "files": {
+        ".barrier-a2819efe81553b0a6678e3bbe07f6810": {
+          "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+          "mode": 384,
+          "uid": 0
+        },
+        ".barrier-2e4d04e648fa9f8bc62f4ce99e3d15dd": {
+          "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+          "mode": 384,
+          "uid": 0
+        },
+        "identity-registry": {
+          "sha256": "54fe94807ba6580e080f4cb84a61168669572d59e797924b08f3c448cc973216",
+          "mode": 384,
+          "uid": 0
+        },
+        ".lease-a2819efe81553b0a6678e3bbe07f6810.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0
+        },
+        ".lease-2e4d04e648fa9f8bc62f4ce99e3d15dd.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0
+        },
+        ".transaction.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0
+        }
+      }
+    },
+    {
+      "name": "recovery-does-not-enroll-or-remove-newer-barrier",
+      "passed": true,
+      "row": {
+        "state": "recovering",
+        "user": "parentaltest",
+        "uid": 1003,
+        "gid": 1004,
+        "group": "parentaltest",
+        "generation": "a2819efe81553b0a6678e3bbe07f6810"
+      },
+      "journals": {}
+    },
+    {
+      "name": "failed-boot-recovery-keeps-durable-blocked-state",
+      "passed": true,
+      "status": "42"
+    },
+    {
+      "name": "automatic-linger-manager-denied-with-exact-native-pam-cause",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_identity_registry_fixture(systemd-user:session): Experimental registry-backed admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "ordinary-linger-manager-survives-supervised-recovery-failure",
+      "passed": true,
+      "unit": {
+        "MainPID": "539",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "manual-manager-retry-stays-denied-without-explicit-enrollment",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Job for user@1003.service failed because the control process exited with error code.\nSee \"systemctl status user@1003.service\" and \"journalctl -xeu user@1003.service\" for details.\n"
+      }
+    }
+  ],
+  "boot_id": "724f8a5e-6011-4e0f-b981-18846baeba63",
+  "full_account_protection": false,
+  "hook": {
+    "boot_id": "724f8a5e-6011-4e0f-b981-18846baeba63",
+    "fault": true,
+    "snapshot_before": [
+      [
+        {
+          "state": "tombstone",
+          "user": "parentaltest",
+          "uid": 1003,
+          "gid": 1004,
+          "group": "parentaltest",
+          "generation": "2e4d04e648fa9f8bc62f4ce99e3d15dd"
+        },
+        {
+          "state": "recovering",
+          "user": "parentaltest",
+          "uid": 1003,
+          "gid": 1004,
+          "group": "parentaltest",
+          "generation": "a2819efe81553b0a6678e3bbe07f6810"
+        }
+      ],
+      {}
+    ],
+    "files_before": {
+      ".barrier-a2819efe81553b0a6678e3bbe07f6810": {
+        "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+        "mode": 384,
+        "uid": 0
+      },
+      ".barrier-2e4d04e648fa9f8bc62f4ce99e3d15dd": {
+        "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+        "mode": 384,
+        "uid": 0
+      },
+      "identity-registry": {
+        "sha256": "54fe94807ba6580e080f4cb84a61168669572d59e797924b08f3c448cc973216",
+        "mode": 384,
+        "uid": 0
+      },
+      ".lease-a2819efe81553b0a6678e3bbe07f6810.lock": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 384,
+        "uid": 0
+      },
+      ".lease-2e4d04e648fa9f8bc62f4ce99e3d15dd.lock": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 384,
+        "uid": 0
+      },
+      ".transaction.lock": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 384,
+        "uid": 0
+      }
+    },
+    "enforcing": "Enforcing",
+    "source_sha256": "cc85719ab497a58ea1b78df8caf490f2ad716626ee9122f3a45f24f909f0fcd3",
+    "recovery_executed": false,
+    "snapshot_after": [
+      [
+        {
+          "state": "tombstone",
+          "user": "parentaltest",
+          "uid": 1003,
+          "gid": 1004,
+          "group": "parentaltest",
+          "generation": "2e4d04e648fa9f8bc62f4ce99e3d15dd"
+        },
+        {
+          "state": "recovering",
+          "user": "parentaltest",
+          "uid": 1003,
+          "gid": 1004,
+          "group": "parentaltest",
+          "generation": "a2819efe81553b0a6678e3bbe07f6810"
+        }
+      ],
+      {}
+    ],
+    "files_after": {
+      ".barrier-a2819efe81553b0a6678e3bbe07f6810": {
+        "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+        "mode": 384,
+        "uid": 0
+      },
+      ".barrier-2e4d04e648fa9f8bc62f4ce99e3d15dd": {
+        "sha256": "4cdc45231e811ae16dc6ca8fbf765dbeb66272085f23fd68de160e57288dbc97",
+        "mode": 384,
+        "uid": 0
+      },
+      "identity-registry": {
+        "sha256": "54fe94807ba6580e080f4cb84a61168669572d59e797924b08f3c448cc973216",
+        "mode": 384,
+        "uid": 0
+      },
+      ".lease-a2819efe81553b0a6678e3bbe07f6810.lock": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 384,
+        "uid": 0
+      },
+      ".lease-2e4d04e648fa9f8bc62f4ce99e3d15dd.lock": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 384,
+        "uid": 0
+      },
+      ".transaction.lock": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 384,
+        "uid": 0
+      }
+    }
+  }
+}
