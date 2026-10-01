@@ -1,0 +1,5 @@
+; Disposable registry read/lock only; no production policy.
+(type lyra_producer_registry_state_t)
+(typeattributeset file_type (lyra_producer_registry_state_t))
+(allow init_t lyra_producer_registry_state_t (dir (getattr search open read)))
+(allow init_t lyra_producer_registry_state_t (file (getattr open read lock)))

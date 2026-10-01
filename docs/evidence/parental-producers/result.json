@@ -1,0 +1,346 @@
+{
+  "kind": "native-system-user-service-timer-generation-admission",
+  "checks": [
+    {
+      "name": "baseline-system-user-without-pam-admitted",
+      "passed": true,
+      "unit": {
+        "MainPID": "1210",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-producer-plain-a.service",
+        "User": "producerfixture",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "baseline-system-user-with-pam-admitted",
+      "passed": true,
+      "unit": {
+        "MainPID": "1213",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-producer-guarded-a.service",
+        "User": "producerfixture",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "baseline-ordinary-system-user-with-pam-admitted",
+      "passed": true,
+      "unit": {
+        "MainPID": "1232",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-producer-guarded-b.service",
+        "User": "producercontrol",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "live-pam-producer-keeps-lease-and-durable-barrier",
+      "passed": true,
+      "error": "busy: generation has admitted sessions; barrier remains durable"
+    },
+    {
+      "name": "blocked-system-user-with-pam-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ControlGroup": "",
+        "User": "producerfixture",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "failed"
+      }
+    },
+    {
+      "name": "blocked-system-timer-with-pam-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ControlGroup": "",
+        "User": "producerfixture",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "failed"
+      }
+    },
+    {
+      "name": "system-user-without-pam-bypasses-admission-barrier",
+      "passed": true,
+      "qualification": "known-producer-gap",
+      "unit": {
+        "MainPID": "1258",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-producer-plain-after-barrier-a.service",
+        "User": "producerfixture",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "system-timer-without-pam-bypasses-admission-barrier",
+      "passed": true,
+      "qualification": "known-producer-gap",
+      "unit": {
+        "MainPID": "1279",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-producer-plain-timer-after-barrier-a.service",
+        "User": "producerfixture",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "ordinary-system-timer-with-pam-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "1299",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-producer-timer-b.service",
+        "User": "producercontrol",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "logind-does-not-revoke-system-user-producers",
+      "passed": true,
+      "qualification": "known-producer-gap",
+      "logind": {
+        "rc": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "plain": {
+        "MainPID": "1210",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-producer-plain-a.service",
+        "User": "producerfixture",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      },
+      "bypass": {
+        "MainPID": "1258",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-producer-plain-after-barrier-a.service",
+        "User": "producerfixture",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "explicit-fixture-producer-stop-preserves-ordinary-units",
+      "passed": true,
+      "stopped": [
+        {
+          "unit": "lyra-producer-plain-a.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "0",
+            "ControlGroup": "",
+            "User": "",
+            "PAMName": "",
+            "LoadState": "not-found",
+            "ActiveState": "inactive"
+          }
+        },
+        {
+          "unit": "lyra-producer-guarded-a.service",
+          "already_gone": true
+        },
+        {
+          "unit": "lyra-producer-guarded-denied-a.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "224",
+            "ControlGroup": "",
+            "User": "producerfixture",
+            "PAMName": "lyra-producer-fixture",
+            "LoadState": "loaded",
+            "ActiveState": "failed"
+          }
+        },
+        {
+          "unit": "lyra-producer-timer-denied-a.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "224",
+            "ControlGroup": "",
+            "User": "producerfixture",
+            "PAMName": "lyra-producer-fixture",
+            "LoadState": "loaded",
+            "ActiveState": "failed"
+          }
+        },
+        {
+          "unit": "lyra-producer-timer-denied-a.timer",
+          "already_gone": true
+        },
+        {
+          "unit": "lyra-producer-plain-after-barrier-a.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "0",
+            "ControlGroup": "",
+            "User": "",
+            "PAMName": "",
+            "LoadState": "not-found",
+            "ActiveState": "inactive"
+          }
+        },
+        {
+          "unit": "lyra-producer-plain-timer-after-barrier-a.service",
+          "command": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "final": {
+            "MainPID": "0",
+            "ExecMainStatus": "0",
+            "ControlGroup": "",
+            "User": "",
+            "PAMName": "",
+            "LoadState": "not-found",
+            "ActiveState": "inactive"
+          }
+        },
+        {
+          "unit": "lyra-producer-plain-timer-after-barrier-a.timer",
+          "already_gone": true
+        }
+      ]
+    },
+    {
+      "name": "old-pam-generation-denied-after-enrollment",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ControlGroup": "",
+        "User": "producerfixture",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "failed"
+      }
+    },
+    {
+      "name": "new-pam-generation-system-service-admitted",
+      "passed": true,
+      "unit": {
+        "MainPID": "1353",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-producer-new-pam-a.service",
+        "User": "producerfixture",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    },
+    {
+      "name": "new-pam-generation-system-timer-admitted",
+      "passed": true,
+      "unit": {
+        "MainPID": "1389",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-producer-new-timer-a.service",
+        "User": "producerfixture",
+        "PAMName": "lyra-producer-fixture",
+        "LoadState": "loaded",
+        "ActiveState": "active"
+      }
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "stop-transient-producers",
+      "passed": true
+    },
+    {
+      "name": "restore-permissive",
+      "passed": true
+    },
+    {
+      "name": "stop-manager-producerfixture",
+      "passed": true
+    },
+    {
+      "name": "delete-account-producerfixture",
+      "passed": true
+    },
+    {
+      "name": "stop-manager-producercontrol",
+      "passed": true
+    },
+    {
+      "name": "delete-account-producercontrol",
+      "passed": true
+    },
+    {
+      "name": "remove-pam-fixture",
+      "passed": true
+    },
+    {
+      "name": "remove-module",
+      "passed": true
+    },
+    {
+      "name": "remove-state",
+      "passed": true
+    },
+    {
+      "name": "remove-policy",
+      "passed": true
+    }
+  ],
+  "full_account_protection": false,
+  "cron_tested": false,
+  "dbus_activation_tested": false,
+  "source_sha256": {
+    "producer-exercise.py": "35e1417271b4b09bd83630d21ede5ef1ecacaaf50eb3d24886869380a220752f",
+    "producer-pam-account-guard.c": "b3773740fffbf0354567db7d0bc1867e11df5a2b5970f47a2b413058e18c582c",
+    "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "lyra-producer-registry.cil": "41998308f805ca726bd687cb6823ff27112e8e4586320341b30d2dbe4fa84f66"
+  },
+  "passed": true,
+  "restored": {
+    "accounts_removed": true,
+    "groups_removed": true,
+    "fixtures_removed": true,
+    "vendor_preserved": true,
+    "original_accounts_preserved": true,
+    "permissive": true
+  }
+}

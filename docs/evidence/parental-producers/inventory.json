@@ -1,0 +1,61 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "rpm",
+        "-q",
+        "cronie",
+        "cron",
+        "dbus-1",
+        "dbus-1-broker",
+        "dbus-1-tools"
+      ],
+      "rc": 3,
+      "stdout": "package cronie is not installed\npackage cron is not installed\ndbus-1-1.14.10-160100.2.1.x86_64\npackage dbus-1-broker is not installed\ndbus-1-tools-1.14.10-160100.2.1.x86_64\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "show",
+        "cron.service",
+        "crond.service",
+        "dbus.service",
+        "-p",
+        "Id",
+        "-p",
+        "MainPID",
+        "-p",
+        "ActiveState"
+      ],
+      "rc": 0,
+      "stdout": "MainPID=0\nId=cron.service\nActiveState=inactive\n\nMainPID=0\nId=crond.service\nActiveState=inactive\n\nMainPID=445\nId=dbus-broker.service\nActiveState=active\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "loginctl",
+        "list-sessions",
+        "--no-legend"
+      ],
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "pam": {
+    "/usr/lib/pam.d/systemd-user": "# This file is part of systemd.\n#\n# Used by systemd --user instances.\n\n# Override the default behavior of the \"auth\" PAM stack and don't throw a\n# warning each time a user instance is started, which is the default behavior of\n# the PAM stack when no auth is defined. Indeed PID1 calls pam_setcred() when\n# the user instance is about to be started to allow some user services, such as\n# gnome-terminal, to extend theirs credentials similar to the ones received by a\n# user when he logs in (and the full PAM authentication stack is run). For some\n# details, see:\n#\n# https://gitlab.gnome.org/GNOME/gdm/-/issues/393\n# https://github.com/systemd/systemd/issues/11198\n# https://bugzilla.suse.com/show_bug.cgi?id=1190515\n#\nauth     required pam_deny.so\n\naccount  include  common-account\n\nsession  required pam_selinux.so close\nsession  required pam_selinux.so nottys open\nsession  required pam_loginuid.so\nsession  optional pam_keyinit.so force revoke\nsession  include  common-session\n",
+    "/etc/pam.d/systemd-user": "# This file is part of systemd.\n#\n# Used by systemd --user instances.\n\n# Override the default behavior of the \"auth\" PAM stack and don't throw a\n# warning each time a user instance is started, which is the default behavior of\n# the PAM stack when no auth is defined. Indeed PID1 calls pam_setcred() when\n# the user instance is about to be started to allow some user services, such as\n# gnome-terminal, to extend theirs credentials similar to the ones received by a\n# user when he logs in (and the full PAM authentication stack is run). For some\n# details, see:\n#\n# https://gitlab.gnome.org/GNOME/gdm/-/issues/393\n# https://github.com/systemd/systemd/issues/11198\n# https://bugzilla.suse.com/show_bug.cgi?id=1190515\n#\nauth     required pam_deny.so\n\naccount  include  common-account\n\nsession  required pam_selinux.so close\nsession  required pam_selinux.so nottys open\nsession  required pam_loginuid.so\nsession  optional pam_keyinit.so force revoke\nsession  include  common-session\n\n# Disposable fixture: preserve PAM service identity and skip ordinary accounts.\nsession [success=1 default=ignore] pam_succeed_if.so quiet gid ne 1004\nsession required pam_lyra_fixture_guard.so\n"
+  },
+  "root_helpers": [
+    "xwayland-services2-stderr.log",
+    "lyra-parental-services.tar",
+    "xwayland-services2-result.json",
+    "parental-services-result.json",
+    "parental-activation-result.json",
+    "parental-service-regression.json",
+    "xwayland-services1-result.json",
+    "parental-service-diagnostics.json",
+    "xwayland-services1-stderr.log"
+  ]
+}
