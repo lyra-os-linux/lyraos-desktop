@@ -1,0 +1,109 @@
+{
+  "base_commit": "f6a86f8ef3e64f31ec5e2132d421d738aa97ac9e",
+  "guest_source_mapping": {
+    "barrier-pam-guard.c": "../parental-registry-barrier/pam-guard.c",
+    "barrier-writer.py": "../parental-registry-barrier/writer.py",
+    "registry-gdm-evidence.py": "../parental-registry-gdm/evidence.py",
+    "password-client.py": "../parental-password/client.py",
+    "logout-session.c": "session.c",
+    "transition.py": "../parental-transitions/transition.py",
+    "lyra-registry-gdm.cil": "../parental-registry-gdm/launcher.cil",
+    "session-exit-exercise.py": "exercise.py"
+  },
+  "sha256": {
+    "exercise.py": "59d8ac6f49c1ced0f259d09aaa6e534e41759e43611c9c5b5e56a903eebf30d2",
+    "restore-check.py": "fc1d35d8cd371857a7771dc41099350d06b7613d72a1fda1886a3733878e6c3a",
+    "verify-evidence.py": "4bfb6c0eae132abf2cd9f8eec29b649ac6ba3bec2423c1e33c1e4826a54905d5",
+    "preliminary-result.json": "317ba3586ff12cc490341edc074edf7047ca25eedb27aceff87ecd110547617f",
+    "result.json": "6f989a7a562aa33399c455af8255ddabeb916ece2b3da4d9ff355eb0c44dd353",
+    "restored.json": "ffceb7ae8b6ab2b8e06e43f49f4b2b05eaf96b96ac304ef8939aed07da9b4b1f",
+    "README.md": "59937af2cf8c4dd4364322da311e254f72ec8e4cf38147d7de5c6dfb7378833a",
+    "session.c": "a865042de7ed9a9d797360a1c7ac1aca8d7c6398b28ce790478b13f53f2bbce9",
+    "../parental-registry-barrier/pam-guard.c": "c50aa20cce8b2b081b858bca389cb705dd1f786791047c135a63868c99626e10",
+    "../parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "../parental-registry-gdm/evidence.py": "c7880454ee5a21df5b3fcb2def701d7ee9b50d2451d658606cc876ffbeb74071",
+    "../parental-password/client.py": "1a745d8e2baa5c712570006337376a3bc314fefecb7b77facb5a2c0d65b88497",
+    "../parental-transitions/transition.py": "53d846873c8b4bdb114b05da50fb31b72db1337f69f7cac808b3c282f2afaabc",
+    "../parental-registry-gdm/launcher.cil": "c131eca08fd60bc6493b8a34348d155b1f91f43c0526e59f1258c467b72c55eb",
+    "../parental-registry-barrier/gdm.py": "4ccb316e2c6ea986639cb08c34227b511ac66985f27b35717ebecaee662b00e7"
+  },
+  "executions": [
+    {
+      "time": 1790884285.023687,
+      "argv": [
+        "python3",
+        "/root/session-exit-exercise.py"
+      ],
+      "id": "9317e443564e420da114444977de9f08",
+      "rc": 1,
+      "stdout_sha256": "3799e3416bb54fa8fd9947fc5336328fa94a8a6db5b3ac324ac2cf96845f6714",
+      "stderr_sha256": "af9d7e22424d91e53ab51189bd1073b36c6b2f18b03346c3ae64b973514c6242"
+    },
+    {
+      "time": 1790884297.0702374,
+      "argv": [
+        "python3",
+        "-c",
+        "import json; from pathlib import Path; x=json.loads(Path('/root/session-exit-result.json').read_text()); print(json.dumps({k:v for k,v in x.items() if k not in ['checks','source_sha256']},indent=2))"
+      ],
+      "id": "bc5f7d86b6344849ac5e2dc4f76a341a",
+      "rc": 0,
+      "stdout_sha256": "038bafd0531a470227a3f791868fc02eca2263348fcff7106089bd5bcd40d1c2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790884310.6648004,
+      "argv": [
+        "python3",
+        "-c",
+        "import json,subprocess; from pathlib import Path; x=json.loads(Path('/root/session-exit-result.json').read_text()); rows=x['checks'][1]['holders']; ids=[str(r['pid']) for r in rows if 'gdm-session-worker [pam/gdm-password]' in r['cmdline']]; p=subprocess.run(['journalctl','-b','--no-pager','-o','cat','_PID='+ids[0]],capture_output=True,text=True); print('\\n'.join(l for l in p.stdout.splitlines() if any(w in l.lower() for w in ['exit','closed','stop'])))"
+      ],
+      "id": "c6a3204266b848b3940880d6a93b1fb0",
+      "rc": 0,
+      "stdout_sha256": "e01dc3f7bdfa0a6e2c8186413450d21268cbe01f78a309f38dfa5065419fc965",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790884395.5692723,
+      "argv": [
+        "python3",
+        "/root/session-exit-exercise.py"
+      ],
+      "id": "2aa614ce9b1f49738f4aec591aed10b7",
+      "rc": 0,
+      "stdout_sha256": "4d0a49d79ec09f3f8dc65a854b840ead9683f5065e162e20ff216d3223f28a3e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790884432.2604537,
+      "argv": [
+        "python3",
+        "/root/session-exit-restore-check.py"
+      ],
+      "id": "2eb004928b09434b8c482fc51c612830",
+      "rc": 0,
+      "stdout_sha256": "8c4548648a8b523bfb1f8cf28779eae85b679d5aa1fb802d2688132c7fd28996",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790884432.6326778,
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "id": "e7485aabc07343fb9d05654d2808955c",
+      "rc": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "native_checks": 8,
+  "gap_reproductions": 1,
+  "python_tests": 270,
+  "python_suite_exit_code": 0,
+  "poweroff_id": "e7485aabc07343fb9d05654d2808955c",
+  "poweroff_rc": 0,
+  "qemu_exit_code": 0,
+  "production_changed": false,
+  "full_account_protection": false
+}

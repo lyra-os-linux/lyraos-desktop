@@ -1,0 +1,374 @@
+{
+  "kind": "native-gdm-normal-session-exit-lingering",
+  "full_account_protection": false,
+  "password_authentication_tested": true,
+  "full_gnome_session_tested": false,
+  "official_worker_sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8",
+  "diagnostic_worker_sha256": "92a976fc0e375cd41d1a9330c650241081fd09278d464662a435200cc296704f",
+  "checks": [
+    {
+      "name": "supervised-password-active",
+      "passed": true,
+      "user": "parentaltest",
+      "generation": "da0b69693767ee9359cb477e06aac421",
+      "processes": [
+        {
+          "pid": 2183,
+          "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+          "uids": [
+            1003,
+            1003,
+            1003,
+            1003
+          ]
+        }
+      ],
+      "rejection": null,
+      "client_events": [
+        {
+          "event": "connected",
+          "uid": 476
+        },
+        {
+          "event": "method",
+          "method": "SelectSession"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "ConversationStarted"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "DefaultLanguageNameChanged"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "DefaultSessionNameChanged"
+        },
+        {
+          "event": "method",
+          "method": "BeginVerificationForUser"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "SecretInfoQuery"
+        },
+        {
+          "event": "password-prompt"
+        },
+        {
+          "event": "password-answer-sent",
+          "correct": true
+        },
+        {
+          "event": "method",
+          "method": "AnswerQuery"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "VerificationComplete"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "SessionOpened"
+        },
+        {
+          "event": "method",
+          "method": "StartSessionWhenReady"
+        }
+      ],
+      "journal": "Oct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Activating service name='org.gnome.ScreenSaver' requested by ':1.21' (uid=476 pid=1992 comm=\"/usr/libexec/gsd-power\" label=\"unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\")\nOct 01 19:52:38 lyra-virtualization-fixture gsd-media-keys[1957]: Failed to grab accelerator for keybinding settings:playback-repeat\nOct 01 19:52:38 lyra-virtualization-fixture gsd-media-keys[1957]: Failed to grab accelerator for keybinding settings:hibernate\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Successfully activated service 'org.gnome.ScreenSaver'\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): Detected that screensaver has aquired the bus\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): Detected that screensaver has aquired the bus\nOct 01 19:52:38 lyra-virtualization-fixture gsd-power[1992]: up_client_get_devices failed: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable\nOct 01 19:52:38 lyra-virtualization-fixture gsd-power[1992]: Failed to get brightness: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDBusServer: new connection 0x7fbe18002a60\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Handling new connection from outside\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmManager: client with pid 2117 connected\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: Got timed login details for display: 0\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: selecting session 'gnome'\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: setting session to type 'wayland'\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: starting conversation gdm-password for session (0x55cefa957b30)\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSessionWorkerJob: Starting worker...\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSessionWorkerJob: Running session_worker_job process: gdm-session-worker [pam/gdm-password] /usr/libexec/gdm/gdm-session-worker\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSessionWorkerJob: : SessionWorkerJob on pid 2136\nOct 01 19:52:38 lyra-virtualization-fixture org.gnome.Shell.desktop[2120]: libEGL warning: DRI3 error: Could not get DRI3 device\nOct 01 19:52:38 lyra-virtualization-fixture org.gnome.Shell.desktop[2120]: libEGL warning: Ensure your X server supports DRI3 to get accelerated rendering\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Enabling debugging\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: connecting to address: unix:path=/run/gdm/dbus/dbus-TquJWsFk\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDBusServer: new connection 0x7fbe1c000b70\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Handling new connection from worker\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Authenticating new connection\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: worker connection is 0x7fbe1c000b70\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Emitting conversation-started signal\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmManager: session conversation started for service gdm-password on session\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmManager: ignoring session conversation since its not automatic login conversation\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Set up service gdm-password for username parentaltest on session (0x55cefa957b30)\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: selecting user 'parentaltest' for session '(null)' (0x55cefa957b30)\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Beginning initialization\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Conversation started\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: trying to track new user with username parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: finding user 'parentaltest' state 1\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: waiting for user manager to load before finding user 'parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: Finding a graphical session for user 0\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: Failed to identify the current session\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: seat unloaded, so trying to set loaded property\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: Seat wouldn't load, so giving up on it and setting loaded property\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: user manager now loaded, proceeding with fetch user request for user 'parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: finding user 'parentaltest' state 2\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: Looking for user 'parentaltest' in accounts service\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: already loaded, so not setting loaded property\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: Found object path of user 'parentaltest': /org/freedesktop/Accounts/User1003\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: finding user 'parentaltest' state 3\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: user 'parentaltest' fetched\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: user parentaltest is now loaded\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: user parentaltest was not yet known, adding it\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: tracking user 'parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: not yet loaded, so not emitting user-added signal\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: no pending users, trying to set loaded property\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: already loaded, so not setting loaded property\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionSettings: saved session is  (type )\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionSettings: saved language is\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: queuing setup for user: parentaltest (null)\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: finished handling request for user 'parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: accountsservice: ActUserManager: unrefing manager owned by fetch user request\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: attempting to change state to SETUP_COMPLETE\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: initializing PAM; service=gdm-password username=parentaltest seat=seat0\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SEAT=seat0'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: state SETUP_COMPLETE\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: attempting to change state to AUTHENTICATED\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: authenticating user parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: 1 new messages received from PAM\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: username is 'parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: old-username='parentaltest' new-username='parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: received pam message of type 1 with payload 'Password: '\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: trying to get updated username\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: PAM conversation returning 0: Success\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: state AUTHENTICATED\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: trying to get updated username\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: username is 'parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: old-username='parentaltest' new-username='parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: attempting to change state to AUTHORIZED\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: determining if authenticated user (password required:0) is authorized to session\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: state AUTHORIZED\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: attempting to change state to ACCREDITED\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'LOGNAME=parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'USER=parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'USERNAME=parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'HOME=/home/parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'PWD=/home/parentaltest'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'SHELL=/bin/bash'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: state ACCREDITED\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: type wayland, program? no, seat seat0\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: session display mode set to new-vt\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SESSION_TYPE=wayland'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: attempting to change state to ACCOUNT_DETAILS_SAVED\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: saving account details for user parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: attempting to change state to SESSION_OPENED\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_VTNR=2'\nOct 01 19:52:38 lyra-virtualization-fixture systemd-logind[465]: New session 9 of user parentaltest.\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): GsmSystemd: received logind signal: SessionNew\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): GsmSystemd: ignoring SessionNew signal\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): GsmSystemd: received logind signal: SessionNew\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): GsmSystemd: ignoring SessionNew signal\nOct 01 19:52:38 lyra-virtualization-fixture systemd[1]: Started Session 9 of User parentaltest.\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: pam_unix(gdm-password:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: state SESSION_OPENED\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Emitting 'session-opened' signal\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmManager: Will start session when ready\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmManager: start or jump to session\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Ignoring session (null) as requested\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmManager: no matching sessions found\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmManager: migrated: 0\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: type wayland, program? no, seat seat0\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmManager: session has its display server, reusing our server for another login screen\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: GLib: setenv()/putenv() are not thread-safe and should not be used after threads are created\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Creating D-Bus server for worker for session\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: D-Bus server for workers listening on unix:path=/run/gdm/dbus/dbus-HfyX1EeR\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Creating D-Bus server for greeters and such for session (null) (0x55cefa979f50)\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: D-Bus server for greeters listening on unix:path=/run/gdm/dbus/dbus-fmAndP0n\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Setting display device: (null)\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Created user session for user 476 on display /org/gnome/DisplayManager/Displays/94347455682432 (seat seat0)\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: id: (null)\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: seat id: (null)\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: session class: greeter\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: initial: no\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: allow timed login: yes\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: local: yes\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: supported session types: (null)\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: session class: user\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: seat id: seat0\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplay: session id: 9\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmDisplayStore: Adding display /org/gnome/DisplayManager/Displays/94347455874128 to store\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Stopping all conversations except for gdm-password\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: type wayland, program? no, seat seat0\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: 'gnome.desktop' does not register self\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: getting session command for file 'gnome.desktop'\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Session (null) bypasses Xsession wrapper script\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: getting desktop names for file 'gnome.desktop'\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: type wayland, program? no, seat seat0\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'LANG=C.UTF-8'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_CURRENT_DESKTOP=LYRA'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'GDMSESSION=gnome'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'GDM_LANG=C.UTF-8'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XAUTHLOCALHOSTNAME=lyra-virtualization-fixture'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'DESKTOP_SESSION=gnome'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SESSION_DESKTOP=gnome'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: start program: /usr/libexec/gdm/gdm-wayland-session --register-session \"/opt/lyra-parental-probe/manager-session\"\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: attempting to change state to SESSION_STARTED\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: opening user session with program '/usr/libexec/gdm/gdm-wayland-session'\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: jumping to VT 2\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: first setting graphics mode to prevent flicker\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: active VT is tty1, setting VT_AUTO + KD_TEXT\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Activating service name='org.freedesktop.portal.Desktop' requested by ':1.32' (uid=476 pid=2120 comm=\"/usr/libexec/mutter-x11-frames\" label=\"unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\")\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: VT mode did need to be fixed\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Trying script /etc/gdm/PostLogin\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: script /etc/gdm/PostLogin not found; skipping\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Trying script /etc/gdm/PostLogin/Default\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Running process: /etc/gdm/PostLogin/Default\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmLocalDisplayFactory: received VT change event\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmLocalDisplayFactory: VT changed from 1 to 2\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmLocalDisplayFactory: VT of login window is 1\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmLocalDisplayFactory: VT switched from login window\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmLocalDisplayFactory: killing login window once its unused\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmLocalDisplayFactory: display status changed: 3\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmLocalDisplayFactory: active VT is not initial VT, so ignoring\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): emitting SessionIsActive\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): emitting SessionIsActive\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: LOGNAME=parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: USER=parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: USERNAME=parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: PWD=/home/parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: SHELL=/bin/bash\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: RUNNING_UNDER_GDM=true\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: GROUP=parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: XAUTHLOCALHOSTNAME=lyra-virtualization-fixture\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: HOME=/home/parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gnome-shell[1859]: Error checking authorization for action id org.freedesktop.NetworkManager.network-control: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Action org.freedesktop.NetworkManager.network-control is not registered\nOct 01 19:52:38 lyra-virtualization-fixture gnome-shell[1859]: Error checking authorization for action id org.freedesktop.bolt.enroll: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Action org.freedesktop.bolt.enroll is not registered\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Process exit status: 0\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Trying script /etc/gdm/PreSession\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: script /etc/gdm/PreSession not found; skipping\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Trying script /etc/gdm/PreSession/Default\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Running process: /etc/gdm/PreSession/Default\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: LOGNAME=parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: USER=parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: USERNAME=parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: PWD=/home/parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: SHELL=/bin/bash\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: RUNNING_UNDER_GDM=true\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: GROUP=parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: XAUTHLOCALHOSTNAME=lyra-virtualization-fixture\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Gdm: script environment: HOME=/home/parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: Process exit status: 0\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2162]: GLib-GIO: _g_io_module_get_default: Found default implementation local (GLocalVfs) for \u2018gio-vfs\u2019\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: session opened creating reply...\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSessionWorker: state SESSION_STARTED\nOct 01 19:52:38 lyra-virtualization-fixture gdm-password][2136]: Gdm: GdmSession worker: watching pid 2162\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Emitting 'session-started' signal with pid '2162'\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmManager: session started 2162\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_user parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: Writing login record\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_type USER_PROCESS\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_tv time 1790884358\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_pid 2162\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_host login screen\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_line seat0\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: Writing wtmp session record to /var/log/wtmp\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: Adding or updating utmp record for login\nOct 01 19:52:38 lyra-virtualization-fixture gdm-wayland-session[2162]: Gdm: Enabling debugging\nOct 01 19:52:38 lyra-virtualization-fixture gdm-wayland-session[2162]: Gdm: Running session message bus\nOct 01 19:52:38 lyra-virtualization-fixture systemd[1771]: Created slice User Core Session Slice.\nOct 01 19:52:38 lyra-virtualization-fixture systemd[1771]: Starting D-Bus User Message Bus...\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Activating service name='org.freedesktop.portal.Documents' requested by ':1.33' (uid=476 pid=2158 comm=\"/usr/libexec/xdg-desktop-portal\" label=\"unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\")\nOct 01 19:52:38 lyra-virtualization-fixture dbus-broker-launch[2169]: Policy to allow eavesdropping in /usr/share/dbus-1/session.conf +31: Eavesdropping is deprecated and ignored\nOct 01 19:52:38 lyra-virtualization-fixture systemd[1771]: Started D-Bus User Message Bus.\nOct 01 19:52:38 lyra-virtualization-fixture dbus-broker-launch[2169]: Policy to allow eavesdropping in /usr/share/dbus-1/session.conf +33: Eavesdropping is deprecated and ignored\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Successfully activated service 'org.freedesktop.portal.Documents'\nOct 01 19:52:38 lyra-virtualization-fixture dbus-broker-launch[2169]: Ready\nOct 01 19:52:38 lyra-virtualization-fixture gdm-wayland-session[2162]: Gdm: session message bus already running, not starting another one\nOct 01 19:52:38 lyra-virtualization-fixture gdm-wayland-session[2162]: Gdm: Running wayland session\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmManager: trying to register new display\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmCommon: Found session 9 for PID 2162, using\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmSession: Setting display device: tty2\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_user parentaltest\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: Writing login record\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_type USER_PROCESS\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_tv time 1790884358\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_pid 2162\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_host tty2\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: using ut_line tty2\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: Writing wtmp session record to /var/log/wtmp\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: Adding or updating utmp record for login\nOct 01 19:52:38 lyra-virtualization-fixture gdm[1804]: Gdm: GdmLocalDisplayFactory: display status changed: 2\nOct 01 19:52:38 lyra-virtualization-fixture gdm-wayland-session[2162]: Gdm: gdm-wayland-session: Will register session in 10 seconds\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Activating service name='org.freedesktop.impl.portal.desktop.gnome' requested by ':1.33' (uid=476 pid=2158 comm=\"/usr/libexec/xdg-desktop-portal\" label=\"unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\")\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Activating service name='org.gnome.Settings.GlobalShortcutsProvider' requested by ':1.35' (uid=476 pid=2187 comm=\"/usr/libexec/xdg-desktop-portal-gnome\" label=\"unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\")\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Successfully activated service 'org.gnome.Settings.GlobalShortcutsProvider'\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Successfully activated service 'org.freedesktop.impl.portal.desktop.gnome'\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Activating service name='org.freedesktop.impl.portal.desktop.gtk' requested by ':1.33' (uid=476 pid=2158 comm=\"/usr/libexec/xdg-desktop-portal\" label=\"unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\")\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): GsmManager: RegisterClient\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): GsmManager: RegisterClient\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): GsmManager: Adding new client 105018b021475673e4179088435888886900000018460019 to session\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): GsmManager: Adding new client 105018b021475673e4179088435888886900000018460019 to session\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): uid = 476\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): uid = 476\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): pid = 2210\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): pid = 2210\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): exporting client to object path: /org/gnome/SessionManager/Client19\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): exporting client to object path: /org/gnome/SessionManager/Client19\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): exporting dbus client to object path: /org/gnome/SessionManager/Client19\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): exporting dbus client to object path: /org/gnome/SessionManager/Client19\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): GsmStore: Adding object id /org/gnome/SessionManager/Client19 to store\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1846]: gnome-session-binary[1846]: DEBUG(+): GsmManager: Client added: /org/gnome/SessionManager/Client19\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): GsmStore: Adding object id /org/gnome/SessionManager/Client19 to store\nOct 01 19:52:38 lyra-virtualization-fixture gnome-session-binary[1846]: DEBUG(+): GsmManager: Client added: /org/gnome/SessionManager/Client19\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Successfully activated service 'org.freedesktop.impl.portal.desktop.gtk'\nOct 01 19:52:38 lyra-virtualization-fixture /usr/libexec/gdm/gdm-wayland-session[1845]: dbus-daemon[1845]: [session uid=476 pid=1845] Successfully activated service 'org.freedesktop.portal.Desktop'\n",
+      "post_rejection_observation_seconds": null
+    },
+    {
+      "name": "gdm-worker-and-linger-manager-hold-distinct-leases",
+      "passed": true,
+      "holders": [
+        {
+          "pid": 1777,
+          "fd": "9",
+          "comm": "(sd-pam)",
+          "cmdline": "(sd-pam) "
+        },
+        {
+          "pid": 2136,
+          "fd": "11",
+          "comm": "gdm-session-wor",
+          "cmdline": "gdm-session-worker [pam/gdm-password] "
+        }
+      ],
+      "payload": 2183,
+      "worker_pid": 2136,
+      "manager_pid": "1771"
+    },
+    {
+      "name": "pre-exit-barrier-is-durable-and-busy",
+      "passed": true,
+      "error": "busy: generation has admitted sessions; barrier remains durable",
+      "snapshot": [
+        [
+          {
+            "state": "transitioning",
+            "user": "parentaltest",
+            "uid": 1003,
+            "gid": 1004,
+            "group": "parentaltest",
+            "generation": "da0b69693767ee9359cb477e06aac421"
+          }
+        ],
+        {
+          "da0b69693767ee9359cb477e06aac421": {
+            "new_generation": null,
+            "old_generation": "da0b69693767ee9359cb477e06aac421",
+            "phase": "blocked",
+            "schema": 2,
+            "transaction": "c0354c1b36e44ebfb79ef0851ce81e6b"
+          }
+        }
+      ]
+    },
+    {
+      "name": "normal-session-exit-releases-worker-but-not-linger-manager",
+      "passed": true,
+      "pidfds_exited": 2,
+      "sessions": "6 1003 parentaltest - 1771 manager - no -\n7 1002 ordinaryuser - 1773 manager - no -\n",
+      "supervised_classes": [
+        {
+          "id": "6",
+          "User": "1003",
+          "Service": "systemd-user",
+          "Leader": "1771",
+          "Class": "manager"
+        }
+      ],
+      "holders": [
+        {
+          "pid": 1777,
+          "fd": "9",
+          "comm": "(sd-pam)",
+          "cmdline": "(sd-pam) "
+        }
+      ],
+      "gdm_pid": "1804",
+      "manager_pid": "1771",
+      "ordinary_pid": "1773",
+      "journal": [
+        "Gdm: Process exit status: 0",
+        "Gdm: Process exit status: 0",
+        "pam_unix(gdm-password:session): session closed for user parentaltest",
+        "Gdm: Process exit status: 0"
+      ]
+    },
+    {
+      "name": "session-exit-is-not-account-quiescence",
+      "passed": true,
+      "error": "busy: generation has admitted sessions; barrier remains durable",
+      "holders": [
+        {
+          "pid": 1777,
+          "fd": "9",
+          "comm": "(sd-pam)",
+          "cmdline": "(sd-pam) "
+        }
+      ],
+      "snapshot": [
+        [
+          {
+            "state": "transitioning",
+            "user": "parentaltest",
+            "uid": 1003,
+            "gid": 1004,
+            "group": "parentaltest",
+            "generation": "da0b69693767ee9359cb477e06aac421"
+          }
+        ],
+        {
+          "da0b69693767ee9359cb477e06aac421": {
+            "new_generation": null,
+            "old_generation": "da0b69693767ee9359cb477e06aac421",
+            "phase": "blocked",
+            "schema": 2,
+            "transaction": "c0354c1b36e44ebfb79ef0851ce81e6b"
+          }
+        }
+      ],
+      "gap_reproduced": true
+    },
+    {
+      "name": "explicit-logind-revocation-releases-manager-lease-preserving-other-user-and-gdm",
+      "passed": true,
+      "command": {
+        "rc": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "ordinary_pid": "1773",
+      "gdm_pid": "1804"
+    },
+    {
+      "name": "explicit-revocation-allows-tombstone-without-reenrollment",
+      "passed": true,
+      "snapshot": [
+        [
+          {
+            "state": "tombstone",
+            "user": "parentaltest",
+            "uid": 1003,
+            "gid": 1004,
+            "group": "parentaltest",
+            "generation": "da0b69693767ee9359cb477e06aac421"
+          }
+        ],
+        {
+          "da0b69693767ee9359cb477e06aac421": {
+            "new_generation": null,
+            "old_generation": "da0b69693767ee9359cb477e06aac421",
+            "phase": "tombstoned",
+            "schema": 2,
+            "transaction": "c0354c1b36e44ebfb79ef0851ce81e6b"
+          }
+        }
+      ],
+      "barrier_present": true
+    },
+    {
+      "name": "lingering-marker-does-not-authorize-readmission-after-revocation",
+      "passed": true,
+      "status": "224",
+      "cause": "pam_lyra_identity_registry_fixture(systemd-user:session): Experimental registry-backed admission rejected session",
+      "linger_present": true,
+      "ordinary_pid": "1773",
+      "gdm_pid": "1804"
+    }
+  ],
+  "cleanup": [
+    {
+      "name": "disable-linger-parentaltest",
+      "passed": true
+    },
+    {
+      "name": "disable-linger-ordinaryuser",
+      "passed": true
+    },
+    {
+      "name": "stop-fixture-sessions",
+      "passed": true
+    },
+    {
+      "name": "restore-test-passwords",
+      "passed": true
+    },
+    {
+      "name": "restore-permissive",
+      "passed": true
+    },
+    {
+      "name": "stop-accounts-before-restoration",
+      "passed": true
+    },
+    {
+      "name": "restore-official-worker",
+      "passed": true
+    },
+    {
+      "name": "restore-helper-label",
+      "passed": true
+    },
+    {
+      "name": "restore-/etc/pam.d/systemd-user",
+      "passed": true
+    },
+    {
+      "name": "restore-/etc/pam.d/gdm-password",
+      "passed": true
+    },
+    {
+      "name": "restore-/etc/gdm/custom.conf",
+      "passed": true
+    },
+    {
+      "name": "restore-/usr/share/wayland-sessions/gnome.desktop",
+      "passed": true
+    },
+    {
+      "name": "restore-/usr/share/wayland-sessions/gnome-wayland.desktop",
+      "passed": true
+    },
+    {
+      "name": "restore-/var/lib/AccountsService/users/parentaltest",
+      "passed": true
+    },
+    {
+      "name": "restore-/var/lib/AccountsService/users/ordinaryuser",
+      "passed": true
+    },
+    {
+      "name": "remove-worker-backup",
+      "passed": true
+    },
+    {
+      "name": "remove-/usr/lib64/security/pam_lyra_identity_registry_fixture.so",
+      "passed": true
+    },
+    {
+      "name": "remove-/opt/lyra-parental-probe/manager-session",
+      "passed": true
+    },
+    {
+      "name": "remove-/var/lib/lyra-parental-test/identity-journal-da0b69693767ee9359cb477e06aac421",
+      "passed": true
+    },
+    {
+      "name": "remove-/var/lib/lyra-parental-test/.barrier-da0b69693767ee9359cb477e06aac421",
+      "passed": true
+    },
+    {
+      "name": "remove-/var/lib/lyra-parental-test/identity-registry",
+      "passed": true
+    },
+    {
+      "name": "remove-/var/lib/lyra-parental-test/.lease-da0b69693767ee9359cb477e06aac421.lock",
+      "passed": true
+    },
+    {
+      "name": "remove-/var/lib/lyra-parental-test/.transaction.lock",
+      "passed": true
+    },
+    {
+      "name": "remove-state-directory",
+      "passed": true
+    },
+    {
+      "name": "remove-launcher-policy",
+      "passed": true
+    }
+  ],
+  "source_sha256": {
+    "barrier-pam-guard.c": "c50aa20cce8b2b081b858bca389cb705dd1f786791047c135a63868c99626e10",
+    "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "registry-gdm-evidence.py": "c7880454ee5a21df5b3fcb2def701d7ee9b50d2451d658606cc876ffbeb74071",
+    "password-client.py": "1a745d8e2baa5c712570006337376a3bc314fefecb7b77facb5a2c0d65b88497",
+    "logout-session.c": "a865042de7ed9a9d797360a1c7ac1aca8d7c6398b28ce790478b13f53f2bbce9",
+    "transition.py": "53d846873c8b4bdb114b05da50fb31b72db1337f69f7cac808b3c282f2afaabc",
+    "lyra-registry-gdm.cil": "c131eca08fd60bc6493b8a34348d155b1f91f43c0526e59f1258c467b72c55eb",
+    "session-exit-exercise.py": "59d8ac6f49c1ced0f259d09aaa6e534e41759e43611c9c5b5e56a903eebf30d2"
+  },
+  "versions": "gdm-48.0-160100.2.1.x86_64\nsystemd-257.13-160100.2.5.x86_64\npam-1.7.2+git12-160100.2.1.x86_64\nselinux-policy-targeted-20260826+git0.492b478c7-160100.1.1.noarch\n",
+  "passed": true,
+  "vendor_preserved": true,
+  "official_worker_restored": true,
+  "helper_label_restored": true,
+  "files_restored": true,
+  "passwords_restored": true,
+  "fixture_removed": true,
+  "managers_stopped": true,
+  "permissive_restored": true,
+  "linger_removed": true,
+  "fixture_processes_gone": true
+}
