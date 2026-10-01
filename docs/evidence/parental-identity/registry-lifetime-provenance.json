@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-01",
+  "status": "experimental-component-proof",
+  "branch": "test/parental-registry-lifetime",
+  "base_commit": "3419a1e56569b4febabeb69fa9fbedb4ee642711",
+  "vm": {
+    "disk": "/tmp/lyra-parental-identity-20260928/system.raw",
+    "serial": "lyra-admission-test",
+    "required_markers": [
+      "lyra.parental-selinux-test=1",
+      "lyra.parental-identity-test=1"
+    ],
+    "iso_boot": false,
+    "final_state": "powered-off",
+    "qemu_exit_code": 0
+  },
+  "full_account_protection": false,
+  "login_logout_tested": false,
+  "source_sha256": {
+    "pam-registry-guard.c": "fd7d479f14f24cf56539162941b15543114e8d5597fbd726499fbc7969f28ad3",
+    "registry-transaction.py": "038f2f38ced2f5b8ae4845a1f7f57fb8c3eed82c6337cddf3bf015474fe64f0b",
+    "native-registry-manager.py": "de30edc3f50f09eb1406af0c29693fb1449d0947572b9095e0eb265bd585d843",
+    "session-inventory.py": "1ce603e8ef7f83f6ce5eaf6e000c69ca809ed02c6c23ffce619635b3ae504366",
+    "registry-diagnostic.py": "209daac9c234aaa9914ab7dc2897c72097f28666b349b5740698e18229c49961",
+    "registry-pam-lock-diagnostic.py": "a25ae8bef906a4027383a236a6ea65ccb9c13cfc5e33dbb3a2a74979e8bc9156",
+    "pam-lease-holder.py": "1691621a6a7a092f94c7b545b2da9a3a6e4eb3146fa1e73b5968d57eea0ebdd8",
+    "pam-probe.py": "1470cf45bff3cbea7dbf1659938872a8fb6cfd55552df20368b4c639578e5e80",
+    "registry-transaction-diagnostic.py": "3e41785a424426a8b09eca19cdf18ece5326bc7bb8fa8ffa461480f66ab5d1a4",
+    "reuse-diagnostic.py": "96eacc807e409e24d8d65c3a7a465fa4ee3348dd20eabe4a5c676b2ac12057d7"
+  },
+  "artifact_sha256": {
+    "native-registry-manager-result.json": "63a385887e7afc9903fa128d66d8c7e435e36014f51b27c2b8114d8d4812c2e5",
+    "session-inventory.json": "9605067e56379d9f4c0c0b4b6f5027812671017adc4bb25add34ab1da5b6dceb",
+    "registry-result.json": "600a75b2a9a8a21b3400b82e12d62be67471f64d313ceae3236b46b268ad556b",
+    "registry-pam-lock-result.json": "1d84eb43c7b4bf079ca6f5b7552d83d2b8d97266c155534546c5151fb86ffd6e",
+    "registry-transaction-result.json": "a4b5cd758e0fd5a51eaebf6ed7b9384cbc0099f1cbe9e75bcfb02b17a5bede0c",
+    "reuse-result.json": "4a39fce93bbc16c793e5f62deebabad51b32389b86bdfe18157aac7d39a0f8a7",
+    "registry-lifetime-restored.json": "72dd7edc414f908673d705891d462096677fff81a38a019c22171e63050bd89b"
+  },
+  "module_sha256": "9d753734d5a6590a9f9ff1d6d68bb446f881f65336cffa43d88a18e531c2cf39",
+  "runs": {
+    "native": {
+      "controller_id": "e394f7752e7342009b9db65ed3f60e01",
+      "timestamp": 1790870003.8867984,
+      "argv": [
+        "python3",
+        "/root/identity-native-registry-manager.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "4754efe9d9f5bf345923eda3933e40e47adb729ef584745a84d9c4efede02202",
+      "rerun_this_stage": true
+    },
+    "inventory": {
+      "controller_id": "b12317467e6241aeabc2a7653480a457",
+      "timestamp": 1790869702.7951381,
+      "argv": [
+        "python3",
+        "/root/identity-session-inventory.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "9605067e56379d9f4c0c0b4b6f5027812671017adc4bb25add34ab1da5b6dceb",
+      "rerun_this_stage": true
+    },
+    "registry": {
+      "controller_id": "36c3cefff4a044a29a5fff31453a1524",
+      "timestamp": 1790870026.0586593,
+      "argv": [
+        "python3",
+        "/root/identity-registry-diagnostic.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "dc4bba472f1925f8494be14c787029461c4d4638777a87779fe376bcc0c6ea3f",
+      "rerun_this_stage": true
+    },
+    "pam_lock": {
+      "controller_id": "ccb9e15531a641bbbe71a3558a243377",
+      "timestamp": 1790870071.2506351,
+      "argv": [
+        "python3",
+        "/root/identity-registry-pam-lock-diagnostic.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "6867393679986c631378a1c0249f1a2d4e09fc3f62a82934c897aa2c18e3b7fc",
+      "rerun_this_stage": true
+    },
+    "writer_preserved": {
+      "controller_id": "8e99fe4c4a49498daa098b7dde341bb5",
+      "timestamp": 1790710973.1272137,
+      "argv": [
+        "python3",
+        "/root/identity-registry-transaction-diagnostic.py"
+      ],
+      "rc": 0,
+      "stdout_sha256": "84f86f2c79b7ca321b34b09a386b56c5def90e0b9395a76a99d232cc7c7b726c",
+      "rerun_this_stage": false
+    }
+  },
+  "checks": {
+    "native": 30,
+    "registry": 12,
+    "pam_lock": 9,
+    "writer_preserved": 16,
+    "python_suite": 262
+  },
+  "python_suite": {
+    "command": "python3 -m unittest discover -s tests",
+    "exit_code": 0,
+    "tests": 262
+  },
+  "production_changed": false
+}

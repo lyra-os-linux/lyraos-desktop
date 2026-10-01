@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-01",
+  "state": {
+    "enforcing": "Permissive",
+    "sessions": "",
+    "units": "MainPID=0\nId=user@1003.service\nActiveState=inactive\n\nMainPID=0\nId=user@1002.service\nActiveState=inactive\n\nMainPID=0\nId=gdm.service\nActiveState=inactive\n\nMainPID=0\nId=sshd.service\nActiveState=inactive\n",
+    "linger": [],
+    "pam_override_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "registry_exists": false,
+    "module_exists": false
+  },
+  "inspection_controller_id": "265b19c822c847aa8044630153785abc",
+  "poweroff_controller_id": "5e0f46ec90f64c5a91d2c929a95e1ba6",
+  "poweroff_rc": 0,
+  "qemu_exit_code": 0
+}

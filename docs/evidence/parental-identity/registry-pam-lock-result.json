@@ -1,0 +1,101 @@
+{
+  "kind": "pam-session-lock-transaction-integration",
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "active-session-admitted",
+      "passed": true,
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "expected_admission": true,
+      "generation": "1e2de37cf34e03c432adbc507dab99b5"
+    },
+    {
+      "name": "lease-holder-opened-session",
+      "passed": true,
+      "event": {
+        "event": "opened",
+        "pam_open_rc": 0
+      }
+    },
+    {
+      "name": "transition-refused-while-session-live",
+      "passed": true,
+      "error": "busy: an admitted PAM session or another transaction holds the lock"
+    },
+    {
+      "name": "pam-close-releases-session-lease",
+      "passed": true,
+      "event": {
+        "event": "closed",
+        "pam_close_rc": 0
+      }
+    },
+    {
+      "name": "transition-starts-after-session-close",
+      "passed": true
+    },
+    {
+      "name": "new-session-denied-during-transition",
+      "passed": true,
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "expected_admission": false,
+      "generation": "1e2de37cf34e03c432adbc507dab99b5"
+    },
+    {
+      "name": "same-unix-tuple-recreated",
+      "passed": true,
+      "uid": 24000,
+      "gid": 25000
+    },
+    {
+      "name": "tombstoned-old-generation-denied",
+      "passed": true,
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "expected_admission": false,
+      "generation": "1e2de37cf34e03c432adbc507dab99b5"
+    },
+    {
+      "name": "new-generation-admitted-after-explicit-enrollment",
+      "passed": true,
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "expected_admission": true,
+      "generation": "bac61fdf24b2bfe2bbcfd2a176473027"
+    }
+  ],
+  "module_sha256": "9d753734d5a6590a9f9ff1d6d68bb446f881f65336cffa43d88a18e531c2cf39",
+  "guard_source_sha256": "fd7d479f14f24cf56539162941b15543114e8d5597fbd726499fbc7969f28ad3",
+  "store_source_sha256": "038f2f38ced2f5b8ae4845a1f7f57fb8c3eed82c6337cddf3bf015474fe64f0b",
+  "passed": true,
+  "cleanup": [
+    {
+      "name": "restore-selinux-mode",
+      "passed": true
+    },
+    {
+      "name": "delete-login-mapping",
+      "passed": true
+    },
+    {
+      "name": "delete-fixture-user",
+      "passed": true
+    },
+    {
+      "name": "remove-pam-stack",
+      "passed": true
+    },
+    {
+      "name": "remove-pam-module",
+      "passed": true
+    },
+    {
+      "name": "remove-state-directory",
+      "passed": true
+    }
+  ],
+  "fixtures_removed": true,
+  "selinux_mode_restored": true
+}

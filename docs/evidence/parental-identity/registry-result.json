@@ -1,0 +1,136 @@
+{
+  "kind": "pam-root-owned-generation-registry-proof",
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "active-generation-admitted",
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "ordinary-account-preserved",
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "selected_context": "unconfined_u:unconfined_r:unconfined_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "same-tuple-recreated-with-tombstone-denied",
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "explicit-new-generation-admitted",
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "blocked-generation-denied",
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "active-generation-restored",
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "stale-generation-config-denied",
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "missing-registry-denied",
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "malformed-registry-denied",
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "group-world-writable-registry-denied",
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "group-world-readable-registry-denied",
+      "exit_code": 70,
+      "pam_open_rc": 14,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "recovery-valid-registry-admitted",
+      "exit_code": 0,
+      "pam_open_rc": 0,
+      "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "stderr": "",
+      "passed": true
+    }
+  ],
+  "module_sha256": "9d753734d5a6590a9f9ff1d6d68bb446f881f65336cffa43d88a18e531c2cf39",
+  "source_sha256": "fd7d479f14f24cf56539162941b15543114e8d5597fbd726499fbc7969f28ad3",
+  "runner_sha256": "209daac9c234aaa9914ab7dc2897c72097f28666b349b5740698e18229c49961",
+  "generation_a": "8fa61f9301298f072dbdfc2b0e4e9a44",
+  "generation_b": "559e8bebfec05036172cdca6d5663619",
+  "passed": true,
+  "cleanup": [
+    {
+      "name": "restore-selinux-mode",
+      "passed": true
+    },
+    {
+      "name": "delete-login-mapping",
+      "passed": true
+    },
+    {
+      "name": "delete-fixture-user",
+      "passed": true
+    },
+    {
+      "name": "remove-pam-stack",
+      "passed": true
+    },
+    {
+      "name": "remove-pam-module",
+      "passed": true
+    },
+    {
+      "name": "remove-test-registry",
+      "passed": true
+    }
+  ],
+  "fixtures_removed": true,
+  "selinux_mode_restored": true
+}

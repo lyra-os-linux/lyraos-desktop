@@ -1,0 +1,71 @@
+{
+  "kind": "tuple-binding-reuse-gap-diagnostic",
+  "full_account_protection": false,
+  "observations": [
+    {
+      "label": "original-provisioned-account",
+      "rc": 0,
+      "pam": {
+        "pam_open_rc": 0,
+        "getexeccon_rc": 0,
+        "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+        "user": "identitytest"
+      },
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\nuid=24000 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    },
+    {
+      "label": "recreated-account-identical-name-uid-gid-group",
+      "rc": 0,
+      "pam": {
+        "pam_open_rc": 0,
+        "getexeccon_rc": 0,
+        "selected_context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+        "user": "identitytest"
+      },
+      "stdout": "{\"pam_open_rc\": 0, \"getexeccon_rc\": 0, \"selected_context\": \"lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\", \"user\": \"identitytest\"}\nuid=24000 context=lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0\n",
+      "stderr": ""
+    }
+  ],
+  "passed": true,
+  "finding": "REPRODUCED: tuple-only PAM binding admits a newly created account when name/UID/GID/group are reused",
+  "original_identity": {
+    "user": "identitytest",
+    "uid": 24000,
+    "gid": 25000,
+    "group": "identitytest"
+  },
+  "recreated_identity": {
+    "user": "identitytest",
+    "uid": 24000,
+    "gid": 25000,
+    "group": "identitytest"
+  },
+  "same_context_after_recreation": true,
+  "stale_binding_reused": true,
+  "module_sha256": "313685926b9cd8f99d26b8f8e4b76c047a427b11c8ee91b0ff9dc4c52b3cb3dd",
+  "cleanup": [
+    {
+      "name": "restore-selinux-mode",
+      "passed": true
+    },
+    {
+      "name": "delete-login-mapping",
+      "passed": true
+    },
+    {
+      "name": "delete-fixture-user",
+      "passed": true
+    },
+    {
+      "name": "remove-pam-stack",
+      "passed": true
+    },
+    {
+      "name": "remove-pam-module",
+      "passed": true
+    }
+  ],
+  "fixtures_removed": true,
+  "selinux_mode_restored": true
+}
