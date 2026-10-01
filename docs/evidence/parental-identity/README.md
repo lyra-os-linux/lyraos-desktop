@@ -224,7 +224,7 @@ ser integrado e qualificado.
 | Canal/componente | Evidência existente | O que ela prova | Lacuna para o lease/transição |
 | --- | --- | --- | --- |
 | `systemd --user` | PR139 e [registro por geração nativo](native-registry-manager-result.json) | Lease retido por sd-pam; reexec preserva lock; geração antiga, registro/módulo ausentes e permissive recusam supervisionada; conta comum preservada. | Ainda usa domínio SELinux de fixture; não implementa ciclo de contas, revogação integral nem produto. |
-| GDM | PR139/140, [senha real e autenticação em andamento](https://github.com/lyra-os-linux/lyraos-desktop/blob/3419a1e56569b4febabeb69fa9fbedb4ee642711/docs/evidence/parental-password/README.md) | 14 cenários de autologin e 18 de senha; worker/sd-pam retêm lease, autenticação pendente é recusada após blocked. | Worker de diagnóstico e sessão ELF mínima; não qualifica GNOME completo, geração de identidade, desbloqueio ou revogação. |
+| GDM | PR139/140 e [registro por geração](../parental-registry-gdm/README.md) | Worker/sd-pam retêm lease; geração antiga e autenticação pendente são recusadas pelo novo registro. A matriz nativa por geração passou 22 checks. | Worker de diagnóstico e sessão ELF mínima; GNOME completo, desbloqueio, revogação e enrollment sem guard continuam pendentes. |
 | TTY/login local | PR138, [entradas CLI nativas](https://github.com/lyra-os-linux/lyraos-desktop/blob/a619b9637335d08476f67797cf65c260052fb49a/docs/evidence/parental-entries/README.md) | Login nativo com senha em PTY é recusado pela barreira account; conta comum e restauração passam. | Não é getty/console da ISO nem lease por geração; autenticações iniciadas antes da instalação continuam pendentes. |
 | SSH | PR138, [entradas CLI nativas](https://github.com/lyra-os-linux/lyraos-desktop/blob/a619b9637335d08476f67797cf65c260052fb49a/docs/evidence/parental-entries/README.md) | Novos comandos, SFTP e túnel sem shell recusados pela barreira account, preservando conta comum. | Um túnel autenticado antes da barreira continuou transportando dados; revogação e autenticações antigas não estão resolvidas. |
 | Cron/timers | Sem resultado de canal real localizado | Nada sobre execução sem login interativo. | Decidir se tarefas agendadas da conta supervisionada são permitidas; testar cron e timers de usuário sob a política aprovada. |
@@ -309,9 +309,11 @@ ativa e não persiste uma barreira contra novas admissões como a fixture anteri
 das PRs137–140. Os leases não encerram conexões antigas, não garantem ausência
 de processos fora deles e não implementam inscrição/migração autorizada. Essas
 propriedades precisam ser reconciliadas antes de um serviço de produto. O
-próximo ensaio é o GDM com senha e autenticação pendente usando o mesmo registro
-por geração; revogação SSH, cron/timers, serviços `User=`, D-Bus e recuperação
-continuam pendentes. #6/#102 e a Alpha 8 permanecem abertas.
+ensaio seguinte do GDM com senha e autenticação pendente usando o mesmo registro
+por geração passou 22 checks: [relatório GDM](../parental-registry-gdm/README.md).
+A próxima etapa reconcilia a barreira persistente e o isolamento por conta;
+revogação SSH, cron/timers, serviços `User=`, D-Bus e recuperação continuam
+pendentes. #6/#102 e a Alpha 8 permanecem abertas.
 
 Reprodução: use `host.py push` nos quatro fontes, mantendo os nomes guest
 abaixo, e execute sequencialmente. Não executar junto com outros ensaios que

@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-01",
+  "base_commit": "842004abed3a53340571ed39078bbd23cb6cbf7a",
+  "native_execution_id": "82225ae9af89492aa75b329d46ee1c5d",
+  "restoration_execution_id": "919401d23e704dc0b8417d9b485a7ccb",
+  "poweroff_execution_id": "4fdf9a248e364e328b2ef578764e385c",
+  "executions": {
+    "82225ae9af89492aa75b329d46ee1c5d": {
+      "timestamp": 1790870905.9145234,
+      "rc": 0,
+      "stdout_sha256": "8f7f50e6cf2a83ff57e1bcb781efc55236afbd0f1e703eba789db4452cffc08a"
+    },
+    "919401d23e704dc0b8417d9b485a7ccb": {
+      "timestamp": 1790871070.3412356,
+      "rc": 0,
+      "stdout_sha256": "1c51de93dd3667af7c75b4a1eaaf8f4169ca31ef0bd866c541565d436bffa419"
+    },
+    "4fdf9a248e364e328b2ef578764e385c": {
+      "timestamp": 1790871070.574931,
+      "rc": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "source_sha256": {
+    "../parental-identity/pam-registry-guard.c": "fd7d479f14f24cf56539162941b15543114e8d5597fbd726499fbc7969f28ad3",
+    "../parental-identity/registry-transaction.py": "038f2f38ced2f5b8ae4845a1f7f57fb8c3eed82c6337cddf3bf015474fe64f0b",
+    "evidence.py": "c7880454ee5a21df5b3fcb2def701d7ee9b50d2451d658606cc876ffbeb74071",
+    "../parental-password/client.py": "1a745d8e2baa5c712570006337376a3bc314fefecb7b77facb5a2c0d65b88497",
+    "../parental-managers/session.c": "1fa5c0150c566cc51191b8af0bea7507a85f9b2707efac65c276bf710451742a",
+    "../parental-transitions/transition.py": "53d846873c8b4bdb114b05da50fb31b72db1337f69f7cac808b3c282f2afaabc",
+    "launcher.cil": "c131eca08fd60bc6493b8a34348d155b1f91f43c0526e59f1258c467b72c55eb",
+    "exercise.py": "46423a45fad38d30e20550f6094e06da2aaec9ca35585feeced0ed03eb50b553"
+  },
+  "artifact_sha256": {
+    "result.json": "c2ff3c2efdd601ba94993ba09c4f33f7d373bccdb514b6988dec3cc5305dcb2c",
+    "restored.json": "1c51de93dd3667af7c75b4a1eaaf8f4169ca31ef0bd866c541565d436bffa419"
+  },
+  "native_checks": 22,
+  "python_tests": 270,
+  "python_suite_command": "python3 -m unittest discover -s tests",
+  "python_suite_exit_code": 0,
+  "official_worker_sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8",
+  "diagnostic_worker_sha256": "92a976fc0e375cd41d1a9330c650241081fd09278d464662a435200cc296704f",
+  "password_authentication_tested": true,
+  "full_gnome_session_tested": false,
+  "full_account_protection": false,
+  "complete_kernel_audit": false,
+  "production_changed": false,
+  "vm": {
+    "disk": "/tmp/lyra-parental-identity-20260928/system.raw",
+    "serial": "lyra-admission-test",
+    "kernel": "6.12.0-160100.4-default",
+    "final_state": "powered-off",
+    "qemu_exit_code": 0,
+    "iso_boot": false
+  }
+}
