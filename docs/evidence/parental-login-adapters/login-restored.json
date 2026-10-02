@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "files": {
+    "/etc/pam.d/sshd": true,
+    "/etc/pam.d/gdm-password": true,
+    "/etc/gdm/custom.conf": true,
+    "/etc/shadow": true,
+    "/etc/shadow-": true,
+    "/usr/libexec/gdm/gdm-session-worker": true,
+    "/usr/libexec/gdm/gdm-wayland-session": true,
+    "/usr/share/wayland-sessions/gnome.desktop": true,
+    "/usr/share/wayland-sessions/gnome-wayland.desktop": true,
+    "/var/lib/AccountsService/users/ordinaryuser": true,
+    "/var/lib/AccountsService/users/installeduser": true
+  },
+  "vendors": true,
+  "absent": {
+    "/etc/ssh/lyra-login-adapters.conf": true,
+    "/etc/ssh/lyra-login-adapters-keys": true,
+    "/etc/ssh/ssh_host_lyra_login_adapters_key": true,
+    "/etc/ssh/ssh_host_lyra_login_adapters_key.pub": true,
+    "/run/lyra-login-adapters": true,
+    "/usr/lib64/security/pam_lyra_ordinary_ssh_fixture.so": true,
+    "/opt/lyra-parental-probe/manager-session": true
+  },
+  "policies_absent": true,
+  "units": {
+    "gdm.service": "0",
+    "lyra-login-adapters-sshd.service": "0",
+    "user@476.service": "0",
+    "user-runtime-dir@476.service": "0"
+  }
+}

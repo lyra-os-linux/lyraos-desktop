@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/root/login-adapters/native.py", line 95, in <module>
+    worker=gdm_login('ordinaryuser',passwords['ordinaryuser'],True,'baseline-target-gdm-password')
+  File "/root/login-adapters/routes.py", line 113, in gdm_login
+    assert row['event'] not in ('error','timeout'),row
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'event': 'error', 'method': 'SelectSession', 'error': 'g-dbus-error-quark: GDBus.Error:org.freedesktop.DBus.Error.InvalidArgs: Session already running for user (null) (16)'}

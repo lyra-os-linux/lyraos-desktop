@@ -1,0 +1,870 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "baseline-ordinary-1000",
+      "passed": true,
+      "unit": {
+        "MainPID": "5138",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-ordinary-1002",
+      "passed": true,
+      "unit": {
+        "MainPID": "5193",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-target-ssh",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n1002\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": "",
+      "rejection": null
+    },
+    {
+      "name": "baseline-peer-ssh",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n1000\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": "",
+      "rejection": null
+    },
+    {
+      "name": "baseline-target-no-shell-tunnel",
+      "passed": true,
+      "forwarded": true
+    },
+    {
+      "name": "baseline-peer-no-shell-tunnel",
+      "passed": true,
+      "forwarded": true
+    },
+    {
+      "name": "baseline-target-gdm-password",
+      "passed": true,
+      "processes": [
+        {
+          "pid": 5661,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-48.scope"
+          ],
+          "comm": "manager-session",
+          "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+        }
+      ],
+      "rejection": null,
+      "events": [
+        {
+          "event": "connected",
+          "uid": 476
+        },
+        {
+          "event": "method",
+          "method": "SelectSession"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "ConversationStarted"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "DefaultLanguageNameChanged"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "DefaultSessionNameChanged"
+        },
+        {
+          "event": "method",
+          "method": "BeginVerificationForUser"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "SecretInfoQuery"
+        },
+        {
+          "event": "password-prompt"
+        },
+        {
+          "event": "method",
+          "method": "AnswerQuery"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "VerificationComplete"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "SessionOpened"
+        },
+        {
+          "event": "method",
+          "method": "StartSessionWhenReady"
+        }
+      ],
+      "worker_pid": 5639
+    },
+    {
+      "name": "target-admitted-roots-and-payloads-inventoried",
+      "passed": true,
+      "processes": [
+        {
+          "pid": 5193,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/init.scope"
+          ],
+          "comm": "systemd"
+        },
+        {
+          "pid": 5204,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/init.scope"
+          ],
+          "comm": "(sd-pam)"
+        },
+        {
+          "pid": 5462,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-43.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5514,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-43.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5580,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-45.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5583,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-45.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5584,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-45.scope"
+          ],
+          "comm": "sleep"
+        },
+        {
+          "pid": 5628,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-47.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5631,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-47.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5639,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-48.scope"
+          ],
+          "comm": "gdm-session-wor"
+        },
+        {
+          "pid": 5652,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-48.scope"
+          ],
+          "comm": "gdm-wayland-ses"
+        },
+        {
+          "pid": 5656,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/session.slice/dbus-broker.service"
+          ],
+          "comm": "dbus-broker-lau"
+        },
+        {
+          "pid": 5659,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/session.slice/dbus-broker.service"
+          ],
+          "comm": "dbus-broker"
+        },
+        {
+          "pid": 5661,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-48.scope"
+          ],
+          "comm": "manager-session"
+        }
+      ],
+      "gdm_worker_pid": 5639,
+      "pidfds": 15
+    },
+    {
+      "name": "old-multiplex-survives-admission-withdrawal",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_MUX_COMMAND\n",
+      "stderr": "",
+      "rejection": null
+    },
+    {
+      "name": "withdrawal-alone-keeps-existing-ssh-and-gdm",
+      "passed": true,
+      "target_processes": [
+        {
+          "pid": 5193,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/init.scope"
+          ],
+          "comm": "systemd"
+        },
+        {
+          "pid": 5204,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/init.scope"
+          ],
+          "comm": "(sd-pam)"
+        },
+        {
+          "pid": 5462,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-43.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5514,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-43.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5580,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-45.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5583,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-45.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5584,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-45.scope"
+          ],
+          "comm": "sleep"
+        },
+        {
+          "pid": 5628,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-47.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5631,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-47.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 5639,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-48.scope"
+          ],
+          "comm": "gdm-session-wor"
+        },
+        {
+          "pid": 5652,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-48.scope"
+          ],
+          "comm": "gdm-wayland-ses"
+        },
+        {
+          "pid": 5656,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/session.slice/dbus-broker.service"
+          ],
+          "comm": "dbus-broker-lau"
+        },
+        {
+          "pid": 5659,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/session.slice/dbus-broker.service"
+          ],
+          "comm": "dbus-broker"
+        },
+        {
+          "pid": 5661,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-48.scope"
+          ],
+          "comm": "manager-session"
+        }
+      ]
+    },
+    {
+      "name": "denied-login-revocation-has-no-session-effect",
+      "passed": true
+    },
+    {
+      "name": "changed-ssh-stack-prevents-revocation",
+      "passed": true
+    },
+    {
+      "name": "native-target-ssh-and-gdm-revoked-peer-and-daemons-preserved",
+      "passed": true,
+      "target_processes": [],
+      "pidfds_exited": 15,
+      "gdm_worker_exited": true,
+      "ssh_listener_pid": "5107",
+      "gdm_pid": "5121",
+      "peer_forwarded": true
+    },
+    {
+      "name": "gdm-idempotent-revoke-retains-negative-authority",
+      "passed": true
+    },
+    {
+      "name": "new-target-ssh-denied",
+      "passed": true,
+      "rc": 255,
+      "stdout": "",
+      "stderr": "Connection closed by 127.0.0.1 port 22\n",
+      "rejection": "Connection from 127.0.0.1 port 55464 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\nPostponed publickey for ordinaryuser from 127.0.0.1 port 55464 ssh2 [preauth]\nAccepted key ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\npam_lyra_ordinary_ssh_fixture(sshd:account): Experimental ordinary SSH admission rejected account\nFailed publickey for ordinaryuser from 127.0.0.1 port 55464 ssh2: ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc\nAccess denied for user ordinaryuser by PAM account configuration [preauth]\n"
+    },
+    {
+      "name": "new-sftp-denied",
+      "passed": true,
+      "rc": 255,
+      "stdout": "",
+      "stderr": "Connection closed by 127.0.0.1 port 22\nConnection closed\n",
+      "rejection": "Connection from 127.0.0.1 port 55478 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\nPostponed publickey for ordinaryuser from 127.0.0.1 port 55478 ssh2 [preauth]\nAccepted key ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\npam_lyra_ordinary_ssh_fixture(sshd:account): Experimental ordinary SSH admission rejected account\nFailed publickey for ordinaryuser from 127.0.0.1 port 55478 ssh2: ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc\nAccess denied for user ordinaryuser by PAM account configuration [preauth]\n"
+    },
+    {
+      "name": "new-target-no-shell-tunnel-denied",
+      "passed": true,
+      "rc": 255,
+      "forwarded": false,
+      "rejection": "Connection from 127.0.0.1 port 55480 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\nPostponed publickey for ordinaryuser from 127.0.0.1 port 55480 ssh2 [preauth]\nAccepted key ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\npam_lyra_ordinary_ssh_fixture(sshd:account): Experimental ordinary SSH admission rejected account\nFailed publickey for ordinaryuser from 127.0.0.1 port 55480 ssh2: ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc\nAccess denied for user ordinaryuser by PAM account configuration [preauth]\n"
+    },
+    {
+      "name": "old-multiplex-cannot-create-new-channel",
+      "passed": true,
+      "rc": 255,
+      "stdout": "",
+      "stderr": "Connection closed by 127.0.0.1 port 22\n",
+      "rejection": "Connection from 127.0.0.1 port 55484 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\nPostponed publickey for ordinaryuser from 127.0.0.1 port 55484 ssh2 [preauth]\nAccepted key ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\npam_lyra_ordinary_ssh_fixture(sshd:account): Experimental ordinary SSH admission rejected account\nFailed publickey for ordinaryuser from 127.0.0.1 port 55484 ssh2: ED25519 SHA256:EURb7YDNSsdS1YUAWvDbQ+Zz+5XkyRGqgonMiQ/bpwc\nAccess denied for user ordinaryuser by PAM account configuration [preauth]\n"
+    },
+    {
+      "name": "peer-new-ssh-preserved",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n1000\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": "",
+      "rejection": null
+    },
+    {
+      "name": "explicit-gdm-display-fixture-reset-peer-ssh-preserved",
+      "passed": true,
+      "old_gdm_pid": "5121",
+      "new_gdm_pid": "6067",
+      "adapter_effect": false,
+      "automatic_greeter_recovery_qualified": false
+    },
+    {
+      "name": "new-target-gdm-password-denied",
+      "passed": true,
+      "processes": [],
+      "rejection": "libEGL warning: DRI3 error: Could not get DRI3 device\nlibEGL warning: Ensure your X server supports DRI3 to get accelerated rendering\nvdagent virtio channel /dev/virtio-ports/com.redhat.spice.0 does not exist, exiting\ngnome-session-binary[6095]: DEBUG(+): GsmAutostartApp: (pid:6323) done (status:0)\ngnome-session-binary[6095]: DEBUG(+): App spice-vdagent.desktop exited successfully\ngnome-session-binary[6095]: DEBUG(+): GsmManager: ending phase WINDOW_MANAGER\ngnome-session-binary[6095]: DEBUG(+): GsmManager: starting phase PANEL\ngnome-session-binary[6095]: DEBUG(+): GsmManager: ending phase PANEL\ngnome-session-binary[6095]: DEBUG(+): GsmManager: starting phase DESKTOP\ngnome-session-binary[6095]: DEBUG(+): GsmManager: ending phase DESKTOP\ngnome-session-binary[6095]: DEBUG(+): GsmManager: starting phase APPLICATION\ngnome-session-binary[6095]: DEBUG(+): GsmManager: ending phase APPLICATION\ngnome-session-binary[6095]: DEBUG(+): GsmManager: starting phase RUNNING\ngnome-session-binary[6095]: DEBUG(+): gsm_xsmp_server_start\ngnome-session-binary[6095]: DEBUG(+): GsmPresence: adding idle watch (1) for 300 secs\nEntering running state\nDEBUG(+): GsmAutostartApp: (pid:6323) done (status:0)\nDEBUG(+): App spice-vdagent.desktop exited successfully\nDEBUG(+): GsmManager: ending phase WINDOW_MANAGER\nDEBUG(+): GsmManager: starting phase PANEL\nDEBUG(+): GsmManager: ending phase PANEL\nDEBUG(+): GsmManager: starting phase DESKTOP\nDEBUG(+): GsmManager: ending phase DESKTOP\nDEBUG(+): GsmManager: starting phase APPLICATION\nDEBUG(+): GsmManager: ending phase APPLICATION\nDEBUG(+): GsmManager: starting phase RUNNING\nDEBUG(+): gsm_xsmp_server_start\nDEBUG(+): GsmPresence: adding idle watch (1) for 300 secs\ngnome-session-binary[6095]: DEBUG(+): GsmManager: RegisterClient\ngnome-session-binary[6095]: DEBUG(+): GsmManager: Adding new client 1030f5046eb6c405c9179096236473515100000060950018 to session\ngnome-session-binary[6095]: DEBUG(+): uid = 476\ngnome-session-binary[6095]: DEBUG(+): pid = 6139\ngnome-session-binary[6095]: DEBUG(+): exporting client to object path: /org/gnome/SessionManager/Client18\ngnome-session-binary[6095]: DEBUG(+): exporting dbus client to object path: /org/gnome/SessionManager/Client18\ngnome-session-binary[6095]: DEBUG(+): GsmStore: Adding object id /org/gnome/SessionManager/Client18 to store\ngnome-session-binary[6095]: DEBUG(+): GsmManager: Client added: /org/gnome/SessionManager/Client18\nDEBUG(+): GsmManager: RegisterClient\nDEBUG(+): GsmManager: Adding new client 1030f5046eb6c405c9179096236473515100000060950018 to session\nDEBUG(+): uid = 476\nDEBUG(+): pid = 6139\nDEBUG(+): exporting client to object path: /org/gnome/SessionManager/Client18\nDEBUG(+): exporting dbus client to object path: /org/gnome/SessionManager/Client18\nDEBUG(+): GsmStore: Adding object id /org/gnome/SessionManager/Client18 to store\nDEBUG(+): GsmManager: Client added: /org/gnome/SessionManager/Client18\ndbus-daemon[6094]: [session uid=476 pid=6094] Activating service name='org.freedesktop.portal.Desktop' requested by ':1.31' (uid=476 pid=6310 comm=\"/usr/libexec/mutter-x11-frames\" label=\"unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\")\ndbus-daemon[6094]: [session uid=476 pid=6094] Activating service name='org.freedesktop.portal.Documents' requested by ':1.32' (uid=476 pid=6340 comm=\"/usr/libexec/xdg-desktop-portal\" label=\"unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\")\ndbus-daemon[6094]: [session uid=476 pid=6094] Successfully activated service 'org.freedesktop.portal.Documents'\ndbus-daemon[6094]: [session uid=476 pid=6094] Activating service name='org.freedesktop.impl.portal.desktop.gnome' requested by ':1.32' (uid=476 pid=6340 comm=\"/usr/libexec/xdg-desktop-portal\" label=\"unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\")\ndbus-daemon[6094]: [session uid=476 pid=6094] Activating service name='org.gnome.ScreenSaver' requested by ':1.22' (uid=476 pid=6224 comm=\"/usr/libexec/gsd-power\" label=\"unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\")\nFailed to grab accelerator for keybinding settings:hibernate\nFailed to grab accelerator for keybinding settings:playback-repeat\nGdm: GdmDBusServer: new connection 0x7f04e00029f0\nGdm: GdmSession: Handling new connection from outside\nGdm: GdmManager: client with pid 6326 connected\nGdm: GdmDisplay: Got timed login details for display: 0\nGdm: GdmSession: selecting session 'gnome'\nGdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes\nGdm: GdmSession: setting session to type 'wayland'\nGdm: GdmSession: starting conversation gdm-password for session (0x5616df32c640)\nGdm: GdmSessionWorkerJob: Starting worker...\nGdm: GdmSessionWorkerJob: Running session_worker_job process: gdm-session-worker [pam/gdm-password] /usr/libexec/gdm/gdm-session-worker\nGdm: GdmSessionWorkerJob: : SessionWorkerJob on pid 6374\nFailed to start camera monitor\nGdm: Enabling debugging\nGdm: GdmSessionWorker: connecting to address: unix:path=/run/gdm/dbus/dbus-GYrXAluf\nGdm: GdmDBusServer: new connection 0x7f04dc000b70\nGdm: GdmSession: Handling new connection from worker\nGdm: GdmSession: Authenticating new connection\nGdm: GdmSession: worker connection is 0x7f04dc000b70\nGdm: GdmSession: Emitting conversation-started signal\nGdm: GdmManager: session conversation started for service gdm-password on session\nGdm: GdmManager: ignoring session conversation since its not automatic login conversation\nGdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes\nGdm: GdmSession: Set up service gdm-password for username ordinaryuser on session (0x5616df32c640)\nGdm: GdmSession: selecting user 'ordinaryuser' for session '(null)' (0x5616df32c640)\nGdm: GdmSession: Beginning initialization\nGdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes\nGdm: GdmSession: getting session command for file 'gnome.desktop'\nGdm: GdmSession: Conversation started\naccountsservice: ActUserManager: trying to track new user with username ordinaryuser\naccountsservice: ActUserManager: finding user 'ordinaryuser' state 1\naccountsservice: ActUserManager: waiting for user manager to load before finding user 'ordinaryuser'\naccountsservice: Finding a graphical session for user 0\naccountsservice: Failed to identify the current session\naccountsservice: ActUserManager: seat unloaded, so trying to set loaded property\naccountsservice: ActUserManager: Seat wouldn't load, so giving up on it and setting loaded property\naccountsservice: ActUserManager: user manager now loaded, proceeding with fetch user request for user 'ordinaryuser'\naccountsservice: ActUserManager: finding user 'ordinaryuser' state 2\naccountsservice: ActUserManager: Looking for user 'ordinaryuser' in accounts service\naccountsservice: ActUserManager: already loaded, so not setting loaded property\naccountsservice: ActUserManager: Found object path of user 'ordinaryuser': /org/freedesktop/Accounts/User1002\naccountsservice: ActUserManager: finding user 'ordinaryuser' state 3\naccountsservice: ActUserManager: user 'ordinaryuser' fetched\naccountsservice: ActUserManager: user ordinaryuser is now loaded\naccountsservice: ActUserManager: user ordinaryuser was not yet known, adding it\naccountsservice: ActUserManager: tracking user 'ordinaryuser'\naccountsservice: ActUserManager: not yet loaded, so not emitting user-added signal\naccountsservice: ActUserManager: no pending users, trying to set loaded property\naccountsservice: ActUserManager: already loaded, so not setting loaded property\nGdm: GdmSessionSettings: saved session is  (type )\nGdm: GdmSessionSettings: saved language is\nGdm: GdmSessionWorker: queuing setup for user: ordinaryuser (null)\naccountsservice: ActUserManager: finished handling request for user 'ordinaryuser'\naccountsservice: ActUserManager: unrefing manager owned by fetch user request\nGdm: GdmSessionWorker: attempting to change state to SETUP_COMPLETE\nGdm: GdmSessionWorker: initializing PAM; service=gdm-password username=ordinaryuser seat=seat0\nGdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SEAT=seat0'\nGdm: GdmSessionWorker: state SETUP_COMPLETE\nGdm: GdmSessionWorker: attempting to change state to AUTHENTICATED\nGdm: GdmSessionWorker: authenticating user ordinaryuser\nGdm: GdmSessionWorker: 1 new messages received from PAM\nGdm: GdmSessionWorker: username is 'ordinaryuser'\nGdm: GdmSessionWorker: old-username='ordinaryuser' new-username='ordinaryuser'\nGdm: GdmSessionWorker: received pam message of type 1 with payload 'Password: '\nFailed to connect context: Connection refused\nGdm: GdmSessionWorker: trying to get updated username\nGdm: GdmSessionWorker: PAM conversation returning 0: Success\nGdm: GdmSessionWorker: state AUTHENTICATED\nGdm: GdmSessionWorker: trying to get updated username\nGdm: GdmSessionWorker: username is 'ordinaryuser'\nGdm: GdmSessionWorker: old-username='ordinaryuser' new-username='ordinaryuser'\nGdm: GdmSessionWorker: attempting to change state to AUTHORIZED\nGdm: GdmSessionWorker: determining if authenticated user (password required:0) is authorized to session\nGdm: GdmSessionWorker: state AUTHORIZED\nGdm: GdmSessionWorker: attempting to change state to ACCREDITED\nGdm: GdmSessionWorker: Set PAM environment variable: 'LOGNAME=ordinaryuser'\nGdm: GdmSessionWorker: Set PAM environment variable: 'USER=ordinaryuser'\nGdm: GdmSessionWorker: Set PAM environment variable: 'USERNAME=ordinaryuser'\nGdm: GdmSessionWorker: Set PAM environment variable: 'HOME=/home/ordinaryuser'\nGdm: GdmSessionWorker: Set PAM environment variable: 'PWD=/home/ordinaryuser'\nGdm: GdmSessionWorker: Set PAM environment variable: 'SHELL=/bin/bash'\nGdm: GdmSessionWorker: Set PAM environment variable: 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'\nGdm: GdmSessionWorker: state ACCREDITED\nGdm: GdmSession: type wayland, program? no, seat seat0\nGdm: GdmSessionWorker: session display mode set to new-vt\nGdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SESSION_TYPE=wayland'\nGdm: GdmSessionWorker: attempting to change state to ACCOUNT_DETAILS_SAVED\nGdm: GdmSessionWorker: saving account details for user ordinaryuser\nGdm: GdmSessionWorker: attempting to change state to SESSION_OPENED\nGdm: GdmSessionWorker: Set PAM environment variable: 'XDG_VTNR=2'\ngnome-session-binary[6095]: DEBUG(+): GsmSystemd: received logind signal: UserNew\ngnome-session-binary[6095]: DEBUG(+): GsmSystemd: ignoring UserNew signal\nDEBUG(+): GsmSystemd: received logind signal: UserNew\nDEBUG(+): GsmSystemd: ignoring UserNew signal\nNew session 51 of user ordinaryuser.\ngnome-session-binary[6095]: DEBUG(+): GsmSystemd: received logind signal: SessionNew\ngnome-session-binary[6095]: DEBUG(+): GsmSystemd: ignoring SessionNew signal\nDEBUG(+): GsmSystemd: received logind signal: SessionNew\nDEBUG(+): GsmSystemd: ignoring SessionNew signal\ndbus-daemon[6094]: [session uid=476 pid=6094] Successfully activated service 'org.gnome.ScreenSaver'\ngnome-session-binary[6095]: DEBUG(+): Detected that screensaver has aquired the bus\nDEBUG(+): Detected that screensaver has aquired the bus\nCreated slice User Slice of UID 1002.\nup_client_get_devices failed: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable\nStarting User Runtime Directory /run/user/1002...\nFailed to get brightness: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name is not activatable\nNo permission to control network connections: Polkit.Error: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Action org.freedesktop.NetworkManager.network-control is not registered\nFailed to get PolKit permission: Polkit.Error: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: Action org.freedesktop.bolt.enroll is not registered\nFinished User Runtime Directory /run/user/1002.\ngsd_power_backlight_abs_to_percentage: assertion 'max > min' failed\nStarting User Manager for UID 1002...\nNew session 52 of user ordinaryuser.\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\ngnome-session-binary[6095]: DEBUG(+): GsmSystemd: received logind signal: SessionNew\nDEBUG(+): GsmSystemd: received logind signal: SessionNew\ngnome-session-binary[6095]: DEBUG(+): GsmSystemd: ignoring SessionNew signal\nDEBUG(+): GsmSystemd: ignoring SessionNew signal\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nRemoved session 52.\nDEBUG(+): GsmSystemd: received logind signal: SessionRemoved\ngnome-session-binary[6095]: DEBUG(+): GsmSystemd: received logind signal: SessionRemoved\ngnome-session-binary[6095]: DEBUG(+): GsmSystemd: ignoring SessionRemoved signal\nFailed to start User Manager for UID 1002.\nDEBUG(+): GsmSystemd: ignoring SessionRemoved signal\nStarted Session 51 of User ordinaryuser.\npam_unix(gdm-password:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(gdm-password:session): Experimental withdrawal admission rejected session\nGdm: GdmSessionWorker: uninitializing PAM\nGdm: GdmSessionWorker: state NONE\nGdm: GdmSession: stopping conversation gdm-password\nGdm: GdmSessionWorkerJob: Stopping job pid:6374\nGdm: GdmCommon: sending signal 15 to process 6374\nGdm: GdmSession: Emitting 'session-start-failed' signal\nGdm: GdmSessionWorkerJob: child (pid:6374) done (status:0)\nGdm: GdmSession: Worker job exited: 0\nGdm: GdmSession: Emitting conversation-stopped signal\nGdm: GdmManager: session conversation 'gdm-password' stopped\nSession 51 logged out. Waiting for processes to exit.\nsession-51.scope: Deactivated successfully.\nRemoved session 51.\ngnome-session-binary[6095]: DEBUG(+): GsmSystemd: received logind signal: SessionRemoved\ngnome-session-binary[6095]: DEBUG(+): GsmSystemd: ignoring SessionRemoved signal\nDEBUG(+): GsmSystemd: received logind signal: SessionRemoved\nDEBUG(+): GsmSystemd: ignoring SessionRemoved signal\n",
+      "events": [
+        {
+          "event": "connected",
+          "uid": 476
+        },
+        {
+          "event": "method",
+          "method": "SelectSession"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "ConversationStarted"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "DefaultLanguageNameChanged"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "DefaultSessionNameChanged"
+        },
+        {
+          "event": "method",
+          "method": "BeginVerificationForUser"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "SecretInfoQuery"
+        },
+        {
+          "event": "password-prompt"
+        },
+        {
+          "event": "method",
+          "method": "AnswerQuery"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "Problem"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "VerificationFailed"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "ConversationStopped"
+        }
+      ],
+      "worker_pid": null
+    },
+    {
+      "name": "changed-gdm-config-cannot-claim-inhibition",
+      "passed": true
+    },
+    {
+      "name": "four-real-adapters-still-refuse-uncovered-producers",
+      "passed": true
+    },
+    {
+      "name": "peer-fresh-gdm-password-preserved",
+      "passed": true,
+      "processes": [
+        {
+          "pid": 6445,
+          "uids": [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          "cgroup": [
+            "/user.slice/user-1000.slice/session-53.scope"
+          ],
+          "comm": "manager-session",
+          "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+        }
+      ],
+      "rejection": null,
+      "events": [
+        {
+          "event": "connected",
+          "uid": 476
+        },
+        {
+          "event": "method",
+          "method": "SelectSession"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "ConversationStarted"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "DefaultLanguageNameChanged"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "DefaultSessionNameChanged"
+        },
+        {
+          "event": "method",
+          "method": "BeginVerificationForUser"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "SecretInfoQuery"
+        },
+        {
+          "event": "password-prompt"
+        },
+        {
+          "event": "method",
+          "method": "AnswerQuery"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "VerificationComplete"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "SessionOpened"
+        },
+        {
+          "event": "method",
+          "method": "StartSessionWhenReady"
+        }
+      ],
+      "worker_pid": 6418
+    },
+    {
+      "name": "peer-ssh-survives-target-revocation-and-gdm-login",
+      "passed": true
+    }
+  ],
+  "error": null,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "native.py": "c306a241861f006d8832c48ebeac4849068b87d38edad4fc97df39643601f947",
+      "common.py": "85835e68525fd47c335e99351f59cbc53cfcdc9fa0510c2238538ec13edb3068",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "cleanup.py": "85c03493d1c404c9064b4c98fd140a212ac4a77cfc73711eb5ad2b72e7211a39",
+      "restore-check.py": "02684e1688b52b05ccf94c4df64a053962b7ff923de8dc63aa503299099dbc04",
+      "login-adapters.py": "035bfef874450c91e61d0343ba579691f2346374a9384e139916130e9b4a2b48",
+      "login-common.py": "761fd8b036989801ab87ccf8027381058ee7f26c0247743d82a21f3bb0f99fc3",
+      "routes.py": "a4a5ca4870f5501dc8089dcfafd062e670df2b7c797475b49359eb58d4f0dc8f",
+      "ssh-ordinary-guard.c": "20aafa6e6a638a3eb4b49295d26ba600efa3b9063ba2635ff21146116439a912",
+      "password-client.py": "1a745d8e2baa5c712570006337376a3bc314fefecb7b77facb5a2c0d65b88497",
+      "manager-session.c": "1fa5c0150c566cc51191b8af0bea7507a85f9b2707efac65c276bf710451742a",
+      "lyra-login-state.cil": "b15cd515d79076a066e4dcbb291a0d21f1ee64a980c0e6ad7c2bac02bac9cc6c",
+      "lyra-registry-gdm.cil": "c131eca08fd60bc6493b8a34348d155b1f91f43c0526e59f1258c467b72c55eb"
+    },
+    "login_paths": {
+      "/etc/pam.d/sshd": {
+        "present": false,
+        "backup": "0"
+      },
+      "/etc/pam.d/gdm-password": {
+        "present": false,
+        "backup": "1"
+      },
+      "/etc/gdm/custom.conf": {
+        "present": true,
+        "backup": "2",
+        "sha256": "3ed512f4b5039819585e6797e13387609711c61d2478c7809468f8a67113f7ff",
+        "mode": 420,
+        "uid": 0,
+        "gid": 0,
+        "label": "73797374656d5f753a6f626a6563745f723a78646d5f6574635f743a733000"
+      },
+      "/etc/shadow": {
+        "present": true,
+        "backup": "3",
+        "sha256": "d7caf90768717c5e669c894e3fae80b48b230211431f6ed7156dad3a3cd6fb23",
+        "mode": 416,
+        "uid": 0,
+        "gid": 15,
+        "label": "73797374656d5f753a6f626a6563745f723a736861646f775f743a733000"
+      },
+      "/etc/shadow-": {
+        "present": true,
+        "backup": "4",
+        "sha256": "9bbf76691a17b9783c04b63caf9c8373303330e299a87128da6f09e8dc7e72af",
+        "mode": 416,
+        "uid": 0,
+        "gid": 15,
+        "label": "73797374656d5f753a6f626a6563745f723a736861646f775f743a733000"
+      },
+      "/usr/libexec/gdm/gdm-session-worker": {
+        "present": true,
+        "backup": "5",
+        "sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8",
+        "mode": 493,
+        "uid": 0,
+        "gid": 0,
+        "label": "73797374656d5f753a6f626a6563745f723a62696e5f743a733000"
+      },
+      "/usr/libexec/gdm/gdm-wayland-session": {
+        "present": true,
+        "backup": "6",
+        "sha256": "7c232dfb37f514684e83e63513fe4827efaee6993398fb44e57e1dbaca459f54",
+        "mode": 493,
+        "uid": 0,
+        "gid": 0,
+        "label": "73797374656d5f753a6f626a6563745f723a62696e5f743a733000"
+      },
+      "/usr/share/wayland-sessions/gnome.desktop": {
+        "present": true,
+        "backup": "7",
+        "sha256": "89a27763e9be97e60b091db9a44592642932c6e7d18e398f57f22a1a5937d7e4",
+        "mode": 420,
+        "uid": 0,
+        "gid": 0,
+        "label": "73797374656d5f753a6f626a6563745f723a7573725f743a733000"
+      },
+      "/usr/share/wayland-sessions/gnome-wayland.desktop": {
+        "present": true,
+        "backup": "8",
+        "sha256": "ae0cc6ae8c2c365d8531f730053e14cb63d7cdc45ba4cb7160ec2f4aae30b9a5",
+        "mode": 420,
+        "uid": 0,
+        "gid": 0,
+        "label": "73797374656d5f753a6f626a6563745f723a7573725f743a733000"
+      },
+      "/var/lib/AccountsService/users/ordinaryuser": {
+        "present": false,
+        "backup": "9"
+      },
+      "/var/lib/AccountsService/users/installeduser": {
+        "present": false,
+        "backup": "10"
+      }
+    },
+    "accounts_active": false,
+    "login_vendor_sha256": {
+      "/usr/lib/pam.d/sshd": "a5250dc12be1db2f035aefca45789f3c1e0e744ba5e28b5dde540ac8e72deea0",
+      "/usr/lib/pam.d/gdm-password": "4ae388063f9c0329a93f993c961851bba959562d104af30d41fabd2014f8dfee"
+    },
+    "diagnostic_worker_sha256": "92a976fc0e375cd41d1a9330c650241081fd09278d464662a435200cc296704f",
+    "gdm_uid": 476
+  },
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "full_account_protection": false,
+  "whole_classification_qualified": false,
+  "all_producer_quiescence": false,
+  "real_nss_mutations_tested": false,
+  "production_adapters_qualified": false,
+  "monotonic_revision_qualified": false,
+  "power_loss_tested": false,
+  "full_gnome_session_tested": false,
+  "official_gdm_worker_qualified": false,
+  "all_gdm_routes_qualified": false,
+  "pending_authentication_tested": false,
+  "automatic_greeter_recovery_qualified": false
+}

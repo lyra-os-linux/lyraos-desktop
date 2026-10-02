@@ -1,0 +1,13 @@
+; Read-only PAM state access, marked VM only; no producer write permissions.
+(type lyra_login_state_t)
+(typeattributeset file_type (lyra_login_state_t))
+(allow sshd_t lyra_login_state_t (dir (getattr search open read)))
+(allow sshd_t lyra_login_state_t (file (getattr open read lock)))
+(allow xdm_t lyra_login_state_t (dir (getattr search open read)))
+(allow xdm_t lyra_login_state_t (file (getattr open read lock)))
+(allow init_t lyra_login_state_t (dir (getattr search open read)))
+(allow init_t lyra_login_state_t (file (getattr open read lock)))
+(allow sshd_auth_t lyra_login_state_t (dir (getattr search open read)))
+(allow sshd_auth_t lyra_login_state_t (file (getattr open read lock)))
+(allow sshd_session_t lyra_login_state_t (dir (getattr search open read)))
+(allow sshd_session_t lyra_login_state_t (file (getattr open read lock)))

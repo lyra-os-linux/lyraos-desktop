@@ -1,0 +1,67 @@
+[
+  {
+    "MESSAGE": "Started [systemd-run] /usr/sbin/sshd -D -e -f /etc/ssh/lyra-login-adapters.conf.",
+    "_PID": "1",
+    "_SELINUX_CONTEXT": "system_u:system_r:init_t:s0"
+  },
+  {
+    "MESSAGE": "Server listening on 127.0.0.1 port 22.",
+    "_PID": "675",
+    "_SELINUX_CONTEXT": "system_u:system_r:init_t:s0"
+  },
+  {
+    "MESSAGE": "Connection from 127.0.0.1 port 45384 on 127.0.0.1 port 22 rdomain \"\"",
+    "_PID": "787",
+    "_SELINUX_CONTEXT": "system_u:system_r:init_t:s0"
+  },
+  {
+    "MESSAGE": "Accepted key ED25519 SHA256:utNe2rvae1nFakkxZDYKykJIRH9BLpzdXwMzqK8S7z8 found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1",
+    "_PID": "787",
+    "_SELINUX_CONTEXT": "system_u:system_r:init_t:s0"
+  },
+  {
+    "MESSAGE": "Postponed publickey for ordinaryuser from 127.0.0.1 port 45384 ssh2 [preauth]",
+    "_PID": "787",
+    "_SELINUX_CONTEXT": "system_u:system_r:init_t:s0"
+  },
+  {
+    "MESSAGE": "Accepted key ED25519 SHA256:utNe2rvae1nFakkxZDYKykJIRH9BLpzdXwMzqK8S7z8 found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1",
+    "_PID": "787",
+    "_SELINUX_CONTEXT": "system_u:system_r:init_t:s0"
+  },
+  {
+    "MESSAGE": "pam_lyra_ordinary_ssh_fixture(sshd:account): Experimental ordinary SSH admission rejected account",
+    "_PID": "787",
+    "_SELINUX_CONTEXT": "system_u:system_r:sshd_session_t:s0-s0:c0.c1023"
+  },
+  {
+    "MESSAGE": "Failed publickey for ordinaryuser from 127.0.0.1 port 45384 ssh2: ED25519 SHA256:utNe2rvae1nFakkxZDYKykJIRH9BLpzdXwMzqK8S7z8",
+    "_PID": "787",
+    "_SELINUX_CONTEXT": "system_u:system_r:sshd_session_t:s0-s0:c0.c1023"
+  },
+  {
+    "MESSAGE": "Access denied for user ordinaryuser by PAM account configuration [preauth]",
+    "_PID": "787",
+    "_SELINUX_CONTEXT": "system_u:system_r:sshd_session_t:s0-s0:c0.c1023"
+  },
+  {
+    "MESSAGE": "Stopping [systemd-run] /usr/sbin/sshd -D -e -f /etc/ssh/lyra-login-adapters.conf...",
+    "_PID": "1",
+    "_SELINUX_CONTEXT": "system_u:system_r:init_t:s0"
+  },
+  {
+    "MESSAGE": "Received signal 15; terminating.",
+    "_PID": "675",
+    "_SELINUX_CONTEXT": "system_u:system_r:init_t:s0"
+  },
+  {
+    "MESSAGE": "lyra-login-adapters-sshd.service: Deactivated successfully.",
+    "_PID": "1",
+    "_SELINUX_CONTEXT": "system_u:system_r:init_t:s0"
+  },
+  {
+    "MESSAGE": "Stopped [systemd-run] /usr/sbin/sshd -D -e -f /etc/ssh/lyra-login-adapters.conf.",
+    "_PID": "1",
+    "_SELINUX_CONTEXT": "system_u:system_r:init_t:s0"
+  }
+]

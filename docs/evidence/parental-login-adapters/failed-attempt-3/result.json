@@ -1,0 +1,700 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "name": "baseline-ordinary-1000",
+      "passed": true,
+      "unit": {
+        "MainPID": "2285",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-ordinary-1002",
+      "passed": true,
+      "unit": {
+        "MainPID": "2341",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-target-ssh",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n1002\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": "",
+      "rejection": null
+    },
+    {
+      "name": "baseline-peer-ssh",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n1000\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": "",
+      "rejection": null
+    },
+    {
+      "name": "baseline-target-no-shell-tunnel",
+      "passed": true,
+      "forwarded": true
+    },
+    {
+      "name": "baseline-peer-no-shell-tunnel",
+      "passed": true,
+      "forwarded": true
+    },
+    {
+      "name": "baseline-target-gdm-password",
+      "passed": true,
+      "processes": [
+        {
+          "pid": 2805,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-24.scope"
+          ],
+          "comm": "manager-session",
+          "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+        }
+      ],
+      "rejection": null,
+      "events": [
+        {
+          "event": "connected",
+          "uid": 476
+        },
+        {
+          "event": "method",
+          "method": "SelectSession"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "ConversationStarted"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "DefaultLanguageNameChanged"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "DefaultSessionNameChanged"
+        },
+        {
+          "event": "method",
+          "method": "BeginVerificationForUser"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "SecretInfoQuery"
+        },
+        {
+          "event": "password-prompt"
+        },
+        {
+          "event": "method",
+          "method": "AnswerQuery"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.UserVerifier",
+          "name": "VerificationComplete"
+        },
+        {
+          "event": "signal",
+          "interface": "org.gnome.DisplayManager.Greeter",
+          "name": "SessionOpened"
+        },
+        {
+          "event": "method",
+          "method": "StartSessionWhenReady"
+        }
+      ],
+      "worker_pid": 2783
+    },
+    {
+      "name": "target-admitted-roots-and-payloads-inventoried",
+      "passed": true,
+      "processes": [
+        {
+          "pid": 2341,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/init.scope"
+          ],
+          "comm": "systemd"
+        },
+        {
+          "pid": 2352,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/init.scope"
+          ],
+          "comm": "(sd-pam)"
+        },
+        {
+          "pid": 2609,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-19.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2676,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-19.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2724,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-21.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2727,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-21.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2728,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-21.scope"
+          ],
+          "comm": "sleep"
+        },
+        {
+          "pid": 2772,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-23.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2775,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-23.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2783,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-24.scope"
+          ],
+          "comm": "gdm-session-wor"
+        },
+        {
+          "pid": 2797,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-24.scope"
+          ],
+          "comm": "gdm-wayland-ses"
+        },
+        {
+          "pid": 2802,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/session.slice/dbus-broker.service"
+          ],
+          "comm": "dbus-broker-lau"
+        },
+        {
+          "pid": 2803,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/session.slice/dbus-broker.service"
+          ],
+          "comm": "dbus-broker"
+        },
+        {
+          "pid": 2805,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-24.scope"
+          ],
+          "comm": "manager-session"
+        }
+      ],
+      "gdm_worker_pid": 2783,
+      "pidfds": 15
+    },
+    {
+      "name": "old-multiplex-survives-admission-withdrawal",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_MUX_COMMAND\n",
+      "stderr": "",
+      "rejection": null
+    },
+    {
+      "name": "withdrawal-alone-keeps-existing-ssh-and-gdm",
+      "passed": true,
+      "target_processes": [
+        {
+          "pid": 2341,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/init.scope"
+          ],
+          "comm": "systemd"
+        },
+        {
+          "pid": 2352,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/init.scope"
+          ],
+          "comm": "(sd-pam)"
+        },
+        {
+          "pid": 2609,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-19.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2676,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-19.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2724,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-21.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2727,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-21.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2728,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-21.scope"
+          ],
+          "comm": "sleep"
+        },
+        {
+          "pid": 2772,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-23.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2775,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-23.scope"
+          ],
+          "comm": "sshd-session"
+        },
+        {
+          "pid": 2783,
+          "uids": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-24.scope"
+          ],
+          "comm": "gdm-session-wor"
+        },
+        {
+          "pid": 2797,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-24.scope"
+          ],
+          "comm": "gdm-wayland-ses"
+        },
+        {
+          "pid": 2802,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/session.slice/dbus-broker.service"
+          ],
+          "comm": "dbus-broker-lau"
+        },
+        {
+          "pid": 2803,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/user@1002.service/session.slice/dbus-broker.service"
+          ],
+          "comm": "dbus-broker"
+        },
+        {
+          "pid": 2805,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroup": [
+            "/user.slice/user-1002.slice/session-24.scope"
+          ],
+          "comm": "manager-session"
+        }
+      ]
+    },
+    {
+      "name": "denied-login-revocation-has-no-session-effect",
+      "passed": true
+    },
+    {
+      "name": "changed-ssh-stack-prevents-revocation",
+      "passed": true
+    },
+    {
+      "name": "native-target-ssh-and-gdm-revoked-peer-and-daemons-preserved",
+      "passed": true,
+      "target_processes": [],
+      "pidfds_exited": 15,
+      "gdm_worker_exited": true,
+      "ssh_listener_pid": "2254",
+      "gdm_pid": "2268",
+      "peer_forwarded": true
+    },
+    {
+      "name": "gdm-idempotent-revoke-retains-negative-authority",
+      "passed": true
+    },
+    {
+      "name": "new-target-ssh-denied",
+      "passed": true,
+      "rc": 255,
+      "stdout": "",
+      "stderr": "Connection closed by 127.0.0.1 port 22\n",
+      "rejection": "Connection from 127.0.0.1 port 60516 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\nPostponed publickey for ordinaryuser from 127.0.0.1 port 60516 ssh2 [preauth]\nAccepted key ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\npam_lyra_ordinary_ssh_fixture(sshd:account): Experimental ordinary SSH admission rejected account\nFailed publickey for ordinaryuser from 127.0.0.1 port 60516 ssh2: ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA\nAccess denied for user ordinaryuser by PAM account configuration [preauth]\n"
+    },
+    {
+      "name": "new-sftp-denied",
+      "passed": true,
+      "rc": 255,
+      "stdout": "",
+      "stderr": "Connection closed by 127.0.0.1 port 22\nConnection closed\n",
+      "rejection": "Connection from 127.0.0.1 port 60524 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\nPostponed publickey for ordinaryuser from 127.0.0.1 port 60524 ssh2 [preauth]\nAccepted key ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\npam_lyra_ordinary_ssh_fixture(sshd:account): Experimental ordinary SSH admission rejected account\nFailed publickey for ordinaryuser from 127.0.0.1 port 60524 ssh2: ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA\nAccess denied for user ordinaryuser by PAM account configuration [preauth]\n"
+    },
+    {
+      "name": "new-target-no-shell-tunnel-denied",
+      "passed": true,
+      "rc": 255,
+      "forwarded": false,
+      "rejection": "Connection from 127.0.0.1 port 60534 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\nPostponed publickey for ordinaryuser from 127.0.0.1 port 60534 ssh2 [preauth]\nAccepted key ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\npam_lyra_ordinary_ssh_fixture(sshd:account): Experimental ordinary SSH admission rejected account\nFailed publickey for ordinaryuser from 127.0.0.1 port 60534 ssh2: ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA\nAccess denied for user ordinaryuser by PAM account configuration [preauth]\n"
+    },
+    {
+      "name": "old-multiplex-cannot-create-new-channel",
+      "passed": true,
+      "rc": 255,
+      "stdout": "",
+      "stderr": "Connection closed by 127.0.0.1 port 22\n",
+      "rejection": "Connection from 127.0.0.1 port 60540 on 127.0.0.1 port 22 rdomain \"\"\nAccepted key ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\nPostponed publickey for ordinaryuser from 127.0.0.1 port 60540 ssh2 [preauth]\nAccepted key ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA found at /etc/ssh/lyra-login-adapters-keys/ordinaryuser:1\npam_lyra_ordinary_ssh_fixture(sshd:account): Experimental ordinary SSH admission rejected account\nFailed publickey for ordinaryuser from 127.0.0.1 port 60540 ssh2: ED25519 SHA256:TOiiGM3bwIxxmUPSK0V/bZjdUj5vFhZtLMTVqqU0yFA\nAccess denied for user ordinaryuser by PAM account configuration [preauth]\n"
+    },
+    {
+      "name": "peer-new-ssh-preserved",
+      "passed": true,
+      "rc": 0,
+      "stdout": "LYRA_ENTRY_OK\n1000\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n",
+      "stderr": "",
+      "rejection": null
+    }
+  ],
+  "error": "('client closed', [], b'Traceback (most recent call last):\\n  File \"<string>\", line 5, in <module>\\n    connection=Gio.DBusConnection.new_for_address_sync(address,Gio.DBusConnectionFlags.AUTHENTICATION_CLIENT,None,None)\\ngi.repository.GLib.GError: g-io-error-quark: Could not connect: No such file or directory (1)\\n')",
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "native.py": "f8d4fc9172f4d1059d8fe907c1aa63f7ee5a64194748afb2896c7d2c9c96c459",
+      "common.py": "85835e68525fd47c335e99351f59cbc53cfcdc9fa0510c2238538ec13edb3068",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "cleanup.py": "85c03493d1c404c9064b4c98fd140a212ac4a77cfc73711eb5ad2b72e7211a39",
+      "restore-check.py": "02684e1688b52b05ccf94c4df64a053962b7ff923de8dc63aa503299099dbc04",
+      "login-adapters.py": "035bfef874450c91e61d0343ba579691f2346374a9384e139916130e9b4a2b48",
+      "login-common.py": "fd1b771993e7edc7170afb4690e78d24791421a54f816dde2c2915771e10a004",
+      "routes.py": "b29f149f77d389dfcab0404b2e75f7b1650ae38fdbdfdbf7e6efe507b5cd7664",
+      "ssh-ordinary-guard.c": "20aafa6e6a638a3eb4b49295d26ba600efa3b9063ba2635ff21146116439a912",
+      "password-client.py": "1a745d8e2baa5c712570006337376a3bc314fefecb7b77facb5a2c0d65b88497",
+      "manager-session.c": "1fa5c0150c566cc51191b8af0bea7507a85f9b2707efac65c276bf710451742a",
+      "lyra-login-state.cil": "b15cd515d79076a066e4dcbb291a0d21f1ee64a980c0e6ad7c2bac02bac9cc6c",
+      "lyra-registry-gdm.cil": "c131eca08fd60bc6493b8a34348d155b1f91f43c0526e59f1258c467b72c55eb"
+    },
+    "login_paths": {
+      "/etc/pam.d/sshd": {
+        "present": false,
+        "backup": "0"
+      },
+      "/etc/pam.d/gdm-password": {
+        "present": false,
+        "backup": "1"
+      },
+      "/etc/gdm/custom.conf": {
+        "present": true,
+        "backup": "2",
+        "sha256": "3ed512f4b5039819585e6797e13387609711c61d2478c7809468f8a67113f7ff",
+        "mode": 420,
+        "uid": 0,
+        "gid": 0,
+        "label": "73797374656d5f753a6f626a6563745f723a78646d5f6574635f743a733000"
+      },
+      "/etc/shadow": {
+        "present": true,
+        "backup": "3",
+        "sha256": "d7caf90768717c5e669c894e3fae80b48b230211431f6ed7156dad3a3cd6fb23",
+        "mode": 416,
+        "uid": 0,
+        "gid": 15,
+        "label": "73797374656d5f753a6f626a6563745f723a736861646f775f743a733000"
+      },
+      "/usr/libexec/gdm/gdm-session-worker": {
+        "present": true,
+        "backup": "4",
+        "sha256": "40e1387811b74adcde44b8a34f03db1d032190867e1c5f4092bb9aa1362fdab8",
+        "mode": 493,
+        "uid": 0,
+        "gid": 0,
+        "label": "73797374656d5f753a6f626a6563745f723a62696e5f743a733000"
+      },
+      "/usr/libexec/gdm/gdm-wayland-session": {
+        "present": true,
+        "backup": "5",
+        "sha256": "7c232dfb37f514684e83e63513fe4827efaee6993398fb44e57e1dbaca459f54",
+        "mode": 493,
+        "uid": 0,
+        "gid": 0,
+        "label": "73797374656d5f753a6f626a6563745f723a62696e5f743a733000"
+      },
+      "/usr/share/wayland-sessions/gnome.desktop": {
+        "present": true,
+        "backup": "6",
+        "sha256": "89a27763e9be97e60b091db9a44592642932c6e7d18e398f57f22a1a5937d7e4",
+        "mode": 420,
+        "uid": 0,
+        "gid": 0,
+        "label": "73797374656d5f753a6f626a6563745f723a7573725f743a733000"
+      },
+      "/usr/share/wayland-sessions/gnome-wayland.desktop": {
+        "present": true,
+        "backup": "7",
+        "sha256": "ae0cc6ae8c2c365d8531f730053e14cb63d7cdc45ba4cb7160ec2f4aae30b9a5",
+        "mode": 420,
+        "uid": 0,
+        "gid": 0,
+        "label": "73797374656d5f753a6f626a6563745f723a7573725f743a733000"
+      },
+      "/var/lib/AccountsService/users/ordinaryuser": {
+        "present": false,
+        "backup": "8"
+      },
+      "/var/lib/AccountsService/users/installeduser": {
+        "present": false,
+        "backup": "9"
+      }
+    },
+    "accounts_active": false,
+    "login_vendor_sha256": {
+      "/usr/lib/pam.d/sshd": "a5250dc12be1db2f035aefca45789f3c1e0e744ba5e28b5dde540ac8e72deea0",
+      "/usr/lib/pam.d/gdm-password": "4ae388063f9c0329a93f993c961851bba959562d104af30d41fabd2014f8dfee"
+    },
+    "diagnostic_worker_sha256": "92a976fc0e375cd41d1a9330c650241081fd09278d464662a435200cc296704f",
+    "gdm_uid": 476
+  },
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "full_account_protection": false,
+  "whole_classification_qualified": false,
+  "all_producer_quiescence": false,
+  "real_nss_mutations_tested": false,
+  "production_adapters_qualified": false,
+  "monotonic_revision_qualified": false,
+  "power_loss_tested": false,
+  "full_gnome_session_tested": false,
+  "official_gdm_worker_qualified": false,
+  "all_gdm_routes_qualified": false,
+  "pending_authentication_tested": false
+}

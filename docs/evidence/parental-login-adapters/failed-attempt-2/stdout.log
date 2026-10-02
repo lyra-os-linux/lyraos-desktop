@@ -1,0 +1,7 @@
+{"name": "baseline-ordinary-1000", "passed": true, "unit": {"MainPID": "1281", "ExecMainStatus": "0", "ActiveState": "active"}, "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"}
+{"name": "baseline-ordinary-1002", "passed": true, "unit": {"MainPID": "1350", "ExecMainStatus": "0", "ActiveState": "active"}, "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"}
+{"name": "baseline-target-ssh", "passed": true, "rc": 0, "stdout": "LYRA_ENTRY_OK\n1002\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n", "stderr": "", "rejection": null}
+{"name": "baseline-peer-ssh", "passed": true, "rc": 0, "stdout": "LYRA_ENTRY_OK\n1000\nunconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023\n", "stderr": "", "rejection": null}
+{"name": "baseline-target-no-shell-tunnel", "passed": true, "forwarded": true}
+{"name": "baseline-peer-no-shell-tunnel", "passed": true, "forwarded": true}
+{"passed": false, "checks": 6, "cleanup_rc": 0}

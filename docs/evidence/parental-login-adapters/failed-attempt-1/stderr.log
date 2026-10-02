@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/root/login-adapters/native.py", line 92, in <module>
+    remote('ordinaryuser',True,'baseline-target-ssh');remote('installeduser',True,'baseline-peer-ssh')
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/login-adapters/routes.py", line 21, in remote
+    assert (r['rc']==0 and 'LYRA_ENTRY_OK' in r['stdout'])==allowed,r
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'rc': 255, 'stdout': '', 'stderr': 'Connection closed by 127.0.0.1 port 22\n'}

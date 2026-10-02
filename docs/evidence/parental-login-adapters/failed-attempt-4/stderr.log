@@ -1,0 +1,411 @@
+Traceback (most recent call last):
+  File "/root/login-adapters/native.py", line 140, in <module>
+    gdm_login('ordinaryuser',passwords['ordinaryuser'],False,'new-target-gdm-password-denied')
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/login-adapters/routes.py", line 124, in gdm_login
+    assert address,log
+           ^^^^^^^
+AssertionError: /etc/vconsole.conf not available
+Keyboard layout could not be set
+Gdm: Enabling debugging
+Gdm: Changing user:group to gdm:gdm
+Gdm: Successfully connected to D-Bus
+Gdm: GdmManager: GDM starting to manage displays
+Gdm: Could not ping plymouth: Failed to execute child process “plymouth” (No such file or directory)
+Gdm: GdmLocalDisplayFactory: enumerating seats from logind
+Gdm: GdmLocalDisplayFactory: display for seat seat0 requested
+Gdm: GdmLocalDisplayFactory: Checking if udev has settled enough to support graphics.
+GLib: g_str_has_prefix: assertion 'str != NULL' failed
+Gdm: GdmLocalDisplayFactory: Found primary PCI graphics adapter, proceeding.
+Gdm: GdmLocalDisplayFactory: udev has settled enough for graphics.
+Gdm: GdmLocalDisplayFactory: System supports graphics
+Gdm: GdmLocalDisplayFactory: Getting session type (prefers wayland, falling back: no)
+Gdm: GdmLocalDisplayFactory: New displays on seat0 will use wayland
+Gdm: GdmLocalDisplayFactory: wayland login display for seat seat0 requested
+Gdm: GdmLocalDisplayFactory: Adding display on seat seat0
+Gdm: GdmDisplay: id: (null)
+Gdm: GdmDisplay: seat id: (null)
+Gdm: GdmDisplay: session class: greeter
+Gdm: GdmDisplay: initial: no
+Gdm: GdmDisplay: allow timed login: yes
+Gdm: GdmDisplay: local: yes
+Gdm: GdmDisplay: supported session types: (null)
+Gdm: GdmDisplay: session type: wayland
+Gdm: GdmDisplay: supported session types: wayland
+Gdm: GdmDisplay: seat id: seat0
+Gdm: GdmDisplay: initial: yes
+Gdm: GdmDisplayStore: Adding display /org/gnome/DisplayManager/Displays/93894576280144 to store
+Gdm: GdmDisplay: Managing display: /org/gnome/DisplayManager/Displays/93894576280144
+Gdm: GdmDisplay: Preparing display: /org/gnome/DisplayManager/Displays/93894576280144
+Gdm: doing initial setup? no
+Gdm: GdmDisplay: prepare display
+Gdm: GdmDisplay: Got automatic login details for display: 0
+Gdm: GdmDBusUtils: Registered DBus error domain 'gdm-session-worker-error-quark'
+GLib: setenv()/putenv() are not thread-safe and should not be used after threads are created
+Gdm: GdmSession: Creating D-Bus server for worker for session
+Gdm: GdmSession: D-Bus server for workers listening on unix:path=/run/gdm/dbus/dbus-esDlc9wB
+Gdm: GdmSession: Creating D-Bus server for greeters and such for session (null) (0x556588de2380)
+Gdm: GdmSession: D-Bus server for greeters listening on unix:path=/run/gdm/dbus/dbus-jBcc3ugE
+Gdm: GdmSession: Setting display device: (null)
+Gdm: GdmSession: Created user session for user 476 on display /org/gnome/DisplayManager/Displays/93894576280144 (seat seat0)
+Gdm: GdmDisplay: Running greeter
+Gdm: GdmDisplay: Creating greeter for (null) (null)
+Gdm: GdmLaunchEnvironment: Starting...
+Gdm: GdmLaunchEnvironment: Setting up run time dir /run/gdm/greeter
+GLib: setenv()/putenv() are not thread-safe and should not be used after threads are created
+Gdm: GdmSession: Creating D-Bus server for worker for session
+Gdm: GdmSession: D-Bus server for workers listening on unix:path=/run/gdm/dbus/dbus-ncDXnOWb
+Gdm: GdmSession: Creating D-Bus server for greeters and such for session (null) (0x556588de8000)
+Gdm: GdmSession: D-Bus server for greeters listening on unix:path=/run/gdm/dbus/dbus-kSj7vR62
+Gdm: GdmSession: Setting display device: (null)
+Gdm: GdmSession: starting conversation gdm-launch-environment for session (0x556588de8000)
+Gdm: GdmSessionWorkerJob: Starting worker...
+Gdm: GdmSessionWorkerJob: Running session_worker_job process: gdm-session-worker [pam/gdm-launch-environment] /usr/libexec/gdm/gdm-session-worker
+Gdm: GdmSessionWorkerJob: : SessionWorkerJob on pid 3585
+Gdm: GdmSession: setting session to type 'wayland'
+Gdm: GdmLocalDisplayFactory: display status changed: 1
+Gdm: GdmLocalDisplayFactory: received VT change event
+Gdm: GdmLocalDisplayFactory: VT is 1 at startup
+Gdm: Enabling debugging
+Gdm: GdmSessionWorker: connecting to address: unix:path=/run/gdm/dbus/dbus-ncDXnOWb
+Gdm: GdmDBusServer: new connection 0x7f86f8000b70
+Gdm: GdmSession: Handling new connection from worker
+Gdm: GdmSession: Authenticating new connection
+Gdm: GdmSession: worker connection is 0x7f86f8000b70
+Gdm: GdmSession: Emitting conversation-started signal
+Gdm: GdmSession: Beginning initialization
+Gdm: GdmSession: Conversation started
+Gdm: GdmSessionWorker: attempting to change state to SETUP_COMPLETE
+Gdm: GdmSessionWorker: initializing PAM; service=gdm-launch-environment username=gdm seat=seat0
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SEAT=seat0'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SESSION_CLASS=greeter'
+Gdm: GdmSessionWorker: state SETUP_COMPLETE
+Gdm: GdmSessionWorker: attempting to change state to AUTHENTICATED
+Gdm: GdmSessionWorker: authenticating user gdm
+Gdm: GdmSessionWorker: state AUTHENTICATED
+Gdm: GdmSessionWorker: attempting to change state to AUTHORIZED
+Gdm: GdmSessionWorker: determining if authenticated user (password required:0) is authorized to session
+Gdm: GdmSessionWorker: state AUTHORIZED
+Gdm: GdmSessionWorker: attempting to change state to ACCREDITED
+Gdm: GdmSessionWorker: Set PAM environment variable: 'LOGNAME=gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'USER=gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'USERNAME=gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'HOME=/var/lib/gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'PWD=/var/lib/gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'SHELL=/usr/sbin/nologin'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
+Gdm: GdmSessionWorker: state ACCREDITED
+Gdm: GdmSession: type wayland, program? yes, seat seat0
+Gdm: GdmSessionWorker: session display mode set to new-vt
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SESSION_TYPE=wayland'
+Gdm: GdmSessionWorker: attempting to change state to ACCOUNT_DETAILS_SAVED
+Gdm: GdmSessionWorker: saving account details for user gdm
+Gdm: GdmSessionWorker: attempting to change state to SESSION_OPENED
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_VTNR=1'
+pam_unix(gdm-launch-environment:session): session opened for user gdm(uid=476) by (uid=0)
+Gdm: GdmSessionWorker: state SESSION_OPENED
+Gdm: GdmSession: Emitting 'session-opened' signal
+Gdm: GdmDisplay: Greeter session opened
+Gdm: GdmDisplay: session id: c4
+Gdm: GdmSession: Stopping all conversations except for gdm-launch-environment
+Gdm: GdmSession: type wayland, program? yes, seat seat0
+Gdm: GdmSession: getting session command for file 'gnome.desktop'
+Gdm: GdmSession: 'gnome.desktop' does not register self
+Gdm: GdmSession: type wayland, program? yes, seat seat0
+Gdm: GdmSessionWorker: Set PAM environment variable: 'DCONF_PROFILE=gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'GDM_SUPPORTED_SESSION_TYPES=wayland'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'GIO_USE_VFS=local'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_CURRENT_DESKTOP=GNOME-Greeter:GNOME'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'USER=gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'SHELL=/usr/sbin/nologin'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'GVFS_REMOTE_VOLUME_MONITOR_IGNORE=1'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'USERNAME=gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'LOGNAME=gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XAUTHLOCALHOSTNAME=lyra-virtualization-fixture'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'PWD=/var/lib/gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_DATA_DIRS=/usr/share/gdm/greeter:/usr/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'LANG=C.UTF-8'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'GDM_SEAT_ID=seat0'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'RUNNING_UNDER_GDM=true'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'HOME=/var/lib/gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'GDM_VERSION=48.0'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'GNOME_SHELL_SESSION_MODE=gdm'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'GDM_LANG=C.UTF-8'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'GVFS_DISABLE_FUSE=1'
+Gdm: GdmSessionWorker: start program: /usr/libexec/gdm/gdm-wayland-session --register-session "dbus-run-session -- gnome-session --autostart /usr/share/gdm/greeter/autostart --debug"
+Gdm: GdmSessionWorker: attempting to change state to SESSION_STARTED
+Gdm: GdmSessionWorker: opening session for program '/usr/libexec/gdm/gdm-wayland-session'
+Gdm: GdmSessionWorker: jumping to VT 1
+Gdm: GdmSessionWorker: first setting graphics mode to prevent flicker
+Gdm: GdmSessionWorker: active VT is tty1, setting VT_AUTO + KD_TEXT
+Gdm: GdmSessionWorker: VT mode did need to be fixed
+Gdm: GdmSessionWorker: session opened creating reply...
+Gdm: GdmSessionWorker: state SESSION_STARTED
+Gdm: GdmSession worker: watching pid 3607
+Gdm: GdmSession: Emitting 'session-started' signal with pid '3607'
+Gdm: GdmDisplay: Greeter started
+Gdm: GdmManager: trying to register new display
+Gdm: GdmCommon: Found session c4 for PID 3607, using
+Gdm: GdmLocalDisplayFactory: display status changed: 2
+Gdm: GdmCommon: Found session c4 for PID 3634, using
+Gdm: GdmManager: trying to register new session on display 0x556588dd9250
+Gdm: GdmDisplay: session registered: yes
+Gdm: GdmLocalDisplayFactory: session registered on display, looking for any background displays to kill
+Gdm: GdmManager: trying to open new session
+Gdm: GdmCommon: Found session c4 for PID 3634, using
+Gdm: GdmSession: Considering session (null) for username (null)
+Gdm: GdmDBusServer: new connection 0x7f86f8001d00
+Gdm: GdmSession: Handling new connection from outside
+Gdm: GdmManager: client with pid 3634 connected
+Gdm: GdmDisplay: Got timed login details for display: 0
+Gdm: GdmDBusServer: new connection 0x7f86f8002a30
+Gdm: GdmSession: Handling new connection from outside
+Gdm: GdmManager: client with pid 4078 connected
+Gdm: GdmDisplay: Got timed login details for display: 0
+Gdm: GdmSession: selecting session 'gnome'
+Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes
+Gdm: GdmSession: setting session to type 'wayland'
+Gdm: GdmSession: starting conversation gdm-password for session (0x556588de2380)
+Gdm: GdmSessionWorkerJob: Starting worker...
+Gdm: GdmSessionWorkerJob: Running session_worker_job process: gdm-session-worker [pam/gdm-password] /usr/libexec/gdm/gdm-session-worker
+Gdm: GdmSessionWorkerJob: : SessionWorkerJob on pid 4082
+Gdm: Enabling debugging
+Gdm: GdmSessionWorker: connecting to address: unix:path=/run/gdm/dbus/dbus-esDlc9wB
+Gdm: GdmDBusServer: new connection 0x7f86f4000b70
+Gdm: GdmSession: Handling new connection from worker
+Gdm: GdmSession: Authenticating new connection
+Gdm: GdmSession: worker connection is 0x7f86f4000b70
+Gdm: GdmSession: Emitting conversation-started signal
+Gdm: GdmManager: session conversation started for service gdm-password on session
+Gdm: GdmManager: ignoring session conversation since its not automatic login conversation
+Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes
+Gdm: GdmSession: Set up service gdm-password for username ordinaryuser on session (0x556588de2380)
+Gdm: GdmSession: selecting user 'ordinaryuser' for session '(null)' (0x556588de2380)
+Gdm: GdmSession: Beginning initialization
+Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes
+Gdm: GdmSession: getting session command for file 'gnome.desktop'
+Gdm: GdmSession: Conversation started
+accountsservice: ActUserManager: trying to track new user with username ordinaryuser
+accountsservice: ActUserManager: finding user 'ordinaryuser' state 1
+accountsservice: ActUserManager: waiting for user manager to load before finding user 'ordinaryuser'
+accountsservice: Finding a graphical session for user 0
+accountsservice: Failed to identify the current session
+accountsservice: ActUserManager: seat unloaded, so trying to set loaded property
+accountsservice: ActUserManager: Seat wouldn't load, so giving up on it and setting loaded property
+accountsservice: ActUserManager: user manager now loaded, proceeding with fetch user request for user 'ordinaryuser'
+accountsservice: ActUserManager: finding user 'ordinaryuser' state 2
+accountsservice: ActUserManager: Looking for user 'ordinaryuser' in accounts service
+accountsservice: ActUserManager: already loaded, so not setting loaded property
+accountsservice: ActUserManager: Found object path of user 'ordinaryuser': /org/freedesktop/Accounts/User1002
+accountsservice: ActUserManager: finding user 'ordinaryuser' state 3
+accountsservice: ActUserManager: user 'ordinaryuser' fetched
+accountsservice: ActUserManager: user ordinaryuser is now loaded
+accountsservice: ActUserManager: user ordinaryuser was not yet known, adding it
+accountsservice: ActUserManager: tracking user 'ordinaryuser'
+accountsservice: ActUserManager: not yet loaded, so not emitting user-added signal
+accountsservice: ActUserManager: no pending users, trying to set loaded property
+accountsservice: ActUserManager: already loaded, so not setting loaded property
+Gdm: GdmSessionSettings: saved session is  (type )
+Gdm: GdmSessionSettings: saved language is
+Gdm: GdmSessionWorker: queuing setup for user: ordinaryuser (null)
+accountsservice: ActUserManager: finished handling request for user 'ordinaryuser'
+accountsservice: ActUserManager: unrefing manager owned by fetch user request
+Gdm: GdmSessionWorker: attempting to change state to SETUP_COMPLETE
+Gdm: GdmSessionWorker: initializing PAM; service=gdm-password username=ordinaryuser seat=seat0
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SEAT=seat0'
+Gdm: GdmSessionWorker: state SETUP_COMPLETE
+Gdm: GdmSessionWorker: attempting to change state to AUTHENTICATED
+Gdm: GdmSessionWorker: authenticating user ordinaryuser
+Gdm: GdmSessionWorker: 1 new messages received from PAM
+Gdm: GdmSessionWorker: username is 'ordinaryuser'
+Gdm: GdmSessionWorker: old-username='ordinaryuser' new-username='ordinaryuser'
+Gdm: GdmSessionWorker: received pam message of type 1 with payload 'Password: '
+Gdm: GdmSessionWorker: trying to get updated username
+Gdm: GdmSessionWorker: PAM conversation returning 0: Success
+Gdm: GdmSessionWorker: state AUTHENTICATED
+Gdm: GdmSessionWorker: trying to get updated username
+Gdm: GdmSessionWorker: username is 'ordinaryuser'
+Gdm: GdmSessionWorker: old-username='ordinaryuser' new-username='ordinaryuser'
+Gdm: GdmSessionWorker: attempting to change state to AUTHORIZED
+Gdm: GdmSessionWorker: determining if authenticated user (password required:0) is authorized to session
+Gdm: GdmSessionWorker: state AUTHORIZED
+Gdm: GdmSessionWorker: attempting to change state to ACCREDITED
+Gdm: GdmSessionWorker: Set PAM environment variable: 'LOGNAME=ordinaryuser'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'USER=ordinaryuser'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'USERNAME=ordinaryuser'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'HOME=/home/ordinaryuser'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'PWD=/home/ordinaryuser'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'SHELL=/bin/bash'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin'
+Gdm: GdmSessionWorker: state ACCREDITED
+Gdm: GdmSession: type wayland, program? no, seat seat0
+Gdm: GdmSessionWorker: session display mode set to new-vt
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SESSION_TYPE=wayland'
+Gdm: GdmSessionWorker: attempting to change state to ACCOUNT_DETAILS_SAVED
+Gdm: GdmSessionWorker: saving account details for user ordinaryuser
+Gdm: GdmSessionWorker: attempting to change state to SESSION_OPENED
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_VTNR=2'
+pam_unix(gdm-password:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)
+Gdm: GdmSessionWorker: state SESSION_OPENED
+Gdm: GdmSession: Emitting 'session-opened' signal
+Gdm: GdmManager: Will start session when ready
+Gdm: GdmManager: start or jump to session
+Gdm: GdmSession: Ignoring session (null) as requested
+Gdm: GdmManager: no matching sessions found
+Gdm: GdmManager: migrated: 0
+Gdm: GdmSession: type wayland, program? no, seat seat0
+Gdm: GdmManager: session has its display server, reusing our server for another login screen
+GLib: setenv()/putenv() are not thread-safe and should not be used after threads are created
+Gdm: GdmSession: Creating D-Bus server for worker for session
+Gdm: GdmSession: D-Bus server for workers listening on unix:path=/run/gdm/dbus/dbus-eSgWpmu6
+Gdm: GdmSession: Creating D-Bus server for greeters and such for session (null) (0x556588e02f00)
+Gdm: GdmSession: D-Bus server for greeters listening on unix:path=/run/gdm/dbus/dbus-K9rPml2l
+Gdm: GdmSession: Setting display device: (null)
+Gdm: GdmSession: Created user session for user 476 on display /org/gnome/DisplayManager/Displays/93894576280144 (seat seat0)
+Gdm: GdmDisplay: id: (null)
+Gdm: GdmDisplay: seat id: (null)
+Gdm: GdmDisplay: session class: greeter
+Gdm: GdmDisplay: initial: no
+Gdm: GdmDisplay: allow timed login: yes
+Gdm: GdmDisplay: local: yes
+Gdm: GdmDisplay: supported session types: (null)
+Gdm: GdmDisplay: session class: user
+Gdm: GdmDisplay: seat id: seat0
+Gdm: GdmDisplay: session id: 36
+Gdm: GdmDisplayStore: Adding display /org/gnome/DisplayManager/Displays/93894576465536 to store
+Gdm: GdmSession: Stopping all conversations except for gdm-password
+Gdm: GdmSession: type wayland, program? no, seat seat0
+Gdm: GdmSession: 'gnome.desktop' does not register self
+Gdm: GdmSession: getting session command for file 'gnome.desktop'
+Gdm: GdmSession: checking if file 'gnome.desktop' is wayland session: yes
+Gdm: GdmSession: Session (null) bypasses Xsession wrapper script
+Gdm: GdmSession: getting desktop names for file 'gnome.desktop'
+Gdm: GdmSession: type wayland, program? no, seat seat0
+Gdm: GdmSessionWorker: Set PAM environment variable: 'LANG=C.UTF-8'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_CURRENT_DESKTOP=LYRA'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'GDMSESSION=gnome'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'GDM_LANG=C.UTF-8'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XAUTHLOCALHOSTNAME=lyra-virtualization-fixture'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'DESKTOP_SESSION=gnome'
+Gdm: GdmSessionWorker: Set PAM environment variable: 'XDG_SESSION_DESKTOP=gnome'
+Gdm: GdmSessionWorker: start program: /usr/libexec/gdm/gdm-wayland-session --register-session "/opt/lyra-parental-probe/manager-session"
+Gdm: GdmSessionWorker: attempting to change state to SESSION_STARTED
+Gdm: GdmSessionWorker: opening user session with program '/usr/libexec/gdm/gdm-wayland-session'
+Gdm: GdmSessionWorker: jumping to VT 2
+Gdm: GdmSessionWorker: first setting graphics mode to prevent flicker
+Gdm: GdmSessionWorker: active VT is tty1, setting VT_AUTO + KD_TEXT
+Gdm: GdmSessionWorker: VT mode did need to be fixed
+Gdm: Trying script /etc/gdm/PostLogin
+Gdm: script /etc/gdm/PostLogin not found; skipping
+Gdm: Trying script /etc/gdm/PostLogin/Default
+Gdm: Running process: /etc/gdm/PostLogin/Default
+Gdm: Gdm: script environment: PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+Gdm: Gdm: script environment: LOGNAME=ordinaryuser
+Gdm: Gdm: script environment: USER=ordinaryuser
+Gdm: Gdm: script environment: USERNAME=ordinaryuser
+Gdm: Gdm: script environment: PWD=/home/ordinaryuser
+Gdm: Gdm: script environment: SHELL=/bin/bash
+Gdm: Gdm: script environment: RUNNING_UNDER_GDM=true
+Gdm: Gdm: script environment: GROUP=ordinaryuser
+Gdm: Gdm: script environment: XAUTHLOCALHOSTNAME=lyra-virtualization-fixture
+Gdm: Gdm: script environment: HOME=/home/ordinaryuser
+Gdm: Process exit status: 0
+Gdm: Trying script /etc/gdm/PreSession
+Gdm: script /etc/gdm/PreSession not found; skipping
+Gdm: Trying script /etc/gdm/PreSession/Default
+Gdm: Running process: /etc/gdm/PreSession/Default
+Gdm: Gdm: script environment: PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+Gdm: Gdm: script environment: LOGNAME=ordinaryuser
+Gdm: Gdm: script environment: USER=ordinaryuser
+Gdm: Gdm: script environment: USERNAME=ordinaryuser
+Gdm: Gdm: script environment: PWD=/home/ordinaryuser
+Gdm: Gdm: script environment: SHELL=/bin/bash
+Gdm: Gdm: script environment: RUNNING_UNDER_GDM=true
+Gdm: Gdm: script environment: GROUP=ordinaryuser
+Gdm: Gdm: script environment: XAUTHLOCALHOSTNAME=lyra-virtualization-fixture
+Gdm: Gdm: script environment: HOME=/home/ordinaryuser
+Gdm: GdmLocalDisplayFactory: received VT change event
+Gdm: GdmLocalDisplayFactory: VT changed from 1 to 2
+Gdm: GdmLocalDisplayFactory: VT of login window is 1
+Gdm: GdmLocalDisplayFactory: VT switched from login window
+Gdm: GdmLocalDisplayFactory: killing login window once its unused
+Gdm: GdmLocalDisplayFactory: display status changed: 3
+Gdm: GdmLocalDisplayFactory: active VT is not initial VT, so ignoring
+Gdm: Process exit status: 0
+Gdm: GdmSessionWorker: session opened creating reply...
+Gdm: GdmSessionWorker: state SESSION_STARTED
+Gdm: GdmSession worker: watching pid 4096
+Gdm: GdmSession: Emitting 'session-started' signal with pid '4096'
+Gdm: GdmManager: session started 4096
+Gdm: using ut_user ordinaryuser
+Gdm: Writing login record
+Gdm: using ut_type USER_PROCESS
+Gdm: using ut_tv time 1790962130
+Gdm: using ut_pid 4096
+Gdm: using ut_host login screen
+Gdm: using ut_line seat0
+Gdm: Writing wtmp session record to /var/log/wtmp
+Gdm: Adding or updating utmp record for login
+Gdm: GdmManager: trying to register new display
+Gdm: GdmCommon: Found session 36 for PID 4096, using
+Gdm: GdmSession: Setting display device: tty2
+Gdm: using ut_user ordinaryuser
+Gdm: Writing login record
+Gdm: using ut_type USER_PROCESS
+Gdm: using ut_tv time 1790962130
+Gdm: using ut_pid 4096
+Gdm: using ut_host tty2
+Gdm: using ut_line tty2
+Gdm: Writing wtmp session record to /var/log/wtmp
+Gdm: Adding or updating utmp record for login
+Gdm: GdmLocalDisplayFactory: display status changed: 2
+Gdm: GdmSession: external connection closed
+Gdm: GdmManager: client with pid 4078 disconnected
+Gdm: GdmCommon: sending signal 15 to process 4096
+Gdm: GdmCommon: process (pid:4096) done (signal:1)
+Gdm: GdmSessionWorker: uninitializing PAM
+pam_unix(gdm-password:session): session closed for user ordinaryuser
+Gdm: GdmSessionWorker: state NONE
+Gdm: GdmSessionWorker: jumping to VT 1
+Gdm: GdmSessionWorker: VT mode did not need to be fixed
+Gdm: GdmLocalDisplayFactory: received VT change event
+Gdm: GdmLocalDisplayFactory: VT changed from 2 to 1
+Gdm: GdmLocalDisplayFactory: VT of login window is 1
+Gdm: GdmLocalDisplayFactory: VT not switched from login window
+Gdm: GdmLocalDisplayFactory: active VT is not initial VT, so ignoring
+Gdm: GdmSessionWorker: couldn't finalize jump to VT 1: Interrupted system call
+Gdm: Worker finished
+Gdm: GdmSessionWorkerJob: child (pid:4082) done (status:0)
+Gdm: GdmSession: Worker job exited: 0
+Gdm: GdmManager: session exited with status 0
+Gdm: Writing logout record
+Gdm: using ut_type DEAD_PROCESS
+Gdm: using ut_tv time 1790962130
+Gdm: using ut_pid 4096
+Gdm: using ut_host tty2
+Gdm: using ut_line tty2
+Gdm: Writing wtmp logout record to /var/log/wtmp
+Gdm: Adding or updating utmp record for logout
+Gdm: GdmDisplay: Session never registered, failing
+Gdm: GdmLocalDisplayFactory: display status changed: 5
+Gdm: GdmLocalDisplayFactory: display for seat seat0 requested
+Gdm: GdmLocalDisplayFactory: display status changed: 2
+Gdm: GdmLocalDisplayFactory: session c4 found, activating.
+Gdm: GdmLocalDisplayFactory: display status changed: 4
+Gdm: GdmDisplay: finish display
+Gdm: GdmSession: Closing session
+Gdm: GdmSession: Stopping all conversations
+Gdm: GdmSession: Emitting conversation-stopped signal
+Gdm: GdmManager: session conversation 'gdm-password' stopped
+Gdm: Freeing conversation 'gdm-password' with active job
+Gdm: GdmSession: Disposing session
+Gdm: GdmSession: Closing session
+Gdm: GdmSession: Stopping all conversations
+Gdm: GdmDisplayStore: Unreffing display: 0x556588e06680
+Gdm: GdmCommon: Found session c4 for PID 3607, using
+Gdm: GdmManager: trying to register new session on display 0x556588dd9250
+Gdm: GdmDisplay: session registered: yes
+Gdm: GdmLocalDisplayFactory: session registered on display, looking for any background displays to kill
+Gdm: GdmLocalDisplayFactory: session registered on display, looking for any background displays to kill
+

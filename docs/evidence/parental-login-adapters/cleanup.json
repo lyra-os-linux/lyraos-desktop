@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "cleanup": [
+    {
+      "name": "stop-manager-parentaltest",
+      "passed": true
+    },
+    {
+      "name": "stop-runtime-parentaltest",
+      "passed": true
+    },
+    {
+      "name": "drain-logind-parentaltest",
+      "passed": true
+    },
+    {
+      "name": "stop-manager-ordinaryuser",
+      "passed": true
+    },
+    {
+      "name": "stop-runtime-ordinaryuser",
+      "passed": true
+    },
+    {
+      "name": "drain-logind-ordinaryuser",
+      "passed": true
+    },
+    {
+      "name": "stop-manager-installeduser",
+      "passed": true
+    },
+    {
+      "name": "stop-runtime-installeduser",
+      "passed": true
+    },
+    {
+      "name": "drain-logind-installeduser",
+      "passed": true
+    },
+    {
+      "name": "restore-permissive",
+      "passed": true
+    },
+    {
+      "name": "restore-original-pam",
+      "passed": true
+    },
+    {
+      "name": "remove-fixture-module",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-parental-roles-test",
+      "passed": true
+    },
+    {
+      "name": "remove-lyra-ordinary-attestation-test",
+      "passed": true
+    },
+    {
+      "name": "remove-fixture-registry",
+      "passed": true
+    },
+    {
+      "name": "remove-fixture-unit",
+      "passed": true
+    },
+    {
+      "name": "daemon-reload",
+      "passed": true
+    }
+  ],
+  "restored": {
+    "pam": true,
+    "pam_mode": true,
+    "vendor": true,
+    "accounts": true,
+    "removed": true,
+    "linger_removed": true,
+    "managers_stopped": true,
+    "permissive": true
+  },
+  "boot_id": "2800bcf2-5e50-42f9-b772-7c92d3df68ef"
+}

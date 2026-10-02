@@ -1,0 +1,3 @@
+{"name": "baseline-ordinary-1000", "passed": true, "unit": {"MainPID": "701", "ExecMainStatus": "0", "ActiveState": "active"}, "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"}
+{"name": "baseline-ordinary-1002", "passed": true, "unit": {"MainPID": "759", "ExecMainStatus": "0", "ActiveState": "active"}, "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"}
+{"passed": false, "checks": 2, "cleanup_rc": 0}
