@@ -1,0 +1,91 @@
+{
+  "base_commit": "db59571ae5eab34ae3d7cbbb45c71a9ac0b78662",
+  "sha256": {
+    "../../../tests/test_parental_ordinary_withdrawal.py": "b66cd6e63e01f835584b17972a7740bc647e238097a13b4a77a3228c6edd58c2",
+    "../parental-ordinary-attestation/pam-guard.c": "7f4b6f5c63ad1f58aa2464e95baac61032d3278521e15fa081e869bf60d23cd1",
+    "../parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "README.md": "5d024d54e40808489a140f6cbce5e14d1e66c2d4c0da2e57d5d99665b3376784",
+    "cleanup.json": "646a9f813d39d8ec626c170642c657d268e0b05a5560705b4ca590880505bcae",
+    "cleanup.py": "9f4503cdd798f61dc85e6f1866ab4cd8d83410e4a0bfafd679783672e61e6bd7",
+    "common.py": "2a56e3bc77483a3171c71faf384d94327ba5fde0cb5641fe123c05c861a67b14",
+    "config.json": "25eefadf80b2f235cbee701e4f63eb3f7c10c0a86068b47a16f3fb990283bd5e",
+    "exit-status": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+    "launch-via-host.py": "178185e61f60b8d7e4a4633dd5a76f32d365928b20a585b3677300dda00a233d",
+    "native.py": "d78d819eb020663fa0167840b8f96ebde1cbf75d28e3084be03b600671e5378a",
+    "pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+    "python-suite.txt": "ea9b6fc9a8f7db0645b23cee7fc302bce43af38d734d407d7cbdb8b15882e4dd",
+    "restore-check.py": "cc7a7eb5e040dc94638be11750c5f6e10bc7fb720c3a3c9f7823b8111312e80e",
+    "restored.json": "f0ae1044ed554ba7f436230bdc39603194299c86e2433b95774b897e544f2f59",
+    "result.json": "e930d21234d0b2e5377b08ab09320cce545982d7818f6834002acb8744500719",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout.log": "78de5205328e34224146ae66ed5b3e5c07e6f8d9af7979cdd0351cdb329d45e4",
+    "verify-evidence.py": "6d039f909477ab2fec1e58cb29babaf5fa34813ed203f9406ba49b008d44bec7",
+    "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+    "worker.py": "b29905c07a4fd224d24915193eaaaa88ddb2cdb8446196100b84a23063acbe7f"
+  },
+  "executions": [
+    {
+      "time": 1790945437.8086443,
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import subprocess,os; assert 'lyra.parental-identity-test=1' in Path('/proc/cmdline').read_text().split(); assert Path('/sys/block/vda/serial').read_text().strip()=='lyra-admission-test';\nimport subprocess,json\nbase=Path('/root/ordinary-withdrawal')\nfor name in ('result.json','exit-status','stdout.log','stderr.log'):\n (base/name).unlink(missing_ok=True)\nsource=\"from pathlib import Path; import subprocess; b=Path('/root/ordinary-withdrawal'); f=(b/'stdout.log').open('w'); g=(b/'stderr.log').open('w'); p=subprocess.run(['/usr/bin/python3','-u',str(b/'native.py')],stdout=f,stderr=g); f.close(); g.close(); (b/'exit-status').write_text(str(p.returncode)+'\\\\n')\"\np=subprocess.Popen(['/usr/bin/python3','-c',source],stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)\nprint(json.dumps({'launcher_pid':p.pid,'detached':True}))\n"
+      ],
+      "id": "867abeda9ba2452a91131d362469b6d9",
+      "rc": 0,
+      "stdout_sha256": "37e76e41df017ebe5bd3004d5080884cb765081ee033b40dcdfc210787420534",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790945639.4292653,
+      "argv": [
+        "python3",
+        "/root/ordinary-withdrawal/restore-check.py"
+      ],
+      "id": "646d9e119e934e27a492e1732b14ed9a",
+      "rc": 0,
+      "stdout_sha256": "6059988d411a6d5768a28b1502dfd4248c98c21af12482ab840039a94350e1d1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790945845.3406825,
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "id": "0027c5f75b554a88a7b915aee15c8b0b",
+      "rc": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "native_checks": 33,
+  "native_terminal_result": {
+    "passed": true,
+    "checks": 33,
+    "cleanup_rc": 0
+  },
+  "native_exit_code": 0,
+  "python_tests": 294,
+  "new_python_tests": 8,
+  "python_suite_exit_code": 0,
+  "python_suite_command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_*.py"
+  ],
+  "poweroff_id": "0027c5f75b554a88a7b915aee15c8b0b",
+  "poweroff_rc": 0,
+  "qemu_exit_code": 0,
+  "production_changed": false,
+  "all_producer_quiescence": false,
+  "real_reboot_tested": false,
+  "power_loss_tested": false,
+  "stderr_empty": true
+}

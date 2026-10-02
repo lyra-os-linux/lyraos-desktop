@@ -1,0 +1,19 @@
+{
+  "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+  "original_pam_mode": 420,
+  "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+  "account_sha256": {
+    "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+    "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+  },
+  "source_sha256": {
+    "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+    "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "native.py": "d78d819eb020663fa0167840b8f96ebde1cbf75d28e3084be03b600671e5378a",
+    "common.py": "2a56e3bc77483a3171c71faf384d94327ba5fde0cb5641fe123c05c861a67b14",
+    "cleanup.py": "9f4503cdd798f61dc85e6f1866ab4cd8d83410e4a0bfafd679783672e61e6bd7",
+    "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+    "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+    "worker.py": "b29905c07a4fd224d24915193eaaaa88ddb2cdb8446196100b84a23063acbe7f"
+  }
+}
