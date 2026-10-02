@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "absent": {
+    "/etc/pam.d/crond": true,
+    "/usr/lib64/security/pam_lyra_cron_ordinary_fixture.so": true,
+    "/usr/bin/lyra-cron-adapter-fixture": true,
+    "/etc/cron.d/lyra-cron-adapter-target": true,
+    "/etc/cron.d/lyra-cron-adapter-peer": true,
+    "/var/spool/cron/tabs/ordinaryuser": true,
+    "/var/spool/cron/tabs/installeduser": true,
+    "/home/ordinaryuser/lyra-cron-adapter": true,
+    "/home/installeduser/lyra-cron-adapter": true
+  },
+  "processes": [],
+  "policy_absent": true,
+  "common_preserved": true,
+  "cron_pid": "0"
+}

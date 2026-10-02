@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "cleanup": [
+    {
+      "name": "stop-manager-parentaltest",
+      "passed": true
+    },
+    {
+      "name": "stop-runtime-parentaltest",
+      "passed": true
+    },
+    {
+      "name": "drain-logind-parentaltest",
+      "passed": true
+    },
+    {
+      "name": "stop-manager-ordinaryuser",
+      "passed": true
+    },
+    {
+      "name": "stop-runtime-ordinaryuser",
+      "passed": true
+    },
+    {
+      "name": "drain-logind-ordinaryuser",
+      "passed": true
+    },
+    {
+      "name": "stop-manager-installeduser",
+      "passed": true
+    },
+    {
+      "name": "stop-runtime-installeduser",
+      "passed": true
+    },
+    {
+      "name": "drain-logind-installeduser",
+      "passed": true
+    },
+    {
+      "name": "restore-permissive",
+      "passed": true
+    },
+    {
+      "name": "restore-original-pam",
+      "passed": true
+    },
+    {
+      "name": "remove-fixture-module",
+      "passed": true
+    },
+    {
+      "name": "remove-fixture-unit",
+      "passed": true
+    },
+    {
+      "name": "daemon-reload",
+      "passed": true
+    }
+  ],
+  "restored": {
+    "pam": true,
+    "pam_mode": true,
+    "vendor": true,
+    "accounts": true,
+    "removed": true,
+    "linger_removed": true,
+    "managers_stopped": true,
+    "permissive": true
+  },
+  "boot_id": "fba9f6fd-20b9-4aef-a748-d41b765b473d"
+}

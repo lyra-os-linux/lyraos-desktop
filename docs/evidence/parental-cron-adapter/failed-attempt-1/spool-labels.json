@@ -1,0 +1,12 @@
+[
+  {
+    "uid": 1002,
+    "before": "system_u:object_r:cron_spool_t:s0 /var/spool/cron/tabs/ordinaryuser",
+    "after": "system_u:object_r:user_cron_spool_t:s0 /var/spool/cron/tabs/ordinaryuser"
+  },
+  {
+    "uid": 1000,
+    "before": "system_u:object_r:cron_spool_t:s0 /var/spool/cron/tabs/installeduser",
+    "after": "system_u:object_r:user_cron_spool_t:s0 /var/spool/cron/tabs/installeduser"
+  }
+]

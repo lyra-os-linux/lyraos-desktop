@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "checks": [],
+  "fixture_setup_started": false,
+  "reason": "CONFIG retained by previous cleanup; baseline assertion before new fixture mutation",
+  "exit_code": 1
+}

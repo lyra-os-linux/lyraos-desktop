@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "introduced": [
+    "cronie|1.7.2|160100.2.3|x86_64",
+    "cron|4.2|160100.2.3|x86_64",
+    "debianutils|5.4|160100.2.1|x86_64"
+  ],
+  "signatures": {
+    "rc": 0,
+    "stdout": "/root/cron-4.2-160100.2.3.x86_64.rpm: digests signatures OK\n/root/cronie-1.7.2-160100.2.3.x86_64.rpm: digests signatures OK\n/root/debianutils-5.4-160100.2.1.x86_64.rpm: digests signatures OK\n",
+    "stderr": ""
+  },
+  "installation": {
+    "rc": 0,
+    "stdout": "Verifying...                          ########################################\nPreparing...                          ########################################\nUpdating / installing...\ndebianutils-5.4-160100.2.1            ########################################\ncron-4.2-160100.2.3                   ########################################\ncronie-1.7.2-160100.2.3               ########################################\n/usr/bin/crontab: setting to root:trusted 4755 (wrong permissions 4750)\nUpdating /etc/sysconfig/cron ...\n",
+    "stderr": "Created symlink '/etc/systemd/system/multi-user.target.wants/cron.service' \u2192 '/usr/lib/systemd/system/cron.service'.\n"
+  },
+  "rpm_sha256": {
+    "cron-4.2-160100.2.3.x86_64.rpm": "688bc9fdc241b38c744dd9cc63ab4d30405977a95b25e36ad312f3ab126387a0",
+    "cronie-1.7.2-160100.2.3.x86_64.rpm": "aa53553ba999be46210940ead47a991ca217b30e149cbbd58dfaac5ede87dab2",
+    "debianutils-5.4-160100.2.1.x86_64.rpm": "61acb7e75001dae04302288f1b962c6e7dfd0af3f4dd6de56beb740eb27ea6ad"
+  },
+  "before_sha256": "d908419fdff4fbf451a5a81a2b89944c43fb51cb84b869beadfe1019dbe8de32"
+}

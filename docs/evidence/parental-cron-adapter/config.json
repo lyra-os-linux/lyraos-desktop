@@ -1,0 +1,42 @@
+{
+  "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+  "original_pam_mode": 420,
+  "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+  "account_sha256": {
+    "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+    "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+  },
+  "source_sha256": {
+    "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+    "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "native.py": "252f249802ee1f683ddcdc8312ac4c9f93bbdf2af1c2610f43ff73bddae44e47",
+    "common.py": "d37d1d6cc92d47a1bc106ab0bda7562d0e9d2da70d0fb00cf654cf7e76763a64",
+    "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+    "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+    "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+    "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+    "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+    "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+    "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+    "cleanup.py": "0b3e1998a9669f7dbb0886436bec75bad8e0e5df0f287f73f29421c51be05268",
+    "restore-check.py": "83effe519790e6f9d76f2f25c5ec26623c3c4dab78a4d844a7da19ec767e8991",
+    "fixture.py": "eb67d4be6e3ef50263e5eba141cf0c343c52affe84a6d8ad9b92a81c8dc7ad28",
+    "cron-adapter.py": "259d0a66a15c0e455e9e472a9c6f6c860f91377dd42c3ca552dfbe3c5311c4f0",
+    "cron-ordinary-guard.c": "e477d6052b1be63c2ffbb7616b568c16308e5e7e5dea7aeab60442ecd2b33940",
+    "cron-state.cil": "e7981f487565f0a76f639d7334d51ef0ebbbd95246c7045e044072e1778538c7",
+    "payload.c": "55586fb4e2fd8ac8cc3625c835c1d990fa6715c52e9acc713c90bfd3c18ccd00"
+  },
+  "cron_vendor_sha256": "fa098d6e1d39671cabc9b8f46bccad816c3ce9394ce529102df46333bbef6457",
+  "common_pam_sha256": {
+    "/etc/pam.d/common-session-nonlogin-pc": "c5dee05a325034065604d822120dd869ff7c3aaa3bb35036ea6dc01e99bf8b91",
+    "/etc/pam.d/common-account": "a88109cffad53170bc57397b42e2ccddaacd06a649261c4593d05f6aed7ee5cb",
+    "/etc/pam.d/common-session-pc": "d055caaa7946731969e860772682d4d5a294aa8e61672904e727d4be4c019876",
+    "/etc/pam.d/common-auth": "3d64dcbf34d28bd8c4a2a01c0b0b8ea99b82b230abc3cc5b4e606462aecc2c2e",
+    "/etc/pam.d/common-session-nonlogin": "c5dee05a325034065604d822120dd869ff7c3aaa3bb35036ea6dc01e99bf8b91",
+    "/etc/pam.d/common-account-pc": "a88109cffad53170bc57397b42e2ccddaacd06a649261c4593d05f6aed7ee5cb",
+    "/etc/pam.d/common-password": "d55adaed5057bafc1413d0bbd4df728a89e4b9a7be5576b0049cd1d875e46b30",
+    "/etc/pam.d/common-password-pc": "d55adaed5057bafc1413d0bbd4df728a89e4b9a7be5576b0049cd1d875e46b30",
+    "/etc/pam.d/common-auth-pc": "3d64dcbf34d28bd8c4a2a01c0b0b8ea99b82b230abc3cc5b4e606462aecc2c2e",
+    "/etc/pam.d/common-session": "d055caaa7946731969e860772682d4d5a294aa8e61672904e727d4be4c019876"
+  }
+}

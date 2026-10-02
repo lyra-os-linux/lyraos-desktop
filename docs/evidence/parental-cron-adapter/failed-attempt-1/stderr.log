@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/root/cron-adapter/native.py", line 20, in expect
+    try:action()
+        ~~~~~~^^
+  File "/root/cron-adapter/native.py", line 82, in <lambda>
+    try:expect('UnverifiedAdmission',lambda:adapter.inhibit(target));assert not signals
+                                            ~~~~~~~~~~~~~~~^^^^^^^^
+  File "/root/cron-adapter/cron-adapter.py", line 33, in inhibit
+    with self.classification.verified(target):self._verified();return True
+                                              ~~~~~~~~~~~~~~^^
+  File "/root/cron-adapter/cron-adapter.py", line 28, in _verified
+    if self.verify_catalog(self.classification.identity,self.jobs) is not True:raise GateError('UnverifiedProducerCatalog')
+                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+coordinator.GateError: UnverifiedProducerCatalog
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/cron-adapter/native.py", line 82, in <module>
+    try:expect('UnverifiedAdmission',lambda:adapter.inhibit(target));assert not signals
+        ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/cron-adapter/native.py", line 21, in expect
+    except oc.GateError as e:assert e.code==code,(e.code,code)
+                                    ^^^^^^^^^^^^
+AssertionError: ('UnverifiedProducerCatalog', 'UnverifiedAdmission')

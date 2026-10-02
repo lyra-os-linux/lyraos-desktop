@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "commands": [
+    {
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "exact_package_tuples_restored": true
+}
