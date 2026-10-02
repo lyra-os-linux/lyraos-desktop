@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "absent": {
+    "/usr/bin/lyra-dbus-adapter-fixture": true,
+    "/etc/dbus-1/system.d/lyra-dbus-adapter-fixture.conf": true,
+    "/usr/share/dbus-1/system-services/org.lyra.DBusAdapter.TargetUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.DBusAdapter.TargetExec.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.DBusAdapter.TargetColdUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.DBusAdapter.TargetColdExec.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.DBusAdapter.PeerUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.DBusAdapter.PeerExec.service": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.DBusAdapter.TargetUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.DBusAdapter.TargetExec": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.DBusAdapter.TargetColdUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.DBusAdapter.TargetColdExec": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.DBusAdapter.PeerUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.DBusAdapter.PeerExec": true,
+    "/run/systemd/system/lyra-dbus-adapter-targetunit.service": true,
+    "/run/systemd/system/lyra-dbus-adapter-targetexec.service": true,
+    "/run/systemd/system/lyra-dbus-adapter-targetcoldunit.service": true,
+    "/run/systemd/system/lyra-dbus-adapter-targetcoldexec.service": true,
+    "/run/systemd/system/lyra-dbus-adapter-peerunit.service": true,
+    "/run/systemd/system/lyra-dbus-adapter-peerexec.service": true
+  },
+  "owners": {
+    "TargetUnit": false,
+    "TargetExec": false,
+    "TargetColdUnit": false,
+    "TargetColdExec": false,
+    "PeerUnit": false,
+    "PeerExec": false
+  },
+  "broker_pid": "449"
+}

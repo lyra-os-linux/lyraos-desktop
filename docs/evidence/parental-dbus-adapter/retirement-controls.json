@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "exclusive-retirement-and-retry-preserve-definition-inode",
+      "passed": true
+    },
+    {
+      "name": "two-name-intermediate-resumes-without-recreating-active-source",
+      "passed": true
+    },
+    {
+      "name": "destination-conflict-preserves-source-and-existing-record",
+      "passed": true
+    },
+    {
+      "name": "unregistered-hardlink-refused",
+      "passed": true
+    },
+    {
+      "name": "definition-symlink-refused-without-reading-target",
+      "passed": true
+    },
+    {
+      "name": "group-writable-directory-refused",
+      "passed": true
+    },
+    {
+      "name": "directory-symlink-refused",
+      "passed": true
+    },
+    {
+      "name": "filesystem-api-refuses-path-traversal",
+      "passed": true
+    }
+  ],
+  "sources": {
+    "retirement-controls.py": "69cc51bfe8e9f744d9b1c322bbd31867ce2e05888a2da57de2374d1b6425803f",
+    "dbus-adapter.py": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+    "common.py": "9c7b673fece11dd519788e252cadcd3a5593023d613b9b46f4d5f7e24ef2f443"
+  },
+  "full_account_protection": false,
+  "power_loss_tested": false
+}
