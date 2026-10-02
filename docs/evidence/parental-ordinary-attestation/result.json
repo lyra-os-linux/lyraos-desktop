@@ -1,0 +1,368 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "supervised-baseline",
+      "passed": true,
+      "uid": 1003,
+      "allowed": true,
+      "unit": {
+        "MainPID": "613",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nFailed to create timezone change event source: Permission denied\nExec binary '/usr/libexec/gsd-media-keys' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.MediaKeys.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/geoclue-2.0/demos/agent' does not exist: Permission denied\n/usr/etc/xdg/autostart/geoclue-demo-agent.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sound' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sound.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-power' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Power.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-screensaver-proxy' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-smartcard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-color' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Color.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-xsettings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-print-notifications' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.PrintNotifications.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sharing' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sharing.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wacom' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wacom.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-usb-protection' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.UsbProtection.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-housekeeping' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Housekeeping.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\n/usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-datetime' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Datetime.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wwan' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wwan.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-rfkill' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Rfkill.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-a11y-settings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.A11ySettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-keyboard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Keyboard.desktop: not generating unit, error parsing Exec= line: Permission denied\nFailed to acquire watch file descriptor: Permission denied\nFailed to allocate device monitor: Permission denied\nFailed to connect to system bus: Permission denied\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 62ms.\nStarted User Manager for UID 1003.\n"
+    },
+    {
+      "name": "ordinary-independent-baseline",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "735",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 63ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "missing-state-supervised-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "missing-state-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "974",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 74ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "corrupt-state-supervised-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "corrupt-state-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "1213",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 67ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "missing-protected-role-supervised-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "missing-protected-role-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "1449",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 55ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "missing-index-supervised-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\nPAM failed: Cannot make/remove an entry for the specified session\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nuser@1003.service: Failed to set up PAM session: Operation not permitted\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "missing-index-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "1690",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 59ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "corrupt-index-supervised-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "corrupt-index-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "1933",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 69ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "unsafe-index-mode-supervised-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "unsafe-index-mode-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "2173",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 62ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "missing-proof-ordinary-denied",
+      "passed": true,
+      "uid": 1002,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n"
+    },
+    {
+      "name": "missing-proof-supervised-preserved",
+      "passed": true,
+      "uid": 1003,
+      "allowed": true,
+      "unit": {
+        "MainPID": "2412",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nFailed to create timezone change event source: Permission denied\nExec binary '/usr/libexec/gsd-sharing' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sharing.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-xsettings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sound' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sound.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-print-notifications' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.PrintNotifications.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-smartcard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-media-keys' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.MediaKeys.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-usb-protection' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.UsbProtection.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-color' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Color.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wacom' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wacom.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/geoclue-2.0/demos/agent' does not exist: Permission denied\n/usr/etc/xdg/autostart/geoclue-demo-agent.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-power' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Power.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-housekeeping' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Housekeeping.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-keyboard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Keyboard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-datetime' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Datetime.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-screensaver-proxy' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-rfkill' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Rfkill.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wwan' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wwan.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-a11y-settings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.A11ySettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\n/usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nFailed to acquire watch file descriptor: Permission denied\nFailed to allocate device monitor: Permission denied\nFailed to connect to system bus: Permission denied\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 52ms.\nStarted User Manager for UID 1003.\n"
+    },
+    {
+      "name": "corrupt-proof-ordinary-denied",
+      "passed": true,
+      "uid": 1002,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n"
+    },
+    {
+      "name": "corrupt-proof-supervised-preserved",
+      "passed": true,
+      "uid": 1003,
+      "allowed": true,
+      "unit": {
+        "MainPID": "2644",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nFailed to create timezone change event source: Permission denied\n/usr/lib/systemd/user-environment-generators/60-flatpak failed with exit status 1, ignoring.\nExec binary '/usr/libexec/gsd-wwan' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wwan.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-media-keys' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.MediaKeys.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-keyboard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Keyboard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-rfkill' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Rfkill.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-smartcard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/geoclue-2.0/demos/agent' does not exist: Permission denied\n/usr/etc/xdg/autostart/geoclue-demo-agent.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-color' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Color.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-a11y-settings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.A11ySettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wacom' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wacom.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-usb-protection' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.UsbProtection.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sound' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sound.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-housekeeping' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Housekeeping.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-power' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Power.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\n/usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-datetime' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Datetime.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-screensaver-proxy' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sharing' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sharing.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-print-notifications' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.PrintNotifications.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-xsettings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nFailed to acquire watch file descriptor: Permission denied\nFailed to allocate device monitor: Permission denied\nFailed to connect to system bus: Permission denied\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 54ms.\nStarted User Manager for UID 1003.\n"
+    },
+    {
+      "name": "unsafe-proof-mode-ordinary-denied",
+      "passed": true,
+      "uid": 1002,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n"
+    },
+    {
+      "name": "unsafe-proof-mode-supervised-preserved",
+      "passed": true,
+      "uid": 1003,
+      "allowed": true,
+      "unit": {
+        "MainPID": "2878",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nFailed to create timezone change event source: Permission denied\n/usr/lib/systemd/user-environment-generators/60-flatpak failed with exit status 1, ignoring.\nExec binary '/usr/libexec/gsd-usb-protection' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.UsbProtection.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wwan' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wwan.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-xsettings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-rfkill' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Rfkill.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-screensaver-proxy' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-color' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Color.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-datetime' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Datetime.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wacom' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wacom.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-keyboard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Keyboard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-smartcard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\n/usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/geoclue-2.0/demos/agent' does not exist: Permission denied\n/usr/etc/xdg/autostart/geoclue-demo-agent.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sharing' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sharing.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-housekeeping' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Housekeeping.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sound' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sound.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-print-notifications' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.PrintNotifications.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-a11y-settings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.A11ySettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-power' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Power.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-media-keys' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.MediaKeys.desktop: not generating unit, error parsing Exec= line: Permission denied\nFailed to acquire watch file descriptor: Permission denied\nFailed to allocate device monitor: Permission denied\nFailed to connect to system bus: Permission denied\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 52ms.\nStarted User Manager for UID 1003.\n"
+    },
+    {
+      "name": "partial-proof-identity-ordinary-denied",
+      "passed": true,
+      "uid": 1002,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n"
+    },
+    {
+      "name": "partial-proof-identity-supervised-preserved",
+      "passed": true,
+      "uid": 1003,
+      "allowed": true,
+      "unit": {
+        "MainPID": "3112",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nFailed to create timezone change event source: Permission denied\n/usr/lib/systemd/user-environment-generators/60-flatpak failed with exit status 1, ignoring.\nExec binary '/usr/libexec/gsd-screensaver-proxy' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-media-keys' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.MediaKeys.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-power' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Power.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-usb-protection' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.UsbProtection.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-color' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Color.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/geoclue-2.0/demos/agent' does not exist: Permission denied\n/usr/etc/xdg/autostart/geoclue-demo-agent.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wacom' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wacom.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sound' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sound.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-xsettings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-rfkill' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Rfkill.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-a11y-settings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.A11ySettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wwan' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wwan.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-housekeeping' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Housekeeping.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-print-notifications' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.PrintNotifications.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\n/usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sharing' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sharing.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-datetime' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Datetime.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-keyboard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Keyboard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-smartcard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop: not generating unit, error parsing Exec= line: Permission denied\nFailed to acquire watch file descriptor: Permission denied\nFailed to allocate device monitor: Permission denied\nFailed to connect to system bus: Permission denied\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 53ms.\nStarted User Manager for UID 1003.\n"
+    },
+    {
+      "name": "forged-ordinary-proof-supervised-mac-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_attestation_fixture(systemd-user:session): Experimental attestation admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "other-account-proof-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "3349",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 74ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "final-supervised-restored",
+      "passed": true,
+      "uid": 1003,
+      "allowed": true,
+      "unit": {
+        "MainPID": "3470",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nFailed to create timezone change event source: Permission denied\n/usr/lib/systemd/user-environment-generators/60-flatpak failed with exit status 1, ignoring.\nExec binary '/usr/libexec/gsd-wacom' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wacom.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wwan' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wwan.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-housekeeping' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Housekeeping.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-screensaver-proxy' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-datetime' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Datetime.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-keyboard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Keyboard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/geoclue-2.0/demos/agent' does not exist: Permission denied\n/usr/etc/xdg/autostart/geoclue-demo-agent.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-a11y-settings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.A11ySettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-usb-protection' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.UsbProtection.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-xsettings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-smartcard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-power' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Power.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-rfkill' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Rfkill.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\n/usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sound' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sound.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-media-keys' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.MediaKeys.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sharing' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sharing.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-print-notifications' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.PrintNotifications.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-color' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Color.desktop: not generating unit, error parsing Exec= line: Permission denied\nFailed to acquire watch file descriptor: Permission denied\nFailed to allocate device monitor: Permission denied\nFailed to connect to system bus: Permission denied\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 52ms.\nStarted User Manager for UID 1003.\n"
+    },
+    {
+      "name": "final-ordinary-restored",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "3591",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 71ms.\nStarted User Manager for UID 1002.\n"
+    }
+  ],
+  "error": null,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "attestation-pam-guard.c": "7f4b6f5c63ad1f58aa2464e95baac61032d3278521e15fa081e869bf60d23cd1",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "native.py": "e2045c49ede7724937b7864cb0b267db0571599a4f6d640630092b4b6f733192",
+      "common.py": "ef84db3ec0420474e8490d00d44766fd6148981c50278ed9c669385dfe7b8377",
+      "cleanup.py": "9f4503cdd798f61dc85e6f1866ab4cd8d83410e4a0bfafd679783672e61e6bd7"
+    }
+  },
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "full_account_protection": false,
+  "whole_classification_qualified": false,
+  "missing_parental_index_preserves_ordinary": true,
+  "missing_classifier_preserves_ordinary": false,
+  "real_nss_mutations_tested": false,
+  "generation": "be3fa610044fbeb7576d1a7043c97efd"
+}

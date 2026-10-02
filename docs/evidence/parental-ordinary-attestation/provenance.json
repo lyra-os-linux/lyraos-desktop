@@ -1,0 +1,87 @@
+{
+  "base_commit": "7de92c0",
+  "sha256": {
+    "../parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "../parental-role-index/pam-guard.c": "8816cbfc1e0000c5488440ba23c431af311553780e9366bdc6b49c8b0d1ebca7",
+    "README.md": "d749d49c97bd0f70596d864d542213df237b77f568b39d1feac0512d9f4ea673",
+    "cleanup.json": "652794daa763de87e8fdc88c3af29119ad4b42a345d752c7b8e8b6a249e0f2a4",
+    "cleanup.py": "9f4503cdd798f61dc85e6f1866ab4cd8d83410e4a0bfafd679783672e61e6bd7",
+    "common.py": "ef84db3ec0420474e8490d00d44766fd6148981c50278ed9c669385dfe7b8377",
+    "config.json": "98594526c0d999c28990a724e2716c73e242ef60642e7a588915788a3f3eee80",
+    "exit-status": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "launch-via-host.py": "e36c280bcf0347f89cdc35413f0a0979c6ca03a0bcf1eac2aecc1520dae17a01",
+    "native.py": "e2045c49ede7724937b7864cb0b267db0571599a4f6d640630092b4b6f733192",
+    "pam-guard.c": "7f4b6f5c63ad1f58aa2464e95baac61032d3278521e15fa081e869bf60d23cd1",
+    "python-suite.txt": "adca216d010abc735000742a21d885d8ae0c6aa735e918b08bd653d4c990da40",
+    "restore-check.py": "55d4770bf25baa40fcccc7886ce482f3d32ba5ceb150cca3fbfbeeee474c9f6c",
+    "restored.json": "909325be874a8cdb13d88fa9a594e853119fd4b7d143d511c4b1b0f0e63b2f37",
+    "result.json": "30993dd98b098f5625f598a0e95f2f9015124493e263f8ead09268b01aaa5958",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout.log": "b205522091a96e8f6e77e24c1c7a2192fb1ae09fef4a34f01c3d864d359ad93d",
+    "verify-evidence.py": "12dbb1eae9221467d3ea873a6475a1f91118a254e7ff89ca244ef41c1e6c92dd"
+  },
+  "executions": [
+    {
+      "time": 1790941449.1664624,
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path; import subprocess,os; assert 'lyra.parental-identity-test=1' in Path('/proc/cmdline').read_text().split(); assert Path('/sys/block/vda/serial').read_text().strip()=='lyra-admission-test';\nimport subprocess,json\nbase=Path('/root/ordinary-attestation')\nfor name in ('result.json','exit-status','stdout.log','stderr.log'):\n (base/name).unlink(missing_ok=True)\nsource=\"from pathlib import Path; import subprocess; b=Path('/root/ordinary-attestation'); f=(b/'stdout.log').open('w'); g=(b/'stderr.log').open('w'); p=subprocess.run(['/usr/bin/python3','-u',str(b/'native.py')],stdout=f,stderr=g); f.close(); g.close(); (b/'exit-status').write_text(str(p.returncode)+'\\\\n')\"\np=subprocess.Popen(['/usr/bin/python3','-c',source],stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)\nprint(json.dumps({'launcher_pid':p.pid,'detached':True}))\n"
+      ],
+      "id": "b9bef07a9d634e49a6c034b2be0d5903",
+      "rc": 0,
+      "stdout_sha256": "dbe5ff01c79415b78ce34ae78825605fd56d4cc22d6e15956f5ee95df7f0290c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790941740.4656372,
+      "argv": [
+        "python3",
+        "/root/ordinary-attestation/restore-check.py"
+      ],
+      "id": "358068be7075400ab3497f331a70ce8d",
+      "rc": 0,
+      "stdout_sha256": "d00ba53c500ee7914e7407a5be28c4a983da01800b82b6da7fb26ae2a2a88b9a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790943980.7819548,
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "id": "a792b191a642462586dc468b19b6d743",
+      "rc": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "native_checks": 26,
+  "native_terminal_result": {
+    "passed": true,
+    "checks": 26,
+    "cleanup_rc": 0
+  },
+  "native_exit_code": 0,
+  "python_tests": 286,
+  "python_suite_exit_code": 0,
+  "python_suite_command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_*.py"
+  ],
+  "new_python_tests": 0,
+  "poweroff_id": "a792b191a642462586dc468b19b6d743",
+  "poweroff_rc": 0,
+  "qemu_exit_code": 0,
+  "production_changed": false,
+  "missing_parental_index_preserves_ordinary": true,
+  "whole_classification_qualified": false,
+  "cutover_qualified": false,
+  "stderr_empty": true
+}
