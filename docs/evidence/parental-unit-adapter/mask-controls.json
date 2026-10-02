@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "partial-mask-failure-keeps-first-mask-and-original-file",
+      "passed": true
+    },
+    {
+      "name": "retry-preserves-existing-mask-inode",
+      "passed": true
+    },
+    {
+      "name": "unexpected-link-never-overwritten",
+      "passed": true
+    },
+    {
+      "name": "hard-linked-mask-rejected",
+      "passed": true
+    },
+    {
+      "name": "writable-mask-directory-rejected",
+      "passed": true
+    },
+    {
+      "name": "symlink-mask-directory-rejected",
+      "passed": true
+    }
+  ],
+  "scratch_removed": true,
+  "enforce": "Permissive",
+  "source_sha256": {
+    "mask-controls.py": "97bbe899659f57674753f2b0363959d4d7038d691a1ae11067f550df8a1e59c5",
+    "unit-adapter.py": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+    "common.py": "9442e0ff8d896a7245ac6508b9460ad02cd5fc18c13bcef151e4711ac7366cbf",
+    "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99"
+  }
+}

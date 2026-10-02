@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/root/unit-adapter/native.py", line 82, in <module>
+    p=VENDOR_UNITS/UNKNOWN;p.write_text(sources[TARGET_UNITS[0]]);p.chmod(0o644);run(['restorecon',str(p)]);run(['systemctl','daemon-reload'])
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.13/pathlib/_local.py", line 555, in write_text
+    return PathBase.write_text(self, data, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.13/pathlib/_abc.py", line 649, in write_text
+    raise TypeError('data must be str, not %s' %
+                    data.__class__.__name__)
+TypeError: data must be str, not bytes
