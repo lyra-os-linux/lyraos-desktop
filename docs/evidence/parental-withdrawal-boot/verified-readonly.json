@@ -1,0 +1,355 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "durable-state-survives-kernel-reboot",
+      "passed": true,
+      "files": {
+        "1002": {
+          "sha256": "b80c0a493b574317ad7f65c07ec3e1dd205810275e0dcbe9a00413829d4c6ca3",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": null
+        },
+        ".deny-1002": {
+          "sha256": "e89ebcb7419350e785298042f84d2598edc4d26d4422dd4de6205c50d2e28a2e",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": null
+        },
+        ".gate-1002.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": 55950
+        },
+        ".gate-1003.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": 55951
+        },
+        ".gate-1000.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": 55949
+        },
+        "1000": {
+          "sha256": "d521f96e23393eaf810c8b21ba8da13295b3249cd9f61f6f6a4b6e74c8e6c061",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": null
+        }
+      },
+      "boot_id": "bb79a501-f095-424e-98b2-5ad68c9de787"
+    },
+    {
+      "name": "hook-inspects-without-reenrollment",
+      "passed": true,
+      "hook": {
+        "boot_id": "bb79a501-f095-424e-98b2-5ad68c9de787",
+        "fault": false,
+        "files_before": {
+          "1002": {
+            "sha256": "b80c0a493b574317ad7f65c07ec3e1dd205810275e0dcbe9a00413829d4c6ca3",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".deny-1002": {
+            "sha256": "e89ebcb7419350e785298042f84d2598edc4d26d4422dd4de6205c50d2e28a2e",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".gate-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 55950
+          },
+          ".gate-1003.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 55951
+          },
+          ".gate-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 55949
+          },
+          "1000": {
+            "sha256": "d521f96e23393eaf810c8b21ba8da13295b3249cd9f61f6f6a4b6e74c8e6c061",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          }
+        },
+        "enforcing": "Enforcing",
+        "source_sha256": "3e3fadfed380f7fbb3e9a774340be4ea06769895c58f24ec01c87e24f75628bb",
+        "inspect_executed": true,
+        "outcome": "BlockedUntilAuthorizedRecovery",
+        "files_after": {
+          "1002": {
+            "sha256": "b80c0a493b574317ad7f65c07ec3e1dd205810275e0dcbe9a00413829d4c6ca3",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".deny-1002": {
+            "sha256": "e89ebcb7419350e785298042f84d2598edc4d26d4422dd4de6205c50d2e28a2e",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".gate-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 55950
+          },
+          ".gate-1003.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 55951
+          },
+          ".gate-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 55949
+          },
+          "1000": {
+            "sha256": "d521f96e23393eaf810c8b21ba8da13295b3249cd9f61f6f6a4b6e74c8e6c061",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          }
+        }
+      },
+      "status": "0"
+    },
+    {
+      "name": "target-linger-auto-admission-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n"
+    },
+    {
+      "name": "unrelated-ordinary-linger-auto-admitted",
+      "passed": true,
+      "unit": {
+        "MainPID": "536",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "manual-target-retry-denied-peer-pid-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "536",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "authorized-postboot-resume-retires-only-target-proof",
+      "passed": true,
+      "files": {
+        ".deny-1002": {
+          "sha256": "e89ebcb7419350e785298042f84d2598edc4d26d4422dd4de6205c50d2e28a2e",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": null
+        },
+        ".withdrawal-1002.json": {
+          "sha256": "b22d0c6453a7340154d3823c0bcfb54a127db67a349a6f0496c7bdce7c85465a",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": null
+        },
+        ".gate-1002.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": 55950
+        },
+        ".gate-1003.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": 55951
+        },
+        ".gate-1000.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": 55949
+        },
+        "1000": {
+          "sha256": "d521f96e23393eaf810c8b21ba8da13295b3249cd9f61f6f6a4b6e74c8e6c061",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": null
+        }
+      },
+      "peer_pid": "536"
+    },
+    {
+      "name": "post-retirement-target-denied-peer-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "536",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    }
+  ],
+  "boot_id": "bb79a501-f095-424e-98b2-5ad68c9de787",
+  "full_account_protection": false,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "prepare.py": "01984a3fd0e771e32fd2615a783eb8711be3aa50ec87cef6c28292c9d993cee2",
+      "common.py": "de215d0f8ee27759013f46b6d46bd81c88bdad29466f40ecdd924c9ceef6a48b",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "worker.py": "b29905c07a4fd224d24915193eaaaa88ddb2cdb8446196100b84a23063acbe7f",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "recover-at-boot.py": "3e3fadfed380f7fbb3e9a774340be4ea06769895c58f24ec01c87e24f75628bb",
+      "verify-boot.py": "22911af5dce8cdb2a55ca0bc7d22153dfcf13e941df282f7247ec8e1ed1f80cb",
+      "cleanup.py": "1806d6676b0379358c442d54fc2594955816fe8e8a42756472b9deb3968bd881",
+      "restore-check.py": "9077ea10557931778ffdffde4fb36efb8538ec437388927155bc26581f207e93"
+    },
+    "initial_boot_id": "b7202211-6c56-4729-9b93-204195f6b323",
+    "fault": true,
+    "operation": "e7d4c42e520cc8d3c4b3ac0e4cd43e80",
+    "before_reboot_files": {
+      ".deny-1002": {
+        "sha256": "e89ebcb7419350e785298042f84d2598edc4d26d4422dd4de6205c50d2e28a2e",
+        "mode": 384,
+        "uid": 0,
+        "gid": 0,
+        "nlink": 1,
+        "gate_inode": null
+      },
+      ".withdrawal-1002.json": {
+        "sha256": "b22d0c6453a7340154d3823c0bcfb54a127db67a349a6f0496c7bdce7c85465a",
+        "mode": 384,
+        "uid": 0,
+        "gid": 0,
+        "nlink": 1,
+        "gate_inode": null
+      },
+      ".gate-1002.lock": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 384,
+        "uid": 0,
+        "gid": 0,
+        "nlink": 1,
+        "gate_inode": 55950
+      },
+      ".gate-1003.lock": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 384,
+        "uid": 0,
+        "gid": 0,
+        "nlink": 1,
+        "gate_inode": 55951
+      },
+      ".gate-1000.lock": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": 384,
+        "uid": 0,
+        "gid": 0,
+        "nlink": 1,
+        "gate_inode": 55949
+      },
+      "1000": {
+        "sha256": "d521f96e23393eaf810c8b21ba8da13295b3249cd9f61f6f6a4b6e74c8e6c061",
+        "mode": 384,
+        "uid": 0,
+        "gid": 0,
+        "nlink": 1,
+        "gate_inode": null
+      }
+    },
+    "first_verified_boot_id": "bb79a501-f095-424e-98b2-5ad68c9de787"
+  },
+  "whole_classification_qualified": false,
+  "all_producer_quiescence": false,
+  "real_nss_mutations_tested": false,
+  "power_loss_tested": false
+}
