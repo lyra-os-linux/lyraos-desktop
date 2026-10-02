@@ -1,0 +1,222 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "real-managed-and-ordinary-managers-active",
+      "passed": true,
+      "managed": {
+        "MainPID": "1080",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "ordinary": {
+        "MainPID": "1097",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0"
+    },
+    {
+      "name": "clean-reconciliation-neither-blocks-nor-declares-enforcement-verified",
+      "passed": true,
+      "outcome": "ExistingAssociationNeedsVerification",
+      "files_unchanged": true
+    },
+    {
+      "name": "denied-controller-authorization-has-no-durable-effect",
+      "passed": true,
+      "files_unchanged": true,
+      "managed_pid": "1080",
+      "ordinary_pid": "1097"
+    },
+    {
+      "name": "missing-adapters-persist-block-with-live-manager",
+      "passed": true,
+      "code": "UnsupportedProducer",
+      "snapshot": [
+        [
+          {
+            "state": "transitioning",
+            "user": "parentaltest",
+            "uid": 1003,
+            "gid": 1004,
+            "group": "parentaltest",
+            "generation": "39f12a4eb46a7128cd7a694f80c78481"
+          }
+        ],
+        {
+          "39f12a4eb46a7128cd7a694f80c78481": {
+            "new_generation": null,
+            "old_generation": "39f12a4eb46a7128cd7a694f80c78481",
+            "phase": "blocked",
+            "schema": 2,
+            "transaction": "bb3bb29c36be4d489389278a9281ab0e"
+          }
+        }
+      ],
+      "holders": [
+        {
+          "pid": 1082,
+          "fd": "9",
+          "comm": "(sd-pam)"
+        }
+      ],
+      "managed_pid": "1080",
+      "ordinary_pid": "1097"
+    },
+    {
+      "name": "native-lease-remains-busy-after-coordinator-refusal",
+      "passed": true,
+      "error": "busy: generation has admitted sessions; barrier remains durable",
+      "holders": [
+        {
+          "pid": 1082,
+          "fd": "9",
+          "comm": "(sd-pam)"
+        }
+      ]
+    },
+    {
+      "name": "exclusive-lease-alone-is-insufficient-for-coordinator",
+      "passed": true,
+      "holders": [],
+      "snapshot": [
+        [
+          {
+            "state": "transitioning",
+            "user": "parentaltest",
+            "uid": 1003,
+            "gid": 1004,
+            "group": "parentaltest",
+            "generation": "39f12a4eb46a7128cd7a694f80c78481"
+          }
+        ],
+        {
+          "39f12a4eb46a7128cd7a694f80c78481": {
+            "new_generation": null,
+            "old_generation": "39f12a4eb46a7128cd7a694f80c78481",
+            "phase": "blocked",
+            "schema": 2,
+            "transaction": "bb3bb29c36be4d489389278a9281ab0e"
+          }
+        }
+      ]
+    },
+    {
+      "name": "missing-adapters-deny-even-with-no-lease-holders",
+      "passed": true,
+      "code": "UnsupportedProducer",
+      "snapshot": [
+        [
+          {
+            "state": "transitioning",
+            "user": "parentaltest",
+            "uid": 1003,
+            "gid": 1004,
+            "group": "parentaltest",
+            "generation": "39f12a4eb46a7128cd7a694f80c78481"
+          }
+        ],
+        {
+          "39f12a4eb46a7128cd7a694f80c78481": {
+            "new_generation": null,
+            "old_generation": "39f12a4eb46a7128cd7a694f80c78481",
+            "phase": "blocked",
+            "schema": 2,
+            "transaction": "bb3bb29c36be4d489389278a9281ab0e"
+          }
+        }
+      ],
+      "ordinary_pid": "1097"
+    },
+    {
+      "name": "native-pam-denies-manager-after-coordinator-block",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_identity_registry_fixture(systemd-user:session): Experimental registry-backed admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n",
+      "ordinary_pid": "1097"
+    },
+    {
+      "name": "reconciliation-never-reenrolls-blocked-identity",
+      "passed": true,
+      "outcome": "BlockedUntilAuthorizedRecovery",
+      "snapshot": [
+        [
+          {
+            "state": "recovering",
+            "user": "parentaltest",
+            "uid": 1003,
+            "gid": 1004,
+            "group": "parentaltest",
+            "generation": "39f12a4eb46a7128cd7a694f80c78481"
+          }
+        ],
+        {
+          "39f12a4eb46a7128cd7a694f80c78481": {
+            "new_generation": null,
+            "old_generation": "39f12a4eb46a7128cd7a694f80c78481",
+            "phase": "recovering",
+            "schema": 2,
+            "transaction": "bb3bb29c36be4d489389278a9281ab0e"
+          }
+        }
+      ],
+      "barrier_present": true
+    },
+    {
+      "name": "recovering-requires-separate-authorized-operation",
+      "passed": true,
+      "code": "RecoveryRequired",
+      "ordinary_pid": "1097",
+      "snapshot": [
+        [
+          {
+            "state": "recovering",
+            "user": "parentaltest",
+            "uid": 1003,
+            "gid": 1004,
+            "group": "parentaltest",
+            "generation": "39f12a4eb46a7128cd7a694f80c78481"
+          }
+        ],
+        {
+          "39f12a4eb46a7128cd7a694f80c78481": {
+            "new_generation": null,
+            "old_generation": "39f12a4eb46a7128cd7a694f80c78481",
+            "phase": "recovering",
+            "schema": 2,
+            "transaction": "bb3bb29c36be4d489389278a9281ab0e"
+          }
+        }
+      ]
+    }
+  ],
+  "error": null,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "barrier-pam-guard.c": "c50aa20cce8b2b081b858bca389cb705dd1f786791047c135a63868c99626e10",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "native.py": "7ef85e7a744017df37e5cf7d814827ef37388741ff0f8e8abfa7595481c7a09b",
+      "common.py": "5ea58f45961015503772faa9c67206420e23f376b215ad55020ee40a4760be98",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "cleanup.py": "9f4503cdd798f61dc85e6f1866ab4cd8d83410e4a0bfafd679783672e61e6bd7"
+    }
+  },
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "full_account_protection": false,
+  "production_authorization_tested": false,
+  "complete_classification_tested": false,
+  "real_producer_adapters_tested": false
+}

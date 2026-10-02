@@ -1,0 +1,85 @@
+{
+  "base_commit": "4e5fec7f2b74e9c62a88a135396d9ba7d09289e5",
+  "sha256": {
+    "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+    "common.py": "5ea58f45961015503772faa9c67206420e23f376b215ad55020ee40a4760be98",
+    "cleanup.py": "9f4503cdd798f61dc85e6f1866ab4cd8d83410e4a0bfafd679783672e61e6bd7",
+    "restore-check.py": "b649adf30c02358322d570a3328f4c1f05fc25cf0f7b30fd5c11189ec5ed2773",
+    "native.py": "7ef85e7a744017df37e5cf7d814827ef37388741ff0f8e8abfa7595481c7a09b",
+    "verify-evidence.py": "0c9ee57a74f58b8162ccacbce37114c1d07d948ff1908342ceea8838fff2c88b",
+    "result.json": "c903a1af837c350e300c26140b2e65e08456aa9a164360b603954add67d01334",
+    "cleanup.json": "231962e1a85f0a777964d7a692e2f8faa0fcba40ba60dcdbdf7cab3e10eb4351",
+    "restored.json": "e32219e200d175ab34b162b94e5d0d85a04526fafa479692640a73d893496a92",
+    "config.json": "ad5df929aac897b562bc43bb734dbbabaf891df5be65d7aff548d9203ee68fcc",
+    "README.md": "207afbefa6706c92138365b0079d9b38822faf378a315a082aefaff263bd9973",
+    "../../../tests/test_parental_coordinator.py": "0feb0fc2ca7ace5cc4f354b90f3fb82a981ecc9be6ec0af3becb2ee83eecabc8",
+    "../parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "../parental-registry-barrier/pam-guard.c": "c50aa20cce8b2b081b858bca389cb705dd1f786791047c135a63868c99626e10"
+  },
+  "executions": [
+    {
+      "time": 1790937230.4420004,
+      "argv": [
+        "python3",
+        "/root/registry-coordinator/native.py"
+      ],
+      "id": "fabb1988c196415fa398b8c1b23547e9",
+      "rc": 0,
+      "stdout_sha256": "82e335674bc0c6ef40b9e140a3951c83fd0f794348edb077078a25f7769850c9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790937288.6578445,
+      "argv": [
+        "python3",
+        "/root/registry-coordinator/cleanup.py",
+        "--reset"
+      ],
+      "id": "678ec0b56a8e4095a0af064578d132c2",
+      "rc": 0,
+      "stdout_sha256": "f369afe83ab326fee24815219582204728aa688da4543e47c0d82b154f86376d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790937320.813997,
+      "argv": [
+        "python3",
+        "/root/registry-coordinator/native.py"
+      ],
+      "id": "bba590a73e2d419997cb0c9d0359dbe7",
+      "rc": 0,
+      "stdout_sha256": "d0d5c1efff8f46da0ecd920804cbd7ed3f1b7e3534c82794074e52801b5fee98",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790937398.684792,
+      "argv": [
+        "python3",
+        "/root/registry-coordinator/restore-check.py"
+      ],
+      "id": "17c19095fa7f4f239bad8440c2409fb0",
+      "rc": 0,
+      "stdout_sha256": "3771c88e9f68ef1a4a9a2d212cdae7c172a12e678e183117ca73160bc207500c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790937399.2964594,
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "id": "c842121cff0e4803b22aee8ec2856e0f",
+      "rc": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "native_checks": 10,
+  "new_unit_tests": 16,
+  "python_tests": 286,
+  "python_suite_exit_code": 0,
+  "poweroff_id": "c842121cff0e4803b22aee8ec2856e0f",
+  "poweroff_rc": 0,
+  "qemu_exit_code": 0,
+  "production_changed": false
+}

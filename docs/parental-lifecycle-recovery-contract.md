@@ -1,6 +1,7 @@
 # Contrato de recuperação e ciclo de contas supervisionadas
 
-Status: **proposta para decisão do mantenedor**, 01/10/2026. Complemento técnico
+Status: **direção técnica autorizada para implementação isolada**,
+registrada nesta conversa após a apresentação de 01/10/2026; atualização em 02/10. Complemento técnico
 à [ADR 0008](adr/0008-private-age-signal-and-parental-supervision.md), sem marcar
 a ADR como aceita. O parecer já aprovado em #10 não precisa ser solicitado
 novamente. Aprovar este contrato autoriza a próxima implementação isolada com
@@ -221,16 +222,21 @@ ou remover Vega não apaga registro/barreira para liberar acesso. Não instalar
 na máquina real até qualificar migração e recuperação em staging. Receita,
 OBS (somente Leap 16.1) e candidata continuam fora desta entrega documental.
 
-## Aprovação solicitada
+## Registro da decisão e limites
 
-Registrar uma decisão explícita sobre a direção acima: coordenador integrado
+Após a apresentação deste documento e o pedido de aprovação, o mantenedor
+respondeu `continue`, autorizando a direção técnica recomendada: coordenador integrado
 com transações tipadas, root/admin irrestrito confiável, papéis separados,
 reparo técnico sem alterar política e bloqueio quando não houver cobertura de
-produtor. Alternativa: revisar a fronteira se for necessário resistir a um
-administrador root; os protótipos atuais não atendem essa exigência.
+produtor. A fronteira autorizada não promete resistência a um administrador root; os
+protótipos atuais não atendem essa exigência.
 
 Essa aprovação resolve a direção técnica da próxima etapa isolada. Permanecem
 pendentes o desenho final dos adaptadores/classificação, revisões da ADR,
 retenção, aferição/sinal, cadastro de responsáveis, retirada de supervisão,
 exportação/exclusão e os gates funcionais. Nenhuma dessas decisões é inferida
 por uma resposta que aprove este contrato técnico.
+
+O [primeiro gate experimental](evidence/parental-coordinator/README.md) implementa
+recusas por cobertura ausente e recuperação sem enrollment. Classificação
+persistente, adaptadores reais e revisão monotônica ainda não estão concluídos.

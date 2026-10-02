@@ -181,3 +181,9 @@ inibição de produtores e quiescência comprovada antecedem mutações Unix;
 recuperação no boot não cria enrollment. A direção requer decisão explícita
 do mantenedor e não muda o status desta ADR, não aprova publicação nem resolve
 aferição, retenção, vínculo de responsáveis ou retirada de supervisão.
+
+A direção técnica desse contrato foi autorizada nesta conversa por `continue`
+após sua apresentação. O escopo é implementação isolada com contas fictícias;
+a aprovação final desta ADR e os gates de publicação permanecem pendentes.
+O [gate experimental](../evidence/parental-coordinator/README.md) não implementa
+a classificação persistente nem a inibição geral dos produtores.
