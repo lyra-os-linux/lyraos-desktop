@@ -1,0 +1,162 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "baseline-ordinary-1000",
+      "passed": true,
+      "unit": {
+        "MainPID": "628",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-ordinary-1002",
+      "passed": true,
+      "unit": {
+        "MainPID": "646",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "root-protected-inventory-records-unsupported-families",
+      "passed": true,
+      "revision": 1,
+      "digest": "fbf40dfe4db8237ba6d48e24df9a3192d92f2598c8c093fa3a357143dac9250b",
+      "states": {
+        "classification": "registered",
+        "cron": "unsupported",
+        "dbus-activation": "unsupported",
+        "gdm": "unsupported",
+        "ssh": "unsupported",
+        "system-units": "unsupported",
+        "user-manager": "registered"
+      }
+    },
+    {
+      "name": "whole-account-preflight-refuses-partial-catalog-without-authority-effects",
+      "passed": true
+    },
+    {
+      "name": "seven-registered-family-names-do-not-issue-whole-coverage",
+      "passed": true
+    },
+    {
+      "name": "forced-candidate-cannot-bypass-whole-coverage-check",
+      "passed": true
+    },
+    {
+      "name": "stale-revision-rejected-before-authorization-or-withdrawal",
+      "passed": true
+    },
+    {
+      "name": "changed-route-digest-rejected-without-revision-bump",
+      "passed": true
+    },
+    {
+      "name": "divergent-full-nss-tuple-rejected",
+      "passed": true
+    },
+    {
+      "name": "configuration-cannot-self-assert-complete-coverage",
+      "passed": true
+    },
+    {
+      "name": "missing-required-family-rejected",
+      "passed": true
+    },
+    {
+      "name": "extra-unrecognized-family-rejected",
+      "passed": true
+    },
+    {
+      "name": "group-readable-inventory-refused",
+      "passed": true
+    },
+    {
+      "name": "inventory-hardlink-refused",
+      "passed": true
+    },
+    {
+      "name": "inventory-symlink-refused-without-reading-target",
+      "passed": true
+    },
+    {
+      "name": "oversized-inventory-refused",
+      "passed": true
+    },
+    {
+      "name": "duplicate-json-key-refused",
+      "passed": true
+    },
+    {
+      "name": "missing-lock-refused-without-recreating-lock",
+      "passed": true
+    },
+    {
+      "name": "busy-target-inventory-lock-does-not-block-peer-read",
+      "passed": true
+    },
+    {
+      "name": "cooperating-writer-cannot-replace-live-target-snapshot",
+      "passed": true
+    },
+    {
+      "name": "group-accessible-inventory-directory-refused",
+      "passed": true
+    },
+    {
+      "name": "all-preflight-refusals-preserve-ordinary-managers-and-proofs",
+      "passed": true,
+      "peer_pid": "628",
+      "target_pid": "646",
+      "authorization_calls": 0,
+      "adapter_calls": 0
+    },
+    {
+      "name": "inventory-refusal-never-removes-existing-withdrawal-authority",
+      "passed": true
+    }
+  ],
+  "error": null,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "native.py": "9c5b82c8c3ddaa828009e10adce4f1aa195918681663ce221f420e89660cb254",
+      "common.py": "eaec815c28e94f281a4199f92fc21a2439faa94dce123440c0be7f3b0514a2a2",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "cleanup.py": "d9d9cac6df7729c0232c8b6923b23ca513e819090563c33656d044c6e75a30d5",
+      "restore-check.py": "4c820352acc171bea4f992a2be0ddf870c3189d59d6abcf67acd2ba9071bd25d",
+      "fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+      "inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e"
+    }
+  },
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "full_account_protection": false,
+  "whole_namespace_inventory_qualified": false,
+  "complete_coverage_issuer_implemented": false,
+  "production_adapters_qualified": false,
+  "global_monotonic_revision_qualified": false,
+  "anti_rollback_qualified": false,
+  "power_loss_tested": false,
+  "real_nss_mutations_tested": false,
+  "all_producer_quiescence": false
+}
