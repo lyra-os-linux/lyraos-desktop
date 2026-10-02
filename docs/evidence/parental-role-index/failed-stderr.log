@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/root/role-index/native.py", line 75, in <module>
+    attempt('final-protected-role-restored',1003,True)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/role-index/native.py", line 36, in attempt
+    assert child['rc']==0 and unit['ActiveState']=='active' and int(unit['MainPID'])>0,(name,child,unit,journal)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('final-protected-role-restored', {'rc': 1, 'stdout': '', 'stderr': 'Job for user@1003.service failed because the control process exited with error code.\nSee "systemctl status user@1003.service" and "journalctl -xeu user@1003.service" for details.\n'}, {'MainPID': '0', 'ExecMainStatus': '224', 'ActiveState': 'failed'}, "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n")

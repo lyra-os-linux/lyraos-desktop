@@ -1,0 +1,289 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "persistent-protected-role-admits-native-manager",
+      "passed": true,
+      "uid": 1003,
+      "allowed": true,
+      "unit": {
+        "MainPID": "4364",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nFailed to create timezone change event source: Permission denied\nExec binary '/usr/libexec/gsd-screensaver-proxy' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-print-notifications' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.PrintNotifications.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sharing' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sharing.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-a11y-settings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.A11ySettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-keyboard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Keyboard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-xsettings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sound' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sound.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-housekeeping' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Housekeeping.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-rfkill' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Rfkill.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wwan' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wwan.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-datetime' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Datetime.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\n/usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-usb-protection' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.UsbProtection.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/geoclue-2.0/demos/agent' does not exist: Permission denied\n/usr/etc/xdg/autostart/geoclue-demo-agent.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-smartcard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-media-keys' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.MediaKeys.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-power' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Power.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wacom' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wacom.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-color' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Color.desktop: not generating unit, error parsing Exec= line: Permission denied\nFailed to acquire watch file descriptor: Permission denied\nFailed to allocate device monitor: Permission denied\nFailed to connect to system bus: Permission denied\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 60ms.\nStarted User Manager for UID 1003.\n"
+    },
+    {
+      "name": "explicit-ordinary-role-admits-native-manager",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "4488",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 57ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "missing-state-protected-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "missing-state-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "4723",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 66ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "corrupt-state-protected-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "corrupt-state-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "4964",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 85ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "missing-protected-role-protected-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "missing-protected-role-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "5206",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 66ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "missing-index-protected-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "missing-index-ordinary-denied-availability-gap",
+      "passed": true,
+      "uid": 1002,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n"
+    },
+    {
+      "name": "corrupt-index-protected-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "corrupt-index-ordinary-denied-availability-gap",
+      "passed": true,
+      "uid": 1002,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n"
+    },
+    {
+      "name": "unsafe-index-mode-protected-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "unsafe-index-mode-ordinary-denied-availability-gap",
+      "passed": true,
+      "uid": 1002,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n"
+    },
+    {
+      "name": "wrong-ordinary-role-protected-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "wrong-ordinary-role-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "6126",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 69ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "partial-role-identity-protected-denied",
+      "passed": true,
+      "uid": 1003,
+      "allowed": false,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "context": null,
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\npam_lyra_role_registry_fixture(systemd-user:session): Experimental role-index admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1003.service: Failed to set up PAM session: Operation not permitted\nuser@1003.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1003.service: Main process exited, code=exited, status=224/PAM\nuser@1003.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1003.\n"
+    },
+    {
+      "name": "partial-role-identity-ordinary-preserved",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "6362",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 75ms.\nStarted User Manager for UID 1002.\n"
+    },
+    {
+      "name": "final-protected-role-restored",
+      "passed": true,
+      "uid": 1003,
+      "allowed": true,
+      "unit": {
+        "MainPID": "6483",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "lyra_parental_u:lyra_parental_r:lyra_parental_probe_t:s0",
+      "journal": "Starting User Manager for UID 1003...\npam_unix(systemd-user:session): session opened for user parentaltest(uid=1003) by parentaltest(uid=0)\nFailed to create timezone change event source: Permission denied\n/usr/lib/systemd/user-environment-generators/60-flatpak failed with exit status 1, ignoring.\nExec binary '/usr/libexec/gsd-print-notifications' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.PrintNotifications.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-screensaver-proxy' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.ScreensaverProxy.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/at-spi2/at-spi-bus-launcher' does not exist: Permission denied\n/usr/etc/xdg/autostart/at-spi-dbus-bus.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sharing' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sharing.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/geoclue-2.0/demos/agent' does not exist: Permission denied\n/usr/etc/xdg/autostart/geoclue-demo-agent.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-usb-protection' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.UsbProtection.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-datetime' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Datetime.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-rfkill' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Rfkill.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-keyboard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Keyboard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-housekeeping' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Housekeeping.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-xsettings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wwan' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wwan.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-power' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Power.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-a11y-settings' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.A11ySettings.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-color' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Color.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-smartcard' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-wacom' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Wacom.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-media-keys' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.MediaKeys.desktop: not generating unit, error parsing Exec= line: Permission denied\nExec binary '/usr/libexec/gsd-sound' does not exist: Permission denied\n/etc/xdg/autostart/org.gnome.SettingsDaemon.Sound.desktop: not generating unit, error parsing Exec= line: Permission denied\nFailed to acquire watch file descriptor: Permission denied\nFailed to allocate device monitor: Permission denied\nFailed to connect to system bus: Permission denied\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 54ms.\nStarted User Manager for UID 1003.\n"
+    },
+    {
+      "name": "final-ordinary-role-restored",
+      "passed": true,
+      "uid": 1002,
+      "allowed": true,
+      "unit": {
+        "MainPID": "6604",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nQueued start job for default target Main User Target.\nCreated slice User Application Slice.\nStarted Daily Cleanup of User's Temporary Directories.\nReached target Paths.\nReached target Timers.\nStarting D-Bus User Message Bus Socket...\nListening on PipeWire PulseAudio.\nListening on PipeWire Multimedia System Sockets.\nStarting Create User Files and Directories...\nListening on D-Bus User Message Bus Socket.\nReached target Sockets.\nFinished Create User Files and Directories.\nReached target Basic System.\nReached target Main User Target.\nStartup finished in 67ms.\nStarted User Manager for UID 1002.\n"
+    }
+  ],
+  "error": null,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "roles-pam-guard.c": "8816cbfc1e0000c5488440ba23c431af311553780e9366bdc6b49c8b0d1ebca7",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "native.py": "f1610a491cccab3e595a0882d5170025c896c152d78b7e2369bf2159f04ac807",
+      "common.py": "72e0378e55100af66ea652b92ac8ea56ecb8082e46c540bae9697660c3e3ea8a",
+      "cleanup.py": "9f4503cdd798f61dc85e6f1866ab4cd8d83410e4a0bfafd679783672e61e6bd7"
+    }
+  },
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "full_account_protection": false,
+  "whole_classification_qualified": false,
+  "missing_classifier_preserves_ordinary": false,
+  "real_nss_mutations_tested": false,
+  "generation": "c617e6a723a62b10597707061e6b326e"
+}

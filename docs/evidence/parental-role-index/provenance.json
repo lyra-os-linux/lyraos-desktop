@@ -1,0 +1,102 @@
+{
+  "base_commit": "9912d488434c58b0db29f807d2b3353c00ab0bc3",
+  "sha256": {
+    "../parental-registry-barrier/pam-guard.c": "c50aa20cce8b2b081b858bca389cb705dd1f786791047c135a63868c99626e10",
+    "../parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "README.md": "7c11617682c7b27b8b5afe5f155cd1d78bff2b551073e711f5329b200d5bc1bc",
+    "cleanup.json": "30132ee168d98a64079a64dc4f223d221e8cf29d0b5a7c48baff7a81e72fdc9b",
+    "cleanup.py": "9f4503cdd798f61dc85e6f1866ab4cd8d83410e4a0bfafd679783672e61e6bd7",
+    "common.py": "72e0378e55100af66ea652b92ac8ea56ecb8082e46c540bae9697660c3e3ea8a",
+    "config.json": "83c1f07736c4873d56386658538fd745cf58242ed4aaa779b82167996af64bdf",
+    "exit-status": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "failed-cleanup.json": "30132ee168d98a64079a64dc4f223d221e8cf29d0b5a7c48baff7a81e72fdc9b",
+    "failed-native.py": "e6ca610af999ed5803e2d3646ecf582038d6b3a02f6f9b7b1dd437f51cd0ac1c",
+    "failed-restored.json": "36e778ff099af44cfb3d10b3d90c012bcb1ba0ee28cdfbc093de8376dac065fd",
+    "failed-result.json": "ada1e6f74d2b532e125e80315fd176b3af9bce21ba538ebc561d28654806eaae",
+    "failed-stderr.log": "9387feba2bca17dc3ee9d7905321ac92938aeed84be59b2b22d500af78ec0866",
+    "native.py": "f1610a491cccab3e595a0882d5170025c896c152d78b7e2369bf2159f04ac807",
+    "pam-guard.c": "8816cbfc1e0000c5488440ba23c431af311553780e9366bdc6b49c8b0d1ebca7",
+    "restore-check.py": "d5cab35ed4ed0f22277320f4c638e57fee3c0a868789137eb5ffe006f01470d8",
+    "restored.json": "d9856871404dcf3f9810be495f9edd5f2f75c74b8f6d444d128ec5623c26619f",
+    "result.json": "83dc5e2f867f004d748e6d02b7a65eb47b4cae85c2b46085cdabf285fb0b093a",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout.log": "1deb0b60edd1f938d699d5cf37484d950064239ffecffecdb12d6991ccb066ad",
+    "verify-evidence.py": "48b74c1f4cb3282e17b66f5281238df7ce3ebf64d7e28681bf748bb1626c7c9c"
+  },
+  "executions": [
+    {
+      "time": 1790939081.7006347,
+      "argv": [
+        "python3",
+        "/root/role-index/native.py"
+      ],
+      "id": "6e312f57c7534e7781e21cb6a780d4ae",
+      "rc": null,
+      "error": "TimeoutExpired(['python3', '/root/role-index/native.py'], 120)",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790939589.2430787,
+      "argv": [
+        "python3",
+        "/root/role-index/restore-check.py"
+      ],
+      "id": "0ccb8539e08448d599d2fef396bfd3df",
+      "rc": 0,
+      "error": null,
+      "stdout_sha256": "c4c1bba9993058851b39a66a245298b0c7dd37c5b728f00c86fa1ace5165dca6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790939678.4089246,
+      "argv": [
+        "python3",
+        "detached-controller-code",
+        "391e9c79561b64be428aa67a1284ce9dafa31553c530adef8c5273723a17eb1c"
+      ],
+      "id": "772129414ab8465c95085688b8086aca",
+      "rc": 0,
+      "error": null,
+      "stdout_sha256": "a342699447283835bcca6453a9630c73a998921792a4b3212648fd46c5fd69ca",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790939908.05908,
+      "argv": [
+        "python3",
+        "/root/role-index/restore-check.py"
+      ],
+      "id": "09fedc878a9e4c779fac11e785b5fec6",
+      "rc": 0,
+      "error": null,
+      "stdout_sha256": "e441106e659c6cab8993fe5ad1ebe8218fcb88a48725a3ccd511ab719b569046",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "time": 1790939927.6400914,
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "id": "e2ab6e4431bf40799f336ebf8c29f9a1",
+      "rc": 0
+    }
+  ],
+  "native_checks": 20,
+  "native_terminal_result": {
+    "passed": true,
+    "checks": 20,
+    "cleanup_rc": 0
+  },
+  "native_exit_code": 0,
+  "python_tests": 286,
+  "python_suite_exit_code": 0,
+  "poweroff_id": "e2ab6e4431bf40799f336ebf8c29f9a1",
+  "poweroff_rc": 0,
+  "qemu_exit_code": 0,
+  "production_changed": false,
+  "availability_gaps_reproduced": 3,
+  "stderr_empty": true,
+  "preliminary_runs_counted": false
+}

@@ -1,0 +1,16 @@
+{
+  "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+  "original_pam_mode": 420,
+  "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+  "account_sha256": {
+    "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+    "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+  },
+  "source_sha256": {
+    "roles-pam-guard.c": "8816cbfc1e0000c5488440ba23c431af311553780e9366bdc6b49c8b0d1ebca7",
+    "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "native.py": "f1610a491cccab3e595a0882d5170025c896c152d78b7e2369bf2159f04ac807",
+    "common.py": "72e0378e55100af66ea652b92ac8ea56ecb8082e46c540bae9697660c3e3ea8a",
+    "cleanup.py": "9f4503cdd798f61dc85e6f1866ab4cd8d83410e4a0bfafd679783672e61e6bd7"
+  }
+}
