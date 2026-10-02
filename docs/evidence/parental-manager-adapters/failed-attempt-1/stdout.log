@@ -1,0 +1,7 @@
+{"name": "baseline-ordinary-1000", "passed": true, "unit": {"MainPID": "622", "ExecMainStatus": "0", "ActiveState": "active"}, "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"}
+{"name": "baseline-ordinary-1002", "passed": true, "unit": {"MainPID": "640", "ExecMainStatus": "0", "ActiveState": "active"}, "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"}
+{"name": "withdrawn-classification-old-manager-observed", "passed": true, "target_pid": "640", "peer_pid": "622"}
+{"name": "revocation-denied-preserves-old-manager", "passed": true}
+{"name": "wrong-operation-no-revocation", "passed": true}
+{"name": "changed-pam-no-revocation", "passed": true}
+{"passed": false, "checks": 6, "cleanup_rc": 0}

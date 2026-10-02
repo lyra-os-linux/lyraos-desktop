@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/root/manager-adapters/native.py", line 75, in <module>
+    assert manager.revoke(target) and manager.quiescent(target)
+           ~~~~~~~~~~~~~~^^^^^^^^
+  File "/root/manager-adapters/adapters.py", line 102, in revoke
+    raise GateError('UnverifiedQuiescence')
+coordinator.GateError: UnverifiedQuiescence
