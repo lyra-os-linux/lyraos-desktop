@@ -1,0 +1,26 @@
+{
+  "base_commit": "c3dea1c1ab5f5e312d79e040d0dc9226e1afd2e2",
+  "python_command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests"
+  ],
+  "python_tests": 530,
+  "new_tests": 26,
+  "python_exit_code": 0,
+  "native_tests_run": 0,
+  "production_changed": false,
+  "global_coverage_qualified": false,
+  "sha256": {
+    "namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+    "python-suite.txt": "17dc1b7f64803235884ac1c7d011eba2a1f2d119578c6afed4f7767edd107157",
+    "README.md": "91522a18ca71171ce443728fd30fa42f81b97c2fee360498bad26b1e992b3932",
+    "verify-evidence.py": "2039504c875201fe423823e7c9877cf97e68787355a8a517f30e7d732b37ceba",
+    "../../../tests/test_parental_namespace_guard.py": "abe0477d2e9c4d7e204f9251228d5bde4d511efecfa0b7c921bc98fd9c87898e",
+    "../parental-coordinator/coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+    "../parental-pending-discovery/discovery.py": "691bdf0edc26e7c6e6f0913da332fe7bf0bf7aecf9a74ef23bfee43145c97e8f"
+  }
+}
