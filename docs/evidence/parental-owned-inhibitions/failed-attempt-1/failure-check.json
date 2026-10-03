@@ -1,0 +1,10 @@
+{
+  "pam_preserved": true,
+  "pam_mode_preserved": true,
+  "accounts_preserved": true,
+  "permissive": true,
+  "fixtures_absent": true,
+  "uid_activity_absent": true,
+  "sessions_absent": true,
+  "passed": true
+}

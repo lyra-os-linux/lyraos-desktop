@@ -1,0 +1,1 @@
+First native attempt failed at import owned_common: source file was named owned-common.py. No fixture setup or result.json was reached. Exact attempted local sources and actual stdout/stderr/exit-status are preserved. Independent guest inspection verifies the original baseline. Renamed the helper to owned_common.py and updated source capture before retry.

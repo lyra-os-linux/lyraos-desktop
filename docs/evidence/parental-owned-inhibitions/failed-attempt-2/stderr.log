@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "/root/owned-inhibitions/inventory.py", line 93, in locked
+    yield dfd
+  File "/root/owned-inhibitions/ownership.py", line 133, in _locked
+    with self.ledger.lock(1,exclusive) as (fd,_):yield inv,proof,names,fd
+         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib64/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/owned-inhibitions/withdrawal.py", line 60, in lock
+    fd=os.open(names[3],os.O_RDONLY|os.O_NOFOLLOW|os.O_CLOEXEC|os.O_NONBLOCK,dir_fd=dfd)
+FileNotFoundError: [Errno 2] No such file or directory: '.gate-1.lock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/owned-inhibitions/native.py", line 135, in <module>
+    try:gate.plan(1002,operation,key)
+        ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/root/owned-inhibitions/ownership.py", line 174, in plan
+    return self.owner._storage(work)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/root/owned-inhibitions/operations.py", line 54, in _storage
+    try:return fn()
+               ~~^^
+  File "/root/owned-inhibitions/ownership.py", line 173, in work
+    with self._snapshot(uid,operation,key) as capture:return capture[0]
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/owned-inhibitions/ownership.py", line 167, in _snapshot
+    with self._locked(uid,exclusive) as args:
+         ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/root/owned-inhibitions/ownership.py", line 131, in _locked
+    with self.owner.inventory.locked(uid) as inv:
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib64/python3.13/contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "/root/owned-inhibitions/inventory.py", line 95, in locked
+    except FileNotFoundError as e:raise GateError('UnknownInventory') from e
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+coordinator.GateError: UnknownInventory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/owned-inhibitions/native.py", line 136, in <module>
+    except oc.GateError as e:assert e.code in ('RecoveryRequired','StorageFailure')
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

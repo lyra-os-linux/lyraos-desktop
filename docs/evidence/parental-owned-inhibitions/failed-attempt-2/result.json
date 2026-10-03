@@ -1,0 +1,840 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "name": "baseline-ordinary-1000",
+      "passed": true,
+      "unit": {
+        "MainPID": "701",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-ordinary-1002",
+      "passed": true,
+      "unit": {
+        "MainPID": "719",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "owned-negative-admission-ready-before-producer-effects",
+      "passed": true,
+      "owner": {
+        "action": "withdraw-admission",
+        "identity": {
+          "gid": 1003,
+          "group": "ordinaryuser",
+          "uid": 1002,
+          "user": "ordinaryuser"
+        },
+        "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+        "inventory_revision": 1,
+        "operation": "f7d5b58f386c809e79378b07d5fc5398",
+        "phase": "retired",
+        "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+        "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+        "revision": 3,
+        "schema": 1
+      }
+    },
+    {
+      "name": "durable-resource-crash-system-units-intent-synced",
+      "passed": true,
+      "key": [
+        "system-units",
+        "lyra-owner-0.service"
+      ],
+      "child_rc": 91,
+      "owner": {
+        "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+        "effect": null,
+        "family": "system-units",
+        "name": "lyra-owner-0.service",
+        "namespace": {
+          "device": 65024,
+          "inode": 56391
+        },
+        "original": null,
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "intent",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 1,
+        "route_digest": "05dfa11d9c03a84d74fc655b544042e8230ae62ee163e8be2e90eadc7255a3db",
+        "schema": 1
+      },
+      "resource_state": {
+        "stamp": null,
+        "state": "available"
+      }
+    },
+    {
+      "name": "pam-barrier-after-system-units-intent-synced",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "701",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "authorized-resource-resume-system-units-intent-synced",
+      "passed": true,
+      "owner": {
+        "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+        "effect": {
+          "device": 65024,
+          "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+          "inode": 56404
+        },
+        "family": "system-units",
+        "name": "lyra-owner-0.service",
+        "namespace": {
+          "device": 65024,
+          "inode": 56391
+        },
+        "original": null,
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 2,
+        "route_digest": "05dfa11d9c03a84d74fc655b544042e8230ae62ee163e8be2e90eadc7255a3db",
+        "schema": 1
+      },
+      "peer_pid": "701",
+      "peer_preserved": true,
+      "authorization_calls": 1,
+      "idempotent_retry_readonly": true
+    },
+    {
+      "name": "durable-resource-crash-system-units-effect-synced",
+      "passed": true,
+      "key": [
+        "system-units",
+        "lyra-owner-1.service"
+      ],
+      "child_rc": 91,
+      "owner": {
+        "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+        "effect": null,
+        "family": "system-units",
+        "name": "lyra-owner-1.service",
+        "namespace": {
+          "device": 65024,
+          "inode": 56391
+        },
+        "original": null,
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "intent",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 1,
+        "route_digest": "e5652c145dea75fd7bacdb0b5ad8ee92d2ce7b02d1171bf8f214a97b1417c9cc",
+        "schema": 1
+      },
+      "resource_state": {
+        "stamp": {
+          "device": 65024,
+          "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+          "inode": 56406
+        },
+        "state": "fenced"
+      }
+    },
+    {
+      "name": "pam-barrier-after-system-units-effect-synced",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "701",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "authorized-resource-resume-system-units-effect-synced",
+      "passed": true,
+      "owner": {
+        "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+        "effect": {
+          "device": 65024,
+          "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+          "inode": 56406
+        },
+        "family": "system-units",
+        "name": "lyra-owner-1.service",
+        "namespace": {
+          "device": 65024,
+          "inode": 56391
+        },
+        "original": null,
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 2,
+        "route_digest": "e5652c145dea75fd7bacdb0b5ad8ee92d2ce7b02d1171bf8f214a97b1417c9cc",
+        "schema": 1
+      },
+      "peer_pid": "701",
+      "peer_preserved": true,
+      "authorization_calls": 1,
+      "idempotent_retry_readonly": true
+    },
+    {
+      "name": "durable-resource-crash-system-units-fenced-journal-synced",
+      "passed": true,
+      "key": [
+        "system-units",
+        "lyra-owner-2.service"
+      ],
+      "child_rc": 91,
+      "owner": {
+        "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+        "effect": {
+          "device": 65024,
+          "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+          "inode": 56408
+        },
+        "family": "system-units",
+        "name": "lyra-owner-2.service",
+        "namespace": {
+          "device": 65024,
+          "inode": 56391
+        },
+        "original": null,
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 2,
+        "route_digest": "4c08de0ad770558bfa410c8d74e5e5d397b7eb103d4e02945203b62bc9d4bd2a",
+        "schema": 1
+      },
+      "resource_state": {
+        "stamp": {
+          "device": 65024,
+          "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+          "inode": 56408
+        },
+        "state": "fenced"
+      }
+    },
+    {
+      "name": "pam-barrier-after-system-units-fenced-journal-synced",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "701",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "authorized-resource-resume-system-units-fenced-journal-synced",
+      "passed": true,
+      "owner": {
+        "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+        "effect": {
+          "device": 65024,
+          "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+          "inode": 56408
+        },
+        "family": "system-units",
+        "name": "lyra-owner-2.service",
+        "namespace": {
+          "device": 65024,
+          "inode": 56391
+        },
+        "original": null,
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 2,
+        "route_digest": "4c08de0ad770558bfa410c8d74e5e5d397b7eb103d4e02945203b62bc9d4bd2a",
+        "schema": 1
+      },
+      "peer_pid": "701",
+      "peer_preserved": true,
+      "authorization_calls": 1,
+      "idempotent_retry_readonly": true
+    },
+    {
+      "name": "durable-resource-crash-dbus-activation-intent-synced",
+      "passed": true,
+      "key": [
+        "dbus-activation",
+        "org.lyra.Owner0"
+      ],
+      "child_rc": 91,
+      "owner": {
+        "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+        "effect": null,
+        "family": "dbus-activation",
+        "name": "org.lyra.Owner0",
+        "namespace": {
+          "device": 65024,
+          "inode": 56392
+        },
+        "original": {
+          "device": 65024,
+          "digest": "a69ac8aaecc3dc7548e521fadb92738bb731deee53f7e8d265fa3b6af05e55b8",
+          "inode": 56394
+        },
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "intent",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 1,
+        "route_digest": "a69ac8aaecc3dc7548e521fadb92738bb731deee53f7e8d265fa3b6af05e55b8",
+        "schema": 1
+      },
+      "resource_state": {
+        "stamp": {
+          "device": 65024,
+          "digest": "a69ac8aaecc3dc7548e521fadb92738bb731deee53f7e8d265fa3b6af05e55b8",
+          "inode": 56394
+        },
+        "state": "available"
+      }
+    },
+    {
+      "name": "pam-barrier-after-dbus-activation-intent-synced",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "701",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "authorized-resource-resume-dbus-activation-intent-synced",
+      "passed": true,
+      "owner": {
+        "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+        "effect": {
+          "device": 65024,
+          "digest": "a69ac8aaecc3dc7548e521fadb92738bb731deee53f7e8d265fa3b6af05e55b8",
+          "inode": 56394
+        },
+        "family": "dbus-activation",
+        "name": "org.lyra.Owner0",
+        "namespace": {
+          "device": 65024,
+          "inode": 56392
+        },
+        "original": {
+          "device": 65024,
+          "digest": "a69ac8aaecc3dc7548e521fadb92738bb731deee53f7e8d265fa3b6af05e55b8",
+          "inode": 56394
+        },
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 2,
+        "route_digest": "a69ac8aaecc3dc7548e521fadb92738bb731deee53f7e8d265fa3b6af05e55b8",
+        "schema": 1
+      },
+      "peer_pid": "701",
+      "peer_preserved": true,
+      "authorization_calls": 1,
+      "idempotent_retry_readonly": true
+    },
+    {
+      "name": "durable-resource-crash-dbus-activation-effect-synced",
+      "passed": true,
+      "key": [
+        "dbus-activation",
+        "org.lyra.Owner1"
+      ],
+      "child_rc": 91,
+      "owner": {
+        "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+        "effect": null,
+        "family": "dbus-activation",
+        "name": "org.lyra.Owner1",
+        "namespace": {
+          "device": 65024,
+          "inode": 56392
+        },
+        "original": {
+          "device": 65024,
+          "digest": "c5bc4565f3e780719cef9a6d76ced874396bb71b9b3970d276cdf552a97665a6",
+          "inode": 56395
+        },
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "intent",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 1,
+        "route_digest": "c5bc4565f3e780719cef9a6d76ced874396bb71b9b3970d276cdf552a97665a6",
+        "schema": 1
+      },
+      "resource_state": {
+        "stamp": {
+          "device": 65024,
+          "digest": "c5bc4565f3e780719cef9a6d76ced874396bb71b9b3970d276cdf552a97665a6",
+          "inode": 56395
+        },
+        "state": "fenced"
+      }
+    },
+    {
+      "name": "pam-barrier-after-dbus-activation-effect-synced",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "701",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "authorized-resource-resume-dbus-activation-effect-synced",
+      "passed": true,
+      "owner": {
+        "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+        "effect": {
+          "device": 65024,
+          "digest": "c5bc4565f3e780719cef9a6d76ced874396bb71b9b3970d276cdf552a97665a6",
+          "inode": 56395
+        },
+        "family": "dbus-activation",
+        "name": "org.lyra.Owner1",
+        "namespace": {
+          "device": 65024,
+          "inode": 56392
+        },
+        "original": {
+          "device": 65024,
+          "digest": "c5bc4565f3e780719cef9a6d76ced874396bb71b9b3970d276cdf552a97665a6",
+          "inode": 56395
+        },
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 2,
+        "route_digest": "c5bc4565f3e780719cef9a6d76ced874396bb71b9b3970d276cdf552a97665a6",
+        "schema": 1
+      },
+      "peer_pid": "701",
+      "peer_preserved": true,
+      "authorization_calls": 1,
+      "idempotent_retry_readonly": true
+    },
+    {
+      "name": "durable-resource-crash-dbus-activation-fenced-journal-synced",
+      "passed": true,
+      "key": [
+        "dbus-activation",
+        "org.lyra.Owner2"
+      ],
+      "child_rc": 91,
+      "owner": {
+        "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+        "effect": {
+          "device": 65024,
+          "digest": "415eeb53a3fc13ba782f1323d37660c29774131c6bab9e20aa707ed718dbbe73",
+          "inode": 56396
+        },
+        "family": "dbus-activation",
+        "name": "org.lyra.Owner2",
+        "namespace": {
+          "device": 65024,
+          "inode": 56392
+        },
+        "original": {
+          "device": 65024,
+          "digest": "415eeb53a3fc13ba782f1323d37660c29774131c6bab9e20aa707ed718dbbe73",
+          "inode": 56396
+        },
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 2,
+        "route_digest": "415eeb53a3fc13ba782f1323d37660c29774131c6bab9e20aa707ed718dbbe73",
+        "schema": 1
+      },
+      "resource_state": {
+        "stamp": {
+          "device": 65024,
+          "digest": "415eeb53a3fc13ba782f1323d37660c29774131c6bab9e20aa707ed718dbbe73",
+          "inode": 56396
+        },
+        "state": "fenced"
+      }
+    },
+    {
+      "name": "pam-barrier-after-dbus-activation-fenced-journal-synced",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "701",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "authorized-resource-resume-dbus-activation-fenced-journal-synced",
+      "passed": true,
+      "owner": {
+        "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+        "effect": {
+          "device": 65024,
+          "digest": "415eeb53a3fc13ba782f1323d37660c29774131c6bab9e20aa707ed718dbbe73",
+          "inode": 56396
+        },
+        "family": "dbus-activation",
+        "name": "org.lyra.Owner2",
+        "namespace": {
+          "device": 65024,
+          "inode": 56392
+        },
+        "original": {
+          "device": 65024,
+          "digest": "415eeb53a3fc13ba782f1323d37660c29774131c6bab9e20aa707ed718dbbe73",
+          "inode": 56396
+        },
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3e987aeb6a6e323235433f63a6a3810140e08b3576d8fd4fcde78280f186a6c7",
+          "inventory_revision": 1,
+          "operation": "f7d5b58f386c809e79378b07d5fc5398",
+          "phase": "retired",
+          "proof_hash": "bb55c3853a6738e05e452136117cb423bbc43817244774b8f38eba9a3bdb9167",
+          "proof_snapshot": "13b95fd8e70ea1989d8690187249a519469db2abd022fbd138867dc12f46c389",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+        "revision": 2,
+        "route_digest": "415eeb53a3fc13ba782f1323d37660c29774131c6bab9e20aa707ed718dbbe73",
+        "schema": 1
+      },
+      "peer_pid": "701",
+      "peer_preserved": true,
+      "authorization_calls": 1,
+      "idempotent_retry_readonly": true
+    },
+    {
+      "name": "owned-hardlink-intermediate-resumes-original-inode",
+      "passed": true,
+      "inode": 56397,
+      "fixture_intermediate_created_explicitly": true
+    },
+    {
+      "name": "preexisting-unowned-mask-refused-without-ledger-write",
+      "passed": true
+    },
+    {
+      "name": "preexisting-unowned-retirement-refused-without-ledger-write",
+      "passed": true
+    },
+    {
+      "name": "operation-auth-and-catalog-refusals-preserve-existing-fences",
+      "passed": true
+    },
+    {
+      "name": "lost-owner-record-never-adopts-present-mask",
+      "passed": true
+    },
+    {
+      "name": "corrupt-fence-journal-keeps-mask-and-admission-barrier",
+      "passed": true
+    },
+    {
+      "name": "completed-mask-removal-never-auto-recreated",
+      "passed": true
+    },
+    {
+      "name": "completed-mask-replacement-inode-refused",
+      "passed": true
+    },
+    {
+      "name": "replaced-retired-definition-inode-refused",
+      "passed": true
+    }
+  ],
+  "error": "",
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "native.py": "3a92ae681efbeeb187b0240aac157b5f45ad43a78b4ee720a80117db8ad7d6e2",
+      "common.py": "e2219eb807c8197b52dfed41b09ec1e5ab1e8e9fb1a10af0638606f9506f4e68",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "cleanup.py": "0fd288bcf0339b13b30ca86e5f74c1ecec6d4bbc279dba9b29aac5474ba6c4f7",
+      "restore-check.py": "8c26935c6bfabbfe5439b375deb9b0709a3b773aa352b02c90f0147084765dc2",
+      "fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+      "inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+      "operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+      "child.py": "f65b2f2e18c57c5a61f170cee511e4548fa962b2e282ea6946c16809da7f1f0a",
+      "op-common.py": "ed1882222b51330250df784937d1b66bdbf733c310e87fb560bb5166ecbed88b",
+      "ownership.py": "43d2e6e03cf20efad3e9f6546f5d6a764b134dcea3da449fb7ca14fb60e8824b",
+      "owned_common.py": "70020f98e28975640e906b9d2e4a35e2aad4a06748719ee228e63dbb564692e5",
+      "unit-adapter.py": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+      "dbus-adapter.py": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa"
+    },
+    "mask_routes": [
+      [
+        "lyra-owner-0.service",
+        "05dfa11d9c03a84d74fc655b544042e8230ae62ee163e8be2e90eadc7255a3db"
+      ],
+      [
+        "lyra-owner-1.service",
+        "e5652c145dea75fd7bacdb0b5ad8ee92d2ce7b02d1171bf8f214a97b1417c9cc"
+      ],
+      [
+        "lyra-owner-2.service",
+        "4c08de0ad770558bfa410c8d74e5e5d397b7eb103d4e02945203b62bc9d4bd2a"
+      ],
+      [
+        "lyra-owner-3.service",
+        "98dc0fc635c0f434068fd21654c12dd305087f38636a31da4ba18cb84d980e3c"
+      ]
+    ],
+    "dbus_routes": [
+      [
+        "org.lyra.Owner0",
+        "a69ac8aaecc3dc7548e521fadb92738bb731deee53f7e8d265fa3b6af05e55b8"
+      ],
+      [
+        "org.lyra.Owner1",
+        "c5bc4565f3e780719cef9a6d76ced874396bb71b9b3970d276cdf552a97665a6"
+      ],
+      [
+        "org.lyra.Owner2",
+        "415eeb53a3fc13ba782f1323d37660c29774131c6bab9e20aa707ed718dbbe73"
+      ],
+      [
+        "org.lyra.Owner3",
+        "19fb3acc751a9cc6cee619286cc23f58343d73c75d13fdded062f0d6e02b133b"
+      ],
+      [
+        "org.lyra.Owner4",
+        "15428594bbe6f5af8b348d8f75fbd6ce28bebb0ce8c399ef5c0b433ac3d4097d"
+      ]
+    ]
+  },
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "full_account_protection": false,
+  "all_producer_quiescence": false,
+  "live_producer_inhibition_tested": false,
+  "production_journal_qualified": false,
+  "global_monotonic_revision_qualified": false,
+  "anti_rollback_qualified": false,
+  "power_loss_tested": false,
+  "kernel_reboot_tested": false,
+  "real_nss_mutations_tested": false,
+  "producer_revocation_tested": false
+}
