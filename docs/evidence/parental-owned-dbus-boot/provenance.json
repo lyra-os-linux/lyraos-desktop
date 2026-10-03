@@ -1,0 +1,149 @@
+{
+  "base_commit": "69c46fcdeeb1b7d3929f4e78478aaee2631054c9",
+  "native_checks": 51,
+  "real_kernel_reboots": 2,
+  "failed_native_attempts": 0,
+  "native_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "python_baseline_tests": 496,
+  "python_baseline_reused": true,
+  "qemu_sessions": [
+    93601,
+    5545,
+    73355
+  ],
+  "qemu_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "launcher_pids": [
+    627,
+    550,
+    551
+  ],
+  "poweroff_rc": 0,
+  "production_changed": false,
+  "executions": [
+    {
+      "request_id": "a19cfb13ce6149c5853675d056075aaf",
+      "argv": [
+        "systemctl",
+        "reboot"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "request_id": "5c502231ad9c492f82358ac5eee3d73b",
+      "argv": [
+        "systemctl",
+        "reboot"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "request_id": "4a873555849940c68f15068c8c3e9fcc",
+      "argv": [
+        "python3",
+        "/root/owned-dbus-boot/cleanup.py"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "request_id": "29537ffc8d9e4e748283331c102e8762",
+      "argv": [
+        "python3",
+        "/root/owned-dbus-boot/restore-check.py"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "request_id": "c70d1f95051e4a1b955b20fc9f78beab",
+      "argv": [
+        "python3",
+        "/root/owned-dbus-boot/restore-routes.py"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "request_id": "650df41cf29f4ea5a4e6596864dd5899",
+      "argv": [
+        "python3",
+        "/root/owned-dbus-boot/restore-ownership.py"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "request_id": "2445ae01080e4576891c9eb8b517778c",
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "rc": 0,
+      "stderr": ""
+    }
+  ],
+  "sha256": {
+    "common.py": "86b53cb33a0478ca3110053988bbb83239c0e495fcf70c6bf0abae6e2fe5f2c4",
+    "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+    "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+    "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+    "fixture.py": "7f91b3a701a895a7939290895527c378f18e0cbf8f861f4f2382c8a3f0e8b933",
+    "cleanup.py": "9496ee867f30efb28434d5d59392cf731103e5df0f8653953a24dd79bcc1a887",
+    "restore-check.py": "eb39db67301174a1ec887097ba4ecfbc555f3d8b5f3ecb9907ec00527ed5f0bf",
+    "restore-routes.py": "114dcdb0ec34791402eea6b42a0ca5b27fe412a23b2baa0c89feb89ebb31ada2",
+    "inventory_fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+    "live_common.py": "4b0f41ef224f9d948a937e212c6a7f3b6dfc4f454168c8fb115195a335fb742f",
+    "restore-ownership.py": "37f455e5d781f1f0eaf00b388e2c0c6fb6fad4e6ff1d2440d0ca250b3bf6f028",
+    "boot_common.py": "65769c718eea5e5033e4fc4818b132923e409eb86c4be637e8d76f90e63b959f",
+    "child.py": "98867bd6b9fdf79c383a0dfc6f0c12e1a35f1dda68da602bca2f29a95910c60d",
+    "prepare.py": "2902c2094e40c0c8f82afd17ad4c8fd30b0bb401ead2a97877876c256e302425",
+    "recover-at-boot.py": "8e9ecc1609c13873f40f7c89481f571bda68f8c75ce2fc1592853998b7d468fc",
+    "verify-boot.py": "57a7195cc28ad477950f2a05a0d6c358068d4a35e25c539ef7bdcd5c945a1299",
+    "prepared.json": "4b3d379506389ed9e52b47e0a84e61427683d0afa883e4cae1d6541e6efe9436",
+    "verified-readonly.json": "bd74345f6b2937cc5f92cf0417b98577eaf52bd1cf77442f60179ecb6929ebfe",
+    "verified-fault.json": "4fcdad3535e10a8f44fd0ad8b7f33c3e4dd01411a4d55d6672ce4b1dd9959cf5",
+    "cleanup.json": "d875a691b82245ae9c0b07caefd37f76245564cf00d3bf8b0e2902714ffa0f23",
+    "restored.json": "2bffa548dc97485e77413afa33aea9a66d5794faf6214e345a4288c725b8db42",
+    "ownership-restored.json": "db0c8633642c9b497f10ca91a1ca52feb3af6d6c4dc7f8820a591702889c4852",
+    "ownership-restored-independent.json": "f513cb4fa3b2051f7abac9c8bc7a7986da7815bec171e79f1c902cfbce39edba",
+    "routes-restored.json": "ffbb84ca486328f2fe5e3bc63cc5796199c31afc024f9cc496af7e6022537872",
+    "routes-restored-independent.json": "dda4f5525e4d69c9404ea79e0c53ecdb9915f5fc9b23ad3c91d1e939eed4f9ce",
+    "prepare-stdout.log": "969dc7c0d8aca9ffb5f28cc8202d93375a2f8b4b1bdb1657660006356cbf7942",
+    "prepare-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prepare-exit-status": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "verify-readonly-stdout.log": "12c4d911426334c16ae8c9e6bf1d653608c11ccb41615fcd07b7c03b4df1a8aa",
+    "verify-readonly-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "verify-readonly-exit-status": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "verify-fault-stdout.log": "54bb29cb5854798ffb2513d0a8bf027008f33263e817e197fe8f57a4181adfef",
+    "verify-fault-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "verify-fault-exit-status": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "README.md": "2f47d028a95d11ddc02ee49ab024e8c0040147d47f00d93b035f2692c1736d8d",
+    "verify-evidence.py": "e69ce21ef9caf0edd23934deb694aef33df5ff6bf92bfff9695441470967f2b0",
+    "../parental-ordinary-withdrawal/pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+    "../parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "../parental-ordinary-withdrawal/withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+    "../parental-coordinator/coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+    "../parental-ordinary-coordinator/ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+    "../parental-manager-adapters/adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+    "../parental-operation-journal/operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+    "../parental-inventory-gate/inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+    "../parental-owned-inhibitions/ownership.py": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+    "../parental-owned-live/integration.py": "e90bc3623e68856256b14617addcaaee7fd5f12dc9c26b82b3129c376325207f",
+    "../parental-unit-adapter/unit-adapter.py": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+    "../parental-dbus-adapter/dbus-adapter.py": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+    "../parental-dbus-adapter/service.c": "680da9b9d69ca8296adf8685c9e928751d497f5b7762a44666331918cc65c78e",
+    "../parental-owned-live/python-suite.txt": "fca2948514923bb8d6b3be37075ac7f9a7d38cb355f49ca20d901494e9d75e0a",
+    "../parental-owned-live/provenance.json": "ff585b8384c079dcffaf36f3ebb2c9137db7a65afc3944a6279e113595a80e5f",
+    "../../../tests/test_parental_owned_live.py": "5271c4b954a5b768e2f60c909103ddb18bfd0ed1f17d7ab9dcda018c11888c07"
+  }
+}

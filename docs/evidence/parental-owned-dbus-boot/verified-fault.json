@@ -1,0 +1,2838 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "owner-ledger-inodes-catalog-proofs-and-retirements-survive-kernel-reboot",
+      "passed": true,
+      "files": {
+        "proofs": {
+          ".deny-1002": {
+            "sha256": "249d06104ef7d2afba678e8565c91671822f31ad7c14c8e41aa48182bc4b328a",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56644
+          },
+          ".withdrawal-1002.json": {
+            "sha256": "96f3385115187d60893c3532858cc7b9b0c77a9ab72d66252621090fdc1e2d95",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56620
+          },
+          ".operation-1002.json": {
+            "sha256": "70c9bcc07e713b4e9490b1d0bb301e75a42367060e1189ea0365cd7c4a5e70c4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56642
+          },
+          ".gate-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56614
+          },
+          ".gate-1003.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56615
+          },
+          ".gate-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56613
+          },
+          "1000": {
+            "sha256": "9f4d0ada757e35649393cf3924c59bf2d711dfba971889b4ea5e737d9f61d7c4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56621
+          }
+        },
+        "catalog": {
+          ".inventory-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56638
+          },
+          ".inventory-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56639
+          },
+          "1002.json": {
+            "sha256": "2980241ac3f1f9173e09d1ed4134d87611b8508cb2a73f515d9118b3808cc03e",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56640
+          },
+          "1000.json": {
+            "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56641
+          }
+        },
+        "ledger": {
+          ".gate-1.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56636
+          },
+          "9d171e0de5e3405fe627c252b0a8fab6658d16af90c76436948b7d60262195ec.json": {
+            "sha256": "11e8533615262c38c47dfc75a20543a0a9aae8d62e5a3bfcf25fd07f560e20f4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56647
+          },
+          "f958b612654f327691e1216e16d3173b9d4e5d3a0123c57f14981219ede4a184.json": {
+            "sha256": "3512f40333d138e313ad8836eaf16afaffdc93c9a8b5d6204b2b12376c972bb3",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56646
+          },
+          "cd2f0abc8dcb6df6ae341f01b6fc6f7e84f47357ecf601ab5728dd4fdff78d35.json": {
+            "sha256": "918d498383d2e912b242f7fa1bc564f993fcdd1499d0e315d3b83e86c0fc05c0",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56653
+          },
+          "a1bba4ed033d30037cd37c838859dc4f1ac941a7e5497ee9d542344ae6bf96cd.json": {
+            "sha256": "09c7efbf1472e0a06f507ebe82adbc82443d4679b26754ccdfbb4483fba96bd5",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56645
+          }
+        },
+        "registry": {
+          ".lease-907be9fc43b0f62ff8150ae9c4ad810a.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56617
+          },
+          "identity-registry": {
+            "sha256": "b6448b139f12e0915d784f07e84d5f0203c8d5611eed56216ec1871305180d92",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56618
+          },
+          ".transaction.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56616
+          }
+        },
+        "roles": {
+          "role-index": {
+            "sha256": "a4406ca05423f20f330eb7ddc161552b0a206e9c54e0d029dd4562d25f21e6d2",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56619
+          }
+        },
+        "retirements": {
+          "TargetUnit": {
+            "sha256": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56624,
+            "device": 65024
+          },
+          "TargetExec": {
+            "sha256": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56625,
+            "device": 65024
+          },
+          "TargetColdUnit": {
+            "sha256": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56627,
+            "device": 65024
+          },
+          "TargetColdExec": {
+            "sha256": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56628,
+            "device": 65024
+          }
+        },
+        "active_sources_absent": {
+          "TargetUnit": true,
+          "TargetExec": true,
+          "TargetColdUnit": true,
+          "TargetColdExec": true
+        },
+        "peer_routes": {
+          "PeerUnit": {
+            "sha256": "3e06171083e34d5fa7991743ea0f7cfc5d40bd2faaaa24fa16fe57585b026a6e",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56630,
+            "device": 65024
+          },
+          "PeerExec": {
+            "sha256": "1c022e748e03d24ca2179e905252946b9a909e86fba3a0acebf9caa1161f07d9",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56631,
+            "device": 65024
+          }
+        },
+        "vendor": {
+          "TargetUnit": {
+            "sha256": "60b427970e9f74a08d3ccc545b5946505f8511b8b98a488ab2d430814aa75741",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56623,
+            "device": 65024
+          },
+          "TargetColdUnit": {
+            "sha256": "e988681fda4b46dba83831cb0e7a3d9b90ab347a3971f1da0f07450531e63edd",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56626,
+            "device": 65024
+          },
+          "PeerUnit": {
+            "sha256": "748a8f77f21c6c2ad2872ff79ea55920fd2e5559df2efbce020ca7e39cd9702d",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56629,
+            "device": 65024
+          }
+        },
+        "binary": {
+          "sha256": "09fca1dba511df4ba5cc0eb3485114ce35b647af6078ef79c366c4cc7f07bd27",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56622,
+          "device": 65024
+        },
+        "policy": {
+          "sha256": "d4fa4c4242362016935102cfb2c5436994d963eab3e397ed02eb36b399b7185d",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56632,
+          "device": 65024
+        },
+        "hook_sha256": "104cae4c837732dd1ac69e59ac6d7d3aca104731ded62a79b25558ea3a2914e0"
+      },
+      "boot_id": "89d50a70-92ac-476d-89c9-e2388cdc9302",
+      "records": {
+        "TargetUnit": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+            "inode": 56624
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedBoot.TargetUnit",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+            "inode": 56624
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+            "inventory_revision": 1,
+            "operation": "5464ed653c09d42076d182671936a731",
+            "phase": "retired",
+            "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+            "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+          "schema": 1
+        },
+        "TargetExec": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+            "inode": 56625
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedBoot.TargetExec",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+            "inode": 56625
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+            "inventory_revision": 1,
+            "operation": "5464ed653c09d42076d182671936a731",
+            "phase": "retired",
+            "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+            "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+          "schema": 1
+        },
+        "TargetColdUnit": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+            "inode": 56627
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedBoot.TargetColdUnit",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+            "inode": 56627
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+            "inventory_revision": 1,
+            "operation": "5464ed653c09d42076d182671936a731",
+            "phase": "retired",
+            "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+            "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+          "schema": 1
+        },
+        "TargetColdExec": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+            "inode": 56628
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedBoot.TargetColdExec",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+            "inode": 56628
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+            "inventory_revision": 1,
+            "operation": "5464ed653c09d42076d182671936a731",
+            "phase": "retired",
+            "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+            "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+          "schema": 1
+        }
+      }
+    },
+    {
+      "name": "failed-hook-does-not-repair-or-authorize",
+      "passed": true,
+      "hook": {
+        "boot_id": "89d50a70-92ac-476d-89c9-e2388cdc9302",
+        "fault": true,
+        "files_before": {
+          "proofs": {
+            ".deny-1002": {
+              "sha256": "249d06104ef7d2afba678e8565c91671822f31ad7c14c8e41aa48182bc4b328a",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56644
+            },
+            ".withdrawal-1002.json": {
+              "sha256": "96f3385115187d60893c3532858cc7b9b0c77a9ab72d66252621090fdc1e2d95",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56620
+            },
+            ".operation-1002.json": {
+              "sha256": "70c9bcc07e713b4e9490b1d0bb301e75a42367060e1189ea0365cd7c4a5e70c4",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56642
+            },
+            ".gate-1002.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56614
+            },
+            ".gate-1003.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56615
+            },
+            ".gate-1000.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56613
+            },
+            "1000": {
+              "sha256": "9f4d0ada757e35649393cf3924c59bf2d711dfba971889b4ea5e737d9f61d7c4",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56621
+            }
+          },
+          "catalog": {
+            ".inventory-1000.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56638
+            },
+            ".inventory-1002.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56639
+            },
+            "1002.json": {
+              "sha256": "2980241ac3f1f9173e09d1ed4134d87611b8508cb2a73f515d9118b3808cc03e",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56640
+            },
+            "1000.json": {
+              "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56641
+            }
+          },
+          "ledger": {
+            ".gate-1.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56636
+            },
+            "9d171e0de5e3405fe627c252b0a8fab6658d16af90c76436948b7d60262195ec.json": {
+              "sha256": "11e8533615262c38c47dfc75a20543a0a9aae8d62e5a3bfcf25fd07f560e20f4",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56647
+            },
+            "f958b612654f327691e1216e16d3173b9d4e5d3a0123c57f14981219ede4a184.json": {
+              "sha256": "3512f40333d138e313ad8836eaf16afaffdc93c9a8b5d6204b2b12376c972bb3",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56646
+            },
+            "cd2f0abc8dcb6df6ae341f01b6fc6f7e84f47357ecf601ab5728dd4fdff78d35.json": {
+              "sha256": "918d498383d2e912b242f7fa1bc564f993fcdd1499d0e315d3b83e86c0fc05c0",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56653
+            },
+            "a1bba4ed033d30037cd37c838859dc4f1ac941a7e5497ee9d542344ae6bf96cd.json": {
+              "sha256": "09c7efbf1472e0a06f507ebe82adbc82443d4679b26754ccdfbb4483fba96bd5",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56645
+            }
+          },
+          "registry": {
+            ".lease-907be9fc43b0f62ff8150ae9c4ad810a.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56617
+            },
+            "identity-registry": {
+              "sha256": "b6448b139f12e0915d784f07e84d5f0203c8d5611eed56216ec1871305180d92",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56618
+            },
+            ".transaction.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56616
+            }
+          },
+          "roles": {
+            "role-index": {
+              "sha256": "a4406ca05423f20f330eb7ddc161552b0a206e9c54e0d029dd4562d25f21e6d2",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56619
+            }
+          },
+          "retirements": {
+            "TargetUnit": {
+              "sha256": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56624,
+              "device": 65024
+            },
+            "TargetExec": {
+              "sha256": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56625,
+              "device": 65024
+            },
+            "TargetColdUnit": {
+              "sha256": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56627,
+              "device": 65024
+            },
+            "TargetColdExec": {
+              "sha256": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56628,
+              "device": 65024
+            }
+          },
+          "active_sources_absent": {
+            "TargetUnit": true,
+            "TargetExec": true,
+            "TargetColdUnit": true,
+            "TargetColdExec": true
+          },
+          "peer_routes": {
+            "PeerUnit": {
+              "sha256": "3e06171083e34d5fa7991743ea0f7cfc5d40bd2faaaa24fa16fe57585b026a6e",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56630,
+              "device": 65024
+            },
+            "PeerExec": {
+              "sha256": "1c022e748e03d24ca2179e905252946b9a909e86fba3a0acebf9caa1161f07d9",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56631,
+              "device": 65024
+            }
+          },
+          "vendor": {
+            "TargetUnit": {
+              "sha256": "60b427970e9f74a08d3ccc545b5946505f8511b8b98a488ab2d430814aa75741",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56623,
+              "device": 65024
+            },
+            "TargetColdUnit": {
+              "sha256": "e988681fda4b46dba83831cb0e7a3d9b90ab347a3971f1da0f07450531e63edd",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56626,
+              "device": 65024
+            },
+            "PeerUnit": {
+              "sha256": "748a8f77f21c6c2ad2872ff79ea55920fd2e5559df2efbce020ca7e39cd9702d",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56629,
+              "device": 65024
+            }
+          },
+          "binary": {
+            "sha256": "09fca1dba511df4ba5cc0eb3485114ce35b647af6078ef79c366c4cc7f07bd27",
+            "mode": 493,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56622,
+            "device": 65024
+          },
+          "policy": {
+            "sha256": "d4fa4c4242362016935102cfb2c5436994d963eab3e397ed02eb36b399b7185d",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56632,
+            "device": 65024
+          },
+          "hook_sha256": "104cae4c837732dd1ac69e59ac6d7d3aca104731ded62a79b25558ea3a2914e0"
+        },
+        "enforcing": "Enforcing",
+        "source_sha256": "8e9ecc1609c13873f40f7c89481f571bda68f8c75ce2fc1592853998b7d468fc",
+        "inspect_executed": false,
+        "files_after": {
+          "proofs": {
+            ".deny-1002": {
+              "sha256": "249d06104ef7d2afba678e8565c91671822f31ad7c14c8e41aa48182bc4b328a",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56644
+            },
+            ".withdrawal-1002.json": {
+              "sha256": "96f3385115187d60893c3532858cc7b9b0c77a9ab72d66252621090fdc1e2d95",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56620
+            },
+            ".operation-1002.json": {
+              "sha256": "70c9bcc07e713b4e9490b1d0bb301e75a42367060e1189ea0365cd7c4a5e70c4",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56642
+            },
+            ".gate-1002.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56614
+            },
+            ".gate-1003.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56615
+            },
+            ".gate-1000.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56613
+            },
+            "1000": {
+              "sha256": "9f4d0ada757e35649393cf3924c59bf2d711dfba971889b4ea5e737d9f61d7c4",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56621
+            }
+          },
+          "catalog": {
+            ".inventory-1000.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56638
+            },
+            ".inventory-1002.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56639
+            },
+            "1002.json": {
+              "sha256": "2980241ac3f1f9173e09d1ed4134d87611b8508cb2a73f515d9118b3808cc03e",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56640
+            },
+            "1000.json": {
+              "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56641
+            }
+          },
+          "ledger": {
+            ".gate-1.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56636
+            },
+            "9d171e0de5e3405fe627c252b0a8fab6658d16af90c76436948b7d60262195ec.json": {
+              "sha256": "11e8533615262c38c47dfc75a20543a0a9aae8d62e5a3bfcf25fd07f560e20f4",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56647
+            },
+            "f958b612654f327691e1216e16d3173b9d4e5d3a0123c57f14981219ede4a184.json": {
+              "sha256": "3512f40333d138e313ad8836eaf16afaffdc93c9a8b5d6204b2b12376c972bb3",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56646
+            },
+            "cd2f0abc8dcb6df6ae341f01b6fc6f7e84f47357ecf601ab5728dd4fdff78d35.json": {
+              "sha256": "918d498383d2e912b242f7fa1bc564f993fcdd1499d0e315d3b83e86c0fc05c0",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56653
+            },
+            "a1bba4ed033d30037cd37c838859dc4f1ac941a7e5497ee9d542344ae6bf96cd.json": {
+              "sha256": "09c7efbf1472e0a06f507ebe82adbc82443d4679b26754ccdfbb4483fba96bd5",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56645
+            }
+          },
+          "registry": {
+            ".lease-907be9fc43b0f62ff8150ae9c4ad810a.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56617
+            },
+            "identity-registry": {
+              "sha256": "b6448b139f12e0915d784f07e84d5f0203c8d5611eed56216ec1871305180d92",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56618
+            },
+            ".transaction.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56616
+            }
+          },
+          "roles": {
+            "role-index": {
+              "sha256": "a4406ca05423f20f330eb7ddc161552b0a206e9c54e0d029dd4562d25f21e6d2",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56619
+            }
+          },
+          "retirements": {
+            "TargetUnit": {
+              "sha256": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56624,
+              "device": 65024
+            },
+            "TargetExec": {
+              "sha256": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56625,
+              "device": 65024
+            },
+            "TargetColdUnit": {
+              "sha256": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56627,
+              "device": 65024
+            },
+            "TargetColdExec": {
+              "sha256": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56628,
+              "device": 65024
+            }
+          },
+          "active_sources_absent": {
+            "TargetUnit": true,
+            "TargetExec": true,
+            "TargetColdUnit": true,
+            "TargetColdExec": true
+          },
+          "peer_routes": {
+            "PeerUnit": {
+              "sha256": "3e06171083e34d5fa7991743ea0f7cfc5d40bd2faaaa24fa16fe57585b026a6e",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56630,
+              "device": 65024
+            },
+            "PeerExec": {
+              "sha256": "1c022e748e03d24ca2179e905252946b9a909e86fba3a0acebf9caa1161f07d9",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56631,
+              "device": 65024
+            }
+          },
+          "vendor": {
+            "TargetUnit": {
+              "sha256": "60b427970e9f74a08d3ccc545b5946505f8511b8b98a488ab2d430814aa75741",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56623,
+              "device": 65024
+            },
+            "TargetColdUnit": {
+              "sha256": "e988681fda4b46dba83831cb0e7a3d9b90ab347a3971f1da0f07450531e63edd",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56626,
+              "device": 65024
+            },
+            "PeerUnit": {
+              "sha256": "748a8f77f21c6c2ad2872ff79ea55920fd2e5559df2efbce020ca7e39cd9702d",
+              "mode": 420,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "inode": 56629,
+              "device": 65024
+            }
+          },
+          "binary": {
+            "sha256": "09fca1dba511df4ba5cc0eb3485114ce35b647af6078ef79c366c4cc7f07bd27",
+            "mode": 493,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56622,
+            "device": 65024
+          },
+          "policy": {
+            "sha256": "d4fa4c4242362016935102cfb2c5436994d963eab3e397ed02eb36b399b7185d",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56632,
+            "device": 65024
+          },
+          "hook_sha256": "104cae4c837732dd1ac69e59ac6d7d3aca104731ded62a79b25558ea3a2914e0"
+        }
+      },
+      "status": "42"
+    },
+    {
+      "name": "target-linger-auto-admission-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\nPAM failed: Cannot make/remove an entry for the specified session\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n"
+    },
+    {
+      "name": "unrelated-ordinary-linger-auto-admitted",
+      "passed": true,
+      "unit": {
+        "MainPID": "531",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "new-boot-shared-broker-running",
+      "passed": true,
+      "broker": {
+        "pid": "519",
+        "boot_id": "89d50a70-92ac-476d-89c9-e2388cdc9302",
+        "stat": "266"
+      },
+      "initial_broker": {
+        "pid": "452",
+        "boot_id": "751f7a4a-e315-41ea-a67e-f928707d5365",
+        "stat": "236"
+      }
+    },
+    {
+      "name": "retired-target-routes-absent-peer-routes-activatable-after-boot",
+      "passed": true,
+      "activatable": [
+        "org.lyra.OwnedBoot.PeerExec",
+        "org.lyra.OwnedBoot.PeerUnit"
+      ]
+    },
+    {
+      "name": "persisted-retirement-denies-activation-TargetUnit",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "persisted-retirement-denies-activation-TargetExec",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "persisted-retirement-denies-activation-TargetColdUnit",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "persisted-retirement-denies-activation-TargetColdExec",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "zero-target-processes-after-four-activation-denials",
+      "passed": true,
+      "processes": []
+    },
+    {
+      "name": "peer-exec-and-systemd-routes-activate-with-persistent-vendor-units",
+      "passed": true,
+      "owners": {
+        "PeerUnit": {
+          "short": "PeerUnit",
+          "pid": 579,
+          "uid": 1000,
+          "uids": [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          "cgroup": "0::/system.slice/lyra-owned-boot-dbus-peerunit.service",
+          "unit": "lyra-owned-boot-dbus-peerunit.service",
+          "unit_state": {
+            "MainPID": "579",
+            "ControlGroup": "/system.slice/lyra-owned-boot-dbus-peerunit.service",
+            "User": "installeduser",
+            "PAMName": "",
+            "LoadState": "loaded",
+            "ActiveState": "active",
+            "FragmentPath": "/usr/lib/systemd/system/lyra-owned-boot-dbus-peerunit.service",
+            "DropInPaths": ""
+          }
+        },
+        "PeerExec": {
+          "short": "PeerExec",
+          "pid": 582,
+          "uid": 1000,
+          "uids": [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          "cgroup": "0::/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.OwnedBoot.PeerExec.slice/dbus-:1.2-org.lyra.OwnedBoot.PeerExec@0.service",
+          "unit": "dbus-:1.2-org.lyra.OwnedBoot.PeerExec@0.service",
+          "unit_state": {
+            "MainPID": "582",
+            "ControlGroup": "/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.OwnedBoot.PeerExec.slice/dbus-:1.2-org.lyra.OwnedBoot.PeerExec@0.service",
+            "User": "1000",
+            "PAMName": "",
+            "LoadState": "loaded",
+            "ActiveState": "active",
+            "FragmentPath": "/run/systemd/transient/dbus-:1.2-org.lyra.OwnedBoot.PeerExec@0.service",
+            "DropInPaths": ""
+          }
+        }
+      },
+      "broker": {
+        "pid": "519",
+        "boot_id": "89d50a70-92ac-476d-89c9-e2388cdc9302",
+        "stat": "266"
+      },
+      "peer_pid": "531"
+    },
+    {
+      "name": "manual-pam-retry-denied-peer-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "531",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "wrong-operation-and-denied-resource-resume-preserve-all-state",
+      "passed": true
+    },
+    {
+      "name": "stale-catalog-refuses-resource-resume-before-prompt",
+      "passed": true,
+      "explicit_root_catalog_restore": true
+    },
+    {
+      "name": "after-failed-hook-four-authorized-completed-retries-readonly",
+      "passed": true,
+      "authorization_calls": 4,
+      "files": {
+        "proofs": {
+          ".deny-1002": {
+            "sha256": "249d06104ef7d2afba678e8565c91671822f31ad7c14c8e41aa48182bc4b328a",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56644
+          },
+          ".withdrawal-1002.json": {
+            "sha256": "96f3385115187d60893c3532858cc7b9b0c77a9ab72d66252621090fdc1e2d95",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56620
+          },
+          ".operation-1002.json": {
+            "sha256": "70c9bcc07e713b4e9490b1d0bb301e75a42367060e1189ea0365cd7c4a5e70c4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56642
+          },
+          ".gate-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56614
+          },
+          ".gate-1003.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56615
+          },
+          ".gate-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56613
+          },
+          "1000": {
+            "sha256": "9f4d0ada757e35649393cf3924c59bf2d711dfba971889b4ea5e737d9f61d7c4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56621
+          }
+        },
+        "catalog": {
+          ".inventory-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56638
+          },
+          ".inventory-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56639
+          },
+          "1002.json": {
+            "sha256": "2980241ac3f1f9173e09d1ed4134d87611b8508cb2a73f515d9118b3808cc03e",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56640
+          },
+          "1000.json": {
+            "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56641
+          }
+        },
+        "ledger": {
+          ".gate-1.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56636
+          },
+          "9d171e0de5e3405fe627c252b0a8fab6658d16af90c76436948b7d60262195ec.json": {
+            "sha256": "11e8533615262c38c47dfc75a20543a0a9aae8d62e5a3bfcf25fd07f560e20f4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56647
+          },
+          "f958b612654f327691e1216e16d3173b9d4e5d3a0123c57f14981219ede4a184.json": {
+            "sha256": "3512f40333d138e313ad8836eaf16afaffdc93c9a8b5d6204b2b12376c972bb3",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56646
+          },
+          "cd2f0abc8dcb6df6ae341f01b6fc6f7e84f47357ecf601ab5728dd4fdff78d35.json": {
+            "sha256": "918d498383d2e912b242f7fa1bc564f993fcdd1499d0e315d3b83e86c0fc05c0",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56653
+          },
+          "a1bba4ed033d30037cd37c838859dc4f1ac941a7e5497ee9d542344ae6bf96cd.json": {
+            "sha256": "09c7efbf1472e0a06f507ebe82adbc82443d4679b26754ccdfbb4483fba96bd5",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56645
+          }
+        },
+        "registry": {
+          ".lease-907be9fc43b0f62ff8150ae9c4ad810a.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56617
+          },
+          "identity-registry": {
+            "sha256": "b6448b139f12e0915d784f07e84d5f0203c8d5611eed56216ec1871305180d92",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56618
+          },
+          ".transaction.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56616
+          }
+        },
+        "roles": {
+          "role-index": {
+            "sha256": "a4406ca05423f20f330eb7ddc161552b0a206e9c54e0d029dd4562d25f21e6d2",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56619
+          }
+        },
+        "retirements": {
+          "TargetUnit": {
+            "sha256": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56624,
+            "device": 65024
+          },
+          "TargetExec": {
+            "sha256": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56625,
+            "device": 65024
+          },
+          "TargetColdUnit": {
+            "sha256": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56627,
+            "device": 65024
+          },
+          "TargetColdExec": {
+            "sha256": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56628,
+            "device": 65024
+          }
+        },
+        "active_sources_absent": {
+          "TargetUnit": true,
+          "TargetExec": true,
+          "TargetColdUnit": true,
+          "TargetColdExec": true
+        },
+        "peer_routes": {
+          "PeerUnit": {
+            "sha256": "3e06171083e34d5fa7991743ea0f7cfc5d40bd2faaaa24fa16fe57585b026a6e",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56630,
+            "device": 65024
+          },
+          "PeerExec": {
+            "sha256": "1c022e748e03d24ca2179e905252946b9a909e86fba3a0acebf9caa1161f07d9",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56631,
+            "device": 65024
+          }
+        },
+        "vendor": {
+          "TargetUnit": {
+            "sha256": "60b427970e9f74a08d3ccc545b5946505f8511b8b98a488ab2d430814aa75741",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56623,
+            "device": 65024
+          },
+          "TargetColdUnit": {
+            "sha256": "e988681fda4b46dba83831cb0e7a3d9b90ab347a3971f1da0f07450531e63edd",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56626,
+            "device": 65024
+          },
+          "PeerUnit": {
+            "sha256": "748a8f77f21c6c2ad2872ff79ea55920fd2e5559df2efbce020ca7e39cd9702d",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56629,
+            "device": 65024
+          }
+        },
+        "binary": {
+          "sha256": "09fca1dba511df4ba5cc0eb3485114ce35b647af6078ef79c366c4cc7f07bd27",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56622,
+          "device": 65024
+        },
+        "policy": {
+          "sha256": "d4fa4c4242362016935102cfb2c5436994d963eab3e397ed02eb36b399b7185d",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56632,
+          "device": 65024
+        },
+        "hook_sha256": "104cae4c837732dd1ac69e59ac6d7d3aca104731ded62a79b25558ea3a2914e0"
+      },
+      "records": {
+        "TargetUnit": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+            "inode": 56624
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedBoot.TargetUnit",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+            "inode": 56624
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+            "inventory_revision": 1,
+            "operation": "5464ed653c09d42076d182671936a731",
+            "phase": "retired",
+            "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+            "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+          "schema": 1
+        },
+        "TargetExec": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+            "inode": 56625
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedBoot.TargetExec",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+            "inode": 56625
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+            "inventory_revision": 1,
+            "operation": "5464ed653c09d42076d182671936a731",
+            "phase": "retired",
+            "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+            "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+          "schema": 1
+        },
+        "TargetColdUnit": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+            "inode": 56627
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedBoot.TargetColdUnit",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+            "inode": 56627
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+            "inventory_revision": 1,
+            "operation": "5464ed653c09d42076d182671936a731",
+            "phase": "retired",
+            "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+            "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+          "schema": 1
+        },
+        "TargetColdExec": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+            "inode": 56628
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedBoot.TargetColdExec",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+            "inode": 56628
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+            "inventory_revision": 1,
+            "operation": "5464ed653c09d42076d182671936a731",
+            "phase": "retired",
+            "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+            "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+          "schema": 1
+        }
+      }
+    },
+    {
+      "name": "live-reload-validates-retirements-without-rewriting-or-restarting-broker",
+      "passed": true,
+      "effects": [
+        "reload-config"
+      ],
+      "files": {
+        "proofs": {
+          ".deny-1002": {
+            "sha256": "249d06104ef7d2afba678e8565c91671822f31ad7c14c8e41aa48182bc4b328a",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56644
+          },
+          ".withdrawal-1002.json": {
+            "sha256": "96f3385115187d60893c3532858cc7b9b0c77a9ab72d66252621090fdc1e2d95",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56620
+          },
+          ".operation-1002.json": {
+            "sha256": "70c9bcc07e713b4e9490b1d0bb301e75a42367060e1189ea0365cd7c4a5e70c4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56642
+          },
+          ".gate-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56614
+          },
+          ".gate-1003.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56615
+          },
+          ".gate-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56613
+          },
+          "1000": {
+            "sha256": "9f4d0ada757e35649393cf3924c59bf2d711dfba971889b4ea5e737d9f61d7c4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56621
+          }
+        },
+        "catalog": {
+          ".inventory-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56638
+          },
+          ".inventory-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56639
+          },
+          "1002.json": {
+            "sha256": "2980241ac3f1f9173e09d1ed4134d87611b8508cb2a73f515d9118b3808cc03e",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56640
+          },
+          "1000.json": {
+            "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56641
+          }
+        },
+        "ledger": {
+          ".gate-1.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56636
+          },
+          "9d171e0de5e3405fe627c252b0a8fab6658d16af90c76436948b7d60262195ec.json": {
+            "sha256": "11e8533615262c38c47dfc75a20543a0a9aae8d62e5a3bfcf25fd07f560e20f4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56647
+          },
+          "f958b612654f327691e1216e16d3173b9d4e5d3a0123c57f14981219ede4a184.json": {
+            "sha256": "3512f40333d138e313ad8836eaf16afaffdc93c9a8b5d6204b2b12376c972bb3",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56646
+          },
+          "cd2f0abc8dcb6df6ae341f01b6fc6f7e84f47357ecf601ab5728dd4fdff78d35.json": {
+            "sha256": "918d498383d2e912b242f7fa1bc564f993fcdd1499d0e315d3b83e86c0fc05c0",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56653
+          },
+          "a1bba4ed033d30037cd37c838859dc4f1ac941a7e5497ee9d542344ae6bf96cd.json": {
+            "sha256": "09c7efbf1472e0a06f507ebe82adbc82443d4679b26754ccdfbb4483fba96bd5",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56645
+          }
+        },
+        "registry": {
+          ".lease-907be9fc43b0f62ff8150ae9c4ad810a.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56617
+          },
+          "identity-registry": {
+            "sha256": "b6448b139f12e0915d784f07e84d5f0203c8d5611eed56216ec1871305180d92",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56618
+          },
+          ".transaction.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56616
+          }
+        },
+        "roles": {
+          "role-index": {
+            "sha256": "a4406ca05423f20f330eb7ddc161552b0a206e9c54e0d029dd4562d25f21e6d2",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56619
+          }
+        },
+        "retirements": {
+          "TargetUnit": {
+            "sha256": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56624,
+            "device": 65024
+          },
+          "TargetExec": {
+            "sha256": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56625,
+            "device": 65024
+          },
+          "TargetColdUnit": {
+            "sha256": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56627,
+            "device": 65024
+          },
+          "TargetColdExec": {
+            "sha256": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56628,
+            "device": 65024
+          }
+        },
+        "active_sources_absent": {
+          "TargetUnit": true,
+          "TargetExec": true,
+          "TargetColdUnit": true,
+          "TargetColdExec": true
+        },
+        "peer_routes": {
+          "PeerUnit": {
+            "sha256": "3e06171083e34d5fa7991743ea0f7cfc5d40bd2faaaa24fa16fe57585b026a6e",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56630,
+            "device": 65024
+          },
+          "PeerExec": {
+            "sha256": "1c022e748e03d24ca2179e905252946b9a909e86fba3a0acebf9caa1161f07d9",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56631,
+            "device": 65024
+          }
+        },
+        "vendor": {
+          "TargetUnit": {
+            "sha256": "60b427970e9f74a08d3ccc545b5946505f8511b8b98a488ab2d430814aa75741",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56623,
+            "device": 65024
+          },
+          "TargetColdUnit": {
+            "sha256": "e988681fda4b46dba83831cb0e7a3d9b90ab347a3971f1da0f07450531e63edd",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56626,
+            "device": 65024
+          },
+          "PeerUnit": {
+            "sha256": "748a8f77f21c6c2ad2872ff79ea55920fd2e5559df2efbce020ca7e39cd9702d",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56629,
+            "device": 65024
+          }
+        },
+        "binary": {
+          "sha256": "09fca1dba511df4ba5cc0eb3485114ce35b647af6078ef79c366c4cc7f07bd27",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56622,
+          "device": 65024
+        },
+        "policy": {
+          "sha256": "d4fa4c4242362016935102cfb2c5436994d963eab3e397ed02eb36b399b7185d",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56632,
+          "device": 65024
+        },
+        "hook_sha256": "104cae4c837732dd1ac69e59ac6d7d3aca104731ded62a79b25558ea3a2914e0"
+      },
+      "broker": {
+        "pid": "519",
+        "boot_id": "89d50a70-92ac-476d-89c9-e2388cdc9302",
+        "stat": "266"
+      },
+      "peer_pid": "531"
+    },
+    {
+      "name": "target-stays-nonactivatable-peer-owners-and-broker-preserved",
+      "passed": true,
+      "owners": {
+        "PeerUnit": {
+          "short": "PeerUnit",
+          "pid": 579,
+          "uid": 1000,
+          "uids": [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          "cgroup": "0::/system.slice/lyra-owned-boot-dbus-peerunit.service",
+          "unit": "lyra-owned-boot-dbus-peerunit.service",
+          "unit_state": {
+            "MainPID": "579",
+            "ControlGroup": "/system.slice/lyra-owned-boot-dbus-peerunit.service",
+            "User": "installeduser",
+            "PAMName": "",
+            "LoadState": "loaded",
+            "ActiveState": "active",
+            "FragmentPath": "/usr/lib/systemd/system/lyra-owned-boot-dbus-peerunit.service",
+            "DropInPaths": ""
+          }
+        },
+        "PeerExec": {
+          "short": "PeerExec",
+          "pid": 582,
+          "uid": 1000,
+          "uids": [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          "cgroup": "0::/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.OwnedBoot.PeerExec.slice/dbus-:1.2-org.lyra.OwnedBoot.PeerExec@0.service",
+          "unit": "dbus-:1.2-org.lyra.OwnedBoot.PeerExec@0.service",
+          "unit_state": {
+            "MainPID": "582",
+            "ControlGroup": "/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.OwnedBoot.PeerExec.slice/dbus-:1.2-org.lyra.OwnedBoot.PeerExec@0.service",
+            "User": "1000",
+            "PAMName": "",
+            "LoadState": "loaded",
+            "ActiveState": "active",
+            "FragmentPath": "/run/systemd/transient/dbus-:1.2-org.lyra.OwnedBoot.PeerExec@0.service",
+            "DropInPaths": ""
+          }
+        }
+      },
+      "broker": {
+        "pid": "519",
+        "boot_id": "89d50a70-92ac-476d-89c9-e2388cdc9302",
+        "stat": "266"
+      },
+      "peer_pid": "531"
+    },
+    {
+      "name": "boot-scoped-dbus-refuses-whole-account-without-legacy-resume",
+      "passed": true,
+      "files": {
+        "proofs": {
+          ".deny-1002": {
+            "sha256": "249d06104ef7d2afba678e8565c91671822f31ad7c14c8e41aa48182bc4b328a",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56644
+          },
+          ".withdrawal-1002.json": {
+            "sha256": "96f3385115187d60893c3532858cc7b9b0c77a9ab72d66252621090fdc1e2d95",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56620
+          },
+          ".operation-1002.json": {
+            "sha256": "70c9bcc07e713b4e9490b1d0bb301e75a42367060e1189ea0365cd7c4a5e70c4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56642
+          },
+          ".gate-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56614
+          },
+          ".gate-1003.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56615
+          },
+          ".gate-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56613
+          },
+          "1000": {
+            "sha256": "9f4d0ada757e35649393cf3924c59bf2d711dfba971889b4ea5e737d9f61d7c4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56621
+          }
+        },
+        "catalog": {
+          ".inventory-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56638
+          },
+          ".inventory-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56639
+          },
+          "1002.json": {
+            "sha256": "2980241ac3f1f9173e09d1ed4134d87611b8508cb2a73f515d9118b3808cc03e",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56640
+          },
+          "1000.json": {
+            "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56641
+          }
+        },
+        "ledger": {
+          ".gate-1.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56636
+          },
+          "9d171e0de5e3405fe627c252b0a8fab6658d16af90c76436948b7d60262195ec.json": {
+            "sha256": "11e8533615262c38c47dfc75a20543a0a9aae8d62e5a3bfcf25fd07f560e20f4",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56647
+          },
+          "f958b612654f327691e1216e16d3173b9d4e5d3a0123c57f14981219ede4a184.json": {
+            "sha256": "3512f40333d138e313ad8836eaf16afaffdc93c9a8b5d6204b2b12376c972bb3",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56646
+          },
+          "cd2f0abc8dcb6df6ae341f01b6fc6f7e84f47357ecf601ab5728dd4fdff78d35.json": {
+            "sha256": "918d498383d2e912b242f7fa1bc564f993fcdd1499d0e315d3b83e86c0fc05c0",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56653
+          },
+          "a1bba4ed033d30037cd37c838859dc4f1ac941a7e5497ee9d542344ae6bf96cd.json": {
+            "sha256": "09c7efbf1472e0a06f507ebe82adbc82443d4679b26754ccdfbb4483fba96bd5",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56645
+          }
+        },
+        "registry": {
+          ".lease-907be9fc43b0f62ff8150ae9c4ad810a.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56617
+          },
+          "identity-registry": {
+            "sha256": "b6448b139f12e0915d784f07e84d5f0203c8d5611eed56216ec1871305180d92",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56618
+          },
+          ".transaction.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56616
+          }
+        },
+        "roles": {
+          "role-index": {
+            "sha256": "a4406ca05423f20f330eb7ddc161552b0a206e9c54e0d029dd4562d25f21e6d2",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56619
+          }
+        },
+        "retirements": {
+          "TargetUnit": {
+            "sha256": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56624,
+            "device": 65024
+          },
+          "TargetExec": {
+            "sha256": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56625,
+            "device": 65024
+          },
+          "TargetColdUnit": {
+            "sha256": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56627,
+            "device": 65024
+          },
+          "TargetColdExec": {
+            "sha256": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56628,
+            "device": 65024
+          }
+        },
+        "active_sources_absent": {
+          "TargetUnit": true,
+          "TargetExec": true,
+          "TargetColdUnit": true,
+          "TargetColdExec": true
+        },
+        "peer_routes": {
+          "PeerUnit": {
+            "sha256": "3e06171083e34d5fa7991743ea0f7cfc5d40bd2faaaa24fa16fe57585b026a6e",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56630,
+            "device": 65024
+          },
+          "PeerExec": {
+            "sha256": "1c022e748e03d24ca2179e905252946b9a909e86fba3a0acebf9caa1161f07d9",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56631,
+            "device": 65024
+          }
+        },
+        "vendor": {
+          "TargetUnit": {
+            "sha256": "60b427970e9f74a08d3ccc545b5946505f8511b8b98a488ab2d430814aa75741",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56623,
+            "device": 65024
+          },
+          "TargetColdUnit": {
+            "sha256": "e988681fda4b46dba83831cb0e7a3d9b90ab347a3971f1da0f07450531e63edd",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56626,
+            "device": 65024
+          },
+          "PeerUnit": {
+            "sha256": "748a8f77f21c6c2ad2872ff79ea55920fd2e5559df2efbce020ca7e39cd9702d",
+            "mode": 420,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "inode": 56629,
+            "device": 65024
+          }
+        },
+        "binary": {
+          "sha256": "09fca1dba511df4ba5cc0eb3485114ce35b647af6078ef79c366c4cc7f07bd27",
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56622,
+          "device": 65024
+        },
+        "policy": {
+          "sha256": "d4fa4c4242362016935102cfb2c5436994d963eab3e397ed02eb36b399b7185d",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56632,
+          "device": 65024
+        },
+        "hook_sha256": "104cae4c837732dd1ac69e59ac6d7d3aca104731ded62a79b25558ea3a2914e0"
+      }
+    }
+  ],
+  "boot_id": "89d50a70-92ac-476d-89c9-e2388cdc9302",
+  "full_account_protection": false,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+      "inventory_fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+      "child.py": "98867bd6b9fdf79c383a0dfc6f0c12e1a35f1dda68da602bca2f29a95910c60d",
+      "unit-adapter.py": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+      "restore-routes.py": "114dcdb0ec34791402eea6b42a0ca5b27fe412a23b2baa0c89feb89ebb31ada2",
+      "verify-boot.py": "57a7195cc28ad477950f2a05a0d6c358068d4a35e25c539ef7bdcd5c945a1299",
+      "fixture.py": "7f91b3a701a895a7939290895527c378f18e0cbf8f861f4f2382c8a3f0e8b933",
+      "live_common.py": "4b0f41ef224f9d948a937e212c6a7f3b6dfc4f454168c8fb115195a335fb742f",
+      "cleanup.py": "9496ee867f30efb28434d5d59392cf731103e5df0f8653953a24dd79bcc1a887",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "ownership.py": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "common.py": "86b53cb33a0478ca3110053988bbb83239c0e495fcf70c6bf0abae6e2fe5f2c4",
+      "boot_common.py": "65769c718eea5e5033e4fc4818b132923e409eb86c4be637e8d76f90e63b959f",
+      "restore-ownership.py": "37f455e5d781f1f0eaf00b388e2c0c6fb6fad4e6ff1d2440d0ca250b3bf6f028",
+      "integration.py": "e90bc3623e68856256b14617addcaaee7fd5f12dc9c26b82b3129c376325207f",
+      "dbus-adapter.py": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "recover-at-boot.py": "8e9ecc1609c13873f40f7c89481f571bda68f8c75ce2fc1592853998b7d468fc",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "prepare.py": "2902c2094e40c0c8f82afd17ad4c8fd30b0bb401ead2a97877876c256e302425",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "restore-check.py": "eb39db67301174a1ec887097ba4ecfbc555f3d8b5f3ecb9907ec00527ed5f0bf",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+      "service.c": "680da9b9d69ca8296adf8685c9e928751d497f5b7762a44666331918cc65c78e"
+    },
+    "initial_boot_id": "751f7a4a-e315-41ea-a67e-f928707d5365",
+    "fault": true,
+    "resource_family": "dbus-activation",
+    "resource_routes": [
+      [
+        "org.lyra.OwnedBoot.TargetUnit",
+        "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b"
+      ],
+      [
+        "org.lyra.OwnedBoot.TargetExec",
+        "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a"
+      ],
+      [
+        "org.lyra.OwnedBoot.TargetColdUnit",
+        "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22"
+      ],
+      [
+        "org.lyra.OwnedBoot.TargetColdExec",
+        "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797"
+      ]
+    ],
+    "operation": "5464ed653c09d42076d182671936a731",
+    "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+    "fixture_pam_sha256": "52e7d1e57fc70011a1825f59e13f3c73213c07ada70e1cbf3e0685c1ebee7eae",
+    "fixture_module_sha256": "8b9b49d9d6d89a46085b0ff04d70012805513c8d66b74550238160ca594cf005",
+    "initial_broker": {
+      "pid": "452",
+      "boot_id": "751f7a4a-e315-41ea-a67e-f928707d5365",
+      "stat": "236"
+    },
+    "broker_pid": "519",
+    "before_reboot_files": {
+      "proofs": {
+        ".deny-1002": {
+          "sha256": "249d06104ef7d2afba678e8565c91671822f31ad7c14c8e41aa48182bc4b328a",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56644
+        },
+        ".withdrawal-1002.json": {
+          "sha256": "96f3385115187d60893c3532858cc7b9b0c77a9ab72d66252621090fdc1e2d95",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56620
+        },
+        ".operation-1002.json": {
+          "sha256": "70c9bcc07e713b4e9490b1d0bb301e75a42367060e1189ea0365cd7c4a5e70c4",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56642
+        },
+        ".gate-1002.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56614
+        },
+        ".gate-1003.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56615
+        },
+        ".gate-1000.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56613
+        },
+        "1000": {
+          "sha256": "9f4d0ada757e35649393cf3924c59bf2d711dfba971889b4ea5e737d9f61d7c4",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56621
+        }
+      },
+      "catalog": {
+        ".inventory-1000.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56638
+        },
+        ".inventory-1002.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56639
+        },
+        "1002.json": {
+          "sha256": "2980241ac3f1f9173e09d1ed4134d87611b8508cb2a73f515d9118b3808cc03e",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56640
+        },
+        "1000.json": {
+          "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56641
+        }
+      },
+      "ledger": {
+        ".gate-1.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56636
+        },
+        "9d171e0de5e3405fe627c252b0a8fab6658d16af90c76436948b7d60262195ec.json": {
+          "sha256": "11e8533615262c38c47dfc75a20543a0a9aae8d62e5a3bfcf25fd07f560e20f4",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56647
+        },
+        "f958b612654f327691e1216e16d3173b9d4e5d3a0123c57f14981219ede4a184.json": {
+          "sha256": "3512f40333d138e313ad8836eaf16afaffdc93c9a8b5d6204b2b12376c972bb3",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56646
+        },
+        "cd2f0abc8dcb6df6ae341f01b6fc6f7e84f47357ecf601ab5728dd4fdff78d35.json": {
+          "sha256": "918d498383d2e912b242f7fa1bc564f993fcdd1499d0e315d3b83e86c0fc05c0",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56653
+        },
+        "a1bba4ed033d30037cd37c838859dc4f1ac941a7e5497ee9d542344ae6bf96cd.json": {
+          "sha256": "09c7efbf1472e0a06f507ebe82adbc82443d4679b26754ccdfbb4483fba96bd5",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56645
+        }
+      },
+      "registry": {
+        ".lease-907be9fc43b0f62ff8150ae9c4ad810a.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56617
+        },
+        "identity-registry": {
+          "sha256": "b6448b139f12e0915d784f07e84d5f0203c8d5611eed56216ec1871305180d92",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56618
+        },
+        ".transaction.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56616
+        }
+      },
+      "roles": {
+        "role-index": {
+          "sha256": "a4406ca05423f20f330eb7ddc161552b0a206e9c54e0d029dd4562d25f21e6d2",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56619
+        }
+      },
+      "retirements": {
+        "TargetUnit": {
+          "sha256": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56624,
+          "device": 65024
+        },
+        "TargetExec": {
+          "sha256": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56625,
+          "device": 65024
+        },
+        "TargetColdUnit": {
+          "sha256": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56627,
+          "device": 65024
+        },
+        "TargetColdExec": {
+          "sha256": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56628,
+          "device": 65024
+        }
+      },
+      "active_sources_absent": {
+        "TargetUnit": true,
+        "TargetExec": true,
+        "TargetColdUnit": true,
+        "TargetColdExec": true
+      },
+      "peer_routes": {
+        "PeerUnit": {
+          "sha256": "3e06171083e34d5fa7991743ea0f7cfc5d40bd2faaaa24fa16fe57585b026a6e",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56630,
+          "device": 65024
+        },
+        "PeerExec": {
+          "sha256": "1c022e748e03d24ca2179e905252946b9a909e86fba3a0acebf9caa1161f07d9",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56631,
+          "device": 65024
+        }
+      },
+      "vendor": {
+        "TargetUnit": {
+          "sha256": "60b427970e9f74a08d3ccc545b5946505f8511b8b98a488ab2d430814aa75741",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56623,
+          "device": 65024
+        },
+        "TargetColdUnit": {
+          "sha256": "e988681fda4b46dba83831cb0e7a3d9b90ab347a3971f1da0f07450531e63edd",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56626,
+          "device": 65024
+        },
+        "PeerUnit": {
+          "sha256": "748a8f77f21c6c2ad2872ff79ea55920fd2e5559df2efbce020ca7e39cd9702d",
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56629,
+          "device": 65024
+        }
+      },
+      "binary": {
+        "sha256": "09fca1dba511df4ba5cc0eb3485114ce35b647af6078ef79c366c4cc7f07bd27",
+        "mode": 493,
+        "uid": 0,
+        "gid": 0,
+        "nlink": 1,
+        "inode": 56622,
+        "device": 65024
+      },
+      "policy": {
+        "sha256": "d4fa4c4242362016935102cfb2c5436994d963eab3e397ed02eb36b399b7185d",
+        "mode": 420,
+        "uid": 0,
+        "gid": 0,
+        "nlink": 1,
+        "inode": 56632,
+        "device": 65024
+      },
+      "hook_sha256": "104cae4c837732dd1ac69e59ac6d7d3aca104731ded62a79b25558ea3a2914e0"
+    },
+    "before_reboot_records": {
+      "TargetUnit": {
+        "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+        "effect": {
+          "device": 65024,
+          "digest": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+          "inode": 56624
+        },
+        "family": "dbus-activation",
+        "name": "org.lyra.OwnedBoot.TargetUnit",
+        "namespace": {
+          "device": 65024,
+          "inode": 14765
+        },
+        "original": {
+          "device": 65024,
+          "digest": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+          "inode": 56624
+        },
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+          "inventory_revision": 1,
+          "operation": "5464ed653c09d42076d182671936a731",
+          "phase": "retired",
+          "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+          "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+        "revision": 2,
+        "route_digest": "222bdcb073765beea78510658716e3c1d279cf35118dfe8129a8b77bff70062b",
+        "schema": 1
+      },
+      "TargetExec": {
+        "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+        "effect": {
+          "device": 65024,
+          "digest": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+          "inode": 56625
+        },
+        "family": "dbus-activation",
+        "name": "org.lyra.OwnedBoot.TargetExec",
+        "namespace": {
+          "device": 65024,
+          "inode": 14765
+        },
+        "original": {
+          "device": 65024,
+          "digest": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+          "inode": 56625
+        },
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+          "inventory_revision": 1,
+          "operation": "5464ed653c09d42076d182671936a731",
+          "phase": "retired",
+          "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+          "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+        "revision": 2,
+        "route_digest": "47878944a584d3f0ef38804d08400c22707969125573dfeb86986f72b5447a0a",
+        "schema": 1
+      },
+      "TargetColdUnit": {
+        "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+        "effect": {
+          "device": 65024,
+          "digest": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+          "inode": 56627
+        },
+        "family": "dbus-activation",
+        "name": "org.lyra.OwnedBoot.TargetColdUnit",
+        "namespace": {
+          "device": 65024,
+          "inode": 14765
+        },
+        "original": {
+          "device": 65024,
+          "digest": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+          "inode": 56627
+        },
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+          "inventory_revision": 1,
+          "operation": "5464ed653c09d42076d182671936a731",
+          "phase": "retired",
+          "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+          "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+        "revision": 2,
+        "route_digest": "257019f71c4298421993eed0e0b8f7ddc61fc66e33b26e7d1484739a84535a22",
+        "schema": 1
+      },
+      "TargetColdExec": {
+        "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+        "effect": {
+          "device": 65024,
+          "digest": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+          "inode": 56628
+        },
+        "family": "dbus-activation",
+        "name": "org.lyra.OwnedBoot.TargetColdExec",
+        "namespace": {
+          "device": 65024,
+          "inode": 14765
+        },
+        "original": {
+          "device": 65024,
+          "digest": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+          "inode": 56628
+        },
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "b522d303a93b8969c8744f2b133eef145a87a9dfb6a74ad3f2bb26fa779c264a",
+          "inventory_revision": 1,
+          "operation": "5464ed653c09d42076d182671936a731",
+          "phase": "retired",
+          "proof_hash": "0a73c36f9d4fab5fbbc9366b1fbc4fe58f5341fd01c1ed244fbd9eac30ece92a",
+          "proof_snapshot": "c1bf284e575c36dee62eac2496e11397b433bd985c61a4c7c18e57bb4cadb9af",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+        "revision": 2,
+        "route_digest": "b5cef128bcd7e8510df01a5ac09ad8572c080b9a96b6e7823b0654c5e7c6e797",
+        "schema": 1
+      }
+    },
+    "first_verified_boot_id": "3ab5d438-7a5a-4e43-bebb-15734eb88036"
+  },
+  "kernel_reboot_tested": true,
+  "ownership_ledger_reboot_qualified": true,
+  "boot_route_recovery_qualified": true,
+  "whole_classification_qualified": false,
+  "all_producer_quiescence": false,
+  "whole_dbus_namespace_qualified": false,
+  "production_adapters_qualified": false,
+  "global_monotonic_revision_qualified": false,
+  "anti_rollback_qualified": false,
+  "real_nss_mutations_tested": false,
+  "power_loss_tested": false,
+  "early_boot_coverage_qualified": false,
+  "pending_activation_races_qualified": false,
+  "postboot_payload_revocation_qualified": false
+}

@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "absent": {
+    "/usr/bin/lyra-owned-boot-dbus-fixture": true,
+    "/etc/dbus-1/system.d/lyra-owned-boot-dbus-fixture.conf": true,
+    "/usr/share/dbus-1/system-services/org.lyra.OwnedBoot.TargetUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.OwnedBoot.TargetExec.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.OwnedBoot.TargetColdUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.OwnedBoot.TargetColdExec.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.OwnedBoot.PeerUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.OwnedBoot.PeerExec.service": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.OwnedBoot.TargetUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.OwnedBoot.TargetExec": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.OwnedBoot.TargetColdUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.OwnedBoot.TargetColdExec": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.OwnedBoot.PeerUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.OwnedBoot.PeerExec": true,
+    "/usr/lib/systemd/system/lyra-owned-boot-dbus-targetunit.service": true,
+    "/usr/lib/systemd/system/lyra-owned-boot-dbus-targetexec.service": true,
+    "/usr/lib/systemd/system/lyra-owned-boot-dbus-targetcoldunit.service": true,
+    "/usr/lib/systemd/system/lyra-owned-boot-dbus-targetcoldexec.service": true,
+    "/usr/lib/systemd/system/lyra-owned-boot-dbus-peerunit.service": true,
+    "/usr/lib/systemd/system/lyra-owned-boot-dbus-peerexec.service": true
+  },
+  "owners": {
+    "TargetUnit": false,
+    "TargetExec": false,
+    "TargetColdUnit": false,
+    "TargetColdExec": false,
+    "PeerUnit": false,
+    "PeerExec": false
+  },
+  "broker_pid": "519",
+  "processes": [],
+  "scratch_absent": true
+}
