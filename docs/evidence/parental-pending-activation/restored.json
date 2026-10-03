@@ -1,0 +1,37 @@
+{
+  "boot_id": "43448200-ea04-42c6-9ca0-0862a6962864",
+  "units": {
+    "user@1000.service": "0",
+    "user-runtime-dir@1000.service": "0",
+    "user@1003.service": "0",
+    "user@1002.service": "0",
+    "user-runtime-dir@1003.service": "0",
+    "user-runtime-dir@1002.service": "0",
+    "gdm.service": "0",
+    "sshd.service": "0"
+  },
+  "absent_paths": {
+    "/var/lib/lyra-ordinary-attestation-test": true,
+    "/var/lib/lyra-parental-test": true,
+    "/var/lib/lyra-parental-roles-test": true,
+    "/usr/lib64/security/pam_lyra_withdrawal_fixture.so": true,
+    "/etc/systemd/system/lyra-pending-dbus-unused.service": true,
+    "/etc/systemd/system/multi-user.target.wants/lyra-pending-dbus-unused.service": true,
+    "/var/lib/systemd/linger/parentaltest": true,
+    "/var/lib/systemd/linger/ordinaryuser": true,
+    "/var/lib/systemd/linger/installeduser": true
+  },
+  "processes": [],
+  "sessions": "",
+  "enforce": "Permissive",
+  "pam_preserved": true,
+  "pam_mode_preserved": true,
+  "vendor_preserved": true,
+  "account_files_preserved": true,
+  "sshd_disabled": true,
+  "packages": "systemd-257.13-160100.2.5.x86_64\npam-1.7.2+git12-160100.2.1.x86_64\nselinux-policy-targeted-20260826+git0.492b478c7-160100.1.1.noarch\n",
+  "kernel": "6.12.0-160100.4-default",
+  "complete_kernel_audit": false,
+  "audit_backlog_warnings": "-- No entries --\n",
+  "passed": true
+}

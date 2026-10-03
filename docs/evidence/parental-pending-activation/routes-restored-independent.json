@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "absent": {
+    "/usr/bin/lyra-pending-dbus-fixture": true,
+    "/etc/dbus-1/system.d/lyra-pending-dbus-fixture.conf": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingActivation.TargetUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingActivation.TargetExec.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingActivation.TargetColdUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingActivation.TargetColdExec.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingActivation.PeerUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingActivation.PeerExec.service": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingActivation.TargetUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingActivation.TargetExec": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingActivation.TargetColdUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingActivation.TargetColdExec": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingActivation.PeerUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingActivation.PeerExec": true,
+    "/run/systemd/system/lyra-pending-dbus-targetunit.service": true,
+    "/run/systemd/system/lyra-pending-dbus-targetexec.service": true,
+    "/run/systemd/system/lyra-pending-dbus-targetcoldunit.service": true,
+    "/run/systemd/system/lyra-pending-dbus-targetcoldexec.service": true,
+    "/run/systemd/system/lyra-pending-dbus-peerunit.service": true,
+    "/run/systemd/system/lyra-pending-dbus-peerexec.service": true
+  },
+  "owners": {
+    "TargetUnit": false,
+    "TargetExec": false,
+    "TargetColdUnit": false,
+    "TargetColdExec": false,
+    "PeerUnit": false,
+    "PeerExec": false
+  },
+  "broker_pid": "444",
+  "processes": [],
+  "scratch_absent": true
+}
