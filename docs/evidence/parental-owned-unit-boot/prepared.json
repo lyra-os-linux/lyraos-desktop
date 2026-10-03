@@ -1,0 +1,727 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "baseline-ordinary-1000",
+      "passed": true,
+      "unit": {
+        "MainPID": "658",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-ordinary-1002",
+      "passed": true,
+      "unit": {
+        "MainPID": "677",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "preboot-live-target-and-peer-service-timer-baselines",
+      "passed": true,
+      "units": {
+        "lyra-owned-boot-unit-target-plain.service": {
+          "MainPID": "729",
+          "ExecMainStatus": "0",
+          "ControlGroup": "/system.slice/lyra-owned-boot-unit-target-plain.service",
+          "User": "ordinaryuser",
+          "Group": "ordinaryuser",
+          "PAMName": "",
+          "KillMode": "control-group",
+          "Id": "lyra-owned-boot-unit-target-plain.service",
+          "Names": "lyra-owned-boot-unit-target-plain.service",
+          "Triggers": "",
+          "LoadState": "loaded",
+          "ActiveState": "active",
+          "SubState": "running",
+          "FragmentPath": "/usr/lib/systemd/system/lyra-owned-boot-unit-target-plain.service",
+          "DropInPaths": "",
+          "Transient": "no"
+        },
+        "lyra-owned-boot-unit-target-tick.service": {
+          "MainPID": "739",
+          "ExecMainStatus": "0",
+          "ControlGroup": "/system.slice/lyra-owned-boot-unit-target-tick.service",
+          "User": "ordinaryuser",
+          "Group": "ordinaryuser",
+          "PAMName": "",
+          "KillMode": "control-group",
+          "Id": "lyra-owned-boot-unit-target-tick.service",
+          "Names": "lyra-owned-boot-unit-target-tick.service",
+          "Triggers": "",
+          "LoadState": "loaded",
+          "ActiveState": "active",
+          "SubState": "running",
+          "FragmentPath": "/usr/lib/systemd/system/lyra-owned-boot-unit-target-tick.service",
+          "DropInPaths": "",
+          "Transient": "no"
+        },
+        "lyra-owned-boot-unit-peer-plain.service": {
+          "MainPID": "732",
+          "ExecMainStatus": "0",
+          "ControlGroup": "/system.slice/lyra-owned-boot-unit-peer-plain.service",
+          "User": "installeduser",
+          "Group": "installeduser",
+          "PAMName": "",
+          "KillMode": "control-group",
+          "Id": "lyra-owned-boot-unit-peer-plain.service",
+          "Names": "lyra-owned-boot-unit-peer-plain.service",
+          "Triggers": "",
+          "LoadState": "loaded",
+          "ActiveState": "active",
+          "SubState": "running",
+          "FragmentPath": "/usr/lib/systemd/system/lyra-owned-boot-unit-peer-plain.service",
+          "DropInPaths": "",
+          "Transient": "no"
+        },
+        "lyra-owned-boot-unit-peer-tick.service": {
+          "MainPID": "738",
+          "ExecMainStatus": "0",
+          "ControlGroup": "/system.slice/lyra-owned-boot-unit-peer-tick.service",
+          "User": "installeduser",
+          "Group": "installeduser",
+          "PAMName": "",
+          "KillMode": "control-group",
+          "Id": "lyra-owned-boot-unit-peer-tick.service",
+          "Names": "lyra-owned-boot-unit-peer-tick.service",
+          "Triggers": "",
+          "LoadState": "loaded",
+          "ActiveState": "active",
+          "SubState": "running",
+          "FragmentPath": "/usr/lib/systemd/system/lyra-owned-boot-unit-peer-tick.service",
+          "DropInPaths": "",
+          "Transient": "no"
+        }
+      }
+    },
+    {
+      "name": "effect-synced-crash91-pending-owner-with-four-physical-masks",
+      "passed": true,
+      "child": {
+        "rc": 91,
+        "stdout": "",
+        "stderr": ""
+      },
+      "records": {
+        "lyra-owned-boot-unit-target-plain.service": {
+          "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+          "effect": {
+            "device": 65024,
+            "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+            "inode": 56570
+          },
+          "family": "system-units",
+          "name": "lyra-owned-boot-unit-target-plain.service",
+          "namespace": {
+            "device": 65024,
+            "inode": 330
+          },
+          "original": null,
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "3bee063133b3cb76eebcb7d9f0f94f1cf1cca6c2c518087b40dd727939c82289",
+            "inventory_revision": 1,
+            "operation": "0b6cffc11ad595021fc5afd7cdaafb72",
+            "phase": "retired",
+            "proof_hash": "b9874b67ba9f8b3a26757d0edf33728462d3513370a352ccc3f142c6b1b75799",
+            "proof_snapshot": "71c15dd80fe547419de732b99fa2905a64295938f3e8ceb4a898319df4917876",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "1fe360adf0252cc7766fe4963f2cb11f3aa9d9dd97f4d5fe6f68bf99497acc4e",
+          "schema": 1
+        },
+        "lyra-owned-boot-unit-target-guarded.service": {
+          "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+          "effect": {
+            "device": 65024,
+            "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+            "inode": 56572
+          },
+          "family": "system-units",
+          "name": "lyra-owned-boot-unit-target-guarded.service",
+          "namespace": {
+            "device": 65024,
+            "inode": 330
+          },
+          "original": null,
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "3bee063133b3cb76eebcb7d9f0f94f1cf1cca6c2c518087b40dd727939c82289",
+            "inventory_revision": 1,
+            "operation": "0b6cffc11ad595021fc5afd7cdaafb72",
+            "phase": "retired",
+            "proof_hash": "b9874b67ba9f8b3a26757d0edf33728462d3513370a352ccc3f142c6b1b75799",
+            "proof_snapshot": "71c15dd80fe547419de732b99fa2905a64295938f3e8ceb4a898319df4917876",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "cccd8e1edbf617eb2f626c7e29e9a5a86e45772607fd90be7900cf12f96baae8",
+          "schema": 1
+        },
+        "lyra-owned-boot-unit-target-tick.service": {
+          "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+          "effect": {
+            "device": 65024,
+            "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+            "inode": 56574
+          },
+          "family": "system-units",
+          "name": "lyra-owned-boot-unit-target-tick.service",
+          "namespace": {
+            "device": 65024,
+            "inode": 330
+          },
+          "original": null,
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "3bee063133b3cb76eebcb7d9f0f94f1cf1cca6c2c518087b40dd727939c82289",
+            "inventory_revision": 1,
+            "operation": "0b6cffc11ad595021fc5afd7cdaafb72",
+            "phase": "retired",
+            "proof_hash": "b9874b67ba9f8b3a26757d0edf33728462d3513370a352ccc3f142c6b1b75799",
+            "proof_snapshot": "71c15dd80fe547419de732b99fa2905a64295938f3e8ceb4a898319df4917876",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "1fe360adf0252cc7766fe4963f2cb11f3aa9d9dd97f4d5fe6f68bf99497acc4e",
+          "schema": 1
+        },
+        "lyra-owned-boot-unit-target-tick.timer": {
+          "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+          "effect": null,
+          "family": "system-units",
+          "name": "lyra-owned-boot-unit-target-tick.timer",
+          "namespace": {
+            "device": 65024,
+            "inode": 330
+          },
+          "original": null,
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "3bee063133b3cb76eebcb7d9f0f94f1cf1cca6c2c518087b40dd727939c82289",
+            "inventory_revision": 1,
+            "operation": "0b6cffc11ad595021fc5afd7cdaafb72",
+            "phase": "retired",
+            "proof_hash": "b9874b67ba9f8b3a26757d0edf33728462d3513370a352ccc3f142c6b1b75799",
+            "proof_snapshot": "71c15dd80fe547419de732b99fa2905a64295938f3e8ceb4a898319df4917876",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "intent",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 1,
+          "route_digest": "2edd12349c364d1bdc0d794c1a9da4e439c7dc37f4327de5ea6058dd052d2cc3",
+          "schema": 1
+        }
+      },
+      "authorization_callbacks_outside_all_locks": true
+    },
+    {
+      "name": "pending-owner-refuses-live-adapter-without-auto-completion",
+      "passed": true
+    },
+    {
+      "name": "vm-only-readonly-hook-linger-and-boot-producer-wants",
+      "passed": true,
+      "unit": "[Unit]\nDescription=Disposable owned mask boot inspection\nAfter=local-fs.target\nBefore=systemd-logind.service user@1000.service user@1002.service user@1003.service lyra-owned-boot-unit-target-plain.service lyra-owned-boot-unit-target-tick.timer lyra-owned-boot-unit-peer-plain.service lyra-owned-boot-unit-peer-tick.timer\n[Service]\nType=oneshot\nExecStart=/usr/bin/python3 /root/owned-unit-boot/recover-at-boot.py\n[Install]\nWantedBy=multi-user.target\n",
+      "wants": {
+        "lyra-owned-boot-unit-target-plain.service": "/usr/lib/systemd/system/lyra-owned-boot-unit-target-plain.service",
+        "lyra-owned-boot-unit-target-tick.timer": "/usr/lib/systemd/system/lyra-owned-boot-unit-target-tick.timer",
+        "lyra-owned-boot-unit-peer-plain.service": "/usr/lib/systemd/system/lyra-owned-boot-unit-peer-plain.service",
+        "lyra-owned-boot-unit-peer-tick.timer": "/usr/lib/systemd/system/lyra-owned-boot-unit-peer-tick.timer"
+      }
+    }
+  ],
+  "boot_id": "29863458-989e-4852-96f9-69b017dfb6f3",
+  "full_account_protection": false,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+      "inventory_fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+      "child.py": "5dd4cf3596b33d71252f5ec6b46efcf33b48679d98479eacf3e748fa81700512",
+      "unit-adapter.py": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+      "verify-boot.py": "60ee9b042d3f98bf15dfd40dac08d5b44f0c34fd1e67d8031b8b5646ddf5fbda",
+      "fixture.py": "1c6ea1759476f57fa63ca249c1a2f8a66d8ed486689f0fb2059efe8e0b5062b8",
+      "live_common.py": "54982b8240de8b50cc31968fa23233439cf99231952d974b85dad92ddb851041",
+      "cleanup.py": "791ba323d7a68d47a53129c96bbed8089339933e3051d2daada818f237d44793",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "ownership.py": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "common.py": "41adafc4a3190c2f4e6b1f381773aaf58924bb27fa48d08ea9c5017117d7818f",
+      "boot_common.py": "77ae5520107cb50fb0475f9bc2a4f7fa96e612b9a4e05c0a2eda850dd16f4237",
+      "restore-ownership.py": "0aaf14f64162e71da88e968ffaf09c60e9865460fc43e1d0d458c9573959f731",
+      "restore-units.py": "7a937a4f5033b1e42732cb35c7bb479728c223964f48ed9a564f28f2ef12a5e4",
+      "integration.py": "e90bc3623e68856256b14617addcaaee7fd5f12dc9c26b82b3129c376325207f",
+      "dbus-adapter.py": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "recover-at-boot.py": "8e9ecc1609c13873f40f7c89481f571bda68f8c75ce2fc1592853998b7d468fc",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "prepare.py": "b8aafe3874edc8afaa11fab5a5e6679eeb4c04a7fda892ea9b1acc6156761f01",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "restore-check.py": "e45fdd5d3115bc7f19f5470ea6e498e3d7efef86127707135e87bd144bd67d3e",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d"
+    },
+    "initial_boot_id": "29863458-989e-4852-96f9-69b017dfb6f3",
+    "fault": false,
+    "resource_family": "system-units",
+    "resource_routes": [
+      [
+        "lyra-owned-boot-unit-target-plain.service",
+        "1fe360adf0252cc7766fe4963f2cb11f3aa9d9dd97f4d5fe6f68bf99497acc4e"
+      ],
+      [
+        "lyra-owned-boot-unit-target-guarded.service",
+        "cccd8e1edbf617eb2f626c7e29e9a5a86e45772607fd90be7900cf12f96baae8"
+      ],
+      [
+        "lyra-owned-boot-unit-target-tick.service",
+        "1fe360adf0252cc7766fe4963f2cb11f3aa9d9dd97f4d5fe6f68bf99497acc4e"
+      ],
+      [
+        "lyra-owned-boot-unit-target-tick.timer",
+        "2edd12349c364d1bdc0d794c1a9da4e439c7dc37f4327de5ea6058dd052d2cc3"
+      ]
+    ],
+    "operation": "0b6cffc11ad595021fc5afd7cdaafb72",
+    "proof_hash": "b9874b67ba9f8b3a26757d0edf33728462d3513370a352ccc3f142c6b1b75799",
+    "unit_sources": {
+      "lyra-owned-boot-unit-target-plain.service": "5b556e69745d0a4465736372697074696f6e3d4c79726120646973706f7361626c65207265676973746572656420736572766963650a5b536572766963655d0a547970653d657865630a557365723d6f7264696e617279757365720a47726f75703d6f7264696e617279757365720a4b696c6c4d6f64653d636f6e74726f6c2d67726f75700a4578656353746172743d2f7573722f62696e2f736c656570203630300a",
+      "lyra-owned-boot-unit-target-guarded.service": "5b556e69745d0a4465736372697074696f6e3d4c79726120646973706f7361626c65207265676973746572656420736572766963650a5b536572766963655d0a547970653d657865630a557365723d6f7264696e617279757365720a47726f75703d6f7264696e617279757365720a4b696c6c4d6f64653d636f6e74726f6c2d67726f75700a50414d4e616d653d73797374656d642d757365720a4578656353746172743d2f7573722f62696e2f736c656570203630300a",
+      "lyra-owned-boot-unit-target-tick.service": "5b556e69745d0a4465736372697074696f6e3d4c79726120646973706f7361626c65207265676973746572656420736572766963650a5b536572766963655d0a547970653d657865630a557365723d6f7264696e617279757365720a47726f75703d6f7264696e617279757365720a4b696c6c4d6f64653d636f6e74726f6c2d67726f75700a4578656353746172743d2f7573722f62696e2f736c656570203630300a",
+      "lyra-owned-boot-unit-target-tick.timer": "5b556e69745d0a4465736372697074696f6e3d4c79726120646973706f7361626c6520726567697374657265642074696d65720a5b54696d65725d0a4f6e4163746976655365633d3330306d730a4f6e556e6974496e6163746976655365633d3330306d730a41636375726163795365633d35306d730a556e69743d6c7972612d6f776e65642d626f6f742d756e69742d7461726765742d7469636b2e736572766963650a",
+      "lyra-owned-boot-unit-peer-plain.service": "5b556e69745d0a4465736372697074696f6e3d4c79726120646973706f7361626c65207265676973746572656420736572766963650a5b536572766963655d0a547970653d657865630a557365723d696e7374616c6c6564757365720a47726f75703d696e7374616c6c6564757365720a4b696c6c4d6f64653d636f6e74726f6c2d67726f75700a4578656353746172743d2f7573722f62696e2f736c656570203630300a",
+      "lyra-owned-boot-unit-peer-tick.service": "5b556e69745d0a4465736372697074696f6e3d4c79726120646973706f7361626c65207265676973746572656420736572766963650a5b536572766963655d0a547970653d657865630a557365723d696e7374616c6c6564757365720a47726f75703d696e7374616c6c6564757365720a4b696c6c4d6f64653d636f6e74726f6c2d67726f75700a4578656353746172743d2f7573722f62696e2f736c656570203630300a",
+      "lyra-owned-boot-unit-peer-tick.timer": "5b556e69745d0a4465736372697074696f6e3d4c79726120646973706f7361626c6520726567697374657265642074696d65720a5b54696d65725d0a4f6e4163746976655365633d3330306d730a4f6e556e6974496e6163746976655365633d3330306d730a41636375726163795365633d35306d730a556e69743d6c7972612d6f776e65642d626f6f742d756e69742d706565722d7469636b2e736572766963650a"
+    },
+    "fixture_pam_sha256": "52e7d1e57fc70011a1825f59e13f3c73213c07ada70e1cbf3e0685c1ebee7eae",
+    "fixture_module_sha256": "8b9b49d9d6d89a46085b0ff04d70012805513c8d66b74550238160ca594cf005",
+    "before_reboot_files": {
+      "proofs": {
+        ".deny-1002": {
+          "sha256": "e1f9f2f7011ee6c0d79619a4bb6659e18f166ebda9890cd1b523bae761f2e2cf",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56569
+        },
+        ".withdrawal-1002.json": {
+          "sha256": "b719f9466b6d932d9a2c68cd74f38609ee48e5c0ddbea374a5530521252c3542",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56551
+        },
+        ".operation-1002.json": {
+          "sha256": "3493bd9d89e49d065d3b63d084612dceccf2de0355fca64637222eec1c29026e",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56567
+        },
+        ".gate-1002.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56545
+        },
+        ".gate-1003.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56546
+        },
+        ".gate-1000.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56544
+        },
+        "1000": {
+          "sha256": "02e9253faed18a0b88b85c9e08cb7ea40ec83d6b56c81081e20622d1f6de2b75",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56552
+        }
+      },
+      "catalog": {
+        ".inventory-1000.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56563
+        },
+        ".inventory-1002.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56564
+        },
+        "1002.json": {
+          "sha256": "b16cc762ac705ae9e4d4674344ea92824cf2711a29a5174abed776be90eb47c1",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56565
+        },
+        "1000.json": {
+          "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56566
+        }
+      },
+      "ledger": {
+        ".gate-1.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56561
+        },
+        "4245c8e049761a4c14320167ca40cf8ddf114809ee1ad085099ddf18406e6faf.json": {
+          "sha256": "b3fa141fbff2b148ac277489cb05002ed5b1d6f1ffaa608d56367129e070125b",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56573
+        },
+        "3acde4e76a8c059fbcee8f67d1444990bdf7e8d57f07f2b4c8f101e939cfb76a.json": {
+          "sha256": "431dccb2f694152ed88aa8d2b034b1d2633f6d9104caec08ccca9be9890dca6c",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56575
+        },
+        "54919ab287edce99cc2a80dd45ea668f3a706eb515add183205074486a94b3dc.json": {
+          "sha256": "d7675b6238480747293de6dd84a6dd1562a553ce1b3e376009c83b29f7743b63",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56568
+        },
+        "6ce3a55519b1086ab9dd07b47be408dffaeaf06099bea78437d582ed28bfbea2.json": {
+          "sha256": "7cf32d0e8d5704b6b2ea4db9c2a84a4374cef8ea758cce4cd5e25fa81c7757f9",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56571
+        }
+      },
+      "registry": {
+        ".lease-cde1b12c88bee603821bd0764357a5dd.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56548
+        },
+        "identity-registry": {
+          "sha256": "e5955e65a27fd71eaf9539acd030138e0553b3a129e5ab4ce71b2764dfa6fea3",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56549
+        },
+        ".transaction.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56547
+        }
+      },
+      "roles": {
+        "role-index": {
+          "sha256": "8beb29f977d67111cb7ba7d285cf9715500414f26588f692d7e736671080c07d",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "inode": 56550
+        }
+      },
+      "masks": {
+        "lyra-owned-boot-unit-target-plain.service": {
+          "target": "/dev/null",
+          "device": 65024,
+          "inode": 56570
+        },
+        "lyra-owned-boot-unit-target-guarded.service": {
+          "target": "/dev/null",
+          "device": 65024,
+          "inode": 56572
+        },
+        "lyra-owned-boot-unit-target-tick.service": {
+          "target": "/dev/null",
+          "device": 65024,
+          "inode": 56574
+        },
+        "lyra-owned-boot-unit-target-tick.timer": {
+          "target": "/dev/null",
+          "device": 65024,
+          "inode": 56576
+        }
+      },
+      "vendor": {
+        "lyra-owned-boot-unit-target-plain.service": {
+          "sha256": "1fe360adf0252cc7766fe4963f2cb11f3aa9d9dd97f4d5fe6f68bf99497acc4e",
+          "inode": 56553
+        },
+        "lyra-owned-boot-unit-target-guarded.service": {
+          "sha256": "cccd8e1edbf617eb2f626c7e29e9a5a86e45772607fd90be7900cf12f96baae8",
+          "inode": 56554
+        },
+        "lyra-owned-boot-unit-target-tick.service": {
+          "sha256": "1fe360adf0252cc7766fe4963f2cb11f3aa9d9dd97f4d5fe6f68bf99497acc4e",
+          "inode": 56555
+        },
+        "lyra-owned-boot-unit-target-tick.timer": {
+          "sha256": "2edd12349c364d1bdc0d794c1a9da4e439c7dc37f4327de5ea6058dd052d2cc3",
+          "inode": 56556
+        },
+        "lyra-owned-boot-unit-peer-plain.service": {
+          "sha256": "1bbc18a692e8697791df91524a90b38ea40e570ab6fdd9759f1373e9fa972763",
+          "inode": 56557
+        },
+        "lyra-owned-boot-unit-peer-tick.service": {
+          "sha256": "1bbc18a692e8697791df91524a90b38ea40e570ab6fdd9759f1373e9fa972763",
+          "inode": 56558
+        },
+        "lyra-owned-boot-unit-peer-tick.timer": {
+          "sha256": "3ebc1402020eab16f636d6885ac649a89400a6b0559fd4625b4b3362659f1f21",
+          "inode": 56559
+        }
+      },
+      "wants": {
+        "lyra-owned-boot-unit-target-plain.service": "/usr/lib/systemd/system/lyra-owned-boot-unit-target-plain.service",
+        "lyra-owned-boot-unit-target-tick.timer": "/usr/lib/systemd/system/lyra-owned-boot-unit-target-tick.timer",
+        "lyra-owned-boot-unit-peer-plain.service": "/usr/lib/systemd/system/lyra-owned-boot-unit-peer-plain.service",
+        "lyra-owned-boot-unit-peer-tick.timer": "/usr/lib/systemd/system/lyra-owned-boot-unit-peer-tick.timer"
+      },
+      "hook_sha256": "5cbcccc4ac95b9351fdc7565d8fdb490535a129197210bf3a71863ab2249690c"
+    },
+    "before_reboot_records": {
+      "lyra-owned-boot-unit-target-plain.service": {
+        "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+        "effect": {
+          "device": 65024,
+          "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+          "inode": 56570
+        },
+        "family": "system-units",
+        "name": "lyra-owned-boot-unit-target-plain.service",
+        "namespace": {
+          "device": 65024,
+          "inode": 330
+        },
+        "original": null,
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3bee063133b3cb76eebcb7d9f0f94f1cf1cca6c2c518087b40dd727939c82289",
+          "inventory_revision": 1,
+          "operation": "0b6cffc11ad595021fc5afd7cdaafb72",
+          "phase": "retired",
+          "proof_hash": "b9874b67ba9f8b3a26757d0edf33728462d3513370a352ccc3f142c6b1b75799",
+          "proof_snapshot": "71c15dd80fe547419de732b99fa2905a64295938f3e8ceb4a898319df4917876",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+        "revision": 2,
+        "route_digest": "1fe360adf0252cc7766fe4963f2cb11f3aa9d9dd97f4d5fe6f68bf99497acc4e",
+        "schema": 1
+      },
+      "lyra-owned-boot-unit-target-guarded.service": {
+        "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+        "effect": {
+          "device": 65024,
+          "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+          "inode": 56572
+        },
+        "family": "system-units",
+        "name": "lyra-owned-boot-unit-target-guarded.service",
+        "namespace": {
+          "device": 65024,
+          "inode": 330
+        },
+        "original": null,
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3bee063133b3cb76eebcb7d9f0f94f1cf1cca6c2c518087b40dd727939c82289",
+          "inventory_revision": 1,
+          "operation": "0b6cffc11ad595021fc5afd7cdaafb72",
+          "phase": "retired",
+          "proof_hash": "b9874b67ba9f8b3a26757d0edf33728462d3513370a352ccc3f142c6b1b75799",
+          "proof_snapshot": "71c15dd80fe547419de732b99fa2905a64295938f3e8ceb4a898319df4917876",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+        "revision": 2,
+        "route_digest": "cccd8e1edbf617eb2f626c7e29e9a5a86e45772607fd90be7900cf12f96baae8",
+        "schema": 1
+      },
+      "lyra-owned-boot-unit-target-tick.service": {
+        "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+        "effect": {
+          "device": 65024,
+          "digest": "fd5d32feb2d3562582258990ecfca9b88376957e512d5caac72ad89fc78d2df4",
+          "inode": 56574
+        },
+        "family": "system-units",
+        "name": "lyra-owned-boot-unit-target-tick.service",
+        "namespace": {
+          "device": 65024,
+          "inode": 330
+        },
+        "original": null,
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3bee063133b3cb76eebcb7d9f0f94f1cf1cca6c2c518087b40dd727939c82289",
+          "inventory_revision": 1,
+          "operation": "0b6cffc11ad595021fc5afd7cdaafb72",
+          "phase": "retired",
+          "proof_hash": "b9874b67ba9f8b3a26757d0edf33728462d3513370a352ccc3f142c6b1b75799",
+          "proof_snapshot": "71c15dd80fe547419de732b99fa2905a64295938f3e8ceb4a898319df4917876",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "fenced",
+        "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+        "revision": 2,
+        "route_digest": "1fe360adf0252cc7766fe4963f2cb11f3aa9d9dd97f4d5fe6f68bf99497acc4e",
+        "schema": 1
+      },
+      "lyra-owned-boot-unit-target-tick.timer": {
+        "adapter_digest": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+        "effect": null,
+        "family": "system-units",
+        "name": "lyra-owned-boot-unit-target-tick.timer",
+        "namespace": {
+          "device": 65024,
+          "inode": 330
+        },
+        "original": null,
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "3bee063133b3cb76eebcb7d9f0f94f1cf1cca6c2c518087b40dd727939c82289",
+          "inventory_revision": 1,
+          "operation": "0b6cffc11ad595021fc5afd7cdaafb72",
+          "phase": "retired",
+          "proof_hash": "b9874b67ba9f8b3a26757d0edf33728462d3513370a352ccc3f142c6b1b75799",
+          "proof_snapshot": "71c15dd80fe547419de732b99fa2905a64295938f3e8ceb4a898319df4917876",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "intent",
+        "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+        "revision": 1,
+        "route_digest": "2edd12349c364d1bdc0d794c1a9da4e439c7dc37f4327de5ea6058dd052d2cc3",
+        "schema": 1
+      }
+    }
+  },
+  "kernel_reboot_tested": false
+}
