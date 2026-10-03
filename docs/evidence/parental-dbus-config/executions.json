@@ -1,0 +1,41 @@
+[
+  {
+    "time": 1791050540.1487355,
+    "argv": [
+      "python3",
+      "/root/dbus-config-audit/native.py"
+    ],
+    "result": {
+      "id": "708a9c4a0fd045738a2dafbe03748aaf",
+      "rc": 0,
+      "stdout": "{\"name\": \"actual-launcher-and-package-bound\", \"passed\": true, \"cmdline\": [\"/usr/bin/dbus-broker-launch\", \"--scope\", \"system\", \"--audit\"], \"packages\": \"dbus-broker-36-160100.2.1.x86_64\\ndbus-1-1.14.10-160100.2.1.x86_64\\n\"}\n{\"name\": \"configuration-dependency-graph-indexed\", \"passed\": true, \"file_count\": 20, \"edge_count\": 6, \"policy_root\": \"/etc/selinux/targeted\", \"selinux_enabled\": true}\n{\"name\": \"vendor-policy-tree-outside-prior-guard-detected\", \"passed\": true, \"entries\": 17}\n{\"name\": \"optional-missing-override-retained-in-inventory\", \"passed\": true, \"missing\": [{\"path\": \"/etc/dbus-1/system-local.conf\", \"kind\": \"include\", \"optional\": true}]}\n{\"name\": \"actual-source-directory-probe-0\", \"passed\": true, \"path\": \"/usr/local/share/dbus-1/system-services\", \"canonical\": \"/usr/local/share/dbus-1/system-services\", \"loaded\": true}\n{\"name\": \"actual-source-directory-probe-1\", \"passed\": true, \"path\": \"/lib/dbus-1/system-services\", \"canonical\": \"/usr/lib/dbus-1/system-services\", \"loaded\": true}\n{\"name\": \"actual-source-directory-probe-2\", \"passed\": true, \"path\": \"/etc/dbus-1/system-services\", \"canonical\": \"/etc/dbus-1/system-services\", \"loaded\": false}\n{\"name\": \"actual-source-directory-probe-3\", \"passed\": true, \"path\": \"/run/dbus-1/system-services\", \"canonical\": \"/run/dbus-1/system-services\", \"loaded\": false}\n{\"name\": \"actual-source-directory-probe-4\", \"passed\": true, \"path\": \"/usr/share/dbus-1/system-services\", \"canonical\": \"/usr/share/dbus-1/system-services\", \"loaded\": true}\n{\"name\": \"additional-activation-roots-confirmed-without-executing-payloads\", \"passed\": true, \"positive\": [\"/usr/local/share/dbus-1/system-services\", \"/lib/dbus-1/system-services\", \"/usr/share/dbus-1/system-services\"], \"negative\": [\"/etc/dbus-1/system-services\", \"/run/dbus-1/system-services\"]}\n{\"name\": \"configuration-pam-and-account-bytes-preserved\", \"passed\": true}\n{\"name\": \"shared-broker-pid-and-original-activatable-set-preserved\", \"passed\": true, \"broker_pid\": \"450\"}\n{\"passed\": true, \"checks\": 12}\n",
+      "stderr": ""
+    }
+  },
+  {
+    "time": 1791050638.5203998,
+    "argv": [
+      "python3",
+      "/root/dbus-config-audit/restore.py"
+    ],
+    "result": {
+      "id": "cc1553398c0e43bda30e50ff1f3d9c8b",
+      "rc": 0,
+      "stdout": "{\"absent\": {\"/usr/local/share/dbus-1/system-services/org.lyra.ConfigAudit.Directory0.service\": true, \"/usr/lib/dbus-1/system-services/org.lyra.ConfigAudit.Directory1.service\": true, \"/etc/dbus-1/system-services/org.lyra.ConfigAudit.Directory2.service\": true, \"/run/dbus-1/system-services/org.lyra.ConfigAudit.Directory3.service\": true, \"/usr/share/dbus-1/system-services/org.lyra.ConfigAudit.Directory4.service\": true}, \"unknown_loaded_absent\": true, \"broker_pid\": \"450\", \"broker_preserved\": true, \"packages\": \"dbus-broker-36-160100.2.1.x86_64\\ndbus-1-1.14.10-160100.2.1.x86_64\\n\", \"passed\": true}\n",
+      "stderr": ""
+    }
+  },
+  {
+    "time": 1791050638.8895566,
+    "argv": [
+      "systemctl",
+      "poweroff"
+    ],
+    "result": {
+      "id": "c3ee7fb61a6f4b5f9d7558c5b4b2c8f2",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  }
+]

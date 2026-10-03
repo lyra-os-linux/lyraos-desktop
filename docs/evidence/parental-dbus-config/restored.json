@@ -1,0 +1,14 @@
+{
+  "absent": {
+    "/usr/local/share/dbus-1/system-services/org.lyra.ConfigAudit.Directory0.service": true,
+    "/usr/lib/dbus-1/system-services/org.lyra.ConfigAudit.Directory1.service": true,
+    "/etc/dbus-1/system-services/org.lyra.ConfigAudit.Directory2.service": true,
+    "/run/dbus-1/system-services/org.lyra.ConfigAudit.Directory3.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.ConfigAudit.Directory4.service": true
+  },
+  "unknown_loaded_absent": true,
+  "broker_pid": "450",
+  "broker_preserved": true,
+  "packages": "dbus-broker-36-160100.2.1.x86_64\ndbus-1-1.14.10-160100.2.1.x86_64\n",
+  "passed": true
+}

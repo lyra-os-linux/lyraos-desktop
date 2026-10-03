@@ -1,0 +1,492 @@
+{
+  "passed": true,
+  "error": null,
+  "checks": [
+    {
+      "name": "actual-launcher-and-package-bound",
+      "passed": true,
+      "cmdline": [
+        "/usr/bin/dbus-broker-launch",
+        "--scope",
+        "system",
+        "--audit"
+      ],
+      "packages": "dbus-broker-36-160100.2.1.x86_64\ndbus-1-1.14.10-160100.2.1.x86_64\n"
+    },
+    {
+      "name": "configuration-dependency-graph-indexed",
+      "passed": true,
+      "file_count": 20,
+      "edge_count": 6,
+      "policy_root": "/etc/selinux/targeted",
+      "selinux_enabled": true
+    },
+    {
+      "name": "vendor-policy-tree-outside-prior-guard-detected",
+      "passed": true,
+      "entries": 17
+    },
+    {
+      "name": "optional-missing-override-retained-in-inventory",
+      "passed": true,
+      "missing": [
+        {
+          "path": "/etc/dbus-1/system-local.conf",
+          "kind": "include",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "name": "actual-source-directory-probe-0",
+      "passed": true,
+      "path": "/usr/local/share/dbus-1/system-services",
+      "canonical": "/usr/local/share/dbus-1/system-services",
+      "loaded": true
+    },
+    {
+      "name": "actual-source-directory-probe-1",
+      "passed": true,
+      "path": "/lib/dbus-1/system-services",
+      "canonical": "/usr/lib/dbus-1/system-services",
+      "loaded": true
+    },
+    {
+      "name": "actual-source-directory-probe-2",
+      "passed": true,
+      "path": "/etc/dbus-1/system-services",
+      "canonical": "/etc/dbus-1/system-services",
+      "loaded": false
+    },
+    {
+      "name": "actual-source-directory-probe-3",
+      "passed": true,
+      "path": "/run/dbus-1/system-services",
+      "canonical": "/run/dbus-1/system-services",
+      "loaded": false
+    },
+    {
+      "name": "actual-source-directory-probe-4",
+      "passed": true,
+      "path": "/usr/share/dbus-1/system-services",
+      "canonical": "/usr/share/dbus-1/system-services",
+      "loaded": true
+    },
+    {
+      "name": "additional-activation-roots-confirmed-without-executing-payloads",
+      "passed": true,
+      "positive": [
+        "/usr/local/share/dbus-1/system-services",
+        "/lib/dbus-1/system-services",
+        "/usr/share/dbus-1/system-services"
+      ],
+      "negative": [
+        "/etc/dbus-1/system-services",
+        "/run/dbus-1/system-services"
+      ]
+    },
+    {
+      "name": "configuration-pam-and-account-bytes-preserved",
+      "passed": true
+    },
+    {
+      "name": "shared-broker-pid-and-original-activatable-set-preserved",
+      "passed": true,
+      "broker_pid": "450"
+    }
+  ],
+  "metadata": {
+    "boot_id": "c91dce66-e093-4d03-a935-024a6c7075d8",
+    "broker_pid": "450",
+    "packages": "dbus-broker-36-160100.2.1.x86_64\ndbus-1-1.14.10-160100.2.1.x86_64\n",
+    "source_sha256": {
+      "native.py": "d5aaf96cca8dc954c0a589672750c309646ecb7b3054fc983ff0601a3ce69602",
+      "dependencies.py": "c6d9d819eb3880c7b7f80eee3ff0205ad065f9e34630d9b75819689141467074",
+      "namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99"
+    },
+    "binaries": {
+      "/usr/bin/dbus-broker": "87a12a24fe0c48f302829500bf0f80df0dd066a3a3d32550846a41e64678eecf",
+      "/usr/bin/dbus-broker-launch": "a329b6eb1c797019d31d34336afcc8bfc95d15204be8babb5ede35e3d5528f68"
+    },
+    "launcher_cmdline": [
+      "/usr/bin/dbus-broker-launch",
+      "--scope",
+      "system",
+      "--audit"
+    ]
+  },
+  "files": {
+    "/usr/share/dbus-1/system.conf": {
+      "sha256": "9c8c55f18731fdf9cdf818dbecb6dd208314bf623fa5e76c685c2f3f1c48b247",
+      "stamp": [
+        65024,
+        14775,
+        0,
+        33188,
+        1,
+        5820,
+        1729063358000000000,
+        1790025833816753165
+      ]
+    },
+    "/etc/dbus-1/system.conf": {
+      "sha256": "a6f50dc70ef082a110dcdb164579cd2af221b90226c5e0aca237edcad98a1c26",
+      "stamp": [
+        65024,
+        61,
+        0,
+        33188,
+        1,
+        833,
+        1729063358000000000,
+        1790025838855314891
+      ]
+    },
+    "/usr/share/dbus-1/system.d/FirewallD.conf": {
+      "sha256": "fdad6e5dc3be00511d41e946d1714dcbf5d2f4cb72b3edc007b91ce7f49db0a1",
+      "stamp": [
+        65024,
+        14777,
+        0,
+        33188,
+        1,
+        1063,
+        1786114680000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/dnsmasq.conf": {
+      "sha256": "65b25dc51ba9fd414201ed8146f1d23af6c20c3feff364638f136759648d8a42",
+      "stamp": [
+        65024,
+        14778,
+        0,
+        33188,
+        1,
+        475,
+        1782203803000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/gdm.conf": {
+      "sha256": "1f07df3f25c1f500d158c386c9c5969f25e0488e0db4e1e17bd681dd33b230dc",
+      "stamp": [
+        65024,
+        39563,
+        0,
+        33188,
+        1,
+        4644,
+        1786588299000000000,
+        1790093054329395613
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.Accounts.conf": {
+      "sha256": "5325a89e7d57cb42e5ac1cb65dc99981c6d3a22da7b21e8e3cbb0da8c021ae6a",
+      "stamp": [
+        65024,
+        28161,
+        0,
+        33188,
+        1,
+        917,
+        1679945259000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.Flatpak.SystemHelper.conf": {
+      "sha256": "7db68294aedbc1891e2aa2db7f761fa95fe77b73e6c4d593ccbaa648baa4acfc",
+      "stamp": [
+        65024,
+        29995,
+        0,
+        33188,
+        1,
+        971,
+        1775842122000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.GeoClue2.Agent.conf": {
+      "sha256": "e7bfdf03fb8d8f14b7387ad6c6c20824e9e2e1e91ae58beb9f7bd714e8793a30",
+      "stamp": [
+        65024,
+        38826,
+        0,
+        33188,
+        1,
+        714,
+        1776896557000000000,
+        1790093052433395613
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.GeoClue2.conf": {
+      "sha256": "f85946799588dc9ae9176387b1c021b141a43826fc1626d6ba8b9289ff8ce401",
+      "stamp": [
+        65024,
+        38827,
+        0,
+        33188,
+        1,
+        1420,
+        1776896557000000000,
+        1790093052433395613
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.PolicyKit1.conf": {
+      "sha256": "28067ad27702251ba38d9794738cb81e18ce2151d26b3d103a33b4107c2f9877",
+      "stamp": [
+        65024,
+        14779,
+        0,
+        33188,
+        1,
+        638,
+        1781272277000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.RealtimeKit1.conf": {
+      "sha256": "2197e5e7f07508dfa8057e1b2bf8f166d980bceaf273b5290dc21de1c568a25d",
+      "stamp": [
+        65024,
+        50823,
+        0,
+        33188,
+        1,
+        1374,
+        1708689370000000000,
+        1790373920051130852
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.hostname1.conf": {
+      "sha256": "98e7eb579288791e01081e75b577baf904ff7eb921afa6738158b86e97d034a7",
+      "stamp": [
+        65024,
+        14780,
+        0,
+        33188,
+        1,
+        994,
+        1785161894000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.import1.conf": {
+      "sha256": "5206628f4ac36e69a8a34680edc3ab93370ecc3458d181cdc8f5baabee2322f3",
+      "stamp": [
+        65024,
+        14781,
+        0,
+        33188,
+        1,
+        5238,
+        1785161894000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.locale1.conf": {
+      "sha256": "9702f64ef33e68a78d9d1cf852b37c1e64cbde16d2eda96ecbf950c03865e6b3",
+      "stamp": [
+        65024,
+        14782,
+        0,
+        33188,
+        1,
+        984,
+        1785161894000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.login1.conf": {
+      "sha256": "8c12da23940f6ea80495e47a4d0bf9eece02374ed3a9d1e663932afd0271d46d",
+      "stamp": [
+        65024,
+        14783,
+        0,
+        33188,
+        1,
+        17553,
+        1785161894000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.machine1.conf": {
+      "sha256": "f8f7a57b67d2e4519f65d8239d3a06ac76f49d6f42ade2f0be9c36fb477926ab",
+      "stamp": [
+        65024,
+        14784,
+        0,
+        33188,
+        1,
+        11254,
+        1785161894000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.systemd1.conf": {
+      "sha256": "001d478086c87eb19f5446311c1177fde7d7ce6dd7787e1e63f49fe9d4438cd2",
+      "stamp": [
+        65024,
+        14785,
+        0,
+        33188,
+        1,
+        22014,
+        1785161894000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.timedate1.conf": {
+      "sha256": "f34b0a017d95991ea8f1409e9abc53346664612982c5d2349b481d471c7de9d7",
+      "stamp": [
+        65024,
+        14786,
+        0,
+        33188,
+        1,
+        994,
+        1785161894000000000,
+        1790025833823752956
+      ]
+    },
+    "/usr/share/dbus-1/system.d/org.freedesktop.timesync1.conf": {
+      "sha256": "a584cde247521c0ba6cec45082ba2552cecfc82d777c0e8d4d2fd81475b75601",
+      "stamp": [
+        65024,
+        14787,
+        0,
+        33188,
+        1,
+        1818,
+        1785161894000000000,
+        1790025833823752956
+      ]
+    },
+    "/etc/selinux/targeted/contexts/dbus_contexts": {
+      "sha256": "33115c8ae83b6d571d45099e1758b571209e2808eed26389ffc50c1d5409cb37",
+      "stamp": [
+        65024,
+        148601,
+        0,
+        33188,
+        1,
+        195,
+        1787729920000000000,
+        1790025838822326334
+      ]
+    }
+  },
+  "edges": [
+    {
+      "source": "/usr/share/dbus-1/system.conf",
+      "kind": "standard_system_servicedirs",
+      "path": "",
+      "optional": false,
+      "condition": ""
+    },
+    {
+      "source": "/usr/share/dbus-1/system.conf",
+      "kind": "include",
+      "path": "/etc/dbus-1/system.conf",
+      "optional": true,
+      "condition": ""
+    },
+    {
+      "source": "/usr/share/dbus-1/system.conf",
+      "kind": "includedir",
+      "path": "/usr/share/dbus-1/system.d",
+      "optional": false,
+      "condition": ""
+    },
+    {
+      "source": "/usr/share/dbus-1/system.conf",
+      "kind": "includedir",
+      "path": "/etc/dbus-1/system.d",
+      "optional": false,
+      "condition": ""
+    },
+    {
+      "source": "/usr/share/dbus-1/system.conf",
+      "kind": "include",
+      "path": "/etc/dbus-1/system-local.conf",
+      "optional": true,
+      "condition": ""
+    },
+    {
+      "source": "/usr/share/dbus-1/system.conf",
+      "kind": "selinux-include",
+      "path": "contexts/dbus_contexts",
+      "optional": false,
+      "condition": "selinux-enabled",
+      "resolved_path": "/etc/selinux/targeted/contexts/dbus_contexts"
+    }
+  ],
+  "missing": [
+    {
+      "path": "/etc/dbus-1/system-local.conf",
+      "kind": "include",
+      "optional": true
+    }
+  ],
+  "includedirs": {
+    "/usr/share/dbus-1/system.d": [
+      "FirewallD.conf",
+      "dnsmasq.conf",
+      "gdm.conf",
+      "org.freedesktop.Accounts.conf",
+      "org.freedesktop.Flatpak.SystemHelper.conf",
+      "org.freedesktop.GeoClue2.Agent.conf",
+      "org.freedesktop.GeoClue2.conf",
+      "org.freedesktop.PolicyKit1.conf",
+      "org.freedesktop.RealtimeKit1.conf",
+      "org.freedesktop.hostname1.conf",
+      "org.freedesktop.import1.conf",
+      "org.freedesktop.locale1.conf",
+      "org.freedesktop.login1.conf",
+      "org.freedesktop.machine1.conf",
+      "org.freedesktop.systemd1.conf",
+      "org.freedesktop.timedate1.conf",
+      "org.freedesktop.timesync1.conf"
+    ],
+    "/etc/dbus-1/system.d": []
+  },
+  "directory_probes": [
+    {
+      "path": "/usr/local/share/dbus-1/system-services",
+      "canonical": "/usr/local/share/dbus-1/system-services",
+      "loaded": true
+    },
+    {
+      "path": "/lib/dbus-1/system-services",
+      "canonical": "/usr/lib/dbus-1/system-services",
+      "loaded": true
+    },
+    {
+      "path": "/etc/dbus-1/system-services",
+      "canonical": "/etc/dbus-1/system-services",
+      "loaded": false
+    },
+    {
+      "path": "/run/dbus-1/system-services",
+      "canonical": "/run/dbus-1/system-services",
+      "loaded": false
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services",
+      "canonical": "/usr/share/dbus-1/system-services",
+      "loaded": true
+    }
+  ],
+  "cleanup": {
+    "passed": true,
+    "broker_pid": "450",
+    "names_preserved": true,
+    "created_paths_absent": true
+  },
+  "full_account_protection": false,
+  "global_source_coverage_qualified": false,
+  "configuration_semantics_qualified": false,
+  "loaded_configuration_identity_qualified": false
+}
