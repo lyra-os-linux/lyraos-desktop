@@ -1,0 +1,137 @@
+{
+  "sha256": {
+    "../parental-coordinator/coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+    "../parental-inventory-gate/inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+    "../parental-manager-adapters/adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+    "../parental-operation-journal/operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+    "../parental-operation-journal/provenance.json": "e074800191ac742f63c4fed9e79c7961b0f1f0c754d6450fce297b6abb8c6c3c",
+    "../parental-operation-journal/python-suite.txt": "aa357e15764b38e335260d48fbe8159ef2d1f4420b8d448cdd0a2a5bcc2b20e2",
+    "../parental-ordinary-coordinator/ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+    "../parental-ordinary-withdrawal/pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+    "../parental-ordinary-withdrawal/withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+    "../parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "README.md": "36d23c91abf324cf4e61d64c93cb3291224a23debf9aaf1fbf83c5429e449cb6",
+    "boot_common.py": "8cfdd6284bf9b06ef29efa1e64487d6af76710197b9f1b4c2d02df002b0b0163",
+    "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+    "child.py": "e7cef5383b28528c3d8f3686fcb3e2e9a0b9614fa88df05b4c67ecaaab911ce6",
+    "cleanup.json": "c11c5bcfe5b9512c744bf6501fd1836f6e2fcc92ddf18afa8dabbbd52481e3cf",
+    "cleanup.py": "d9d9cac6df7729c0232c8b6923b23ca513e819090563c33656d044c6e75a30d5",
+    "common.py": "879160dd25cd47e27c23df365afef2077f29d2950eab084382aed9506a223ab6",
+    "fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+    "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+    "inventory-restored-independent.json": "558254ad462317e081a24cadce124501d11615a0161ad183fa9c2b3b095a6fdd",
+    "inventory-restored.json": "71a24b07c98df240fd312e36cf42e69c903ac9daa4ace4fa299fa64cfa03ef98",
+    "op-common.py": "ed1882222b51330250df784937d1b66bdbf733c310e87fb560bb5166ecbed88b",
+    "prepare.py": "5ea74307be794bc6a6d9c0cccbf9e550ec6479b929fbc8912bceafbde1fc5359",
+    "prepared.json": "cd86db9b105c221cef466007791cca4fc8c695c780722397a9fb5d5307158771",
+    "recover-at-boot.py": "8ea77b629b0d1b607d5fd175fcddee946b4dd69710bd34f72ebfda277947499e",
+    "restore-check.py": "1533c3b99a6934cfc467a05dfdb82f9f091bf40c2f4646fb657525c42cd02391",
+    "restore-inventory.py": "01b07a0c34024a5e20a681a58a38a68aa9c6b6cef1b9b05a5658be945a5f1e62",
+    "restored.json": "a2d1840f16930d623c56a5b8fb753570617e507fead82ab1fdf5b8e92336ef20",
+    "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+    "verified-fault.json": "015f900cae551cdfcb3277f971e056c15195100be09e243bdf63c21f62b2b20d",
+    "verified-readonly.json": "449ba26967bfb0419ae3787db4763760dc995aaa88d2ff72a7e48eb85ebc94c1",
+    "verify-boot.py": "6c51d4a31995506735785c2c9d5ab01240f886d3b1a143fd295e87d7a5b1c7b2",
+    "verify-evidence.py": "2e260ccfd99c924de68c4dbd1f5ae7312329250827db579a1d3fa5dbefee550a"
+  },
+  "native_checks": 19,
+  "real_kernel_reboots": 2,
+  "failed_native_attempts": 0,
+  "qemu_sessions": [
+    58182,
+    37443,
+    93293
+  ],
+  "qemu_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "poweroff_rc": 0,
+  "python_baseline_tests": 455,
+  "python_baseline_reused": true,
+  "production_changed": false,
+  "executions": [
+    {
+      "id": "294e0477ab624c7891ada474c0199b19",
+      "argv": [
+        "python3",
+        "/root/operation-boot/prepare.py"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "id": "3da557872f5948db8f2e35d2d8163413",
+      "argv": [
+        "systemctl",
+        "reboot"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "id": "290c75c4fb3842f6a2014029afcedc78",
+      "argv": [
+        "python3",
+        "/root/operation-boot/verify-boot.py"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "id": "a629ff3b150c4808997b9ac2239d3d90",
+      "argv": [
+        "systemctl",
+        "reboot"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "id": "627248a238b34e089ab491d3ba281941",
+      "argv": [
+        "python3",
+        "/root/operation-boot/verify-boot.py"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "id": "48e9c0ff05c74e538205357dd867b2a7",
+      "argv": [
+        "python3",
+        "/root/operation-boot/cleanup.py"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "id": "2e46d864661d46d9beb3de09bc728cc4",
+      "argv": [
+        "python3",
+        "/root/operation-boot/restore-check.py"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "id": "2eb97287270543bab702048337b4c34c",
+      "argv": [
+        "python3",
+        "/root/operation-boot/restore-inventory.py"
+      ],
+      "rc": 0,
+      "stderr": ""
+    },
+    {
+      "id": "2c262d3c166141d28bc1f41720d3952d",
+      "argv": [
+        "systemctl",
+        "poweroff"
+      ],
+      "rc": 0,
+      "stderr": ""
+    }
+  ]
+}

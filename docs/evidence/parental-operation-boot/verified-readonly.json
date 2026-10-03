@@ -1,0 +1,657 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "durable-state-survives-kernel-reboot",
+      "passed": true,
+      "files": {
+        "proofs": {
+          "1002": {
+            "sha256": "1cd6e13408d0dd66dca397e31eb8f7911544018ba6ce9c2a774ebf55ffae6ca1",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".deny-1002": {
+            "sha256": "2229c10d459ce7e0884c413b108af431b8bc6e0a2597f3d7b7d4378394ccf087",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".withdrawal-1002.json": {
+            "sha256": "2229c10d459ce7e0884c413b108af431b8bc6e0a2597f3d7b7d4378394ccf087",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".operation-1002.json": {
+            "sha256": "3810c87c02048f1f79d883e798290ebd3d938ff2a1cbd83fd37a5fbe087fff17",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".gate-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 56325
+          },
+          ".gate-1003.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 56326
+          },
+          ".gate-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 56324
+          },
+          "1000": {
+            "sha256": "f954e8097b2db79df70171620df9ea83fc449a46f110be152dfb25c8218e2faf",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          }
+        },
+        "catalog": {
+          ".inventory-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "lock_inode": 56334
+          },
+          ".inventory-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "lock_inode": 56335
+          },
+          "1002.json": {
+            "sha256": "8a7a21ad79b6649222d037a5c0f7327d14f9d152f32069be1c4bc320df74a6cf",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "lock_inode": null
+          },
+          "1000.json": {
+            "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "lock_inode": null
+          }
+        }
+      },
+      "boot_id": "d51ddb44-d14b-4095-b364-57f1e548e646"
+    },
+    {
+      "name": "hook-inspects-without-reenrollment",
+      "passed": true,
+      "hook": {
+        "boot_id": "d51ddb44-d14b-4095-b364-57f1e548e646",
+        "fault": false,
+        "files_before": {
+          "proofs": {
+            "1002": {
+              "sha256": "1cd6e13408d0dd66dca397e31eb8f7911544018ba6ce9c2a774ebf55ffae6ca1",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": null
+            },
+            ".deny-1002": {
+              "sha256": "2229c10d459ce7e0884c413b108af431b8bc6e0a2597f3d7b7d4378394ccf087",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": null
+            },
+            ".withdrawal-1002.json": {
+              "sha256": "2229c10d459ce7e0884c413b108af431b8bc6e0a2597f3d7b7d4378394ccf087",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": null
+            },
+            ".operation-1002.json": {
+              "sha256": "3810c87c02048f1f79d883e798290ebd3d938ff2a1cbd83fd37a5fbe087fff17",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": null
+            },
+            ".gate-1002.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": 56325
+            },
+            ".gate-1003.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": 56326
+            },
+            ".gate-1000.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": 56324
+            },
+            "1000": {
+              "sha256": "f954e8097b2db79df70171620df9ea83fc449a46f110be152dfb25c8218e2faf",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": null
+            }
+          },
+          "catalog": {
+            ".inventory-1000.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "lock_inode": 56334
+            },
+            ".inventory-1002.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "lock_inode": 56335
+            },
+            "1002.json": {
+              "sha256": "8a7a21ad79b6649222d037a5c0f7327d14f9d152f32069be1c4bc320df74a6cf",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "lock_inode": null
+            },
+            "1000.json": {
+              "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "lock_inode": null
+            }
+          }
+        },
+        "enforcing": "Enforcing",
+        "source_sha256": "8ea77b629b0d1b607d5fd175fcddee946b4dd69710bd34f72ebfda277947499e",
+        "inspect_executed": true,
+        "outcome": "BlockedRecoveryRequired",
+        "files_after": {
+          "proofs": {
+            "1002": {
+              "sha256": "1cd6e13408d0dd66dca397e31eb8f7911544018ba6ce9c2a774ebf55ffae6ca1",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": null
+            },
+            ".deny-1002": {
+              "sha256": "2229c10d459ce7e0884c413b108af431b8bc6e0a2597f3d7b7d4378394ccf087",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": null
+            },
+            ".withdrawal-1002.json": {
+              "sha256": "2229c10d459ce7e0884c413b108af431b8bc6e0a2597f3d7b7d4378394ccf087",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": null
+            },
+            ".operation-1002.json": {
+              "sha256": "3810c87c02048f1f79d883e798290ebd3d938ff2a1cbd83fd37a5fbe087fff17",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": null
+            },
+            ".gate-1002.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": 56325
+            },
+            ".gate-1003.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": 56326
+            },
+            ".gate-1000.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": 56324
+            },
+            "1000": {
+              "sha256": "f954e8097b2db79df70171620df9ea83fc449a46f110be152dfb25c8218e2faf",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "gate_inode": null
+            }
+          },
+          "catalog": {
+            ".inventory-1000.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "lock_inode": 56334
+            },
+            ".inventory-1002.lock": {
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "lock_inode": 56335
+            },
+            "1002.json": {
+              "sha256": "8a7a21ad79b6649222d037a5c0f7327d14f9d152f32069be1c4bc320df74a6cf",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "lock_inode": null
+            },
+            "1000.json": {
+              "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+              "mode": 384,
+              "uid": 0,
+              "gid": 0,
+              "nlink": 1,
+              "lock_inode": null
+            }
+          }
+        }
+      },
+      "status": "0"
+    },
+    {
+      "name": "target-linger-auto-admission-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n"
+    },
+    {
+      "name": "unrelated-ordinary-linger-auto-admitted",
+      "passed": true,
+      "unit": {
+        "MainPID": "536",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "manual-target-retry-denied-peer-pid-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "536",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "wrong-operation-and-denied-authorization-preserve-postboot-state",
+      "passed": true
+    },
+    {
+      "name": "changed-catalog-refuses-recovery-before-prompt",
+      "passed": true,
+      "fixture_catalog_restored_explicitly": true
+    },
+    {
+      "name": "authorized-postboot-resume-retains-owner-and-barrier",
+      "passed": true,
+      "owner": {
+        "action": "withdraw-admission",
+        "identity": {
+          "gid": 1003,
+          "group": "ordinaryuser",
+          "uid": 1002,
+          "user": "ordinaryuser"
+        },
+        "inventory_digest": "fbf40dfe4db8237ba6d48e24df9a3192d92f2598c8c093fa3a357143dac9250b",
+        "inventory_revision": 1,
+        "operation": "42ddf35c876a98c0881b98e85d90e7de",
+        "phase": "retired",
+        "proof_hash": "1cd6e13408d0dd66dca397e31eb8f7911544018ba6ce9c2a774ebf55ffae6ca1",
+        "proof_snapshot": "49b59f77fc0526544105baeb7b2a2f48080f942bd77e4294020565dda04e0ed8",
+        "revision": 3,
+        "schema": 1
+      },
+      "files": {
+        "proofs": {
+          ".deny-1002": {
+            "sha256": "2229c10d459ce7e0884c413b108af431b8bc6e0a2597f3d7b7d4378394ccf087",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".withdrawal-1002.json": {
+            "sha256": "e41b000282b2ffea26d4bd57b1b825246a073f0fff7661f98d27224c56ece838",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".operation-1002.json": {
+            "sha256": "d679615730c227c2912a2e9428025ed1cc40c0c40c4f5057ef7eecc8c6dadcac",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          },
+          ".gate-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 56325
+          },
+          ".gate-1003.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 56326
+          },
+          ".gate-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": 56324
+          },
+          "1000": {
+            "sha256": "f954e8097b2db79df70171620df9ea83fc449a46f110be152dfb25c8218e2faf",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "gate_inode": null
+          }
+        },
+        "catalog": {
+          ".inventory-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "lock_inode": 56334
+          },
+          ".inventory-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "lock_inode": 56335
+          },
+          "1002.json": {
+            "sha256": "8a7a21ad79b6649222d037a5c0f7327d14f9d152f32069be1c4bc320df74a6cf",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "lock_inode": null
+          },
+          "1000.json": {
+            "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1,
+            "lock_inode": null
+          }
+        }
+      },
+      "authorization_calls": 1,
+      "peer_pid": "536"
+    },
+    {
+      "name": "post-retirement-target-denied-peer-preserved",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "536",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    }
+  ],
+  "boot_id": "d51ddb44-d14b-4095-b364-57f1e548e646",
+  "full_account_protection": false,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "prepare.py": "5ea74307be794bc6a6d9c0cccbf9e550ec6479b929fbc8912bceafbde1fc5359",
+      "common.py": "879160dd25cd47e27c23df365afef2077f29d2950eab084382aed9506a223ab6",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "child.py": "e7cef5383b28528c3d8f3686fcb3e2e9a0b9614fa88df05b4c67ecaaab911ce6",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "recover-at-boot.py": "8ea77b629b0d1b607d5fd175fcddee946b4dd69710bd34f72ebfda277947499e",
+      "verify-boot.py": "6c51d4a31995506735785c2c9d5ab01240f886d3b1a143fd295e87d7a5b1c7b2",
+      "cleanup.py": "d9d9cac6df7729c0232c8b6923b23ca513e819090563c33656d044c6e75a30d5",
+      "restore-check.py": "1533c3b99a6934cfc467a05dfdb82f9f091bf40c2f4646fb657525c42cd02391",
+      "operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+      "inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+      "fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+      "op-common.py": "ed1882222b51330250df784937d1b66bdbf733c310e87fb560bb5166ecbed88b",
+      "boot_common.py": "8cfdd6284bf9b06ef29efa1e64487d6af76710197b9f1b4c2d02df002b0b0163"
+    },
+    "initial_boot_id": "af500bc1-2ee6-47a4-82ef-60e21983adf5",
+    "fault": true,
+    "operation": "42ddf35c876a98c0881b98e85d90e7de",
+    "expected_owner": {
+      "schema": 1,
+      "action": "withdraw-admission",
+      "identity": {
+        "uid": 1002,
+        "user": "ordinaryuser",
+        "gid": 1003,
+        "group": "ordinaryuser"
+      },
+      "operation": "42ddf35c876a98c0881b98e85d90e7de",
+      "proof_hash": "1cd6e13408d0dd66dca397e31eb8f7911544018ba6ce9c2a774ebf55ffae6ca1",
+      "proof_snapshot": "49b59f77fc0526544105baeb7b2a2f48080f942bd77e4294020565dda04e0ed8",
+      "inventory_revision": 1,
+      "inventory_digest": "fbf40dfe4db8237ba6d48e24df9a3192d92f2598c8c093fa3a357143dac9250b",
+      "phase": "intent",
+      "revision": 1
+    },
+    "before_reboot_files": {
+      "proofs": {
+        ".deny-1002": {
+          "sha256": "2229c10d459ce7e0884c413b108af431b8bc6e0a2597f3d7b7d4378394ccf087",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": null
+        },
+        ".withdrawal-1002.json": {
+          "sha256": "e41b000282b2ffea26d4bd57b1b825246a073f0fff7661f98d27224c56ece838",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": null
+        },
+        ".operation-1002.json": {
+          "sha256": "d679615730c227c2912a2e9428025ed1cc40c0c40c4f5057ef7eecc8c6dadcac",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": null
+        },
+        ".gate-1002.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": 56325
+        },
+        ".gate-1003.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": 56326
+        },
+        ".gate-1000.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": 56324
+        },
+        "1000": {
+          "sha256": "f954e8097b2db79df70171620df9ea83fc449a46f110be152dfb25c8218e2faf",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "gate_inode": null
+        }
+      },
+      "catalog": {
+        ".inventory-1000.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "lock_inode": 56334
+        },
+        ".inventory-1002.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "lock_inode": 56335
+        },
+        "1002.json": {
+          "sha256": "8a7a21ad79b6649222d037a5c0f7327d14f9d152f32069be1c4bc320df74a6cf",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "lock_inode": null
+        },
+        "1000.json": {
+          "sha256": "59361eecb0666afd0ac53d5807fbb07e8ece9b1453a30f6dfbf77b199c8d9296",
+          "mode": 384,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1,
+          "lock_inode": null
+        }
+      }
+    },
+    "first_verified_boot_id": "d51ddb44-d14b-4095-b364-57f1e548e646"
+  },
+  "kernel_reboot_tested": true,
+  "whole_classification_qualified": false,
+  "all_producer_quiescence": false,
+  "producer_revocation_tested": false,
+  "production_journal_qualified": false,
+  "global_monotonic_revision_qualified": false,
+  "anti_rollback_qualified": false,
+  "real_nss_mutations_tested": false,
+  "power_loss_tested": false
+}
