@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "absent": {
+    "/usr/bin/lyra-discovery-dbus-fixture": true,
+    "/etc/dbus-1/system.d/lyra-discovery-dbus-fixture.conf": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingDiscovery.TargetUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingDiscovery.TargetExec.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingDiscovery.TargetColdUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingDiscovery.TargetColdExec.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingDiscovery.PeerUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.PendingDiscovery.PeerExec.service": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingDiscovery.TargetUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingDiscovery.TargetExec": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingDiscovery.TargetColdUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingDiscovery.TargetColdExec": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingDiscovery.PeerUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.PendingDiscovery.PeerExec": true,
+    "/run/systemd/system/lyra-discovery-dbus-targetunit.service": true,
+    "/run/systemd/system/lyra-discovery-dbus-targetexec.service": true,
+    "/run/systemd/system/lyra-discovery-dbus-targetcoldunit.service": true,
+    "/run/systemd/system/lyra-discovery-dbus-targetcoldexec.service": true,
+    "/run/systemd/system/lyra-discovery-dbus-peerunit.service": true,
+    "/run/systemd/system/lyra-discovery-dbus-peerexec.service": true
+  },
+  "owners": {
+    "TargetUnit": false,
+    "TargetExec": false,
+    "TargetColdUnit": false,
+    "TargetColdExec": false,
+    "PeerUnit": false,
+    "PeerExec": false
+  },
+  "broker_pid": "448"
+}

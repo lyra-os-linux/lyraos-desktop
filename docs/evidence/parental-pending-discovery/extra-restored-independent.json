@@ -1,0 +1,17 @@
+{
+  "unit": {
+    "MainPID": "0",
+    "ControlGroup": "",
+    "User": "",
+    "PAMName": "",
+    "LoadState": "not-found",
+    "ActiveState": "inactive",
+    "FragmentPath": "",
+    "DropInPaths": ""
+  },
+  "absent": {
+    "/run/systemd/transient/lyra-discovery-dbus-unregistered.service": true,
+    "/run/systemd/system/lyra-discovery-dbus-unregistered.service": true
+  },
+  "passed": true
+}
