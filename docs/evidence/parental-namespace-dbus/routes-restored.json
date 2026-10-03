@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "absent": {
+    "/usr/bin/lyra-namespace-dbus-fixture": true,
+    "/etc/dbus-1/system.d/lyra-namespace-dbus-fixture.conf": true,
+    "/usr/share/dbus-1/system-services/org.lyra.NamespaceDbus.TargetUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.NamespaceDbus.TargetExec.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.NamespaceDbus.TargetColdUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.NamespaceDbus.TargetColdExec.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.NamespaceDbus.PeerUnit.service": true,
+    "/usr/share/dbus-1/system-services/org.lyra.NamespaceDbus.PeerExec.service": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.NamespaceDbus.TargetUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.NamespaceDbus.TargetExec": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.NamespaceDbus.TargetColdUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.NamespaceDbus.TargetColdExec": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.NamespaceDbus.PeerUnit": true,
+    "/usr/share/dbus-1/system-services/.lyra-withdrawn-org.lyra.NamespaceDbus.PeerExec": true,
+    "/run/systemd/system/lyra-namespace-dbus-targetunit.service": true,
+    "/run/systemd/system/lyra-namespace-dbus-targetexec.service": true,
+    "/run/systemd/system/lyra-namespace-dbus-targetcoldunit.service": true,
+    "/run/systemd/system/lyra-namespace-dbus-targetcoldexec.service": true,
+    "/run/systemd/system/lyra-namespace-dbus-peerunit.service": true,
+    "/run/systemd/system/lyra-namespace-dbus-peerexec.service": true
+  },
+  "owners": {
+    "TargetUnit": false,
+    "TargetExec": false,
+    "TargetColdUnit": false,
+    "TargetColdExec": false,
+    "PeerUnit": false,
+    "PeerExec": false
+  },
+  "broker_pid": "451"
+}

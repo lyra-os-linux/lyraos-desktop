@@ -1,0 +1,567 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "baseline-ordinary-1000",
+      "passed": true,
+      "unit": {
+        "MainPID": "658",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-ordinary-1002",
+      "passed": true,
+      "unit": {
+        "MainPID": "678",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-PeerUnit",
+      "passed": true,
+      "short": "PeerUnit",
+      "pid": 743,
+      "uid": 1000,
+      "uids": [
+        1000,
+        1000,
+        1000,
+        1000
+      ],
+      "cgroup": "0::/system.slice/lyra-namespace-dbus-peerunit.service",
+      "unit": "lyra-namespace-dbus-peerunit.service",
+      "unit_state": {
+        "MainPID": "743",
+        "ControlGroup": "/system.slice/lyra-namespace-dbus-peerunit.service",
+        "User": "installeduser",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "FragmentPath": "/run/systemd/system/lyra-namespace-dbus-peerunit.service",
+        "DropInPaths": ""
+      }
+    },
+    {
+      "name": "baseline-PeerExec",
+      "passed": true,
+      "short": "PeerExec",
+      "pid": 748,
+      "uid": 1000,
+      "uids": [
+        1000,
+        1000,
+        1000,
+        1000
+      ],
+      "cgroup": "0::/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.NamespaceDbus.PeerExec.slice/dbus-:1.2-org.lyra.NamespaceDbus.PeerExec@0.service",
+      "unit": "dbus-:1.2-org.lyra.NamespaceDbus.PeerExec@0.service",
+      "unit_state": {
+        "MainPID": "748",
+        "ControlGroup": "/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.NamespaceDbus.PeerExec.slice/dbus-:1.2-org.lyra.NamespaceDbus.PeerExec@0.service",
+        "User": "1000",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "FragmentPath": "/run/systemd/transient/dbus-:1.2-org.lyra.NamespaceDbus.PeerExec@0.service",
+        "DropInPaths": ""
+      }
+    },
+    {
+      "name": "actual-unowned-pending-TargetUnit",
+      "passed": true,
+      "descriptor": {
+        "short": "TargetUnit",
+        "pid": 752,
+        "uid": 1002,
+        "uids": [
+          1002,
+          1002,
+          1002,
+          1002
+        ],
+        "cgroup": "0::/system.slice/lyra-namespace-dbus-targetunit.service",
+        "unit": "lyra-namespace-dbus-targetunit.service",
+        "unit_state": {
+          "MainPID": "752",
+          "ControlGroup": "/system.slice/lyra-namespace-dbus-targetunit.service",
+          "User": "ordinaryuser",
+          "PAMName": "",
+          "LoadState": "loaded",
+          "ActiveState": "activating",
+          "FragmentPath": "/run/systemd/system/lyra-namespace-dbus-targetunit.service",
+          "DropInPaths": ""
+        }
+      },
+      "name_has_owner": false
+    },
+    {
+      "name": "actual-unowned-pending-TargetExec",
+      "passed": true,
+      "descriptor": {
+        "short": "TargetExec",
+        "pid": 758,
+        "uid": 1002,
+        "uids": [
+          1002,
+          1002,
+          1002,
+          1002
+        ],
+        "cgroup": "0::/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.NamespaceDbus.TargetExec.slice/dbus-:1.2-org.lyra.NamespaceDbus.TargetExec@0.service",
+        "unit": "dbus-:1.2-org.lyra.NamespaceDbus.TargetExec@0.service",
+        "unit_state": {
+          "MainPID": "758",
+          "ControlGroup": "/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.NamespaceDbus.TargetExec.slice/dbus-:1.2-org.lyra.NamespaceDbus.TargetExec@0.service",
+          "User": "1002",
+          "PAMName": "",
+          "LoadState": "loaded",
+          "ActiveState": "active",
+          "FragmentPath": "/run/systemd/transient/dbus-:1.2-org.lyra.NamespaceDbus.TargetExec@0.service",
+          "DropInPaths": ""
+        }
+      },
+      "name_has_owner": false
+    },
+    {
+      "name": "automatic-discovery-finds-both-pending-without-live-registration",
+      "passed": true,
+      "rows": [
+        {
+          "pid": 752,
+          "uid": 1002,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "route": "org.lyra.NamespaceDbus.TargetUnit",
+          "unit": "lyra-namespace-dbus-targetunit.service",
+          "cgroup": "0::/system.slice/lyra-namespace-dbus-targetunit.service",
+          "executable": [
+            65024,
+            56821,
+            "1ea1a645fd2cbf33039fcbeeff138b4800243e277bd50146d6a2f6e459c8f51c"
+          ],
+          "argv": [
+            "/usr/bin/lyra-namespace-dbus-fixture",
+            "org.lyra.NamespaceDbus.TargetUnit"
+          ],
+          "start_ticks": 65221
+        },
+        {
+          "pid": 758,
+          "uid": 1002,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "route": "org.lyra.NamespaceDbus.TargetExec",
+          "unit": "dbus-:1.2-org.lyra.NamespaceDbus.TargetExec@0.service",
+          "cgroup": "0::/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.NamespaceDbus.TargetExec.slice/dbus-:1.2-org.lyra.NamespaceDbus.TargetExec@0.service",
+          "executable": [
+            65024,
+            56821,
+            "1ea1a645fd2cbf33039fcbeeff138b4800243e277bd50146d6a2f6e459c8f51c"
+          ],
+          "argv": [
+            "/usr/bin/lyra-namespace-dbus-fixture",
+            "org.lyra.NamespaceDbus.TargetExec"
+          ],
+          "start_ticks": 65234
+        }
+      ],
+      "version": [
+        65024,
+        56821,
+        "1ea1a645fd2cbf33039fcbeeff138b4800243e277bd50146d6a2f6e459c8f51c"
+      ],
+      "completed_only_live": [
+        "PeerUnit",
+        "PeerExec"
+      ]
+    },
+    {
+      "name": "root-source-trees-and-loaded-view-bound",
+      "passed": true,
+      "roots": [
+        "/etc/dbus-1/system.d",
+        "/usr/share/dbus-1/system-services"
+      ],
+      "entry_count": 22,
+      "loaded_names": [
+        "org.freedesktop.Accounts",
+        "org.freedesktop.DBus",
+        "org.freedesktop.Flatpak.SystemHelper",
+        "org.freedesktop.GeoClue2",
+        "org.freedesktop.PolicyKit1",
+        "org.freedesktop.RealtimeKit1",
+        "org.freedesktop.hostname1",
+        "org.freedesktop.import1",
+        "org.freedesktop.locale1",
+        "org.freedesktop.login1",
+        "org.freedesktop.machine1",
+        "org.freedesktop.systemd1",
+        "org.freedesktop.timedate1",
+        "org.freedesktop.timesync1",
+        "org.lyra.NamespaceDbus.PeerExec",
+        "org.lyra.NamespaceDbus.PeerUnit"
+      ],
+      "lock_inode": 56836
+    },
+    {
+      "name": "namespace-denial-before-any-native-stop",
+      "passed": true
+    },
+    {
+      "name": "source-added-after-authorization-refuses-before-any-native-stop",
+      "passed": true,
+      "stop_count": 0,
+      "processes": [
+        {
+          "pid": 752,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "comm": "lyra-namespace-"
+        },
+        {
+          "pid": 758,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "comm": "lyra-namespace-"
+        }
+      ]
+    },
+    {
+      "name": "already-present-unclassified-loaded-route-refuses-new-plan",
+      "passed": true,
+      "loaded": true,
+      "stop_count": 0
+    },
+    {
+      "name": "explicit-root-reconciliation-confirms-disk-and-loaded-view",
+      "passed": true,
+      "loaded_names": [
+        "org.freedesktop.Accounts",
+        "org.freedesktop.DBus",
+        "org.freedesktop.Flatpak.SystemHelper",
+        "org.freedesktop.GeoClue2",
+        "org.freedesktop.PolicyKit1",
+        "org.freedesktop.RealtimeKit1",
+        "org.freedesktop.hostname1",
+        "org.freedesktop.import1",
+        "org.freedesktop.locale1",
+        "org.freedesktop.login1",
+        "org.freedesktop.machine1",
+        "org.freedesktop.systemd1",
+        "org.freedesktop.timedate1",
+        "org.freedesktop.timesync1",
+        "org.lyra.NamespaceDbus.PeerExec",
+        "org.lyra.NamespaceDbus.PeerUnit"
+      ],
+      "ledger": {
+        ".gate-1.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inode": 55948
+        },
+        "6a5805360d85154623bb2d58f421b3763dae63e1b14cfce8a4e1314c9e91b385.json": {
+          "sha256": "69b0401bbeb6c5156ea1e4f6aeade2d528203cddf89bb38211bb75226e46ced0",
+          "inode": 56839
+        },
+        "8caefaa04a3b334e5acdea4c6229d0503ad332c3ef49ac16ed1ea46e18ffbf43.json": {
+          "sha256": "9478d39eb14b87dbbbb039ed4e5175c2e7cee7ca751b92bcfb155d089eb7db3e",
+          "inode": 56840
+        },
+        "29cd3d1f977937a9c87183b1c8cfb2563eca97beaade217414cf766334052247.json": {
+          "sha256": "4a2439c8af2645d9fd79708c655bd78436f9e45e7d78002e60a35f3667b90027",
+          "inode": 56838
+        },
+        "bbe46a6af3082be7d8d4f4639f37f8327f9c814f067f6d05cf0eefcd3c3259bc.json": {
+          "sha256": "e74124035d72c9582bbf6186ec09bd33d66d294d9ee388dd2690fbd10ace6d65",
+          "inode": 56837
+        }
+      }
+    },
+    {
+      "name": "source-added-between-native-stops-prevents-second-stop",
+      "passed": true,
+      "events": [
+        {
+          "unit": "lyra-namespace-dbus-targetunit.service",
+          "pid": 752,
+          "result": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          }
+        }
+      ],
+      "processes": [
+        {
+          "pid": 758,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "comm": "lyra-namespace-"
+        }
+      ]
+    },
+    {
+      "name": "fresh-reconciled-plan-drains-native-pending-producers",
+      "passed": true,
+      "events": [
+        {
+          "unit": "lyra-namespace-dbus-targetunit.service",
+          "pid": 752,
+          "result": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          }
+        },
+        {
+          "unit": "dbus-:1.2-org.lyra.NamespaceDbus.TargetExec@0.service",
+          "pid": 758,
+          "result": {
+            "rc": 0,
+            "stdout": "",
+            "stderr": ""
+          }
+        }
+      ],
+      "pidfds_exited": 2,
+      "processes": [],
+      "writer_excluded": true
+    },
+    {
+      "name": "post-drain-source-and-loaded-view-revalidated",
+      "passed": true
+    },
+    {
+      "name": "pending-client-outcomes-recorded",
+      "passed": true,
+      "outcomes": {
+        "TargetUnit": {
+          "rc": 1,
+          "stdout": "",
+          "stderr": "Call failed: Could not activate remote peer 'org.lyra.NamespaceDbus.TargetUnit': activation request cancelled: bus name was released\n"
+        },
+        "TargetExec": {
+          "rc": 1,
+          "stdout": "",
+          "stderr": "Call failed: Could not activate remote peer 'org.lyra.NamespaceDbus.TargetExec': activation request cancelled: bus name was released\n"
+        }
+      }
+    },
+    {
+      "name": "retired-route-cannot-reactivate-TargetUnit",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "retired-route-cannot-reactivate-TargetExec",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "retired-route-cannot-reactivate-TargetColdUnit",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "retired-route-cannot-reactivate-TargetColdExec",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "discovery-and-retries-preserve-owner-and-negative-journals",
+      "passed": true,
+      "ledger": {
+        ".gate-1.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inode": 55948
+        },
+        "6a5805360d85154623bb2d58f421b3763dae63e1b14cfce8a4e1314c9e91b385.json": {
+          "sha256": "69b0401bbeb6c5156ea1e4f6aeade2d528203cddf89bb38211bb75226e46ced0",
+          "inode": 56839
+        },
+        "8caefaa04a3b334e5acdea4c6229d0503ad332c3ef49ac16ed1ea46e18ffbf43.json": {
+          "sha256": "9478d39eb14b87dbbbb039ed4e5175c2e7cee7ca751b92bcfb155d089eb7db3e",
+          "inode": 56840
+        },
+        "29cd3d1f977937a9c87183b1c8cfb2563eca97beaade217414cf766334052247.json": {
+          "sha256": "4a2439c8af2645d9fd79708c655bd78436f9e45e7d78002e60a35f3667b90027",
+          "inode": 56838
+        },
+        "bbe46a6af3082be7d8d4f4639f37f8327f9c814f067f6d05cf0eefcd3c3259bc.json": {
+          "sha256": "e74124035d72c9582bbf6186ec09bd33d66d294d9ee388dd2690fbd10ace6d65",
+          "inode": 56837
+        }
+      }
+    },
+    {
+      "name": "closed-discovery-refuses-global-coverage",
+      "passed": true
+    },
+    {
+      "name": "withdrawn-user-manager-remains-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "658",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "peer-and-shared-broker-preserved",
+      "passed": true,
+      "owners": {
+        "PeerUnit": {
+          "short": "PeerUnit",
+          "pid": 743,
+          "uid": 1000,
+          "uids": [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          "cgroup": "0::/system.slice/lyra-namespace-dbus-peerunit.service",
+          "unit": "lyra-namespace-dbus-peerunit.service",
+          "unit_state": {
+            "MainPID": "743",
+            "ControlGroup": "/system.slice/lyra-namespace-dbus-peerunit.service",
+            "User": "installeduser",
+            "PAMName": "",
+            "LoadState": "loaded",
+            "ActiveState": "active",
+            "FragmentPath": "/run/systemd/system/lyra-namespace-dbus-peerunit.service",
+            "DropInPaths": ""
+          }
+        },
+        "PeerExec": {
+          "short": "PeerExec",
+          "pid": 748,
+          "uid": 1000,
+          "uids": [
+            1000,
+            1000,
+            1000,
+            1000
+          ],
+          "cgroup": "0::/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.NamespaceDbus.PeerExec.slice/dbus-:1.2-org.lyra.NamespaceDbus.PeerExec@0.service",
+          "unit": "dbus-:1.2-org.lyra.NamespaceDbus.PeerExec@0.service",
+          "unit_state": {
+            "MainPID": "748",
+            "ControlGroup": "/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.NamespaceDbus.PeerExec.slice/dbus-:1.2-org.lyra.NamespaceDbus.PeerExec@0.service",
+            "User": "1000",
+            "PAMName": "",
+            "LoadState": "loaded",
+            "ActiveState": "active",
+            "FragmentPath": "/run/systemd/transient/dbus-:1.2-org.lyra.NamespaceDbus.PeerExec@0.service",
+            "DropInPaths": ""
+          }
+        }
+      },
+      "broker_pid": "451",
+      "peer_pid": "658"
+    }
+  ],
+  "error": null,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "native.py": "c276c46ded5fe86a3645e8473c471bceaf322c1d4590cb1bfc548dd5ed20a105",
+      "common.py": "8c779d535c4372d5b391db9a237a2dc7080287385f0f777fecf90182352d20e8",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "cleanup.py": "9496ee867f30efb28434d5d59392cf731103e5df0f8653953a24dd79bcc1a887",
+      "restore-check.py": "ffe2dff458ae3b6941e1b2148a4bcfdd2f83f56f7ff4be719fdba1174c461997",
+      "fixture.py": "47724d348b518d513e9ff78e96304dcd146b3a14e77cd4609184b13e85d511b3",
+      "dbus-adapter.py": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+      "service.c": "80196b03b86f6857cbb639178245f6617ade502aebdb743d98de06fd6bb4a421",
+      "operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+      "inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+      "ownership.py": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+      "integration.py": "e90bc3623e68856256b14617addcaaee7fd5f12dc9c26b82b3129c376325207f",
+      "inventory_fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+      "live_common.py": "35d0a7be57aee48d4d3824536a6c03fea6f6c1a8b4ec08f0a17867e0770698c5",
+      "pending_common.py": "8ebf114d534ab16bf3bb97e2993e4e9e9820c38d338e10c9286cf9e387b0d66e",
+      "discovery.py": "691bdf0edc26e7c6e6f0913da332fe7bf0bf7aecf9a74ef23bfee43145c97e8f",
+      "proc_inventory.py": "810c4c142ca011b8dc5713daed2738b8819739e9c443b1f867c288429116755a",
+      "namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+      "binding.py": "c894d8be795e7f69d70a3ffdd2590881b7d891bc336bf411383e53071d1c2151"
+    },
+    "broker_pid": "451"
+  },
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "owned_live_producer_inhibition_qualified": true,
+  "owned_live_producer_revocation_qualified": true,
+  "ownership_ledger_reboot_qualified": false,
+  "full_account_protection": false,
+  "all_producer_quiescence": false,
+  "production_adapters_qualified": false,
+  "pending_activation_races_qualified": false,
+  "closed_pending_activation_pair_tested": true,
+  "transport_failure_controls_tested": false,
+  "production_pending_discovery_qualified": false,
+  "closed_pending_discovery_qualified": true,
+  "closed_namespace_guard_qualified": true,
+  "global_source_coverage_qualified": false,
+  "boot_route_recovery_qualified": false,
+  "whole_dbus_namespace_qualified": false,
+  "real_nss_mutations_tested": false,
+  "monotonic_revision_qualified": false,
+  "power_loss_tested": false
+}
