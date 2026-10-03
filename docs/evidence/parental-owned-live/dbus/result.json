@@ -1,0 +1,504 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "baseline-ordinary-1000",
+      "passed": true,
+      "unit": {
+        "MainPID": "1766",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-ordinary-1002",
+      "passed": true,
+      "unit": {
+        "MainPID": "1785",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-TargetUnit",
+      "passed": true,
+      "short": "TargetUnit",
+      "pid": 1850,
+      "uid": 1002,
+      "uids": [
+        1002,
+        1002,
+        1002,
+        1002
+      ],
+      "cgroup": "0::/system.slice/lyra-owned-live-dbus-targetunit.service",
+      "unit": "lyra-owned-live-dbus-targetunit.service",
+      "unit_state": {
+        "MainPID": "1850",
+        "ControlGroup": "/system.slice/lyra-owned-live-dbus-targetunit.service",
+        "User": "ordinaryuser",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "FragmentPath": "/run/systemd/system/lyra-owned-live-dbus-targetunit.service",
+        "DropInPaths": ""
+      }
+    },
+    {
+      "name": "baseline-TargetExec",
+      "passed": true,
+      "short": "TargetExec",
+      "pid": 1853,
+      "uid": 1002,
+      "uids": [
+        1002,
+        1002,
+        1002,
+        1002
+      ],
+      "cgroup": "0::/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.OwnedLive.TargetExec.slice/dbus-:1.2-org.lyra.OwnedLive.TargetExec@0.service",
+      "unit": "dbus-:1.2-org.lyra.OwnedLive.TargetExec@0.service",
+      "unit_state": {
+        "MainPID": "1853",
+        "ControlGroup": "/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.OwnedLive.TargetExec.slice/dbus-:1.2-org.lyra.OwnedLive.TargetExec@0.service",
+        "User": "1002",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "FragmentPath": "/run/systemd/transient/dbus-:1.2-org.lyra.OwnedLive.TargetExec@0.service",
+        "DropInPaths": ""
+      }
+    },
+    {
+      "name": "baseline-PeerUnit",
+      "passed": true,
+      "short": "PeerUnit",
+      "pid": 1856,
+      "uid": 1000,
+      "uids": [
+        1000,
+        1000,
+        1000,
+        1000
+      ],
+      "cgroup": "0::/system.slice/lyra-owned-live-dbus-peerunit.service",
+      "unit": "lyra-owned-live-dbus-peerunit.service",
+      "unit_state": {
+        "MainPID": "1856",
+        "ControlGroup": "/system.slice/lyra-owned-live-dbus-peerunit.service",
+        "User": "installeduser",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "FragmentPath": "/run/systemd/system/lyra-owned-live-dbus-peerunit.service",
+        "DropInPaths": ""
+      }
+    },
+    {
+      "name": "baseline-PeerExec",
+      "passed": true,
+      "short": "PeerExec",
+      "pid": 1859,
+      "uid": 1000,
+      "uids": [
+        1000,
+        1000,
+        1000,
+        1000
+      ],
+      "cgroup": "0::/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.OwnedLive.PeerExec.slice/dbus-:1.2-org.lyra.OwnedLive.PeerExec@0.service",
+      "unit": "dbus-:1.2-org.lyra.OwnedLive.PeerExec@0.service",
+      "unit_state": {
+        "MainPID": "1859",
+        "ControlGroup": "/system.slice/system-dbus\\x2d:1.2\\x2dorg.lyra.OwnedLive.PeerExec.slice/dbus-:1.2-org.lyra.OwnedLive.PeerExec@0.service",
+        "User": "1000",
+        "PAMName": "",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "FragmentPath": "/run/systemd/transient/dbus-:1.2-org.lyra.OwnedLive.PeerExec@0.service",
+        "DropInPaths": ""
+      }
+    },
+    {
+      "name": "withdrawal-and-logind-leave-dbus-payloads-alive",
+      "passed": true
+    },
+    {
+      "name": "unprepared-owned-routes-refuse-live-inhibition-without-reload",
+      "passed": true
+    },
+    {
+      "name": "unregistered-route-refused-even-before-activation",
+      "passed": true
+    },
+    {
+      "name": "changed-definition-refused-before-inhibition",
+      "passed": true
+    },
+    {
+      "name": "owned-routes-prepared-before-live-adapter",
+      "passed": true,
+      "records": {
+        "org.lyra.OwnedLive.TargetUnit": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "22f859da9a4326724cd591a8bbb6f24ea866951c006c9c7d45c3673a2983ff05",
+            "inode": 56493
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedLive.TargetUnit",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "22f859da9a4326724cd591a8bbb6f24ea866951c006c9c7d45c3673a2983ff05",
+            "inode": 56493
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "c7f28ec87805201d702149e5f4f5f7fb10a2aff2b976a6eb1b0e82cb7e297b9e",
+            "inventory_revision": 1,
+            "operation": "7092b509e1e6504aa3e419816ef965ca",
+            "phase": "retired",
+            "proof_hash": "029a21c26472801b655a2abd5aebdcb64d9a45a09f0b47b6131805b707e11750",
+            "proof_snapshot": "a6d4f14a2712d30b8cc0c2d356839041cdbb1b94195f5aef938d2c9371e6c551",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "22f859da9a4326724cd591a8bbb6f24ea866951c006c9c7d45c3673a2983ff05",
+          "schema": 1
+        },
+        "org.lyra.OwnedLive.TargetExec": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "7d4a3babf0c9856ce0cbc903935a862aef9fa417dad4c6efd26f24a1a30c47f4",
+            "inode": 56494
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedLive.TargetExec",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "7d4a3babf0c9856ce0cbc903935a862aef9fa417dad4c6efd26f24a1a30c47f4",
+            "inode": 56494
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "c7f28ec87805201d702149e5f4f5f7fb10a2aff2b976a6eb1b0e82cb7e297b9e",
+            "inventory_revision": 1,
+            "operation": "7092b509e1e6504aa3e419816ef965ca",
+            "phase": "retired",
+            "proof_hash": "029a21c26472801b655a2abd5aebdcb64d9a45a09f0b47b6131805b707e11750",
+            "proof_snapshot": "a6d4f14a2712d30b8cc0c2d356839041cdbb1b94195f5aef938d2c9371e6c551",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "7d4a3babf0c9856ce0cbc903935a862aef9fa417dad4c6efd26f24a1a30c47f4",
+          "schema": 1
+        },
+        "org.lyra.OwnedLive.TargetColdUnit": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "9d9fd7da1e5fb3f94a907ab5b163c71f6a19b5e213c0b4c2174428353a426b66",
+            "inode": 56495
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedLive.TargetColdUnit",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "9d9fd7da1e5fb3f94a907ab5b163c71f6a19b5e213c0b4c2174428353a426b66",
+            "inode": 56495
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "c7f28ec87805201d702149e5f4f5f7fb10a2aff2b976a6eb1b0e82cb7e297b9e",
+            "inventory_revision": 1,
+            "operation": "7092b509e1e6504aa3e419816ef965ca",
+            "phase": "retired",
+            "proof_hash": "029a21c26472801b655a2abd5aebdcb64d9a45a09f0b47b6131805b707e11750",
+            "proof_snapshot": "a6d4f14a2712d30b8cc0c2d356839041cdbb1b94195f5aef938d2c9371e6c551",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "9d9fd7da1e5fb3f94a907ab5b163c71f6a19b5e213c0b4c2174428353a426b66",
+          "schema": 1
+        },
+        "org.lyra.OwnedLive.TargetColdExec": {
+          "adapter_digest": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+          "effect": {
+            "device": 65024,
+            "digest": "4b03f1c5653604e86c1c7fe89b3e6abaa9b9ba155d53878654a7795eae850b8e",
+            "inode": 56496
+          },
+          "family": "dbus-activation",
+          "name": "org.lyra.OwnedLive.TargetColdExec",
+          "namespace": {
+            "device": 65024,
+            "inode": 14765
+          },
+          "original": {
+            "device": 65024,
+            "digest": "4b03f1c5653604e86c1c7fe89b3e6abaa9b9ba155d53878654a7795eae850b8e",
+            "inode": 56496
+          },
+          "owner": {
+            "action": "withdraw-admission",
+            "identity": {
+              "gid": 1003,
+              "group": "ordinaryuser",
+              "uid": 1002,
+              "user": "ordinaryuser"
+            },
+            "inventory_digest": "c7f28ec87805201d702149e5f4f5f7fb10a2aff2b976a6eb1b0e82cb7e297b9e",
+            "inventory_revision": 1,
+            "operation": "7092b509e1e6504aa3e419816ef965ca",
+            "phase": "retired",
+            "proof_hash": "029a21c26472801b655a2abd5aebdcb64d9a45a09f0b47b6131805b707e11750",
+            "proof_snapshot": "a6d4f14a2712d30b8cc0c2d356839041cdbb1b94195f5aef938d2c9371e6c551",
+            "revision": 3,
+            "schema": 1
+          },
+          "phase": "fenced",
+          "protocol_digest": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+          "revision": 2,
+          "route_digest": "4b03f1c5653604e86c1c7fe89b3e6abaa9b9ba155d53878654a7795eae850b8e",
+          "schema": 1
+        }
+      },
+      "authorization_callbacks_outside_all_locks": true
+    },
+    {
+      "name": "live-inhibition-denied-keeps-prepared-owned-retirements",
+      "passed": true
+    },
+    {
+      "name": "catalog-changed-during-live-authorization-refused-before-reload",
+      "passed": true
+    },
+    {
+      "name": "persisted-route-retirement-and-reload-preserve-existing-owners",
+      "passed": true,
+      "effects": [
+        "reload-config"
+      ],
+      "activatable": [
+        "org.lyra.OwnedLive.PeerExec",
+        "org.lyra.OwnedLive.PeerUnit"
+      ]
+    },
+    {
+      "name": "cold-route-denied-TargetColdUnit",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "cold-route-denied-TargetColdExec",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "revocation-denied-preserves-live-processes-and-fences",
+      "passed": true
+    },
+    {
+      "name": "registered-payloads-revoked-after-inhibition-peer-and-broker-preserved",
+      "passed": true,
+      "effects": [
+        "reload-config",
+        "stop-payloads"
+      ],
+      "pidfds_exited": 2,
+      "target_processes": [],
+      "broker_pid": "448"
+    },
+    {
+      "name": "retired-route-cannot-reactivate-TargetUnit",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "retired-route-cannot-reactivate-TargetExec",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "retired-route-cannot-reactivate-TargetColdUnit",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "retired-route-cannot-reactivate-TargetColdExec",
+      "passed": true,
+      "command": {
+        "rc": 1,
+        "stdout": "",
+        "stderr": "Call failed: The name is not activatable\n"
+      }
+    },
+    {
+      "name": "restored-definition-refused-even-with-zero-target-processes",
+      "passed": true
+    },
+    {
+      "name": "idempotent-retirement-and-revocation-retain-negative-authority",
+      "passed": true
+    },
+    {
+      "name": "registered-dbus-routes-do-not-complete-global-coverage",
+      "passed": true
+    },
+    {
+      "name": "withdrawn-user-manager-remains-denied",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "1766",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "peer-owners-and-shared-bus-survive-whole-matrix",
+      "passed": true
+    },
+    {
+      "name": "live-inhibition-revocation-and-retries-never-rewrite-owner-journals",
+      "passed": true,
+      "ledger": {
+        ".gate-1.lock": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inode": 56503
+        },
+        "63d9c8aea1bb333ba65adf2db7b954a17233b9c3a7a7b59b0a3f9ee2762dcf1e.json": {
+          "sha256": "c3315bfadd1d230a923fb30457d6c577ab5930af9612446f2c5519aac558c02c",
+          "inode": 56516
+        },
+        "06e0617e58383ef1f398d27b975f9efc86d4d0bef6853a6402828ee24ce71b6a.json": {
+          "sha256": "ffa3cb8a294c95804c7f9defdffe1f3007d8c6f0a69b6da707a3e80aa32189d1",
+          "inode": 56513
+        },
+        "393cf8eb8bf9ebd1794d2eeebd7a075c123295659646d4f9c732fd1aad14b554.json": {
+          "sha256": "a3cff3533b0bb7c6005064ac1c359588fe7d9490383b2c629153ad8a74e03058",
+          "inode": 56514
+        },
+        "16ec7978dfdbd1c5acd3f9ef9dba5d8613bcb0e08ddbb9618326214a2066dce2.json": {
+          "sha256": "c6f5ec9d0c4d8e6f9071441229c3a8a70c514d10f3ef9d4c32fbc451fbb8716d",
+          "inode": 56515
+        }
+      },
+      "authorization_callbacks_outside_all_locks": true
+    }
+  ],
+  "error": null,
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "native.py": "70e17a676ed41af206a0c5ee3aa8827831fe69edaa31a58eb63fec029352d69b",
+      "common.py": "cbe2a4e5b168b6a1b05326e20b3f04f7f1bc12b269c93dd9d1f90b9fd06101ad",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "cleanup.py": "9496ee867f30efb28434d5d59392cf731103e5df0f8653953a24dd79bcc1a887",
+      "restore-check.py": "6ee516c40eb98bc21a02d6a711bd5d6a586f11b82e308dac530caae809031a67",
+      "fixture.py": "2535c72e3c1b1afba1a296d169d832d48300bed8e7883caa06080fa925793b8f",
+      "dbus-adapter.py": "277d14cfd47e1c97c223bc385e3ec52f083fadb9c5fea9f66ac83acd31f6a4fa",
+      "service.c": "680da9b9d69ca8296adf8685c9e928751d497f5b7762a44666331918cc65c78e",
+      "operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+      "inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+      "ownership.py": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+      "integration.py": "e90bc3623e68856256b14617addcaaee7fd5f12dc9c26b82b3129c376325207f",
+      "inventory_fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+      "live_common.py": "ebe7fcd0bd8a47b8f360699c36d253446e5bcdaa924ee5f884687980de167297"
+    },
+    "broker_pid": "448"
+  },
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "owned_live_producer_inhibition_qualified": true,
+  "owned_live_producer_revocation_qualified": true,
+  "ownership_ledger_reboot_qualified": false,
+  "full_account_protection": false,
+  "all_producer_quiescence": false,
+  "production_adapters_qualified": false,
+  "pending_activation_races_qualified": false,
+  "boot_route_recovery_qualified": false,
+  "whole_dbus_namespace_qualified": false,
+  "real_nss_mutations_tested": false,
+  "monotonic_revision_qualified": false,
+  "power_loss_tested": false
+}
