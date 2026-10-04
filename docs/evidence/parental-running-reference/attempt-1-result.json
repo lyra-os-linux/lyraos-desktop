@@ -1,0 +1,64 @@
+{
+  "passed": false,
+  "error": "AssertionError((['busctl', '--system', '--json=short', 'call', 'org.freedesktop.systemd1', '/org/freedesktop/systemd1', 'org.freedesktop.systemd1.Manager', 'GetUnit', 's', 'lyra-parental-running-probe.service'], 'Call failed: Unit lyra-parental-running-probe.service not loaded.\\n'))",
+  "checks": [],
+  "metadata": {
+    "boot_id": "23ee00a9-8211-48ad-8080-9f3050866535",
+    "broker_pid": "454",
+    "source_sha256": {
+      "native.py": "420a8296f4df3259bc89e1b487fca650470e4b80949a5a1fef52bbd3908f8d82",
+      "support.py": "6893397beec2af2cd7edb4db1ba9615184284a874380b54dba97fd185384cb61",
+      "running.py": "929c74e8c740c9b8a3f79bb0be94f06ffc49a46f5c8b3ef53c52b866a04e2a62",
+      "linux.py": "f5fc2b2264e0f5094bb1c949af4fe165049e1bc16a62bdbcb4ec97bf8859ab94",
+      "probe.c": "2544016d97e3a2fa356a2a48431fdcdfe30fd6fb8453b47a227388ebd3fb9191",
+      "reference.py": "faf9ab797c5d1c179b2b0aa77f3a3fc6654cad82b2b70679ef37f80c646dfab7",
+      "namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+      "catalog.py": "267b917b00109ca168b884270835e83760df77e5e1fe7709f1cf994f2359f564",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99"
+    }
+  },
+  "original_accounts": {
+    "/etc/passwd": [
+      65024,
+      55879,
+      0,
+      33188,
+      1,
+      1196,
+      1790881501213000000,
+      1790881501215000000,
+      "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+    ],
+    "/etc/group": [
+      65024,
+      55818,
+      0,
+      33188,
+      1,
+      685,
+      1790881501222000000,
+      1790881501224000000,
+      "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    ],
+    "/etc/pam.d/systemd-user": [
+      65024,
+      33620,
+      0,
+      33188,
+      1,
+      1174,
+      1791049802277000000,
+      1791049802277000000,
+      "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e"
+    ]
+  },
+  "cleanup": {
+    "passed": true,
+    "stop_rc": 0,
+    "reload_rc": 0
+  },
+  "full_account_protection": false,
+  "global_coverage_qualified": false,
+  "real_activation_or_revocation_adapter_qualified": false,
+  "shared_privileged_services_qualified": false
+}

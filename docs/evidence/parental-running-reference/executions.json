@@ -1,0 +1,53 @@
+[
+  {
+    "time": 1791144573.4847317,
+    "argv": [
+      "python3",
+      "/root/running-reference-test/native.py"
+    ],
+    "result": {
+      "id": "5980813d86804672aa419a444e103ac9",
+      "rc": 1,
+      "stdout": "{\"passed\": false, \"checks\": 0, \"cleanup\": true}\n",
+      "stderr": "Traceback (most recent call last):\n  File \"/root/running-reference-test/native.py\", line 41, in <module>\n    code=expect(('UnverifiedRuntime',),cold)\n  File \"/root/running-reference-test/native.py\", line 18, in expect\n    try:fn()\n        ~~^^\n  File \"/root/running-reference-test/native.py\", line 40, in cold\n    with pin_process(ref,backend,recapture):pass\n         ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib64/python3.13/contextlib.py\", line 141, in __enter__\n    return next(self.gen)\n  File \"/root/running-reference-test/running.py\", line 80, in capture\n    pid, cgroup = runtime(backend.runtime(reference.configuration.canonical), reference.configuration.canonical)\n                          ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/running-reference-test/native.py\", line 23, in runtime\n    output=json.loads(run(['busctl','--system','--json=short','call','org.freedesktop.systemd1','/org/freedesktop/systemd1','org.freedesktop.systemd1.Manager','GetUnit','s',unit]));assert output['type']=='o' and len(output['data'])==1\n                      ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/running-reference-test/support.py\", line 15, in run\n    p=subprocess.run(args,capture_output=True,text=True,timeout=30);assert p.returncode==0,(args,p.stderr);return p.stdout\n                                                                           ^^^^^^^^^^^^^^^\nAssertionError: (['busctl', '--system', '--json=short', 'call', 'org.freedesktop.systemd1', '/org/freedesktop/systemd1', 'org.freedesktop.systemd1.Manager', 'GetUnit', 's', 'lyra-parental-running-probe.service'], 'Call failed: Unit lyra-parental-running-probe.service not loaded.\\n')\n"
+    }
+  },
+  {
+    "time": 1791144592.732444,
+    "argv": [
+      "python3",
+      "/root/running-reference-test/native.py"
+    ],
+    "result": {
+      "id": "9d08705690b540b485749c81960c28f7",
+      "rc": 0,
+      "stdout": "{\"name\": \"inactive-unit-has-no-running-reference\", \"passed\": true, \"code\": \"UnverifiedRuntime\"}\n{\"name\": \"actual-main-process-pinned-with-configured-credentials\", \"passed\": true, \"configuration\": {\"requested\": \"lyra-parental-running-probe.service\", \"canonical\": \"lyra-parental-running-probe.service\", \"identity\": {\"user\": \"ordinaryuser\", \"uid\": 1002, \"gid\": 1003}, \"configured_gid\": 1003, \"executable\": \"/usr/libexec/lyra-parental-running-probe\", \"argv\": [\"/usr/libexec/lyra-parental-running-probe\"], \"fragment\": \"/usr/lib/systemd/system/lyra-parental-running-probe.service\", \"dropins\": [], \"service_type\": \"exec\"}, \"observation\": {\"pid\": 830, \"start_ticks\": 36581, \"uids\": [1002, 1002, 1002, 1002], \"gids\": [1003, 1003, 1003, 1003], \"groups\": [1003], \"capabilities\": [0, 0, 0], \"executable\": [65024, 56894, \"f0af3e5327a8d8bdba4ee1cc571188ee9546c8053b8179b8ab818d44c6e11db9\"], \"argv\": [\"/usr/libexec/lyra-parental-running-probe\"], \"cgroup\": \"0::/system.slice/lyra-parental-running-probe.service\"}, \"reference\": {\"configuration\": {\"requested\": \"lyra-parental-running-probe.service\", \"canonical\": \"lyra-parental-running-probe.service\", \"identity\": {\"user\": \"ordinaryuser\", \"uid\": 1002, \"gid\": 1003}, \"configured_gid\": 1003, \"executable\": \"/usr/libexec/lyra-parental-running-probe\", \"argv\": [\"/usr/libexec/lyra-parental-running-probe\"], \"fragment\": \"/usr/lib/systemd/system/lyra-parental-running-probe.service\", \"dropins\": [], \"service_type\": \"exec\"}, \"fingerprints\": [[\"/usr/lib/systemd/system/lyra-parental-running-probe.service\", [65024, 56895, 0, 33188, 1, 153, 1791144589264000000, 1791144589264000000, \"acc92dd3258bf886f0f23cbdbb9f45362897f72e5780190fdb930dd341ecfd57\"]], [\"/usr/libexec/lyra-parental-running-probe\", [65024, 56894, 0, 33261, 1, 20144, 1791144589264000000, 1791144589264000000, \"f0af3e5327a8d8bdba4ee1cc571188ee9546c8053b8179b8ab818d44c6e11db9\"]], [\"/etc/passwd\", [65024, 55879, 0, 33188, 1, 1196, 1790881501213000000, 1790881501215000000, \"14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35\"]], [\"/etc/group\", [65024, 55818, 0, 33188, 1, 685, 1790881501222000000, 1790881501224000000, \"9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161\"]]]}}\n{\"name\": \"real-unit-source-change-invalidates-running-reference\", \"passed\": true, \"code\": \"UnverifiedLoadedUnit\"}\n{\"name\": \"restored-unit-bytes-do-not-revive-old-source-reference\", \"passed\": true, \"code\": \"Conflict\"}\n{\"name\": \"fresh-source-reference-bound-to-same-original-process\", \"passed\": true, \"observation\": {\"pid\": 830, \"start_ticks\": 36581, \"uids\": [1002, 1002, 1002, 1002], \"gids\": [1003, 1003, 1003, 1003], \"groups\": [1003], \"capabilities\": [0, 0, 0], \"executable\": [65024, 56894, \"f0af3e5327a8d8bdba4ee1cc571188ee9546c8053b8179b8ab818d44c6e11db9\"], \"argv\": [\"/usr/libexec/lyra-parental-running-probe\"], \"cgroup\": \"0::/system.slice/lyra-parental-running-probe.service\"}}\n{\"name\": \"real-exec-with-same-pid-start-and-live-pidfd-refused\", \"passed\": true, \"code\": \"UnsupportedRuntime\", \"before\": {\"pid\": 830, \"start_ticks\": 36581, \"uids\": [1002, 1002, 1002, 1002], \"gids\": [1003, 1003, 1003, 1003], \"groups\": [1003], \"capabilities\": [0, 0, 0], \"executable\": [65024, 56894, \"f0af3e5327a8d8bdba4ee1cc571188ee9546c8053b8179b8ab818d44c6e11db9\"], \"argv\": [\"/usr/libexec/lyra-parental-running-probe\"], \"cgroup\": \"0::/system.slice/lyra-parental-running-probe.service\"}, \"after\": {\"pid\": 830, \"start_ticks\": 36581, \"uids\": [1002, 1002, 1002, 1002], \"gids\": [1003, 1003, 1003, 1003], \"groups\": [1003], \"capabilities\": [0, 0, 0], \"executable\": [65024, 934, \"a58e25cf1e847eef0488ad25994f216c40ea36f4452c145f5289477721a4cd49\"], \"argv\": [\"/usr/bin/sleep\", \"120\"], \"cgroup\": \"0::/system.slice/lyra-parental-running-probe.service\"}}\n{\"name\": \"upstream-fixture-stop-observed-on-old-pidfd\", \"passed\": true, \"code\": \"Conflict\"}\n{\"name\": \"new-main-process-requires-new-pin\", \"passed\": true, \"observation\": {\"pid\": 1348, \"start_ticks\": 36741, \"uids\": [1002, 1002, 1002, 1002], \"gids\": [1003, 1003, 1003, 1003], \"groups\": [1003], \"capabilities\": [0, 0, 0], \"executable\": [65024, 56894, \"f0af3e5327a8d8bdba4ee1cc571188ee9546c8053b8179b8ab818d44c6e11db9\"], \"argv\": [\"/usr/libexec/lyra-parental-running-probe\"], \"cgroup\": \"0::/system.slice/lyra-parental-running-probe.service\"}, \"previous_pid\": 830}\n{\"name\": \"account-pam-files-and-shared-broker-preserved\", \"passed\": true, \"broker_pid\": \"454\"}\n{\"passed\": true, \"checks\": 9, \"cleanup\": true}\n",
+      "stderr": ""
+    }
+  },
+  {
+    "time": 1791144641.6813505,
+    "argv": [
+      "python3",
+      "/root/running-reference-test/restore.py"
+    ],
+    "result": {
+      "id": "852fa81212c34c76ac76600b8a27d709",
+      "rc": 0,
+      "stdout": "{\"absent\": {\"/usr/lib/systemd/system/lyra-parental-running-probe.service\": true, \"/usr/libexec/lyra-parental-running-probe\": true, \"/root/running-reference-test/unused.lock\": true}, \"accounts_and_pam_preserved\": true, \"declarations_preserved\": true, \"previous_accepted_unit_files_preserved\": true, \"broker_preserved\": true, \"unit_state\": {\"MainPID\": \"0\", \"ControlGroup\": \"\", \"LoadState\": \"not-found\", \"ActiveState\": \"inactive\"}, \"reserved_processes\": [], \"source_sha256\": \"7a80d9593a1af54dd2f07c5e55c9b5f9a55a448a4aaa8af07ee4aaa31c14c94d\", \"passed\": true}\n",
+      "stderr": ""
+    }
+  },
+  {
+    "time": 1791144655.6111934,
+    "argv": [
+      "poweroff"
+    ],
+    "result": {
+      "id": "c089566cc38040ada6b7cba240babde9",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  }
+]

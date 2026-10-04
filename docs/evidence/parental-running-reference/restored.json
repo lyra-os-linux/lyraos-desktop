@@ -1,0 +1,20 @@
+{
+  "absent": {
+    "/usr/lib/systemd/system/lyra-parental-running-probe.service": true,
+    "/usr/libexec/lyra-parental-running-probe": true,
+    "/root/running-reference-test/unused.lock": true
+  },
+  "accounts_and_pam_preserved": true,
+  "declarations_preserved": true,
+  "previous_accepted_unit_files_preserved": true,
+  "broker_preserved": true,
+  "unit_state": {
+    "MainPID": "0",
+    "ControlGroup": "",
+    "LoadState": "not-found",
+    "ActiveState": "inactive"
+  },
+  "reserved_processes": [],
+  "source_sha256": "7a80d9593a1af54dd2f07c5e55c9b5f9a55a448a4aaa8af07ee4aaa31c14c94d",
+  "passed": true
+}
