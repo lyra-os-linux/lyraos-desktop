@@ -1,0 +1,10 @@
+{
+  "absent": {
+    "/usr/libexec/lyra-guarded-unit-stop-probe": true,
+    "/root/guarded-unit-stop/saved-mask": true
+  },
+  "previous_sources_and_accounts_preserved": true,
+  "full_filesystem_rollback_claimed": false,
+  "source_sha256": "b94deef75ff4da4c110eec1cca079fd48763e0507fedf510dbb75aa8121a3919",
+  "passed": true
+}

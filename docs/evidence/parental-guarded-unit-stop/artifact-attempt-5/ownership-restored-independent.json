@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "absent": {
+    "/var/lib/lyra-guarded-unit-stop-ledger-test": true,
+    "/var/lib/lyra-producer-inventory-test": true
+  }
+}

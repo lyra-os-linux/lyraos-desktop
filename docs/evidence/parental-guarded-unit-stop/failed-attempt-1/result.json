@@ -1,0 +1,294 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "name": "baseline-ordinary-1000",
+      "passed": true,
+      "unit": {
+        "MainPID": "654",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-ordinary-1002",
+      "passed": true,
+      "unit": {
+        "MainPID": "673",
+        "ExecMainStatus": "0",
+        "ActiveState": "active"
+      },
+      "context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    },
+    {
+      "name": "baseline-lyra-guarded-unit-stop-target-plain.service",
+      "passed": true,
+      "unit": {
+        "MainPID": "762",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-guarded-unit-stop-target-plain.service",
+        "User": "ordinaryuser",
+        "Group": "ordinaryuser",
+        "PAMName": "systemd-user",
+        "KillMode": "control-group",
+        "Id": "lyra-guarded-unit-stop-target-plain.service",
+        "Names": "lyra-guarded-unit-stop-target-plain.service",
+        "Triggers": "",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "SubState": "running",
+        "FragmentPath": "/usr/lib/systemd/system/lyra-guarded-unit-stop-target-plain.service",
+        "DropInPaths": "",
+        "Transient": "no"
+      }
+    },
+    {
+      "name": "baseline-lyra-guarded-unit-stop-target-tick.service",
+      "passed": true,
+      "unit": {
+        "MainPID": "776",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-guarded-unit-stop-target-tick.service",
+        "User": "ordinaryuser",
+        "Group": "ordinaryuser",
+        "PAMName": "systemd-user",
+        "KillMode": "control-group",
+        "Id": "lyra-guarded-unit-stop-target-tick.service",
+        "Names": "lyra-guarded-unit-stop-target-tick.service",
+        "Triggers": "",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "SubState": "running",
+        "FragmentPath": "/usr/lib/systemd/system/lyra-guarded-unit-stop-target-tick.service",
+        "DropInPaths": "",
+        "Transient": "no"
+      }
+    },
+    {
+      "name": "baseline-lyra-guarded-unit-stop-peer-plain.service",
+      "passed": true,
+      "unit": {
+        "MainPID": "767",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-guarded-unit-stop-peer-plain.service",
+        "User": "installeduser",
+        "Group": "installeduser",
+        "PAMName": "systemd-user",
+        "KillMode": "control-group",
+        "Id": "lyra-guarded-unit-stop-peer-plain.service",
+        "Names": "lyra-guarded-unit-stop-peer-plain.service",
+        "Triggers": "",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "SubState": "running",
+        "FragmentPath": "/usr/lib/systemd/system/lyra-guarded-unit-stop-peer-plain.service",
+        "DropInPaths": "",
+        "Transient": "no"
+      }
+    },
+    {
+      "name": "baseline-lyra-guarded-unit-stop-peer-tick.service",
+      "passed": true,
+      "unit": {
+        "MainPID": "775",
+        "ExecMainStatus": "0",
+        "ControlGroup": "/system.slice/lyra-guarded-unit-stop-peer-tick.service",
+        "User": "installeduser",
+        "Group": "installeduser",
+        "PAMName": "systemd-user",
+        "KillMode": "control-group",
+        "Id": "lyra-guarded-unit-stop-peer-tick.service",
+        "Names": "lyra-guarded-unit-stop-peer-tick.service",
+        "Triggers": "",
+        "LoadState": "loaded",
+        "ActiveState": "active",
+        "SubState": "running",
+        "FragmentPath": "/usr/lib/systemd/system/lyra-guarded-unit-stop-peer-tick.service",
+        "DropInPaths": "",
+        "Transient": "no"
+      }
+    },
+    {
+      "name": "logind-withdrawal-does-not-revoke-no-pam-system-producers",
+      "passed": true,
+      "units": {
+        "lyra-guarded-unit-stop-target-plain.service": {
+          "MainPID": "762",
+          "ExecMainStatus": "0",
+          "ControlGroup": "/system.slice/lyra-guarded-unit-stop-target-plain.service",
+          "User": "ordinaryuser",
+          "Group": "ordinaryuser",
+          "PAMName": "systemd-user",
+          "KillMode": "control-group",
+          "Id": "lyra-guarded-unit-stop-target-plain.service",
+          "Names": "lyra-guarded-unit-stop-target-plain.service",
+          "Triggers": "",
+          "LoadState": "loaded",
+          "ActiveState": "active",
+          "SubState": "running",
+          "FragmentPath": "/usr/lib/systemd/system/lyra-guarded-unit-stop-target-plain.service",
+          "DropInPaths": "",
+          "Transient": "no"
+        },
+        "lyra-guarded-unit-stop-target-guarded.service": {
+          "MainPID": "0",
+          "ExecMainStatus": "0",
+          "ControlGroup": "",
+          "User": "ordinaryuser",
+          "Group": "ordinaryuser",
+          "PAMName": "systemd-user",
+          "KillMode": "control-group",
+          "Id": "lyra-guarded-unit-stop-target-guarded.service",
+          "Names": "lyra-guarded-unit-stop-target-guarded.service",
+          "Triggers": "",
+          "LoadState": "loaded",
+          "ActiveState": "inactive",
+          "SubState": "dead",
+          "FragmentPath": "/usr/lib/systemd/system/lyra-guarded-unit-stop-target-guarded.service",
+          "DropInPaths": "",
+          "Transient": "no"
+        },
+        "lyra-guarded-unit-stop-target-tick.service": {
+          "MainPID": "776",
+          "ExecMainStatus": "0",
+          "ControlGroup": "/system.slice/lyra-guarded-unit-stop-target-tick.service",
+          "User": "ordinaryuser",
+          "Group": "ordinaryuser",
+          "PAMName": "systemd-user",
+          "KillMode": "control-group",
+          "Id": "lyra-guarded-unit-stop-target-tick.service",
+          "Names": "lyra-guarded-unit-stop-target-tick.service",
+          "Triggers": "",
+          "LoadState": "loaded",
+          "ActiveState": "active",
+          "SubState": "running",
+          "FragmentPath": "/usr/lib/systemd/system/lyra-guarded-unit-stop-target-tick.service",
+          "DropInPaths": "",
+          "Transient": "no"
+        },
+        "lyra-guarded-unit-stop-target-tick.timer": {
+          "Id": "lyra-guarded-unit-stop-target-tick.timer",
+          "Names": "lyra-guarded-unit-stop-target-tick.timer",
+          "Triggers": "lyra-guarded-unit-stop-target-tick.service",
+          "LoadState": "loaded",
+          "ActiveState": "active",
+          "SubState": "running",
+          "FragmentPath": "/usr/lib/systemd/system/lyra-guarded-unit-stop-target-tick.timer",
+          "DropInPaths": "",
+          "Transient": "no",
+          "MainPID": "0"
+        }
+      }
+    },
+    {
+      "name": "registered-system-scope-processes-pinned",
+      "passed": true,
+      "processes": [
+        {
+          "pid": 762,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroups": [
+            "/system.slice/lyra-guarded-unit-stop-target-plain.service"
+          ],
+          "comm": "lyra-guarded-un"
+        },
+        {
+          "pid": 764,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroups": [
+            "/system.slice/lyra-guarded-unit-stop-target-plain.service"
+          ],
+          "comm": "(sd-pam)"
+        },
+        {
+          "pid": 776,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroups": [
+            "/system.slice/lyra-guarded-unit-stop-target-tick.service"
+          ],
+          "comm": "sleep"
+        },
+        {
+          "pid": 779,
+          "uids": [
+            1002,
+            1002,
+            1002,
+            1002
+          ],
+          "cgroups": [
+            "/system.slice/lyra-guarded-unit-stop-target-tick.service"
+          ],
+          "comm": "(sd-pam)"
+        }
+      ],
+      "pidfds": 4
+    }
+  ],
+  "error": "GateError('UnsupportedUnitExecution')",
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "native.py": "ebe861a1a06a171b7fa147b90d289e5d8ef4571320ffb079b83524a96a7dca50",
+      "common.py": "9e33bacfd7c6340684c696b33b371cd1b5b154018c55614738dcc7638533999e",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "cleanup.py": "00adcf0efb01fbd6a1d044f57f45f0966dbcf340ddfd448d8923c82cb7614bdc",
+      "restore-check.py": "fed1def5ba9a034fe1bae591a75a359488c118ac7cadfe0560d4814fab6b337e",
+      "fixture.py": "11ea8c94cf9ee005a5f5ae553906abab75bff8b79f4ff3d5fc7920abb849c73b",
+      "unit-adapter.py": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+      "operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+      "inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+      "ownership.py": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+      "integration.py": "e90bc3623e68856256b14617addcaaee7fd5f12dc9c26b82b3129c376325207f",
+      "inventory_fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+      "live_common.py": "3829bfc6bcf689351b91fdc95f1a9c31a58042bac924087dea010d8972acc7b0",
+      "guard.py": "3009438cf52cf01f211fb242af0903bb247782601872480938a440defa5ade1e",
+      "running.py": "929c74e8c740c9b8a3f79bb0be94f06ffc49a46f5c8b3ef53c52b866a04e2a62",
+      "linux.py": "f5fc2b2264e0f5094bb1c949af4fe165049e1bc16a62bdbcb4ec97bf8859ab94",
+      "support.py": "6893397beec2af2cd7edb4db1ba9615184284a874380b54dba97fd185384cb61",
+      "reference.py": "faf9ab797c5d1c179b2b0aa77f3a3fc6654cad82b2b70679ef37f80c646dfab7",
+      "namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+      "catalog.py": "267b917b00109ca168b884270835e83760df77e5e1fe7709f1cf994f2359f564",
+      "probe.c": "2544016d97e3a2fa356a2a48431fdcdfe30fd6fb8453b47a227388ebd3fb9191"
+    }
+  },
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "scoped_guarded_stop_tested": true,
+  "full_account_protection": false,
+  "global_coverage_qualified": false,
+  "shared_privileged_services_qualified": false,
+  "production_adapters_qualified": false,
+  "monotonic_revision_qualified": false,
+  "power_loss_tested": false
+}
