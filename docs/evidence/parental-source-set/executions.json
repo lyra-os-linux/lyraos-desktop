@@ -1,0 +1,41 @@
+[
+  {
+    "time": 1791121814.0429857,
+    "argv": [
+      "python3",
+      "/root/source-set-test/native.py"
+    ],
+    "result": {
+      "id": "7cc8b56f57824fe08bddf0c6ea4911d6",
+      "rc": 0,
+      "stdout": "{\"name\": \"real-graph-files-roots-absences-and-alias-bound\", \"passed\": true, \"roots\": [\"/usr/share/dbus-1/system.d\", \"/etc/dbus-1/system.d\", \"/usr/share/dbus-1/system-services\", \"/usr/local/share/dbus-1/system-services\", \"/usr/lib/dbus-1/system-services\"], \"files\": 21, \"missing\": [\"/usr/lib/dbus-1/system-services\", \"/usr/local/share/dbus-1/system-services\", \"/etc/dbus-1/system-local.conf\"], \"alias\": \"/lib -> usr/lib\"}\n{\"name\": \"denial-preserves-sources-and-prevents-marker\", \"passed\": true}\n{\"name\": \"optional-override-creation-refuses-old-and-unclassified-new-plan\", \"passed\": true, \"effects\": []}\n{\"name\": \"alternative-root-creation-refuses-before-marker-0\", \"passed\": true, \"root\": \"/usr/local/share/dbus-1/system-services\", \"effects\": []}\n{\"name\": \"alternative-root-creation-refuses-before-marker-1\", \"passed\": true, \"root\": \"/usr/lib/dbus-1/system-services\", \"effects\": []}\n{\"name\": \"vendor-policy-added-between-callbacks-prevents-second-marker\", \"passed\": true, \"effects\": [\"first-readonly-marker\"]}\n{\"name\": \"fresh-reconciled-source-plan-and-writer-exclusion\", \"passed\": true}\n{\"name\": \"original-configuration-accounts-pam-loaded-set-and-broker-preserved\", \"passed\": true, \"broker_pid\": \"454\"}\n{\"passed\": true, \"checks\": 8}\n",
+      "stderr": ""
+    }
+  },
+  {
+    "time": 1791121876.3639874,
+    "argv": [
+      "python3",
+      "/root/source-set-test/restore.py"
+    ],
+    "result": {
+      "id": "10c313d399294571a398641bd8cc8d63",
+      "rc": 0,
+      "stdout": "{\"absent\": {\"/etc/dbus-1/system-local.conf\": true, \"/usr/local/share/dbus-1/system-services\": true, \"/usr/lib/dbus-1/system-services\": true, \"/usr/share/dbus-1/system.d/lyra-source-set-test.conf\": true, \"/root/source-set-test/sources.lock\": true}, \"configuration_preserved\": true, \"accounts_and_pam_preserved\": true, \"alias_preserved\": true, \"broker_preserved\": true, \"broker_pid\": \"454\", \"passed\": true}\n",
+      "stderr": ""
+    }
+  },
+  {
+    "time": 1791121876.7344358,
+    "argv": [
+      "systemctl",
+      "poweroff"
+    ],
+    "result": {
+      "id": "3171445498314fdfad5a232160abebdb",
+      "rc": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  }
+]

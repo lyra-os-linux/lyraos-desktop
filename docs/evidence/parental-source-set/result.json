@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "error": null,
+  "checks": [
+    {
+      "name": "real-graph-files-roots-absences-and-alias-bound",
+      "passed": true,
+      "roots": [
+        "/usr/share/dbus-1/system.d",
+        "/etc/dbus-1/system.d",
+        "/usr/share/dbus-1/system-services",
+        "/usr/local/share/dbus-1/system-services",
+        "/usr/lib/dbus-1/system-services"
+      ],
+      "files": 21,
+      "missing": [
+        "/usr/lib/dbus-1/system-services",
+        "/usr/local/share/dbus-1/system-services",
+        "/etc/dbus-1/system-local.conf"
+      ],
+      "alias": "/lib -> usr/lib"
+    },
+    {
+      "name": "denial-preserves-sources-and-prevents-marker",
+      "passed": true
+    },
+    {
+      "name": "optional-override-creation-refuses-old-and-unclassified-new-plan",
+      "passed": true,
+      "effects": []
+    },
+    {
+      "name": "alternative-root-creation-refuses-before-marker-0",
+      "passed": true,
+      "root": "/usr/local/share/dbus-1/system-services",
+      "effects": []
+    },
+    {
+      "name": "alternative-root-creation-refuses-before-marker-1",
+      "passed": true,
+      "root": "/usr/lib/dbus-1/system-services",
+      "effects": []
+    },
+    {
+      "name": "vendor-policy-added-between-callbacks-prevents-second-marker",
+      "passed": true,
+      "effects": [
+        "first-readonly-marker"
+      ]
+    },
+    {
+      "name": "fresh-reconciled-source-plan-and-writer-exclusion",
+      "passed": true
+    },
+    {
+      "name": "original-configuration-accounts-pam-loaded-set-and-broker-preserved",
+      "passed": true,
+      "broker_pid": "454"
+    }
+  ],
+  "metadata": {
+    "broker_pid": "454",
+    "boot_id": "97bc2391-be7d-49b6-9993-1e650b0dfe60",
+    "packages": "dbus-broker-36-160100.2.1.x86_64\ndbus-1-1.14.10-160100.2.1.x86_64\n",
+    "source_sha256": {
+      "native.py": "e7ed568a2a6961cc88cddf9c3c50086149c8ed805b45ab64d7fc9a80b304757c",
+      "sources.py": "17938384080c048146e531afaefc9375cc4a038b2698317d48f95c21bc555ec8",
+      "namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+      "binding.py": "c894d8be795e7f69d70a3ffdd2590881b7d891bc336bf411383e53071d1c2151",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99"
+    }
+  },
+  "configuration_hashes": {
+    "/usr/share/dbus-1/system.conf": "9c8c55f18731fdf9cdf818dbecb6dd208314bf623fa5e76c685c2f3f1c48b247",
+    "/etc/dbus-1/system.conf": "a6f50dc70ef082a110dcdb164579cd2af221b90226c5e0aca237edcad98a1c26",
+    "/usr/share/dbus-1/system.d/FirewallD.conf": "fdad6e5dc3be00511d41e946d1714dcbf5d2f4cb72b3edc007b91ce7f49db0a1",
+    "/usr/share/dbus-1/system.d/dnsmasq.conf": "65b25dc51ba9fd414201ed8146f1d23af6c20c3feff364638f136759648d8a42",
+    "/usr/share/dbus-1/system.d/gdm.conf": "1f07df3f25c1f500d158c386c9c5969f25e0488e0db4e1e17bd681dd33b230dc",
+    "/usr/share/dbus-1/system.d/org.freedesktop.Accounts.conf": "5325a89e7d57cb42e5ac1cb65dc99981c6d3a22da7b21e8e3cbb0da8c021ae6a",
+    "/usr/share/dbus-1/system.d/org.freedesktop.Flatpak.SystemHelper.conf": "7db68294aedbc1891e2aa2db7f761fa95fe77b73e6c4d593ccbaa648baa4acfc",
+    "/usr/share/dbus-1/system.d/org.freedesktop.GeoClue2.Agent.conf": "e7bfdf03fb8d8f14b7387ad6c6c20824e9e2e1e91ae58beb9f7bd714e8793a30",
+    "/usr/share/dbus-1/system.d/org.freedesktop.GeoClue2.conf": "f85946799588dc9ae9176387b1c021b141a43826fc1626d6ba8b9289ff8ce401",
+    "/usr/share/dbus-1/system.d/org.freedesktop.PolicyKit1.conf": "28067ad27702251ba38d9794738cb81e18ce2151d26b3d103a33b4107c2f9877",
+    "/usr/share/dbus-1/system.d/org.freedesktop.RealtimeKit1.conf": "2197e5e7f07508dfa8057e1b2bf8f166d980bceaf273b5290dc21de1c568a25d",
+    "/usr/share/dbus-1/system.d/org.freedesktop.hostname1.conf": "98e7eb579288791e01081e75b577baf904ff7eb921afa6738158b86e97d034a7",
+    "/usr/share/dbus-1/system.d/org.freedesktop.import1.conf": "5206628f4ac36e69a8a34680edc3ab93370ecc3458d181cdc8f5baabee2322f3",
+    "/usr/share/dbus-1/system.d/org.freedesktop.locale1.conf": "9702f64ef33e68a78d9d1cf852b37c1e64cbde16d2eda96ecbf950c03865e6b3",
+    "/usr/share/dbus-1/system.d/org.freedesktop.login1.conf": "8c12da23940f6ea80495e47a4d0bf9eece02374ed3a9d1e663932afd0271d46d",
+    "/usr/share/dbus-1/system.d/org.freedesktop.machine1.conf": "f8f7a57b67d2e4519f65d8239d3a06ac76f49d6f42ade2f0be9c36fb477926ab",
+    "/usr/share/dbus-1/system.d/org.freedesktop.systemd1.conf": "001d478086c87eb19f5446311c1177fde7d7ce6dd7787e1e63f49fe9d4438cd2",
+    "/usr/share/dbus-1/system.d/org.freedesktop.timedate1.conf": "f34b0a017d95991ea8f1409e9abc53346664612982c5d2349b481d471c7de9d7",
+    "/usr/share/dbus-1/system.d/org.freedesktop.timesync1.conf": "a584cde247521c0ba6cec45082ba2552cecfc82d777c0e8d4d2fd81475b75601",
+    "/etc/selinux/targeted/contexts/dbus_contexts": "33115c8ae83b6d571d45099e1758b571209e2808eed26389ffc50c1d5409cb37"
+  },
+  "account_hashes": {
+    "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+    "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161",
+    "/etc/pam.d/systemd-user": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e"
+  },
+  "created_paths_removed": true,
+  "full_account_protection": false,
+  "global_coverage_qualified": false,
+  "graph_semantics_qualified": false,
+  "real_revocation_tested": false
+}

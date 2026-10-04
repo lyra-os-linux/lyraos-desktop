@@ -1,0 +1,27 @@
+{
+  "base_commit": "dc057da322e6e645e1c782966865a9d5167bacce",
+  "python_tests": 570,
+  "new_python_tests": 16,
+  "python_exit_code": 0,
+  "native_checks": 8,
+  "failed_native_attempts": 0,
+  "qemu_session": 48889,
+  "qemu_exit_code": 0,
+  "production_changed": false,
+  "sha256": {
+    "sources.py": "17938384080c048146e531afaefc9375cc4a038b2698317d48f95c21bc555ec8",
+    "native.py": "e7ed568a2a6961cc88cddf9c3c50086149c8ed805b45ab64d7fc9a80b304757c",
+    "python-suite.txt": "8098764f6bd085573f47ad4b2376ec292c53d57cc26f611fcf9237deb6bb4196",
+    "restore.py": "f5c92d0bd4a988d28bdd156453d0c11d4e5499ebafa409fd2a4a9ad46ffdede3",
+    "result.json": "117fb99b11c350662e88e05e780b65248fe8d7bc9041c54a34cda34971e30489",
+    "restored.json": "a6cc6deed9d2300cbfa45765fea0d94c668c9f39fe10c84f954c4710b93476f5",
+    "executions.json": "106dcd97c4c27d4d19ad08ca49115db604b465524332bab62f20d967ed8e95d8",
+    "README.md": "b554eb53e133c2beb68c149e0c04a6d84f280b29b0f589c384fd30606c4cfb65",
+    "verify-evidence.py": "f9f1d1d0140269e22afeff7ccaec0417933277e0dae31e535e1bfeb2db8d1e95",
+    "../../../tests/test_parental_source_set.py": "2a5bbe40e964a78bc5e9c2b8824d23578fe32ee9aa916cab41cdf28cf0db97b0",
+    "../parental-namespace-guard/namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+    "../parental-namespace-dbus/binding.py": "c894d8be795e7f69d70a3ffdd2590881b7d891bc336bf411383e53071d1c2151",
+    "../parental-coordinator/coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+    "../parental-dbus-config/result.json": "abd2caaf1aa742fecbadc142c008a359a70dea159d88b5ca47839a3e16b6d539"
+  }
+}

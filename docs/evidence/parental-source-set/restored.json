@@ -1,0 +1,15 @@
+{
+  "absent": {
+    "/etc/dbus-1/system-local.conf": true,
+    "/usr/local/share/dbus-1/system-services": true,
+    "/usr/lib/dbus-1/system-services": true,
+    "/usr/share/dbus-1/system.d/lyra-source-set-test.conf": true,
+    "/root/source-set-test/sources.lock": true
+  },
+  "configuration_preserved": true,
+  "accounts_and_pam_preserved": true,
+  "alias_preserved": true,
+  "broker_preserved": true,
+  "broker_pid": "454",
+  "passed": true
+}
