@@ -1,0 +1,6 @@
+{
+  "id": "a3abe389a47f4d299ed07a5e5d98b9aa",
+  "rc": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/root/unit-stop-jobs/native.py\", line 3, in <module>\n    from live_common import *\n  File \"/root/unit-stop-jobs/live_common.py\", line 4, in <module>\n    spec=importlib.util.spec_from_file_location(module,BASE/name);loaded=importlib.util.module_from_spec(spec);sys.modules[module]=loaded;spec.loader.exec_module(loaded)\n                                                                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"<frozen importlib._bootstrap_external>\", line 1019, in exec_module\n  File \"<frozen importlib._bootstrap_external>\", line 1156, in get_code\n  File \"<frozen importlib._bootstrap_external>\", line 1214, in get_data\nFileNotFoundError: [Errno 2] No such file or directory: '/root/unit-stop-jobs/dbus-adapter.py'\n"
+}
