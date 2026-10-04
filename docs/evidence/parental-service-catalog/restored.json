@@ -1,0 +1,15 @@
+{
+  "absent": {
+    "/usr/local/share/dbus-1/system-services": true,
+    "/usr/lib/dbus-1/system-services": true,
+    "/usr/share/dbus-1/system-services/org.lyra.CatalogProbe.Known.service": true,
+    "/root/service-catalog-test/sources.lock": true
+  },
+  "definitions_preserved": true,
+  "accounts_preserved": true,
+  "pam_preserved": true,
+  "alias_preserved": true,
+  "broker_preserved": true,
+  "broker_pid": "457",
+  "passed": true
+}

@@ -1,0 +1,628 @@
+{
+  "passed": true,
+  "error": null,
+  "checks": [
+    {
+      "name": "installed-13-declarations-typed-with-local-passwd-and-group",
+      "passed": true,
+      "declarations": [
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.Accounts.service",
+          "digest": "b9d536bc71a9befe88fda99e1d51b58baa49cf7bf7c00d485434d946451ef2c0",
+          "name": "org.freedesktop.Accounts",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/usr/libexec/accounts-daemon"
+          ],
+          "systemd_unit": "accounts-daemon.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.Flatpak.SystemHelper.service",
+          "digest": "30deab4f2ffef2923fda04724f4aefc13c8bba5713db79548e83a27ed8968b55",
+          "name": "org.freedesktop.Flatpak.SystemHelper",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/usr/libexec/flatpak-system-helper"
+          ],
+          "systemd_unit": "flatpak-system-helper.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.GeoClue2.service",
+          "digest": "2b462a23384343646bbf6c46305f90379bd705c6e89b740b9e446d260aa6b6ec",
+          "name": "org.freedesktop.GeoClue2",
+          "declared_identity": {
+            "user": "srvGeoClue",
+            "uid": 477,
+            "gid": 477
+          },
+          "argv": [
+            "/usr/libexec/geoclue"
+          ],
+          "systemd_unit": "geoclue.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.PolicyKit1.service",
+          "digest": "507a25e9cd2ba0d4a80c6fe3ea8b753f57e56d4937f243a4bc9184d8ed73afd7",
+          "name": "org.freedesktop.PolicyKit1",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/usr/libexec/polkit-1/polkitd",
+            "--no-debug"
+          ],
+          "systemd_unit": "polkit.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.RealtimeKit1.service",
+          "digest": "0b4f3b9699824c30c6ad8d1f42d2084c8a174375ed408a36e8cde797009e5435",
+          "name": "org.freedesktop.RealtimeKit1",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/usr/libexec/rtkit/rtkit-daemon"
+          ],
+          "systemd_unit": "rtkit-daemon.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.hostname1.service",
+          "digest": "b3bed9d69c469af707e9ee8f136cf234a2ee50b63544a4d782d205097ef980f5",
+          "name": "org.freedesktop.hostname1",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/bin/false"
+          ],
+          "systemd_unit": "dbus-org.freedesktop.hostname1.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.import1.service",
+          "digest": "5c02a8b822d44a42df1707f3adf404daeebca2a373600a96ca01663904037dc5",
+          "name": "org.freedesktop.import1",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/bin/false"
+          ],
+          "systemd_unit": "dbus-org.freedesktop.import1.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.locale1.service",
+          "digest": "6b3e6b3596a7c0bbb3b354aeec11ac03b351af4462bf7711c20c8f770a7e18f8",
+          "name": "org.freedesktop.locale1",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/bin/false"
+          ],
+          "systemd_unit": "dbus-org.freedesktop.locale1.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.login1.service",
+          "digest": "b587e7aa8272f22a8e94c283781ff11730352cd23c2dfcf6109863ea15da9b10",
+          "name": "org.freedesktop.login1",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/bin/false"
+          ],
+          "systemd_unit": "dbus-org.freedesktop.login1.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.machine1.service",
+          "digest": "9ed469857879acc934f92d8ebbb4cd9de445e4bb48351215ea4e7d0499a63d5d",
+          "name": "org.freedesktop.machine1",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/bin/false"
+          ],
+          "systemd_unit": "dbus-org.freedesktop.machine1.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.systemd1.service",
+          "digest": "eac6205bbfde5563ebdd74f9d420db2d19b1fd2fadc7bc47ae8d55845a8bb82d",
+          "name": "org.freedesktop.systemd1",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/bin/false"
+          ],
+          "systemd_unit": ""
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.timedate1.service",
+          "digest": "0f3891c48db89bfaff72f50ab239b0a500a651a14998ce25d50373bd33d17ec9",
+          "name": "org.freedesktop.timedate1",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/bin/false"
+          ],
+          "systemd_unit": "dbus-org.freedesktop.timedate1.service"
+        },
+        {
+          "path": "/usr/share/dbus-1/system-services/org.freedesktop.timesync1.service",
+          "digest": "e158590474d57aa6a7526ea09014bdf5c3ca6d2816dfbb221643f3b585b4ac28",
+          "name": "org.freedesktop.timesync1",
+          "declared_identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "argv": [
+            "/bin/false"
+          ],
+          "systemd_unit": "dbus-org.freedesktop.timesync1.service"
+        }
+      ]
+    },
+    {
+      "name": "declared-users-and-actual-systemd-fields-kept-separate",
+      "passed": true,
+      "observations": [
+        {
+          "name": "org.freedesktop.Accounts",
+          "declared_user": "root",
+          "unit": "accounts-daemon.service",
+          "observed": {
+            "User": "",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "accounts-daemon.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/accounts-daemon.service",
+            "DropInPaths": ""
+          },
+          "user_differs": false
+        },
+        {
+          "name": "org.freedesktop.Flatpak.SystemHelper",
+          "declared_user": "root",
+          "unit": "flatpak-system-helper.service",
+          "observed": {
+            "User": "",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "flatpak-system-helper.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/flatpak-system-helper.service",
+            "DropInPaths": ""
+          },
+          "user_differs": false
+        },
+        {
+          "name": "org.freedesktop.GeoClue2",
+          "declared_user": "srvGeoClue",
+          "unit": "geoclue.service",
+          "observed": {
+            "User": "srvGeoClue",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "geoclue.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/geoclue.service",
+            "DropInPaths": ""
+          },
+          "user_differs": false
+        },
+        {
+          "name": "org.freedesktop.PolicyKit1",
+          "declared_user": "root",
+          "unit": "polkit.service",
+          "observed": {
+            "User": "polkitd",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "polkit.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/polkit.service",
+            "DropInPaths": ""
+          },
+          "user_differs": true
+        },
+        {
+          "name": "org.freedesktop.RealtimeKit1",
+          "declared_user": "root",
+          "unit": "rtkit-daemon.service",
+          "observed": {
+            "User": "",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "rtkit-daemon.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/rtkit-daemon.service",
+            "DropInPaths": ""
+          },
+          "user_differs": false
+        },
+        {
+          "name": "org.freedesktop.hostname1",
+          "declared_user": "root",
+          "unit": "dbus-org.freedesktop.hostname1.service",
+          "observed": {
+            "User": "",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "systemd-hostnamed.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/systemd-hostnamed.service",
+            "DropInPaths": ""
+          },
+          "user_differs": false
+        },
+        {
+          "name": "org.freedesktop.import1",
+          "declared_user": "root",
+          "unit": "dbus-org.freedesktop.import1.service",
+          "observed": {
+            "User": "",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "systemd-importd.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/systemd-importd.service",
+            "DropInPaths": ""
+          },
+          "user_differs": false
+        },
+        {
+          "name": "org.freedesktop.locale1",
+          "declared_user": "root",
+          "unit": "dbus-org.freedesktop.locale1.service",
+          "observed": {
+            "User": "",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "systemd-localed.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/systemd-localed.service",
+            "DropInPaths": ""
+          },
+          "user_differs": false
+        },
+        {
+          "name": "org.freedesktop.login1",
+          "declared_user": "root",
+          "unit": "dbus-org.freedesktop.login1.service",
+          "observed": {
+            "User": "",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "systemd-logind.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/systemd-logind.service",
+            "DropInPaths": "/usr/lib/systemd/system/systemd-logind.service.d/20-defaults-SUSE.conf"
+          },
+          "user_differs": false
+        },
+        {
+          "name": "org.freedesktop.machine1",
+          "declared_user": "root",
+          "unit": "dbus-org.freedesktop.machine1.service",
+          "observed": {
+            "User": "",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "systemd-machined.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/systemd-machined.service",
+            "DropInPaths": ""
+          },
+          "user_differs": false
+        },
+        {
+          "name": "org.freedesktop.timedate1",
+          "declared_user": "root",
+          "unit": "dbus-org.freedesktop.timedate1.service",
+          "observed": {
+            "User": "",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "systemd-timedated.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/systemd-timedated.service",
+            "DropInPaths": ""
+          },
+          "user_differs": false
+        },
+        {
+          "name": "org.freedesktop.timesync1",
+          "declared_user": "root",
+          "unit": "dbus-org.freedesktop.timesync1.service",
+          "observed": {
+            "User": "systemd-timesync",
+            "Group": "",
+            "DynamicUser": "no",
+            "PAMName": "",
+            "Id": "systemd-timesyncd.service",
+            "LoadState": "loaded",
+            "FragmentPath": "/usr/lib/systemd/system/systemd-timesyncd.service",
+            "DropInPaths": ""
+          },
+          "user_differs": true
+        }
+      ]
+    },
+    {
+      "name": "root-and-system-declarations-do-not-bypass-required-adapters",
+      "passed": true
+    },
+    {
+      "name": "target-local-uid-declared-without-granting-producer-coverage",
+      "passed": true,
+      "identity": {
+        "user": "ordinaryuser",
+        "uid": 1002,
+        "gid": 1003
+      }
+    },
+    {
+      "name": "identical-name-and-content-across-real-roots-refused",
+      "passed": true
+    },
+    {
+      "name": "conflicting-execution-definition-across-real-roots-refused",
+      "passed": true
+    },
+    {
+      "name": "unknown-activation-field-refused",
+      "passed": true
+    },
+    {
+      "name": "original-catalog-account-files-loaded-set-and-broker-preserved",
+      "passed": true,
+      "broker_pid": "457"
+    }
+  ],
+  "metadata": {
+    "broker_pid": "457",
+    "boot_id": "82d97892-67ad-4328-b1c9-d83c2987fcfb",
+    "source_sha256": {
+      "native.py": "cc5e0e2f0cc21325a21a2bdf5b1a4dedf78797b5e1143341df777740d0fb2a93",
+      "catalog.py": "267b917b00109ca168b884270835e83760df77e5e1fe7709f1cf994f2359f564",
+      "sources.py": "17938384080c048146e531afaefc9375cc4a038b2698317d48f95c21bc555ec8",
+      "namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99"
+    }
+  },
+  "original_declarations": [
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.Accounts.service",
+      "digest": "b9d536bc71a9befe88fda99e1d51b58baa49cf7bf7c00d485434d946451ef2c0",
+      "name": "org.freedesktop.Accounts",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/usr/libexec/accounts-daemon"
+      ],
+      "systemd_unit": "accounts-daemon.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.Flatpak.SystemHelper.service",
+      "digest": "30deab4f2ffef2923fda04724f4aefc13c8bba5713db79548e83a27ed8968b55",
+      "name": "org.freedesktop.Flatpak.SystemHelper",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/usr/libexec/flatpak-system-helper"
+      ],
+      "systemd_unit": "flatpak-system-helper.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.GeoClue2.service",
+      "digest": "2b462a23384343646bbf6c46305f90379bd705c6e89b740b9e446d260aa6b6ec",
+      "name": "org.freedesktop.GeoClue2",
+      "declared_identity": {
+        "user": "srvGeoClue",
+        "uid": 477,
+        "gid": 477
+      },
+      "argv": [
+        "/usr/libexec/geoclue"
+      ],
+      "systemd_unit": "geoclue.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.PolicyKit1.service",
+      "digest": "507a25e9cd2ba0d4a80c6fe3ea8b753f57e56d4937f243a4bc9184d8ed73afd7",
+      "name": "org.freedesktop.PolicyKit1",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/usr/libexec/polkit-1/polkitd",
+        "--no-debug"
+      ],
+      "systemd_unit": "polkit.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.RealtimeKit1.service",
+      "digest": "0b4f3b9699824c30c6ad8d1f42d2084c8a174375ed408a36e8cde797009e5435",
+      "name": "org.freedesktop.RealtimeKit1",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/usr/libexec/rtkit/rtkit-daemon"
+      ],
+      "systemd_unit": "rtkit-daemon.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.hostname1.service",
+      "digest": "b3bed9d69c469af707e9ee8f136cf234a2ee50b63544a4d782d205097ef980f5",
+      "name": "org.freedesktop.hostname1",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/bin/false"
+      ],
+      "systemd_unit": "dbus-org.freedesktop.hostname1.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.import1.service",
+      "digest": "5c02a8b822d44a42df1707f3adf404daeebca2a373600a96ca01663904037dc5",
+      "name": "org.freedesktop.import1",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/bin/false"
+      ],
+      "systemd_unit": "dbus-org.freedesktop.import1.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.locale1.service",
+      "digest": "6b3e6b3596a7c0bbb3b354aeec11ac03b351af4462bf7711c20c8f770a7e18f8",
+      "name": "org.freedesktop.locale1",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/bin/false"
+      ],
+      "systemd_unit": "dbus-org.freedesktop.locale1.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.login1.service",
+      "digest": "b587e7aa8272f22a8e94c283781ff11730352cd23c2dfcf6109863ea15da9b10",
+      "name": "org.freedesktop.login1",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/bin/false"
+      ],
+      "systemd_unit": "dbus-org.freedesktop.login1.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.machine1.service",
+      "digest": "9ed469857879acc934f92d8ebbb4cd9de445e4bb48351215ea4e7d0499a63d5d",
+      "name": "org.freedesktop.machine1",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/bin/false"
+      ],
+      "systemd_unit": "dbus-org.freedesktop.machine1.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.systemd1.service",
+      "digest": "eac6205bbfde5563ebdd74f9d420db2d19b1fd2fadc7bc47ae8d55845a8bb82d",
+      "name": "org.freedesktop.systemd1",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/bin/false"
+      ],
+      "systemd_unit": ""
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.timedate1.service",
+      "digest": "0f3891c48db89bfaff72f50ab239b0a500a651a14998ce25d50373bd33d17ec9",
+      "name": "org.freedesktop.timedate1",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/bin/false"
+      ],
+      "systemd_unit": "dbus-org.freedesktop.timedate1.service"
+    },
+    {
+      "path": "/usr/share/dbus-1/system-services/org.freedesktop.timesync1.service",
+      "digest": "e158590474d57aa6a7526ea09014bdf5c3ca6d2816dfbb221643f3b585b4ac28",
+      "name": "org.freedesktop.timesync1",
+      "declared_identity": {
+        "user": "root",
+        "uid": 0,
+        "gid": 0
+      },
+      "argv": [
+        "/bin/false"
+      ],
+      "systemd_unit": "dbus-org.freedesktop.timesync1.service"
+    }
+  ],
+  "account_hashes": {
+    "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+    "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+  },
+  "full_account_protection": false,
+  "global_coverage_qualified": false,
+  "systemd_execution_binding_qualified": false,
+  "precedence_resolution_qualified": false,
+  "real_activation_or_revocation_tested": false
+}
