@@ -1,0 +1,11 @@
+{
+  "references_preserved": true,
+  "accounts_and_pam_preserved": true,
+  "declarations_preserved": true,
+  "broker_preserved": true,
+  "broker_pid": "449",
+  "unused_lock_absent": true,
+  "source_sha256": "9107746126997bfa71c9267fb92beba8a85f598b26bd269b8f2001b87e27cfad",
+  "manager_cache_rollback_claimed": false,
+  "passed": true
+}

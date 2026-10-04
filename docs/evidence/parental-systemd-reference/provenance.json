@@ -1,0 +1,31 @@
+{
+  "base_commit": "d99e0b96a62ad371d242c743750ccd593ea55c44",
+  "python_tests": 602,
+  "new_python_tests": 16,
+  "python_exit_code": 0,
+  "native_checks": 15,
+  "failed_native_attempts": 2,
+  "qemu_session": 20624,
+  "qemu_exit_code": 0,
+  "production_changed": false,
+  "sha256": {
+    "reference.py": "faf9ab797c5d1c179b2b0aa77f3a3fc6654cad82b2b70679ef37f80c646dfab7",
+    "native.py": "9590a7f1b12e5812228ab03b322dba0e75f67ce4b2a57e15b0bccc86caf7acab",
+    "restore.py": "9107746126997bfa71c9267fb92beba8a85f598b26bd269b8f2001b87e27cfad",
+    "attempt-1-native.py": "8a6b7b81795502410a72d96c6d389d6b55e90a3163db0fee92d6f285f5345d45",
+    "attempt-2-native.py": "d5b381adbfa2ce7a8682c566305897a989436f728c25f87899b1ddeb650a8d91",
+    "attempt-1-result.json": "bd00161b8a5130cdce8683b63bfd6d33144226b0f9ebff23cd43dff53a4fbf4c",
+    "attempt-2-result.json": "ec6d36a120efcaa2e5a7910d57956a2918e9a0b142329238123145b9ca6748bd",
+    "result.json": "7bd6d2ef7218d7fcc1562476e5e1842e294704ceaf4d67cc353b79d18ab0ecdc",
+    "restored.json": "12efebc504cd89c1cfcabedf87b8a188ffb38e75f07e5585037afd0d4b73f786",
+    "executions.json": "2a3e2ca250a889b0cbdec25a64d7a49aa685628d2b595b86195ca4d95d43a598",
+    "python-suite.txt": "ab5202432ab33cf5158532ddbaf7f34a19579013354db113c69774998474525a",
+    "README.md": "d23db83071ec9eab8baad115a2abb216a71084ce7dede02b61fa35ef8eec56a9",
+    "verify-evidence.py": "8eef9d6a6852ff474034a9d27d65e247c866bab0573ee7f3a76fa5f6c4aa0b3c",
+    "../../../tests/test_parental_systemd_reference.py": "96691b4e9067081c8c01afe6f3579773eba85933eb4b33d5c0e6c837d17cb53d",
+    "../parental-service-catalog/catalog.py": "267b917b00109ca168b884270835e83760df77e5e1fe7709f1cf994f2359f564",
+    "../parental-service-catalog/result.json": "c245d6cbe025ce44933072aa342c99ddda0577bfa34e3741de8d092d6db404f0",
+    "../parental-namespace-guard/namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+    "../parental-coordinator/coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99"
+  }
+}

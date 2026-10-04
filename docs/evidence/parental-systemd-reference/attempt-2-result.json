@@ -1,0 +1,1532 @@
+{
+  "passed": false,
+  "error": "",
+  "checks": [
+    {
+      "name": "typed-unit-reference-org.freedesktop.Accounts",
+      "passed": true,
+      "reference": {
+        "configuration": {
+          "requested": "accounts-daemon.service",
+          "canonical": "accounts-daemon.service",
+          "identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "configured_gid": 0,
+          "executable": "/usr/libexec/accounts-daemon",
+          "argv": [
+            "/usr/libexec/accounts-daemon"
+          ],
+          "fragment": "/usr/lib/systemd/system/accounts-daemon.service",
+          "dropins": [],
+          "service_type": "dbus"
+        },
+        "fingerprints": [
+          [
+            "/usr/lib/systemd/system/accounts-daemon.service",
+            [
+              65024,
+              28155,
+              0,
+              33188,
+              1,
+              2150,
+              1776868201000000000,
+              1790025832754785438,
+              "0155a12e265199f51efe878b5aa4dd2eb65b2a23b2f53537d1036e44b1411a11"
+            ]
+          ],
+          [
+            "/usr/libexec/accounts-daemon",
+            [
+              65024,
+              28157,
+              0,
+              33261,
+              1,
+              166288,
+              1776868201000000000,
+              1790025832979778256,
+              "2d73c9c3bd362a5da067a0473b9bf251ced85adab451d42682240aa4f93c1450"
+            ]
+          ],
+          [
+            "/etc/passwd",
+            [
+              65024,
+              55879,
+              0,
+              33188,
+              1,
+              1196,
+              1790881501213000000,
+              1790881501215000000,
+              "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+            ]
+          ],
+          [
+            "/etc/group",
+            [
+              65024,
+              55818,
+              0,
+              33188,
+              1,
+              685,
+              1790881501222000000,
+              1790881501224000000,
+              "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+            ]
+          ]
+        ]
+      },
+      "declared_user": "root"
+    },
+    {
+      "name": "typed-unit-reference-org.freedesktop.Flatpak.SystemHelper",
+      "passed": true,
+      "reference": {
+        "configuration": {
+          "requested": "flatpak-system-helper.service",
+          "canonical": "flatpak-system-helper.service",
+          "identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "configured_gid": 0,
+          "executable": "/usr/libexec/flatpak-system-helper",
+          "argv": [
+            "/usr/libexec/flatpak-system-helper"
+          ],
+          "fragment": "/usr/lib/systemd/system/flatpak-system-helper.service",
+          "dropins": [],
+          "service_type": "dbus"
+        },
+        "fingerprints": [
+          [
+            "/usr/lib/systemd/system/flatpak-system-helper.service",
+            [
+              65024,
+              29971,
+              0,
+              33188,
+              1,
+              263,
+              1776312443000000000,
+              1790025832754785438,
+              "0da62089ff6c669831d885a5eefbefbf2234ddc72bc6d79bb04b320084af03e2"
+            ]
+          ],
+          [
+            "/usr/libexec/flatpak-system-helper",
+            [
+              65024,
+              29984,
+              0,
+              33261,
+              1,
+              506264,
+              1776312443000000000,
+              1790025832979778256,
+              "f0a95575890d83d05ac44ae8f2a0241b748beb022bcd9b97426f47254855e4e1"
+            ]
+          ],
+          [
+            "/etc/passwd",
+            [
+              65024,
+              55879,
+              0,
+              33188,
+              1,
+              1196,
+              1790881501213000000,
+              1790881501215000000,
+              "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+            ]
+          ],
+          [
+            "/etc/group",
+            [
+              65024,
+              55818,
+              0,
+              33188,
+              1,
+              685,
+              1790881501222000000,
+              1790881501224000000,
+              "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+            ]
+          ]
+        ]
+      },
+      "declared_user": "root"
+    },
+    {
+      "name": "typed-unit-reference-org.freedesktop.GeoClue2",
+      "passed": true,
+      "reference": {
+        "configuration": {
+          "requested": "geoclue.service",
+          "canonical": "geoclue.service",
+          "identity": {
+            "user": "srvGeoClue",
+            "uid": 477,
+            "gid": 477
+          },
+          "configured_gid": 477,
+          "executable": "/usr/libexec/geoclue",
+          "argv": [
+            "/usr/libexec/geoclue"
+          ],
+          "fragment": "/usr/lib/systemd/system/geoclue.service",
+          "dropins": [],
+          "service_type": "dbus"
+        },
+        "fingerprints": [
+          [
+            "/usr/lib/systemd/system/geoclue.service",
+            [
+              65024,
+              38812,
+              0,
+              33188,
+              1,
+              510,
+              1776896557000000000,
+              1790093052433395613,
+              "8cbccd77e79e696a9b984ee041febae43d02bdb0bcc77d1e219ec7e66412a306"
+            ]
+          ],
+          [
+            "/usr/libexec/geoclue",
+            [
+              65024,
+              38815,
+              0,
+              33261,
+              1,
+              268776,
+              1776896557000000000,
+              1790093052433395613,
+              "b677812beb2bd0a16a432a864d00ffea037f13da4404e8d9b51a67ca1951bf11"
+            ]
+          ],
+          [
+            "/etc/passwd",
+            [
+              65024,
+              55879,
+              0,
+              33188,
+              1,
+              1196,
+              1790881501213000000,
+              1790881501215000000,
+              "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+            ]
+          ],
+          [
+            "/etc/group",
+            [
+              65024,
+              55818,
+              0,
+              33188,
+              1,
+              685,
+              1790881501222000000,
+              1790881501224000000,
+              "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+            ]
+          ]
+        ]
+      },
+      "declared_user": "srvGeoClue"
+    },
+    {
+      "name": "typed-unit-reference-org.freedesktop.RealtimeKit1",
+      "passed": true,
+      "reference": {
+        "configuration": {
+          "requested": "rtkit-daemon.service",
+          "canonical": "rtkit-daemon.service",
+          "identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "configured_gid": 0,
+          "executable": "/usr/libexec/rtkit/rtkit-daemon",
+          "argv": [
+            "/usr/libexec/rtkit/rtkit-daemon"
+          ],
+          "fragment": "/usr/lib/systemd/system/rtkit-daemon.service",
+          "dropins": [],
+          "service_type": "dbus"
+        },
+        "fingerprints": [
+          [
+            "/usr/lib/systemd/system/rtkit-daemon.service",
+            [
+              65024,
+              30082,
+              0,
+              33188,
+              1,
+              1381,
+              1708689370000000000,
+              1790373920050130810,
+              "9f3b598db0faf2b762d0c64698f5d33dffba59b67b2aeb66c0cd384334e6ed7a"
+            ]
+          ],
+          [
+            "/usr/libexec/rtkit/rtkit-daemon",
+            [
+              65024,
+              50818,
+              0,
+              33261,
+              1,
+              63960,
+              1708689370000000000,
+              1790373920051130852,
+              "5f6115e64d29ad62c27ef8356a4843e7987b76523de73e23c4a46a1141c0f270"
+            ]
+          ],
+          [
+            "/etc/passwd",
+            [
+              65024,
+              55879,
+              0,
+              33188,
+              1,
+              1196,
+              1790881501213000000,
+              1790881501215000000,
+              "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+            ]
+          ],
+          [
+            "/etc/group",
+            [
+              65024,
+              55818,
+              0,
+              33188,
+              1,
+              685,
+              1790881501222000000,
+              1790881501224000000,
+              "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+            ]
+          ]
+        ]
+      },
+      "declared_user": "root"
+    },
+    {
+      "name": "typed-unit-reference-org.freedesktop.hostname1",
+      "passed": true,
+      "reference": {
+        "configuration": {
+          "requested": "dbus-org.freedesktop.hostname1.service",
+          "canonical": "systemd-hostnamed.service",
+          "identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "configured_gid": 0,
+          "executable": "/usr/lib/systemd/systemd-hostnamed",
+          "argv": [
+            "/usr/lib/systemd/systemd-hostnamed"
+          ],
+          "fragment": "/usr/lib/systemd/system/systemd-hostnamed.service",
+          "dropins": [],
+          "service_type": "notify"
+        },
+        "fingerprints": [
+          [
+            "/usr/lib/systemd/system/systemd-hostnamed.service",
+            [
+              65024,
+              9299,
+              0,
+              33188,
+              1,
+              1224,
+              1785164933000000000,
+              1790025832750785565,
+              "e717824d38cbccd038a480e24d1023faf1f52e39b1d39503a3187c19b81158b9"
+            ]
+          ],
+          [
+            "/usr/lib/systemd/systemd-hostnamed",
+            [
+              65024,
+              9457,
+              0,
+              33261,
+              1,
+              55504,
+              1785164933000000000,
+              1790025832739785917,
+              "010a9174d5f9ace6cdd366d9360be45fc19ddad55445f654623f94982b849dfa"
+            ]
+          ],
+          [
+            "/etc/passwd",
+            [
+              65024,
+              55879,
+              0,
+              33188,
+              1,
+              1196,
+              1790881501213000000,
+              1790881501215000000,
+              "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+            ]
+          ],
+          [
+            "/etc/group",
+            [
+              65024,
+              55818,
+              0,
+              33188,
+              1,
+              685,
+              1790881501222000000,
+              1790881501224000000,
+              "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+            ]
+          ]
+        ]
+      },
+      "declared_user": "root"
+    },
+    {
+      "name": "typed-unit-reference-org.freedesktop.import1",
+      "passed": true,
+      "reference": {
+        "configuration": {
+          "requested": "dbus-org.freedesktop.import1.service",
+          "canonical": "systemd-importd.service",
+          "identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "configured_gid": 0,
+          "executable": "/usr/lib/systemd/systemd-importd",
+          "argv": [
+            "/usr/lib/systemd/systemd-importd"
+          ],
+          "fragment": "/usr/lib/systemd/system/systemd-importd.service",
+          "dropins": [],
+          "service_type": "notify"
+        },
+        "fingerprints": [
+          [
+            "/usr/lib/systemd/system/systemd-importd.service",
+            [
+              65024,
+              9303,
+              0,
+              33188,
+              1,
+              1249,
+              1785164933000000000,
+              1790025832751785534,
+              "1a1f83f340bddca9c6272f596346af28084e09f59702850cdf6cde7e4ef47c52"
+            ]
+          ],
+          [
+            "/usr/lib/systemd/systemd-importd",
+            [
+              65024,
+              9460,
+              0,
+              33261,
+              1,
+              63712,
+              1785164933000000000,
+              1790025832738785949,
+              "9be0b3b40a0812bcf5eb2a3052d5300f299a954f143a9062dce47212601d814c"
+            ]
+          ],
+          [
+            "/etc/passwd",
+            [
+              65024,
+              55879,
+              0,
+              33188,
+              1,
+              1196,
+              1790881501213000000,
+              1790881501215000000,
+              "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+            ]
+          ],
+          [
+            "/etc/group",
+            [
+              65024,
+              55818,
+              0,
+              33188,
+              1,
+              685,
+              1790881501222000000,
+              1790881501224000000,
+              "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+            ]
+          ]
+        ]
+      },
+      "declared_user": "root"
+    },
+    {
+      "name": "typed-unit-reference-org.freedesktop.locale1",
+      "passed": true,
+      "reference": {
+        "configuration": {
+          "requested": "dbus-org.freedesktop.locale1.service",
+          "canonical": "systemd-localed.service",
+          "identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "configured_gid": 0,
+          "executable": "/usr/lib/systemd/systemd-localed",
+          "argv": [
+            "/usr/lib/systemd/systemd-localed"
+          ],
+          "fragment": "/usr/lib/systemd/system/systemd-localed.service",
+          "dropins": [],
+          "service_type": "notify"
+        },
+        "fingerprints": [
+          [
+            "/usr/lib/systemd/system/systemd-localed.service",
+            [
+              65024,
+              9316,
+              0,
+              33188,
+              1,
+              1194,
+              1785164933000000000,
+              1790025832751785534,
+              "20699be1cc7aacc2b5bc8778f5bccdfa2a10e459dd4f91c4cc15d77f59f45c6f"
+            ]
+          ],
+          [
+            "/usr/lib/systemd/systemd-localed",
+            [
+              65024,
+              9463,
+              0,
+              33261,
+              1,
+              51408,
+              1785164933000000000,
+              1790025832755785406,
+              "2d07c269f0381a6d46ea0fe8c17936017d62654192f74527ae9678b05fe6aa33"
+            ]
+          ],
+          [
+            "/etc/passwd",
+            [
+              65024,
+              55879,
+              0,
+              33188,
+              1,
+              1196,
+              1790881501213000000,
+              1790881501215000000,
+              "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+            ]
+          ],
+          [
+            "/etc/group",
+            [
+              65024,
+              55818,
+              0,
+              33188,
+              1,
+              685,
+              1790881501222000000,
+              1790881501224000000,
+              "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+            ]
+          ]
+        ]
+      },
+      "declared_user": "root"
+    },
+    {
+      "name": "typed-unit-reference-org.freedesktop.machine1",
+      "passed": true,
+      "reference": {
+        "configuration": {
+          "requested": "dbus-org.freedesktop.machine1.service",
+          "canonical": "systemd-machined.service",
+          "identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "configured_gid": 0,
+          "executable": "/usr/lib/systemd/systemd-machined",
+          "argv": [
+            "/usr/lib/systemd/systemd-machined"
+          ],
+          "fragment": "/usr/lib/systemd/system/systemd-machined.service",
+          "dropins": [],
+          "service_type": "dbus"
+        },
+        "fingerprints": [
+          [
+            "/usr/lib/systemd/system/systemd-machined.service",
+            [
+              65024,
+              9321,
+              0,
+              33188,
+              1,
+              1326,
+              1785164933000000000,
+              1790025832751785534,
+              "c9b6dc03839d9263f81f3efcf834bdc67d004be0ebcc1d6643b640b3087db88b"
+            ]
+          ],
+          [
+            "/usr/lib/systemd/systemd-machined",
+            [
+              65024,
+              9465,
+              0,
+              33261,
+              1,
+              178416,
+              1785164933000000000,
+              1790025832755785406,
+              "02857761a8804427596eb4371ed8b9d373565d168f64144bc233d083453ca0af"
+            ]
+          ],
+          [
+            "/etc/passwd",
+            [
+              65024,
+              55879,
+              0,
+              33188,
+              1,
+              1196,
+              1790881501213000000,
+              1790881501215000000,
+              "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+            ]
+          ],
+          [
+            "/etc/group",
+            [
+              65024,
+              55818,
+              0,
+              33188,
+              1,
+              685,
+              1790881501222000000,
+              1790881501224000000,
+              "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+            ]
+          ]
+        ]
+      },
+      "declared_user": "root"
+    },
+    {
+      "name": "typed-unit-reference-org.freedesktop.timedate1",
+      "passed": true,
+      "reference": {
+        "configuration": {
+          "requested": "dbus-org.freedesktop.timedate1.service",
+          "canonical": "systemd-timedated.service",
+          "identity": {
+            "user": "root",
+            "uid": 0,
+            "gid": 0
+          },
+          "configured_gid": 0,
+          "executable": "/usr/lib/systemd/systemd-timedated",
+          "argv": [
+            "/usr/lib/systemd/systemd-timedated"
+          ],
+          "fragment": "/usr/lib/systemd/system/systemd-timedated.service",
+          "dropins": [],
+          "service_type": "notify"
+        },
+        "fingerprints": [
+          [
+            "/usr/lib/systemd/system/systemd-timedated.service",
+            [
+              65024,
+              9351,
+              0,
+              33188,
+              1,
+              1174,
+              1785164933000000000,
+              1790025832752785502,
+              "7583cfdf2ced83f4365cf7b59135f5aac1571cd86e4d2a0b670e3cbde174076d"
+            ]
+          ],
+          [
+            "/usr/lib/systemd/systemd-timedated",
+            [
+              65024,
+              9488,
+              0,
+              33261,
+              1,
+              47312,
+              1785164933000000000,
+              1790025832756785374,
+              "008b9afcf727b97cf43151c60266320de33fac929eba4cb5492fa9bd467ae3da"
+            ]
+          ],
+          [
+            "/etc/passwd",
+            [
+              65024,
+              55879,
+              0,
+              33188,
+              1,
+              1196,
+              1790881501213000000,
+              1790881501215000000,
+              "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+            ]
+          ],
+          [
+            "/etc/group",
+            [
+              65024,
+              55818,
+              0,
+              33188,
+              1,
+              685,
+              1790881501222000000,
+              1790881501224000000,
+              "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+            ]
+          ]
+        ]
+      },
+      "declared_user": "root"
+    },
+    {
+      "name": "all-captured-references-revalidated",
+      "passed": true,
+      "captured": 9,
+      "unsupported": [
+        {
+          "name": "org.freedesktop.PolicyKit1",
+          "code": "UnsupportedUnitExecution"
+        },
+        {
+          "name": "org.freedesktop.login1",
+          "code": "UnsupportedUnitExecution"
+        },
+        {
+          "name": "org.freedesktop.timesync1",
+          "code": "UnsupportedUnitExecution"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "boot_id": "b6337a39-c29f-40f1-9b88-6097dfc4b210",
+    "broker_pid": "449",
+    "source_sha256": {
+      "native.py": "d5b381adbfa2ce7a8682c566305897a989436f728c25f87899b1ddeb650a8d91",
+      "reference.py": "faf9ab797c5d1c179b2b0aa77f3a3fc6654cad82b2b70679ef37f80c646dfab7",
+      "namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+      "catalog.py": "267b917b00109ca168b884270835e83760df77e5e1fe7709f1cf994f2359f564",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99"
+    }
+  },
+  "references": [
+    {
+      "name": "org.freedesktop.Accounts",
+      "configuration": {
+        "requested": "accounts-daemon.service",
+        "canonical": "accounts-daemon.service",
+        "identity": {
+          "user": "root",
+          "uid": 0,
+          "gid": 0
+        },
+        "configured_gid": 0,
+        "executable": "/usr/libexec/accounts-daemon",
+        "argv": [
+          "/usr/libexec/accounts-daemon"
+        ],
+        "fragment": "/usr/lib/systemd/system/accounts-daemon.service",
+        "dropins": [],
+        "service_type": "dbus"
+      },
+      "fingerprints": [
+        [
+          "/usr/lib/systemd/system/accounts-daemon.service",
+          [
+            65024,
+            28155,
+            0,
+            33188,
+            1,
+            2150,
+            1776868201000000000,
+            1790025832754785438,
+            "0155a12e265199f51efe878b5aa4dd2eb65b2a23b2f53537d1036e44b1411a11"
+          ]
+        ],
+        [
+          "/usr/libexec/accounts-daemon",
+          [
+            65024,
+            28157,
+            0,
+            33261,
+            1,
+            166288,
+            1776868201000000000,
+            1790025832979778256,
+            "2d73c9c3bd362a5da067a0473b9bf251ced85adab451d42682240aa4f93c1450"
+          ]
+        ],
+        [
+          "/etc/passwd",
+          [
+            65024,
+            55879,
+            0,
+            33188,
+            1,
+            1196,
+            1790881501213000000,
+            1790881501215000000,
+            "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+          ]
+        ],
+        [
+          "/etc/group",
+          [
+            65024,
+            55818,
+            0,
+            33188,
+            1,
+            685,
+            1790881501222000000,
+            1790881501224000000,
+            "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "org.freedesktop.Flatpak.SystemHelper",
+      "configuration": {
+        "requested": "flatpak-system-helper.service",
+        "canonical": "flatpak-system-helper.service",
+        "identity": {
+          "user": "root",
+          "uid": 0,
+          "gid": 0
+        },
+        "configured_gid": 0,
+        "executable": "/usr/libexec/flatpak-system-helper",
+        "argv": [
+          "/usr/libexec/flatpak-system-helper"
+        ],
+        "fragment": "/usr/lib/systemd/system/flatpak-system-helper.service",
+        "dropins": [],
+        "service_type": "dbus"
+      },
+      "fingerprints": [
+        [
+          "/usr/lib/systemd/system/flatpak-system-helper.service",
+          [
+            65024,
+            29971,
+            0,
+            33188,
+            1,
+            263,
+            1776312443000000000,
+            1790025832754785438,
+            "0da62089ff6c669831d885a5eefbefbf2234ddc72bc6d79bb04b320084af03e2"
+          ]
+        ],
+        [
+          "/usr/libexec/flatpak-system-helper",
+          [
+            65024,
+            29984,
+            0,
+            33261,
+            1,
+            506264,
+            1776312443000000000,
+            1790025832979778256,
+            "f0a95575890d83d05ac44ae8f2a0241b748beb022bcd9b97426f47254855e4e1"
+          ]
+        ],
+        [
+          "/etc/passwd",
+          [
+            65024,
+            55879,
+            0,
+            33188,
+            1,
+            1196,
+            1790881501213000000,
+            1790881501215000000,
+            "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+          ]
+        ],
+        [
+          "/etc/group",
+          [
+            65024,
+            55818,
+            0,
+            33188,
+            1,
+            685,
+            1790881501222000000,
+            1790881501224000000,
+            "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "org.freedesktop.GeoClue2",
+      "configuration": {
+        "requested": "geoclue.service",
+        "canonical": "geoclue.service",
+        "identity": {
+          "user": "srvGeoClue",
+          "uid": 477,
+          "gid": 477
+        },
+        "configured_gid": 477,
+        "executable": "/usr/libexec/geoclue",
+        "argv": [
+          "/usr/libexec/geoclue"
+        ],
+        "fragment": "/usr/lib/systemd/system/geoclue.service",
+        "dropins": [],
+        "service_type": "dbus"
+      },
+      "fingerprints": [
+        [
+          "/usr/lib/systemd/system/geoclue.service",
+          [
+            65024,
+            38812,
+            0,
+            33188,
+            1,
+            510,
+            1776896557000000000,
+            1790093052433395613,
+            "8cbccd77e79e696a9b984ee041febae43d02bdb0bcc77d1e219ec7e66412a306"
+          ]
+        ],
+        [
+          "/usr/libexec/geoclue",
+          [
+            65024,
+            38815,
+            0,
+            33261,
+            1,
+            268776,
+            1776896557000000000,
+            1790093052433395613,
+            "b677812beb2bd0a16a432a864d00ffea037f13da4404e8d9b51a67ca1951bf11"
+          ]
+        ],
+        [
+          "/etc/passwd",
+          [
+            65024,
+            55879,
+            0,
+            33188,
+            1,
+            1196,
+            1790881501213000000,
+            1790881501215000000,
+            "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+          ]
+        ],
+        [
+          "/etc/group",
+          [
+            65024,
+            55818,
+            0,
+            33188,
+            1,
+            685,
+            1790881501222000000,
+            1790881501224000000,
+            "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "org.freedesktop.RealtimeKit1",
+      "configuration": {
+        "requested": "rtkit-daemon.service",
+        "canonical": "rtkit-daemon.service",
+        "identity": {
+          "user": "root",
+          "uid": 0,
+          "gid": 0
+        },
+        "configured_gid": 0,
+        "executable": "/usr/libexec/rtkit/rtkit-daemon",
+        "argv": [
+          "/usr/libexec/rtkit/rtkit-daemon"
+        ],
+        "fragment": "/usr/lib/systemd/system/rtkit-daemon.service",
+        "dropins": [],
+        "service_type": "dbus"
+      },
+      "fingerprints": [
+        [
+          "/usr/lib/systemd/system/rtkit-daemon.service",
+          [
+            65024,
+            30082,
+            0,
+            33188,
+            1,
+            1381,
+            1708689370000000000,
+            1790373920050130810,
+            "9f3b598db0faf2b762d0c64698f5d33dffba59b67b2aeb66c0cd384334e6ed7a"
+          ]
+        ],
+        [
+          "/usr/libexec/rtkit/rtkit-daemon",
+          [
+            65024,
+            50818,
+            0,
+            33261,
+            1,
+            63960,
+            1708689370000000000,
+            1790373920051130852,
+            "5f6115e64d29ad62c27ef8356a4843e7987b76523de73e23c4a46a1141c0f270"
+          ]
+        ],
+        [
+          "/etc/passwd",
+          [
+            65024,
+            55879,
+            0,
+            33188,
+            1,
+            1196,
+            1790881501213000000,
+            1790881501215000000,
+            "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+          ]
+        ],
+        [
+          "/etc/group",
+          [
+            65024,
+            55818,
+            0,
+            33188,
+            1,
+            685,
+            1790881501222000000,
+            1790881501224000000,
+            "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "org.freedesktop.hostname1",
+      "configuration": {
+        "requested": "dbus-org.freedesktop.hostname1.service",
+        "canonical": "systemd-hostnamed.service",
+        "identity": {
+          "user": "root",
+          "uid": 0,
+          "gid": 0
+        },
+        "configured_gid": 0,
+        "executable": "/usr/lib/systemd/systemd-hostnamed",
+        "argv": [
+          "/usr/lib/systemd/systemd-hostnamed"
+        ],
+        "fragment": "/usr/lib/systemd/system/systemd-hostnamed.service",
+        "dropins": [],
+        "service_type": "notify"
+      },
+      "fingerprints": [
+        [
+          "/usr/lib/systemd/system/systemd-hostnamed.service",
+          [
+            65024,
+            9299,
+            0,
+            33188,
+            1,
+            1224,
+            1785164933000000000,
+            1790025832750785565,
+            "e717824d38cbccd038a480e24d1023faf1f52e39b1d39503a3187c19b81158b9"
+          ]
+        ],
+        [
+          "/usr/lib/systemd/systemd-hostnamed",
+          [
+            65024,
+            9457,
+            0,
+            33261,
+            1,
+            55504,
+            1785164933000000000,
+            1790025832739785917,
+            "010a9174d5f9ace6cdd366d9360be45fc19ddad55445f654623f94982b849dfa"
+          ]
+        ],
+        [
+          "/etc/passwd",
+          [
+            65024,
+            55879,
+            0,
+            33188,
+            1,
+            1196,
+            1790881501213000000,
+            1790881501215000000,
+            "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+          ]
+        ],
+        [
+          "/etc/group",
+          [
+            65024,
+            55818,
+            0,
+            33188,
+            1,
+            685,
+            1790881501222000000,
+            1790881501224000000,
+            "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "org.freedesktop.import1",
+      "configuration": {
+        "requested": "dbus-org.freedesktop.import1.service",
+        "canonical": "systemd-importd.service",
+        "identity": {
+          "user": "root",
+          "uid": 0,
+          "gid": 0
+        },
+        "configured_gid": 0,
+        "executable": "/usr/lib/systemd/systemd-importd",
+        "argv": [
+          "/usr/lib/systemd/systemd-importd"
+        ],
+        "fragment": "/usr/lib/systemd/system/systemd-importd.service",
+        "dropins": [],
+        "service_type": "notify"
+      },
+      "fingerprints": [
+        [
+          "/usr/lib/systemd/system/systemd-importd.service",
+          [
+            65024,
+            9303,
+            0,
+            33188,
+            1,
+            1249,
+            1785164933000000000,
+            1790025832751785534,
+            "1a1f83f340bddca9c6272f596346af28084e09f59702850cdf6cde7e4ef47c52"
+          ]
+        ],
+        [
+          "/usr/lib/systemd/systemd-importd",
+          [
+            65024,
+            9460,
+            0,
+            33261,
+            1,
+            63712,
+            1785164933000000000,
+            1790025832738785949,
+            "9be0b3b40a0812bcf5eb2a3052d5300f299a954f143a9062dce47212601d814c"
+          ]
+        ],
+        [
+          "/etc/passwd",
+          [
+            65024,
+            55879,
+            0,
+            33188,
+            1,
+            1196,
+            1790881501213000000,
+            1790881501215000000,
+            "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+          ]
+        ],
+        [
+          "/etc/group",
+          [
+            65024,
+            55818,
+            0,
+            33188,
+            1,
+            685,
+            1790881501222000000,
+            1790881501224000000,
+            "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "org.freedesktop.locale1",
+      "configuration": {
+        "requested": "dbus-org.freedesktop.locale1.service",
+        "canonical": "systemd-localed.service",
+        "identity": {
+          "user": "root",
+          "uid": 0,
+          "gid": 0
+        },
+        "configured_gid": 0,
+        "executable": "/usr/lib/systemd/systemd-localed",
+        "argv": [
+          "/usr/lib/systemd/systemd-localed"
+        ],
+        "fragment": "/usr/lib/systemd/system/systemd-localed.service",
+        "dropins": [],
+        "service_type": "notify"
+      },
+      "fingerprints": [
+        [
+          "/usr/lib/systemd/system/systemd-localed.service",
+          [
+            65024,
+            9316,
+            0,
+            33188,
+            1,
+            1194,
+            1785164933000000000,
+            1790025832751785534,
+            "20699be1cc7aacc2b5bc8778f5bccdfa2a10e459dd4f91c4cc15d77f59f45c6f"
+          ]
+        ],
+        [
+          "/usr/lib/systemd/systemd-localed",
+          [
+            65024,
+            9463,
+            0,
+            33261,
+            1,
+            51408,
+            1785164933000000000,
+            1790025832755785406,
+            "2d07c269f0381a6d46ea0fe8c17936017d62654192f74527ae9678b05fe6aa33"
+          ]
+        ],
+        [
+          "/etc/passwd",
+          [
+            65024,
+            55879,
+            0,
+            33188,
+            1,
+            1196,
+            1790881501213000000,
+            1790881501215000000,
+            "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+          ]
+        ],
+        [
+          "/etc/group",
+          [
+            65024,
+            55818,
+            0,
+            33188,
+            1,
+            685,
+            1790881501222000000,
+            1790881501224000000,
+            "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "org.freedesktop.machine1",
+      "configuration": {
+        "requested": "dbus-org.freedesktop.machine1.service",
+        "canonical": "systemd-machined.service",
+        "identity": {
+          "user": "root",
+          "uid": 0,
+          "gid": 0
+        },
+        "configured_gid": 0,
+        "executable": "/usr/lib/systemd/systemd-machined",
+        "argv": [
+          "/usr/lib/systemd/systemd-machined"
+        ],
+        "fragment": "/usr/lib/systemd/system/systemd-machined.service",
+        "dropins": [],
+        "service_type": "dbus"
+      },
+      "fingerprints": [
+        [
+          "/usr/lib/systemd/system/systemd-machined.service",
+          [
+            65024,
+            9321,
+            0,
+            33188,
+            1,
+            1326,
+            1785164933000000000,
+            1790025832751785534,
+            "c9b6dc03839d9263f81f3efcf834bdc67d004be0ebcc1d6643b640b3087db88b"
+          ]
+        ],
+        [
+          "/usr/lib/systemd/systemd-machined",
+          [
+            65024,
+            9465,
+            0,
+            33261,
+            1,
+            178416,
+            1785164933000000000,
+            1790025832755785406,
+            "02857761a8804427596eb4371ed8b9d373565d168f64144bc233d083453ca0af"
+          ]
+        ],
+        [
+          "/etc/passwd",
+          [
+            65024,
+            55879,
+            0,
+            33188,
+            1,
+            1196,
+            1790881501213000000,
+            1790881501215000000,
+            "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+          ]
+        ],
+        [
+          "/etc/group",
+          [
+            65024,
+            55818,
+            0,
+            33188,
+            1,
+            685,
+            1790881501222000000,
+            1790881501224000000,
+            "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "org.freedesktop.timedate1",
+      "configuration": {
+        "requested": "dbus-org.freedesktop.timedate1.service",
+        "canonical": "systemd-timedated.service",
+        "identity": {
+          "user": "root",
+          "uid": 0,
+          "gid": 0
+        },
+        "configured_gid": 0,
+        "executable": "/usr/lib/systemd/systemd-timedated",
+        "argv": [
+          "/usr/lib/systemd/systemd-timedated"
+        ],
+        "fragment": "/usr/lib/systemd/system/systemd-timedated.service",
+        "dropins": [],
+        "service_type": "notify"
+      },
+      "fingerprints": [
+        [
+          "/usr/lib/systemd/system/systemd-timedated.service",
+          [
+            65024,
+            9351,
+            0,
+            33188,
+            1,
+            1174,
+            1785164933000000000,
+            1790025832752785502,
+            "7583cfdf2ced83f4365cf7b59135f5aac1571cd86e4d2a0b670e3cbde174076d"
+          ]
+        ],
+        [
+          "/usr/lib/systemd/systemd-timedated",
+          [
+            65024,
+            9488,
+            0,
+            33261,
+            1,
+            47312,
+            1785164933000000000,
+            1790025832756785374,
+            "008b9afcf727b97cf43151c60266320de33fac929eba4cb5492fa9bd467ae3da"
+          ]
+        ],
+        [
+          "/etc/passwd",
+          [
+            65024,
+            55879,
+            0,
+            33188,
+            1,
+            1196,
+            1790881501213000000,
+            1790881501215000000,
+            "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+          ]
+        ],
+        [
+          "/etc/group",
+          [
+            65024,
+            55818,
+            0,
+            33188,
+            1,
+            685,
+            1790881501222000000,
+            1790881501224000000,
+            "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+          ]
+        ]
+      ]
+    }
+  ],
+  "unsupported": [
+    {
+      "name": "org.freedesktop.PolicyKit1",
+      "code": "UnsupportedUnitExecution"
+    },
+    {
+      "name": "org.freedesktop.login1",
+      "code": "UnsupportedUnitExecution"
+    },
+    {
+      "name": "org.freedesktop.timesync1",
+      "code": "UnsupportedUnitExecution"
+    }
+  ],
+  "original_accounts": {
+    "/etc/passwd": [
+      65024,
+      55879,
+      0,
+      33188,
+      1,
+      1196,
+      1790881501213000000,
+      1790881501215000000,
+      "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35"
+    ],
+    "/etc/group": [
+      65024,
+      55818,
+      0,
+      33188,
+      1,
+      685,
+      1790881501222000000,
+      1790881501224000000,
+      "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    ],
+    "/etc/pam.d/systemd-user": [
+      65024,
+      33620,
+      0,
+      33188,
+      1,
+      1174,
+      1791049802277000000,
+      1791049802277000000,
+      "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e"
+    ]
+  },
+  "full_account_protection": false,
+  "global_coverage_qualified": false,
+  "running_credentials_qualified": false,
+  "real_activation_or_revocation_tested": false,
+  "storage_fault_injection_real": false
+}
