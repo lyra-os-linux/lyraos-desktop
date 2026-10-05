@@ -592,3 +592,19 @@ Inclusão e qualificação na candidata exata permanecem pendentes: conferir
 versões/assinaturas, conta nova, migração da personalização opt-in, papel de
 parede, claro/escuro e acessibilidade em VM e outro hardware aplicável. O
 protótipo fixo era um resíduo local; verificar sua ausência na imagem limpa.
+## ID-01 — Persistência da identidade após Leap-release (05/10/2026)
+
+Recorrência confirmada na estação: lyra-release1.1 instalado só continha o
+marcador do Updater; Leap-release16.1-lp161.151.1 restabeleceu o symlink upstream.
+A correção isolada amplia o pacote existente com auxiliar idempotente, aplicação
+no posttrans e gatilho de transação para os-release. Sem propriedade RPM duplicada,
+immutable ou alteração do vendor /usr/lib/os-release e produtos Leap.
+
+10 testes, construção RPM e sete verificações em overlay descartável passaram:
+instalar, reinstalar Leap-release duas vezes, conservar nome/logo/metadados de
+imagem e remover/restaurar o link anterior. Três falhas anteriores arquivadas.
+Evidências: docs/evidence/release-identity-20261005. O reparo local restaurou
+Lyra OS1.1 via auxiliar, com vendor e marcador do Updater preservados. O RPM
+novo ainda não foi publicado/instalado; proteção automática e candidata ISO
+permanecem pendentes até distribuição e teste da imagem exata. Reversão do
+reparo: auxiliar --restore somente se o digest ainda corresponder ao gerado.

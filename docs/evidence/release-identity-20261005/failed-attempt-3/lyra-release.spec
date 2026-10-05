@@ -34,15 +34,8 @@ grep -Fx "LYRA_BUILD_ID='lyra-release-%{version}'" %{SOURCE0}
 %{_libexecdir}/lyra-release-identity
 
 # Reapply after release-file transactions, using RPM default trigger priority.
-%transfiletriggerin -- /usr/lib /etc
-while IFS= read -r changed_path; do
-    case "$changed_path" in
-        /usr/lib/os-release|/etc/os-release)
-            %{_libexecdir}/lyra-release-identity
-            exit $?
-            ;;
-    esac
-done
+%transfiletriggerin -- /usr/lib/os-release /etc/os-release
+%{_libexecdir}/lyra-release-identity
 
 %preun
 if [ "$1" -eq 0 ]; then

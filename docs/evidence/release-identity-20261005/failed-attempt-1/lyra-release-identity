@@ -1,0 +1,92 @@
+#!/usr/bin/python3
+"""Maintain the Lyra display identity after RPM transactions on Leap 16.1."""
+import base64,hashlib,json,os,re,shlex,stat,sys,tempfile
+from pathlib import Path
+STATE='var/lib/lyra-release/identity-state.json'
+def read(path,owner):
+    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_CLOEXEC)
+    try:
+        s=os.fstat(fd)
+        if not stat.S_ISREG(s.st_mode) or s.st_uid!=owner or s.st_mode&0o022 or s.st_size>65536:raise ValueError('unsafe identity source: '+str(path))
+        with os.fdopen(os.dup(fd),'rb') as f:return f.read(65537)
+    finally:os.close(fd)
+def parse(data):
+    rows={}
+    for line in data.decode().splitlines():
+        if not line.strip() or line.startswith('#'):continue
+        key,sep,value=line.partition('=')
+        if not sep or not re.fullmatch('[A-Z][A-Z0-9_]*',key) or key in rows:raise ValueError('invalid identity data')
+        words=shlex.split(value)
+        if len(words)!=1:raise ValueError('invalid identity value')
+        rows[key]=words[0]
+    return rows
+def atomic(path,data,mode=0o644):
+    fd,tmp=tempfile.mkstemp(prefix='.'+path.name+'-',dir=path.parent)
+    try:
+        with os.fdopen(fd,'wb') as f:f.write(data);os.fchmod(f.fileno(),mode);f.flush();os.fsync(f.fileno())
+        os.replace(tmp,path)
+        fd=os.open(path.parent,os.O_RDONLY|os.O_DIRECTORY)
+        try:os.fsync(fd)
+        finally:os.close(fd)
+    finally:
+        if os.path.exists(tmp):os.unlink(tmp)
+def sha(data):return hashlib.sha256(data).hexdigest()
+def apply(root=Path('/'),owner=0):
+    vendor=read(root/'usr/lib/os-release',owner);base=parse(vendor)
+    product=parse(read(root/'usr/lib/lyra-os/product-release',owner));version=product['LYRA_VERSION_ID']
+    if base.get('ID')!='opensuse-leap' or base.get('VERSION_ID')!='16.1' or product.get('LYRA_EDITION')!='desktop' or not re.fullmatch(r'[0-9]+(?:\.[0-9]+)+',version):raise ValueError('unsupported base or product identity')
+    target=root/'etc/os-release';state=root/STATE
+    if target.is_symlink():
+        link=os.readlink(target)
+        if link not in ('../usr/lib/os-release','/usr/lib/os-release'):raise ValueError('unmanaged os-release symlink')
+        original=dict(kind='symlink',target=link);current=base
+    elif target.exists():
+        data=read(target,owner);current=parse(data);original=dict(kind='file',data=base64.b64encode(data).decode(),mode=target.stat().st_mode&0o777)
+        if current.get('ID') not in ('lyra-os','opensuse-leap'):raise ValueError('preserving unmanaged os-release')
+    else:original=dict(kind='absent');current=base
+    old=json.loads(read(state,owner)) if state.exists() else None
+    if old is not None:original=old['original']
+    display=dict(base)
+    image=dict(old.get('image_metadata',{})) if old else {}
+    for key in ('IMAGE_ID','IMAGE_VERSION','BUILD_ID','VERSION_CODENAME'):
+        if current.get('ID')=='lyra-os' and key in current:image[key]=current[key]
+    display.update(image)
+    display.update(NAME='Lyra OS',PRETTY_NAME='Lyra OS '+version,ID='lyra-os',ID_LIKE='opensuse suse',VERSION=version,VERSION_ID=version,LOGO='distributor-logo-lyra',LYRA_BASE_ID=base['ID'],LYRA_BASE_VERSION_ID=base['VERSION_ID'])
+    def quoted(value):
+        if any(ord(c)<32 for c in value):raise ValueError('invalid identity control character')
+        return '"'+value.replace('\\','\\\\').replace('"','\\"').replace('$','\\$').replace('`','\\`')+'"'
+    data=(''.join(key+'='+quoted(value)+'\n' for key,value in display.items())).encode()
+    # Save rollback before changing the display file. Vendor identity is read-only.
+    state.parent.mkdir(mode=0o755,parents=True,exist_ok=True)
+    directory=state.parent.lstat()
+    if not stat.S_ISDIR(directory.st_mode) or directory.st_uid!=owner or directory.st_mode&0o022:raise ValueError('unsafe identity state directory')
+    row=dict(schema=1,original=original,managed_sha256=sha(data),vendor_sha256=sha(vendor),image_metadata=image)
+    atomic(state,(json.dumps(row,sort_keys=True)+'\n').encode(),0o600)
+    if target.is_symlink() or not target.exists() or read(target,owner)!=data:atomic(target,data)
+    return display
+
+def restore(root=Path('/'),owner=0):
+    state=root/STATE;target=root/'etc/os-release'
+    if not state.exists():return
+    row=json.loads(read(state,owner))
+    if target.is_symlink() or not target.exists() or sha(read(target,owner))!=row['managed_sha256']:raise ValueError('preserving later os-release changes')
+    original=row['original']
+    if original['kind']=='symlink':
+        if original['target'] not in ('../usr/lib/os-release','/usr/lib/os-release'):raise ValueError('invalid saved symlink')
+        tmp=target.with_name('.os-release-lyra-restore')
+        os.symlink(original['target'],tmp)
+        try:os.replace(tmp,target)
+        finally:tmp.unlink(missing_ok=True)
+    elif original['kind']=='file':atomic(target,base64.b64decode(original['data'],validate=True),original['mode'])
+    elif original['kind']=='absent':target.unlink()
+    else:raise ValueError('invalid saved identity')
+    state.unlink()
+
+if __name__=='__main__':
+    try:
+        if os.geteuid()!=0:raise ValueError('root is required')
+        if sys.argv[1:]==['--restore']:restore()
+        elif not sys.argv[1:]:apply()
+        else:raise ValueError('unsupported arguments')
+    except (OSError,ValueError,KeyError) as error:
+        print('lyra-release: '+str(error),file=sys.stderr);sys.exit(1)

@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Mon Oct  5 12:00:00 UTC 2026 - Rodrigo Brito
+
+- Reapply Lyra OS display identity after Leap-release transactions.
+- Preserve vendor files and image metadata; restore the previous identity on
+  removal when no later local changes occurred.
+
+-------------------------------------------------------------------
 Tue Sep  1 17:20:00 UTC 2026 - Rodrigo Brito
 
 - Align the RPM-owned product identity with Lyra OS 1.1 and Leap 16.1.

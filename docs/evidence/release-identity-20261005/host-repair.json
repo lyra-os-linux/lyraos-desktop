@@ -1,0 +1,6 @@
+{
+  "identity": "NAME=\"Lyra OS\"\nVERSION=\"1.1\"\nID=\"lyra-os\"\nID_LIKE=\"opensuse suse\"\nVERSION_ID=\"1.1\"\nPRETTY_NAME=\"Lyra OS 1.1\"\nANSI_COLOR=\"0;32\"\nCPE_NAME=\"cpe:/o:opensuse:leap:16.1\"\nBUG_REPORT_URL=\"https://bugs.opensuse.org\"\nHOME_URL=\"https://www.opensuse.org/\"\nDOCUMENTATION_URL=\"https://en.opensuse.org/Portal:Leap\"\nLOGO=\"distributor-logo-lyra\"\nLYRA_BASE_ID=\"opensuse-leap\"\nLYRA_BASE_VERSION_ID=\"16.1\"\n",
+  "vendor_sha256": "4b683f9a96597d0b16bd1045554dad4cf25645c595791ec94573c974d95b8bd8",
+  "updater_identity": "LYRA_VERSION_ID='1.1'\nLYRA_EDITION='desktop'\nLYRA_ARCHITECTURE='x86_64'\nLYRA_BUILD_ID='lyra-release-1.1'\n",
+  "rpm_transaction_performed": false
+}
