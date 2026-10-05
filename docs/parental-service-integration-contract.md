@@ -234,3 +234,11 @@ Create/Remove e mutação supervised continuam indisponíveis na fixture;
 parâmetros finais e efeito Unix ainda não implementados. Instalação na estação
 para teste com conta local nova foi solicitada/autorizada pelo mantenedor após
 concluir o controle parental e suas validações; não instalar fixtures como produto.
+
+## Parâmetros administrativos selados — 05/10/2026
+
+O [envelope tipado de parâmetros](evidence/parental-administrative-parameters/README.md)
+fixa nome/grupos/GIDs/efeito wheel no plano, revalida grupos em torno da
+autorização e produz argv sem shell. Não executa Unix; senha/foto continuam
+explicitamente indisponíveis na fixture. Qualificação do efeito real permanece
+próxima etapa, sem mudar os gates de produto ou a autorização de teste local.

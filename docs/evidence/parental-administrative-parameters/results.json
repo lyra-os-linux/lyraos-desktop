@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-05",
+  "result": "PASS",
+  "specific_tests": 12,
+  "suite_tests": 805,
+  "unix_commands_executed": false,
+  "group_resolution": "trusted memory resolver",
+  "production_integrated": false,
+  "local_installation_authorized_after_completion": true,
+  "files": {
+    "docs/evidence/parental-administrative-parameters/parameters.py": "e0a6880ba6b803350bfcb95a508542389782bda0c4de9fb0d0811b6ed22817a9",
+    "tests/test_parental_administrative_parameters.py": "cb905dbbd463d248c576ea4c57c2f6eddf300ad28c2d636f7d4e8827c4874124",
+    "docs/evidence/parental-administrative-parameters/tests-output.txt": "b220f714953eb63b137622f21e1b1e95ded5c87e00000a027aa4aac7330d6a1f",
+    "docs/evidence/parental-administrative-guard/guard.py": "6f983999bed3720df5779cd2794e323dfd9e4709bc23ff7e296d5f8ae8799c5f"
+  }
+}
