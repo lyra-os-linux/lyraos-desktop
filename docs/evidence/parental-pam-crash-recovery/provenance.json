@@ -1,0 +1,40 @@
+{
+  "base_commit": "e6770f5f6e755c0a5b551abe0e5c96b91bfc67e6",
+  "suite_tests": 744,
+  "crash_cases": 4,
+  "native_controls": 75,
+  "artifacts": {
+    "acceptance-synced/native-response.json": "1f28f1444b403497dd82012ab8bca1c4d87d1e0e3d7976cf07468fcef9292c1e",
+    "acceptance-synced/restoration-executions.json": "45b25a0cd46f0b867ffbf01eac80f0e79afaeff95f73c77b342592f96e34b2e0",
+    "acceptance-synced/result.json": "229ce2bb7ca567b3c9b54e4e8ee742efe4e74d60624ecaf5059cd74ca4fb45b1",
+    "crash-worker.py": "6bf5db8f6bbac092560be36d3bb9f6f1ac68aee61703ecda400d7bfbd7c3dce1",
+    "intent-synced/native-response.json": "74ab66d14b994f57e00c9cbe6da55ea2f24a3794ce3f4af38d19ae9d3a53d7fc",
+    "intent-synced/restoration-executions.json": "3dfa9c3c71637dc34c62b0cb3794693965d50e5c97ec1dcc928abce423843746",
+    "intent-synced/result.json": "e5f2b8baf5767ef46601873a6bb68ffd2ff7586e3106e74a751832b3ec121394",
+    "matrix.json": "13509c94504c07375fe23b90782c372f0607d2cc2c3349cfdc0a423fd3f2e572",
+    "native-crash.py": "b71b71fd035878d54956928e77de064366918ded684ee660097a6cb86d0e1179",
+    "origin-synced/native-response.json": "3fb6a71161900d6cd3e1b9e329f68ba9b985b32b164f062b2c9465fc724a081a",
+    "origin-synced/restoration-executions.json": "bea18cb1cb738640e72f95d86122a19fdbb6ebdb6088737867f534bef15f0b36",
+    "origin-synced/result.json": "34002a59ea8a8daa6f7c611e8386ee7e1efd027599f1e8a08c46e0b8de5f8659",
+    "poweroff-response.json": "a8d55fc5d71271fbd3e355dc72b87c74df0264a39a9f6574a663761ab78f0053",
+    "python-suite.txt": "6cbef520c5f11fb4be2099dd6bcbd5b881764ad28089600a195d0aa7c373725d",
+    "request-returned/native-response.json": "fa73fcd9dd9dfcba3ebee74bc005df32adce201f0872f0114508120ef46199f5",
+    "request-returned/restoration-executions.json": "b3baae48a3d14ad0f5d374bf8a34af29a9c4a9555311eb4236e3e8ba8d36eac5",
+    "request-returned/result.json": "b82f70e89ea923b90a4c6f3ab64242bbd5d608607e3aee27c0dfa0dd73ec4c75",
+    "vm-off.json": "2b5e3189815922130d4c9470d41b6aa5fb93f27ae7ff742ecef04e7635a9f1ca"
+  },
+  "dependencies": {
+    "parental-pam-unit-stop/pam.py": "98e0dd05895c36adaa68ba3b6b9384d33ded20fb8c8522c9f3e7ed6688558d3f",
+    "parental-pam-helper-recovery/recovery.py": "ac26412906fc6708eabdfac0e1208df321e6adc10a852be881737ecaa54e03c0",
+    "parental-cold-unit-stop/cold.py": "e487d0a3d359c9d2f2fb6e273c396e05add2d75b900061cbf04a529695235f13",
+    "parental-pam-daemon-recovery/restart.py": "97682bd5dffefb80d44eb6ccf1caab28553606351b5001328353dd6286d90019",
+    "parental-pam-daemon-recovery/restarted-reader.py": "13d33271d7f2d88f176fa3a296d2a2e4100224debea96ce2f0240087f61bce17",
+    "parental-pam-main-exit/pam-close-hold.c": "f875c78efee484df529b7c945a03d1cdd9e600585cfb26589b8410f2819d96e5",
+    "parental-unit-stop-jobs/effects.py": "172b9ef68050f53392a4465b9b7a4be87379efbbf4f9181f434a8f245426ab0f",
+    "parental-unit-stop-jobs/jobs.py": "2dec8da6f06b5e016382b9c38d735e8a67fa67b22e1113c690b96cd7d9800254",
+    "parental-unit-stop-jobs/backend.py": "5320d92fd02e1e735bdd776bac467fb9b493adb004c67733d899cac38c46a4eb",
+    "parental-guarded-unit-stop/guard.py": "3171026adc23d1bcdf02fad6931b35a0d65577671b4367a80dde8fec795222a8",
+    "parental-running-reference/linux.py": "f5fc2b2264e0f5094bb1c949af4fe165049e1bc16a62bdbcb4ec97bf8859ab94",
+    "parental-ordinary-withdrawal/withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2"
+  }
+}

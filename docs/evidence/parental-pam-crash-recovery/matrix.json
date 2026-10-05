@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "point": "origin-synced",
+      "passed": true,
+      "controls": 18,
+      "cleanup_rc": 0
+    },
+    {
+      "point": "intent-synced",
+      "passed": true,
+      "controls": 19,
+      "cleanup_rc": 0
+    },
+    {
+      "point": "request-returned",
+      "passed": true,
+      "controls": 19,
+      "cleanup_rc": 0
+    },
+    {
+      "point": "acceptance-synced",
+      "passed": true,
+      "controls": 19,
+      "cleanup_rc": 0
+    }
+  ],
+  "total_controls": 75,
+  "same_overlay": true,
+  "production_qualified": false,
+  "power_loss_tested": false
+}
