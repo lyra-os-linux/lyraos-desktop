@@ -32,7 +32,10 @@ modificada pelo ensaio de RPM. Três tentativas anteriores que falharam estão
 arquivadas. O desligamento fechou o canal antes da resposta; QEMU exit0 confirma
 a parada, sem alegar resposta bem-sucedida do RPC de poweroff.
 
-O reparo da estação aplicou apenas o auxiliar; o RPM público instalado continua
-antigo. Publicar e instalar a nova revisão no OBS, somente Leap16.1, é necessário
-para tornar a proteção automática disponível na estação e nas imagens novas.
+O RPM assinado 1.1-lp161.2.1 foi promovido pelo SR1382519 e instalado na estação
+como atualização de um pacote, via API do projeto release. A proteção automática
+está ativa. A publicação pública do OBS, somente Leap16.1, passou pelo gate do
+canal completo e pela verificação das assinaturas de metadata/RPM; o SHA256 do
+RPM público é idêntico ao artefato já instalado. Evidência assinada e da estação:
+`docs/evidence/release-identity-signed-20261005`.
 A inclusão e qualificação do checksum da próxima ISO continuam pendentes.
