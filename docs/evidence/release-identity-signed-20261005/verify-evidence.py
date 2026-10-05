@@ -13,4 +13,6 @@ assert result['disk_is_disposable_overlay'] is True and result['host_changed'] i
 assert result['fixture_rpms']['lyra-release.rpm']==publication['staging_rpm_sha256']
 assert (root/'staging-rpm-sha256.txt').read_text().split()[0]==publication['staging_rpm_sha256']
 assert publication['signing_fingerprint']=='399218A6E088C4053F4533BE58097F767EDCA82E'
+for name,digest in publication['evidence_sha256'].items():
+    assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest
 print('PASS: seven signed RPM checks and artifact identity match')

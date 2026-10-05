@@ -10,5 +10,13 @@
   "checks": 7,
   "vm_disposable": true,
   "host_installed": false,
-  "release_promotion": "pending"
+  "release_promotion": "pending",
+  "evidence_sha256": {
+    "native.py": "6c2a5ef12c4fde600489afd6dbc47dfafaeae56495896dac6d94960a1b018002",
+    "signed-result.json": "281f1f61d960f3464c26fe58115271676c7681275ef2da3194f8b35446734b97",
+    "signed-native-response.json": "71fc8eab72f87b84e9caa3d880a7794501a8dc9207afc37f326cd190484890af",
+    "staging-signature.txt": "fd3503a3c4527917860cebc453d5516cdca91e386bfbe455b92316045806b793",
+    "staging-buildhistory.txt": "9b0d7cf3915c5eb8e167a0a1ec3fce84bdaab58ba7551a73e1851d290d42c189",
+    "obs-signing-key.asc": "66b8cda88e6b5d707e6f9d75a9579ab785daebf33b63e39d9cb86335294e7a25"
+  }
 }
