@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-05",
+  "result": "PASS",
+  "specific_tests": 14,
+  "suite_tests": 780,
+  "catalog_lock": "real flock in user-owned temporary directory",
+  "inventory_and_withdrawal_storage": "memory",
+  "authorization": "trusted callback; not Polkit",
+  "production_integrated": false,
+  "quiescence": false,
+  "vm_crash_qualification": false,
+  "antirollback": false,
+  "files": {
+    "docs/evidence/parental-service-withdrawal/binding.py": "a438692f71a4fe16ead8e5b1fc492693335a7c77752c276eb244cfe427cad963",
+    "tests/test_parental_service_withdrawal.py": "09872dcec38ae8bb995875e69c36930a33b227b985204f37712f44175ac57ae6",
+    "docs/evidence/parental-service-withdrawal/tests-output.txt": "f0cb8a45892e831f99b97a927ff09c5320b924542b60bb9c1b7e37ce225a1852",
+    "docs/evidence/parental-operation-journal/operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+    "docs/evidence/parental-ordinary-withdrawal/withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+    "docs/evidence/parental-service-classifier/classifier.py": "3e9f166e4af7d59c08c3a4881b818c8348c316878ad2e79e23f16ca3924a45a4"
+  }
+}

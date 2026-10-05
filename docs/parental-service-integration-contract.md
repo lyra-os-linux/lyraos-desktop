@@ -202,3 +202,11 @@ O [classificador e planejador experimental](evidence/parental-service-classifier
 implementa parsing/leitura read-only, elegibilidade e planos vinculados ao
 remetente/revisão. Não implementa publicação, Polkit, execução da retirada
 ou guard de produto. As decisões abertas deste contrato permanecem abertas.
+
+## Ligação à retirada negativa — 05/10/2026
+
+A [ligação experimental](evidence/parental-service-withdrawal/README.md)
+conecta planos aos modelos existentes, vincula catálogo/geração ao journal e
+revalida antes do intent. Autorização é callback confiável; ledger/inventário
+são simulados nos testes novos. Não qualifica armazenamento integrado ou
+transporte/Polkit de produto e mantém os gates acima.
