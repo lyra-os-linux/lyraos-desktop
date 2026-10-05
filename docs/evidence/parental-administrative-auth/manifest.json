@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "files": {
+    "adapter.py": "029a1af64ef1ca6a335fa3ce9505738d9b35e6fd31557844706d43bbf0dd5896",
+    "cleanup-check.json": "01e089c2e4735c0eeea0e2604603b195501f3caa1101de3bf948b07d1d8b6c34",
+    "client.py": "606730926d68dba6f76ec6376e70d63fc9c4336eb209e3185e4c26234ad56b69",
+    "disk.json": "0c7c7650744ee087fe8f55dfeb5f894b4030921ed6b4c5132dff81a7041515ce",
+    "execution.json": "c0f165437057ef076f73ea44c332805a9fd707a06810a0225e3b74f5567f7525",
+    "fixture.py": "be4d92e53947df81a4f059911bfac3663884efe5a8942d6e5c7c0cb0a0307d5b",
+    "guard.json": "c77b94ebaeb7c690015e18931a4aefc4382eb98d423b5e682a471e06bba51873",
+    "guest.py": "a619a1893056300e8eb96c9cad27bfde2bf70256dfc128af32149f8f76f76dea",
+    "host-run.py": "7651534951a86c31bdffc1bd0595376967cb65ad32e908e30668353b7ff59783",
+    "host.py": "a38facc37409cde06c374e82aaba3c81c41e836e19255dea63de318742cbcc6d",
+    "poweroff.json": "837ce56688ced1ee50c7da3bb28a37e3050797378746ce7aecbe88c8fa014f24",
+    "result.json": "9bb7d14c1e2331cdba89cc8e0001e91c7249578cfe0f61625f2d9d4f85a405e9",
+    "server.py": "f15f21185e5ca44dc386ff28d080aeed6d50a23c4c7428e5d3eb5f4f42a6c33b",
+    "source-hashes.json": "1b62017669f83d7543331aac63ce1e7655ff68e7cec3915aade49da62b8d1d7f",
+    "vm-off.json": "e8bf4e17909ad9b1f92983a249f6d9ff980aadd09857ffab53216c183986c664",
+    "vm.py": "8bae7819adecd5d065fe1e9e315160ce93950a4f99e27ceee5dc2daeb7d86ce8"
+  },
+  "sources": {
+    "docs/evidence/parental-coordinator/coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+    "docs/evidence/parental-ordinary-withdrawal/withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+    "docs/evidence/parental-operation-journal/operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+    "docs/evidence/parental-inventory-gate/inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+    "docs/evidence/parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "docs/evidence/parental-service-classifier/classifier.py": "3e9f166e4af7d59c08c3a4881b818c8348c316878ad2e79e23f16ca3924a45a4",
+    "docs/evidence/parental-service-withdrawal/binding.py": "a438692f71a4fe16ead8e5b1fc492693335a7c77752c276eb244cfe427cad963",
+    "docs/evidence/parental-administrative-guard/guard.py": "6f983999bed3720df5779cd2794e323dfd9e4709bc23ff7e296d5f8ae8799c5f",
+    "docs/evidence/parental-administrative-parameters/parameters.py": "e0a6880ba6b803350bfcb95a508542389782bda0c4de9fb0d0811b6ed22817a9",
+    "docs/evidence/parental-administrative-auth/fixture.py": "be4d92e53947df81a4f059911bfac3663884efe5a8942d6e5c7c0cb0a0307d5b",
+    "docs/evidence/parental-administrative-auth/guest.py": "a619a1893056300e8eb96c9cad27bfde2bf70256dfc128af32149f8f76f76dea",
+    "docs/evidence/parental-administrative-auth/server.py": "f15f21185e5ca44dc386ff28d080aeed6d50a23c4c7428e5d3eb5f4f42a6c33b",
+    "docs/evidence/parental-administrative-auth/client.py": "606730926d68dba6f76ec6376e70d63fc9c4336eb209e3185e4c26234ad56b69",
+    "docs/evidence/parental-administrative-auth/adapter.py": "029a1af64ef1ca6a335fa3ce9505738d9b35e6fd31557844706d43bbf0dd5896"
+  }
+}

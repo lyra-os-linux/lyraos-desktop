@@ -250,3 +250,14 @@ passou em 13 controles: perfil/grupos e wheel aplicados na conta fictícia,
 negação/barreira impedindo despacho, no-ops de SetAdmin e restauração verificada.
 A composição com D-Bus/Polkit real ainda não foi testada nesta etapa; não
 modifica UsersService ou qualifica recuperação de produto.
+
+## Composição administrativa real no laboratório — 05/10/2026
+
+O [ensaio integrado](evidence/parental-administrative-auth/README.md) passou em
+15 cenários: remetente system D-Bus e Polkit reais, parâmetros selados e efeito
+Unix no mesmo fluxo. Negação/cancelamento, token consumido ou de outro remetente,
+capacidade/revisão/barreira alteradas impediram comandos. Identidade e conta
+vizinha preservadas; restauração, cleanup e VM OFF confirmados. A decisão
+positiva usa regra restrita fictícia; não qualifica senha/guardião/GNOME/MAC ou
+recuperação concorrente. Próxima etapa é integrar no Go existente com catálogo,
+bootstrap e recuperação qualificados; os gates de produto continuam abertos.
