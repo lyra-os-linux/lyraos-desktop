@@ -1,0 +1,1112 @@
+{
+  "passed": true,
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "root_files": true,
+  "state_before": {
+    "files": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161",
+      "/etc/pam.d/common-account": "a88109cffad53170bc57397b42e2ccddaacd06a649261c4593d05f6aed7ee5cb",
+      "/etc/pam.d/common-account-pc": "a88109cffad53170bc57397b42e2ccddaacd06a649261c4593d05f6aed7ee5cb",
+      "/etc/pam.d/common-auth": "3d64dcbf34d28bd8c4a2a01c0b0b8ea99b82b230abc3cc5b4e606462aecc2c2e",
+      "/etc/pam.d/common-auth-pc": "3d64dcbf34d28bd8c4a2a01c0b0b8ea99b82b230abc3cc5b4e606462aecc2c2e",
+      "/etc/pam.d/common-password": "d55adaed5057bafc1413d0bbd4df728a89e4b9a7be5576b0049cd1d875e46b30",
+      "/etc/pam.d/common-password-pc": "d55adaed5057bafc1413d0bbd4df728a89e4b9a7be5576b0049cd1d875e46b30",
+      "/etc/pam.d/common-session": "d055caaa7946731969e860772682d4d5a294aa8e61672904e727d4be4c019876",
+      "/etc/pam.d/common-session-nonlogin": "c5dee05a325034065604d822120dd869ff7c3aaa3bb35036ea6dc01e99bf8b91",
+      "/etc/pam.d/common-session-nonlogin-pc": "c5dee05a325034065604d822120dd869ff7c3aaa3bb35036ea6dc01e99bf8b91",
+      "/etc/pam.d/common-session-pc": "d055caaa7946731969e860772682d4d5a294aa8e61672904e727d4be4c019876",
+      "/etc/pam.d/lyra-parental-probe": "d141fd8a96a069e7faeebd5ea1363f7744e338224a2d891dd43d94f3d09ae5e7",
+      "/etc/pam.d/lyra-parental-systemd-fixture": "9e202611feaee86ce9d83d317ffdc44c605a2070c884ff8a0237bc521c2f3dbd",
+      "/etc/pam.d/postlogin-account": "a2d991f991107aa152227e58fc106ecc10fed272d0cb63c4b332d9cd0878b543",
+      "/etc/pam.d/postlogin-account-pc": "a2d991f991107aa152227e58fc106ecc10fed272d0cb63c4b332d9cd0878b543",
+      "/etc/pam.d/postlogin-auth": "88a7d2d26e2668216e6ab900da909dab984bd24dfc84a8e3d249ace446dccb30",
+      "/etc/pam.d/postlogin-auth-pc": "88a7d2d26e2668216e6ab900da909dab984bd24dfc84a8e3d249ace446dccb30",
+      "/etc/pam.d/postlogin-password": "c613c989cbf70efebfb410d8fc96d9846f85e7ccfe8a467e4a3f0105214c25ca",
+      "/etc/pam.d/postlogin-password-pc": "c613c989cbf70efebfb410d8fc96d9846f85e7ccfe8a467e4a3f0105214c25ca",
+      "/etc/pam.d/postlogin-session": "21eb2365fbe835daa0fde97d0b70518763d53aa7485fbdea84d4e6bfa583de30",
+      "/etc/pam.d/postlogin-session-pc": "21eb2365fbe835daa0fde97d0b70518763d53aa7485fbdea84d4e6bfa583de30",
+      "/etc/pam.d/systemd-user": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+      "/usr/lib/pam.d/chfn": "f666b0f777927c1a9b6e5fe41525530e4130c880a0b378f143a63c33181e514e",
+      "/usr/lib/pam.d/chpasswd": "f666b0f777927c1a9b6e5fe41525530e4130c880a0b378f143a63c33181e514e",
+      "/usr/lib/pam.d/chsh": "f666b0f777927c1a9b6e5fe41525530e4130c880a0b378f143a63c33181e514e",
+      "/usr/lib/pam.d/common-account": "75606d3d6c62eb65529bb4ed1d96cdf78239a6982307f162642cbd48170fdb99",
+      "/usr/lib/pam.d/common-auth": "81239d477a14c57016e01cc8b0d41c1fd5bf2508abed3628f80e894e826ff684",
+      "/usr/lib/pam.d/common-password": "be06b37998e71cf6815c8f89505c17768354fb1a7f2c648f1d83b3d44d714662",
+      "/usr/lib/pam.d/common-session": "f0bf6ec25bcfd3347281236a1afd959d0a28d92b24ad9bfe722c2b3b6e95e1f6",
+      "/usr/lib/pam.d/common-session-nonlogin": "51fa0002d36d8b55316e35355e2908ec862e61dba01f1c520ffb25bbb2f9b366",
+      "/usr/lib/pam.d/gdm": "4ae388063f9c0329a93f993c961851bba959562d104af30d41fabd2014f8dfee",
+      "/usr/lib/pam.d/gdm-autologin": "3f2595486097000350fdf40a99b5f0bc3466854328af8182c2af088eb5d73916",
+      "/usr/lib/pam.d/gdm-fingerprint": "4e12dc1c70472d78e7b402e02831bf252ae1c1455f9804011c2bd3cdba75358f",
+      "/usr/lib/pam.d/gdm-launch-environment": "d6dabfced8743fd254ba4e0dde3cc0e4fb6818aa46008a10909921c8d3e4fe26",
+      "/usr/lib/pam.d/gdm-password": "4ae388063f9c0329a93f993c961851bba959562d104af30d41fabd2014f8dfee",
+      "/usr/lib/pam.d/gdm-smartcard": "ceed4fc6d15810f0a8281aecc414b553309fef87d0f23433e4e228c5a60204fa",
+      "/usr/lib/pam.d/login": "d36714a1bf24548f55f5a4472c518209b229f4189fb4f944375a6511a8941afd",
+      "/usr/lib/pam.d/newusers": "b1fb35dc981d1a478b2f4970e3aff98901bffee2f7e935937855b1a57abde617",
+      "/usr/lib/pam.d/other": "c326bd23edfd0856977339a1b05004149d228127ad7f473c1e1289db4c3540c6",
+      "/usr/lib/pam.d/passwd": "421f9072f71e0a28980f8be3dd23807eeee3521b94eeb8302309f8267c2b38ab",
+      "/usr/lib/pam.d/polkit-1": "af4292db23ff017727a86c35067121354c63911f32caa09e0b9e42d6b4252133",
+      "/usr/lib/pam.d/postlogin-account": "d42f74aef7d8ea1b0ab97cbaa8b5a85250d250e51c18773628b470144f3ab7fb",
+      "/usr/lib/pam.d/postlogin-auth": "5c12364083ea1d47a8832d1d25d9486adb09471e7e7d239809d859888c5afe33",
+      "/usr/lib/pam.d/postlogin-password": "ddbc1797a2349a396370a94a2490e3bdf3da11f97e2abe0570c77c14a61df928",
+      "/usr/lib/pam.d/postlogin-session": "9c3586804d1adac94846ba8348af8fa9d4aa827141b8b72ec605c3c17938f200",
+      "/usr/lib/pam.d/remote": "0f7d277cc755e16325595934333400d00114fbf4dcf6622236bd7a601747fbcc",
+      "/usr/lib/pam.d/run_init": "bb53176c50e2c96a6f26ba61c4f13fba50d047db596914ad74411779456483b7",
+      "/usr/lib/pam.d/runuser": "23273523da2ee2942946abbcc02d51cf51fdd546605513b3d92a66923b1d5717",
+      "/usr/lib/pam.d/runuser-l": "3266800838dd16a28a315517f0ac00fcfdab774e062087417548201fc8bec1e8",
+      "/usr/lib/pam.d/sshd": "a5250dc12be1db2f035aefca45789f3c1e0e744ba5e28b5dde540ac8e72deea0",
+      "/usr/lib/pam.d/su": "d1b44eadd32b1446b3e5b928ccac1a6a0dde3323a2812a0aa901cdfd8f3d7442",
+      "/usr/lib/pam.d/su-l": "4ac6bff9d2955cbefc8577e79f3f66b2f1bc4f8f1d20493b03c05f1091a751b4",
+      "/usr/lib/pam.d/sudo": "f2a305b7c95a7b8decabd0fadd166070b0164ab50e72503fd1ced7c6fbf73334",
+      "/usr/lib/pam.d/sudo-i": "0343528b30c31bfb3a6ad76821f11f1b766c0c754215edc4114c8636ae4d195e",
+      "/usr/lib/pam.d/systemd-user": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+      "/usr/lib/pam.d/vlock": "cf40c5d51ea2f1d325abdc85daac35a59880781217ff93107b0d2c83ed3e4d94"
+    },
+    "selinux": "Permissive"
+  },
+  "state_after": {
+    "files": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161",
+      "/etc/pam.d/common-account": "a88109cffad53170bc57397b42e2ccddaacd06a649261c4593d05f6aed7ee5cb",
+      "/etc/pam.d/common-account-pc": "a88109cffad53170bc57397b42e2ccddaacd06a649261c4593d05f6aed7ee5cb",
+      "/etc/pam.d/common-auth": "3d64dcbf34d28bd8c4a2a01c0b0b8ea99b82b230abc3cc5b4e606462aecc2c2e",
+      "/etc/pam.d/common-auth-pc": "3d64dcbf34d28bd8c4a2a01c0b0b8ea99b82b230abc3cc5b4e606462aecc2c2e",
+      "/etc/pam.d/common-password": "d55adaed5057bafc1413d0bbd4df728a89e4b9a7be5576b0049cd1d875e46b30",
+      "/etc/pam.d/common-password-pc": "d55adaed5057bafc1413d0bbd4df728a89e4b9a7be5576b0049cd1d875e46b30",
+      "/etc/pam.d/common-session": "d055caaa7946731969e860772682d4d5a294aa8e61672904e727d4be4c019876",
+      "/etc/pam.d/common-session-nonlogin": "c5dee05a325034065604d822120dd869ff7c3aaa3bb35036ea6dc01e99bf8b91",
+      "/etc/pam.d/common-session-nonlogin-pc": "c5dee05a325034065604d822120dd869ff7c3aaa3bb35036ea6dc01e99bf8b91",
+      "/etc/pam.d/common-session-pc": "d055caaa7946731969e860772682d4d5a294aa8e61672904e727d4be4c019876",
+      "/etc/pam.d/lyra-parental-probe": "d141fd8a96a069e7faeebd5ea1363f7744e338224a2d891dd43d94f3d09ae5e7",
+      "/etc/pam.d/lyra-parental-systemd-fixture": "9e202611feaee86ce9d83d317ffdc44c605a2070c884ff8a0237bc521c2f3dbd",
+      "/etc/pam.d/postlogin-account": "a2d991f991107aa152227e58fc106ecc10fed272d0cb63c4b332d9cd0878b543",
+      "/etc/pam.d/postlogin-account-pc": "a2d991f991107aa152227e58fc106ecc10fed272d0cb63c4b332d9cd0878b543",
+      "/etc/pam.d/postlogin-auth": "88a7d2d26e2668216e6ab900da909dab984bd24dfc84a8e3d249ace446dccb30",
+      "/etc/pam.d/postlogin-auth-pc": "88a7d2d26e2668216e6ab900da909dab984bd24dfc84a8e3d249ace446dccb30",
+      "/etc/pam.d/postlogin-password": "c613c989cbf70efebfb410d8fc96d9846f85e7ccfe8a467e4a3f0105214c25ca",
+      "/etc/pam.d/postlogin-password-pc": "c613c989cbf70efebfb410d8fc96d9846f85e7ccfe8a467e4a3f0105214c25ca",
+      "/etc/pam.d/postlogin-session": "21eb2365fbe835daa0fde97d0b70518763d53aa7485fbdea84d4e6bfa583de30",
+      "/etc/pam.d/postlogin-session-pc": "21eb2365fbe835daa0fde97d0b70518763d53aa7485fbdea84d4e6bfa583de30",
+      "/etc/pam.d/systemd-user": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+      "/usr/lib/pam.d/chfn": "f666b0f777927c1a9b6e5fe41525530e4130c880a0b378f143a63c33181e514e",
+      "/usr/lib/pam.d/chpasswd": "f666b0f777927c1a9b6e5fe41525530e4130c880a0b378f143a63c33181e514e",
+      "/usr/lib/pam.d/chsh": "f666b0f777927c1a9b6e5fe41525530e4130c880a0b378f143a63c33181e514e",
+      "/usr/lib/pam.d/common-account": "75606d3d6c62eb65529bb4ed1d96cdf78239a6982307f162642cbd48170fdb99",
+      "/usr/lib/pam.d/common-auth": "81239d477a14c57016e01cc8b0d41c1fd5bf2508abed3628f80e894e826ff684",
+      "/usr/lib/pam.d/common-password": "be06b37998e71cf6815c8f89505c17768354fb1a7f2c648f1d83b3d44d714662",
+      "/usr/lib/pam.d/common-session": "f0bf6ec25bcfd3347281236a1afd959d0a28d92b24ad9bfe722c2b3b6e95e1f6",
+      "/usr/lib/pam.d/common-session-nonlogin": "51fa0002d36d8b55316e35355e2908ec862e61dba01f1c520ffb25bbb2f9b366",
+      "/usr/lib/pam.d/gdm": "4ae388063f9c0329a93f993c961851bba959562d104af30d41fabd2014f8dfee",
+      "/usr/lib/pam.d/gdm-autologin": "3f2595486097000350fdf40a99b5f0bc3466854328af8182c2af088eb5d73916",
+      "/usr/lib/pam.d/gdm-fingerprint": "4e12dc1c70472d78e7b402e02831bf252ae1c1455f9804011c2bd3cdba75358f",
+      "/usr/lib/pam.d/gdm-launch-environment": "d6dabfced8743fd254ba4e0dde3cc0e4fb6818aa46008a10909921c8d3e4fe26",
+      "/usr/lib/pam.d/gdm-password": "4ae388063f9c0329a93f993c961851bba959562d104af30d41fabd2014f8dfee",
+      "/usr/lib/pam.d/gdm-smartcard": "ceed4fc6d15810f0a8281aecc414b553309fef87d0f23433e4e228c5a60204fa",
+      "/usr/lib/pam.d/login": "d36714a1bf24548f55f5a4472c518209b229f4189fb4f944375a6511a8941afd",
+      "/usr/lib/pam.d/newusers": "b1fb35dc981d1a478b2f4970e3aff98901bffee2f7e935937855b1a57abde617",
+      "/usr/lib/pam.d/other": "c326bd23edfd0856977339a1b05004149d228127ad7f473c1e1289db4c3540c6",
+      "/usr/lib/pam.d/passwd": "421f9072f71e0a28980f8be3dd23807eeee3521b94eeb8302309f8267c2b38ab",
+      "/usr/lib/pam.d/polkit-1": "af4292db23ff017727a86c35067121354c63911f32caa09e0b9e42d6b4252133",
+      "/usr/lib/pam.d/postlogin-account": "d42f74aef7d8ea1b0ab97cbaa8b5a85250d250e51c18773628b470144f3ab7fb",
+      "/usr/lib/pam.d/postlogin-auth": "5c12364083ea1d47a8832d1d25d9486adb09471e7e7d239809d859888c5afe33",
+      "/usr/lib/pam.d/postlogin-password": "ddbc1797a2349a396370a94a2490e3bdf3da11f97e2abe0570c77c14a61df928",
+      "/usr/lib/pam.d/postlogin-session": "9c3586804d1adac94846ba8348af8fa9d4aa827141b8b72ec605c3c17938f200",
+      "/usr/lib/pam.d/remote": "0f7d277cc755e16325595934333400d00114fbf4dcf6622236bd7a601747fbcc",
+      "/usr/lib/pam.d/run_init": "bb53176c50e2c96a6f26ba61c4f13fba50d047db596914ad74411779456483b7",
+      "/usr/lib/pam.d/runuser": "23273523da2ee2942946abbcc02d51cf51fdd546605513b3d92a66923b1d5717",
+      "/usr/lib/pam.d/runuser-l": "3266800838dd16a28a315517f0ac00fcfdab774e062087417548201fc8bec1e8",
+      "/usr/lib/pam.d/sshd": "a5250dc12be1db2f035aefca45789f3c1e0e744ba5e28b5dde540ac8e72deea0",
+      "/usr/lib/pam.d/su": "d1b44eadd32b1446b3e5b928ccac1a6a0dde3323a2812a0aa901cdfd8f3d7442",
+      "/usr/lib/pam.d/su-l": "4ac6bff9d2955cbefc8577e79f3f66b2f1bc4f8f1d20493b03c05f1091a751b4",
+      "/usr/lib/pam.d/sudo": "f2a305b7c95a7b8decabd0fadd166070b0164ab50e72503fd1ced7c6fbf73334",
+      "/usr/lib/pam.d/sudo-i": "0343528b30c31bfb3a6ad76821f11f1b766c0c754215edc4114c8636ae4d195e",
+      "/usr/lib/pam.d/systemd-user": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+      "/usr/lib/pam.d/vlock": "cf40c5d51ea2f1d325abdc85daac35a59880781217ff93107b0d2c83ed3e4d94"
+    },
+    "selinux": "Permissive"
+  },
+  "snapshots": {
+    "test_busy_each_real_lock_no_prompt/catalog/catalog.json": {
+      "sha256": "03721806cf728f1b58322430500545ad84ee5cc0218b165f596099da346bb681",
+      "inode": 57078,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_busy_each_real_lock_no_prompt/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57079,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_busy_each_real_lock_no_prompt/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57075,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_busy_each_real_lock_no_prompt/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57071,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_busy_each_real_lock_no_prompt/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57074,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_busy_each_real_lock_no_prompt/inventory/1002.json": {
+      "sha256": "71936a4023128d069cad4c4db4ee72a2fe65a025ce1c7c0ce4a5e3b3b74debaf",
+      "inode": 57070,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_busy_each_real_lock_no_prompt/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57077,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_busy_each_real_lock_no_prompt/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57073,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_busy_each_real_lock_no_prompt/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57076,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    },
+    "test_busy_each_real_lock_no_prompt/ledger/1002": {
+      "sha256": "7f3e9d4f37a855c85b62657b0560cd4f2c36dfb25a90dcf6d4717e7341419feb",
+      "inode": 57072,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 69
+    },
+    "test_changed_catalog_after_dialog_no_marker/catalog/catalog.json": {
+      "sha256": "32c9606770c7bdece9784ff679f622a72e6c2257581359244ac9a32a15928969",
+      "inode": 57094,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_changed_catalog_after_dialog_no_marker/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57093,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_catalog_after_dialog_no_marker/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57089,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_catalog_after_dialog_no_marker/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57085,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_catalog_after_dialog_no_marker/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57088,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_changed_catalog_after_dialog_no_marker/inventory/1002.json": {
+      "sha256": "71936a4023128d069cad4c4db4ee72a2fe65a025ce1c7c0ce4a5e3b3b74debaf",
+      "inode": 57084,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_changed_catalog_after_dialog_no_marker/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57091,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_catalog_after_dialog_no_marker/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57087,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_catalog_after_dialog_no_marker/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57090,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    },
+    "test_changed_catalog_after_dialog_no_marker/ledger/1002": {
+      "sha256": "7f3e9d4f37a855c85b62657b0560cd4f2c36dfb25a90dcf6d4717e7341419feb",
+      "inode": 57086,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 69
+    },
+    "test_changed_inventory_after_dialog_no_marker/catalog/catalog.json": {
+      "sha256": "03721806cf728f1b58322430500545ad84ee5cc0218b165f596099da346bb681",
+      "inode": 57106,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_changed_inventory_after_dialog_no_marker/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57107,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_inventory_after_dialog_no_marker/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57103,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_inventory_after_dialog_no_marker/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57099,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_inventory_after_dialog_no_marker/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57102,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_changed_inventory_after_dialog_no_marker/inventory/1002.json": {
+      "sha256": "ac6564462efd722bf147825a081347211c9cfda015b181d04ff42db2f161a961",
+      "inode": 57108,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_changed_inventory_after_dialog_no_marker/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57105,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_inventory_after_dialog_no_marker/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57101,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_inventory_after_dialog_no_marker/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57104,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    },
+    "test_changed_inventory_after_dialog_no_marker/ledger/1002": {
+      "sha256": "7f3e9d4f37a855c85b62657b0560cd4f2c36dfb25a90dcf6d4717e7341419feb",
+      "inode": 57100,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 69
+    },
+    "test_changed_proof_after_dialog_no_marker/catalog/catalog.json": {
+      "sha256": "03721806cf728f1b58322430500545ad84ee5cc0218b165f596099da346bb681",
+      "inode": 57120,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_changed_proof_after_dialog_no_marker/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57121,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_proof_after_dialog_no_marker/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57117,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_proof_after_dialog_no_marker/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57113,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_proof_after_dialog_no_marker/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57116,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_changed_proof_after_dialog_no_marker/inventory/1002.json": {
+      "sha256": "71936a4023128d069cad4c4db4ee72a2fe65a025ce1c7c0ce4a5e3b3b74debaf",
+      "inode": 57112,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_changed_proof_after_dialog_no_marker/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57119,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_proof_after_dialog_no_marker/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57115,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_changed_proof_after_dialog_no_marker/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57118,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    },
+    "test_changed_proof_after_dialog_no_marker/ledger/1002": {
+      "sha256": "81bd5163f1937735c73c47bd3b8cc75c586c4393a27ae96e1d13fae2940f1f79",
+      "inode": 57122,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 85
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/catalog/catalog.json": {
+      "sha256": "03721806cf728f1b58322430500545ad84ee5cc0218b165f596099da346bb681",
+      "inode": 57134,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57135,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57131,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57127,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57130,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/inventory/1002.json": {
+      "sha256": "71936a4023128d069cad4c4db4ee72a2fe65a025ce1c7c0ce4a5e3b3b74debaf",
+      "inode": 57126,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/ledger/.deny-1002": {
+      "sha256": "a3934bfe5dfa74ee2f8a971f618144f2ccdbe625c8b58442344f637dac3df3ac",
+      "inode": 57138,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57133,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57129,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/ledger/.operation-1002.json": {
+      "sha256": "06d0083ba740ff26c91cb17f10d15d398eea1affd3112599b429f30452b59db4",
+      "inode": 57137,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 8
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/ledger/.withdrawal-1002.json": {
+      "sha256": "64e4002ed952f8d3f8481a59be6feb1538543877d8a31e190bd824175eba7929",
+      "inode": 57128,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_corrupt_owner_and_wrong_operation_preserve_negative_state/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57132,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    },
+    "test_denied_execution_never_writes/catalog/catalog.json": {
+      "sha256": "03721806cf728f1b58322430500545ad84ee5cc0218b165f596099da346bb681",
+      "inode": 57150,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_denied_execution_never_writes/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57151,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_denied_execution_never_writes/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57147,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_denied_execution_never_writes/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57143,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_denied_execution_never_writes/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57146,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_denied_execution_never_writes/inventory/1002.json": {
+      "sha256": "71936a4023128d069cad4c4db4ee72a2fe65a025ce1c7c0ce4a5e3b3b74debaf",
+      "inode": 57142,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_denied_execution_never_writes/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57149,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_denied_execution_never_writes/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57145,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_denied_execution_never_writes/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57148,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    },
+    "test_denied_execution_never_writes/ledger/1002": {
+      "sha256": "7f3e9d4f37a855c85b62657b0560cd4f2c36dfb25a90dcf6d4717e7341419feb",
+      "inode": 57144,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 69
+    },
+    "test_first_marker_holds_all_real_locks/catalog/catalog.json": {
+      "sha256": "03721806cf728f1b58322430500545ad84ee5cc0218b165f596099da346bb681",
+      "inode": 57164,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_first_marker_holds_all_real_locks/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57165,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_first_marker_holds_all_real_locks/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57161,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_first_marker_holds_all_real_locks/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57157,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_first_marker_holds_all_real_locks/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57160,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_first_marker_holds_all_real_locks/inventory/1002.json": {
+      "sha256": "71936a4023128d069cad4c4db4ee72a2fe65a025ce1c7c0ce4a5e3b3b74debaf",
+      "inode": 57156,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_first_marker_holds_all_real_locks/ledger/.deny-1002": {
+      "sha256": "d8ff5d8b7c76f4cede7319f85059e93d63cd75863fa28a59e09ae84521c062b1",
+      "inode": 57168,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_first_marker_holds_all_real_locks/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57163,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_first_marker_holds_all_real_locks/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57159,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_first_marker_holds_all_real_locks/ledger/.operation-1002.json": {
+      "sha256": "ddc9718dc3e9ec0a6cf531a7724476cb1aa449d993b391861a6e789eac116c02",
+      "inode": 57166,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 474
+    },
+    "test_first_marker_holds_all_real_locks/ledger/.withdrawal-1002.json": {
+      "sha256": "22c8d3cec7c88f0d6523b32d4bdd0b224e547f514c7b0463a5a0074c70194dfe",
+      "inode": 57158,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_first_marker_holds_all_real_locks/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57162,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/catalog/catalog.json": {
+      "sha256": "813c4956a339ebb2329744b20387b82d02b5c2f725275b3a9f9430abc7b73b43",
+      "inode": 57183,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57181,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57177,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57173,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57176,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/inventory/1002.json": {
+      "sha256": "71936a4023128d069cad4c4db4ee72a2fe65a025ce1c7c0ce4a5e3b3b74debaf",
+      "inode": 57172,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/ledger/.deny-1002": {
+      "sha256": "4d87481460727ad3d8770e4ad801380bf4a47c7b8942a8c0b7c7e1d556e382e3",
+      "inode": 57184,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57179,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57175,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/ledger/.operation-1002.json": {
+      "sha256": "d89724b931aa7aeae3edf5887d8521be9f214d32f13919438e94b3832d6be888",
+      "inode": 57182,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 474
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/ledger/.withdrawal-1002.json": {
+      "sha256": "35a9026729048e1477d2704da2801114ff8f062efbc091444ebdb4871fcc6479",
+      "inode": 57174,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_missing_marker_before_prompt_and_generation_conflict/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57178,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    },
+    "test_new_process_retry_identical_files/catalog/catalog.json": {
+      "sha256": "03721806cf728f1b58322430500545ad84ee5cc0218b165f596099da346bb681",
+      "inode": 57196,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_new_process_retry_identical_files/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57197,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_new_process_retry_identical_files/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57193,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_new_process_retry_identical_files/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57189,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_new_process_retry_identical_files/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57192,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_new_process_retry_identical_files/inventory/1002.json": {
+      "sha256": "71936a4023128d069cad4c4db4ee72a2fe65a025ce1c7c0ce4a5e3b3b74debaf",
+      "inode": 57188,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_new_process_retry_identical_files/ledger/.deny-1002": {
+      "sha256": "da07b9fba7d6b23f2cd2c77cc9bb74f78988800873f99b450c0e608b76e6a13a",
+      "inode": 57200,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_new_process_retry_identical_files/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57195,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_new_process_retry_identical_files/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57191,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_new_process_retry_identical_files/ledger/.operation-1002.json": {
+      "sha256": "37979fc078af4d93fc72a7c9ae5ba9c19b1fcd9a4bd435c9a115308560138bc7",
+      "inode": 57198,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 474
+    },
+    "test_new_process_retry_identical_files/ledger/.withdrawal-1002.json": {
+      "sha256": "cad681ccd5682a69fab5539daf39da3629f421aeb5f207795c8048d2b97c0e97",
+      "inode": 57190,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_new_process_retry_identical_files/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57194,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/catalog/catalog.json": {
+      "sha256": "03721806cf728f1b58322430500545ad84ee5cc0218b165f596099da346bb681",
+      "inode": 57212,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57213,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57209,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57205,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57208,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/inventory/1002.json": {
+      "sha256": "71936a4023128d069cad4c4db4ee72a2fe65a025ce1c7c0ce4a5e3b3b74debaf",
+      "inode": 57204,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/ledger/.deny-1002": {
+      "sha256": "3e64b90fdd28bb7121521e510275fc6f3dcf0dc72ff2cb0958f88cce9e4b5783",
+      "inode": 57216,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57211,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57207,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/ledger/.operation-1002.json": {
+      "sha256": "cc0cd430589712eb6279d2718b31a7f486708a5f10c55ed6cd3672a424b13925",
+      "inode": 57214,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 474
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/ledger/.withdrawal-1002.json": {
+      "sha256": "e0583a4c7da9b5a85d73266a55f8bb491692e4e1cf776e44dfbb52eb5cfbee94",
+      "inode": 57206,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_process_exit_after_durable_intent_fresh_resume/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57210,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    },
+    "test_retirement_peer_and_catalog_unchanged/catalog/catalog.json": {
+      "sha256": "03721806cf728f1b58322430500545ad84ee5cc0218b165f596099da346bb681",
+      "inode": 57228,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 609
+    },
+    "test_retirement_peer_and_catalog_unchanged/catalog/catalog.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57229,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_retirement_peer_and_catalog_unchanged/inventory/.inventory-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57225,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_retirement_peer_and_catalog_unchanged/inventory/.inventory-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57221,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_retirement_peer_and_catalog_unchanged/inventory/1000.json": {
+      "sha256": "4e405e38f39adc4e8eb13500b77691f1abc8bf376981b0a17df4442f1ad553f2",
+      "inode": 57224,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1753
+    },
+    "test_retirement_peer_and_catalog_unchanged/inventory/1002.json": {
+      "sha256": "71936a4023128d069cad4c4db4ee72a2fe65a025ce1c7c0ce4a5e3b3b74debaf",
+      "inode": 57220,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 1751
+    },
+    "test_retirement_peer_and_catalog_unchanged/ledger/.deny-1002": {
+      "sha256": "9a9b33441a9da61b004ed5f6ec649ad752a20c2bf0cabb7aa47531a281ec4dce",
+      "inode": 57232,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_retirement_peer_and_catalog_unchanged/ledger/.gate-1000.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57227,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_retirement_peer_and_catalog_unchanged/ledger/.gate-1002.lock": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inode": 57223,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 0
+    },
+    "test_retirement_peer_and_catalog_unchanged/ledger/.operation-1002.json": {
+      "sha256": "8d8e276dec7b8cc20d6ba5cbffe46d1202dfb842d7c7b03e1e069710671917f7",
+      "inode": 57230,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 474
+    },
+    "test_retirement_peer_and_catalog_unchanged/ledger/.withdrawal-1002.json": {
+      "sha256": "b09ab8b56bdd401223d16fa180e8a1d56f8162f44b8575feffe0565bcf742532",
+      "inode": 57222,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 182
+    },
+    "test_retirement_peer_and_catalog_unchanged/ledger/1000": {
+      "sha256": "a1af0e144b29da9d8b266a8c978984e69cebfcfe2958d4c7a1400469993af70a",
+      "inode": 57226,
+      "uid": 0,
+      "gid": 0,
+      "mode": 384,
+      "size": 71
+    }
+  },
+  "real_polkit": false,
+  "account_mutation": false,
+  "quiescence": false
+}

@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "files": {
+    "cleanup-check.json": "2d288bf38dc619646d2c95cd7bad1ff887289c0c31a689f26be51b4f8b8715d9",
+    "disk.json": "95ed76da4baebeb33970ba62731837c4f679881be1e464e3986f075171b40f1f",
+    "execution.json": "4920f0d0effc9f02aaca2d3ee57d5532e9e9625f9361711b93843a5eceb9378e",
+    "guard.json": "9f151462ed722e98578c855a45bdaa72c77f9fa3a484df3f3d2af41f13e9aa4c",
+    "guest.py": "1ba9e211937f2fc745a7375eb0dcbfd8479b8acb0da0b258ec92f077eda3bd6e",
+    "host-run.py": "73bf888e36fcbd5998e6822dbe347e2497fe7acf0fc678d75a9fd5fc9d05514c",
+    "host.py": "a38facc37409cde06c374e82aaba3c81c41e836e19255dea63de318742cbcc6d",
+    "poweroff.json": "e78892183bfd76ea1323671df0e5d7e6ad86fd249cb2f762b4875facb8f7897a",
+    "result.json": "e8ec170983b57b9dcda0ac65975e7611de476a0a044b96b75f8b8566a9e17e5a",
+    "source-hashes.json": "3abe7a57cb681938c7a8e9d8971c3908a01036920a3a4d6d1a82ae8de552470b",
+    "vm-off.json": "3ad5209b043e9a598a1ea8858cae3b22a6c4dd180fd76887f74b06e0ae436315",
+    "vm.py": "b48e9faf651beb1989d95c2fdca62267f5a509f3f3bf7098eea620e0c2686e70"
+  },
+  "sources": {
+    "docs/evidence/parental-coordinator/coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+    "docs/evidence/parental-ordinary-withdrawal/withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+    "docs/evidence/parental-operation-journal/operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+    "docs/evidence/parental-inventory-gate/inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+    "docs/evidence/parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "docs/evidence/parental-service-classifier/classifier.py": "3e9f166e4af7d59c08c3a4881b818c8348c316878ad2e79e23f16ca3924a45a4",
+    "docs/evidence/parental-service-withdrawal/binding.py": "a438692f71a4fe16ead8e5b1fc492693335a7c77752c276eb244cfe427cad963",
+    "docs/evidence/parental-service-storage/guest.py": "1ba9e211937f2fc745a7375eb0dcbfd8479b8acb0da0b258ec92f077eda3bd6e"
+  }
+}

@@ -210,3 +210,10 @@ conecta planos aos modelos existentes, vincula catálogo/geração ao journal e
 revalida antes do intent. Autorização é callback confiável; ledger/inventário
 são simulados nos testes novos. Não qualifica armazenamento integrado ou
 transporte/Polkit de produto e mantém os gates acima.
+
+## Armazenamento real no laboratório — 05/10/2026
+
+A [composição com arquivos de root e locks reais](evidence/parental-service-storage/README.md)
+passou em 11 testes de VM, incluindo nova instância após saída do processo no
+intent durável. Não qualifica Polkit/D-Bus, PAM real, rollback ou enforcement;
+a estação permanece sem instalação.
