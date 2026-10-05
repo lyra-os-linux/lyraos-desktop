@@ -1,0 +1,11 @@
+{
+  "first_attempt_qemu_session": 47740,
+  "first_attempt_qemu_exit_code": 137,
+  "final_cut_qemu_session": 10383,
+  "final_cut_qemu_exit_code": 137,
+  "final_qemu_session": 39421,
+  "qemu_exit_code": 0,
+  "vm_off": true,
+  "same_disk": "/tmp/lyra-parental-pam-powercut-20261005/system.qcow2",
+  "backing": "/tmp/lyra-parental-identity-20260928/system.raw"
+}

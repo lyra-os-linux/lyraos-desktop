@@ -1,0 +1,6 @@
+{
+  "id": "24ff5784e6e54996ba596cec115cab4c",
+  "rc": 0,
+  "stdout": "{\"passed\": true, \"profile_removed\": true, \"close_hold_removed\": true, \"effects_removed\": true, \"selinux\": \"Permissive\"}\n",
+  "stderr": ""
+}

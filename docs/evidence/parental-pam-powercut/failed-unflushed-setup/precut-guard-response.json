@@ -1,0 +1,6 @@
+{
+  "id": "f318bc60185a4324afe86c00b5db1e8e",
+  "rc": 0,
+  "stdout": "{\"guard\": true, \"boot\": \"8d1a5c2f-cccb-44b3-a421-08e979dd725d\", \"pending\": {\"boot_id\": \"8d1a5c2f-cccb-44b3-a421-08e979dd725d\", \"job\": \"/org/freedesktop/systemd1/job/819\", \"owner\": {\"action\": \"withdraw-admission\", \"identity\": {\"gid\": 1003, \"group\": \"ordinaryuser\", \"uid\": 1002, \"user\": \"ordinaryuser\"}, \"inventory_digest\": \"b8abf01fb975b5875b29e20b17c1839c386714bc38e4455eef4cb079b681fc24\", \"inventory_revision\": 1, \"operation\": \"80613e4b5124211524091acb68848965\", \"phase\": \"retired\", \"proof_hash\": \"761f62e39d9c26e899b22d9a626dbac1b811ebc266c7e07a34271f5eabb16d8d\", \"proof_snapshot\": \"906e2f43748250291ed0095f9c255fc5027741eb937154751abaf251bcc80483\", \"revision\": 3, \"schema\": 1}, \"phase\": \"accepted\", \"protocol_digest\": \"172b9ef68050f53392a4465b9b7a4be87379efbbf4f9181f434a8f245426ab0f\", \"revision\": 2, \"route_digest\": \"b28931ea287060d300c7cb1bab814f54682583f76a6d2bd983b188278d6a07ac\", \"schema\": 1, \"unit\": \"lyra-unit-stop-jobs-target-guarded.service\"}, \"properties\": {\"MainPID\": \"0\", \"ActiveState\": \"deactivating\", \"Job\": \"819\"}, \"helper_pids\": [\"726\"], \"marker_present\": true}\n",
+  "stderr": ""
+}
