@@ -121,3 +121,10 @@ reparo que conservem política são obrigatórios antes de qualquer instalação
 Esta consolidação encerra a organização das provas existentes. O próximo
 resultado revisável é o contrato de integração #2/#5 e sua classificação
 persistente; não o fechamento de #6/#102 nem a promoção de um pacote parental.
+
+## Especificação seguinte — 05/10/2026
+
+O [contrato do núcleo integrado](parental-service-integration-contract.md)
+detalha lifecycle no vegad, classificação, API, autorização, guards de contas
+e aceites. A referência independente para rollback continua decisão aberta;
+o documento não implementa o serviço nem aprova a ADR.
