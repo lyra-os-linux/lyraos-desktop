@@ -1,0 +1,30 @@
+{
+  "base_commit": "fbbe05b8fc0c795b964a776a38a308b5745738f7",
+  "specific_tests": 28,
+  "suite_tests": 744,
+  "native_controls": 29,
+  "artifacts": {
+    "native-response.json": "d28d274019f30d36230b9bdd91385a1e09ae5ad56bc5505fcdffe1170d49c8cd",
+    "native-restart.py": "58b51b9a58e58479ff04dbe1aaa7c39eff7d827d1d0c00b236250ad76e27fe96",
+    "poweroff-response.json": "3c1be51d6dc38c66e46a8d6536c3db06840241ea7a907175601ccd77e15d6853",
+    "python-suite.txt": "da44860a4a7ad9f28a4c5e856baf9b79ac8c0dbcf017a1c7e0a460057d14ff83",
+    "restart.py": "97682bd5dffefb80d44eb6ccf1caab28553606351b5001328353dd6286d90019",
+    "restarted-reader.py": "13d33271d7f2d88f176fa3a296d2a2e4100224debea96ce2f0240087f61bce17",
+    "restoration-executions.json": "b258d57f88b46f96b2c6ed05204f5c5fb778ce5dc1cfe45558163a602254b9a3",
+    "result.json": "0e9843a810d0b363d834de976c81ea2392150f6d6e6b7e4d7c2d873ace04295f",
+    "tests-source.txt": "b2480428b407398f948a583f0ef11ded12922bdda4826cb43184c6e766e399a8",
+    "vm-off.json": "5c0edb5b9bf39e856beb7ca0219e2e9793e66f066f7f9bcbcba77cc66527beb6"
+  },
+  "dependencies": {
+    "parental-pam-unit-stop/pam.py": "98e0dd05895c36adaa68ba3b6b9384d33ded20fb8c8522c9f3e7ed6688558d3f",
+    "parental-pam-helper-recovery/recovery.py": "ac26412906fc6708eabdfac0e1208df321e6adc10a852be881737ecaa54e03c0",
+    "parental-cold-unit-stop/cold.py": "e487d0a3d359c9d2f2fb6e273c396e05add2d75b900061cbf04a529695235f13",
+    "parental-pam-main-exit/pam-close-hold.c": "f875c78efee484df529b7c945a03d1cdd9e600585cfb26589b8410f2819d96e5",
+    "parental-guarded-unit-stop/guard.py": "3171026adc23d1bcdf02fad6931b35a0d65577671b4367a80dde8fec795222a8",
+    "parental-running-reference/running.py": "929c74e8c740c9b8a3f79bb0be94f06ffc49a46f5c8b3ef53c52b866a04e2a62",
+    "parental-unit-stop-jobs/effects.py": "172b9ef68050f53392a4465b9b7a4be87379efbbf4f9181f434a8f245426ab0f",
+    "parental-unit-stop-jobs/jobs.py": "2dec8da6f06b5e016382b9c38d735e8a67fa67b22e1113c690b96cd7d9800254",
+    "parental-unit-stop-jobs/backend.py": "5320d92fd02e1e735bdd776bac467fb9b493adb004c67733d899cac38c46a4eb",
+    "parental-ordinary-withdrawal/withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2"
+  }
+}
