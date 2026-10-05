@@ -1,0 +1,16 @@
+{
+  "signing_fingerprint": "399218A6E088C4053F4533BE58097F767EDCA82E",
+  "submit_request": 1382519,
+  "source_srcmd5": "67be43654954516ff5d765a0244e47f4",
+  "delivery": "obs_api",
+  "public_release_verified": false,
+  "packages": [
+    {
+      "name": "lyra-release",
+      "architecture": "noarch",
+      "signature": "verified",
+      "filename": "lyra-release-1.1-lp161.2.1.noarch.rpm",
+      "sha256": "1b064f16850b9ff717088a884a98f049fc3e6f48e885bcdcb281722be45ee71b"
+    }
+  ]
+}
