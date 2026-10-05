@@ -1,0 +1,69 @@
+Building target platforms: noarch
+Building for target noarch
+Executing(%mkbuilddir): /usr/bin/bash -e /var/tmp/rpm-tmp.nYgzuW
+Executing(%prep): /usr/bin/bash -e /var/tmp/rpm-tmp.m7VFhc
++ umask 022
++ cd /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
++ RPM_EC=0
+++ jobs -p
++ exit 0
+Executing(%build): /usr/bin/bash -e /var/tmp/rpm-tmp.OSIO90
++ umask 022
++ cd /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
++ /usr/bin/rm -rf /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build/BUILDROOT
+++ dirname /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build/BUILDROOT
++ /usr/bin/mkdir -p /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
++ /usr/bin/mkdir /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build/BUILDROOT
++ RPM_EC=0
+++ jobs -p
++ exit 0
+Executing(%install): /usr/bin/bash -e /var/tmp/rpm-tmp.FwQ34z
++ umask 022
++ cd /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
++ /usr/bin/rm -rf /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build/BUILDROOT
++ /usr/bin/mkdir -p /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
++ /usr/bin/mkdir /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build/BUILDROOT
++ install -Dm0644 /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/SOURCES/lyra-product-release /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build/BUILDROOT/usr/lib/lyra-os/product-release
++ install -Dm0755 /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/SOURCES/lyra-release-identity /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build/BUILDROOT/usr/libexec/lyra-release-identity
++ /usr/lib/rpm/brp-compress
++ /usr/lib/rpm/brp-suse
+calling /usr/lib/rpm/brp-suse.d/brp-99-compress-vmlinux
+calling /usr/lib/rpm/brp-suse.d/brp-99-pesign
+No spec files found. RemovePaathPostFixes mapping failed.
+No buildservice signing certificate
+~/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build/BUILDROOT ~/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
+Creating /home/rodrigo/rpmbuild/OTHER/lyra-release.cpio.rsasign
+No files in /home/rodrigo/rpmbuild/OTHER/lyra-release.cpio.rsasign, giving up
+Executing(%check): /usr/bin/bash -e /var/tmp/rpm-tmp.JqApqe
++ umask 022
++ cd /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
++ grep -Fx 'LYRA_VERSION_ID='\''1.1'\''' /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/SOURCES/lyra-product-release
+LYRA_VERSION_ID='1.1'
++ grep -Fx 'LYRA_EDITION='\''desktop'\''' /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/SOURCES/lyra-product-release
+LYRA_EDITION='desktop'
++ grep -Fx 'LYRA_ARCHITECTURE='\''x86_64'\''' /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/SOURCES/lyra-product-release
+LYRA_ARCHITECTURE='x86_64'
++ grep -Fx 'LYRA_BUILD_ID='\''lyra-release-1.1'\''' /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/SOURCES/lyra-product-release
+LYRA_BUILD_ID='lyra-release-1.1'
++ RPM_EC=0
+++ jobs -p
++ exit 0
+Processing files: lyra-release-1.1-0.noarch
+Provides: lyra-release = 1.1-0
+Requires(interp): /bin/sh /bin/sh /bin/sh
+Requires(rpmlib): rpmlib(CompressedFileNames) <= 3.0.4-1 rpmlib(FileDigests) <= 4.6.0-1 rpmlib(PayloadFilesHavePrefix) <= 4.0-1
+Requires(preun): /bin/sh
+Requires(posttrans): /bin/sh
+Requires: /usr/bin/python3
+Checking for unpackaged file(s): /usr/lib/rpm/check-files /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build/BUILDROOT
+Wrote: /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/SRPMS/lyra-release-1.1-0.src.rpm
+Wrote: /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/RPMS/noarch/lyra-release-1.1-0.noarch.rpm
+Executing(rmbuild): /usr/bin/bash -e /var/tmp/rpm-tmp.2lgkLC
++ umask 022
++ cd /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
++ test -d /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
++ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
++ rm -rf /home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/rpmbuild/BUILD/lyra-release-1.1-build
++ RPM_EC=0
+++ jobs -p
++ exit 0
