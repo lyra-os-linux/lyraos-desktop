@@ -1,0 +1,6 @@
+{
+  "id": "7af894eb32d743be8520205b0106e251",
+  "rc": 0,
+  "stdout": "pam_lyra_withdrawal_fixture(lyra-parental-unit-test:session): Experimental VM-only PAM close hold entered\npam_warn(lyra-parental-unit-test:setcred): function=[pam_sm_setcred] flags=0x8004 service=[lyra-parental-unit-test] terminal=[<unknown>] user=[ordinaryuser] ruser=[<unknown>] rhost=[<unknown>]\n",
+  "stderr": ""
+}

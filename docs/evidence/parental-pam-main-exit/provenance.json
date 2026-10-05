@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "qemu_exit_code": 0,
+  "overlay": "/tmp/lyra-parental-pam-exit-20261005/system.qcow2",
+  "backing": "/tmp/lyra-parental-identity-20260928/system.raw",
+  "backing_mutated": false,
+  "global_qualification": false,
+  "sha256": {
+    "README.md": "339235c0652c17bde64814c88b0a0be1607a3a9728907d0574ee2e1bc8493b54",
+    "failed-native-1/native-pam-exit.py": "88e92c6237bf0fb9c70504e267a21116640ba082e93c442e176bb688be20b1e5",
+    "failed-native-1/native-response.json": "35669ea2cdde4449b69c5bdc8644f3291e3220ae1fddd1a531b20ad743a21236",
+    "failed-native-1/result.json": "9d03ad583c1521c037457de85a81a58e67e8ba6ccabf530b81a3b69879993886",
+    "failed-preflight-2/native-pam-exit.py": "fe8b15b2c61281887a58a807bbe4400f08e81868fc21a8dd6cd3e4e756925581",
+    "failed-preflight-2/native-response.json": "a0f3c16076cf73712d8545d32e39ed12ac5db57b88a8bcb74aa49b4485d4f75c",
+    "helper-journal-response.json": "0a227a8569b2f21e356695ec19e0e39b3dafccb5e6f041a0eeb274eb6f54f662",
+    "native-pam-exit.py": "d19ccb9ed149aaba1c5410b688e5e869cde40f48224fadb41e0aaafe880a5350",
+    "native-response.json": "cd02795d12d5fd0db240ab734e21863584fdf169b43916a58ebcc29c23847d72",
+    "pam-close-hold.c": "f875c78efee484df529b7c945a03d1cdd9e600585cfb26589b8410f2819d96e5",
+    "poweroff-response.json": "855d667c340f950cd9a8ad9014cfa178db9930df08141fb88bd87831fb62a067",
+    "python-suite.txt": "5409232a6ac717f12d27d4bd2fe70a49f38aca98c8ae0ddf458262bc5f1c30ba",
+    "restoration-executions.json": "45a1a4c11f5e7a3315723c0d164ec3bd8c93e4e14db955fa541afb6bb2bc4d9d",
+    "restoration-response.json": "d2cc479f1d3cf342f754105661fc16911edab13ef8f8d9e24d402aedd188149e",
+    "result.json": "03073386cc21993d9e87d3b1585258505d9aaa1348be099d800ea502dc858d74",
+    "verify-evidence.py": "174ae32ec0d0122fadb4d8aa16077913d82c87cac9631bceb2244071c1f5caf2",
+    "tests-source.txt": "10f41a5b2c4306393d928285aa46c3a24ea96f9afdab69cbcc2cedada22a5ffd"
+  }
+}

@@ -55,6 +55,19 @@ class Tests(unittest.TestCase):
   self.setup_guard()
   with self.guard.batch():self.guard(['systemctl','stop','test.service']);self.guard.check()
   self.assertCountEqual(self.backend.closed,[100,101])
+ def test_main_exits_during_batch_helper_alive_refused_before_stop(self):
+  self.setup_guard()
+  with self.guard.batch():
+   self.backend.dead.add(100);self.backend.member_ids=(101,);self.backend.parents[101]=1
+   self.reject('Conflict',lambda:self.guard(['systemctl','stop','test.service']))
+  self.assertEqual(self.backend.effects,[]);self.assertNotIn(101,self.backend.dead)
+  self.assertCountEqual(self.backend.closed,[100,101])
+ def test_fresh_batch_refuses_missing_main_and_does_not_claim_helper_drained(self):
+  self.setup_guard();self.backend.dead.add(100);self.backend.member_ids=(101,);self.backend.parents[101]=1
+  def batch():
+   with self.guard.batch():pass
+  self.reject('UnverifiedRuntime',batch)
+  self.assertEqual(self.backend.effects,[]);self.assertNotIn(101,self.backend.dead)
  def test_missing_helper_refused(self):
   self.setup_guard();self.backend.member_ids=(100,)
   def batch():

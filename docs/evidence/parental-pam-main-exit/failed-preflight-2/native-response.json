@@ -1,0 +1,6 @@
+{
+  "id": "922e039904e1445cbc294f402bbe05c6",
+  "rc": 1,
+  "stdout": "",
+  "stderr": "  File \"/root/unit-stop-jobs/native-pam-exit.py\", line 135\n    CLOSE_HOLD=Path(\"/run/lyra-pam-close-hold-test\")\n    ^^^^^^^^^^\nSyntaxError: expected 'except' or 'finally' block\n"
+}
