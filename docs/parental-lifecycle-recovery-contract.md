@@ -240,3 +240,9 @@ por uma resposta que aprove este contrato técnico.
 O [primeiro gate experimental](evidence/parental-coordinator/README.md) implementa
 recusas por cobertura ausente e recuperação sem enrollment. Classificação
 persistente, adaptadores reais e revisão monotônica ainda não estão concluídos.
+
+## Consolidação de admissão — 05/10/2026
+
+A [revisão de integração](parental-admission-integration-review.md) reúne as
+provas de retirada/retomada, seus limites e os gates de serviço, persistência,
+autorização e aplicação. Não muda o status da ADR nem habilita produto.
