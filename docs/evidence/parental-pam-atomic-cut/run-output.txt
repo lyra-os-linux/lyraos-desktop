@@ -1,0 +1,9 @@
+partial-write: QEMU killed at actual writer boundary
+partial-write: PASS; restoration confirmed and VM OFF
+temp-fsynced: QEMU killed at actual writer boundary
+temp-fsynced: PASS; restoration confirmed and VM OFF
+renamed: QEMU killed at actual writer boundary
+renamed: PASS; restoration confirmed and VM OFF
+directory-fsynced: QEMU killed at actual writer boundary
+directory-fsynced: PASS; restoration confirmed and VM OFF
+ALL FOUR CASES PASS

@@ -1,0 +1,463 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "postcut-installed-pam-and-unit-sources-intact",
+      "passed": true,
+      "installed_files": {
+        "/etc/pam.d/systemd-user": {
+          "sha256": "52e7d1e57fc70011a1825f59e13f3c73213c07ada70e1cbf3e0685c1ebee7eae",
+          "inode": 33620,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/usr/lib64/security/pam_lyra_withdrawal_fixture.so": {
+          "sha256": "6419ba61e30d07d12b2a326ca9607655197b8da9f5170124149044382d6290b3",
+          "inode": 57041,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/etc/pam.d/lyra-parental-unit-test": {
+          "sha256": "a3abeb595ab890cca41d4bd17042225ff77a2e9cf113a99d1917e2c1c8840857",
+          "inode": 57071,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/usr/libexec/lyra-unit-stop-jobs-probe": {
+          "sha256": "de39e2524fb9f19acad0555b577b396869912ce8f28f74434bdd9f179ed141c2",
+          "inode": 57079,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/usr/libexec/lyra-unit-stop-jobs-drop-stop": {
+          "sha256": "a3242381c7c95cba2c635d7ddbe08dfe3b4da1e19f32a38f875d2c007fd52773",
+          "inode": 57080,
+          "mode": 493,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/usr/lib/systemd/system/lyra-unit-stop-jobs-target-plain.service": {
+          "sha256": "a300e0338f140b61b82ab3e8d60c07dabe82969d88b7d5e489bd4e589c166aa1",
+          "inode": 57072,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/usr/lib/systemd/system/lyra-unit-stop-jobs-target-guarded.service": {
+          "sha256": "b28931ea287060d300c7cb1bab814f54682583f76a6d2bd983b188278d6a07ac",
+          "inode": 57073,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/usr/lib/systemd/system/lyra-unit-stop-jobs-target-tick.service": {
+          "sha256": "1fe360adf0252cc7766fe4963f2cb11f3aa9d9dd97f4d5fe6f68bf99497acc4e",
+          "inode": 57074,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/usr/lib/systemd/system/lyra-unit-stop-jobs-target-tick.timer": {
+          "sha256": "0baaf6f2d347cbcc755d64d0201af916aadf33156dd1af37fd8a051bfe5b6cef",
+          "inode": 57075,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/usr/lib/systemd/system/lyra-unit-stop-jobs-peer-plain.service": {
+          "sha256": "1bbc18a692e8697791df91524a90b38ea40e570ab6fdd9759f1373e9fa972763",
+          "inode": 57076,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/usr/lib/systemd/system/lyra-unit-stop-jobs-peer-tick.service": {
+          "sha256": "1bbc18a692e8697791df91524a90b38ea40e570ab6fdd9759f1373e9fa972763",
+          "inode": 57077,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        },
+        "/usr/lib/systemd/system/lyra-unit-stop-jobs-peer-tick.timer": {
+          "sha256": "c4fefaf590a59e8924ae914432206e5afbd6dd5052095b2f5b9984d874324bee",
+          "inode": 57078,
+          "mode": 420,
+          "uid": 0,
+          "gid": 0,
+          "nlink": 1
+        }
+      }
+    },
+    {
+      "name": "interrupted-atomic-write-retains-whole-old-or-new-canonical-journal",
+      "passed": true,
+      "point": "directory-fsynced",
+      "canonical": {
+        "boot_id": "b6b172d1-5b7f-4c82-aa92-7f4b3f2fb663",
+        "job": "/org/freedesktop/systemd1/job/819",
+        "owner": {
+          "action": "withdraw-admission",
+          "identity": {
+            "gid": 1003,
+            "group": "ordinaryuser",
+            "uid": 1002,
+            "user": "ordinaryuser"
+          },
+          "inventory_digest": "b8abf01fb975b5875b29e20b17c1839c386714bc38e4455eef4cb079b681fc24",
+          "inventory_revision": 1,
+          "operation": "2f0db331f426d5fb18281984b8c131cd",
+          "phase": "retired",
+          "proof_hash": "a4832d1ac3a7e29e780984a100ab8cfc40e2ed38deb3e5abbb9bcab9a9682df4",
+          "proof_snapshot": "42cab541851af3f376604b303dfc309f3f63b81c9d9052e2942d980d59e3cb0d",
+          "revision": 3,
+          "schema": 1
+        },
+        "phase": "accepted",
+        "protocol_digest": "172b9ef68050f53392a4465b9b7a4be87379efbbf4f9181f434a8f245426ab0f",
+        "revision": 2,
+        "route_digest": "b28931ea287060d300c7cb1bab814f54682583f76a6d2bd983b188278d6a07ac",
+        "schema": 1,
+        "unit": "lyra-unit-stop-jobs-target-guarded.service"
+      },
+      "files": {
+        ".origin-260560fbeb1afdbdfb30da79392935b31b800406f8783908f53d213585580956.json": {
+          "size": 3801,
+          "sha256": "3818ded827d5fef486ce5854d3b0848bee2c83283c278617b6c6eef8a76ef203"
+        },
+        ".crash-trace.json": {
+          "size": 185,
+          "sha256": "0dccc1e6092c176a9c4f8a765aa5d8f12cc934f3f82c541461167047be8607c3"
+        },
+        ".gate-1002.lock": {
+          "size": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stop-260560fbeb1afdbdfb30da79392935b31b800406f8783908f53d213585580956.json": {
+          "size": 837,
+          "sha256": "d1649f5dd19e0fb457bd9dd928cc33662a0987f1a58e431e322de4ddb7d17d8d"
+        }
+      }
+    },
+    {
+      "name": "real-new-boot-keeps-old-accepted-effect-and-negative-artifacts",
+      "passed": true,
+      "old_boot": "b6b172d1-5b7f-4c82-aa92-7f4b3f2fb663",
+      "new_boot": "783e0487-346c-4e90-8138-1675f9534787",
+      "artifacts": {
+        "files": {
+          "/var/lib/lyra-ordinary-attestation-test/.deny-1002": {
+            "sha256": "f2fd914640bad4c287da1e95f2c6dd373c6031ca9687f509f90344451aae866d",
+            "inode": 57090,
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1
+          },
+          "/var/lib/lyra-ordinary-attestation-test/.withdrawal-1002.json": {
+            "sha256": "f8730ca4b41ae8216322cc4a4e7b5d18a1caa341c02e916c8950a5e700a37720",
+            "inode": 57069,
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1
+          },
+          "/var/lib/lyra-ordinary-attestation-test/.operation-1002.json": {
+            "sha256": "830efa66d9938a8eb26323d49d6245a01b26b41c029377500be35c8ec2943541",
+            "inode": 57088,
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1
+          },
+          "/var/lib/lyra-ordinary-attestation-test/.gate-1002.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inode": 57063,
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1
+          },
+          "/var/lib/lyra-ordinary-attestation-test/.gate-1003.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inode": 57064,
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1
+          },
+          "/var/lib/lyra-ordinary-attestation-test/.gate-1000.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inode": 57062,
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1
+          },
+          "/var/lib/lyra-ordinary-attestation-test/1000": {
+            "sha256": "443c2de6e409afe16088d4de823b254ae6974ebe55599f4076852cf41ac82902",
+            "inode": 57070,
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1
+          },
+          "/var/lib/lyra-unit-stop-jobs-ledger-test/.gate-1.lock": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inode": 57082,
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1
+          },
+          "/var/lib/lyra-unit-stop-jobs-ledger-test/675f313a833db2f1e4af90c1142f0adcce0aab482fe1482a8eb8b5c1d3b6d4c2.json": {
+            "sha256": "9f2ddc0add8a9a43593d29f7bdeccae1a6a323e2827089573758c1b09562c15b",
+            "inode": 57092,
+            "mode": 384,
+            "uid": 0,
+            "gid": 0,
+            "nlink": 1
+          }
+        },
+        "mask": {
+          "path": "/etc/systemd/system/lyra-unit-stop-jobs-target-guarded.service",
+          "inode": 57091,
+          "uid": 0,
+          "gid": 0,
+          "mode": 41471,
+          "link": "/dev/null"
+        }
+      },
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "0",
+        "ControlGroup": "",
+        "User": "",
+        "Group": "",
+        "PAMName": "",
+        "KillMode": "control-group",
+        "Id": "lyra-unit-stop-jobs-target-guarded.service",
+        "Names": "lyra-unit-stop-jobs-target-guarded.service",
+        "Triggers": "",
+        "LoadState": "masked",
+        "ActiveState": "inactive",
+        "SubState": "dead",
+        "FragmentPath": "/etc/systemd/system/lyra-unit-stop-jobs-target-guarded.service",
+        "DropInPaths": "",
+        "Transient": "no"
+      },
+      "protected_proof_missing": true
+    },
+    {
+      "name": "cross-boot-deny-refused-before-authorization-without-job-reuse",
+      "passed": true,
+      "consumer": {
+        "pid": 554,
+        "boot": "783e0487-346c-4e90-8138-1675f9534787",
+        "outcome": "blocked",
+        "code": "RecoveryRequired",
+        "authorization_calls": [],
+        "result": null,
+        "empty": true,
+        "properties": {
+          "MainPID": {
+            "type": "u",
+            "data": 0
+          },
+          "ControlGroup": {
+            "type": "s",
+            "data": ""
+          },
+          "ActiveState": {
+            "type": "s",
+            "data": "inactive"
+          },
+          "SubState": {
+            "type": "s",
+            "data": "dead"
+          },
+          "Job": {
+            "type": "(uo)",
+            "data": [
+              0,
+              "/"
+            ]
+          },
+          "InvocationID": {
+            "type": "ay",
+            "data": []
+          }
+        },
+        "inherited_pidfds": [],
+        "ipc_requests": []
+      }
+    },
+    {
+      "name": "cross-boot-allow-refused-before-authorization-without-job-reuse",
+      "passed": true,
+      "consumer": {
+        "pid": 580,
+        "boot": "783e0487-346c-4e90-8138-1675f9534787",
+        "outcome": "blocked",
+        "code": "RecoveryRequired",
+        "authorization_calls": [],
+        "result": null,
+        "empty": true,
+        "properties": {
+          "MainPID": {
+            "type": "u",
+            "data": 0
+          },
+          "ControlGroup": {
+            "type": "s",
+            "data": ""
+          },
+          "ActiveState": {
+            "type": "s",
+            "data": "inactive"
+          },
+          "SubState": {
+            "type": "s",
+            "data": "dead"
+          },
+          "Job": {
+            "type": "(uo)",
+            "data": [
+              0,
+              "/"
+            ]
+          },
+          "InvocationID": {
+            "type": "ay",
+            "data": []
+          }
+        },
+        "inherited_pidfds": [],
+        "ipc_requests": []
+      }
+    },
+    {
+      "name": "persistent-owned-mask-refuses-postboot-producer-start",
+      "passed": true
+    },
+    {
+      "name": "withdrawn-pam-admission-still-rejected-after-real-reboot",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ControlGroup": "",
+        "User": "ordinaryuser",
+        "Group": "ordinaryuser",
+        "PAMName": "lyra-parental-unit-test",
+        "KillMode": "control-group",
+        "Id": "lyra-unit-stop-jobs-target-guarded.service",
+        "Names": "lyra-unit-stop-jobs-target-guarded.service",
+        "Triggers": "",
+        "LoadState": "loaded",
+        "ActiveState": "failed",
+        "SubState": "failed",
+        "FragmentPath": "/usr/lib/systemd/system/lyra-unit-stop-jobs-target-guarded.service",
+        "DropInPaths": "",
+        "Transient": "no"
+      }
+    },
+    {
+      "name": "peer-proof-preserved-and-fresh-peer-admission-succeeds",
+      "passed": true,
+      "peer_pid": "646",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023",
+      "old_peer_pid_reused_as_authority": false
+    },
+    {
+      "name": "withdrawn-user-manager-still-rejected-in-new-boot",
+      "passed": true,
+      "unit": {
+        "MainPID": "0",
+        "ExecMainStatus": "224",
+        "ActiveState": "failed"
+      },
+      "journal": "Starting User Manager for UID 1002...\npam_unix(systemd-user:session): session opened for user ordinaryuser(uid=1002) by ordinaryuser(uid=0)\npam_lyra_withdrawal_fixture(systemd-user:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nuser@1002.service: Failed to set up PAM session: Operation not permitted\nuser@1002.service: Failed at step PAM spawning /usr/lib/systemd/systemd: Operation not permitted\nuser@1002.service: Main process exited, code=exited, status=224/PAM\nuser@1002.service: Failed with result 'exit-code'.\nFailed to start User Manager for UID 1002.\n",
+      "peer_pid": "646",
+      "peer_context": "unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023"
+    }
+  ],
+  "error": null,
+  "old_boot": "b6b172d1-5b7f-4c82-aa92-7f4b3f2fb663",
+  "new_boot": "783e0487-346c-4e90-8138-1675f9534787",
+  "cleanup_rc": 0,
+  "cleanup_stderr": "",
+  "metadata": {
+    "original_pam_sha256": "b6ede5f5b65f86a9d254280563ec4f78033b59092edb4078a6fa0dc9b9bb6b4e",
+    "original_pam_mode": 420,
+    "vendor_sha256": "926dceb3352367fb321936ced0a4645966cca8d1347ba1e515fa515537586316",
+    "account_sha256": {
+      "/etc/passwd": "14f13527d70855a37f03aa2bd4fb8e91771760f308bed4b7bfaa0e7b2ccb8d35",
+      "/etc/group": "9a7c5cf5d051501ce114c58f8bcde0db45420169ea9ece107bf4d5aac8dc8161"
+    },
+    "source_sha256": {
+      "pam-close-hold.c": "f875c78efee484df529b7c945a03d1cdd9e600585cfb26589b8410f2819d96e5",
+      "barrier-writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+      "prepare-atomic.py": "21e1b21949cb67731049bc818a55af0f0b293e2bac91b8d2ef60beee7865fa85",
+      "common.py": "ae796829c070b5021333fed7a1137d4142dd4c22b25de5b92516d99189f7b03a",
+      "helper.py": "cb42d4ebacdaf1744b49d6ce0c3b184f72cb0324c0a31d6b9b78eac35e9224a9",
+      "state.py": "8642ba4f773724b63bf37ffe8085f8d49f8374e78fae9fc6970416acd8f01bf9",
+      "bridge.py": "bad7c26214b2b1d346255f9fba20a18d82bf08628bc2ae29d219af96aafb232d",
+      "withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+      "coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+      "ordinary-coordinator.py": "d225162be4f436a4817220d150b99fbfe3fe2c447f9bb76e12c74018186f07e0",
+      "manager_adapters.py": "3db95e621bb42547b29ff2bb4914d892982bb0a27c21fa678fccbd56cd75d799",
+      "cleanup.py": "00adcf0efb01fbd6a1d044f57f45f0966dbcf340ddfd448d8923c82cb7614bdc",
+      "restore-check.py": "7a80080d1f9ebd008b867bce3e37578f2103062072361f67552569a2609add64",
+      "fixture.py": "f17155905764c34582155fd9dad5f7ba1fb2baca0c59ab0e84776ed4284c35d8",
+      "unit-adapter.py": "e63a458578415b04e97e708c2911b064676e07b3a34f6952413d026f9ad1b0fd",
+      "operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+      "inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+      "ownership.py": "97e634f305171f57902f4078935d0eb04fe3cc8f3919b51aefc0ddb3b671d2d9",
+      "integration.py": "e90bc3623e68856256b14617addcaaee7fd5f12dc9c26b82b3129c376325207f",
+      "inventory_fixture.py": "33e0cac0748b78d019e6cc15767e66bb077e155a24ae04ea286e34f97e2873f8",
+      "live_common.py": "a3141145f5d6024f9ff7fccba5ebe026b339bd01ef15ee77b91ed8df1faa52cd",
+      "withdrawal-pam-guard.c": "62b5b04085111f39cc323c2e4d23bdce023702c02764aa6e38c6a225a9968f53",
+      "guard.py": "3171026adc23d1bcdf02fad6931b35a0d65577671b4367a80dde8fec795222a8",
+      "running.py": "929c74e8c740c9b8a3f79bb0be94f06ffc49a46f5c8b3ef53c52b866a04e2a62",
+      "linux.py": "f5fc2b2264e0f5094bb1c949af4fe165049e1bc16a62bdbcb4ec97bf8859ab94",
+      "support.py": "6893397beec2af2cd7edb4db1ba9615184284a874380b54dba97fd185384cb61",
+      "reference.py": "faf9ab797c5d1c179b2b0aa77f3a3fc6654cad82b2b70679ef37f80c646dfab7",
+      "namespace.py": "b44862ecbe207b902c61044ec759ca29c336e245a6b35b9f0060342cd042c720",
+      "catalog.py": "267b917b00109ca168b884270835e83760df77e5e1fe7709f1cf994f2359f564",
+      "probe.c": "6e60588c2702c9c05c062ccda4672085ff6d0e577d0f5271cb964f2372e78eb9",
+      "drop-stop.c": "005dafc17cf847bb722130a4e73caca8183f5e4cb5942ba92dab083b223f163b",
+      "effects.py": "172b9ef68050f53392a4465b9b7a4be87379efbbf4f9181f434a8f245426ab0f",
+      "jobs.py": "2dec8da6f06b5e016382b9c38d735e8a67fa67b22e1113c690b96cd7d9800254",
+      "backend.py": "5320d92fd02e1e735bdd776bac467fb9b493adb004c67733d899cac38c46a4eb",
+      "pam.py": "98e0dd05895c36adaa68ba3b6b9384d33ded20fb8c8522c9f3e7ed6688558d3f",
+      "recovery.py": "ac26412906fc6708eabdfac0e1208df321e6adc10a852be881737ecaa54e03c0",
+      "cold.py": "e487d0a3d359c9d2f2fb6e273c396e05add2d75b900061cbf04a529695235f13",
+      "restart.py": "97682bd5dffefb80d44eb6ccf1caab28553606351b5001328353dd6286d90019",
+      "restarted-reader.py": "13d33271d7f2d88f176fa3a296d2a2e4100224debea96ce2f0240087f61bce17",
+      "atomic-worker.py": "420a4400b4fb1f40acaeac071f83bc36eacdb3452b3b638b5b3a9322dbccc2b3",
+      "postboot-consumer.py": "1b16977df84ad03a8a725d92882f8277d38ea68bd7a4d33b50be87d3d7cab659",
+      "postboot.py": "73d02f762e276a44027ceb3fe7f435b1fc9764ff1b0613434a85308845b2dad9"
+    }
+  },
+  "full_account_protection": false,
+  "global_coverage_qualified": false,
+  "production_daemon_qualified": false,
+  "cross_boot_recovery_authorized": false,
+  "physical_power_loss_tested": false,
+  "abrupt_vm_stop_tested": true
+}

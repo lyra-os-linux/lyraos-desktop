@@ -1,0 +1,6 @@
+{
+  "cut_qemu_returncode": -9,
+  "qemu_returncode": 0,
+  "vm_off": true,
+  "same_disk": "/tmp/lyra-parental-pam-atomic-20261005/partial-write/system.qcow2"
+}
