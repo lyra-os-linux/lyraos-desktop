@@ -1,0 +1,21 @@
+marker-partial-write: QEMU killed at actual writer boundary
+marker-partial-write: PASS; restoration confirmed and VM OFF
+marker-temp-fsynced: QEMU killed at actual writer boundary
+marker-temp-fsynced: PASS; restoration confirmed and VM OFF
+marker-renamed: QEMU killed at actual writer boundary
+marker-renamed: PASS; restoration confirmed and VM OFF
+marker-directory-fsynced: QEMU killed at actual writer boundary
+marker-directory-fsynced: PASS; restoration confirmed and VM OFF
+owner-partial-write: QEMU killed at actual writer boundary
+owner-partial-write: PASS; restoration confirmed and VM OFF
+owner-temp-fsynced: QEMU killed at actual writer boundary
+owner-temp-fsynced: PASS; restoration confirmed and VM OFF
+owner-renamed: QEMU killed at actual writer boundary
+owner-renamed: PASS; restoration confirmed and VM OFF
+owner-directory-fsynced: QEMU killed at actual writer boundary
+owner-directory-fsynced: PASS; restoration confirmed and VM OFF
+proof-unlinked: QEMU killed at actual writer boundary
+proof-unlinked: PASS; restoration confirmed and VM OFF
+proof-directory-synced: QEMU killed at actual writer boundary
+proof-directory-synced: PASS; restoration confirmed and VM OFF
+ALL TEN CASES PASS

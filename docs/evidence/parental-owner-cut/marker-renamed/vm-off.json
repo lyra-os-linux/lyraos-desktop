@@ -1,0 +1,6 @@
+{
+  "cut_qemu_returncode": -9,
+  "qemu_returncode": 0,
+  "vm_off": true,
+  "same_disk": "/tmp/lyra-parental-owner-20261005/marker-renamed/system.qcow2"
+}
