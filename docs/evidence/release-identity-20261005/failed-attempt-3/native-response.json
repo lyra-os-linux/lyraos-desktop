@@ -1,0 +1,6 @@
+{
+  "id": "d886d0879c74488587abd49bacf9102b",
+  "rc": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/root/release-identity-test/native.py\", line 22, in <module>\n    assert data()['PRETTY_NAME']=='Lyra OS 1.1' and data()['LOGO']=='distributor-logo-lyra' and data()['BUILD_ID']=='lyra-trigger-rehearsal' and data()['IMAGE_VERSION']=='alpha8-test'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+}

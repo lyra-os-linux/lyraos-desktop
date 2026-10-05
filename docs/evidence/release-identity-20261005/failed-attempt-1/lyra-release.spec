@@ -30,19 +30,9 @@ grep -Fx "LYRA_EDITION='desktop'" %{SOURCE0}
 grep -Fx "LYRA_ARCHITECTURE='x86_64'" %{SOURCE0}
 grep -Fx "LYRA_BUILD_ID='lyra-release-%{version}'" %{SOURCE0}
 
-%posttrans
+# Run after standard transaction scriptlets; no daemon or overlapping file owner.
+%transfiletriggerin -P 1000 -- /usr/lib/os-release /etc/os-release
 %{_libexecdir}/lyra-release-identity
-
-# Reapply after release-file transactions, using RPM default trigger priority.
-%transfiletriggerin -- /usr/lib /etc
-while IFS= read -r changed_path; do
-    case "$changed_path" in
-        /usr/lib/os-release|/etc/os-release)
-            %{_libexecdir}/lyra-release-identity
-            exit $?
-            ;;
-    esac
-done
 
 %preun
 if [ "$1" -eq 0 ]; then

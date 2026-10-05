@@ -1,0 +1,6 @@
+{
+  "id": "308a9dcbbf2344db9276b6dae03549ce",
+  "rc": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/root/release-identity-test/native.py\", line 16, in <module>\n    assert data()['PRETTY_NAME']=='Lyra OS 1.1' and not Path('/etc/os-release').is_symlink() and digest('/usr/lib/os-release')==before\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+}
