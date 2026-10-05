@@ -1,0 +1,38 @@
+[
+  {
+    "file": "restore-check.py",
+    "response": {
+      "id": "bd98deadd572429f86b4bea88ce8892e",
+      "rc": 0,
+      "stdout": "{\"boot_id\": \"fc28edcc-2f96-4373-9514-8f448ffb2abd\", \"units\": {\"user@1000.service\": \"0\", \"user-runtime-dir@1000.service\": \"0\", \"user@1003.service\": \"0\", \"user@1002.service\": \"0\", \"user-runtime-dir@1003.service\": \"0\", \"user-runtime-dir@1002.service\": \"0\", \"gdm.service\": \"0\", \"sshd.service\": \"0\"}, \"absent_paths\": {\"/var/lib/lyra-ordinary-attestation-test\": true, \"/var/lib/lyra-parental-test\": true, \"/var/lib/lyra-parental-roles-test\": true, \"/usr/lib64/security/pam_lyra_withdrawal_fixture.so\": true, \"/etc/systemd/system/lyra-unit-stop-jobs-unused.service\": true, \"/etc/systemd/system/multi-user.target.wants/lyra-unit-stop-jobs-unused.service\": true, \"/var/lib/systemd/linger/parentaltest\": true, \"/var/lib/systemd/linger/ordinaryuser\": true, \"/var/lib/systemd/linger/installeduser\": true}, \"processes\": [], \"sessions\": \"\", \"enforce\": \"Permissive\", \"pam_preserved\": true, \"pam_mode_preserved\": true, \"vendor_preserved\": true, \"account_files_preserved\": true, \"sshd_disabled\": true, \"packages\": \"systemd-257.13-160100.2.5.x86_64\\npam-1.7.2+git12-160100.2.1.x86_64\\nselinux-policy-targeted-20260826+git0.492b478c7-160100.1.1.noarch\\n\", \"kernel\": \"6.12.0-160100.4-default\", \"complete_kernel_audit\": false, \"audit_backlog_warnings\": \"-- No entries --\\n\", \"passed\": true}\n",
+      "stderr": ""
+    }
+  },
+  {
+    "file": "restore-units.py",
+    "response": {
+      "id": "b7a3a356d3804d498f13c50ca3a13e14",
+      "rc": 0,
+      "stdout": "{\"passed\": true, \"absent\": {\"/etc/systemd/system/lyra-unit-stop-jobs-target-plain.service\": true, \"/etc/systemd/system/lyra-unit-stop-jobs-target-guarded.service\": true, \"/etc/systemd/system/lyra-unit-stop-jobs-target-tick.service\": true, \"/etc/systemd/system/lyra-unit-stop-jobs-target-tick.timer\": true, \"/etc/systemd/system/lyra-unit-stop-jobs-peer-plain.service\": true, \"/etc/systemd/system/lyra-unit-stop-jobs-peer-tick.service\": true, \"/etc/systemd/system/lyra-unit-stop-jobs-peer-tick.timer\": true, \"/etc/systemd/system/lyra-unit-stop-jobs-target-unknown.service\": true, \"/usr/lib/systemd/system/lyra-unit-stop-jobs-target-plain.service\": true, \"/usr/lib/systemd/system/lyra-unit-stop-jobs-target-guarded.service\": true, \"/usr/lib/systemd/system/lyra-unit-stop-jobs-target-tick.service\": true, \"/usr/lib/systemd/system/lyra-unit-stop-jobs-target-tick.timer\": true, \"/usr/lib/systemd/system/lyra-unit-stop-jobs-peer-plain.service\": true, \"/usr/lib/systemd/system/lyra-unit-stop-jobs-peer-tick.service\": true, \"/usr/lib/systemd/system/lyra-unit-stop-jobs-peer-tick.timer\": true, \"/usr/lib/systemd/system/lyra-unit-stop-jobs-target-unknown.service\": true}, \"units\": {\"lyra-unit-stop-jobs-target-plain.service\": {\"MainPID\": \"0\", \"ExecMainStatus\": \"0\", \"ControlGroup\": \"\", \"User\": \"\", \"Group\": \"\", \"PAMName\": \"\", \"KillMode\": \"control-group\", \"Id\": \"lyra-unit-stop-jobs-target-plain.service\", \"Names\": \"lyra-unit-stop-jobs-target-plain.service\", \"Triggers\": \"\", \"LoadState\": \"not-found\", \"ActiveState\": \"inactive\", \"SubState\": \"dead\", \"FragmentPath\": \"\", \"DropInPaths\": \"\", \"Transient\": \"no\"}, \"lyra-unit-stop-jobs-target-guarded.service\": {\"MainPID\": \"0\", \"ExecMainStatus\": \"0\", \"ControlGroup\": \"\", \"User\": \"\", \"Group\": \"\", \"PAMName\": \"\", \"KillMode\": \"control-group\", \"Id\": \"lyra-unit-stop-jobs-target-guarded.service\", \"Names\": \"lyra-unit-stop-jobs-target-guarded.service\", \"Triggers\": \"\", \"LoadState\": \"not-found\", \"ActiveState\": \"inactive\", \"SubState\": \"dead\", \"FragmentPath\": \"\", \"DropInPaths\": \"\", \"Transient\": \"no\"}, \"lyra-unit-stop-jobs-target-tick.service\": {\"MainPID\": \"0\", \"ExecMainStatus\": \"0\", \"ControlGroup\": \"\", \"User\": \"\", \"Group\": \"\", \"PAMName\": \"\", \"KillMode\": \"control-group\", \"Id\": \"lyra-unit-stop-jobs-target-tick.service\", \"Names\": \"lyra-unit-stop-jobs-target-tick.service\", \"Triggers\": \"\", \"LoadState\": \"not-found\", \"ActiveState\": \"inactive\", \"SubState\": \"dead\", \"FragmentPath\": \"\", \"DropInPaths\": \"\", \"Transient\": \"no\"}, \"lyra-unit-stop-jobs-target-tick.timer\": {\"Id\": \"lyra-unit-stop-jobs-target-tick.timer\", \"Names\": \"lyra-unit-stop-jobs-target-tick.timer\", \"Triggers\": \"\", \"LoadState\": \"not-found\", \"ActiveState\": \"inactive\", \"SubState\": \"dead\", \"FragmentPath\": \"\", \"DropInPaths\": \"\", \"Transient\": \"no\", \"MainPID\": \"0\"}, \"lyra-unit-stop-jobs-peer-plain.service\": {\"MainPID\": \"0\", \"ExecMainStatus\": \"0\", \"ControlGroup\": \"\", \"User\": \"\", \"Group\": \"\", \"PAMName\": \"\", \"KillMode\": \"control-group\", \"Id\": \"lyra-unit-stop-jobs-peer-plain.service\", \"Names\": \"lyra-unit-stop-jobs-peer-plain.service\", \"Triggers\": \"\", \"LoadState\": \"not-found\", \"ActiveState\": \"inactive\", \"SubState\": \"dead\", \"FragmentPath\": \"\", \"DropInPaths\": \"\", \"Transient\": \"no\"}, \"lyra-unit-stop-jobs-peer-tick.service\": {\"MainPID\": \"0\", \"ExecMainStatus\": \"0\", \"ControlGroup\": \"\", \"User\": \"\", \"Group\": \"\", \"PAMName\": \"\", \"KillMode\": \"control-group\", \"Id\": \"lyra-unit-stop-jobs-peer-tick.service\", \"Names\": \"lyra-unit-stop-jobs-peer-tick.service\", \"Triggers\": \"\", \"LoadState\": \"not-found\", \"ActiveState\": \"inactive\", \"SubState\": \"dead\", \"FragmentPath\": \"\", \"DropInPaths\": \"\", \"Transient\": \"no\"}, \"lyra-unit-stop-jobs-peer-tick.timer\": {\"Id\": \"lyra-unit-stop-jobs-peer-tick.timer\", \"Names\": \"lyra-unit-stop-jobs-peer-tick.timer\", \"Triggers\": \"\", \"LoadState\": \"not-found\", \"ActiveState\": \"inactive\", \"SubState\": \"dead\", \"FragmentPath\": \"\", \"DropInPaths\": \"\", \"Transient\": \"no\", \"MainPID\": \"0\"}, \"lyra-unit-stop-jobs-target-unknown.service\": {\"MainPID\": \"0\", \"ExecMainStatus\": \"0\", \"ControlGroup\": \"\", \"User\": \"\", \"Group\": \"\", \"PAMName\": \"\", \"KillMode\": \"control-group\", \"Id\": \"lyra-unit-stop-jobs-target-unknown.service\", \"Names\": \"lyra-unit-stop-jobs-target-unknown.service\", \"Triggers\": \"\", \"LoadState\": \"not-found\", \"ActiveState\": \"inactive\", \"SubState\": \"dead\", \"FragmentPath\": \"\", \"DropInPaths\": \"\", \"Transient\": \"no\"}}, \"scope_processes\": [], \"cgroup_leaks\": [], \"scratch_absent\": true}\n",
+      "stderr": ""
+    }
+  },
+  {
+    "file": "restore-ownership.py",
+    "response": {
+      "id": "d327eaeff05b472eae226d325afad2f5",
+      "rc": 0,
+      "stdout": "{\"passed\": true, \"absent\": {\"/var/lib/lyra-unit-stop-jobs-ledger-test\": true, \"/var/lib/lyra-producer-inventory-test\": true}}\n",
+      "stderr": ""
+    }
+  },
+  {
+    "file": "restore-extra.py",
+    "response": {
+      "id": "ec0e171cc8a244c89f34335c7638ac53",
+      "rc": 0,
+      "stdout": "{\"absent\": {\"/usr/libexec/lyra-unit-stop-jobs-probe\": true, \"/usr/libexec/lyra-unit-stop-jobs-drop-stop\": true, \"/var/lib/lyra-unit-stop-effects-test\": true, \"/root/unit-stop-jobs/saved-mask\": true}, \"previous_sources_and_accounts_preserved\": true, \"full_filesystem_rollback_claimed\": false, \"source_sha256\": \"e8ec21ff6c87fe18477cb4dff2a964ca946340f4fdda1c575a18f569601aed2f\", \"passed\": true}\n",
+      "stderr": ""
+    }
+  }
+]
