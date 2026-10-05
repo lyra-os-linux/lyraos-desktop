@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "before": {
+    "vendor_sha256": "4b683f9a96597d0b16bd1045554dad4cf25645c595791ec94573c974d95b8bd8",
+    "product_sha256": "58e325f4e1a1c4123e7b6fe1046afc14ecb5a470daef1f0abe950dd33f1078a3",
+    "nevra": "lyra-release-1.1-lp161.1.1.noarch"
+  },
+  "after": {
+    "vendor_sha256": "4b683f9a96597d0b16bd1045554dad4cf25645c595791ec94573c974d95b8bd8",
+    "product_sha256": "58e325f4e1a1c4123e7b6fe1046afc14ecb5a470daef1f0abe950dd33f1078a3",
+    "nevra": "lyra-release-1.1-lp161.2.1.noarch",
+    "identity": {
+      "NAME": "Lyra OS",
+      "VERSION": "1.1",
+      "ID": "lyra-os",
+      "ID_LIKE": "opensuse suse",
+      "VERSION_ID": "1.1",
+      "PRETTY_NAME": "Lyra OS 1.1",
+      "ANSI_COLOR": "0;32",
+      "CPE_NAME": "cpe:/o:opensuse:leap:16.1",
+      "BUG_REPORT_URL": "https://bugs.opensuse.org",
+      "HOME_URL": "https://www.opensuse.org/",
+      "DOCUMENTATION_URL": "https://en.opensuse.org/Portal:Leap",
+      "LOGO": "distributor-logo-lyra",
+      "LYRA_BASE_ID": "opensuse-leap",
+      "LYRA_BASE_VERSION_ID": "16.1"
+    }
+  },
+  "signature": {
+    "args": [
+      "rpmkeys",
+      "--dbpath",
+      "/home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/publication/rpmdb",
+      "--checksig",
+      "/home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/publication/release-api-rpms/lyra-release-1.1-lp161.2.1.noarch.rpm"
+    ],
+    "rc": 0,
+    "stdout": "/home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/publication/release-api-rpms/lyra-release-1.1-lp161.2.1.noarch.rpm: digests signatures OK\n",
+    "stderr": ""
+  },
+  "install": {
+    "args": [
+      "zypper",
+      "--non-interactive",
+      "--no-refresh",
+      "install",
+      "--no-recommends",
+      "/home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/publication/release-api-rpms/lyra-release-1.1-lp161.2.1.noarch.rpm"
+    ],
+    "rc": 0,
+    "stdout": "'/home/rodrigo/Git/LyraOS/analysis/2026-10-05/release-identity/publication/release-api-rpms/lyra-release-1.1-lp161.2.1.noarch.rpm' looks like an RPM file. Will try to use it.\nLoading repository data...\nReading installed packages...\nResolving package dependencies...\n\nThe following package is going to be upgraded:\n  lyra-release\n\n1 package to upgrade.\n\nPackage download size:     9,9 KiB\n\nPackage install size change:\n              |       5,4 KiB  required by packages that will be installed\n     5,3 KiB  |  -    105 B    released by packages that will be removed\n\nBackend:  classic_rpmtrans\nContinue? [y/n/v/...? shows all options] (y): y\nRetrieving: lyra-release-1.1-lp161.2.1.noarch (Plain RPM files cache) (1/1),   9,9 KiB    \n\nChecking for file conflicts: [..done]\n(1/1) Installing: lyra-release-1.1-lp161.2.1.noarch [..done]\nRunning post-transaction scripts [....done]\n \n",
+    "stderr": ""
+  },
+  "rpm_verify": {
+    "args": [
+      "rpm",
+      "-V",
+      "lyra-release"
+    ],
+    "rc": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "release_rpm_sha256": "1b064f16850b9ff717088a884a98f049fc3e6f48e885bcdcb281722be45ee71b",
+  "only_requested_package": "lyra-release",
+  "delivery": "obs_api",
+  "submit_request": 1382519,
+  "public_release_verified": false
+}

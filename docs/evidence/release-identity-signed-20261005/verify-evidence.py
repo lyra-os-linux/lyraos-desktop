@@ -16,3 +16,14 @@ assert publication['signing_fingerprint']=='399218A6E088C4053F4533BE58097F767EDC
 for name,digest in publication['evidence_sha256'].items():
     assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest
 print('PASS: seven signed RPM checks and artifact identity match')
+
+if publication.get('host_installed'):
+    host=json.loads((root/'host-install.json').read_text())
+    assert host['passed'] is True and host['install']['rc']==0 and host['rpm_verify']['rc']==0
+    assert host['after']['nevra']==publication['host_nevra']
+    assert host['release_rpm_sha256']==publication['release_api_rpm_sha256']
+    assert host['delivery']=='obs_api' and host['public_release_verified'] is False
+    for key in ('vendor_sha256','product_sha256'):assert host['before'][key]==host['after'][key]
+    assert host['after']['identity']['PRETTY_NAME']=='Lyra OS 1.1'
+    assert host['after']['identity']['LOGO']=='distributor-logo-lyra'
+    print('PASS: host installed accepted release RPM; vendor and Updater marker preserved')

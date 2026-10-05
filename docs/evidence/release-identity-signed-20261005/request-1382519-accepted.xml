@@ -1,0 +1,17 @@
+<request id="1382519" creator="rodrigosbrito">
+  <action type="submit">
+    <source project="home:rodrigosbrito:lyra:staging" package="lyra-release" rev="67be43654954516ff5d765a0244e47f4"/>
+    <target project="home:rodrigosbrito:lyra" package="lyra-release"/>
+    <options>
+      <sourceupdate>update</sourceupdate>
+    </options>
+    <acceptinfo rev="3" srcmd5="67be43654954516ff5d765a0244e47f4" osrcmd5="6652a6472f6c3c9851d58db3d65d7e7e"/>
+  </action>
+  <state name="accepted" who="rodrigosbrito" when="2026-10-05T12:14:24" created="2026-10-05T12:13:35">
+    <comment>Reviewed pinned source diff and succeeded Leap16.1 build. Full staging channel gate passed; public metadata and exact signed RPM verified with pinned key; seven real RPM transaction checks and CI evidence in merged desktop PR142/143.</comment>
+  </state>
+  <description>Promote lyra-release from staging
+
+Source revision: 67be43654954516ff5d765a0244e47f4
+Test evidence: PR142 and PR143 merged with Contracts CI passing; 272 local tests pass. Exact signed Leap16.1 staging RPM 1.1-lp161.2.1 SHA256 ad456ce79ba9f6640f68869d5661e87fb6cd7200e3540394d296f05d3cae71ff and public metadata verified against pinned OBS key. Seven actual RPM checks pass in disposable VM: install, two Leap-release reinstalls, preserve Lyra identity/image metadata, remove restores original symlink. Evidence https://github.com/lyra-os-linux/lyraos-desktop/tree/f5c7e7fbb42c3b1b90862061de56127725ffbffb/docs/evidence/release-identity-signed-20261005</description>
+</request>
