@@ -1,0 +1,1 @@
+ad456ce79ba9f6640f68869d5661e87fb6cd7200e3540394d296f05d3cae71ff  lyra-release-1.1-lp161.2.1.noarch.rpm

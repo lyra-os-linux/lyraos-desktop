@@ -1,0 +1,132 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "package-install",
+      "passed": true,
+      "rpm": {
+        "args": [
+          "rpm",
+          "-Uvh",
+          "/root/release-identity-test/lyra-release.rpm"
+        ],
+        "rc": 0,
+        "stdout": "Verifying...                          ########################################\nPreparing...                          ########################################\nUpdating / installing...\nlyra-release-1.1-lp161.2.1            ########################################\n",
+        "stderr": "warning: /root/release-identity-test/lyra-release.rpm: Header V3 RSA/SHA256 Signature, key ID 7edca82e: NOKEY\n"
+      }
+    },
+    {
+      "name": "initial-trigger-replaces-link-without-changing-vendor",
+      "passed": true,
+      "identity": {
+        "NAME": "Lyra OS",
+        "VERSION": "1.1",
+        "ID": "lyra-os",
+        "ID_LIKE": "opensuse suse",
+        "VERSION_ID": "1.1",
+        "PRETTY_NAME": "Lyra OS 1.1",
+        "ANSI_COLOR": "0;32",
+        "CPE_NAME": "cpe:/o:opensuse:leap:16.1",
+        "BUG_REPORT_URL": "https://bugs.opensuse.org",
+        "HOME_URL": "https://www.opensuse.org/",
+        "DOCUMENTATION_URL": "https://en.opensuse.org/Portal:Leap",
+        "LOGO": "distributor-logo-lyra",
+        "LYRA_BASE_ID": "opensuse-leap",
+        "LYRA_BASE_VERSION_ID": "16.1"
+      }
+    },
+    {
+      "name": "actual-leap-release-transaction",
+      "passed": true,
+      "rpm": {
+        "args": [
+          "rpm",
+          "-Uvh",
+          "--oldpackage",
+          "--replacepkgs",
+          "/root/release-identity-test/Leap-release.rpm"
+        ],
+        "rc": 0,
+        "stdout": "Verifying...                          ########################################\nPreparing...                          ########################################\nUpdating / installing...\nLeap-release-16.1-lp161.147.1         ########################################\nCleaning up / removing...\nLeap-release-16.1-lp161.136.1         ########################################\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "base-update-reapplies-branding-and-preserves-image-metadata",
+      "passed": true,
+      "identity": {
+        "NAME": "Lyra OS",
+        "VERSION": "1.1",
+        "ID": "lyra-os",
+        "ID_LIKE": "opensuse suse",
+        "VERSION_ID": "1.1",
+        "PRETTY_NAME": "Lyra OS 1.1",
+        "ANSI_COLOR": "0;32",
+        "CPE_NAME": "cpe:/o:opensuse:leap:16.1",
+        "BUG_REPORT_URL": "https://bugs.opensuse.org",
+        "HOME_URL": "https://www.opensuse.org/",
+        "DOCUMENTATION_URL": "https://en.opensuse.org/Portal:Leap",
+        "LOGO": "distributor-logo-lyra",
+        "BUILD_ID": "lyra-trigger-rehearsal",
+        "IMAGE_ID": "lyra-desktop",
+        "IMAGE_VERSION": "alpha8-test",
+        "LYRA_BASE_ID": "opensuse-leap",
+        "LYRA_BASE_VERSION_ID": "16.1"
+      },
+      "vendor_sha256": "4b683f9a96597d0b16bd1045554dad4cf25645c595791ec94573c974d95b8bd8"
+    },
+    {
+      "name": "second-base-reinstallation",
+      "passed": true,
+      "rpm": {
+        "args": [
+          "rpm",
+          "-Uvh",
+          "--replacepkgs",
+          "/root/release-identity-test/Leap-release.rpm"
+        ],
+        "rc": 0,
+        "stdout": "Verifying...                          ########################################\nPreparing...                          ########################################\nUpdating / installing...\nLeap-release-16.1-lp161.147.1         ########################################\nCleaning up / removing...\nLeap-release-16.1-lp161.147.1         ########################################\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "package-removal",
+      "passed": true,
+      "rpm": {
+        "args": [
+          "rpm",
+          "-e",
+          "lyra-release"
+        ],
+        "rc": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "removal-restores-original-link",
+      "passed": true,
+      "identity": {
+        "NAME": "openSUSE Leap",
+        "VERSION": "16.1",
+        "ID": "opensuse-leap",
+        "ID_LIKE": "suse opensuse",
+        "VERSION_ID": "16.1",
+        "PRETTY_NAME": "openSUSE Leap 16.1",
+        "ANSI_COLOR": "0;32",
+        "CPE_NAME": "cpe:/o:opensuse:leap:16.1",
+        "BUG_REPORT_URL": "https://bugs.opensuse.org",
+        "HOME_URL": "https://www.opensuse.org/",
+        "DOCUMENTATION_URL": "https://en.opensuse.org/Portal:Leap",
+        "LOGO": "distributor-logo-Leap"
+      }
+    }
+  ],
+  "fixture_rpms": {
+    "Leap-release.rpm": "aaec84b5cf6790a30a0f6d545baeef915327ff21545545a64b7a2fededadf958",
+    "lyra-release.rpm": "ad456ce79ba9f6640f68869d5661e87fb6cd7200e3540394d296f05d3cae71ff"
+  },
+  "disk_is_disposable_overlay": true,
+  "host_changed": false
+}
