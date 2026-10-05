@@ -225,3 +225,12 @@ passou em oito cenários e retomada por novo servidor: remetente real, negação
 agente cancelando e revisão/capacidade revalidadas. Permissão usa regra restrita
 da fixture; vínculo de responsável e autenticação positiva por senha não foram
 qualificados. Não implementa API ou ações de produto nem altera os gates.
+
+## Guard administrativo isolado — 05/10/2026
+
+O [guard de despacho](evidence/parental-administrative-guard/README.md)
+confere classificação/overlay e sela método e snapshots até o callback.
+Create/Remove e mutação supervised continuam indisponíveis na fixture;
+parâmetros finais e efeito Unix ainda não implementados. Instalação na estação
+para teste com conta local nova foi solicitada/autorizada pelo mantenedor após
+concluir o controle parental e suas validações; não instalar fixtures como produto.

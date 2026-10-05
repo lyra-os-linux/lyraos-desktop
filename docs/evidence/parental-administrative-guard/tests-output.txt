@@ -1,0 +1,21 @@
+....../tmp/tmpb4sm85dj/successor/manifest/releases-v1.json
+..........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................measurement series exceeds the allowed variation
+.........................................................................
+----------------------------------------------------------------------
+Ran 793 tests in 3.216s
+
+OK
+GNOME package minimums and all six Lyra extensions passed
+/tmp/tmpfwinmimj/manifest.json
+/tmp/tmp7uep33ff/manifest.json
+/tmp/tmp0_gvats1/export
+/tmp/tmpifh94c5g/export
+OK: deterministic KIWI source export at 9ec7e1dac194f0b1cc52dd5c3ab2eb562c7b6871
+/tmp/tmp5lmhiizw/first
+/tmp/tmp5lmhiizw/second
+PLAN: osc -A https://api.opensuse.org request accept 123
+/tmp/tmpwje5fjh8/summary.json
+/tmp/tmp_tux6sis/baseline.json
+/tmp/tmp_tux6sis/current.json
+/tmp/tmpc9t8j9v6/summary.json
+/tmp/tmppqaoatau/build.json

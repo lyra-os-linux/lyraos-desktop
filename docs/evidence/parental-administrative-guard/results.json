@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-05",
+  "result": "PASS",
+  "specific_tests": 13,
+  "suite_tests": 793,
+  "real_catalog_lock": true,
+  "inventory_and_ledger": "memory",
+  "administrative_effect": "record-only trusted callback",
+  "unix_mutation": false,
+  "production_integrated": false,
+  "local_installation_authorized_after_completion": true,
+  "files": {
+    "docs/evidence/parental-administrative-guard/guard.py": "6f983999bed3720df5779cd2794e323dfd9e4709bc23ff7e296d5f8ae8799c5f",
+    "tests/test_parental_administrative_guard.py": "64b1468a8b0aead9d087f33f46636dbd0ef0bfd4e9f271e69abb6ac604b318db",
+    "docs/evidence/parental-administrative-guard/tests-output.txt": "00914393c5c42ba8271f03184031975dbef675080ea2ca82e46e904aa5c92afd"
+  }
+}
