@@ -217,3 +217,11 @@ A [composição com arquivos de root e locks reais](evidence/parental-service-st
 passou em 11 testes de VM, incluindo nova instância após saída do processo no
 intent durável. Não qualifica Polkit/D-Bus, PAM real, rollback ou enforcement;
 a estação permanece sem instalação.
+
+## D-Bus/Polkit reais no laboratório — 05/10/2026
+
+O [ensaio de transporte e decisão Polkit](evidence/parental-service-auth/README.md)
+passou em oito cenários e retomada por novo servidor: remetente real, negação,
+agente cancelando e revisão/capacidade revalidadas. Permissão usa regra restrita
+da fixture; vínculo de responsável e autenticação positiva por senha não foram
+qualificados. Não implementa API ou ações de produto nem altera os gates.

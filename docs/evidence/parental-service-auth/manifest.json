@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "files": {
+    "cleanup-check.json": "0ac8cae7e1cf530101c434500e1caa02d7c71800b2cc96a5dc9f3421e7ad365d",
+    "client.py": "77646a36df2c1ac829316d115136d857363003155b6215c24d461b8207fe9839",
+    "disk.json": "d676f003306db528ce030db09a33532e7f9a1745a039a79e2cbec8a96c75c4eb",
+    "execution.json": "122ecb8dac14cf09d2f4f08dedb654c5eda492bddd9b8448901569a6c398cfd5",
+    "fixture.py": "1fc6714a554a47f3a799619dc9150972513040103377a27dcb00fb26d3438200",
+    "guard.json": "0912821d05ced68b1849ef7ca3bee8bdeef8cfd475e60883cdbe102e907bbdac",
+    "guest.py": "f15b8576ce556fe96cf77e5b468adb2803a87d8ac4ff8823e79bc1dc8db43298",
+    "host-run.py": "9bd3ec0def9631634f22049554a20f64dee50a075a9241c45c0b99e195c5b883",
+    "host.py": "a38facc37409cde06c374e82aaba3c81c41e836e19255dea63de318742cbcc6d",
+    "poweroff.json": "56fcaa57e3c2d996954fd308b6a8837ca294c60513f1c8d58f040c0da315d956",
+    "result.json": "9089b61cb3d6300dc8b6fe5237fde52c5445ba50dd4a96ad9d345c8251b67229",
+    "server.py": "9ac32ac5f56129268d7401e89e8009a8c03a0696ba97ee3ead1c2cfc856e0bd5",
+    "source-hashes.json": "45dd57f78d196b9856cf002603be543e4c1d3ec9701f06ebb3fbb2ce866533d2",
+    "vm-off.json": "9104e1794abf09e56992bcf3b230d48e5c369ebde931401742293cfb829e28a5",
+    "vm.py": "716bcdf1d9ae1049041fce74fe3a801aa9724d35e8a6c957d9882197c259b737"
+  },
+  "sources": {
+    "docs/evidence/parental-coordinator/coordinator.py": "ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99",
+    "docs/evidence/parental-ordinary-withdrawal/withdrawal.py": "8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2",
+    "docs/evidence/parental-operation-journal/operations.py": "b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b",
+    "docs/evidence/parental-inventory-gate/inventory.py": "eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e",
+    "docs/evidence/parental-registry-barrier/writer.py": "fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3",
+    "docs/evidence/parental-service-classifier/classifier.py": "3e9f166e4af7d59c08c3a4881b818c8348c316878ad2e79e23f16ca3924a45a4",
+    "docs/evidence/parental-service-withdrawal/binding.py": "a438692f71a4fe16ead8e5b1fc492693335a7c77752c276eb244cfe427cad963",
+    "docs/evidence/parental-service-auth/fixture.py": "1fc6714a554a47f3a799619dc9150972513040103377a27dcb00fb26d3438200",
+    "docs/evidence/parental-service-auth/server.py": "9ac32ac5f56129268d7401e89e8009a8c03a0696ba97ee3ead1c2cfc856e0bd5",
+    "docs/evidence/parental-service-auth/client.py": "77646a36df2c1ac829316d115136d857363003155b6215c24d461b8207fe9839",
+    "docs/evidence/parental-service-auth/guest.py": "f15b8576ce556fe96cf77e5b468adb2803a87d8ac4ff8823e79bc1dc8db43298"
+  }
+}
