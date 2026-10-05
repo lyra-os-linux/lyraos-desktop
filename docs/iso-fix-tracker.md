@@ -592,6 +592,7 @@ Inclusão e qualificação na candidata exata permanecem pendentes: conferir
 versões/assinaturas, conta nova, migração da personalização opt-in, papel de
 parede, claro/escuro e acessibilidade em VM e outro hardware aplicável. O
 protótipo fixo era um resíduo local; verificar sua ausência na imagem limpa.
+
 ## ID-01 — Persistência da identidade após Leap-release (05/10/2026)
 
 Recorrência confirmada na estação: lyra-release1.1 instalado só continha o
@@ -609,6 +610,7 @@ novo passou a qualificação assinada no staging e foi promovido pelo SR1382519;
 o RPM assinado 1.1-lp161.2.1 foi instalado na estação via API do projeto release,
 com transação de um pacote e verificação de integridade, identidade e hashes da
 base e do marcador do Updater. A proteção automática está ativa localmente;
-a publicação no repositório público do release ainda está pendente.
+a publicação pública do release foi confirmada com o gate do canal completo,
+assinaturas de metadata/RPM e SHA256 idêntico ao artefato instalado pela API.
 A candidata ISO permanece pendente até teste da imagem exata. Reversão do
 reparo: auxiliar --restore somente se o digest ainda corresponder ao gerado.

@@ -27,3 +27,15 @@ if publication.get('host_installed'):
     assert host['after']['identity']['PRETTY_NAME']=='Lyra OS 1.1'
     assert host['after']['identity']['LOGO']=='distributor-logo-lyra'
     print('PASS: host installed accepted release RPM; vendor and Updater marker preserved')
+
+if publication.get('release_publication')=='verified':
+    public=json.loads((root/'release-public-verification.json').read_text())
+    assert public['signing_fingerprint']==publication['signing_fingerprint']
+    assert public['metadata_signature']=='verified'
+    assert public['url']=='https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra/openSUSE_Leap_16.1'
+    assert len(public['packages'])==1 and public['packages'][0]['signature']=='verified'
+    assert public['packages'][0]['sha256']==publication['release_api_rpm_sha256']
+    assert public['packages'][0]['filename']==publication['staging_rpm']
+    gate=(root/'release-check-published.txt').read_text()
+    assert gate.count('enabled targets published')==3 and 'ERROR' not in gate
+    print('PASS: public release signatures and whole-channel gate; RPM matches installed artifact')

@@ -26,12 +26,14 @@
     "release-payload-comparison.json": "e3c2b692d0c0bcfe4b6a2a6ae910d587ad246ad277fe5be7631296332e89929c",
     "install-host.py": "8baa17aeac93eb623a923be1047dee281563f2efee3705c0878aa874837f84f1",
     "host-install.json": "74a6930a6d9883e03cfa9e7e7c6b72bd8abdd51609fe5400a663afcf2e80e460",
-    "release-api-verification.json": "2f1059348064aa995e80dc188422b33eb539244252064f7afad24166e238e21c"
+    "release-api-verification.json": "2f1059348064aa995e80dc188422b33eb539244252064f7afad24166e238e21c",
+    "release-check-published.txt": "1f46a4d403fed2b6a8558546e5209f48534ec3121dd7e501984609c323a8390c",
+    "release-public-verification.json": "57d952f13ae027249ae649eefd83287513df8f92e09a5013127941324461c87b"
   },
   "submit_request": 1382519,
   "release_revision": 3,
   "release_srcmd5": "67be43654954516ff5d765a0244e47f4",
-  "release_publication": "pending",
+  "release_publication": "verified",
   "release_api_rpm_sha256": "1b064f16850b9ff717088a884a98f049fc3e6f48e885bcdcb281722be45ee71b",
   "host_nevra": "lyra-release-1.1-lp161.2.1.noarch",
   "host_install_delivery": "obs_api"
