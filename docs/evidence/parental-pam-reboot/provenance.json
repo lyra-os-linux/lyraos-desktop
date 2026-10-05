@@ -1,0 +1,28 @@
+{
+  "artifacts": {
+    "prepare-reboot.py": "cc4c7c4a955d9d3fcd59cf589ae2826c7df51385ffa352c8b147ad895106c218",
+    "postboot-consumer.py": "1b16977df84ad03a8a725d92882f8277d38ea68bd7a4d33b50be87d3d7cab659",
+    "postboot.py": "3c8418988eb3191ad5e7ccd1ee24c0ca27659eb9e4a08ecbaa093c314e85ad60",
+    "preboot-response.json": "9f65f7edc20368a16730668449275869dbe3cc4270eaf6eb8720b75f13532dc0",
+    "preboot-state.json": "af6031cb53c8e0a55ce5c0722952d34da5b4d2f00e271fceb411d731246e564d",
+    "new-boot-response.json": "4549db8b1fcbbf5287e23bded609fa0bd8be8eb52d4323745d7c23d49559541f",
+    "postboot-response.json": "2ba88a171f1bf7fe3697b9eaab8da9436ebc8ded930aee3d7144c9aa5293c94f",
+    "python-suite.txt": "1a0f7520d4e77b9288bd7e5a09e9c93fa806b66180f850a17ed77f642716eaaf",
+    "result.json": "d6aff29d81ca7c68d35a34ae16203774a9326ad0955d2b94180dae3ba6be1cd3",
+    "restoration-executions.json": "e009b75943f9800523fb0f2ae09ea3826ce47680516a1f427accfa6aad1b1955",
+    "extra-restoration.json": "8aa9a145d61b87c188a52e2a1932cae5b7986fab198fed3fb84affa6e710debf",
+    "poweroff-response.json": "4a03b4ddaa712880646fd7e0aa5c75c1ffcb03e43b6f9e62f3d61c5d3e59b04e",
+    "reboot-response.json": "eca4971591e51e2322d6abd9dda844460279600d5c47568bcc3daab1a136e6c3",
+    "vm-off.json": "be3aaf3a41bf5e28023a5a388fb88971080bf9fee32ccef32f69e7bf46c1ea62",
+    "disk.json": "968f747b363b0c912d0c1f2ffaa6e64263ba900a23c109f192fdff330c8181b6"
+  },
+  "dependencies": {
+    "parental-pam-unit-stop/pam.py": "98e0dd05895c36adaa68ba3b6b9384d33ded20fb8c8522c9f3e7ed6688558d3f",
+    "parental-pam-helper-recovery/recovery.py": "ac26412906fc6708eabdfac0e1208df321e6adc10a852be881737ecaa54e03c0",
+    "parental-cold-unit-stop/cold.py": "e487d0a3d359c9d2f2fb6e273c396e05add2d75b900061cbf04a529695235f13",
+    "parental-pam-main-exit/pam-close-hold.c": "f875c78efee484df529b7c945a03d1cdd9e600585cfb26589b8410f2819d96e5",
+    "parental-pam-daemon-recovery/restart.py": "97682bd5dffefb80d44eb6ccf1caab28553606351b5001328353dd6286d90019",
+    "parental-pam-daemon-recovery/restarted-reader.py": "13d33271d7f2d88f176fa3a296d2a2e4100224debea96ce2f0240087f61bce17",
+    "parental-pam-crash-recovery/crash-worker.py": "6bf5db8f6bbac092560be36d3bb9f6f1ac68aee61703ecda400d7bfbd7c3dce1"
+  }
+}

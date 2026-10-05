@@ -1,0 +1,9 @@
+{
+  "first_qemu_session": 99804,
+  "reboot_qemu_exit_code": 0,
+  "second_qemu_session": 71482,
+  "qemu_exit_code": 0,
+  "vm_off": true,
+  "same_disk": "/tmp/lyra-parental-pam-reboot-20261005/system.qcow2",
+  "backing": "/tmp/lyra-parental-identity-20260928/system.raw"
+}
