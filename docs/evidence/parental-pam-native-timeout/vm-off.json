@@ -1,0 +1,8 @@
+{
+  "qemu_session": 56493,
+  "qemu_exit_code": 0,
+  "poweroff_rpc_rc": 0,
+  "disk": "/tmp/lyra-parental-pam-timeout-20261005/system.qcow2",
+  "backing": "/tmp/lyra-parental-identity-20260928/system.raw",
+  "attempts_same_overlay": 3
+}

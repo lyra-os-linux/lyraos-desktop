@@ -1,0 +1,6 @@
+{
+  "id": "3d4148f89faa44b7bfa06c1eed3fa109",
+  "rc": 0,
+  "stdout": "{\"passed\": true, \"manager_log_level\": \"info\", \"tracing\": {\"tracing_on\": \"1\\n\", \"current_tracer\": \"nop\\n\", \"events/signal/signal_generate/enable\": \"0\\n\"}, \"instance_removed\": true}\n",
+  "stderr": ""
+}

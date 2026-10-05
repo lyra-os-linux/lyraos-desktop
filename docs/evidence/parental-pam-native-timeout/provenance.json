@@ -1,0 +1,36 @@
+{
+  "base_commit": "3a6a57cac69a5dc95213c53f0380d8b736347a55",
+  "suite_tests": 744,
+  "native_controls": 24,
+  "artifacts": {
+    "diagnostics-restoration.json": "69c1ba5c0240e9f9342a4c07d3c894f2df1020c00f8c59e6f1ba0d1b0832daff",
+    "failed-native-1/native-response.json": "04704454e5cd35e2bfeb901e835ba888171c0f32370760c4528bd497e804d8ee",
+    "failed-native-1/native-timeout.py": "4f6bfb5430ba1b85439e70a77588f6890303d16247ed39bdd2fb2e31e390f904",
+    "failed-native-1/pam-close-hold.c": "b5aebd2373244ebcbca289ee656e7b5f3b1cb30bff35058aecc0f2999fce8c84",
+    "failed-native-1/restoration-executions.json": "30fb025d26fbfe333905bcd52b764476e68c97464efab2e5f5ae1ca84935249f",
+    "failed-native-1/result.json": "793bd23f1e9adeb3dd09bd0715f71a2f038a1fcd3dc5d5cc475056d4dd5a5119",
+    "failed-native-2/native-response.json": "13626b0300673fe8df10a20c2fe3f0833627b6b6ead9e3d5e95c119ba0d9806e",
+    "failed-native-2/native-timeout.py": "f0d81cffe23b212593f3d8547474717d0a26a071779c2eb51b49c03b66348e5c",
+    "failed-native-2/pam-close-hold.c": "b5aebd2373244ebcbca289ee656e7b5f3b1cb30bff35058aecc0f2999fce8c84",
+    "failed-native-2/restoration-executions.json": "b117f489e922bf219991c9815f8cd6cbaaeab8877cf9dba2f83faeff7c3a17a6",
+    "failed-native-2/result.json": "95efc5f039a9dca44bc7e1aaea0e1e06983c126dc90728c93d325d27bd4ca245",
+    "native-response.json": "ec8d39c264268fa1065fd8b51592a261bca6e7be1f2bf9649a3e02d31c2f69c7",
+    "native-timeout.py": "239af8d464e0f089e7b3e356f945cc4915efd50e0adf839578a344f3d9464be6",
+    "pam-close-hold.c": "b5aebd2373244ebcbca289ee656e7b5f3b1cb30bff35058aecc0f2999fce8c84",
+    "poweroff-response.json": "a49b10a345239fd1220fe75046223987fb394c0a9754f33fe4fb02605944d6db",
+    "python-suite.txt": "ed39ba9a0dbba033f01164e48e93eb098cfee524a7cdc267963c5695a39e5d82",
+    "restoration-executions.json": "05ba7d30cac1f423ed40693d117025435f54ad1c8de3ce758629900201135578",
+    "result.json": "b98976a329fca9a1aeb867ebeade3cae6b8e1961196c907992216c92596d1b08",
+    "vm-off.json": "179c0e1726898d63d8850077c7807cfc0601f453d73e691add3081ba812d6a7e"
+  },
+  "dependencies": {
+    "parental-pam-unit-stop/pam.py": "98e0dd05895c36adaa68ba3b6b9384d33ded20fb8c8522c9f3e7ed6688558d3f",
+    "parental-pam-helper-recovery/recovery.py": "ac26412906fc6708eabdfac0e1208df321e6adc10a852be881737ecaa54e03c0",
+    "parental-pam-main-exit/pam-close-hold.c": "f875c78efee484df529b7c945a03d1cdd9e600585cfb26589b8410f2819d96e5",
+    "parental-guarded-unit-stop/guard.py": "3171026adc23d1bcdf02fad6931b35a0d65577671b4367a80dde8fec795222a8",
+    "parental-running-reference/running.py": "929c74e8c740c9b8a3f79bb0be94f06ffc49a46f5c8b3ef53c52b866a04e2a62",
+    "parental-unit-stop-jobs/effects.py": "172b9ef68050f53392a4465b9b7a4be87379efbbf4f9181f434a8f245426ab0f",
+    "parental-unit-stop-jobs/jobs.py": "2dec8da6f06b5e016382b9c38d735e8a67fa67b22e1113c690b96cd7d9800254",
+    "parental-unit-stop-jobs/backend.py": "5320d92fd02e1e735bdd776bac467fb9b493adb004c67733d899cac38c46a4eb"
+  }
+}
