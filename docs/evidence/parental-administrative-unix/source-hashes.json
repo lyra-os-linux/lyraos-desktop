@@ -1,0 +1,6 @@
+{
+  "id": "13e3620789934d338f0ee2d2f279506e",
+  "rc": 0,
+  "stdout": "{\"coordinator.py\": \"ac859f99e87651dab76af2f13f0ff23e715a728604c49b2209949625cb887b99\", \"withdrawal.py\": \"8e14d28c00676983579451b0e4bf0b9f06ca5c9dc0027fce522e7ef4703689a2\", \"operations.py\": \"b88377d3a377e3f8aa1640ede39f7197ddac50508d6adff085c631dbbf8f0f0b\", \"inventory.py\": \"eb3fb5d6a04adeacaf7d53aacd5fbfecb0e1ef92272c9582f52c04510a00ac3e\", \"writer.py\": \"fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3\", \"classifier.py\": \"3e9f166e4af7d59c08c3a4881b818c8348c316878ad2e79e23f16ca3924a45a4\", \"binding.py\": \"a438692f71a4fe16ead8e5b1fc492693335a7c77752c276eb244cfe427cad963\", \"guard.py\": \"6f983999bed3720df5779cd2794e323dfd9e4709bc23ff7e296d5f8ae8799c5f\", \"parameters.py\": \"e0a6880ba6b803350bfcb95a508542389782bda0c4de9fb0d0811b6ed22817a9\", \"fixture.py\": \"76c5b4b2f6f7c944c8984760aceb2b916c53db81792090451d20782a5c734794\", \"guest.py\": \"f7afc4f126f70f825789faa01302e921581cb2e056c0dda82ea009c9dd171fc9\"}\n",
+  "stderr": ""
+}

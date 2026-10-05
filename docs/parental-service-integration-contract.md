@@ -242,3 +242,11 @@ fixa nome/grupos/GIDs/efeito wheel no plano, revalida grupos em torno da
 autorização e produz argv sem shell. Não executa Unix; senha/foto continuam
 explicitamente indisponíveis na fixture. Qualificação do efeito real permanece
 próxima etapa, sem mudar os gates de produto ou a autorização de teste local.
+
+## Efeito Unix real isolado — 05/10/2026
+
+O [adaptador com comandos reais](evidence/parental-administrative-unix/README.md)
+passou em 13 controles: perfil/grupos e wheel aplicados na conta fictícia,
+negação/barreira impedindo despacho, no-ops de SetAdmin e restauração verificada.
+A composição com D-Bus/Polkit real ainda não foi testada nesta etapa; não
+modifica UsersService ou qualifica recuperação de produto.

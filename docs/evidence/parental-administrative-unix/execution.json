@@ -1,0 +1,6 @@
+{
+  "id": "2a02ee9395d444db99da8cd15687470c",
+  "rc": 0,
+  "stdout": "{\"passed\": true, \"checks\": 13, \"commands\": 3, \"noops\": 2, \"error\": null, \"cleanup\": true}\n",
+  "stderr": ""
+}
