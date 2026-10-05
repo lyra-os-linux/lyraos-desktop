@@ -1,0 +1,6 @@
+{
+  "id": "e28025f63e234142a7ee11ae34c2dc2b",
+  "rc": 0,
+  "stdout": "Starting Lyra disposable registered service...\npam_warn(lyra-parental-unit-test:setcred): function=[pam_sm_setcred] flags=0x8002 service=[lyra-parental-unit-test] terminal=[<unknown>] user=[ordinaryuser] ruser=[<unknown>] rhost=[<unknown>]\npam_lyra_withdrawal_fixture(lyra-parental-unit-test:session): Experimental withdrawal admission rejected session\nPAM failed: Cannot make/remove an entry for the specified session\nlyra-unit-stop-jobs-target-guarded.service: Failed to set up PAM session: Operation not permitted\nlyra-unit-stop-jobs-target-guarded.service: Failed at step PAM spawning /usr/bin/sleep: Operation not permitted\nlyra-unit-stop-jobs-target-guarded.service: Main process exited, code=exited, status=224/PAM\nlyra-unit-stop-jobs-target-guarded.service: Failed with result 'exit-code'.\nFailed to start Lyra disposable registered service.\n",
+  "stderr": ""
+}
