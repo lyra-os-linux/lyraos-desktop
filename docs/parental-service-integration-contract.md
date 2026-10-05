@@ -195,3 +195,10 @@ documental. Laboratório usa contas fictícias e disco descartável verificado;
 reversão é descarte/restauração do overlay, sem instalação na estação.
 Produto continua dependente de cobertura de produtores, enforcement #102,
 GNOME completo, UX/privacidade, revisão confiável e RPM/ISO qualificados.
+
+## Primeiro componente isolado — 05/10/2026
+
+O [classificador e planejador experimental](evidence/parental-service-classifier/README.md)
+implementa parsing/leitura read-only, elegibilidade e planos vinculados ao
+remetente/revisão. Não implementa publicação, Polkit, execução da retirada
+ou guard de produto. As decisões abertas deste contrato permanecem abertas.

@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-05",
+  "specific_tests": 22,
+  "suite_tests": 766,
+  "result": "PASS",
+  "environment": "unprivileged temporary directories; explicit lab owner UID",
+  "production_integrated": false,
+  "real_polkit": false,
+  "withdrawal_execution": false,
+  "antirollback": false,
+  "files": {
+    "docs/evidence/parental-service-classifier/classifier.py": "3e9f166e4af7d59c08c3a4881b818c8348c316878ad2e79e23f16ca3924a45a4",
+    "tests/test_parental_service_classifier.py": "117d30643232577d184289afc9fd7eaabe4dd90e58ebddf2ee8c72ecb1299f1d",
+    "docs/evidence/parental-service-classifier/tests-output.txt": "2c685aa447b45e327f77e3a7a87b3883b0e5dabf7c60af87c343ffab940eea2d"
+  }
+}
