@@ -1,0 +1,12 @@
+{
+  "absent": {
+    "/usr/libexec/lyra-unit-stop-jobs-probe": true,
+    "/usr/libexec/lyra-unit-stop-jobs-drop-stop": true,
+    "/var/lib/lyra-unit-stop-effects-test": true,
+    "/root/unit-stop-jobs/saved-mask": true
+  },
+  "previous_sources_and_accounts_preserved": true,
+  "full_filesystem_rollback_claimed": false,
+  "source_sha256": "e8ec21ff6c87fe18477cb4dff2a964ca946340f4fdda1c575a18f569601aed2f",
+  "passed": true
+}

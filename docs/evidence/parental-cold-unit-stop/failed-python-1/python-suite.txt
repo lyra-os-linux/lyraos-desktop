@@ -1,0 +1,105 @@
+....../tmp/tmpy457zbnb/successor/manifest/releases-v1.json
+...................................................................................................................................................................................................................................................................E........EE.......................................................................................................................................................................................................................................................................................................................................measurement series exceeds the allowed variation
+.........................................................................
+======================================================================
+ERROR: test_exec_changes_inside_authorization_refuse_before_timer_effect (test_parental_guarded_unit_stop.Tests.test_exec_changes_inside_authorization_refuse_before_timer_effect)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/tests/test_parental_guarded_unit_stop.py", line 48, in test_exec_changes_inside_authorization_refuse_before_timer_effect
+    self.authorization=authorize;self.rejects('UnsupportedRuntime',self.revoke);self.assertEqual(self.backend.effects,[])
+                                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/tests/test_parental_guarded_unit_stop.py", line 42, in rejects
+    with self.assertRaises(g.GateError) as e:fn()
+                                             ~~^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/tests/test_parental_guarded_unit_stop.py", line 40, in revoke
+    with self.guard.batch():return self.adapter.revoke('target')
+                                   ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-unit-adapter/unit-adapter.py", line 101, in revoke
+    if unit.kind==kind and self.execute(['systemctl','stop',unit.name])['rc']!=0:
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-guarded-unit-stop/guard.py", line 85, in __call__
+    self.check() # Entire pending batch is checked before each effect.
+    ~~~~~~~~~~^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-guarded-unit-stop/guard.py", line 57, in check
+    pinned.check()
+    ~~~~~~~~~~~~^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-running-reference/running.py", line 66, in check
+    validate(self.reference, row, pid, cgroup)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-running-reference/running.py", line 48, in validate
+    raise GateError('UnsupportedRuntime')
+coordinator.GateError: UnsupportedRuntime
+
+======================================================================
+ERROR: test_restart_inside_authorization_refuses_original_pin (test_parental_guarded_unit_stop.Tests.test_restart_inside_authorization_refuses_original_pin)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/tests/test_parental_guarded_unit_stop.py", line 51, in test_restart_inside_authorization_refuses_original_pin
+    self.authorization=authorize;self.rejects('Conflict',self.revoke);self.assertEqual(self.backend.effects,[])
+                                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/tests/test_parental_guarded_unit_stop.py", line 42, in rejects
+    with self.assertRaises(g.GateError) as e:fn()
+                                             ~~^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/tests/test_parental_guarded_unit_stop.py", line 40, in revoke
+    with self.guard.batch():return self.adapter.revoke('target')
+                                   ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-unit-adapter/unit-adapter.py", line 101, in revoke
+    if unit.kind==kind and self.execute(['systemctl','stop',unit.name])['rc']!=0:
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-guarded-unit-stop/guard.py", line 85, in __call__
+    self.check() # Entire pending batch is checked before each effect.
+    ~~~~~~~~~~^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-guarded-unit-stop/guard.py", line 57, in check
+    pinned.check()
+    ~~~~~~~~~~~~^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-running-reference/running.py", line 63, in check
+    raise GateError('Conflict')
+coordinator.GateError: Conflict
+
+======================================================================
+ERROR: test_second_service_changes_after_first_effect_refuses_partial_batch (test_parental_guarded_unit_stop.Tests.test_second_service_changes_after_first_effect_refuses_partial_batch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/tests/test_parental_guarded_unit_stop.py", line 64, in test_second_service_changes_after_first_effect_refuses_partial_batch
+    self.guard.execute=execute;self.rejects('UnsupportedRuntime',self.revoke);self.assertEqual([a[2] for a in self.backend.effects],['a.timer','a.service'])
+                               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/tests/test_parental_guarded_unit_stop.py", line 42, in rejects
+    with self.assertRaises(g.GateError) as e:fn()
+                                             ~~^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/tests/test_parental_guarded_unit_stop.py", line 40, in revoke
+    with self.guard.batch():return self.adapter.revoke('target')
+                                   ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-unit-adapter/unit-adapter.py", line 101, in revoke
+    if unit.kind==kind and self.execute(['systemctl','stop',unit.name])['rc']!=0:
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-guarded-unit-stop/guard.py", line 85, in __call__
+    self.check() # Entire pending batch is checked before each effect.
+    ~~~~~~~~~~^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-guarded-unit-stop/guard.py", line 57, in check
+    pinned.check()
+    ~~~~~~~~~~~~^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-running-reference/running.py", line 66, in check
+    validate(self.reference, row, pid, cgroup)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rodrigo/Git/LyraOS/worktrees/desktop-parental-registry-lifetime/docs/evidence/parental-running-reference/running.py", line 48, in validate
+    raise GateError('UnsupportedRuntime')
+coordinator.GateError: UnsupportedRuntime
+
+----------------------------------------------------------------------
+Ran 676 tests in 3.203s
+
+FAILED (errors=3)
+GNOME package minimums and all six Lyra extensions passed
+/tmp/tmpo7sb8qno/manifest.json
+/tmp/tmpc3ac28v8/manifest.json
+/tmp/tmpr_own3ec/export
+/tmp/tmps14_8kgj/export
+OK: deterministic KIWI source export at dc2317a64b0805869cec20549e22318297199493
+/tmp/tmpahb_66d2/first
+/tmp/tmpahb_66d2/second
+PLAN: osc -A https://api.opensuse.org request accept 123
+/tmp/tmpdp54874k/summary.json
+/tmp/tmpmnmaw91w/baseline.json
+/tmp/tmpmnmaw91w/current.json
+/tmp/tmpqzt8p39b/summary.json
+/tmp/tmpfx0u_qdi/build.json

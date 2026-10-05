@@ -1,0 +1,6 @@
+{
+  "id": "d9966ae1cbed4416ba74994aaf37c671",
+  "rc": 0,
+  "stdout": "{\"passed\": true, \"readers\": [\"restore-check.py\", \"restore-units.py\", \"restore-ownership.py\", \"restore-extra.py\"]}\n",
+  "stderr": ""
+}
