@@ -1,0 +1,6 @@
+{
+  "id": "fafb6bcc2b1f45c682420d44ebdad649",
+  "rc": 0,
+  "stdout": "{\"guard\": true, \"ready\": {\"pid\": 1505, \"point\": \"temp-fsynced\", \"kind\": \"origin\", \"request_entries\": 0, \"request_returns\": 0, \"authorization_calls\": 0, \"stage\": \"temp-fsynced\", \"counts\": {\"writes\": 1, \"file_fsync\": 1, \"renames\": 0, \"directory_fsync\": 0}, \"canonical\": null, \"temps\": [{\"name\": \"..origin-260560fbeb1afdbdfb30da79392935b31b800406f8783908f53d213585580956.json.80189d6ed2bf48f68e3bf28e8b3e5ee4.tmp\", \"size\": 3802, \"sha256\": \"fd5dcffc908c77bc3d8324522990112cafe5883db56f0eb7996d4cfeb9d691e6\"}], \"payload_size\": 3802, \"writer_sha256\": \"fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3\"}, \"boot\": \"d4620e3e-9278-4672-ad8a-abbe0c3f229a\", \"properties\": {\"MainPID\": \"733\", \"ActiveState\": \"active\", \"Job\": \"\"}, \"helper_pids\": [\"733\", \"734\"], \"marker_present\": false, \"worker_state\": \"T\"}\n",
+  "stderr": ""
+}

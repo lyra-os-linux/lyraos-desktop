@@ -1,0 +1,6 @@
+{
+  "id": "6417624aceff4586bbe0d2697e4031c1",
+  "rc": 0,
+  "stdout": "{\"guard\": true, \"ready\": {\"pid\": 1500, \"point\": \"temp-fsynced\", \"kind\": \"intent\", \"request_entries\": 0, \"request_returns\": 0, \"authorization_calls\": 1, \"stage\": \"temp-fsynced\", \"counts\": {\"writes\": 1, \"file_fsync\": 1, \"renames\": 0, \"directory_fsync\": 0}, \"canonical\": null, \"temps\": [{\"name\": \"..stop-260560fbeb1afdbdfb30da79392935b31b800406f8783908f53d213585580956.json.0e862263349c43bfb0c896abfce5e2e5.tmp\", \"size\": 804, \"sha256\": \"47cf1053f9d47d8a5cddf08ee297d61b31f0429c6aacd744ed358b6351252ae9\"}], \"payload_size\": 804, \"writer_sha256\": \"fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3\"}, \"boot\": \"9ad52330-38cf-450e-9e42-6414669a6e4e\", \"properties\": {\"MainPID\": \"0\", \"ActiveState\": \"deactivating\", \"Job\": \"\"}, \"helper_pids\": [\"729\"], \"marker_present\": true, \"worker_state\": \"T\"}\n",
+  "stderr": ""
+}

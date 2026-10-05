@@ -1,0 +1,36 @@
+origin-partial-write: QEMU killed at actual writer boundary
+origin-partial-write: PASS; restoration confirmed and VM OFF
+origin-temp-fsynced: QEMU killed at actual writer boundary
+origin-temp-fsynced: PASS; restoration confirmed and VM OFF
+origin-renamed: QEMU killed at actual writer boundary
+origin-renamed: PASS; restoration confirmed and VM OFF
+origin-directory-fsynced: QEMU killed at actual writer boundary
+origin-directory-fsynced: PASS; restoration confirmed and VM OFF
+Traceback (most recent call last):
+  File "/home/rodrigo/Git/LyraOS/analysis/2026-10-05/parental-pam-early-cut/run.py", line 43, in <module>
+       checked('precut-guard-response.json','python3','-c',"""from pathlib import Path
+       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    import os,json,subprocess
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<13 lines>...
+    print(json.dumps(dict(guard=True,ready=r,boot=s['old_boot'],properties=props,helper_pids=pids,marker_present=Path('/run/lyra-pam-close-hold-test').exists(),worker_state=state)))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "/home/rodrigo/Git/LyraOS/analysis/2026-10-05/parental-pam-early-cut/run.py", line 23, in checked
+    row=guest(*args);save(name,row);assert row['rc']==0,row;return row
+                                           ^^^^^^^^^^^^
+AssertionError: {'id': '32dd1826b15040ccaf7140b18ae0ff14', 'rc': 1, 'stdout': '', 'stderr': 'Traceback (most recent call last):\n  File "<string>", line 14, in <module>\n    assert len(pids)==1 and props[\'MainPID\']==\'0\' and props[\'ActiveState\']==\'deactivating\' and int(props[\'Job\'])>0\n                                                                                               ~~~^^^^^^^^^^^^^^\nValueError: invalid literal for int() with base 10: \'\'\n'}
+origin-partial-write: already qualified, skipped
+origin-temp-fsynced: already qualified, skipped
+origin-renamed: already qualified, skipped
+origin-directory-fsynced: already qualified, skipped
+intent-partial-write: QEMU killed at actual writer boundary
+intent-partial-write: PASS; restoration confirmed and VM OFF
+intent-temp-fsynced: QEMU killed at actual writer boundary
+intent-temp-fsynced: PASS; restoration confirmed and VM OFF
+intent-renamed: QEMU killed at actual writer boundary
+intent-renamed: PASS; restoration confirmed and VM OFF
+intent-directory-fsynced: QEMU killed at actual writer boundary
+intent-directory-fsynced: PASS; restoration confirmed and VM OFF
+ALL EIGHT CASES PASS

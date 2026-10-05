@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "reason": "host guard expected a stop job before StopUnit; Job is empty",
+  "postboot_checks_passed": true,
+  "cleanup_rc": 0,
+  "cut_returncode_not_archived": true
+}

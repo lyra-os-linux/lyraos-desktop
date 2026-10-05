@@ -1,0 +1,6 @@
+{
+  "id": "5a002e05a8b54c8899b0df552a6c3ac7",
+  "rc": 0,
+  "stdout": "{\"guard\": true, \"ready\": {\"pid\": 1502, \"point\": \"partial-write\", \"kind\": \"intent\", \"request_entries\": 0, \"request_returns\": 0, \"authorization_calls\": 1, \"stage\": \"partial-write\", \"counts\": {\"writes\": 1, \"file_fsync\": 0, \"renames\": 0, \"directory_fsync\": 0}, \"canonical\": null, \"temps\": [{\"name\": \"..stop-260560fbeb1afdbdfb30da79392935b31b800406f8783908f53d213585580956.json.a1f29badde4d49e4ac5594f9375657a1.tmp\", \"size\": 402, \"sha256\": \"2e0cb0618d28d1fc9058f0463b9bde8bddde2cec16343bad64c6657523751cdd\"}], \"payload_size\": 804, \"writer_sha256\": \"fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3\"}, \"boot\": \"477021d0-9213-439b-a98f-dbe8088899fe\", \"properties\": {\"MainPID\": \"0\", \"ActiveState\": \"deactivating\", \"Job\": \"\"}, \"helper_pids\": [\"731\"], \"marker_present\": true, \"worker_state\": \"T\"}\n",
+  "stderr": ""
+}

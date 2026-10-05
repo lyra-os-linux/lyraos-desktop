@@ -1,0 +1,6 @@
+{
+  "id": "005455b679d343d4bbd386c7c6635335",
+  "rc": 0,
+  "stdout": "{\"guard\": true, \"ready\": {\"pid\": 1501, \"point\": \"partial-write\", \"kind\": \"origin\", \"request_entries\": 0, \"request_returns\": 0, \"authorization_calls\": 0, \"stage\": \"partial-write\", \"counts\": {\"writes\": 1, \"file_fsync\": 0, \"renames\": 0, \"directory_fsync\": 0}, \"canonical\": null, \"temps\": [{\"name\": \"..origin-260560fbeb1afdbdfb30da79392935b31b800406f8783908f53d213585580956.json.1492e64c8a2944a495c8a9fef40297d9.tmp\", \"size\": 1900, \"sha256\": \"9c187a73b9e965ad4e2a0e1ef0c13f3ce26a85cfb2cfa99be2c9550bc416157d\"}], \"payload_size\": 3801, \"writer_sha256\": \"fc16655cdd5a2f633bd11566a48c8002617a793061c9175c6be0e282c9b317f3\"}, \"boot\": \"b18f301a-cf7d-4177-820d-1acad6d8ac4d\", \"properties\": {\"MainPID\": \"729\", \"ActiveState\": \"active\", \"Job\": \"\"}, \"helper_pids\": [\"729\", \"730\"], \"marker_present\": false, \"worker_state\": \"T\"}\n",
+  "stderr": ""
+}

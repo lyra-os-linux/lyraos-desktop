@@ -1,0 +1,6 @@
+{
+  "id": "32dd1826b15040ccaf7140b18ae0ff14",
+  "rc": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n    assert len(pids)==1 and props['MainPID']=='0' and props['ActiveState']=='deactivating' and int(props['Job'])>0\n                                                                                               ~~~^^^^^^^^^^^^^^\nValueError: invalid literal for int() with base 10: ''\n"
+}
