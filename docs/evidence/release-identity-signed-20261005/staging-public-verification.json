@@ -1,0 +1,17 @@
+{
+  "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1",
+  "metadata_signature": "verified",
+  "signing_fingerprint": "399218A6E088C4053F4533BE58097F767EDCA82E",
+  "packages": [
+    {
+      "filename": "lyra-release-1.1-lp161.2.1.noarch.rpm",
+      "name": "lyra-release",
+      "version": "1.1-lp161.2.1",
+      "architecture": "noarch",
+      "size": 10178,
+      "sha256": "ad456ce79ba9f6640f68869d5661e87fb6cd7200e3540394d296f05d3cae71ff",
+      "url": "https://download.opensuse.org/repositories/home:/rodrigosbrito:/lyra:/staging/openSUSE_Leap_16.1/noarch/lyra-release-1.1-lp161.2.1.noarch.rpm",
+      "signature": "verified"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+<directory name="lyra-release" rev="3" vrev="2" srcmd5="67be43654954516ff5d765a0244e47f4">
+  <entry name="lyra-product-release" md5="0eac546eec7f01dcd00b9cbb67bdeccf" size="105" mtime="1788544827"/>
+  <entry name="lyra-release-identity" md5="3aa1a6edddf434790c307d2a86d0dd0b" size="5413" mtime="1791199932"/>
+  <entry name="lyra-release.changes" md5="87b08eb79211d9fc185f818c2558c3fc" size="811" mtime="1791199934"/>
+  <entry name="lyra-release.spec" md5="a04a8c6be0a404bb1f0aaad3428af1f8" size="1546" mtime="1791199935"/>
+</directory>

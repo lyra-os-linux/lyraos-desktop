@@ -605,6 +605,7 @@ instalar, reinstalar Leap-release duas vezes, conservar nome/logo/metadados de
 imagem e remover/restaurar o link anterior. Três falhas anteriores arquivadas.
 Evidências: docs/evidence/release-identity-20261005. O reparo local restaurou
 Lyra OS1.1 via auxiliar, com vendor e marcador do Updater preservados. O RPM
-novo ainda não foi publicado/instalado; proteção automática e candidata ISO
-permanecem pendentes até distribuição e teste da imagem exata. Reversão do
+novo passou a qualificação assinada no staging e foi promovido pelo SR1382519;
+a publicação do canal release e instalação local ainda estão pendentes.
+A candidata ISO permanece pendente até teste da imagem exata. Reversão do
 reparo: auxiliar --restore somente se o digest ainda corresponder ao gerado.

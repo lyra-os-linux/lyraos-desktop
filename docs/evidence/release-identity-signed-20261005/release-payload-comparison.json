@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "release_api_rpm_sha256": "1b064f16850b9ff717088a884a98f049fc3e6f48e885bcdcb281722be45ee71b",
+  "staging_rpm_sha256": "ad456ce79ba9f6640f68869d5661e87fb6cd7200e3540394d296f05d3cae71ff",
+  "files": {
+    "usr/libexec/lyra-release-identity": "fe08dc16e17c6f1ecadd61fe4f49c18457b9aec2480a3ce29671b3b4f6356401",
+    "usr/lib/lyra-os/product-release": "58e325f4e1a1c4123e7b6fe1046afc14ecb5a470daef1f0abe950dd33f1078a3"
+  },
+  "queries": {
+    "--scripts": "preuninstall scriptlet (using /bin/sh):\nif [ \"$1\" -eq 0 ]; then\n    /usr/libexec/lyra-release-identity --restore || :\nfi\nposttrans scriptlet (using /bin/sh):\n/usr/libexec/lyra-release-identity\n\n# Reapply after release-file transactions, using RPM default trigger priority.\n",
+    "--filetriggers": "transfiletriggerin scriptlet (using /bin/sh) -- /etc, /usr/lib\nwhile IFS= read -r changed_path; do\n    case \"$changed_path\" in\n        /usr/lib/os-release|/etc/os-release)\n            /usr/libexec/lyra-release-identity\n            exit $?\n            ;;\n    esac\ndone\n",
+    "--requires": "/bin/sh\n/bin/sh\n/bin/sh\n/usr/bin/python3\npython3-base\nrpmlib(CompressedFileNames) <= 3.0.4-1\nrpmlib(FileDigests) <= 4.6.0-1\nrpmlib(PayloadFilesHavePrefix) <= 4.0-1\nrpmlib(PayloadIsZstd) <= 5.4.18-1\n",
+    "--qf": "/usr/lib/lyra-os 16877 root root\n/usr/lib/lyra-os/product-release 33188 root root\n/usr/libexec/lyra-release-identity 33261 root root\n"
+  },
+  "public_release_verified": false
+}

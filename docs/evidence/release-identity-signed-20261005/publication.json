@@ -10,13 +10,24 @@
   "checks": 7,
   "vm_disposable": true,
   "host_installed": false,
-  "release_promotion": "pending",
+  "release_promotion": "accepted",
   "evidence_sha256": {
     "native.py": "6c2a5ef12c4fde600489afd6dbc47dfafaeae56495896dac6d94960a1b018002",
     "signed-result.json": "281f1f61d960f3464c26fe58115271676c7681275ef2da3194f8b35446734b97",
     "signed-native-response.json": "71fc8eab72f87b84e9caa3d880a7794501a8dc9207afc37f326cd190484890af",
     "staging-signature.txt": "fd3503a3c4527917860cebc453d5516cdca91e386bfbe455b92316045806b793",
     "staging-buildhistory.txt": "9b0d7cf3915c5eb8e167a0a1ec3fce84bdaab58ba7551a73e1851d290d42c189",
-    "obs-signing-key.asc": "66b8cda88e6b5d707e6f9d75a9579ab785daebf33b63e39d9cb86335294e7a25"
-  }
+    "obs-signing-key.asc": "66b8cda88e6b5d707e6f9d75a9579ab785daebf33b63e39d9cb86335294e7a25",
+    "staging-check-published.txt": "440b69f8740b9747f43f8682a57b66f3c421bbc1a0a4c07f78835960bb7a0f8b",
+    "staging-public-verification.json": "b65543c5cc8325df834a8ed4c623f9c3e2c729f567cfa31caadc71add24abd54",
+    "request-1382519-review.txt": "9b616e99ec819d32c68c28f4c1afae5b96f5c7c5d67d59c9d82bba15e4b719a8",
+    "request-1382519-accepted.xml": "6087639ca740a696820320aa1bc62abc26592f8fff9ec96602461f45f8687dc1",
+    "release-source.xml": "f94ec18bb3c3efce23475736cb83b3884f46667280e970086ba736eb2dc8e59a",
+    "release-payload-comparison.json": "e3c2b692d0c0bcfe4b6a2a6ae910d587ad246ad277fe5be7631296332e89929c"
+  },
+  "submit_request": 1382519,
+  "release_revision": 3,
+  "release_srcmd5": "67be43654954516ff5d765a0244e47f4",
+  "release_publication": "pending",
+  "release_api_rpm_sha256": "1b064f16850b9ff717088a884a98f049fc3e6f48e885bcdcb281722be45ee71b"
 }
