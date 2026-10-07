@@ -32,6 +32,17 @@ versão, nome e limitações com o inventário da candidata.
 
 ## Bloqueios encontrados no pré-voo de 07/10
 
+- O inventário remoto de issues ainda mostra a [#89](https://github.com/lyra-os-linux/lyraos-desktop/issues/89)
+  (`P1`, montagem de efivarfs/BIOS) e a [#102](https://github.com/lyra-os-linux/lyraos-desktop/issues/102)
+  (`P1` parental/Flatpak) abertas. Há correções de código para o instalador,
+  mas a #89 requer a matriz BIOS/UEFI/NVRAM na candidata antes de fechamento.
+  A #102 só deixa de bloquear a Alpha 8 se o recurso parental for formalmente
+  retirado do escopo da imagem e das alegações de proteção.
+- A [#125](https://github.com/lyra-os-linux/lyraos-desktop/issues/125)
+  registra o backport de atalhos globais do portal GNOME ainda sem RPM final
+  consumido na candidata. Decidir seu escopo e severidade com o comportamento
+  observado na ISO exata; não marcar como resolvida pela fixture temporária.
+
 - `obs-release.py health` falhou em `lyra-theme`: a revisão de release
   `69e91058d45f2bbc965021e75f7e8c17` (1.10.1) entrou diretamente no
   projeto de release, sem request aceito do staging, e difere do baseline
