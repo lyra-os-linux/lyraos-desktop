@@ -243,6 +243,17 @@ class BuildGateTests(unittest.TestCase):
                 FakeObs({path: document}), self.project, "home:example", self.target, "x86_64"
             )
 
+    def test_dirty_published_repository_blocks_stale_binary(self) -> None:
+        path = (
+            "/build/home:example/_result?repository=openSUSE_Leap_16.1"
+            "&arch=x86_64&view=status"
+        )
+        document = '<resultlist><result code="published" state="published" dirty="true"/></resultlist>'
+        with self.assertRaisesRegex(obs_release.PolicyError, "repository is dirty"):
+            obs_release.check_target_result(
+                FakeObs({path: document}), self.project, "home:example", self.target, "x86_64"
+            )
+
 
 class RetiredStagingTests(unittest.TestCase):
     def setUp(self) -> None:
