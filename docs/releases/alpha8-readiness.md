@@ -42,5 +42,7 @@ versão, nome e limitações com o inventário da candidata.
   baseline para aceitar a revisão direta.
 - A última construção de ensaio Alpha 7 (06/10) foi rejeitada pelo audit do
   initrd live: o módulo Plymouth entrou no initrd genérico. Não é teste da
-  Alpha 8 atual; antes de construir a candidata, resolver ou revalidar essa
-  fronteira sem remover o tema do sistema instalado nem afrouxar o audit.
+  Alpha 8 atual: o build usou fonte `561201e` com alterações locais, enquanto
+  `origin/main` já inclui a configuração condicional de dracut do commit
+  `b5979ea`. Antes de aprovar a candidata, reexecutar o audit no build atual;
+  preservar Plymouth no sistema instalado e não afrouxar a checagem.
