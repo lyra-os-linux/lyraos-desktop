@@ -44,8 +44,11 @@ versão, nome e limitações com o inventário da candidata.
   no escopo e a publicação é `NO-GO`.
 - A [#125](https://github.com/lyra-os-linux/lyraos-desktop/issues/125)
   registra o backport de atalhos globais do portal GNOME ainda sem RPM final
-  consumido na candidata. Decidir seu escopo e severidade com o comportamento
-  observado na ISO exata; não marcar como resolvida pela fixture temporária.
+  consumido na candidata. A correção fica fora do escopo desta candidata
+  enquanto não houver promoção e migração de vendor qualificadas; o defeito
+  da base deve constar das notas como limitação conhecida. Reavaliar sua
+  severidade com o comportamento observado na ISO exata; se for P1 no escopo,
+  a publicação é `NO-GO`. Não marcar como resolvida pela fixture temporária.
   O RPM de staging assinado passou testes de sessão em VM, mas a qualificação
   registrou que o `zypper update` normal não migra uma instalação SUSE para
   esse vendor OBS. A promoção e o consumo na imagem exigem resolver essa

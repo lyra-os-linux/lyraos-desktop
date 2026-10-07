@@ -21,6 +21,11 @@ atualização, rollback e interfaces nos três idiomas suportados (`en-US`,
   cenário de instalação coberto, salvo qualificação específica posterior.
 - A cobertura de hardware físico será descrita conforme os resultados da
   candidata final.
+- O pacote atual da base para o portal GNOME de atalhos globais pode responder
+  com erro após a confirmação de um atalho. Há um backport em staging, mas sua
+  instalação/atualização ainda não foi qualificada para esta candidata
+  ([#125](https://github.com/lyra-os-linux/lyraos-desktop/issues/125)).
+  Confirmar a limitação na ISO final antes de publicar estas notas.
 
 ## Integridade
 
