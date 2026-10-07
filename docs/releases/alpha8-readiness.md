@@ -42,6 +42,10 @@ versão, nome e limitações com o inventário da candidata.
   registra o backport de atalhos globais do portal GNOME ainda sem RPM final
   consumido na candidata. Decidir seu escopo e severidade com o comportamento
   observado na ISO exata; não marcar como resolvida pela fixture temporária.
+  O RPM de staging assinado passou testes de sessão em VM, mas a qualificação
+  registrou que o `zypper update` normal não migra uma instalação SUSE para
+  esse vendor OBS. A promoção e o consumo na imagem exigem resolver essa
+  migração específica e repetir os testes com o pacote final.
 
 - `obs-release.py health` falhou em `lyra-theme`: a revisão de release
   `69e91058d45f2bbc965021e75f7e8c17` (1.10.1) entrou diretamente no
