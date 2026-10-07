@@ -40,6 +40,11 @@ versão, nome e limitações com o inventário da candidata.
   mostra 1.10.0. Reconciliar 1.10.1 via staging, reconstruir/validar e exigir
   nova checagem completa do canal antes de gerar a candidata. Não ampliar o
   baseline para aceitar a revisão direta.
+  A fonte 1.10.1 do OBS também difere em quatro arquivos do commit Git
+  `29420f0` apontado por `_service`. A
+  [PR 21 do tema](https://github.com/lyra-os-linux/lyraos-desktop-theme/pull/21)
+  registra esse payload no Git e acrescenta teste; é rascunho, ainda sem
+  integração, nova fonte OBS ou promoção.
 - A última construção de ensaio Alpha 7 (06/10) foi rejeitada pelo audit do
   initrd live: o módulo Plymouth entrou no initrd genérico. Não é teste da
   Alpha 8 atual: o build usou fonte `561201e` com alterações locais, enquanto
