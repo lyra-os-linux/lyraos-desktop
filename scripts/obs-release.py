@@ -589,6 +589,11 @@ def check_target_result(
     if result is None or result.attrib.get("code") != "published":
         code = "missing" if result is None else result.attrib.get("code", "unknown")
         raise PolicyError(f"{remote}/{target.name}/{arch}: not published ({code})")
+    # OBS can report a previously published repository after a new source
+    # revision lands. Its dirty flag means the public binaries may still come
+    # from the old revision even though all package statuses say succeeded.
+    if result.attrib.get("dirty", "false") != "false":
+        raise PolicyError(f"{remote}/{target.name}/{arch}: published repository is dirty")
     statuses = {node.attrib["package"]: node.attrib["code"] for node in result.findall("status")}
     if remote == project.staging:
         for package in project.retired_staging_packages:
