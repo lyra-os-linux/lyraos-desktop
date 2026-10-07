@@ -75,9 +75,10 @@ versão, nome e limitações com o inventário da candidata.
   corrige o gate OBS para recusar `published dirty=true`, observado logo após
   o aceite da nova fonte do tema. Sem isso, o gate poderia tratar binários
   antigos como atuais. Os 38 testes locais e a CI passaram; PR integrada.
-- A última construção de ensaio Alpha 7 (06/10) foi rejeitada pelo audit do
-  initrd live: o módulo Plymouth entrou no initrd genérico. Não é teste da
-  Alpha 8 atual: o build usou fonte `561201e` com alterações locais, enquanto
-  `origin/main` já inclui a configuração condicional de dracut do commit
-  `b5979ea`. Antes de aprovar a candidata, reexecutar o audit no build atual;
-  preservar Plymouth no sistema instalado e não afrouxar a checagem.
+- O ensaio Alpha 7 de 06/10 foi rejeitado pelo audit do initrd live: Plymouth
+  entrou no initrd genérico. Dois builds Alpha 8 de fonte limpa em 07/10
+  (`5b7c439` e `b09c44d`) passaram o mesmo audit sem Plymouth, a extração
+  integral do SquashFS e a auditoria de segurança. Ambos ainda consumiram o
+  RPM antigo do tema, portanto não são candidatos de publicação. Reexecutar
+  os checks na ISO reconstruída após o gate OBS; preservar Plymouth no sistema
+  instalado e não afrouxar a checagem.
