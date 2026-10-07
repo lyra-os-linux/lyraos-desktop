@@ -42,6 +42,10 @@ versão, nome e limitações com o inventário da candidata.
   restrições parentais. A issue continua aberta e impede oferecer o recurso;
   se qualquer parte dele estiver acessível na candidata, ela volta a ser P1
   no escopo e a publicação é `NO-GO`.
+  O primeiro build de ensaio Alpha 8 ainda incluiu `malcontent` por causa de
+  `malcontent-lang` explícito na receita KIWI. A seleção foi retirada; repetir
+  o inventário da imagem para comprovar que o pacote e suas interfaces não
+  estão mais presentes antes de considerar o escopo fechado.
 - A [#125](https://github.com/lyra-os-linux/lyraos-desktop/issues/125)
   registra o backport de atalhos globais do portal GNOME ainda sem RPM final
   consumido na candidata. A correção fica fora do escopo desta candidata
