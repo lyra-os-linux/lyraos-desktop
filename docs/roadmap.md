@@ -56,8 +56,10 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   avaliada somente em uma release futura definida pelo projeto. A integração parental só avança quando os
   gates jurídico e técnico do ciclo atual estiverem satisfeitos.
 - **Alpha 8 (meta até 15/10) — gate e estabilização:** automatiza update, upgrade,
-  reboot, rollback e a matriz do ECA Digital; não recebe feature nova e depois
-  corrige somente defeitos até a decisão da Beta 1.
+  reboot, rollback e a matriz do ECA Digital aplicável; não recebe feature nova
+  e depois corrige somente defeitos até a decisão da Beta 1. Em 07/10, o
+  controle parental saiu do escopo da Alpha 8 devido à evasão Flatpak #102;
+  nenhuma proteção parental é anunciada nessa candidata.
 
 A Beta 1 não começa por calendário com P0/P1 ou entrega obrigatória pendente.
 O Lyra OS 1.1 oferece somente inglês dos Estados Unidos (`en-US`), português

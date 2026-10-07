@@ -6,9 +6,9 @@ não contém uma ISO candidata nem evidência de publicação.
 
 ## Sequência de decisão
 
-1. Até 09/10: fechar o escopo da candidata, inclusive a decisão de incluir ou
-   retirar o controle parental da Alpha 8. A evasão Flatpak #102 mantém o
-   recurso parental `NO-GO` até prova contrária na imagem candidata.
+1. Até 09/10: fechar o restante do escopo da candidata. Em 07/10, o controle
+   parental foi retirado da Alpha 8 por causa da evasão Flatpak #102. A
+   integração só volta a uma candidata futura após qualificação técnica.
 2. Entre 10 e 12/10: integrar somente alterações qualificadas, conferir RPMs
    e repositórios Leap 16.1, gerar uma ISO limpa e registrar commit, inventário
    de pacotes e SHA-256. A alteração do conteúdo cria uma nova candidata.
@@ -36,8 +36,12 @@ versão, nome e limitações com o inventário da candidata.
   (`P1`, montagem de efivarfs/BIOS) e a [#102](https://github.com/lyra-os-linux/lyraos-desktop/issues/102)
   (`P1` parental/Flatpak) abertas. Há correções de código para o instalador,
   mas a #89 requer a matriz BIOS/UEFI/NVRAM na candidata antes de fechamento.
-  A #102 só deixa de bloquear a Alpha 8 se o recurso parental for formalmente
-  retirado do escopo da imagem e das alegações de proteção.
+  A #102 não é bloqueio da instalação geral enquanto o controle parental
+  permanecer fora da imagem, da interface pública e das alegações de proteção.
+  O gate da ISO deve verificar essa ausência e que contas comuns seguem sem
+  restrições parentais. A issue continua aberta e impede oferecer o recurso;
+  se qualquer parte dele estiver acessível na candidata, ela volta a ser P1
+  no escopo e a publicação é `NO-GO`.
 - A [#125](https://github.com/lyra-os-linux/lyraos-desktop/issues/125)
   registra o backport de atalhos globais do portal GNOME ainda sem RPM final
   consumido na candidata. Decidir seu escopo e severidade com o comportamento
@@ -62,7 +66,7 @@ versão, nome e limitações com o inventário da candidata.
 - A [PR 147](https://github.com/lyra-os-linux/lyraos-desktop/pull/147)
   corrige o gate OBS para recusar `published dirty=true`, observado logo após
   o aceite da nova fonte do tema. Sem isso, o gate poderia tratar binários
-  antigos como atuais. Os 38 testes locais passaram; CI/merge pendentes.
+  antigos como atuais. Os 38 testes locais e a CI passaram; PR integrada.
 - A última construção de ensaio Alpha 7 (06/10) foi rejeitada pelo audit do
   initrd live: o módulo Plymouth entrou no initrd genérico. Não é teste da
   Alpha 8 atual: o build usou fonte `561201e` com alterações locais, enquanto
