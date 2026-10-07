@@ -32,7 +32,7 @@
   </preferences>
 
   <preferences>
-    <!-- Generated from release.toml; user-facing strings say "Alpha 7". -->
+    <!-- Generated from release.toml; keep user-facing release labels in sync. -->
     <version>1.1-alpha.8</version>
     <!--
       Selects lyra-os-theme's "Lyra-OS" assets. The
