@@ -36,16 +36,17 @@ versão, nome e limitações com o inventário da candidata.
   (`P1`, montagem de efivarfs/BIOS) e a [#102](https://github.com/lyra-os-linux/lyraos-desktop/issues/102)
   (`P1` parental/Flatpak) abertas. Há correções de código para o instalador,
   mas a #89 requer a matriz BIOS/UEFI/NVRAM na candidata antes de fechamento.
-  A #102 não é bloqueio da instalação geral enquanto o controle parental
-  permanecer fora da imagem, da interface pública e das alegações de proteção.
-  O gate da ISO deve verificar essa ausência e que contas comuns seguem sem
-  restrições parentais. A issue continua aberta e impede oferecer o recurso;
-  se qualquer parte dele estiver acessível na candidata, ela volta a ser P1
-  no escopo e a publicação é `NO-GO`.
-  O primeiro build de ensaio Alpha 8 ainda incluiu `malcontent` por causa de
-  `malcontent-lang` explícito na receita KIWI. A seleção foi retirada; repetir
-  o inventário da imagem para comprovar que o pacote e suas interfaces não
-  estão mais presentes antes de considerar o escopo fechado.
+  A #102 não é bloqueio da instalação geral enquanto a integração parental
+  do Lyra permanecer desativada, fora da interface pública e das alegações de
+  proteção. O gate da ISO deve verificar que o Lyra não cria vínculos ou
+  políticas parentais, não oferece consulta de idade e não altera contas
+  comuns. A issue continua aberta e impede oferecer o recurso; se a integração
+  do Lyra estiver acessível na candidata, ela volta a ser P1 no escopo e a
+  publicação é `NO-GO`.
+  O ensaio Alpha 8 mostrou que `malcontent` da base permanece instalado:
+  `gnome-control-center` requer `libmalcontent`, que requer o pacote principal.
+  Isso não qualifica a proteção nem significa que o Lyra a ativou. A tradução
+  `malcontent-lang` permanece para não reduzir a cobertura de idiomas do GNOME.
 - A [#125](https://github.com/lyra-os-linux/lyraos-desktop/issues/125)
   registra o backport de atalhos globais do portal GNOME ainda sem RPM final
   consumido na candidata. A correção fica fora do escopo desta candidata

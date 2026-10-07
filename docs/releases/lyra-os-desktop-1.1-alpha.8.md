@@ -12,8 +12,9 @@ atualização, rollback e interfaces nos três idiomas suportados (`en-US`,
 ## Escopo e limites a confirmar
 
 - O controle parental está fora da Alpha 8. A integração com Flatpak ainda
-  permite executar um aplicativo negado; por isso, esta versão não oferece
-  supervisão de contas nem sinal de idade a aplicativos. Contas comuns devem
+  permite executar um aplicativo negado; por isso, o Lyra não oferece a
+  integração de supervisão de contas nem sinal de idade a aplicativos nesta
+  versão. Contas comuns devem
   continuar com o comportamento habitual, sujeito à verificação na ISO final.
 - O ensaio de upgrade e rollback da versão publicada para a candidata é
   obrigatório antes de anunciar migração segura de uma instalação existente.
