@@ -29,3 +29,18 @@ resultados Alpha 8.
 As notas em `lyra-os-desktop-1.1-alpha.8.md` são rascunho. Antes de publicar,
 substituir descrições condicionais pelo escopo realmente testado e conferir
 versão, nome e limitações com o inventário da candidata.
+
+## Bloqueios encontrados no pré-voo de 07/10
+
+- `obs-release.py health` falhou em `lyra-theme`: a revisão de release
+  `69e91058d45f2bbc965021e75f7e8c17` (1.10.1) entrou diretamente no
+  projeto de release, sem request aceito do staging, e difere do baseline
+  aprovado `e7c2f7a1c264a37e04bc1773606d2802`. Histórico OBS: release r49/r50
+  não têm request; a última promoção aceita foi r48 (1.10.0). Staging ainda
+  mostra 1.10.0. Reconciliar 1.10.1 via staging, reconstruir/validar e exigir
+  nova checagem completa do canal antes de gerar a candidata. Não ampliar o
+  baseline para aceitar a revisão direta.
+- A última construção de ensaio Alpha 7 (06/10) foi rejeitada pelo audit do
+  initrd live: o módulo Plymouth entrou no initrd genérico. Não é teste da
+  Alpha 8 atual; antes de construir a candidata, resolver ou revalidar essa
+  fronteira sem remover o tema do sistema instalado nem afrouxar o audit.
