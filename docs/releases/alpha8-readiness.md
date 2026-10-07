@@ -48,9 +48,12 @@ versão, nome e limitações com o inventário da candidata.
   Atualização: a PR 21 passou em duas verificações e foi integrada em
   `8990256`. A fonte do commit `9b4eb1b` foi enviada ao staging como revisão
   25 (`srcmd5 7f5192d585bc2b8d2f7817636cbe78db`) somente para Leap 16.1.
-  A resposta inicial `succeeded*` é build antigo; aguardar o build novo,
-  comparar RPMs/assinaturas e passar o gate completo antes do request de
-  promoção. O projeto de release ainda contém a revisão direta inválida.
+  O novo build retornou `finished` com detalhe `succeeded`, mas o repositório
+  permanecia em `building`. O RPM staging 1.10.1-lp161.1.1 e o RPM release
+  1.10.1-lp161.2.1 passaram `rpm -Kv`; as 53 entradas de caminho/digest/tamanho
+  do payload são idênticas. Ainda é obrigatório passar o gate completo do
+  staging publicado antes do request de promoção. O projeto de release ainda
+  contém a revisão direta inválida.
 - A última construção de ensaio Alpha 7 (06/10) foi rejeitada pelo audit do
   initrd live: o módulo Plymouth entrou no initrd genérico. Não é teste da
   Alpha 8 atual: o build usou fonte `561201e` com alterações locais, enquanto
