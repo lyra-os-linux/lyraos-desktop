@@ -831,7 +831,7 @@ architecture = "x86_64"
         self, manifest: image_build.Manifest, directory: Path
     ) -> list[str]:
         results = []
-        for name in manifest.required_test_results:
+        for name in image_build.required_test_result_names(manifest, image_build.RELEASE):
             path = directory / f"{name}.json"
             if name == "obs-repositories":
                 document = {
@@ -863,6 +863,10 @@ architecture = "x86_64"
                     "first-boot": "first-boot",
                     "uefi-secure-boot": "uefi-secure-boot",
                     "rollback": "rollback",
+                    "upgrade-rehearsal": "upgrade-rehearsal",
+                    "eca-digital": "eca-digital",
+                    "i18n": "i18n",
+                    "feature-freeze": "feature-freeze",
                 }
                 document = {
                     "schema": 1,
@@ -872,6 +876,28 @@ architecture = "x86_64"
                 }
                 if name == "rollback":
                     document["phase"] = "rollback-verified"
+                elif name == "upgrade-rehearsal":
+                    document["phase"] = "rollback-verified"
+                    document["facts"] = {
+                        "baseline_version": "1.1-alpha.7", "target_version": "1.1-alpha.8",
+                        "manifest_signature_verified": True, "offline_applied": True,
+                        "reboot_count": 1, "rollback_baseline_verified": True,
+                        "fault_scenarios": ["network-loss", "low-space", "ui-terminated",
+                                            "state-truncated", "rpm-failure", "initramfs-failure"],
+                    }
+                elif name == "eca-digital":
+                    document.update(locales=["en-US", "pt-BR", "es-ES"],
+                                    legal_review="fixture", security_review="fixture",
+                                    privacy_impact_assessment="fixture",
+                                    negative_and_evasion_tests=True,
+                                    retains_sensitive_age_evidence=False)
+                elif name == "i18n":
+                    document.update(locales=["en-US", "pt-BR", "es-ES"], fallback="en-US")
+                elif name == "feature-freeze":
+                    document.update(decision="GO", open_p0=0, open_p1=0,
+                                    locales=["en-US", "pt-BR", "es-ES"],
+                                    all_features_implemented_or_removed=True,
+                                    documentation_consistent=True)
             path.write_text(json.dumps(document) + "\n", encoding="utf-8")
             results.append(f"{name}={path}")
         return results
@@ -899,7 +925,8 @@ architecture = "x86_64"
             self.assertEqual(document["packages"][0]["license"], "MIT")
             self.assertIn("revision-fina", document["packages"][0]["source"])
             self.assertEqual(
-                set(document["test_results"]), set(manifest.required_test_results)
+                set(document["test_results"]),
+                set(image_build.required_test_result_names(manifest, image_build.RELEASE)),
             )
             self.assertFalse(document["source"]["dirty"])
             self.assertEqual(document["source"]["commit"], "a" * 40)

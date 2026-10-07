@@ -163,7 +163,6 @@ class RepositoryMetadataTests(unittest.TestCase):
         self.assertNotIn("iso.sha256.asc", uploader)
 
     def test_alpha7_release_uses_leap_16_1_and_preserves_full_evidence_gate(self) -> None:
-        self.assertEqual(Release.from_file().version_id, "1.1-alpha.7")
         wrapper = (ROOT / "scripts/build-desktop-alpha7.sh").read_text(
             encoding="utf-8"
         )
@@ -217,6 +216,7 @@ class RepositoryMetadataTests(unittest.TestCase):
             self.assertIn(evidence, builder)
 
     def test_alpha8_wrapper_uses_the_stage_aware_release_gate(self) -> None:
+        self.assertEqual(Release.from_file().version_id, "1.1-alpha.8")
         wrapper = (ROOT / "scripts/build-desktop-alpha8.sh").read_text(encoding="utf-8")
         uploader_wrapper = (ROOT / "scripts/upload-desktop-alpha8-sourceforge.sh").read_text(encoding="utf-8")
         builder = (ROOT / "scripts/build-desktop-alpha6.sh").read_text(encoding="utf-8")
