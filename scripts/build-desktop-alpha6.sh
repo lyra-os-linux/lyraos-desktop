@@ -24,6 +24,7 @@ publicado do instalador (o Welcome já vem sempre do RPM publicado).
 --artifacts-only reutiliza a ISO atual.
 Quando --evidence-dir é informado, o manifesto final exige todas as evidências
 aplicáveis ao estágio declarado em release.toml.
+Defina LYRA_PRIVILEGE_TOOL=pkexec para autenticar o build pelo diálogo gráfico.
 EOF
 }
 
@@ -61,7 +62,14 @@ mkdir -p "$WORK_DIR/evidence"
   --output "$WORK_DIR/evidence/obs-repositories-result.json"
 
 if [ "$ARTIFACTS_ONLY" -eq 0 ]; then
-  sudo -v
+  case "${LYRA_PRIVILEGE_TOOL:-sudo}" in
+    sudo) sudo -v ;;
+    pkexec) command -v pkexec >/dev/null || {
+      echo "ERRO: pkexec não está disponível." >&2
+      exit 1
+    } ;;
+    *) echo "ERRO: LYRA_PRIVILEGE_TOOL deve ser sudo ou pkexec." >&2; exit 1 ;;
+  esac
   ./kiwi/test/build-and-run-vm.sh --build-only \
     --published-installer
 fi

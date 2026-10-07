@@ -39,6 +39,17 @@ Spanish (`es-ES`), records `negative_and_evasion_tests: true`, and records
 installation, bypass, age-signal, recovery, accessibility and data-minimization
 cases. A missing applicable safeguard is a failed check, never an exception.
 
+For the Alpha 8 scope decision of 07/10, parental control and age signals are
+excluded. The three reviews and this result remain required; they must state
+the actual shipped scope. Negative/evasion checks must establish that no
+Lyra parental enrollment, restriction or age-signal endpoint is exposed in the
+candidate, that Lyra has not configured supervised accounts, and that ordinary
+accounts still work normally. The upstream `malcontent` package remains a
+dependency of GNOME Control Center; its presence is not evidence of Lyra
+enforcement or a reason to mark an excluded scenario as passed. Record excluded
+parental scenarios as out of scope with the reason and issue #102; do not claim
+that parental protection works.
+
 ## `i18n-result.json`
 
 The locale list is exactly `en-US`, `pt-BR`, `es-ES`, with `fallback: en-US`.
@@ -57,7 +68,8 @@ the current plan. Existing release qualification remains required. Do not
 move unfinished Alpha functionality into Beta under the label of a bug fix.
 
 This is a release-coordinator decision record, not an automatic claim. `GO`
-requires `open_p0: 0`, `open_p1: 0`, the fixed three-locale list,
+requires `open_p0: 0`, `open_p1: 0` among issues applicable to the shipped
+scope, the fixed three-locale list,
 `all_features_implemented_or_removed: true` and
 `documentation_consistent: true`. If any condition is absent, Alpha continues.
 

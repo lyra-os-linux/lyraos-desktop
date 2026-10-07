@@ -75,6 +75,10 @@ graphical session, or replacing an existing test VM:
 ./kiwi/test/build-and-run-vm.sh --build-only --published-installer
 ```
 
+O comando de bundle `scripts/build-desktop-alpha8.sh` aceita
+`LYRA_PRIVILEGE_TOOL=pkexec` para o build, usando o diálogo gráfico de
+autenticação. O padrão continua `sudo`.
+
 The script builds directly from `kiwi/`, retains the previous usable ISO until
 its replacement is ready, and records logs below `kiwi/.kiwi/`. A VM run then
 creates a 24 GiB installation disk plus isolated OVMF state and starts QEMU.

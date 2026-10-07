@@ -18,7 +18,7 @@
   <description type="system">
     <author>Rodrigo Brito</author>
     <contact>rodrigo@lyraos.com.br</contact>
-    <specification>Lyra OS "Odisseia" 1.1 Alpha 7 - live/installer ISO, openSUSE Leap 16.1 base, GNOME desktop, x86_64</specification>
+    <specification>Lyra OS "Odisseia" 1.1 Alpha 8 - live/installer ISO, openSUSE Leap 16.1 base, GNOME desktop, x86_64</specification>
   </description>
 
   <preferences>
@@ -32,8 +32,8 @@
   </preferences>
 
   <preferences>
-    <!-- Generated from release.toml; user-facing strings say "Alpha 7". -->
-    <version>1.1-alpha.7</version>
+    <!-- Generated from release.toml; keep user-facing release labels in sync. -->
+    <version>1.1-alpha.8</version>
     <!--
       Selects lyra-os-theme's "Lyra-OS" assets. The
       bootloader theme is active in the live GRUB menu. The bootsplash
@@ -54,7 +54,7 @@
       firmware="uefi"
       eficsm="true"
       editbootconfig="edit_boot_config.sh"
-      volid="LYRA_OS_1_1_ALPHA_7"
+      volid="LYRA_OS_1_1_ALPHA_8"
       application_id="LyraOS"
       publisher="Lyra OS Project">
       <bootloader name="grub2" timeout="10"/>

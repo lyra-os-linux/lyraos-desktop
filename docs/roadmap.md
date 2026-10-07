@@ -55,9 +55,11 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   suporte de produto a aplicativos Android ou Windows; essa trilha volta a ser
   avaliada somente em uma release futura definida pelo projeto. A integração parental só avança quando os
   gates jurídico e técnico do ciclo atual estiverem satisfeitos.
-- **Alpha 8 (25/09–13/10) — gate e estabilização:** automatiza update, upgrade,
-  reboot, rollback e a matriz do ECA Digital; não recebe feature nova e depois
-  corrige somente defeitos até a decisão da Beta 1.
+- **Alpha 8 (meta até 15/10) — gate e estabilização:** automatiza update, upgrade,
+  reboot, rollback e a matriz do ECA Digital aplicável; não recebe feature nova
+  e depois corrige somente defeitos até a decisão da Beta 1. Em 07/10, o
+  controle parental saiu do escopo da Alpha 8 devido à evasão Flatpak #102;
+  nenhuma proteção parental é anunciada nessa candidata.
 
 A Beta 1 não começa por calendário com P0/P1 ou entrega obrigatória pendente.
 O Lyra OS 1.1 oferece somente inglês dos Estados Unidos (`en-US`), português
@@ -96,7 +98,7 @@ NVIDIA permanece em seu planejamento próprio (Server #21).
 
 ## Melhorias permitidas nas Betas da 1.1
 
-A Desktop Beta 1 mantém 13/10/2026 como meta; Alpha 5, Alpha 6, Alpha 7 e
+A Desktop Beta 1 começa após a Alpha 8 qualificada, sem data automática; Alpha 5, Alpha 6, Alpha 7 e
 Alpha 8 continuam etapas obrigatórias do Desktop. Por decisão do mantenedor,
 as Betas da 1.1 podem receber melhorias programadas quando o ganho esperado
 compensar o risco. Cada mudança precisa de justificativa, análise de impacto,
