@@ -47,28 +47,22 @@ versão, nome e limitações com o inventário da candidata.
   esse vendor OBS. A promoção e o consumo na imagem exigem resolver essa
   migração específica e repetir os testes com o pacote final.
 
-- `obs-release.py health` falhou em `lyra-theme`: a revisão de release
-  `69e91058d45f2bbc965021e75f7e8c17` (1.10.1) entrou diretamente no
-  projeto de release, sem request aceito do staging, e difere do baseline
-  aprovado `e7c2f7a1c264a37e04bc1773606d2802`. Histórico OBS: release r49/r50
-  não têm request; a última promoção aceita foi r48 (1.10.0). Staging ainda
-  mostra 1.10.0. Reconciliar 1.10.1 via staging, reconstruir/validar e exigir
-  nova checagem completa do canal antes de gerar a candidata. Não ampliar o
-  baseline para aceitar a revisão direta.
-  A fonte 1.10.1 do OBS também difere em quatro arquivos do commit Git
-  `29420f0` apontado por `_service`. A
+- A antiga revisão 1.10.1 do `lyra-theme` havia entrado diretamente no OBS
+  release e seu tarball diferia do commit Git anunciado. A
   [PR 21 do tema](https://github.com/lyra-os-linux/lyraos-desktop-theme/pull/21)
-  registrou esse payload no Git e acrescentou teste.
-
-  Atualização: a PR 21 passou em duas verificações e foi integrada em
-  `8990256`. A fonte do commit `9b4eb1b` foi enviada ao staging como revisão
-  25 (`srcmd5 7f5192d585bc2b8d2f7817636cbe78db`) somente para Leap 16.1.
-  O novo build retornou `finished` com detalhe `succeeded`, mas o repositório
-  permanecia em `building`. O RPM staging 1.10.1-lp161.1.1 e o RPM release
-  1.10.1-lp161.2.1 passaram `rpm -Kv`; as 53 entradas de caminho/digest/tamanho
-  do payload são idênticas. Ainda é obrigatório passar o gate completo do
-  staging publicado antes do request de promoção. O projeto de release ainda
-  contém a revisão direta inválida.
+  registrou o payload no Git e passou na CI. O staging publicou r25, srcmd5
+  `7f5192d585bc2b8d2f7817636cbe78db`, somente para Leap 16.1; o gate
+  completo passou. O RPM público e os metadados do repositório passaram na
+  verificação com a chave fixada, e as 53 entradas de caminho/digest/tamanho
+  do payload são idênticas ao RPM release anterior. O
+  [request OBS 1383107](https://build.opensuse.org/request/show/1383107) foi
+  aceito, instalando essa fonte como release r51. **Falta o novo build e a
+  publicação do release** antes de repetir `obs-release.py health` e fixar
+  RPMs na candidata.
+- A [PR 147](https://github.com/lyra-os-linux/lyraos-desktop/pull/147)
+  corrige o gate OBS para recusar `published dirty=true`, observado logo após
+  o aceite da nova fonte do tema. Sem isso, o gate poderia tratar binários
+  antigos como atuais. Os 38 testes locais passaram; CI/merge pendentes.
 - A última construção de ensaio Alpha 7 (06/10) foi rejeitada pelo audit do
   initrd live: o módulo Plymouth entrou no initrd genérico. Não é teste da
   Alpha 8 atual: o build usou fonte `561201e` com alterações locais, enquanto
