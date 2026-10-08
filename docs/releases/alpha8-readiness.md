@@ -19,12 +19,14 @@ não contém uma ISO candidata nem evidência de publicação.
    resultados exigidos aprovados e sem P0/P1. Falha no gate adia o lançamento;
    não se reaproveita evidência de outra ISO.
 
-`scripts/image-build.py required-test-results` exige 11 resultados nesta
+Pelo plano aprovado em 07/10 na [#28](https://github.com/lyra-os-linux/lyraos-desktop/issues/28),
+`scripts/image-build.py required-test-results` exige 7 resultados nesta
 versão: `obs-repositories`, `live-session`, `installer`, `first-boot`,
-`uefi-secure-boot`, `rollback`, `hardware-matrix`, `upgrade-rehearsal`,
-`eca-digital`, `i18n` e `feature-freeze`. Todos dependem da candidata ou de
-fontes de release qualificadas; protótipos parentais e a ISO Alpha 7 não são
-resultados Alpha 8.
+`uefi-secure-boot`, `rollback` e `i18n`. `hardware-matrix` e
+`upgrade-rehearsal` saem (só VM, só instalação nova); ECA Digital e
+congelamento funcional viram declarações nas notas de versão. Todos dependem
+da candidata ou de fontes de release qualificadas; protótipos parentais e a
+ISO Alpha 7 não são resultados Alpha 8.
 
 As notas em `lyra-os-desktop-1.1-alpha.8.md` são rascunho. Antes de publicar,
 substituir descrições condicionais pelo escopo realmente testado e conferir

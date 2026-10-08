@@ -43,12 +43,12 @@ INSTALLER_APP_ID = "org.lyraos.LyraInstaller"
 INSTALLER_EXEC = "/usr/bin/lyra-install-lock /usr/bin/lyra-installer"
 INSTALLER_TRY_EXEC = "/usr/bin/lyra-installer"
 INSTALLER_WM_CLASS = "lyra-installer"
-ALPHA8_TEST_RESULTS = {
-    "upgrade-rehearsal",
-    "eca-digital",
-    "i18n",
-    "feature-freeze",
-}
+# Alpha 8 plan (issue #28, approved 2026-10-07): new installation only,
+# VM-only testing. The hardware matrix and the upgrade rehearsal are not
+# required; ECA Digital and the feature freeze are declared in the release
+# notes instead of structured evidence. Alpha 7 keeps its original gate.
+ALPHA8_TEST_RESULTS = {"i18n"}
+ALPHA8_RETIRED_TEST_RESULTS = {"hardware-matrix"}
 SUPPORTED_LOCALES = ["en-US", "pt-BR", "es-ES"]
 
 
@@ -194,6 +194,7 @@ def required_test_result_names(manifest: Manifest, release_file: Path) -> tuple[
     release = release_values(release_file)
     required = set(manifest.required_test_results)
     if release["stage"] != "alpha" or int(release["iteration"]) >= 8:
+        required -= ALPHA8_RETIRED_TEST_RESULTS
         required.update(ALPHA8_TEST_RESULTS)
     return tuple(sorted(required))
 
@@ -583,10 +584,7 @@ def validate_test_result(
         "uefi-secure-boot": "uefi-secure-boot",
         "rollback": "rollback",
         "hardware-matrix": "hardware-matrix",
-        "upgrade-rehearsal": "upgrade-rehearsal",
-        "eca-digital": "eca-digital",
         "i18n": "i18n",
-        "feature-freeze": "feature-freeze",
     }
     expected_mode = expected_modes.get(name)
     if expected_mode is None or result.get("mode") != expected_mode:
@@ -625,50 +623,9 @@ def validate_test_result(
     validate_passed_checks(name, result)
     if name == "rollback" and result.get("phase") != "rollback-verified":
         raise PolicyError("rollback evidence is not the final verified phase")
-    if name == "upgrade-rehearsal":
-        facts = result.get("facts")
-        required_faults = {
-            "network-loss", "low-space", "ui-terminated", "state-truncated",
-            "rpm-failure", "initramfs-failure",
-        }
-        if (
-            result.get("phase") != "rollback-verified"
-            or not isinstance(facts, dict)
-            or not isinstance(facts.get("baseline_version"), str)
-            or not isinstance(facts.get("target_version"), str)
-            or facts.get("baseline_version") == facts.get("target_version")
-            or facts.get("manifest_signature_verified") is not True
-            or facts.get("offline_applied") is not True
-            or not isinstance(facts.get("reboot_count"), int)
-            or facts.get("reboot_count", 0) < 1
-            or facts.get("rollback_baseline_verified") is not True
-            or not isinstance(facts.get("fault_scenarios"), list)
-            or not required_faults.issubset(set(facts.get("fault_scenarios", [])))
-        ):
-            raise PolicyError("upgrade rehearsal evidence is incomplete")
-    elif name == "eca-digital":
-        if (
-            result.get("locales") != SUPPORTED_LOCALES
-            or not result.get("legal_review")
-            or not result.get("security_review")
-            or not result.get("privacy_impact_assessment")
-            or result.get("negative_and_evasion_tests") is not True
-            or result.get("retains_sensitive_age_evidence") is not False
-        ):
-            raise PolicyError("ECA Digital evidence is incomplete")
-    elif name == "i18n":
+    if name == "i18n":
         if result.get("locales") != SUPPORTED_LOCALES or result.get("fallback") != "en-US":
             raise PolicyError("i18n evidence must cover en-US, pt-BR and es-ES")
-    elif name == "feature-freeze":
-        if (
-            result.get("decision") != "GO"
-            or result.get("open_p0") != 0
-            or result.get("open_p1") != 0
-            or result.get("locales") != SUPPORTED_LOCALES
-            or result.get("all_features_implemented_or_removed") is not True
-            or result.get("documentation_consistent") is not True
-        ):
-            raise PolicyError("feature freeze decision is not eligible for GO")
     return result
 
 
