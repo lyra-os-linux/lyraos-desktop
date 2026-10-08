@@ -55,11 +55,16 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   suporte de produto a aplicativos Android ou Windows; essa trilha volta a ser
   avaliada somente em uma release futura definida pelo projeto. A integração parental só avança quando os
   gates jurídico e técnico do ciclo atual estiverem satisfeitos.
-- **Alpha 8 (meta até 15/10) — gate e estabilização:** automatiza update, upgrade,
-  reboot, rollback e a matriz do ECA Digital aplicável; não recebe feature nova
-  e depois corrige somente defeitos até a decisão da Beta 1. Em 07/10, o
-  controle parental saiu do escopo da Alpha 8 devido à evasão Flatpak #102;
-  nenhuma proteção parental é anunciada nessa candidata.
+- **Alpha 8 (publicação em 17/10, limite 30/10) — gate e estabilização:**
+  plano fixo aprovado em 07/10 na [#28](https://github.com/lyra-os-linux/lyraos-desktop/issues/28):
+  somente instalação nova (sem upgrade a partir da Alpha 7), testes só em VM,
+  sem controle parental; gate com `i18n` e sem `hardware-matrix` nem
+  `upgrade-rehearsal`; ECA Digital e congelamento funcional são declarações nas
+  notas de versão. Não recebe feature nova, salvo exceção explícita do
+  mantenedor; em 08/10 a paleta Lyra e o tema Lyra do Firefox viraram padrão da
+  imagem. Em 07/10, o controle parental saiu do escopo devido à evasão Flatpak
+  #102; nenhuma proteção parental é anunciada nessa candidata. Se a candidata
+  falhar, candidata 2 em 22/10 e publicação em 27/10.
 
 A Beta 1 não começa por calendário com P0/P1 ou entrega obrigatória pendente.
 O Lyra OS 1.1 oferece somente inglês dos Estados Unidos (`en-US`), português
