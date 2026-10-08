@@ -452,6 +452,35 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertNotIn("extensions.activeThemeID", preferences)
 
 
+    def test_alpha8_default_appearance_is_a_one_time_default_not_a_lock(self) -> None:
+        # Maintainer exception of 2026-10-08 (#28): the Lyra palette and the
+        # Firefox theme are selected by default, but stay reversible.
+        autostart = (
+            ROOT / "kiwi/root/etc/xdg/autostart/lyra-native-colors-default.desktop"
+        ).read_text(encoding="utf-8")
+        helper = ROOT / "kiwi/root/usr/libexec/lyra/native-colors-default"
+        self.assertIn("Exec=/usr/libexec/lyra/native-colors-default", autostart)
+        self.assertIn("OnlyShowIn=GNOME;", autostart)
+        self.assertTrue(helper.stat().st_mode & 0o111)
+        script = helper.read_text(encoding="utf-8")
+        self.assertIn("lyra-native-colors --install", script)
+        self.assertIn("lyra-native-colors.default-applied", script)
+        self.assertNotIn("--undo", script.replace("`lyra-native-colors --undo`", ""))
+        deploy = (
+            ROOT / "installer/src/service/operations/deploy.rs"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn("lyra-native-colors-default", deploy)
+
+        prefs = (
+            ROOT / "kiwi/root/usr/lib64/firefox/browser/defaults/preferences/lyra-theme.js"
+        ).read_text(encoding="utf-8")
+        self.assertIn('pref("extensions.activeThemeID", "theme@lyraos.com.br");', prefs)
+        self.assertNotIn("lockPref", prefs)
+        policies = json.loads(
+            (ROOT / "kiwi/root/usr/lib64/firefox/distribution/policies.json").read_text(encoding="utf-8")
+        )
+        self.assertNotIn("theme@lyraos.com.br", policies["policies"]["ExtensionSettings"])
+
     def test_office_apps_and_locales_match_image_policy(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         packages = {node.attrib["name"] for node in root.findall("packages/package")}
