@@ -1,23 +1,28 @@
 # Preparação da Alpha 8 — 07/10/2026
 
-**Meta do mantenedor:** publicar até 15/10/2026, apenas se a candidata exata
-passar o [gate de release](../release-gate.md). Esta branch prepara metadados;
-não contém uma ISO candidata nem evidência de publicação.
+**Meta do mantenedor:** publicar em 17/10/2026 (limite 30/10), apenas se a
+candidata exata passar o [gate de release](../release-gate.md). O plano fixo
+está na [#28](https://github.com/lyra-os-linux/lyraos-desktop/issues/28)
+(comentário de 07/10); este documento não contém uma ISO candidata nem
+evidência de publicação.
 
-## Sequência de decisão
+## Sequência de decisão (plano da #28)
 
-1. Até 09/10: fechar o restante do escopo da candidata. Em 07/10, o controle
+1. 08/10: PR dos gates (#149) e RPM do Sheliak promovido. Em 07/10, o controle
    parental foi retirado da Alpha 8 por causa da evasão Flatpak #102. A
    integração só volta a uma candidata futura após qualificação técnica.
-2. Entre 10 e 12/10: integrar somente alterações qualificadas, conferir RPMs
-   e repositórios Leap 16.1, gerar uma ISO limpa e registrar commit, inventário
-   de pacotes e SHA-256. A alteração do conteúdo cria uma nova candidata.
-3. Em 13 e 14/10: executar o gate inteiro na ISO exata. Inclui instalação,
-   primeiro boot, Secure Boot, sessão live, hardware, rollback, upgrade com
-   falhas injetadas, ECA Digital aplicável, idiomas e congelamento funcional.
-4. Em 15/10: publicar o bundle da mesma ISO testada somente com todos os
-   resultados exigidos aprovados e sem P0/P1. Falha no gate adia o lançamento;
-   não se reaproveita evidência de outra ISO.
+2. 09/10: OBS release publicado limpo (`check --channel release` e `health`).
+3. 10/10: ISO candidata gerada de árvore limpa, com commit, inventário de
+   pacotes e SHA-256 registrados. A alteração do conteúdo cria uma nova
+   candidata. Em 08/10 o mantenedor abriu exceção (#150): paleta Lyra e tema
+   Lyra do Firefox por padrão; a primeira candidata foi descartada.
+4. 13 a 15/10: gate em VM na ISO exata: sessão live, Secure Boot e
+   repositórios OBS; instalação em BIOS, UEFI com NVRAM e UEFI sem NVRAM
+   (mantenedor opera o instalador); primeiro boot, rollback e os três idiomas.
+5. 16/10: GO ou lista de correções. 17/10: publicação do bundle da mesma ISO
+   testada, somente com todos os resultados exigidos aprovados e sem P0/P1.
+   Falha no gate: correções até 21/10, candidata 2 em 22/10, publicação 27/10.
+   Não se reaproveita evidência de outra ISO.
 
 Pelo plano aprovado em 07/10 na [#28](https://github.com/lyra-os-linux/lyraos-desktop/issues/28),
 `scripts/image-build.py required-test-results` exige 7 resultados nesta
