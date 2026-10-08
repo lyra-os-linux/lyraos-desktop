@@ -28,6 +28,16 @@ atualização, rollback e interfaces nos três idiomas suportados (`en-US`,
   ([#125](https://github.com/lyra-os-linux/lyraos-desktop/issues/125)).
   Confirmar a limitação na ISO final antes de publicar estas notas.
 
+## Aparência padrão
+
+Por exceção aprovada pelo mantenedor em 08/10/2026 ([#28](https://github.com/lyra-os-linux/lyraos-desktop/issues/28)):
+
+- A paleta nativa de cores do Lyra (janelas GTK e terminal) é aplicada uma
+  vez no primeiro login de cada usuário. Para voltar às cores padrão do
+  GNOME, execute `lyra-native-colors --undo`; a paleta não é reaplicada.
+- O tema Lyra do Firefox vem selecionado por padrão como preferência
+  inicial. Outro tema escolhido em "Extensões e temas" é mantido.
+
 ## ECA Digital
 
 Esta versão não inclui controle parental, vínculo de contas supervisionadas

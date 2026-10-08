@@ -405,10 +405,15 @@ metadados en-US/pt-BR/es-ES e sem permissões. Paleta aprovada pelo mantenedor
 em 21/09/2026. Implementação em Firefox PR2; pacote próprio lyra-firefox-theme.
 
 A receita adiciona o pacote, que expõe o XPI assinado através do diretório
-nativo distribution/extensions. Não há política de instalação para o tema:
-o ensaio mostrou que normal_installed sobrescreve escolhas existentes.
-A distribuição nativa preservou temas em perfis novos/existentes, seleção,
-reinício, troca e remoção sem reinstalação. Firefox ESR140.13 verificou a
+nativo distribution/extensions. **Decisão do mantenedor em 08/10/2026 (#28):
+o tema Lyra é o tema padrão do Firefox na imagem.** A seleção vem de
+`extensions.activeThemeID` como preferência padrão em
+`kiwi/root/usr/lib64/firefox/browser/defaults/preferences/lyra-theme.js`.
+Não se usa política `normal_installed` nem lock: o ensaio mostrou que a
+política sobrescreve escolhas existentes, enquanto a preferência padrão cede a
+qualquer tema que o usuário selecione depois. A distribuição nativa preservou
+temas em perfis novos/existentes, seleção, reinício, troca e remoção sem
+reinstalação. Firefox ESR140.13 verificou a
 assinatura Mozilla (signedState=2). Paleta aprovada e metadados trilíngues.
 
 OBS e inventário i18n incluem o pacote; 211 testes da receita passaram.
@@ -553,8 +558,12 @@ pessoal nem os backups da estação para a imagem.
 
 Fontes: [Theme PR19](https://github.com/lyra-os-linux/lyraos-desktop-theme/pull/19),
 1.10.0, temas GTK 3 na prioridade normal, variáveis GTK 4 adaptativas e auxiliar
-reversível `lyra-native-colors --install`. A paleta global permanece opcional por
-usuário; o refresh só atualiza serviços habilitados e ainda gerenciados.
+reversível `lyra-native-colors --install`. **Decisão do mantenedor em
+08/10/2026 (#28): a paleta Lyra é o padrão da imagem.** O autostart
+`lyra-native-colors-default` executa `lyra-native-colors --install` uma vez por
+usuário no login e grava um marcador; `lyra-native-colors --undo` continua
+válido e o autostart não o desfaz. O refresh só atualiza serviços habilitados e
+ainda gerenciados.
 [Vega PR156](https://github.com/lyra-os-linux/vega/pull/156), 5.1.46, incorpora a
 mesma paleta clara/escura e acompanha o StyleManager, com retorno às cores
 semânticas do sistema em alto contraste.
@@ -587,9 +596,10 @@ do próprio config reflete o contador de release diferente. Vega 5.1.46 instalad
 `rpm -V` sem diferenças. Modo escuro, papel de parede e serviço de cores
 preservados. Isso não substitui a qualificação da candidata.
 A receita seleciona ambos os pacotes e o verificador exige tema >=1.10.0 e
-Vega >=5.1.46, sem ativar a paleta global por padrão. Não houve construção de ISO.
-Inclusão e qualificação na candidata exata permanecem pendentes: conferir
-versões/assinaturas, conta nova, migração da personalização opt-in, papel de
+Vega >=5.1.46. Desde 08/10/2026 a paleta é ativada por padrão no login
+(decisão na #28; ver acima). Inclusão e qualificação na candidata exata
+permanecem pendentes: conferir
+versões/assinaturas, conta nova, aplicação padrão e `--undo`, papel de
 parede, claro/escuro e acessibilidade em VM e outro hardware aplicável. O
 protótipo fixo era um resíduo local; verificar sua ausência na imagem limpa.
 

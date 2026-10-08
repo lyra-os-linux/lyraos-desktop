@@ -1,0 +1,19 @@
+#!/bin/sh
+# Apply the Lyra native color palette once per user at session start.
+# Alpha 8 exception approved by the maintainer on 2026-10-08 (issue #28):
+# the palette shipped by lyra-os-theme is enabled by default instead of
+# opt-in. The marker makes this a one-time default: after
+# `lyra-native-colors --undo` the palette is not applied again.
+set -eu
+config="${XDG_CONFIG_HOME:-$HOME/.config}"
+marker="$config/lyra-native-colors.default-applied"
+[ -e "$marker" ] && exit 0
+mkdir -p "$config"
+if [ -e "$config/systemd/user/lyra-native-colors.service" ]; then
+  : > "$marker"
+  exit 0
+fi
+command -v lyra-native-colors >/dev/null 2>&1 || exit 0
+if lyra-native-colors --install; then
+  : > "$marker"
+fi

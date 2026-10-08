@@ -32,3 +32,13 @@ não restaurar estilos globalmente sem distinguir configurações pessoais.
 
 Planejamento da Alpha 8 (seis ISOs com/sem NVIDIA):
 https://github.com/lyra-os-linux/lyraos-desktop/issues/62.
+
+## Atualização da decisão — 2026-10-08
+
+Decisão do mantenedor registrada na #28: a imagem passa a aplicar por padrão a
+paleta nativa Lyra do pacote `lyra-os-theme` (GTK 3, GTK 4 e terminal) uma vez
+por usuário no login, via `lyra-native-colors --install`, e seleciona o tema
+Lyra do Firefox como preferência padrão. Os temas GTK/Shell do GNOME
+continuam os nativos; a paleta é reversível com `lyra-native-colors --undo` e
+o tema do Firefox pode ser trocado em "Extensões e temas". Detalhes em
+GTK-01 e FF-THEME-01 de `docs/iso-fix-tracker.md`.

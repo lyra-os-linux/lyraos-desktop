@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Apply Lyra native colors
+Comment=Apply the Lyra window and terminal palette once for a new user
+Exec=/usr/libexec/lyra/native-colors-default
+OnlyShowIn=GNOME;
+NoDisplay=true
+X-GNOME-Autostart-enabled=true
