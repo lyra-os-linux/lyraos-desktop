@@ -481,6 +481,14 @@ class ImagePolicyTests(unittest.TestCase):
         )
         self.assertNotIn("theme@lyraos.com.br", policies["policies"]["ExtensionSettings"])
 
+        # The palette's Shell dialog stylesheet is loaded by User Themes.
+        config = (ROOT / "kiwi/config.xml").read_text(encoding="utf-8")
+        self.assertIn('<package name="gnome-shell-extension-user-theme"/>', config)
+        override = (
+            ROOT / "kiwi/root/usr/share/glib-2.0/schemas/99-lyra-sheliak.gschema.override"
+        ).read_text(encoding="utf-8")
+        self.assertIn("'user-theme@gnome-shell-extensions.gcampax.github.com'", override)
+
     def test_office_apps_and_locales_match_image_policy(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         packages = {node.attrib["name"] for node in root.findall("packages/package")}

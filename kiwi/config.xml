@@ -469,6 +469,10 @@
     <!-- Manage Sheliak and other Shell extensions through GNOME's native UI.
          Its translations are provided by gnome-shell-lang below. -->
     <package name="gnome-extensions"/>
+    <!-- User Themes extension: loads the "Lyra-Dialogs-*" Shell stylesheet
+         that lyra-native-colors writes for modal dialogs (power off, polkit).
+         Enabled by default in 99-lyra-sheliak.gschema.override. -->
+    <package name="gnome-shell-extension-user-theme"/>
     <!-- Accessibility - kept deliberately; curation is about redundant
          apps, not accessibility tooling. -->
     <package name="orca"/>
