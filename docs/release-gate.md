@@ -1,9 +1,10 @@
 # Desktop Alpha 7 release gate
 
-> Alpha 8 adds four fail-closed results to this baseline: `upgrade-rehearsal`,
-> `eca-digital`, `i18n` and `feature-freeze`. The build tooling selects these
-> requirements from `release.toml`; Alpha 7 remains reproducible with its
-> original seven-result gate.
+> Alpha 8 (plan in issue #28, approved 2026-10-07) adds one fail-closed result
+> to this baseline, `i18n`, and does not require `hardware-matrix`. The build
+> tooling selects these requirements from `release.toml`; Alpha 7 remains
+> reproducible with its original seven-result gate. See
+> [Alpha 8 changes](#alpha-8-changes).
 
 This checklist is the versioned go/no-go contract for the standard Lyra OS
 Desktop Alpha 7 ISO. A release coordinator may declare **GO** only when every blocking
@@ -77,23 +78,33 @@ content and hardware coverage; a bare green status is rejected:
 - [ ] `v1.0-alpha.6` remains available as the immutable Leap 16.0 rollback
   baseline and the 16.0 → 16.1 upgrade/rollback rehearsal is recorded.
 
-## Alpha 8 additions
+## Alpha 8 changes
 
-- [ ] reconcile every physical-machine fix in [the ISO fix tracker](iso-fix-tracker.md)
-  with candidate contents, applicable hardware coverage and exact-checksum
-  evidence; local repair alone does not close an ISO item;
-- [ ] `upgrade-rehearsal`: a published baseline consumes a signed successor
-  manifest, applies it offline, crosses reboot, verifies the target and restores
-  the baseline through rollback; network loss, low space, UI termination,
-  truncated state, RPM failure and initramfs failure are exercised;
-- [ ] `eca-digital`: legal, security and privacy reviews are referenced, negative
-  and evasion tests pass, and no document, biometric sample or unnecessary age
-  history is retained;
+Alpha 8 covers new installations only, tested in virtual machines. Its
+required results are `obs-repositories`, `live-session`, `installer`,
+`first-boot`, `uefi-secure-boot`, `rollback` and:
+
 - [ ] `i18n`: every supported Lyra-owned interface passes in `en-US`, `pt-BR`
   and Spanish (`es-ES`), with `en-US` as the explicit fallback;
-- [ ] `feature-freeze`: every feature in the 1.1 release scope is implemented or formally removed,
-  documentation is consistent, and the recorded counts of open P0 and P1 are
-  both zero. Any other result is `NO-GO`, and Alpha continues.
+- [ ] reconcile every fix in [the ISO fix tracker](iso-fix-tracker.md) with
+  candidate contents and exact-checksum evidence; local repair alone does not
+  close an ISO item.
+
+Not required for Alpha 8:
+
+- `hardware-matrix`: no physical hardware is tested; the release notes state
+  that the candidate was qualified only in virtual machines;
+- `upgrade-rehearsal`: upgrading an Alpha 7 installation is not supported or
+  tested; the release notes state that Alpha 8 is a new installation only.
+
+Declared in the release notes instead of structured evidence:
+
+- **ECA Digital:** the candidate ships no parental control, no supervised
+  account enrollment and no age signal to applications, and retains no age
+  evidence. The notes state this scope explicitly;
+- **Feature freeze:** no new functionality enters after the plan is approved.
+  At publication the coordinator records in the notes that no P0 or P1 issue
+  applicable to the shipped scope remains open; any other state is `NO-GO`.
 
 ## Release signing key
 

@@ -228,9 +228,11 @@ class RepositoryMetadataTests(unittest.TestCase):
         self.assertIn('LYRA_RELEASE_SLUG="alpha8"', uploader_wrapper)
         self.assertIn("required-test-results", builder)
         self.assertIn("required-test-results", uploader)
-        for evidence in ("upgrade-rehearsal", "eca-digital", "i18n", "feature-freeze"):
-            self.assertIn(evidence, gate)
-            self.assertIn(evidence, contract)
+        self.assertIn("i18n", gate)
+        self.assertIn("i18n", contract)
+        notes = (ROOT / "docs/releases/lyra-os-desktop-1.1-alpha.8.md").read_text(encoding="utf-8")
+        for declaration in ("ECA Digital", "Congelamento funcional"):
+            self.assertIn(declaration, notes)
 
     def test_tested_candidate_is_published_without_rebuild(self) -> None:
         gate = (ROOT / "docs/release-gate.md").read_text(encoding="utf-8")

@@ -1,54 +1,16 @@
 # Desktop Alpha 8 evidence contracts
 
-Alpha 8 extends the existing release evidence without changing the Alpha 7
-baseline. Run `scripts/image-build.py required-test-results` after changing
-`release.toml` to see the exact list for the current stage. Missing, malformed
-or failed evidence always produces `NO-GO`.
+Alpha 8 follows the plan recorded in issue #28 (approved 2026-10-07): new
+installation only, tested in virtual machines, no parental control. It keeps
+the Alpha 7 baseline except `hardware-matrix`, and adds `i18n`. Run
+`scripts/image-build.py required-test-results` after changing `release.toml`
+to see the exact list for the current stage. Missing, malformed or failed
+evidence always produces `NO-GO`.
 
 Every result uses schema 1, its documented `mode`, `status: passed` and a
 nonempty `checks` array whose entries have a stable `id` and `status: passed`.
 Reports must not contain credentials, documents, biometric samples or
 unnecessary personal data.
-
-## `upgrade-rehearsal-result.json`
-
-This result is emitted only after a published baseline has consumed a signed
-successor manifest using real candidate repositories and RPMs, applied the
-transaction offline, rebooted, verified the target and restored the baseline.
-Its final `phase` is `rollback-verified`. The `facts` object records distinct
-`baseline_version` and `target_version`, `manifest_signature_verified: true`,
-`offline_applied: true`, a positive `reboot_count`,
-`rollback_baseline_verified: true`, and these fault scenarios:
-
-- `network-loss`;
-- `low-space`;
-- `ui-terminated`;
-- `state-truncated`;
-- `rpm-failure`;
-- `initramfs-failure`.
-
-The workflow must remain recoverable after each injected failure. Mocks may
-test parsers and state transitions, but cannot produce release evidence.
-
-## `eca-digital-result.json`
-
-The result references nonempty `legal_review`, `security_review` and
-`privacy_impact_assessment` records. It covers exactly `en-US`, `pt-BR` and
-Spanish (`es-ES`), records `negative_and_evasion_tests: true`, and records
-`retains_sensitive_age_evidence: false`. Checks cover the applicable account,
-installation, bypass, age-signal, recovery, accessibility and data-minimization
-cases. A missing applicable safeguard is a failed check, never an exception.
-
-For the Alpha 8 scope decision of 07/10, parental control and age signals are
-excluded. The three reviews and this result remain required; they must state
-the actual shipped scope. Negative/evasion checks must establish that no
-Lyra parental enrollment, restriction or age-signal endpoint is exposed in the
-candidate, that Lyra has not configured supervised accounts, and that ordinary
-accounts still work normally. The upstream `malcontent` package remains a
-dependency of GNOME Control Center; its presence is not evidence of Lyra
-enforcement or a reason to mark an excluded scenario as passed. Record excluded
-parental scenarios as out of scope with the reason and issue #102; do not claim
-that parental protection works.
 
 ## `i18n-result.json`
 
@@ -57,25 +19,27 @@ Checks cover every Lyra-owned interactive package marked localizable in
 `i18n/inventory.json`; upstream-owned or text-free packages retain their
 versioned `not-applicable` rationale.
 
-## `feature-freeze-result.json`
+## Declarations in the release notes
 
-On 2026-09-22 the maintainer reaffirmed the delivery sequence: finish the
-approved functionality during Alpha 8 and reserve Beta 1 and Beta 2 primarily
-for bug fixes, regressions and stability. Defer new feature ideas to the next
-cycle by default. A proposed exception needs a concrete maintainer decision;
-the earlier general allowance for Beta improvements is not a reason to expand
-the current plan. Existing release qualification remains required. Do not
-move unfinished Alpha functionality into Beta under the label of a bug fix.
+`upgrade-rehearsal`, `eca-digital` and `feature-freeze` are not structured
+results in Alpha 8. The release notes
+(`docs/releases/lyra-os-desktop-1.1-alpha.8.md`) must state instead:
 
-This is a release-coordinator decision record, not an automatic claim. `GO`
-requires `open_p0: 0`, `open_p1: 0` among issues applicable to the shipped
-scope, the fixed three-locale list,
-`all_features_implemented_or_removed: true` and
-`documentation_consistent: true`. If any condition is absent, Alpha continues.
+- that Alpha 8 supports new installations only and that upgrading from
+  Alpha 7 was not tested;
+- that the candidate was qualified only in virtual machines;
+- the ECA Digital scope: no parental control, no supervised account
+  enrollment, no age signal to applications and no retained age evidence.
+  The upstream `malcontent` package remains a dependency of GNOME Control
+  Center; its presence is not Lyra enforcement and must not be described as
+  protection (issue #102);
+- the feature freeze: no new functionality after the plan was approved, and
+  the coordinator's confirmation at publication that no P0 or P1 issue
+  applicable to the shipped scope remains open. Any other state is `NO-GO`.
 
 ## Reversal
 
 If these contracts reject valid historical Alpha 7 evidence, revert the
-Alpha 8 wrapper and stage-aware additions while retaining the seven-result
+Alpha 8 wrapper and stage-aware changes while retaining the seven-result
 baseline. Never weaken a failed check or fabricate a passing report to unblock
 publication.
