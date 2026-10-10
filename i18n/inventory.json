@@ -321,12 +321,12 @@
       "project": "lyra",
       "id": "lyra-vms",
       "wave": "alpha8",
-      "status": "scheduled",
+      "status": "complete",
       "format": "Rust locale strings + upstream gettext",
       "domain": "lyra-vms / virt-viewer",
       "selection": "LC_ALL, LANGUAGE, LC_MESSAGES, LANG; en-US fallback",
       "lint": "cargo test --locked; desktop-file-validate; candidate locale smoke",
-      "rationale": "Launcher errors in en-US/pt-BR/es-ES; console translations supplied by virt-viewer. Candidate locale review pending."
+      "rationale": "Launcher errors in en-US/pt-BR/es-ES; console translations supplied by virt-viewer. Candidate locale review on 2026-10-10 against the installed lyra-vms 0.1.0-lp161.1.2 binary: all four launcher messages present in en-US/pt-BR/es-ES and the desktop Comment translated for pt_BR/es_ES, desktop-file-validate clean. The text(en,pt,es) selector requires all three locales by type, so none can be missing."
     }
   ]
 }
