@@ -149,7 +149,9 @@ if decision_path:
 PY
 
 if [ "$CHECK_OPEN_BLOCKERS" -eq 1 ]; then
-  OPEN_BLOCKERS="$(gh issue list --state open --label desktop --limit 200 \
+  # The script runs from the artifact directory, outside the repository; name
+  # the repository explicitly so gh does not depend on the working tree.
+  OPEN_BLOCKERS="$(gh issue list -R lyra-os-linux/lyraos-desktop --state open --label desktop --limit 200 \
     --json number,title --jq '.[] | select(.title | test("\\[P[01]\\]"; "i")) | "#\\(.number) \\(.title)"')"
   [ -z "$OPEN_BLOCKERS" ] || {
     echo "ERRO: há P0/P1 Desktop aberta; publicação bloqueada:" >&2
