@@ -81,7 +81,8 @@ repositories() {
   echo "## lyra packages"; rpm -q lyra-release lyra-installer sheliak lyra-upgrade lyra-vms lyra-welcome 2>&1
 }
 identity() { cat /etc/os-release; echo "## lyra release"; cat /usr/lib/lyra-os/release 2>&1; }
-journal_crit() { journalctl -b -p 3 --no-pager 2>&1; }
+# liveuser is not in systemd-journal; read the whole journal through sudo.
+journal_crit() { sudo journalctl -b -p 3 --no-pager 2>&1; }
 installer() {
   local result="$HOME/lyra-installer-result.json"
   echo "## home"; ls -l "$HOME"/lyra-installer-* 2>&1
