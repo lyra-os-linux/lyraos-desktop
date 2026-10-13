@@ -1,32 +1,67 @@
 # Lyra OS 1.1 Alpha 8 “Odisseia” — notas de lançamento (rascunho)
 
-Este texto acompanha a preparação da candidata. Os recursos e limitações
-definitivos serão fechados após a qualificação da ISO exata; este rascunho não
-autoriza publicação.
+Este texto acompanha a candidata 5 (commit `1fa98cb`, SHA-256
+`cbf4d362f841…a3ad7a`), qualificada em máquinas virtuais em 13/10/2026. A
+decisão de GO e a publicação seguem o plano da #28; este texto não autoriza
+publicação por si.
 
 A Alpha 8 tem como foco concluir a integração do Desktop 1.1 sobre
 openSUSE Leap 16.1 e verificar instalação, primeira inicialização,
 atualização, rollback e interfaces nos três idiomas suportados (`en-US`,
 `pt-BR`, `es-ES`). É uma versão Alpha destinada a testes, não a produção.
 
-## Escopo e limites a confirmar
+Esta é a última versão Alpha do Desktop 1.1. Pelo calendário do mantenedor
+(13/10/2026), a Beta 1 está prevista para o fim de outubro, a RC para o
+início de novembro e o lançamento oficial para o fim de novembro de 2026.
+
+## Escopo e limites
 
 - O controle parental está fora da Alpha 8. A integração com Flatpak ainda
   permite executar um aplicativo negado; por isso, o Lyra não oferece a
   integração de supervisão de contas nem sinal de idade a aplicativos nesta
   versão. Contas comuns devem
-  continuar com o comportamento habitual, sujeito à verificação na ISO final.
+  continuar com o comportamento habitual.
 - A Alpha 8 cobre apenas instalação nova. A atualização de uma instalação
   Alpha 7 para a Alpha 8 não foi testada e não é suportada; reinstale.
 - RAID, LVM, particionamento manual e instalação lado a lado continuam fora do
   cenário de instalação coberto, salvo qualificação específica posterior.
-- A candidata é qualificada somente em máquinas virtuais (BIOS, UEFI com e
-  sem NVRAM, Secure Boot). Nenhum hardware físico foi testado nesta versão.
+- A candidata foi qualificada somente em máquinas virtuais QEMU/KVM: UEFI com
+  NVRAM e Secure Boot, BIOS legado e UEFI sem variáveis EFI (instalação com
+  `efi=noruntime` e boot pelo loader alternativo `EFI/BOOT/BOOTX64.EFI`).
+  Nenhum hardware físico foi testado nesta versão; Wi-Fi, GPU dedicada,
+  NVIDIA, suspensão e firmware de fabricantes ficam para a Beta.
 - O pacote atual da base para o portal GNOME de atalhos globais pode responder
   com erro após a confirmação de um atalho. Há um backport em staging, mas sua
   instalação/atualização ainda não foi qualificada para esta candidata
   ([#125](https://github.com/lyra-os-linux/lyraos-desktop/issues/125)).
-  Confirmar a limitação na ISO final antes de publicar estas notas.
+  A candidata 5 mantém o pacote da base (`xdg-desktop-portal-gnome` 48.0).
+
+## Correções nesta candidata
+
+- Sheliak 2.0.4: abrir um aplicativo pela dock no primeiro login derrubava o
+  GNOME Shell (asserção do GLib em `g_signal_handler_disconnect`,
+  [Sheliak #37](https://github.com/lyra-os-linux/lyraos-desktop-sheliak/issues/37)).
+  Validado no primeiro login da candidata 5 sem queda.
+- Instalador: a tela de boas-vindas identifica "Odisseia 1.1 Alpha 8"
+  (`lyra-installer` 0.1.0-lp161.35.1).
+- Instalador: BIOS, UEFI com NVRAM e UEFI sem variáveis EFI instalam e
+  iniciam o disco em modos separados
+  ([#89](https://github.com/lyra-os-linux/lyraos-desktop/issues/89)).
+- Política de publicação: os pacotes legados `calco` e `prosa` saíram do
+  projeto de release do OBS.
+
+## Limitações conhecidas
+
+- No primeiro boot da sessão live, abrir a busca do GNOME derrubou a sessão
+  para a tela de login uma vez; um novo boot da mídia resolve. Não
+  investigado nesta Alpha (decisão do mantenedor em 13/10/2026).
+- Entradas de prioridade alta no journal reconhecidas como upstream sem
+  impacto: nome D-Bus duplicado `org.gnome.Shell.Screencast` (GNOME Shell
+  48.8), scopes `gnome-keyring-ssh` e `xdg-user-dirs` encerrados antes do
+  cgroup, `gkr-pam` no login e o aviso de TDX do kernel em VM.
+- O caminho de boot BIOS usa a partição BIOS Boot de 2 MiB com GRUB
+  i386-pc; não há ESP nessa instalação, e o coletor de primeiro boot só se
+  aplica a instalações UEFI.
 
 ## Aparência padrão
 
@@ -52,7 +87,8 @@ Nenhuma funcionalidade nova entrou depois do plano aprovado em 07/10/2026
 ([#28](https://github.com/lyra-os-linux/lyraos-desktop/issues/28)). A
 publicação só ocorre sem P0 ou P1 abertos no escopo entregue; os P2 e P3
 aceitos aparecem em "limitações conhecidas". Confirmar esta declaração na
-decisão de GO antes de publicar.
+decisão de GO antes de publicar. Em 13/10/2026 o único P1 do marco, #89,
+foi validado na candidata 5 e aguarda encerramento pelo mantenedor.
 
 ## Integridade
 
