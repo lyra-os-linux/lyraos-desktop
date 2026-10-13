@@ -624,3 +624,43 @@ a publicação pública do release foi confirmada com o gate do canal completo,
 assinaturas de metadata/RPM e SHA256 idêntico ao artefato instalado pela API.
 A candidata ISO permanece pendente até teste da imagem exata. Reversão do
 reparo: auxiliar --restore somente se o digest ainda corresponder ao gerado.
+
+## Reconciliação na candidata 5 — 13/10/2026
+
+Candidata 5 da Alpha 8: `LyraOS-Desktop-1.1-alpha.8-x86_64.iso`, commit
+`1fa98cb`, SHA-256 `cbf4d362f841…a3ad7a`, 1448 pacotes. Qualificação somente
+em VM QEMU/KVM (plano da #28): UEFI com NVRAM e Secure Boot, BIOS e UEFI sem
+NVRAM. A coluna "Na candidata" vem do inventário `.packages` exato; a coluna
+"Validado na candidata" cita a evidência do diretório da candidata (entra no
+bundle do `artifact-manifest`). O que a VM não expõe (Wi-Fi, GPU, firmware
+físico, suspensão) continua pendente para a Beta, conforme as notas de versão.
+
+| ID | Na candidata (inventário exato) | Validado na candidata 5 | Estado |
+| --- | --- | --- | --- |
+| BOOT-01 | `wireless-regdb-20250220-160100.2.1` na receita | VM sem Wi-Fi; Ethernet (virtio) com conectividade completa no `live-session` | incluído; Wi-Fi físico pendente |
+| BOOT-02 | nenhum pacote `linuwu`/blacklist Acer no inventário | auditoria de segurança da ISO sem findings; `failed-units` 0 em live e instalado | resíduo ausente na imagem |
+| BOOT-03 | só `sheliak-2.0.4-lp161.1.1` | `installed-gate palette`: sete extensões ativas, nenhuma prévia antiga | resíduo ausente na imagem |
+| BOOT-04 | launcher do Screencast na receita GNOME | login real em três instalações; journal só com o nome D-Bus duplicado já reconhecido (upstream sem impacto) | incluído; gravação/reprodução não ensaiada |
+| BOOT-05 | `plymouth-22.02.122+94.4bd41a3`; overrides na receita; initrd live validado sem Plymouth pelo helper | boot/desligamento/reboot repetidos nas três instalações; checks `initramfs` da baseline, do atualizado e do rollback | incluído; splash não inspecionado visualmente |
+| BOOT-06 | pendente upstream (GDM/Mutter) | seis logins e três reinícios em VM sem reinício do Shell pessoal | pendente upstream, sem regressão |
+| BOOT-07 | sem correção global (firmware) | aviso TDX observado na VM e reconhecido pelo mantenedor como sem impacto (13/10) | específico de capacidade |
+| BOOT-08 | pendente upstream (Plymouth `KillMode`) | boot, passagem ao GDM e desligamento limpos em VM | pendente upstream, sem regressão |
+| BOOT-09a | `lyra-installer-0.1.0-lp161.35.1` (commit `977fd8f`, contém a correção) | `first-boot` 31/31 (`gdm-autologin` ausente, conta nova, GDM com backend) nas três instalações | **validado** |
+| BOOT-09b | sem alteração (GDM 48) | mensagem isolada não observada como falha; login normal | acompanhar upstream |
+| NVIDIA-01/02/03 | ISO sem NVIDIA pré-instalada (decisão 16/09); `vega-gtk-5.1.46`, `vegad-5.1.32` | não testável em VM; NVIDIA declarada como não testada na Alpha 8 (#28) | pendente, declarado nas notas |
+| SHELL-01 | `sheliak-2.0.4-lp161.1.1` (≥ 2.0.3; 2.0.4 corrige #37) | `gnome-shell-core-dump` 0 em live e primeiro boot; dock usada no primeiro login; logout/reboot repetidos | **validado em VM** |
+| UPD-01 | `lyra-upgrade-0.2.5-lp161.1.2` | gate `rollback`: `zypper update` real, dois reboots, snapshots 2/3, `rollback-verified` | validado o ciclo Lyra; coexistência PackageKit offline não ensaiada |
+| FW-01 | `lyra-installer-0.1.0-lp161.35.1` (≥ lp161.34.1 da correção) | `installer-result.json` (UEFI+NVRAM+SB), `installer-bios-result.json`, `installer-no-nvram-result.json` (`uefi-fallback-no-variables`); disco subiu nos três modos | **validado** (#89) |
+| VEGA-01 | `vega-gtk-5.1.46-lp161.1.2` (≥ 5.1.40) | não ensaiado na candidata (Painel/abas) | incluído; ensaio de UI pendente |
+| VIRT-01 | `libvirt-daemon-qemu-12.4.0`, `lyra-vms-0.1.0-lp161.1.2`, `virt-viewer` | `lyra-vms` revisado no binário (i18n); VM dentro da VM não ensaiada | incluído; cenário gráfico pendente |
+| FF-THEME-01 | `lyra-firefox-theme-0.2.0-lp161.1.1`; preferência padrão `extensions.activeThemeID` no overlay (#150) | Firefox aberto pela dock no primeiro login sem queda; aparência do tema não conferida formalmente | incluído; conferência visual pendente |
+| PREP-01 | `vegad-5.1.32-lp161.1.2` (≥ 5.1.32), `vega-gtk-5.1.46` (≥ 5.1.45) | `failed-units` 0 e `repositories` ok na baseline do rollback; UI do Vega não ensaiada | incluído; fluxo de UI pendente |
+| GRUB-04 | `lyra-os-theme-1.10.1-lp161.3.1` (≥ 1.9.4); tema GRUB nos modos UEFI e BIOS | menu GRUB com tema Lyra visto nos boots UEFI e BIOS; checks `grub-config`/`grub-theme` passaram antes, depois da atualização e após o rollback | **validado em VM** |
+| DL-01 | `lyra-downloads-0.1.3-lp161.1.2`, `lyra-firefox-ext-0.1.3-lp161.1.1` (≥ 0.1.3) | repasse Firefox → Downloads não ensaiado na candidata | incluído; repasse pendente |
+| GTK-01 | `lyra-os-theme-1.10.1-lp161.3.1` (≥ 1.10.0) e `vega-gtk-5.1.46`; autostart `lyra-native-colors-default` (#150) | `installed-gate palette`: marcador aplicado, `Lyra-Native`/`Lyra-Dialogs-Light` no primeiro login da conta nova; `--undo` não ensaiado | validado o padrão; reversão pendente |
+| ID-01 | `lyra-release-1.1-lp161.2.1` | `identity`: `PRETTY_NAME="Lyra OS 1.1 Alpha 8 (Odisseia)"` na live e no instalado; `identity-release`/`identity-build-info` no `first-boot` | validado; reinstalação de `Leap-release` não ensaiada |
+
+Limitação conhecida registrada em 13/10 (decisão do mantenedor, sem
+investigação na Alpha 8): no primeiro boot da sessão live, abrir a busca do
+GNOME derrubou a sessão para o GDM uma vez; o segundo boot e as sessões
+seguintes foram normais. Fica nas notas de versão.
