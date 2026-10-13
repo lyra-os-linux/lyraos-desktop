@@ -1,9 +1,9 @@
-# Lyra OS 1.1 Alpha 8 “Odisseia” — notas de lançamento (rascunho)
+# Lyra OS 1.1 Alpha 8 “Odisseia” — notas de lançamento
 
-Este texto acompanha a candidata 5 (commit `1fa98cb`, SHA-256
-`cbf4d362f841…a3ad7a`), qualificada em máquinas virtuais em 13/10/2026. A
-decisão de GO e a publicação seguem o plano da #28; este texto não autoriza
-publicação por si.
+Estas notas acompanham a ISO publicada: candidata 5, commit `1fa98cb`,
+SHA-256 `cbf4d362f841…a3ad7a`, qualificada em máquinas virtuais em
+13/10/2026 com decisão de GO do mantenedor registrada no bundle
+(`LyraOS-Desktop-1.1-alpha.8-x86_64.release-decision.json`).
 
 A Alpha 8 tem como foco concluir a integração do Desktop 1.1 sobre
 openSUSE Leap 16.1 e verificar instalação, primeira inicialização,
