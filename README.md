@@ -152,6 +152,13 @@ instalado precisa iniciar por `EFI/boot/bootx64.efi`). Sem flag, a VM usa
 OVMF padrão com NVRAM persistente. Para `--boot-installed`, repita a mesma
 flag usada na instalação.
 
+Para exercitar também o caminho do instalador sem variáveis EFI (caso
+`uefi-no-nvram` do #89), edite a entrada "Lyra OS" no menu do GRUB da live
+(`e`), acrescente `efi=noruntime` à linha `linux` e inicie com **Ctrl+X**
+(F10 não dispara o boot neste tema). Depois da instalação, ejete a ISO no
+monitor do QEMU (`eject -f ide2-cd0`) antes de reiniciar: sem entrada NVRAM o
+firmware prefere o CD ao loader alternativo do disco.
+
 O comando faz as três etapas em sequência: constrói a ISO, cria disco/NVRAM
 novos e executa a VM. A instância anterior e seus artefatos são substituídos
 somente depois que a nova ISO passa pelas validações. Depois de concluir a
