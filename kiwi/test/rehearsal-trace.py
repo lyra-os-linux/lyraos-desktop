@@ -21,7 +21,7 @@ def file_identity(path: Path) -> dict[str, int]:
     return {"device": metadata.st_dev, "inode": metadata.st_ino}
 
 
-def load_trace(path: Path, installation_uuid: str, disk: dict, nvram: dict) -> dict:
+def load_trace(path: Path, installation_uuid: str, disk: dict, nvram: dict | None) -> dict:
     if not path.exists():
         return {
             "schema": 1,
@@ -76,14 +76,15 @@ def main() -> int:
     parser.add_argument("--uuid", required=True)
     parser.add_argument("--mode", required=True, choices=("live", "installed"))
     parser.add_argument("--disk", required=True, type=Path)
-    parser.add_argument("--nvram", required=True, type=Path)
+    # BIOS runs have no NVRAM file; the trace then records a null identity.
+    parser.add_argument("--nvram", type=Path)
     args = parser.parse_args()
 
     installation_uuid = str(uuid.UUID(args.uuid))
     if args.trace.parent.is_symlink() or args.trace.parent.stat().st_uid != os.getuid():
         raise ValueError("trace directory is unsafe")
     disk = file_identity(args.disk)
-    nvram = file_identity(args.nvram)
+    nvram = file_identity(args.nvram) if args.nvram is not None else None
     document = load_trace(args.trace, installation_uuid, disk, nvram)
     sequence = len(document["launches"]) + 1
     document["qemu_launch_count"] = sequence

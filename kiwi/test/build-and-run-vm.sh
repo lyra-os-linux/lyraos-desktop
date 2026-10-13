@@ -15,6 +15,9 @@
 #   ./build-and-run-vm.sh --published-installer
 #                                        use the installer RPM from OBS instead of local sources
 #   ./build-and-run-vm.sh --secure-boot   use OVMF with Secure Boot and Microsoft keys
+#   ./build-and-run-vm.sh --bios          use SeaBIOS (legacy BIOS, no OVMF, no NVRAM)
+#   ./build-and-run-vm.sh --no-nvram      use OVMF with a read-only variable store (no
+#                                        persistent NVRAM across resets)
 #   ./build-and-run-vm.sh --help          show every option and environment override
 #
 # Every run rebuilds the KIWI tree from a clean slate by default. The current
@@ -60,6 +63,8 @@ BUILD_ONLY=0
 BOOT_INSTALLED=0
 SUMMARIZE_UPGRADE=0
 SECURE_BOOT=0
+FIRMWARE_MODE=uefi
+FIRMWARE_FLAGS=0
 USE_LOCAL_INSTALLER=1
 PRIVILEGE_TOOL="${LYRA_PRIVILEGE_TOOL:-sudo}"
 
@@ -90,6 +95,9 @@ Opções:
   --published-installer
                   usa somente o RPM publicado no OBS (obrigatório para release)
   --secure-boot   usa OVMF Secure Boot com chaves Microsoft
+  --bios          usa SeaBIOS (BIOS legado, sem OVMF e sem NVRAM)
+  --no-nvram      usa OVMF com armazenamento de variáveis somente leitura:
+                  nada persiste entre reinicializações (UEFI sem NVRAM, #89)
   -h, --help      mostra esta ajuda
 
 Recursos podem ser ajustados sem editar o script:
@@ -120,11 +128,17 @@ while [ "$#" -gt 0 ]; do
     --summarize-upgrade) SUMMARIZE_UPGRADE=1; shift ;;
     --fresh-disk) shift ;;
     --published-installer) USE_LOCAL_INSTALLER=0; shift ;;
-    --secure-boot) SECURE_BOOT=1; shift ;;
+    --secure-boot) SECURE_BOOT=1; FIRMWARE_MODE=secure-boot; FIRMWARE_FLAGS=$((FIRMWARE_FLAGS + 1)); shift ;;
+    --bios) FIRMWARE_MODE=bios; FIRMWARE_FLAGS=$((FIRMWARE_FLAGS + 1)); shift ;;
+    --no-nvram) FIRMWARE_MODE=uefi-no-nvram; FIRMWARE_FLAGS=$((FIRMWARE_FLAGS + 1)); shift ;;
     -h|--help) usage; exit 0 ;;
     *) echo "unknown flag: $1" >&2; exit 1 ;;
   esac
 done
+if [ "$FIRMWARE_FLAGS" -gt 1 ]; then
+  echo "--secure-boot, --bios and --no-nvram are mutually exclusive" >&2
+  exit 1
+fi
 
 # Keep the large KIWI tree, ISO and VM disk on the persistent filesystem.
 # On many systems /tmp is a small RAM-backed tmpfs and cannot hold a full
@@ -171,7 +185,7 @@ load_vm_uuid() {
 
 if [ "$SUMMARIZE_UPGRADE" -eq 1 ]; then
   if [ "$BOOT_INSTALLED" -eq 1 ] || [ "$BUILD_ONLY" -eq 1 ] ||
-     [ "$SKIP_BUILD" -eq 1 ] || [ "$SECURE_BOOT" -eq 1 ]; then
+     [ "$SKIP_BUILD" -eq 1 ] || [ "$FIRMWARE_MODE" != uefi ]; then
     echo "--summarize-upgrade cannot be combined with VM/build flags" >&2
     exit 1
   fi
@@ -193,8 +207,8 @@ if [ "$BOOT_INSTALLED" -eq 1 ] &&
   echo "--boot-installed cannot be combined with --build-only or --skip-build" >&2
   exit 1
 fi
-if [ "$BUILD_ONLY" -eq 1 ] && [ "$SECURE_BOOT" -eq 1 ]; then
-  echo "--secure-boot requires a VM run and cannot be combined with --build-only" >&2
+if [ "$BUILD_ONLY" -eq 1 ] && [ "$FIRMWARE_MODE" != uefi ]; then
+  echo "--secure-boot, --bios and --no-nvram require a VM run and cannot be combined with --build-only" >&2
   exit 1
 fi
 
@@ -319,16 +333,54 @@ else
 fi
 IMAGE_BUILT_AT="$(date -u -d "@$BUILD_SOURCE_EPOCH" +%Y-%m-%dT%H:%M:%SZ)"
 
-if [ "$SECURE_BOOT" -eq 1 ]; then
-  OVMF_CODE="/usr/share/qemu/ovmf-x86_64-smm-ms-code.bin"
-  OVMF_VARS_TEMPLATE="/usr/share/qemu/ovmf-x86_64-smm-ms-vars.bin"
-  OVMF_VARS="$OVMF_VARS_SECURE"
-  MACHINE="q35,accel=kvm,smm=on"
-else
-  OVMF_CODE="/usr/share/qemu/ovmf-x86_64-4m-code.bin"
-  OVMF_VARS_TEMPLATE="/usr/share/qemu/ovmf-x86_64-4m-vars.bin"
-  OVMF_VARS="$OVMF_VARS_STANDARD"
-  MACHINE="q35,accel=kvm"
+# Firmware selection (#89): every QEMU launch below splices FIRMWARE_QEMU_ARGS
+# and records the NVRAM file through TRACE_NVRAM_ARGS. BIOS has neither OVMF
+# nor NVRAM; --no-nvram attaches the OVMF variable store read-only so the
+# firmware falls back to volatile variables and nothing survives a reset.
+FIRMWARE_QEMU_ARGS=()
+TRACE_NVRAM_ARGS=()
+case "$FIRMWARE_MODE" in
+  secure-boot)
+    OVMF_CODE="/usr/share/qemu/ovmf-x86_64-smm-ms-code.bin"
+    OVMF_VARS_TEMPLATE="/usr/share/qemu/ovmf-x86_64-smm-ms-vars.bin"
+    OVMF_VARS="$OVMF_VARS_SECURE"
+    MACHINE="q35,accel=kvm,smm=on"
+    FIRMWARE_QEMU_ARGS=(
+      -drive if=pflash,format=raw,readonly=on,file="$OVMF_CODE"
+      -drive if=pflash,format=raw,file="$OVMF_VARS"
+      -global driver=cfi.pflash01,property=secure,value=on
+    )
+    ;;
+  uefi-no-nvram)
+    OVMF_CODE="/usr/share/qemu/ovmf-x86_64-4m-code.bin"
+    OVMF_VARS_TEMPLATE="/usr/share/qemu/ovmf-x86_64-4m-vars.bin"
+    OVMF_VARS="$OVMF_VARS_STANDARD"
+    MACHINE="q35,accel=kvm"
+    FIRMWARE_QEMU_ARGS=(
+      -drive if=pflash,format=raw,readonly=on,file="$OVMF_CODE"
+      -drive if=pflash,format=raw,readonly=on,file="$OVMF_VARS"
+    )
+    ;;
+  bios)
+    OVMF_CODE=""
+    OVMF_VARS_TEMPLATE=""
+    OVMF_VARS=""
+    MACHINE="q35,accel=kvm"
+    ;;
+  uefi)
+    OVMF_CODE="/usr/share/qemu/ovmf-x86_64-4m-code.bin"
+    OVMF_VARS_TEMPLATE="/usr/share/qemu/ovmf-x86_64-4m-vars.bin"
+    OVMF_VARS="$OVMF_VARS_STANDARD"
+    MACHINE="q35,accel=kvm"
+    FIRMWARE_QEMU_ARGS=(
+      -drive if=pflash,format=raw,readonly=on,file="$OVMF_CODE"
+      -drive if=pflash,format=raw,file="$OVMF_VARS"
+    )
+    ;;
+  *) echo "unknown firmware mode: $FIRMWARE_MODE" >&2; exit 1 ;;
+esac
+if [ -n "$OVMF_VARS" ]; then
+  TRACE_NVRAM_ARGS=(--nvram "$OVMF_VARS")
 fi
 
 if [ "$BOOT_INSTALLED" -eq 1 ]; then
@@ -340,7 +392,7 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
     echo "upgrade rehearsal trace tool is unavailable" >&2
     exit 1
   fi
-  if [ ! -r "$OVMF_CODE" ]; then
+  if [ "$FIRMWARE_MODE" != bios ] && [ ! -r "$OVMF_CODE" ]; then
     echo "OVMF firmware code is missing or unreadable: $OVMF_CODE" >&2
     exit 1
   fi
@@ -350,10 +402,11 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
     echo "Run a normal installation before using --boot-installed." >&2
     exit 1
   fi
-  if [ ! -f "$OVMF_VARS" ] || [ ! -r "$OVMF_VARS" ] || [ -L "$OVMF_VARS" ]; then
+  if [ "$FIRMWARE_MODE" != bios ] &&
+     { [ ! -f "$OVMF_VARS" ] || [ ! -r "$OVMF_VARS" ] || [ -L "$OVMF_VARS" ]; }; then
     echo "installed VM UEFI state is missing, unreadable, or a symbolic link:" >&2
     echo "  $OVMF_VARS" >&2
-    echo "Use the same Secure Boot mode used during installation." >&2
+    echo "Use the same firmware mode (--secure-boot, --bios, --no-nvram) used during installation." >&2
     exit 1
   fi
   if [ ! -r /dev/kvm ] || [ ! -w /dev/kvm ]; then
@@ -382,8 +435,7 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
     -cpu host
     -smp "$SMP"
     -m "$RAM_MB"
-    -drive if=pflash,format=raw,readonly=on,file="$OVMF_CODE"
-    -drive if=pflash,format=raw,file="$OVMF_VARS"
+    "${FIRMWARE_QEMU_ARGS[@]}"
     -drive if=virtio,format=qcow2,file="$DISK_IMG"
     -device virtio-net-pci,netdev=net0
     -netdev user,id=net0
@@ -391,14 +443,10 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
     -display gtk
     -boot order=c,menu=on
   )
-  if [ "$SECURE_BOOT" -eq 1 ]; then
-    INSTALLED_QEMU_ARGS+=(-global driver=cfi.pflash01,property=secure,value=on)
-  fi
-
   python3 "$REHEARSAL_TRACE_TOOL" --trace "$VM_TRACE_FILE" --uuid "$VM_UUID" \
-    --mode installed --disk "$DISK_IMG" --nvram "$OVMF_VARS"
+    --mode installed --disk "$DISK_IMG" "${TRACE_NVRAM_ARGS[@]}"
   echo "--- booting installed disk without attaching an ISO ---"
-  echo "--- preserving VM disk and UEFI state ---"
+  echo "--- preserving VM disk and UEFI state (firmware mode: $FIRMWARE_MODE) ---"
   echo "--- launching: qemu-system-x86_64 ${INSTALLED_QEMU_ARGS[*]} ---"
   if qemu-system-x86_64 "${INSTALLED_QEMU_ARGS[@]}"; then
     INSTALLED_QEMU_STATUS=0
@@ -969,7 +1017,8 @@ for command in qemu-img qemu-system-x86_64; do
     exit 1
   fi
 done
-if [ ! -r "$OVMF_CODE" ] || [ ! -r "$OVMF_VARS_TEMPLATE" ]; then
+if [ "$FIRMWARE_MODE" != bios ] &&
+   { [ ! -r "$OVMF_CODE" ] || [ ! -r "$OVMF_VARS_TEMPLATE" ]; }; then
   echo "OVMF firmware files not found or unreadable:" >&2
   echo "  $OVMF_CODE" >&2
   echo "  $OVMF_VARS_TEMPLATE" >&2
@@ -998,16 +1047,23 @@ load_vm_uuid
 echo "--- creating install-target disk: $DISK_IMG ($DISK_SIZE) ---"
 qemu-img create -f qcow2 "$DISK_IMG" "$DISK_SIZE"
 
-if [ ! -f "$OVMF_VARS" ]; then
+if [ -n "$OVMF_VARS" ] && [ ! -f "$OVMF_VARS" ]; then
   echo "--- seeding OVMF UEFI vars ---"
   cp "$OVMF_VARS_TEMPLATE" "$OVMF_VARS"
 fi
 
-if [ "$SECURE_BOOT" -eq 1 ]; then
-  echo "--- Secure Boot enabled (OVMF with Microsoft keys) ---"
-else
-  echo "--- Secure Boot disabled (standard OVMF UEFI) ---"
-fi
+case "$FIRMWARE_MODE" in
+  secure-boot) echo "--- Secure Boot enabled (OVMF with Microsoft keys) ---" ;;
+  uefi) echo "--- Secure Boot disabled (standard OVMF UEFI, persistent NVRAM) ---" ;;
+  bios) echo "--- legacy BIOS (SeaBIOS): no OVMF, no ESP boot entry, no NVRAM ---" ;;
+  uefi-no-nvram)
+    echo "--- UEFI without persistent NVRAM: OVMF variable store attached read-only ---"
+    echo "--- the firmware keeps variables only in memory; the installed disk must boot"
+    echo "--- through EFI/boot/bootx64.efi after the reboot. To also exercise the"
+    echo "--- installer fallback (#89, no efivars), press 'e' on the live GRUB entry and"
+    echo "--- append efi=noruntime to the linux line before booting the ISO. ---"
+    ;;
+esac
 
 QEMU_ARGS=(
   -name lyra-os-test
@@ -1021,8 +1077,7 @@ QEMU_ARGS=(
   -cpu host
   -smp "$SMP"
   -m "$RAM_MB"
-  -drive if=pflash,format=raw,readonly=on,file="$OVMF_CODE"
-  -drive if=pflash,format=raw,file="$OVMF_VARS"
+  "${FIRMWARE_QEMU_ARGS[@]}"
   -drive if=virtio,format=qcow2,file="$DISK_IMG"
   -device virtio-net-pci,netdev=net0
   -netdev user,id=net0
@@ -1030,13 +1085,9 @@ QEMU_ARGS=(
   -display gtk
 )
 
-if [ "$SECURE_BOOT" -eq 1 ]; then
-  QEMU_ARGS+=(-global driver=cfi.pflash01,property=secure,value=on)
-fi
-
 echo "--- booting live ISO once; subsequent reboot uses the installed disk ---"
 python3 "$REHEARSAL_TRACE_TOOL" --trace "$VM_TRACE_FILE" --uuid "$VM_UUID" \
-  --mode live --disk "$DISK_IMG" --nvram "$OVMF_VARS"
+  --mode live --disk "$DISK_IMG" "${TRACE_NVRAM_ARGS[@]}"
 QEMU_ARGS+=(-cdrom "$ISO_PATH")
 QEMU_ARGS+=(-boot order=c,once=d,menu=on)
 

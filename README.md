@@ -144,6 +144,14 @@ Para testar com Secure Boot:
 ./kiwi/test/build-and-run-vm.sh --secure-boot
 ```
 
+Os cenários de firmware do instalador (#89) usam a mesma ISO com flags
+mutuamente exclusivas: `--secure-boot` (OVMF com chaves Microsoft), `--bios`
+(SeaBIOS, sem OVMF nem NVRAM) e `--no-nvram` (OVMF com armazenamento de
+variáveis somente leitura: nada persiste entre reinicializações, e o disco
+instalado precisa iniciar por `EFI/boot/bootx64.efi`). Sem flag, a VM usa
+OVMF padrão com NVRAM persistente. Para `--boot-installed`, repita a mesma
+flag usada na instalação.
+
 O comando faz as três etapas em sequência: constrói a ISO, cria disco/NVRAM
 novos e executa a VM. A instância anterior e seus artefatos são substituídos
 somente depois que a nova ISO passa pelas validações. Depois de concluir a
