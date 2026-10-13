@@ -664,6 +664,37 @@ class ImagePolicyTests(unittest.TestCase):
             disk.write_bytes(b"replacement")
             self.assertNotEqual(subprocess.run([*base, "--mode", "installed"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode, 0)
 
+    def test_vm_helper_offers_bios_and_no_nvram_firmware_modes(self) -> None:
+        helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
+        self.assertIn("--bios) FIRMWARE_MODE=bios;", helper)
+        self.assertIn("--no-nvram) FIRMWARE_MODE=uefi-no-nvram;", helper)
+        self.assertIn("--secure-boot, --bios and --no-nvram are mutually exclusive", helper)
+        # BIOS attaches no OVMF flash and skips the firmware file checks.
+        self.assertIn('[ "$FIRMWARE_MODE" != bios ] && [ ! -r "$OVMF_CODE" ]', helper)
+        self.assertIn('[ -n "$OVMF_VARS" ] && [ ! -f "$OVMF_VARS" ]', helper)
+        # UEFI without NVRAM keeps the variable store read-only.
+        self.assertIn('-drive if=pflash,format=raw,readonly=on,file="$OVMF_VARS"', helper)
+        # Every QEMU launch splices the selected firmware and records the NVRAM
+        # file only when one exists.
+        self.assertEqual(helper.count('"${FIRMWARE_QEMU_ARGS[@]}"'), 2)
+        self.assertEqual(helper.count('"${TRACE_NVRAM_ARGS[@]}"'), 2)
+        self.assertIn('--mode live --disk "$DISK_IMG" "${TRACE_NVRAM_ARGS[@]}"', helper)
+        self.assertIn('TRACE_NVRAM_ARGS=(--nvram "$OVMF_VARS")', helper)
+
+    def test_upgrade_rehearsal_trace_accepts_bios_runs_without_nvram(self) -> None:
+        tool = ROOT / "kiwi/test/rehearsal-trace.py"
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            disk, trace = root / "disk", root / "trace.json"
+            disk.write_bytes(b"disk")
+            identity = "12345678-1234-4234-8234-123456789abc"
+            base = [sys.executable, str(tool), "--trace", str(trace), "--uuid", identity, "--disk", str(disk)]
+            subprocess.run([*base, "--mode", "live"], check=True)
+            subprocess.run([*base, "--mode", "installed"], check=True)
+            document = json.loads(trace.read_text(encoding="utf-8"))
+            self.assertIsNone(document["nvram_identity"])
+            self.assertEqual(document["qemu_launch_count"], 2)
+
     def test_vm_helper_summarizes_rehearsal_without_launching_qemu(self) -> None:
         helper = (ROOT / "kiwi/test/build-and-run-vm.sh").read_text(encoding="utf-8")
         self.assertIn("--summarize-upgrade", helper)
