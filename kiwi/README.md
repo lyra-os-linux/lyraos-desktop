@@ -73,6 +73,39 @@ ensaio; `--rollback-snapshot N` seleciona um snapshot inicial diferente quando
 necessário. O comando `prepare-rollback` altera o subvolume padrão e deve ser
 usado apenas na VM dedicada ao teste.
 
+Na VM do helper (`kiwi/test/build-and-run-vm.sh`, instalação UEFI com NVRAM)
+o mesmo ensaio corre com evidência saindo pela porta virtio
+`org.lyraos.UpgradeEvidence`, sem SSH. No host, sirva o script de guest:
+
+```bash
+(cd kiwi/test/guest && python3 -m http.server 8765)
+```
+
+No sistema instalado, baixe-o uma vez e execute cada fase, reiniciando onde
+indicado (`--reboot` reinicia sozinho quando a fase passa):
+
+```bash
+curl -fsSL http://10.0.2.2:8765/rollback-gate.sh -o rollback-gate.sh
+sudo bash rollback-gate.sh baseline
+sudo bash rollback-gate.sh update --reboot
+sudo bash rollback-gate.sh verify-updated
+sudo bash rollback-gate.sh prepare-rollback --reboot
+sudo bash rollback-gate.sh verify-rollback
+```
+
+Cada fase grava o JSON do `lyra-update-smoke` entre marcadores
+`### BEGIN rollback-gate <fase>` / `### END rollback-gate <fase> exit=N` em
+`vm/upgrade-guest-evidence.jsonl`. No host, monte a evidência do gate a
+partir do último ensaio completo (as cinco fases em ordem, todas sem falha,
+fase final `rollback-verified`) e valide-a contra a política de release:
+
+```bash
+python3 kiwi/test/rollback-evidence.py \
+  --guest-evidence "$LYRA_TEST_WORK_DIR/vm/upgrade-guest-evidence.jsonl" \
+  --iso-dir "$LYRA_TEST_WORK_DIR/iso" \
+  --output rollback-result.json --transcript rollback-transcript.json
+```
+
 Para testar interrupção, desconecte a rede enquanto a fase `update` estiver
 executando. Ela deve terminar com código diferente de zero, JSON `failed` e
 estado `update-failed`; `verify-updated` também deve recusar esse estado.
