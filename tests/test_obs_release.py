@@ -53,9 +53,8 @@ class ManifestTests(unittest.TestCase):
             set(self.manifest.project("vega").packages),
             {"vega-cli", "vega-gtk", "vega-qt", "vega-web", "vega-xfce", "vegad"},
         )
-        self.assertEqual(
-            self.manifest.project("lyra").legacy_packages, ("calco", "prosa")
-        )
+        # calco and prosa were deleted from the release project on 2026-10-10.
+        self.assertEqual(self.manifest.project("lyra").legacy_packages, ())
         for project in self.manifest.projects:
             self.assertEqual(project.targets[0].name, "openSUSE_Leap_16.1")
             self.assertTrue(project.targets[0].iso_consumer)
@@ -121,12 +120,14 @@ class ManifestTests(unittest.TestCase):
             self.assertNotIn(project.release + "</", metadata)
 
     def test_legacy_packages_are_expected_only_in_release(self) -> None:
-        project = self.manifest.project("lyra")
+        project = dataclasses.replace(
+            self.manifest.project("lyra"), legacy_packages=("legacy-pkg",)
+        )
         self.assertIn(
-            "calco", obs_release.expected_source_packages(project, project.release)
+            "legacy-pkg", obs_release.expected_source_packages(project, project.release)
         )
         self.assertNotIn(
-            "calco", obs_release.expected_source_packages(project, project.staging)
+            "legacy-pkg", obs_release.expected_source_packages(project, project.staging)
         )
 
     def test_local_priority_contract_is_current(self) -> None:
@@ -340,9 +341,9 @@ class StagingCandidateTests(unittest.TestCase):
 
     def test_candidate_cannot_overlap_other_categories_or_repeat(self) -> None:
         for candidates in [(self.package, self.package), (self.project.packages[0],),
-                           (self.project.legacy_packages[0],), (self.project.retired_staging_packages[0],),
+                           ("legacy-pkg",), (self.project.retired_staging_packages[0],),
                            ("../invalid",)]:
-            project = dataclasses.replace(self.project, staging_only_packages=candidates)
+            project = dataclasses.replace(self.project, legacy_packages=("legacy-pkg",), staging_only_packages=candidates)
             manifest = dataclasses.replace(self.manifest, projects=(project, *self.manifest.projects[1:]))
             with self.subTest(candidates=candidates), self.assertRaisesRegex(obs_release.PolicyError, "staging-only"):
                 manifest.validate()

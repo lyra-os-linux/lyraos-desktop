@@ -93,9 +93,10 @@ packages = [
   "vscode-repo",
   "zed",
 ]
-# Pacotes legados presentes no projeto, mas fora da imagem e do contrato de
-# promoção da Alpha 6. A remoção exige uma limpeza separada e explícita.
-legacy_packages = ["calco", "prosa"]
+# Pacotes legados fora da imagem e do contrato de promoção. `calco` e `prosa`
+# foram removidos do projeto de release em 10/10/2026 (osc rdelete, limpeza
+# da Alpha 8); o inventário do release volta a ser exatamente `packages`.
+legacy_packages = []
 # Historical standalone DING sources retained only in staging for rollback
 # provenance. Both build and publication must remain globally disabled.
 retired_staging_packages = ["gnome-shell-extension-desktop-icons"]
