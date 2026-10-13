@@ -1,0 +1,170 @@
+{
+  "kind": "registry-transaction-crash-proof",
+  "full_account_protection": false,
+  "checks": [
+    {
+      "name": "crash-journal-prepared-temp-synced",
+      "passed": true,
+      "detail": {
+        "recovery": "clean",
+        "outcome": "unchanged-before-transaction",
+        "old_state": "active",
+        "journal_present": false
+      }
+    },
+    {
+      "name": "crash-journal-prepared-published",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "recovering",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-registry-blocked-temp-synced",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "recovering",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-registry-blocked-published",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "recovering",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-journal-blocked-temp-synced",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "recovering",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-journal-blocked-published",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "recovering",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-registry-tombstone-temp-synced",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "recovering",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-registry-tombstone-published",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "tombstone",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-journal-tombstoned-temp-synced",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "tombstone",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-journal-tombstoned-published",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "tombstone",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-registry-new-active-temp-synced",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "tombstone",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-registry-new-active-published",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "tombstone",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-journal-committed-temp-synced",
+      "passed": true,
+      "detail": {
+        "recovery": "blocked",
+        "outcome": "blocked",
+        "old_state": "tombstone",
+        "journal_present": true
+      }
+    },
+    {
+      "name": "crash-journal-committed-published",
+      "passed": true,
+      "detail": {
+        "recovery": "committed",
+        "outcome": "committed",
+        "old_state": "tombstone",
+        "journal_present": false
+      }
+    },
+    {
+      "name": "crash-journal-removed",
+      "passed": true,
+      "detail": {
+        "recovery": "clean",
+        "outcome": "committed",
+        "old_state": "tombstone",
+        "journal_present": false
+      }
+    },
+    {
+      "name": "concurrent-begin-serialized",
+      "passed": true,
+      "detail": {
+        "writer_exit_codes": [
+          0,
+          1
+        ],
+        "state_after_recovery": "recovering"
+      }
+    }
+  ],
+  "passed": true,
+  "fixtures_removed": true,
+  "source_sha256": "038f2f38ced2f5b8ae4845a1f7f57fb8c3eed82c6337cddf3bf015474fe64f0b"
+}
