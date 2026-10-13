@@ -10,6 +10,10 @@ openSUSE Leap 16.1 e verificar instalação, primeira inicialização,
 atualização, rollback e interfaces nos três idiomas suportados (`en-US`,
 `pt-BR`, `es-ES`). É uma versão Alpha destinada a testes, não a produção.
 
+Esta é a última versão Alpha do Desktop 1.1. Pelo calendário do mantenedor
+(13/10/2026), a Beta 1 está prevista para o fim de outubro, a RC para o
+início de novembro e o lançamento oficial para o fim de novembro de 2026.
+
 ## Escopo e limites
 
 - O controle parental está fora da Alpha 8. A integração com Flatpak ainda
