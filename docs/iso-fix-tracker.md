@@ -568,6 +568,19 @@ ainda gerenciados.
 mesma paleta clara/escura e acompanha o StyleManager, com retorno às cores
 semânticas do sistema em alto contraste.
 
+**Revisão do mantenedor em 13/10/2026: a imagem volta às cores padrão do
+GNOME.** O autostart `lyra-native-colors-default` e o auxiliar em
+`/usr/libexec/lyra` saem do overlay do kiwi; nenhum login aplica a paleta.
+`lyra-native-colors --install`/`--undo` continuam disponíveis no
+lyra-os-theme 1.10.1 como opção por usuário, e a extensão User Themes
+permanece na imagem para quem optar pelos diálogos Lyra. O Vega 5.1.47
+([vega PR158](https://github.com/lyra-os-linux/vega/pull/158)) também deixou
+de embutir a paleta e segue o libadwaita. Usuários da Alpha 8 que já receberam
+a paleta não são alterados pela próxima imagem; a reversão continua sendo
+`lyra-native-colors --undo`. Validar no `installed-gate`: ausência do marcador
+`lyra-native-colors.default-applied`, `gtk-theme` Adwaita e tema Shell vazio no
+primeiro login de uma conta nova.
+
 Validação Leap 16.1: 22 testes do tema; 57 testes comuns do Vega, fmt e clippy;
 RPM local do tema construído e conteúdo extraído ensaiado com Nautilus, Console
 e Terminal reais em Mutter/portais isolados. Nove capturas verificam pixels e

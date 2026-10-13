@@ -452,24 +452,28 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertNotIn("extensions.activeThemeID", preferences)
 
 
-    def test_alpha8_default_appearance_is_a_one_time_default_not_a_lock(self) -> None:
-        # Maintainer exception of 2026-10-08 (#28): the Lyra palette and the
-        # Firefox theme are selected by default, but stay reversible.
-        autostart = (
-            ROOT / "kiwi/root/etc/xdg/autostart/lyra-native-colors-default.desktop"
-        ).read_text(encoding="utf-8")
-        helper = ROOT / "kiwi/root/usr/libexec/lyra/native-colors-default"
-        self.assertIn("Exec=/usr/libexec/lyra/native-colors-default", autostart)
-        self.assertIn("OnlyShowIn=GNOME;", autostart)
-        self.assertTrue(helper.stat().st_mode & 0o111)
-        script = helper.read_text(encoding="utf-8")
-        self.assertIn("lyra-native-colors --install", script)
-        self.assertIn("lyra-native-colors.default-applied", script)
-        self.assertNotIn("--undo", script.replace("`lyra-native-colors --undo`", ""))
+    def test_default_appearance_uses_stock_gnome_colors(self) -> None:
+        # The Alpha 8 exception (#28) that applied the Lyra palette on first
+        # login was reverted on 2026-10-13: windows, terminal and Shell dialogs
+        # keep GNOME's own colors. The palette stays available as an opt-in
+        # through `lyra-native-colors --install` from lyra-os-theme; the image
+        # must not ship anything that enables it for the user.
+        self.assertFalse(
+            (ROOT / "kiwi/root/etc/xdg/autostart/lyra-native-colors-default.desktop").exists()
+        )
+        self.assertFalse((ROOT / "kiwi/root/usr/libexec/lyra/native-colors-default").exists())
+        for path in ROOT.glob("kiwi/root/**/*"):
+            if path.is_file() and path.suffix in {".desktop", ".sh", ".service", ".override", ""}:
+                try:
+                    text = path.read_text(encoding="utf-8")
+                except UnicodeDecodeError:
+                    continue
+                self.assertNotIn("lyra-native-colors --install", text, path)
         deploy = (
             ROOT / "installer/src/service/operations/deploy.rs"
         ).read_text(encoding="utf-8")
-        self.assertNotIn("lyra-native-colors-default", deploy)
+        self.assertNotIn("lyra-native-colors", deploy)
+        # The Firefox theme default from the same exception is unchanged.
 
         prefs = (
             ROOT / "kiwi/root/usr/lib64/firefox/browser/defaults/preferences/lyra-theme.js"
