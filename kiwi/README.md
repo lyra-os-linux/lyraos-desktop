@@ -52,6 +52,38 @@ associadas explicitamente a uma issue/workaround com
 `--acknowledge-journal`. O helper registra somente estado técnico, sem SSID ou
 credenciais, e é removido do sistema-alvo pelo Lyra Installer.
 
+Na VM do helper (`kiwi/test/build-and-run-vm.sh`), sem SSH, os scripts de
+`kiwi/test/guest/` executam esses coletores e enviam cada seção pela porta
+virtio `org.lyraos.UpgradeEvidence` (host: `vm/upgrade-guest-evidence.jsonl`).
+Sirva o diretório no host com `(cd kiwi/test/guest && python3 -m http.server 8765)`
+e, no guest, baixe de `http://10.0.2.2:8765/`:
+
+```bash
+# sessão live (liveuser): smoke online e offline, firmware, repositórios, identidade, journal
+curl -fsSL http://10.0.2.2:8765/live-gate.sh -o live-gate.sh
+bash live-gate.sh all
+# depois de concluir a instalação, ainda na sessão live
+bash live-gate.sh installer
+# sistema instalado (conta criada; sudo pede a senha uma vez)
+curl -fsSL http://10.0.2.2:8765/installed-gate.sh -o installed-gate.sh
+bash installed-gate.sh all
+```
+
+No host, extraia cada resultado do gate (última ocorrência da seção, saída 0
+e relatório aprovado) e valide-o contra a política de release:
+
+```bash
+for s in live-session installer first-boot uefi-secure-boot; do
+  python3 kiwi/test/gate-evidence.py \
+    --guest-evidence "$LYRA_TEST_WORK_DIR/vm/upgrade-guest-evidence.jsonl" \
+    --iso-dir "$LYRA_TEST_WORK_DIR/iso" --section "$s" \
+    --output "$s-result.json" --transcript "$s-guest-output.txt"
+done
+```
+
+`--section` também exporta qualquer seção de texto (`firmware`, `journal-crit`,
+`palette`...) com `--transcript`.
+
 No sistema instalado, execute o ensaio de atualização e rollback da #46. O
 estado fica na ESP, fora dos snapshots Btrfs, para sobreviver ao rollback:
 
