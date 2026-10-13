@@ -82,6 +82,30 @@ mod tests {
     }
 
     #[test]
+    fn parental_state_mounts_on_sibling_subvolumes_outside_root_rollback() {
+        let subvolumes = plan::default_subvolumes();
+        let parental_scope = subvolumes
+            .iter()
+            .find(|subvolume| {
+                subvolume.mount_point.as_path() == std::path::Path::new("/var/lib/lyra/parental")
+            })
+            .expect("parental scope mount should be planned");
+        let parental_authority = subvolumes
+            .iter()
+            .find(|subvolume| {
+                subvolume.mount_point.as_path()
+                    == std::path::Path::new("/var/lib/lyra/parental-authority")
+            })
+            .expect("parental authority mount should be planned");
+
+        assert_eq!(parental_scope.subvolume, "/@lyra-parental");
+        assert_eq!(parental_authority.subvolume, "/@lyra-parental-authority");
+        assert!(!parental_scope.subvolume.starts_with("/@/"));
+        assert!(!parental_authority.subvolume.starts_with("/@/"));
+        assert_ne!(parental_scope.subvolume, parental_authority.subvolume);
+    }
+
+    #[test]
     fn serialized_plan_carries_an_explicit_schema_version() {
         let snapshot = snapshot_with_disks(vec![disk("sda", LARGE)]);
         let plan = PlanBuilder::new(&snapshot)

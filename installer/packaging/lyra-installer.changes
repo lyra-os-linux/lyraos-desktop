@@ -1,4 +1,22 @@
 -------------------------------------------------------------------
+Tue Oct  6 20:00:00 UTC 2026 - Lyra OS Team
+
+- Emit a one-use parental first-enrollment permission on the separate EFI
+  System Partition only after install operations and mount cleanup succeed.
+- Allow privileged operations to publish completion evidence after successful
+  cleanup, and fail the install if that publication cannot be completed.
+- Put the Snapper-managed parental catalog scope in a Btrfs subvolume separate
+  from the root snapshot and keep its reference authority in a sibling
+  subvolume; prepare private catalog, inventory and ledger stores and stable
+  locks for later authenticated bootstrap.
+- Create and mount the parental Snapper `.snapshots` subvolume explicitly so
+  its snapshot domain remains available after reboot.
+- Remove the live-only Plymouth exclusion before creating the installed
+  initramfs, keeping KIWI's live boot lean without changing installed boots.
+- Bump the privileged install-plan schema to 4 for the expanded subvolume
+  layout.
+
+-------------------------------------------------------------------
 Tue Sep  1 12:15:00 UTC 2026 - Lyra OS Team
 
 - Identify the installer UI as Lyra OS Odisseia 1.1 Alpha 7.

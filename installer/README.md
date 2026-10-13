@@ -38,7 +38,7 @@ mostra os discos elegíveis, o motivo quando um está bloqueado, o resumo
 destrutivo e os avisos do plano, e só libera “Continuar” quando o plano é
 válido.
 
-Todo `InstallPlan` carrega `schema_version`. A versão atual é `3`; o serviço
+Todo `InstallPlan` carrega `schema_version`. A versão atual é `4`; o serviço
 rejeita versões desconhecidas antes de executar qualquer operação e reconstrói
 o plano contra um snapshot novo para detectar estado obsoleto. Os contratos e
 as regras de evolução estão em `docs/adr/0002-json-lines-privileged-protocol.md`
@@ -70,7 +70,7 @@ ao final (sucesso ou falha). O comando Tauri `execute_plan` lança
 `kiwi/root/etc/polkit-1/rules.d/01-lyra-installer-service.rules`).
 
 `lyra-installer-core::service::operations` já implementa o particionamento
-real (GPT, ESP, Btrfs, os 21 subvolumes de
+real (GPT, ESP, Btrfs, os 23 subvolumes de
 `storage::plan::default_subvolumes`, mount, `/etc/fstab` com UUID real) para
 o caso "disco inteiro, layout direto" — RAID e LVM como alvo ainda devolvem
 um erro explícito de "não implementado", não silêncio. `cargo test` cobre a
@@ -80,6 +80,28 @@ porque este ambiente de desenvolvimento não tem privilégio para
 `losetup`/`sgdisk`/`mkfs`. `service/test-loop-device.sh` existe pronto para
 isso — precisa rodar com `sudo`, ainda não foi executado, é o próximo passo
 antes de confiar nesse caminho contra hardware de verdade.
+
+Após todas as operações e sua desmontagem terminarem com sucesso, o serviço
+grava na ESP, fora do subvolume Btrfs, uma permissão de uso único para a
+primeira inscrição do controle parental em
+`EFI/lyra/parental-enrollment/<machine-id>.json`. Ela contém o `machine-id`, um
+ID aleatório desta instalação e `state=available`. O vegad compara ambos com o
+sistema atual e trocará o estado por `consumed`, gravando o digest da primeira
+referência antes de confirmar a emissão local, quando o fluxo de serviço for
+integrado. Essa integração ainda não está ativa no daemon.
+
+O layout novo adiciona `@lyra-parental` montado em `/var/lib/lyra/parental`,
+com configuração Snapper `lyra-parental` e `.snapshots` próprio persistido no
+`fstab`. O catálogo, inventário e ledger ficam em diretórios privados dentro
+desse escopo restaurável. A autoridade e seu `reference.lock` ficam na
+subvolume irmã `@lyra-parental-authority`, fora do escopo Snapper parental. O
+instalador prepara também `catalog.lock`. Isso fornece topologia para detectar
+rollback do catálogo; ainda requer qualificação de install/reboot/rollback em
+VM antes de o vegad aceitar a topologia.
+
+Uma restauração de imagem completa que também restaure a ESP continua fora da
+garantia; o arquivo não atesta a completude dos owners do catálogo nem
+substitui a autorização administrativa.
 
 Uma auditoria do sistema-alvo encontrou e fechou duas lacunas reais: gravação
 do fuso horário em `/etc/localtime` e `/etc/timezone`, que ainda não existia

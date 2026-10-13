@@ -28,7 +28,7 @@ pub const ESP_MINIMUM_SIZE_BYTES: u64 = 32 * 1024 * 1024;
 /// Wire-format version for [`InstallPlan`]. Any structural or semantic change
 /// that an older privileged service could misinterpret must increment this
 /// value. The service rejects unknown versions before running an operation.
-pub const INSTALL_PLAN_SCHEMA_VERSION: u32 = 3;
+pub const INSTALL_PLAN_SCHEMA_VERSION: u32 = 4;
 
 /// Fixed size used by the guided "swap em disco" choice. Keeping the size
 /// in the typed plan makes the destructive layout explicit and lets the
@@ -61,7 +61,9 @@ fn subvol(mount_point: &str, subvolume: &str, nodatacow: bool) -> SubvolumePlan 
     }
 }
 
-/// The 20 subvolumes from `mount.conf`, in the same order.
+/// Default Btrfs subvolumes. The parental scope and its authority/catalog/
+/// inventory stores are kept outside `/@` so root Snapper rollback cannot
+/// restore or erase enrollment authority.
 pub fn default_subvolumes() -> Vec<SubvolumePlan> {
     vec![
         subvol("/", "/@", false),
@@ -85,6 +87,12 @@ pub fn default_subvolumes() -> Vec<SubvolumePlan> {
         subvol("/var/lib/mariadb", "/@/var/lib/mariadb", true),
         subvol("/var/lib/mysql", "/@/var/lib/mysql", true),
         subvol("/var/lib/pgsql", "/@/var/lib/pgsql", true),
+        subvol("/var/lib/lyra/parental", "/@lyra-parental", false),
+        subvol(
+            "/var/lib/lyra/parental-authority",
+            "/@lyra-parental-authority",
+            false,
+        ),
     ]
 }
 

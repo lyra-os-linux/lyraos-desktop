@@ -11,8 +11,12 @@
 
 use std::fs;
 use std::io::Read;
+use std::io::Write;
+use std::os::unix::fs::MetadataExt;
+use std::os::unix::fs::OpenOptionsExt;
 use std::os::unix::fs::PermissionsExt;
 use std::path::{Path, PathBuf};
+use std::sync::Mutex;
 
 use crate::InstallConfig;
 use crate::storage::SwapPlan;
@@ -21,6 +25,7 @@ use super::{ArgvCommand, Executor, OperationError, PrivilegedOperation, io_error
 
 const LIVE_SQUASHFS: &str = "/run/overlay/live/LiveOS/squashfs.img";
 const LIVE_NM_CONNECTIONS: &str = "/etc/NetworkManager/system-connections";
+const LIVE_DRACUT_CONFIG: &str = "etc/dracut.conf.d/90-lyra-live-initrd.conf";
 
 /// Repos whose priority KIWI sets to 1/2/3 (`kiwi/config.xml`) only so the
 /// image build picks Lyra's own package forks — must drop back down once
@@ -28,6 +33,7 @@ const LIVE_NM_CONNECTIONS: &str = "/etc/NetworkManager/system-connections";
 /// Leap packages on every future `zypper dup`.
 const LYRA_REPO_ALIASES: &[&str] = &["repo-lyra", "repo-vega", "repo-fina"];
 const INSTALLED_THIRD_PARTY_PRIORITY: u8 = 90;
+const ENROLLMENT_PERMIT_RELATIVE: &str = "EFI/lyra/parental-enrollment";
 
 /// Files that only make sense in the autologin live session.
 const LIVE_ONLY_ARTIFACTS: &[&str] = &[
@@ -70,6 +76,7 @@ pub fn deployment_operations(
         Box::new(ExtractRootfs {
             target_root: target_root.clone(),
         }),
+        super::prepare_parental_state_operation(),
         Box::new(ConfigureSwap {
             target_root: target_root.clone(),
             swap: swap.clone(),
@@ -129,6 +136,9 @@ pub fn deployment_operations(
             fstype: "efivarfs",
             dest: target_root.join("sys/firmware/efi/efivars"),
         }),
+        Box::new(RemoveLiveDracutConfig {
+            target_root: target_root.clone(),
+        }),
         Box::new(RunDracut {
             target_root: target_root.clone(),
         }),
@@ -178,6 +188,12 @@ pub fn deployment_operations(
         Box::new(SnapperCreateConfig {
             target_root: target_root.clone(),
         }),
+        Box::new(SnapperCreateParentalConfig {
+            target_root: target_root.clone(),
+        }),
+        Box::new(MountParentalSnapshotsSubvolume {
+            target_root: target_root.clone(),
+        }),
         Box::new(MountSnapshotsSubvolume {
             target_root: target_root.clone(),
         }),
@@ -192,8 +208,151 @@ pub fn deployment_operations(
         Box::new(SnapperCreateFirstSnapshot {
             target_root: target_root.clone(),
         }),
+        Box::new(SnapperCreateFirstParentalSnapshot {
+            target_root: target_root.clone(),
+        }),
         Box::new(GenerateGrubConfig { target_root }),
     ]
+}
+
+/// Add the first-enrollment permission after all deployment and boot
+/// operations. The ESP must be mounted separately from the Btrfs target.
+pub(super) fn parental_enrollment_permit_operation(
+    esp_partition: PathBuf,
+) -> Box<dyn PrivilegedOperation> {
+    Box::new(WriteParentalEnrollmentPermit {
+        target_root: PathBuf::from(super::TARGET_ROOT),
+        esp_partition,
+        values: Mutex::new(None),
+    })
+}
+
+struct WriteParentalEnrollmentPermit {
+    target_root: PathBuf,
+    esp_partition: PathBuf,
+    values: Mutex<Option<(String, String, u64)>>,
+}
+
+impl PrivilegedOperation for WriteParentalEnrollmentPermit {
+    fn describe(&self) -> String {
+        "autorizar primeira inscrição parental".to_string()
+    }
+
+    fn perform(&self, _executor: &dyn Executor) -> Result<(), OperationError> {
+        let machine_id =
+            fs::read_to_string(self.target_root.join("etc/machine-id")).map_err(io_error)?;
+        let installation = machine_id.trim();
+        if installation.len() != 32
+            || !installation
+                .bytes()
+                .all(|byte| byte.is_ascii_hexdigit() && !byte.is_ascii_uppercase())
+        {
+            return Err(OperationError::Io("machine-id inválido".to_string()));
+        }
+        // Capture the actual target filesystem while it is still mounted.
+        // During finalize the engine has already unwound mount operations.
+        let target_device = fs::metadata(&self.target_root).map_err(io_error)?.dev();
+        let operation = random_hex(16)?;
+        let mut values = self
+            .values
+            .lock()
+            .map_err(|_| OperationError::Io("estado interno inválido".to_string()))?;
+        *values = Some((installation.to_string(), operation, target_device));
+        Ok(())
+    }
+
+    fn finalize(&self, executor: &dyn Executor) -> Result<(), OperationError> {
+        let values = self
+            .values
+            .lock()
+            .map_err(|_| OperationError::Io("estado interno inválido".to_string()))?;
+        let (installation, operation, target_device) = values
+            .as_ref()
+            .ok_or_else(|| OperationError::Io("permissão não preparada".to_string()))?;
+        let mountpoint = PathBuf::from("/run/lyra-installer/parental-esp");
+        fs::create_dir_all(
+            mountpoint
+                .parent()
+                .expect("the fixed EFI mount path has a parent"),
+        )
+        .map_err(io_error)?;
+        fs::create_dir(&mountpoint).map_err(io_error)?;
+        if let Err(error) = executor.run(&ArgvCommand {
+            binary: "mount".to_string(),
+            args: vec![
+                "-o".to_string(),
+                "defaults,umask=0077".to_string(),
+                path_str(&self.esp_partition),
+                path_str(&mountpoint),
+            ],
+        }) {
+            let _ = fs::remove_dir(&mountpoint);
+            return Err(error.into());
+        }
+        let result = self.write_permit(&mountpoint, installation, operation, *target_device);
+        let unmount = executor
+            .run(&ArgvCommand {
+                binary: "umount".to_string(),
+                args: vec![path_str(&mountpoint)],
+            })
+            .map_err(OperationError::from);
+        let remove_mountpoint = if unmount.is_ok() {
+            fs::remove_dir(&mountpoint).map_err(io_error)
+        } else {
+            Ok(())
+        };
+        let cleanup = unmount.err().or_else(|| remove_mountpoint.err());
+        match (result, cleanup) {
+            (Ok(()), None) => Ok(()),
+            (Err(operation), None) => Err(operation),
+            (Ok(()), Some(cleanup)) => Err(OperationError::Cleanup {
+                operation: Box::new(OperationError::Io(
+                    "permissão criada, desmontagem da ESP pendente".to_string(),
+                )),
+                cleanup: Box::new(cleanup),
+            }),
+            (Err(operation), Some(cleanup)) => Err(OperationError::Cleanup {
+                operation: Box::new(operation),
+                cleanup: Box::new(cleanup),
+            }),
+        }
+    }
+}
+
+impl WriteParentalEnrollmentPermit {
+    fn write_permit(
+        &self,
+        mountpoint: &Path,
+        installation: &str,
+        operation: &str,
+        target_device: u64,
+    ) -> Result<(), OperationError> {
+        let directory = mountpoint.join(ENROLLMENT_PERMIT_RELATIVE);
+        let mount_device = fs::symlink_metadata(mountpoint).map_err(io_error)?.dev();
+        if mount_device == target_device {
+            return Err(OperationError::Io(
+                "a partição EFI não está montada separadamente".to_string(),
+            ));
+        }
+        fs::create_dir_all(&directory).map_err(io_error)?;
+        let path = directory.join(format!("{installation}.json"));
+        let record = format!(
+            "{{\"schema\":1,\"installation\":\"{installation}\",\"operation\":\"{operation}\",\"state\":\"available\"}}\n"
+        );
+        let mut file = fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .mode(0o600)
+            .open(&path)
+            .map_err(io_error)?;
+        file.write_all(record.as_bytes()).map_err(io_error)?;
+        file.sync_all().map_err(io_error)?;
+        drop(file);
+        fs::File::open(&directory)
+            .and_then(|directory| directory.sync_all())
+            .map_err(io_error)?;
+        Ok(())
+    }
 }
 
 struct ConfigureSwap {
@@ -800,6 +959,28 @@ struct RunDracut {
     target_root: PathBuf,
 }
 
+/// The KIWI live initrd needs a temporary Plymouth exclusion because the
+/// theme RPM now brings `plymouth-dracut` into the live root. Remove that
+/// live-only override from the installed target before generating its
+/// initramfs, so installed boot behavior follows the packaged defaults.
+struct RemoveLiveDracutConfig {
+    target_root: PathBuf,
+}
+
+impl PrivilegedOperation for RemoveLiveDracutConfig {
+    fn describe(&self) -> String {
+        "remover override de dracut exclusivo da sessão live".to_string()
+    }
+
+    fn perform(&self, _executor: &dyn Executor) -> Result<(), OperationError> {
+        match fs::remove_file(self.target_root.join(LIVE_DRACUT_CONFIG)) {
+            Ok(()) => Ok(()),
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => Ok(()),
+            Err(error) => Err(io_error(error)),
+        }
+    }
+}
+
 impl PrivilegedOperation for RunDracut {
     fn describe(&self) -> String {
         "gerar initramfs (dracut)".to_string()
@@ -1295,6 +1476,96 @@ impl PrivilegedOperation for SnapperCreateConfig {
     }
 }
 
+/// Give the parental catalog scope its own Snapper configuration. The catalog,
+/// inventory and ledger are in this scope; the enrollment authority is a sibling
+/// subvolume, so restoring this scope cannot roll back the authority marker.
+struct SnapperCreateParentalConfig {
+    target_root: PathBuf,
+}
+
+impl PrivilegedOperation for SnapperCreateParentalConfig {
+    fn describe(&self) -> String {
+        "criar configuração Snapper parental".to_string()
+    }
+
+    fn perform(&self, executor: &dyn Executor) -> Result<(), OperationError> {
+        executor.run(&ArgvCommand {
+            binary: "chroot".to_string(),
+            args: vec![
+                path_str(&self.target_root),
+                "snapper".to_string(),
+                "--no-dbus".to_string(),
+                "-c".to_string(),
+                "lyra-parental".to_string(),
+                "create-config".to_string(),
+                "/var/lib/lyra/parental".to_string(),
+            ],
+        })?;
+        Ok(())
+    }
+}
+
+struct MountParentalSnapshotsSubvolume {
+    target_root: PathBuf,
+}
+
+impl PrivilegedOperation for MountParentalSnapshotsSubvolume {
+    fn describe(&self) -> String {
+        "adicionar snapshots parentais ao fstab".to_string()
+    }
+
+    fn perform(&self, executor: &dyn Executor) -> Result<(), OperationError> {
+        let snapshots = self.target_root.join("var/lib/lyra/parental/.snapshots");
+        executor.run(&ArgvCommand {
+            binary: "btrfs".to_string(),
+            args: vec![
+                "subvolume".to_string(),
+                "show".to_string(),
+                path_str(&snapshots),
+            ],
+        })?;
+        let fstab_path = self.target_root.join("etc/fstab");
+        let content = fs::read_to_string(&fstab_path).map_err(io_error)?;
+        let rewritten = add_parental_snapshots_line(&content)?;
+        fs::write(fstab_path, rewritten).map_err(io_error)?;
+        Ok(())
+    }
+}
+
+struct SnapperCreateFirstParentalSnapshot {
+    target_root: PathBuf,
+}
+
+impl PrivilegedOperation for SnapperCreateFirstParentalSnapshot {
+    fn describe(&self) -> String {
+        "criar primeiro snapshot parental somente leitura".to_string()
+    }
+
+    fn perform(&self, executor: &dyn Executor) -> Result<(), OperationError> {
+        executor.run(&ArgvCommand {
+            binary: "chroot".to_string(),
+            args: vec![
+                path_str(&self.target_root),
+                "snapper".to_string(),
+                "--no-dbus".to_string(),
+                "-c".to_string(),
+                "lyra-parental".to_string(),
+                "create".to_string(),
+                "--read-only".to_string(),
+                "--type".to_string(),
+                "single".to_string(),
+                "--cleanup-algorithm".to_string(),
+                "number".to_string(),
+                "--description".to_string(),
+                "initial parental scope".to_string(),
+                "--userdata".to_string(),
+                "important=yes".to_string(),
+            ],
+        })?;
+        Ok(())
+    }
+}
+
 /// Ports `mount-snapshots`'s awk logic. `/.snapshots` must already exist
 /// (created by `SnapperCreateConfig` just before this) - checked via
 /// `btrfs subvolume show`, output discarded, same as the original script.
@@ -1534,6 +1805,73 @@ fn add_snapshots_line(fstab: &str) -> Result<String, OperationError> {
     let mut content = lines.join("\n");
     content.push('\n');
     Ok(content)
+}
+
+fn add_parental_snapshots_line(fstab: &str) -> Result<String, OperationError> {
+    let mut root_source = None;
+    let mut root_options = None;
+    let mut parental_snapshots: Option<Vec<String>> = None;
+    for line in fstab.lines() {
+        let line = line.trim();
+        if line.is_empty() || line.starts_with('#') {
+            continue;
+        }
+        let fields: Vec<_> = line.split_whitespace().collect();
+        if fields.len() < 4 {
+            continue;
+        }
+        if fields[1] == "/" && fields[2] == "btrfs" {
+            if root_source.replace(fields[0]).is_some() {
+                return Err(OperationError::Io(
+                    "fstab inconsistente: múltiplas raízes Btrfs".to_string(),
+                ));
+            }
+            root_options = Some(fields[3]);
+        }
+        if fields[1] == "/var/lib/lyra/parental/.snapshots" {
+            if parental_snapshots
+                .replace(fields.iter().map(|field| (*field).to_string()).collect())
+                .is_some()
+            {
+                return Err(OperationError::Io(
+                    "fstab inconsistente: entradas duplicadas para snapshots parentais".to_string(),
+                ));
+            }
+        }
+    }
+    let Some(source) = root_source else {
+        return Err(OperationError::Io(
+            "fstab inconsistente: raiz Btrfs ausente".to_string(),
+        ));
+    };
+    let options = root_options.ok_or_else(|| {
+        OperationError::Io("fstab inconsistente: opções da raiz ausentes".to_string())
+    })?;
+    if let Some(fields) = parental_snapshots {
+        let exact_mount = fields.len() == 6
+            && fields[0] == source
+            && fields[1] == "/var/lib/lyra/parental/.snapshots"
+            && fields[2] == "btrfs"
+            && fields[3]
+                .split(',')
+                .any(|option| option == "subvol=/@lyra-parental/.snapshots")
+            && fields[4] == "0"
+            && fields[5] == "0";
+        if !exact_mount {
+            return Err(OperationError::Io(
+                "fstab inconsistente: montagem Snapper parental diferente do esperado".to_string(),
+            ));
+        }
+        return Ok(fstab.to_string());
+    }
+    let mut result = fstab.to_string();
+    if !result.ends_with('\n') {
+        result.push('\n');
+    }
+    result.push_str(&format!(
+        "{source} /var/lib/lyra/parental/.snapshots btrfs {options},subvol=/@lyra-parental/.snapshots 0 0\n"
+    ));
+    Ok(result)
 }
 
 #[cfg(test)]
@@ -2063,6 +2401,27 @@ mod tests {
             executor.calls(),
             vec!["chroot /run/lyra-installer/target dracut -f"]
         );
+    }
+
+    #[test]
+    fn remove_live_dracut_override_before_generating_installed_initramfs() {
+        let override_file =
+            include_str!("../../../../kiwi/root/etc/dracut.conf.d/90-lyra-live-initrd.conf");
+        assert!(override_file.contains("omit_dracutmodules+=\" plymouth lyra-plymouth \""));
+
+        let temp = TempRoot::new("remove-live-dracut-override");
+        let path = temp.0.join(LIVE_DRACUT_CONFIG);
+        fs::create_dir_all(path.parent().unwrap()).unwrap();
+        fs::write(&path, override_file).unwrap();
+
+        let op = RemoveLiveDracutConfig {
+            target_root: temp.0.clone(),
+        };
+        op.perform(&FakeExecutor::new()).unwrap();
+        assert!(!path.exists());
+
+        // Older live media without this temporary override remains installable.
+        op.perform(&FakeExecutor::new()).unwrap();
     }
 
     #[test]
@@ -2682,6 +3041,18 @@ mod tests {
             .iter()
             .position(|d| d == "remover artefatos transitórios do instalador")
             .unwrap();
+        let dracut_override_cleanup_index = describe
+            .iter()
+            .position(|d| d == "remover override de dracut exclusivo da sessão live")
+            .unwrap();
+        let installed_initramfs_index = describe
+            .iter()
+            .position(|d| d == "gerar initramfs (dracut)")
+            .unwrap();
+        assert!(
+            dracut_override_cleanup_index < installed_initramfs_index,
+            "the live-only Plymouth exclusion must not affect the installed initramfs"
+        );
         assert!(
             cleanup_index < first_snapshot_index,
             "the first snapshot must be taken after liveuser cleanup, or it would capture it"

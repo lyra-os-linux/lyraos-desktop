@@ -118,4 +118,11 @@ pub trait PrivilegedOperation {
         let _ = executor;
         Ok(())
     }
+    /// Publish evidence that is valid only after every operation and cleanup
+    /// step succeeded. The engine calls this after unwinding successful
+    /// operations and before reporting `Completed`.
+    fn finalize(&self, executor: &dyn Executor) -> Result<(), OperationError> {
+        let _ = executor;
+        Ok(())
+    }
 }

@@ -94,6 +94,7 @@ Opções:
 
 Recursos podem ser ajustados sem editar o script:
   LYRA_VM_DISK_SIZE=32G  tamanho do disco de instalação (padrão: 24G)
+  LYRA_VM_DISK_SERIAL=lyra-test-20261006 serial do disco-alvo exposto ao guest
   LYRA_VM_RAM_MB=8192    memória da VM em MiB (padrão: 8192)
   LYRA_VM_CPUS=4         CPUs virtuais (padrão: 4)
   LYRA_TEST_WORK_DIR=... diretório persistente de build, ISO, VM e logs
@@ -146,6 +147,7 @@ ISO_ARCHIVE_DIR="$ISO_DIR/archive"
 VM_DIR="$WORK_DIR/vm"
 DISK_IMG="$VM_DIR/lyra-os-install.qcow2"
 DISK_SIZE="${LYRA_VM_DISK_SIZE:-24G}"
+DISK_SERIAL="${LYRA_VM_DISK_SERIAL:-lyra-test-20261006}"
 OVMF_VARS_STANDARD="$VM_DIR/ovmf-vars.bin"
 OVMF_VARS_SECURE="$VM_DIR/ovmf-secure-vars.bin"
 VM_PID_FILE="$VM_DIR/qemu.pid"
@@ -384,7 +386,8 @@ if [ "$BOOT_INSTALLED" -eq 1 ]; then
     -m "$RAM_MB"
     -drive if=pflash,format=raw,readonly=on,file="$OVMF_CODE"
     -drive if=pflash,format=raw,file="$OVMF_VARS"
-    -drive if=virtio,format=qcow2,file="$DISK_IMG"
+    -drive if=none,id=install-target,format=qcow2,file="$DISK_IMG"
+    -device "virtio-blk-pci,drive=install-target,serial=$DISK_SERIAL"
     -device virtio-net-pci,netdev=net0
     -netdev user,id=net0
     -vga virtio
@@ -1023,7 +1026,8 @@ QEMU_ARGS=(
   -m "$RAM_MB"
   -drive if=pflash,format=raw,readonly=on,file="$OVMF_CODE"
   -drive if=pflash,format=raw,file="$OVMF_VARS"
-  -drive if=virtio,format=qcow2,file="$DISK_IMG"
+  -drive if=none,id=install-target,format=qcow2,file="$DISK_IMG"
+  -device "virtio-blk-pci,drive=install-target,serial=$DISK_SERIAL"
   -device virtio-net-pci,netdev=net0
   -netdev user,id=net0
   -vga virtio

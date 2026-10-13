@@ -174,6 +174,19 @@ pub fn build(
         &request.config,
         &request.plan.swap,
     ));
+    // The one-use parental enrollment permission lives on the ESP, outside
+    // the installed root's Btrfs snapshot domain. Emit it after deployment.
+    let esp_partition = match &request.plan.esp {
+        EspPlan::Create { .. } => {
+            let disk = match &request.plan.raw_target {
+                Some(RawTarget::Disk(disk)) => disk,
+                _ => unreachable!("validated disk plan"),
+            };
+            partition_path(disk, 1)
+        }
+        EspPlan::Reuse { path } => path.clone(),
+    };
+    operations.push(deploy::parental_enrollment_permit_operation(esp_partition));
     operations.push(Box::new(SyncAndFinish));
     Ok(operations)
 }
@@ -196,6 +209,71 @@ fn partition_path(disk: &Path, number: u32) -> PathBuf {
 
 fn path_str(path: &Path) -> String {
     path.to_string_lossy().into_owned()
+}
+
+pub(super) fn prepare_parental_state_operation() -> Box<dyn PrivilegedOperation> {
+    Box::new(PrepareParentalState {
+        target_root: PathBuf::from(TARGET_ROOT),
+    })
+}
+
+struct PrepareParentalState {
+    target_root: PathBuf,
+}
+
+impl PrivilegedOperation for PrepareParentalState {
+    fn describe(&self) -> String {
+        "preparar armazenamento parental independente".to_string()
+    }
+
+    fn perform(&self, _executor: &dyn Executor) -> Result<(), OperationError> {
+        use std::io::Write;
+        use std::os::unix::fs::{OpenOptionsExt, PermissionsExt};
+
+        for path in ["/var/lib/lyra/parental", "/var/lib/lyra/parental-authority"] {
+            let directory = self.target_root.join(path.trim_start_matches('/'));
+            fs::set_permissions(&directory, fs::Permissions::from_mode(0o700)).map_err(io_error)?;
+            fs::File::open(&directory)
+                .and_then(|directory| directory.sync_all())
+                .map_err(io_error)?;
+        }
+
+        let scope = self.target_root.join("var/lib/lyra/parental");
+        for child in ["catalog", "inventory", "ledger"] {
+            let directory = scope.join(child);
+            fs::create_dir(&directory).map_err(io_error)?;
+            fs::set_permissions(&directory, fs::Permissions::from_mode(0o700)).map_err(io_error)?;
+            fs::File::open(&directory)
+                .and_then(|directory| directory.sync_all())
+                .map_err(io_error)?;
+        }
+        // Persist the catalog/inventory/ledger directory entries before the
+        // one-use enrollment permit can be written to the ESP at finalization.
+        fs::File::open(&scope)
+            .and_then(|directory| directory.sync_all())
+            .map_err(io_error)?;
+
+        for (directory, lock) in [
+            ("/var/lib/lyra/parental-authority", "reference.lock"),
+            ("/var/lib/lyra/parental/catalog", "catalog.lock"),
+        ] {
+            let parent = self.target_root.join(directory.trim_start_matches('/'));
+            let path = parent.join(lock);
+            let mut file = fs::OpenOptions::new()
+                .write(true)
+                .create_new(true)
+                .mode(0o600)
+                .open(path)
+                .map_err(io_error)?;
+            file.write_all(b"").map_err(io_error)?;
+            file.sync_all().map_err(io_error)?;
+            drop(file);
+            fs::File::open(&parent)
+                .and_then(|directory| directory.sync_all())
+                .map_err(io_error)?;
+        }
+        Ok(())
+    }
 }
 
 fn join_under(root: &Path, mount_point: &Path) -> PathBuf {
@@ -761,6 +839,67 @@ mod tests {
         }
     }
 
+    #[test]
+    fn prepare_parental_state_creates_private_layout_and_refuses_reuse() {
+        use std::os::unix::fs::PermissionsExt;
+
+        let target = TempRoot::new("parental-state");
+        let scope = target.0.join("var/lib/lyra/parental");
+        let authority = target.0.join("var/lib/lyra/parental-authority");
+        fs::create_dir_all(&scope).unwrap();
+        fs::create_dir_all(&authority).unwrap();
+        fs::set_permissions(&scope, fs::Permissions::from_mode(0o755)).unwrap();
+        fs::set_permissions(&authority, fs::Permissions::from_mode(0o755)).unwrap();
+
+        let operation = PrepareParentalState {
+            target_root: target.0.clone(),
+        };
+        operation
+            .perform(&FakeExecutor::new())
+            .expect("fresh parental layout should be prepared");
+
+        for path in [
+            &scope,
+            &authority,
+            &scope.join("catalog"),
+            &scope.join("inventory"),
+            &scope.join("ledger"),
+        ] {
+            assert_eq!(
+                fs::metadata(path).unwrap().permissions().mode() & 0o777,
+                0o700,
+                "{}",
+                path.display()
+            );
+        }
+        for path in [
+            scope.join("catalog/catalog.lock"),
+            authority.join("reference.lock"),
+        ] {
+            let metadata = fs::metadata(&path).unwrap();
+            assert!(
+                metadata.is_file(),
+                "{} should be a regular file",
+                path.display()
+            );
+            assert_eq!(
+                metadata.permissions().mode() & 0o777,
+                0o600,
+                "{}",
+                path.display()
+            );
+            assert_eq!(metadata.len(), 0, "{} should start empty", path.display());
+        }
+
+        fs::write(authority.join("reference.lock"), b"preserve existing state").unwrap();
+        assert!(operation.perform(&FakeExecutor::new()).is_err());
+        assert_eq!(
+            fs::read(authority.join("reference.lock")).unwrap(),
+            b"preserve existing state",
+            "re-running a one-shot install operation must not truncate state"
+        );
+    }
+
     fn disk(kname: &str, size_bytes: u64) -> Disk {
         Disk {
             path: PathBuf::from(format!("/dev/{kname}")),
@@ -821,12 +960,12 @@ mod tests {
         assert_eq!(describe.last().unwrap(), "gerar /etc/fstab");
         assert_eq!(describe[describe.len() - 2], "montar ESP em /boot/efi");
 
-        // 21 default subvolumes (see storage::plan::default_subvolumes).
+        // 23 default subvolumes (see storage::plan::default_subvolumes).
         let mount_count = describe
             .iter()
             .filter(|d| d.starts_with("montar /@"))
             .count();
-        assert_eq!(mount_count, 21);
+        assert_eq!(mount_count, 23);
 
         let index_of = |needle: &str| describe.iter().position(|d| d == needle).unwrap();
         // Ancestors must be mounted before descendants, or reverse-order
@@ -866,6 +1005,34 @@ mod tests {
         assert_eq!(describe[fstab_index + 1], "extrair rootfs da sessão live");
         assert_eq!(describe.last().unwrap(), "sincronizar dispositivos");
         assert!(describe.iter().any(|d| d == "gerar initramfs (dracut)"));
+
+        let parental_state = describe
+            .iter()
+            .position(|d| d == "preparar armazenamento parental independente")
+            .unwrap();
+        let parental_snapper = describe
+            .iter()
+            .position(|d| d == "criar configuração Snapper parental")
+            .unwrap();
+        let parental_snapshot = describe
+            .iter()
+            .position(|d| d == "criar primeiro snapshot parental somente leitura")
+            .unwrap();
+        let enrollment_permit = describe
+            .iter()
+            .position(|d| d == "autorizar primeira inscrição parental")
+            .unwrap();
+        assert!(
+            parental_state
+                > describe
+                    .iter()
+                    .position(|d| d == "extrair rootfs da sessão live")
+                    .unwrap()
+        );
+        assert!(parental_state < parental_snapper);
+        assert!(parental_snapper < parental_snapshot);
+        assert!(parental_snapshot < enrollment_permit);
+        assert_eq!(enrollment_permit + 1, describe.len() - 1);
     }
 
     #[test]

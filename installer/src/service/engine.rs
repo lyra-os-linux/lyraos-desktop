@@ -116,8 +116,23 @@ pub fn execute<'a>(
     } else if cancelled {
         ExecutionOutcome::Cancelled
     } else {
-        on_event(ExecutionEvent::Completed);
-        ExecutionOutcome::Completed
+        let mut finalization_failed = false;
+        for operation in operations {
+            if let Err(error) = operation.finalize(executor) {
+                on_event(ExecutionEvent::Failed {
+                    step: operation.describe(),
+                    message: error.to_string(),
+                });
+                finalization_failed = true;
+                break;
+            }
+        }
+        if finalization_failed {
+            ExecutionOutcome::Failed
+        } else {
+            on_event(ExecutionEvent::Completed);
+            ExecutionOutcome::Completed
+        }
     }
 }
 
