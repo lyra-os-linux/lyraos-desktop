@@ -19,6 +19,23 @@ Checks cover every Lyra-owned interactive package marked localizable in
 `i18n/inventory.json`; upstream-owned or text-free packages retain their
 versioned `not-applicable` rationale.
 
+Generate the file from the candidate instead of assembling it by hand:
+
+```sh
+python3 scripts/i18n-result.py --iso-dir /path/to/candidate \
+  --package-review lyra-vms=/path/to/i18n-lyra-vms-review.json \
+  --output i18n-result.json
+```
+
+One check is produced per inventory package shipped in the candidate (its
+scope is the inventory status); a `scheduled` package that still ships fails
+the gate. `--package-review ID=FILE` binds a per-package candidate review to
+the check and requires it to name the shipped package version. Inventory
+packages absent from the ISO are listed under `excluded_not_in_candidate`.
+The result is bound to one ISO through `candidate.sha256` and is validated
+against this contract before being written, so regenerate it for every
+candidate.
+
 ## Declarations in the release notes
 
 `upgrade-rehearsal`, `eca-digital` and `feature-freeze` are not structured
