@@ -183,6 +183,10 @@ antiga vibrante azul-safira→violeta):
   25/09; a Alpha 8 automatiza o gate e a semana de 06–13/10 é exclusiva para
   estabilização. P0/P1 interrompe
   a ampliação de escopo da Alpha corrente e nunca é transferido por calendário.
+- Decisão de 14/10/2026: após a Alpha 8 o Desktop vai direto para a RC 1
+  (`1.1-rc.1`), publicada até 31/10/2026, sem Beta; a versão estável sai em
+  05/11/2026 com os pacotes GA do Leap 16.1. Da RC 1 em diante, somente
+  correções de bugs, travamentos, segurança e performance crítica.
 - A versão 1.1 oferece somente `en-US`, `pt-BR` e `es-ES`; todos os projetos e
   RPMs foram traduzidos e testados nos três idiomas. Outros idiomas são escopo
   de um ciclo futuro, com fallback `en-US`.

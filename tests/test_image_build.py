@@ -866,13 +866,15 @@ architecture = "x86_64"
         )
         return path
 
-    def create_artifacts(self, directory: Path) -> None:
+    def create_artifacts(
+        self, directory: Path, release_file: Path = image_build.RELEASE
+    ) -> None:
         (directory / "lyra.iso").write_bytes(b"iso")
         (directory / "lyra.iso.manifest.json").write_text(
             json.dumps(
                 {
                     "schema_version": 1,
-                    "version": image_build.version_id(),
+                    "version": image_build.version_id(release_file),
                     "source": {"commit": "a" * 40, "dirty": False},
                     "iso": {
                         "filename": "lyra.iso",
@@ -900,10 +902,13 @@ architecture = "x86_64"
         (directory / "lyra.spdx.json").write_text("{}\n", encoding="utf-8")
 
     def create_test_results(
-        self, manifest: image_build.Manifest, directory: Path
+        self,
+        manifest: image_build.Manifest,
+        directory: Path,
+        release_file: Path = image_build.RELEASE,
     ) -> list[str]:
         results = []
-        for name in image_build.required_test_result_names(manifest, image_build.RELEASE):
+        for name in image_build.required_test_result_names(manifest, release_file):
             path = directory / f"{name}.json"
             if name == "obs-repositories":
                 document = {
@@ -970,7 +975,10 @@ architecture = "x86_64"
                 set(document["artifacts"]),
                 set(image_build.required_artifact_roles(manifest, image_build.RELEASE)),
             )
-            self.assertNotIn("checksum_signature", document["artifacts"])
+            # Alpha bundles carry no detached signature (ADR 0005); every later
+            # stage, including the current RC 1, must record it.
+            signed = image_build.release_values(image_build.RELEASE)["stage"] != "alpha"
+            self.assertEqual("checksum_signature" in document["artifacts"], signed)
             self.assertEqual(document["packages"][0]["license"], "MIT")
             self.assertIn("revision-fina", document["packages"][0]["source"])
             self.assertEqual(
@@ -1005,17 +1013,20 @@ architecture = "x86_64"
         manifest = image_build.Manifest.load()
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)
-            self.create_artifacts(directory)
+            release_file = self.alpha8_release_file(directory)
+            self.create_artifacts(directory, release_file=release_file)
             (directory / "lyra.iso.sha256.asc").unlink()
             output = directory / "manifest.json"
-            tests = self.create_test_results(manifest, directory)
+            tests = self.create_test_results(manifest, directory, release_file=release_file)
             real_git = image_build.git
             with mock.patch.object(
                 image_build,
                 "git",
                 side_effect=lambda *args: "" if args[0] == "status" else real_git(*args),
             ):
-                image_build.artifact_manifest(manifest, directory, output, tests)
+                image_build.artifact_manifest(
+                    manifest, directory, output, tests, release_file=release_file
+                )
             document = json.loads(output.read_text(encoding="utf-8"))
             self.assertNotIn("checksum_signature", document["artifacts"])
 
