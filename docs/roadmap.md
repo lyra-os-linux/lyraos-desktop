@@ -65,6 +65,14 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   imagem. Em 07/10, o controle parental saiu do escopo devido à evasão Flatpak
   #102; nenhuma proteção parental é anunciada nessa candidata. Se a candidata
   falhar, candidata 2 em 22/10 e publicação em 27/10.
+- **RC 1 (publicação até 31/10/2026) — candidata de lançamento:** por decisão
+  do mantenedor em 14/10, o ciclo sai da Alpha 8 diretamente para a RC 1
+  (`1.1-rc.1`), sem Beta. Mesmo gate da Alpha 8 mais a assinatura destacada do
+  checksum (ADR 0005). Congelamento estrito: somente correções de bugs,
+  travamentos, segurança e performance crítica; funcionalidades novas esperam
+  a 16.2. Um defeito não trivial gera a RC 2.
+- **1.1 estável (05/11/2026):** reconstruída com os pacotes GA do openSUSE
+  Leap 16.1 (03/11/2026) e publicada após um gate reduzido.
 
 A Beta 1 não começa por calendário com P0/P1 ou entrega obrigatória pendente.
 O Lyra OS 1.1 oferece somente inglês dos Estados Unidos (`en-US`), português
@@ -103,12 +111,11 @@ NVIDIA permanece em seu planejamento próprio (Server #21).
 
 ## Melhorias permitidas nas Betas da 1.1
 
-A Desktop Beta 1 começa após a Alpha 8 qualificada, sem data automática; Alpha 5, Alpha 6, Alpha 7 e
-Alpha 8 continuam etapas obrigatórias do Desktop. Por decisão do mantenedor,
-as Betas da 1.1 podem receber melhorias programadas quando o ganho esperado
-compensar o risco. Cada mudança precisa de justificativa, análise de impacto,
-testes de regressão e plano de reversão; os gates não são reduzidos para
-cumprir calendário. A RC1 encerra essa exceção e inicia o congelamento estrito.
+Por decisão do mantenedor em 14/10/2026, o Desktop 1.1 não terá estágio Beta:
+a candidata seguinte à Alpha 8 é a RC 1, publicada até 31/10/2026. A exceção
+que autorizava melhorias programadas nas Betas da 1.1 está encerrada; desde a
+RC 1 vale o congelamento estrito, e os gates não são reduzidos para cumprir
+calendário.
 
 Correções de bugs, regressões, segurança, desempenho e traduções continuam
 prioritárias. Melhorias não podem deixar P0/P1 aberto para a etapa seguinte.

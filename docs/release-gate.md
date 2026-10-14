@@ -5,6 +5,10 @@
 > tooling selects these requirements from `release.toml`; Alpha 7 remains
 > reproducible with its original seven-result gate. See
 > [Alpha 8 changes](#alpha-8-changes).
+>
+> RC 1 (maintainer decision, 2026-10-14) keeps the Alpha 8 result set and adds
+> the detached release signature required from Beta onwards (ADR 0005). See
+> [RC 1 changes](#rc-1-changes).
 
 This checklist is the versioned go/no-go contract for the standard Lyra OS
 Desktop Alpha 7 ISO. A release coordinator may declare **GO** only when every blocking
@@ -77,6 +81,29 @@ content and hardware coverage; a bare green status is rejected:
 - [ ] `hardware-matrix`: required real/virtual hardware scenarios are recorded.
 - [ ] `v1.0-alpha.6` remains available as the immutable Leap 16.0 rollback
   baseline and the 16.0 → 16.1 upgrade/rollback rehearsal is recorded.
+
+## RC 1 changes
+
+By maintainer decision on 2026-10-14 the Desktop cycle moves from Alpha 8
+straight to RC 1 (`1.1-rc.1`), to be published by 2026-10-31; the final
+`1.1` is rebuilt from openSUSE Leap 16.1 GA packages (2026-11-03) and
+published on 2026-11-05. RC 1 starts the strict freeze: only bug, crash,
+security and critical performance fixes to packages already shipped.
+
+Required results are the Alpha 8 set, `obs-repositories`, `live-session`,
+`installer`, `first-boot`, `uefi-secure-boot`, `rollback` and `i18n`, with
+the same scope (new installations only, qualified in virtual machines;
+`hardware-matrix` and `upgrade-rehearsal` are not required). In addition:
+
+- [ ] the bundle carries `*.iso.sha256.asc`, a detached signature of the
+  checksum by the official release key `01B63EEDBE6B079126A0116EFA7353A131ECEFEB`;
+  `scripts/build-desktop-rc1.sh` signs it and
+  `scripts/upload-desktop-rc1-sourceforge.sh` verifies it before and after
+  upload (ADR 0005);
+- [ ] `obs-repositories` comes from `scripts/obs-release.py health` on the
+  release channels after the 2026-10-14 vega baseline reconciliation (#164);
+- [ ] a non-trivial defect found during the gate stops the promotion and
+  produces RC 2; criteria are never relaxed to keep the date.
 
 ## Alpha 8 changes
 
