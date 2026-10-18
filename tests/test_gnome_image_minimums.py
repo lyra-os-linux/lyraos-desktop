@@ -62,6 +62,17 @@ class MinimumsTests(unittest.TestCase):
                     with self.assertRaisesRegex(ValueError, package + ': need >='):
                         minimums.main()
 
+    def test_rejects_libreoffice_branding_without_the_about_dialog_logos(self):
+        # 1.0.0 left the libreoffice symlinks intro-highres.png, shell/logo.svg
+        # and shell/logo_inverted.svg dangling (lyraos-desktop-theme#22).
+        for stale in ('1.0.0', '1.0.1~rc1'):
+            with self.subTest(version=stale):
+                def installed(name):
+                    return stale if name == 'libreoffice-branding-Lyra' else minimums.MINIMUMS[name]
+                with patch.object(minimums, 'installed_version', side_effect=installed):
+                    with self.assertRaisesRegex(ValueError, 'libreoffice-branding-Lyra: need >='):
+                        minimums.main()
+
     def test_missing_firefox_native_host_fails_before_image_finalization(self):
         def installed(package):
             if package == 'lyra-downloads-firefox-integration':
