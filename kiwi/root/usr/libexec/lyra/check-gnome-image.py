@@ -12,7 +12,7 @@ import subprocess
 MINIMUMS = {
     'vega-gtk': '5.1.46', 'sheliak': '2.0.3', 'lyra-welcome': '0.4.1',
     'lyra-os-theme': '1.10.0', 'lyra-os-icons': '1.9.4',
-    'lyra-nautilus-branding': '1.9.4', 'libreoffice-branding-Lyra': '1.0.0',
+    'lyra-nautilus-branding': '1.9.4', 'libreoffice-branding-Lyra': '1.0.1',
     'linuxtoys': '6.9', 'lyra-upgrade': '0.2.5', 'beam': '1.0.1',
     'sulafat': '1.0.4', 'vegad': '5.1.32',
     'lyra-installer': '0.1.0',
