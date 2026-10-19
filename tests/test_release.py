@@ -93,13 +93,17 @@ class RepositoryMetadataTests(unittest.TestCase):
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("20/09/2026", text, path)
 
-    def test_versioning_policy_separates_product_base_and_build(self) -> None:
+    def test_versioning_policy_follows_the_leap_base(self) -> None:
         versioning = (ROOT / "docs/release-versioning.md").read_text(encoding="utf-8")
-        self.assertIn("MAJOR.MINOR.PATCH", versioning)
-        self.assertIn("Lyra OS 1 — Odisseia", versioning)
+        release = Release.from_file()
+        self.assertEqual(release.product_version, release.base_version)
+        self.assertIn("MAJOR.MINOR[.PATCH]", versioning)
+        self.assertIn("segue a\nversão do openSUSE Leap", versioning)
+        self.assertIn("Lyra OS 16 — Odisseia", versioning)
         self.assertIn("openSUSE Leap 16.1", versioning)
+        self.assertIn("`16.1-rc.1`", versioning)
         self.assertIn("BUILD_ID", versioning)
-        self.assertIn("independente", versioning)
+        self.assertNotIn("Lyra OS 1 — Odisseia", versioning)
         self.assertNotIn("ano.mês", versioning)
 
     def test_release_artifact_signing_starts_at_beta1(self) -> None:
@@ -218,18 +222,18 @@ class RepositoryMetadataTests(unittest.TestCase):
         ):
             self.assertIn(evidence, builder)
 
-    def test_rc1_wrappers_sign_the_bundle_and_target_1_1_rc_1(self) -> None:
+    def test_rc1_wrappers_sign_the_bundle_and_target_16_1_rc_1(self) -> None:
         release = Release.from_file()
-        self.assertEqual(release.version_id, "1.1-rc.1")
+        self.assertEqual(release.version_id, "16.1-rc.1")
         self.assertEqual(release.stage_label, "RC 1")
-        self.assertEqual(release.tag, "v1.1-rc.1")
+        self.assertEqual(release.tag, "v16.1-rc.1")
         wrapper = (ROOT / "scripts/build-desktop-rc1.sh").read_text(encoding="utf-8")
         uploader_wrapper = (ROOT / "scripts/upload-desktop-rc1-sourceforge.sh").read_text(encoding="utf-8")
         builder = (ROOT / "scripts/build-desktop-alpha6.sh").read_text(encoding="utf-8")
         uploader = (ROOT / "scripts/upload-desktop-alpha6-sourceforge.sh").read_text(encoding="utf-8")
-        self.assertIn('LYRA_EXPECTED_VERSION="1.1-rc.1"', wrapper)
+        self.assertIn('LYRA_EXPECTED_VERSION="16.1-rc.1"', wrapper)
         self.assertIn("build-desktop-alpha6.sh", wrapper)
-        self.assertIn('LYRA_EXPECTED_VERSION="1.1-rc.1"', uploader_wrapper)
+        self.assertIn('LYRA_EXPECTED_VERSION="16.1-rc.1"', uploader_wrapper)
         self.assertIn('LYRA_RELEASE_SLUG="rc1"', uploader_wrapper)
         self.assertIn("upload-desktop-alpha6-sourceforge.sh", uploader_wrapper)
         fingerprint = "01B63EEDBE6B079126A0116EFA7353A131ECEFEB"
@@ -240,8 +244,8 @@ class RepositoryMetadataTests(unittest.TestCase):
             self.assertIn('if [ "$STAGE" != alpha ]', script)
         self.assertIn('--local-user "$RELEASE_SIGNING_FINGERPRINT" --detach-sign --armor', builder)
         self.assertIn('"$PREFIX.iso.sha256.asc"', uploader)
-        notes = (ROOT / "docs/releases/lyra-os-desktop-1.1-rc.1.md").read_text(encoding="utf-8")
-        self.assertIn("1.1-rc.1", notes)
+        notes = (ROOT / "docs/releases/lyra-os-desktop-16.1-rc.1.md").read_text(encoding="utf-8")
+        self.assertIn("16.1-rc.1", notes)
         self.assertIn("01B6 3EED", notes)
         gate = (ROOT / "docs/release-gate.md").read_text(encoding="utf-8")
         self.assertIn("## RC 1 changes", gate)

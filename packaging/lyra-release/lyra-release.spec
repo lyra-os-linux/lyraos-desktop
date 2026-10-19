@@ -1,5 +1,5 @@
 Name:           lyra-release
-Version:        1.1
+Version:        16.1
 Release:        0
 Summary:        Updatable Lyra OS product identity
 License:        GPL-3.0-only

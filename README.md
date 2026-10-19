@@ -3,11 +3,11 @@
 Lyra OS é uma distribuição Linux desktop baseada no openSUSE Leap 16.1,
 voltada a uma experiência GNOME simples, estável e integrada ao ecossistema
 Lyra. Este repositório contém a descrição KIWI usada para gerar a ISO live e
-o instalador da edição **Odisseia 1.1 RC 1** para computadores x86_64.
+o instalador da edição **Odisseia 16.1 RC 1** para computadores x86_64.
 
-## Foco da versão 1.1
+## Foco da versão 16.1
 
-A versão final do Lyra OS 1.1 tem **GNOME como único alvo de lançamento**.
+A versão final do Lyra OS 16.1 tem **GNOME como único alvo de lançamento**.
 O trabalho atual de pacotes próprios e interface concentra-se no GNOME e no
 Vega GTK. KDE Plasma e XFCE ficam em segundo plano, sem compromisso de
 lançamento ou paridade nesta versão. Seus repositórios e registros anteriores
@@ -28,7 +28,7 @@ está em [flavor KDE experimental](docs/kde-experimental-flavor.md).
 O [épico do ECA Digital](https://github.com/lyra-os-linux/lyraos-desktop/issues/11)
 e seus gates técnicos, jurídicos e de privacidade continuam registrados.
 Essa trilha não equivale a uma declaração de conformidade já obtida. O foco
-atual de integração é GNOME; nenhuma entrega Qt/XFCE é prometida para a 1.1.
+atual de integração é GNOME; nenhuma entrega Qt/XFCE é prometida para a 16.1.
 
 > [!IMPORTANT]
 > O projeto ainda está em desenvolvimento. A ISO não deve ser considerada uma
@@ -90,12 +90,12 @@ decisões de implementação, limitações e verificações já realizadas.
 
 ## Ciclo atual e próximos ciclos
 
-O instalador e as interfaces próprias do Lyra OS 1.1 têm como escopo
+O instalador e as interfaces próprias do Lyra OS 16.1 têm como escopo
 `en-US`, `pt-BR` e `es-ES`, com inglês como padrão e fallback. A presença dos
 catálogos e os testes dos componentes não dispensam a revisão da candidata
 nos três idiomas.
 
-A [política de versões](docs/release-versioning.md) registra a meta da 1.1;
+A [política de versões](docs/release-versioning.md) registra a meta da 16.1;
 o [roadmap](docs/roadmap.md) detalha o ciclo. Datas são referências de
 planejamento. A promoção depende do [release gate](docs/release-gate.md),
 sem prazo conjunto para KDE/XFCE.

@@ -13,7 +13,7 @@ Usar os diretórios com filtro foi validado no RPM 4.20.1 do Leap; o ensaio com
 prefixos de arquivo exatos não reaplicou a identidade. Não exige serviço,
 monitoramento periódico, atributos immutable ou bloqueio de atualizações.
 
-O suporte desta correção é Desktop 1.1 sobre Leap 16.1. O marcador próprio
+O suporte desta correção é Desktop 16.1 sobre Leap 16.1. O marcador próprio
 continua sendo a autoridade do Updater. ID/ID_LIKE/VERSION_ID seguem o contrato
 da imagem Lyra; LYRA_BASE_ID/LYRA_BASE_VERSION_ID e CPE_NAME conservam a origem.
 Os campos de imagem existentes são salvos para sobreviver à substituição do

@@ -8,10 +8,10 @@ class Tests(unittest.TestCase):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name)
   for p in ('etc','usr/lib/lyra-os'): (self.root/p).mkdir(parents=True,exist_ok=True)
   (self.root/'usr/lib/os-release').write_bytes(VENDOR)
-  (self.root/'usr/lib/lyra-os/product-release').write_bytes(b"LYRA_VERSION_ID='1.1'\nLYRA_EDITION='desktop'\n")
+  (self.root/'usr/lib/lyra-os/product-release').write_bytes(b"LYRA_VERSION_ID='16.1'\nLYRA_EDITION='desktop'\n")
   self.target=self.root/'etc/os-release';self.target.symlink_to('../usr/lib/os-release')
  def apply(self):return m.apply(self.root,os.geteuid())
- def test_replaces_link_without_touching_vendor(self):self.assertEqual(self.apply()['PRETTY_NAME'],'Lyra OS 1.1');self.assertFalse(self.target.is_symlink());self.assertEqual((self.root/'usr/lib/os-release').read_bytes(),VENDOR)
+ def test_replaces_link_without_touching_vendor(self):self.assertEqual(self.apply()['PRETTY_NAME'],'Lyra OS 16.1');self.assertFalse(self.target.is_symlink());self.assertEqual((self.root/'usr/lib/os-release').read_bytes(),VENDOR)
  def test_reapplies_after_vendor_overwrites_link(self):
   self.apply();self.target.unlink();self.target.symlink_to('../usr/lib/os-release');self.assertEqual(self.apply()['NAME'],'Lyra OS')
  def test_repeated_apply_is_content_idempotent(self):self.apply();data=self.target.read_bytes();self.apply();self.assertEqual(self.target.read_bytes(),data)

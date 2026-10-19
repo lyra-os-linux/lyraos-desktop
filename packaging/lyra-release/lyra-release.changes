@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Mon Oct 19 12:00:00 UTC 2026 - Rodrigo Brito
+
+- Move the product identity from 1.1 to 16.1: Lyra OS versions now follow the
+  openSUSE Leap base (decision of 2026-10-13). Build ID lyra-release-16.1.
+
+-------------------------------------------------------------------
 Mon Oct  5 12:00:00 UTC 2026 - Rodrigo Brito
 
 - Reapply Lyra OS display identity after Leap-release transactions.

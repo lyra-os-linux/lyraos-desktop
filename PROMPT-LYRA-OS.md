@@ -59,7 +59,7 @@ explicitamente em vez de assumir.
 - Não usar instaladores de terceiros. A Beta 2 contém exclusivamente o Lyra
   Installer e só pode ser publicada depois da validação do candidato final
 - Idioma/região: **en-US pré-selecionado**, com `pt-BR` e `es-ES` no Lyra
-  Installer. Esses são os três únicos idiomas do Lyra OS 1.1; outros idiomas
+  Installer. Esses são os três únicos idiomas do Lyra OS 16.1; outros idiomas
   entram somente em um ciclo futuro com gate próprio. Os
   demais pacotes próprios têm gate integral mínimo em `en-US`/`pt-BR`
 - Hostname padrão sugerido: `lyra-os`
@@ -184,14 +184,14 @@ antiga vibrante azul-safira→violeta):
   estabilização. P0/P1 interrompe
   a ampliação de escopo da Alpha corrente e nunca é transferido por calendário.
 - Decisão de 14/10/2026: após a Alpha 8 o Desktop vai direto para a RC 1
-  (`1.1-rc.1`), publicada até 31/10/2026, sem Beta; a versão estável sai em
+  (`16.1-rc.1`), publicada até 31/10/2026, sem Beta; a versão estável sai em
   05/11/2026 com os pacotes GA do Leap 16.1. Da RC 1 em diante, somente
   correções de bugs, travamentos, segurança e performance crítica.
-- A versão 1.1 oferece somente `en-US`, `pt-BR` e `es-ES`; todos os projetos e
+- A versão 16.1 oferece somente `en-US`, `pt-BR` e `es-ES`; todos os projetos e
   RPMs foram traduzidos e testados nos três idiomas. Outros idiomas são escopo
   de um ciclo futuro, com fallback `en-US`.
 - Beta 1 começa somente após a última Alpha fechar todos os gates; 13/10/2026
-  é a meta atual. Nas Betas da 1.1, melhorias estão autorizadas quando os
+  é a meta atual. Nas Betas da 16.1, melhorias estão autorizadas quando os
   ganhos compensarem os riscos, com benefício, impacto, testes de regressão e
   plano de reversão registrados. A RC1 inicia o congelamento estrito.
 - O cronograma canônico e os critérios de promoção ficam em

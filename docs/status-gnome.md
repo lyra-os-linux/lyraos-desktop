@@ -6,7 +6,7 @@ de release aprovada. `release.toml` continua identificando **Lyra OS 1.1 Alpha 7
 
 ## Escopo confirmado
 
-- GNOME é o único alvo da versão final 1.1; trabalho atual em pacotes GNOME.
+- GNOME é o único alvo da versão final 16.1; trabalho atual em pacotes GNOME.
 - KDE e XFCE ficam em segundo plano, sem prazo conjunto ou promessa de paridade.
 - Uma única ISO GNOME sem NVIDIA pré-instalada; instalação opcional via Vega
   GTK após instalar o sistema. Decisão de 16/09 substitui as duas variantes.
