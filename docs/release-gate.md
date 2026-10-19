@@ -85,8 +85,8 @@ content and hardware coverage; a bare green status is rejected:
 ## RC 1 changes
 
 By maintainer decision on 2026-10-14 the Desktop cycle moves from Alpha 8
-straight to RC 1 (`1.1-rc.1`), to be published by 2026-10-31; the final
-`1.1` is rebuilt from openSUSE Leap 16.1 GA packages (2026-11-03) and
+straight to RC 1 (`16.1-rc.1`), to be published by 2026-10-31; the final
+`16.1` is rebuilt from openSUSE Leap 16.1 GA packages (2026-11-03) and
 published on 2026-11-05. RC 1 starts the strict freeze: only bug, crash,
 security and critical performance fixes to packages already shipped.
 

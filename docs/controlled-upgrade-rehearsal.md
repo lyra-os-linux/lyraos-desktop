@@ -1,9 +1,9 @@
 # Controlled release-upgrade rehearsal
 
-The `1.1 -> 1.2-beta.1` target is a test fixture, not a public Lyra release.
-The next public milestone remains Lyra OS `1.1 Beta 1` on openSUSE Leap 16.1;
-the synthetic `1.2-beta.1` identity exists only to exercise an actual
-cross-release upgrade from an installed Lyra OS 1.1 baseline. Build it in a
+The `16.1 -> 16.2-beta.1` target is a test fixture, not a public Lyra release.
+The next public milestone remains Lyra OS `16.1 RC 1` on openSUSE Leap 16.1;
+the synthetic `16.2-beta.1` identity exists only to exercise an actual
+cross-release upgrade from an installed Lyra OS 16.1 baseline. Build it in a
 dedicated OBS rehearsal project that is not inherited by an installed image
 and never publish it in the stable repositories.
 
@@ -50,9 +50,11 @@ observed.
 The OBS project `home:rodrigosbrito:lyra:upgrade-rehearsal` is the current
 non-production fixture. Its repository key fingerprint is
 `FC29F72CD7A021D88CD01D713A2AFF9457B7B5DA`. Revision 4 of `lyra-release`
-contains RPM version `1.2~beta.1` and product version `1.2-beta.1`; it built
-successfully for Leap 16.0 and 16.1 on 2026-09-03. This fixture does not alter
-the public 1.1 release sequence or the Leap 16.1 base.
+contained RPM version `1.2~beta.1` and product version `1.2-beta.1`; it built
+successfully for Leap 16.0 and 16.1 on 2026-09-03. Since the switch to
+Leap-aligned versions (2026-10-19) the scripts render `16.2~beta.1` /
+`16.2-beta.1`, so the fixture project must be rebuilt before the next rehearsal. This fixture does not alter
+the public 16.1 release sequence or the Leap 16.1 base.
 
 The first single-repository manifest draft was invalidated after preflight
 review proved that every enabled baseline alias must remain represented. A new

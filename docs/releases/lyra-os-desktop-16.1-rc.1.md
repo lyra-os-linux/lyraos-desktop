@@ -1,6 +1,9 @@
-# Lyra OS 1.1 RC 1 “Odisseia” — notas de lançamento
+# Lyra OS 16.1 RC 1 “Odisseia” — notas de lançamento
 
-Candidata de lançamento do Lyra OS Desktop 1.1 sobre **openSUSE Leap 16.1**.
+Candidata de lançamento do Lyra OS Desktop 16.1 sobre **openSUSE Leap 16.1**.
+Por decisão do mantenedor em 13/10/2026, a versão do Lyra OS passa a seguir a
+numeração do openSUSE Leap: o que era planejado como Desktop 1.1 é publicado
+como **16.1**; o codinome Odisseia identifica a geração 16.x.
 Por decisão do mantenedor em 14/10/2026, o ciclo do Desktop sai da Alpha 8
 diretamente para a RC 1, com publicação prevista até **31 de outubro de 2026**
 e a versão estável em **5 de novembro de 2026**, dois dias após o GA do Leap
@@ -8,8 +11,9 @@ e a versão estável em **5 de novembro de 2026**, dois dias após o GA do Leap
 de bugs, travamentos, segurança e performance crítica em pacotes já
 distribuídos; nenhuma funcionalidade nova entra antes da 16.2.
 
-A identidade técnica é `1.1-rc.1`, tag `v1.1-rc.1`, arquivo
-`LyraOS-Desktop-1.1-rc.1-x86_64.iso`. Estas notas acompanham a candidata; o
+A identidade técnica é `16.1-rc.1`, tag `v16.1-rc.1`, arquivo
+`LyraOS-Desktop-16.1-rc.1-x86_64.iso`. Nenhum artefato `1.1-rc.1` foi
+publicado; tags `1.1-*` anteriores permanecem apenas como registro histórico. Estas notas acompanham a candidata; o
 commit, o SHA-256 e a decisão de GO são preenchidos no bundle publicado.
 
 ## Mudanças desde a Alpha 8
@@ -24,14 +28,16 @@ commit, o SHA-256 e a decisão de GO são preenchidos no bundle publicado.
   Vega foi validada numa GeForce GTX 1650 Mobile com Secure Boot; após a
   instalação o Vega atualiza os repositórios NVIDIA do sistema e as consultas
   de software toleram repositórios ainda sem cache.
-- Calendário: lançamento oficial do Lyra OS 1.1 em 5 de novembro de 2026,
+- Versão: identidade do produto alinhada ao Leap (`1.1` → `16.1`) em
+  `release.toml`, no RPM `lyra-release` e nos scripts de release.
+- Calendário: lançamento oficial do Lyra OS 16.1 em 5 de novembro de 2026,
   registrado em `docs/release-versioning.md` e no contrato do ecossistema.
 
 ## Escopo e limites
 
 - Instalação nova apenas. A atualização de uma instalação Alpha 8 para a RC 1
   não é suportada; reinstale. O upgrade entre releases fica para a 16.2.
-- O controle parental continua fora da 1.1 ([#102](https://github.com/lyra-os-linux/lyraos-desktop/issues/102)).
+- O controle parental continua fora da 16.1 ([#102](https://github.com/lyra-os-linux/lyraos-desktop/issues/102)).
 - RAID, LVM, particionamento manual e instalação lado a lado continuam fora
   do cenário coberto.
 - Idiomas: `en-US`, `pt-BR` e `es-ES`, com `en-US` como fallback explícito.
@@ -47,9 +53,9 @@ preservar a data.
 
 ## Integridade
 
-Arquivo esperado: `LyraOS-Desktop-1.1-rc.1-x86_64.iso`. Verifique o checksum
-com `sha256sum -c LyraOS-Desktop-1.1-rc.1-x86_64.iso.sha256` e a assinatura
-destacada `LyraOS-Desktop-1.1-rc.1-x86_64.iso.sha256.asc` com a chave oficial
+Arquivo esperado: `LyraOS-Desktop-16.1-rc.1-x86_64.iso`. Verifique o checksum
+com `sha256sum -c LyraOS-Desktop-16.1-rc.1-x86_64.iso.sha256` e a assinatura
+destacada `LyraOS-Desktop-16.1-rc.1-x86_64.iso.sha256.asc` com a chave oficial
 de release (impressão digital `01B6 3EED BE6B 0791 26A0 116E FA73 53A1 31EC
 EFEB`, publicada em `docs/release-signing-key.asc`). Pela ADR 0005, a RC é a
 primeira candidata Desktop assinada; pacotes e repositórios continuam exigindo
@@ -57,6 +63,6 @@ assinatura válida.
 
 ## Versão final
 
-A versão estável `1.1` será reconstruída a partir dos pacotes GA do openSUSE
+A versão estável `16.1` será reconstruída a partir dos pacotes GA do openSUSE
 Leap 16.1 (3 de novembro de 2026) e passará por um gate reduzido antes da
 publicação em 5 de novembro de 2026.

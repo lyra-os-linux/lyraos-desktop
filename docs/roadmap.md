@@ -2,7 +2,7 @@
 
 ## Escopo ativo e evidência
 
-O foco da versão final 1.1 é exclusivamente o GNOME e seus pacotes. KDE e XFCE
+O foco da versão final 16.1 é exclusivamente o GNOME e seus pacotes. KDE e XFCE
 estão em segundo plano; não há estabilização conjunta das três edições nem
 prazo comum de lançamento. A decisão de 16/09/2026 prevê uma única ISO GNOME,
 sem NVIDIA pré-instalada, e instalação opcional pelo Vega GTK.
@@ -51,7 +51,7 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
 - **Alpha 7 (11–25/09) — rebase e upgrade:** migra a base do Desktop
   para o openSUSE Leap 16.1 Beta 1 e requalifica pacotes, ABI, Secure
   Boot, instalação, atualização, rollback e hardware. Também conclui o fluxo
-  controlado entre releases do Lyra Upgrade. O Desktop 1.1 não oferece
+  controlado entre releases do Lyra Upgrade. O Desktop 16.1 não oferece
   suporte de produto a aplicativos Android ou Windows; essa trilha volta a ser
   avaliada somente em uma release futura definida pelo projeto. A integração parental só avança quando os
   gates jurídico e técnico do ciclo atual estiverem satisfeitos.
@@ -67,15 +67,15 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   falhar, candidata 2 em 22/10 e publicação em 27/10.
 - **RC 1 (publicação até 31/10/2026) — candidata de lançamento:** por decisão
   do mantenedor em 14/10, o ciclo sai da Alpha 8 diretamente para a RC 1
-  (`1.1-rc.1`), sem Beta. Mesmo gate da Alpha 8 mais a assinatura destacada do
+  (`16.1-rc.1`), sem Beta. Mesmo gate da Alpha 8 mais a assinatura destacada do
   checksum (ADR 0005). Congelamento estrito: somente correções de bugs,
   travamentos, segurança e performance crítica; funcionalidades novas esperam
   a 16.2. Um defeito não trivial gera a RC 2.
-- **1.1 estável (05/11/2026):** reconstruída com os pacotes GA do openSUSE
+- **16.1 estável (05/11/2026):** reconstruída com os pacotes GA do openSUSE
   Leap 16.1 (03/11/2026) e publicada após um gate reduzido.
 
 A Beta 1 não começa por calendário com P0/P1 ou entrega obrigatória pendente.
-O Lyra OS 1.1 oferece somente inglês dos Estados Unidos (`en-US`), português
+O Lyra OS 16.1 oferece somente inglês dos Estados Unidos (`en-US`), português
 do Brasil (`pt-BR`) e espanhol da Espanha (`es-ES`), com `en-US` como padrão e fallback.
 Os componentes próprios possuem catálogos e testes nos três idiomas. A
 validação completa da ISO nos três idiomas deve ser registrada por candidata.
@@ -109,11 +109,12 @@ adiada. Retirar a segunda imagem não elimina testes NVIDIA de instalação,
 Secure Boot, atualização, hardware ou recuperação. O Server com llama.cpp +
 NVIDIA permanece em seu planejamento próprio (Server #21).
 
-## Melhorias permitidas nas Betas da 1.1
+## Melhorias permitidas nas Betas da 16.1
 
-Por decisão do mantenedor em 14/10/2026, o Desktop 1.1 não terá estágio Beta:
+Por decisão do mantenedor em 14/10/2026, o Desktop 16.1 (antes numerado 1.1)
+não terá estágio Beta:
 a candidata seguinte à Alpha 8 é a RC 1, publicada até 31/10/2026. A exceção
-que autorizava melhorias programadas nas Betas da 1.1 está encerrada; desde a
+que autorizava melhorias programadas nas Betas da 16.1 está encerrada; desde a
 RC 1 vale o congelamento estrito, e os gates não são reduzidos para cumprir
 calendário.
 
@@ -127,7 +128,7 @@ e no [release gate](release-gate.md).
 
 ## Idiomas em ciclos futuros
 
-A ampliação para outros idiomas começa somente depois da Lyra OS 1.1. A
+A ampliação para outros idiomas começa somente depois da Lyra OS 16.1. A
 infraestrutura criada na 1.0 deve aceitar novos catálogos com fallback para
 `en-US`, mas isso não autoriza publicar traduções adicionais antes de uma
 release futura que as qualifique.
