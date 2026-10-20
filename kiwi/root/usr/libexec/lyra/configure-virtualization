@@ -6,6 +6,15 @@ for package in libvirt-daemon-qemu libvirt-daemon-config-network libvirt-client;
 done
 systemctl enable virtqemud.socket virtlogd.socket virtlockd.socket \
     virtnetworkd.socket virtstoraged.socket virtsecretd.socket virtnodedevd.socket
+# open-iscsi comes only through libvirt-daemon-driver-storage-iscsi, and the
+# openSUSE preset enables iscsi.service, which orders after
+# network-online.target and put NetworkManager-wait-online (+5.6 s) on the
+# boot critical chain (lyraos-desktop#168). Nothing logs into iSCSI targets
+# by default; iscsid.socket stays enabled so libvirt iSCSI pools still start
+# iscsid on demand.
+if rpm -q open-iscsi >/dev/null; then
+    systemctl disable iscsi.service
+fi
 # The vendor package installs the default NAT definition. Let a system connection manager
 # ask to start it when a guest needs it; do not create a bridge/DHCP server
 # during image construction or automatically on every desktop boot.

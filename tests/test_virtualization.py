@@ -33,6 +33,13 @@ class VirtualizationTests(unittest.TestCase):
         self.assertFalse(any('org.libvirt.unix.manage' in p.read_text() for p in rules.glob('*.rules')),
                          'Do not replace vendor authentication with a global allow rule')
 
+    def test_image_keeps_iscsi_login_off_the_boot_chain(self):
+        # lyraos-desktop#168: iscsi.service pulls network-online.target into
+        # every boot; the on-demand iscsid.socket stays for libvirt pools.
+        text = (ROOT / 'kiwi/root/usr/libexec/lyra/configure-virtualization').read_text()
+        self.assertIn('systemctl disable iscsi.service', text)
+        self.assertNotIn('disable iscsid.socket', text)
+
     def test_image_configures_sockets_without_starting_network_or_guests(self):
         helper = ROOT / 'kiwi/root/usr/libexec/lyra/configure-virtualization'
         subprocess.run(['bash', '-n', str(helper)], check=True)
