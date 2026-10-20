@@ -124,12 +124,14 @@ class MinimumsTests(unittest.TestCase):
                         minimums.main()
 
     def test_shell_shutdown_fix_rejects_older_sheliak(self):
-        for version in ('2.0.1', '2.0.2', '2.0.3~rc1'):
+        # 2.0.3 fixed the shutdown path; 2.0.5 stops Dock._redisplay from
+        # destroying live PopupMenus (gnome-shell invalid_closure_notify abort).
+        for version in ('2.0.1', '2.0.2', '2.0.3', '2.0.4', '2.0.5~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'sheliak' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'sheliak: need >= 2.0.3'):
+                    with self.assertRaisesRegex(ValueError, 'sheliak: need >= 2.0.5'):
                         minimums.main()
 
     def test_packagekit_coexistence_rejects_old_updater(self):
