@@ -115,12 +115,14 @@ class MinimumsTests(unittest.TestCase):
                         minimums.main()
 
     def test_preparation_rejects_daemon_before_recovery_release(self):
-        for version in ('5.1.26', '5.1.31', '5.1.32~rc1'):
+        # 5.1.32 recovered the first-boot preparation; 5.1.38 stops it from
+        # pulling network-online into every boot (#168).
+        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vegad' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.32'):
+                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.38'):
                         minimums.main()
 
     def test_shell_shutdown_fix_rejects_older_sheliak(self):

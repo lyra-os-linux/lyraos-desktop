@@ -28,6 +28,19 @@ commit, o SHA-256 e a decisão de GO são preenchidos no bundle publicado.
   Vega foi validada numa GeForce GTX 1650 Mobile com Secure Boot; após a
   instalação o Vega atualiza os repositórios NVIDIA do sistema e as consultas
   de software toleram repositórios ainda sem cache.
+- Estabilidade do GNOME Shell: a dock (sheliak 2.0.5) não destrói mais os
+  menus de contexto ativos a cada mudança de aplicativos abertos, caminho que
+  derrubava o GNOME Shell (`invalid_closure_notify`); a imagem exige essa
+  versão ([#172](https://github.com/lyra-os-linux/lyraos-desktop/pull/172)).
+- Boot mais rápido: `iscsi.service` deixa de ser habilitado e o vegad 5.1.38
+  não puxa mais `network-online.target` na preparação do primeiro boot, então
+  `NetworkManager-wait-online` (+5,6 s medidos em hardware físico) sai da
+  cadeia crítica do `graphical.target`. Pools iSCSI do libvirt continuam
+  disponíveis sob demanda
+  ([#168](https://github.com/lyra-os-linux/lyraos-desktop/issues/168)).
+- Administração remota pelo Vega: o vegad 5.1.37 traz a regra polkit que pede
+  a senha do próprio administrador (`wheel`) fora de uma sessão local, usada
+  pelo `vega-cli` via SSH.
 - Versão: identidade do produto alinhada ao Leap (`1.1` → `16.1`) em
   `release.toml`, no RPM `lyra-release` e nos scripts de release.
 - Calendário: lançamento oficial do Lyra OS 16.1 em 5 de novembro de 2026,
