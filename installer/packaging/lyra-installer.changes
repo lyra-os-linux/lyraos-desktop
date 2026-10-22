@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Oct 07 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
+
+- Refresh the reproducible source from integrated Git 977fd8fdb520c3f889bf0fde332ca156878f5a99.
+- Show Lyra OS Odisseia 1.1 Alpha 8 on the installer welcome screen.
+- Keep Cargo.lock and the rest of the installer payload unchanged.
+
+-------------------------------------------------------------------
 Sat Sep 19 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
 
 - Separate BIOS GPT/GRUB installation from UEFI signed shim/GRUB paths.
