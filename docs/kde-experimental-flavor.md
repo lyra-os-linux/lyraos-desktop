@@ -2,10 +2,13 @@
 
 ## Prioridade atual
 
-Planejamento futuro, em segundo plano. O foco de implementação e publicação de
-pacotes do ciclo 16.1 é GNOME. Este documento preserva a sequência proposta para
-uma retomada de KDE; não anuncia trabalho ativo nem data de lançamento. XFCE
-também fica fora da entrega atual do GNOME.
+Retomado em 23/10/2026 pela
+[ADR 0017](adr/0017-resume-kde-xfce-without-date.md): a edição KDE Plasma volta
+a ser trabalho ativo em
+[`lyraos-desktop-kde`](https://github.com/lyra-os-linux/lyraos-desktop-kde) e
+será lançada quando estiver pronta, sem data. O GNOME 16.1 não espera por ela.
+XFCE segue o mesmo princípio em seu próprio repositório. A sequência abaixo
+continua sendo a proposta de trabalho.
 
 ## Status e relação com a edição oficial
 

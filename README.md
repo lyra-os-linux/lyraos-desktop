@@ -7,11 +7,12 @@ o instalador da edição **Odisseia 16.1 RC 1** para computadores x86_64.
 
 ## Foco da versão 16.1
 
-A versão final do Lyra OS 16.1 tem **GNOME como único alvo de lançamento**.
-O trabalho atual de pacotes próprios e interface concentra-se no GNOME e no
-Vega GTK. KDE Plasma e XFCE ficam em segundo plano, sem compromisso de
-lançamento ou paridade nesta versão. Seus repositórios e registros anteriores
-permanecem disponíveis; retomá-los exige planejamento próprio.
+O lançamento de 05/11/2026 é o **Lyra OS Desktop GNOME 16.1**, que segue seu
+próprio cronograma. As edições
+[KDE Plasma](https://github.com/lyra-os-linux/lyraos-desktop-kde) e
+[XFCE](https://github.com/lyra-os-linux/lyraos-desktop-xfce) foram retomadas e
+serão lançadas quando estiverem prontas, sem data definida e sem promessa de
+paridade com o GNOME ([ADR 0017](docs/adr/0017-resume-kde-xfce-without-date.md)).
 
 A decisão de 16/09/2026 prevê **uma única ISO Desktop GNOME**, sem a pilha
 NVIDIA pré-instalada. A instalação NVIDIA será opcional pelo Vega GTK após

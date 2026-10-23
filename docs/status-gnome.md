@@ -4,6 +4,10 @@ Este é um registro datado de implementação e qualificação, não uma declara
 de release aprovada. `release.toml` continua identificando **Lyra OS 1.1 Alpha 7
 (Odisseia)**, baseado no Leap 16.1, x86_64.
 
+> [!NOTE]
+> Em 23/10/2026 a [ADR 0017](adr/0017-resume-kde-xfce-without-date.md) retomou
+> KDE Plasma e XFCE, com lançamento sem data. O escopo abaixo é o de 16/09.
+
 ## Escopo confirmado
 
 - GNOME é o único alvo da versão final 16.1; trabalho atual em pacotes GNOME.
