@@ -23,11 +23,14 @@ O Desktop GNOME 16.1 está em RC, com publicação estável prevista para
 KDE Plasma e XFCE são retomados. Cada edição será lançada **quando estiver
 pronta, sem data definida**.
 
-- O desenvolvimento recomeça a partir da Alpha 7 de cada edição e percorre
-  Alpha, Beta e RC com os mesmos critérios e gates da edição GNOME. Nenhuma
-  promoção acontece por data.
-- Vega Qt, Vega XFCE e as identidades visuais KDE e XFCE voltam a ser trabalho
-  ativo na medida em que essas edições precisarem deles.
+- A próxima candidata de cada edição é a **16.1 RC 1**, indo direto da Alpha 7
+  sem Beta, como o GNOME fez da Alpha 8 para a RC 1. A única mudança de pacotes
+  em relação à Alpha 7 é atualizar o Vega: alinhar o baseline do projeto `vega`
+  com o do GNOME e usar as versões atuais de Vega Qt e Vega XFCE. A partir da
+  RC 1 vale o congelamento estrito: só correções de bugs, travamentos,
+  segurança e performance crítica.
+- A RC precisa passar pelos mesmos gates da RC do GNOME, incluindo a repetição
+  do gate integral sobre o Leap 16.1. Nenhuma promoção acontece por data.
 - O GNOME 16.1 segue seu próprio cronograma e não espera pelas outras edições.
   Não há paridade de recursos prometida nem lançamento conjunto.
 - Até a publicação estável do GNOME 16.1, mudanças em componentes comuns
