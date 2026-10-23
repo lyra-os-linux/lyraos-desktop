@@ -2,9 +2,10 @@
 
 ## Escopo ativo e evidência
 
-O foco da versão final 16.1 é exclusivamente o GNOME e seus pacotes. KDE e XFCE
-estão em segundo plano; não há estabilização conjunta das três edições nem
-prazo comum de lançamento. A decisão de 16/09/2026 prevê uma única ISO GNOME,
+O lançamento de 05/11/2026 é o Desktop GNOME 16.1. KDE Plasma e XFCE foram
+retomados e serão lançados quando estiverem prontos, sem data e sem
+estabilização conjunta com o GNOME
+([ADR 0017](adr/0017-resume-kde-xfce-without-date.md)). A decisão de 16/09/2026 prevê uma única ISO GNOME,
 sem NVIDIA pré-instalada, e instalação opcional pelo Vega GTK.
 A [situação do GNOME](status-gnome.md) registra o que foi integrado e o que
 continua pendente de qualificação. O estágio canônico está em `release.toml`.
