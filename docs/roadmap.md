@@ -57,7 +57,12 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   (`16.1-rc.1`), sem Beta. Mesmo gate da Alpha 8 mais a assinatura destacada do
   checksum (ADR 0005). Congelamento estrito: somente correções de bugs,
   travamentos, segurança e performance crítica; funcionalidades novas esperam
-  a 16.2. Um defeito não trivial gera a RC 2.
+  a 16.2. Um defeito não trivial gera a RC 2. Publicada (`v16.1-rc.1`).
+- **RC 2 (aberta em 24/10/2026):** o mantenedor levou à candidata o vegad
+  5.1.39, com a zona correta no status do firewall (vegad#83) e o sinal
+  `Snapshots.ClearProgress` na introspecção. Repete o gate da RC 1; um defeito
+  não trivial gera a RC 3. Notas em
+  [`releases/lyra-os-desktop-16.1-rc.2.md`](releases/lyra-os-desktop-16.1-rc.2.md).
 - **16.1 estável (05/11/2026):** reconstruída com os pacotes GA do openSUSE
   Leap 16.1 (03/11/2026) e publicada após um gate reduzido.
 

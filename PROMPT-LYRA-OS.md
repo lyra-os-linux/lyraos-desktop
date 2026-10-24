@@ -187,6 +187,9 @@ antiga vibrante azul-safira→violeta):
   (`16.1-rc.1`), publicada até 31/10/2026, sem Beta; a versão estável sai em
   05/11/2026 com os pacotes GA do Leap 16.1. Da RC 1 em diante, somente
   correções de bugs, travamentos, segurança e performance crítica.
+- Decisão de 24/10/2026: a RC 1 foi publicada, e a RC 2 (`16.1-rc.2`) leva o
+  vegad 5.1.39 (zona correta no status do firewall e `ClearProgress` na
+  introspecção). Repete o gate da RC 1; a estável continua em 05/11/2026.
 - A versão 16.1 oferece somente `en-US`, `pt-BR` e `es-ES`; todos os projetos e
   RPMs foram traduzidos e testados nos três idiomas. Outros idiomas são escopo
   de um ciclo futuro, com fallback `en-US`.
