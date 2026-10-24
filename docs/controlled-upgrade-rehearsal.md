@@ -1,7 +1,7 @@
 # Controlled release-upgrade rehearsal
 
 The `16.1 -> 16.2-beta.1` target is a test fixture, not a public Lyra release.
-The next public milestone remains Lyra OS `16.1 RC 1` on openSUSE Leap 16.1;
+The next public milestone is Lyra OS `16.1 RC 2` on openSUSE Leap 16.1;
 the synthetic `16.2-beta.1` identity exists only to exercise an actual
 cross-release upgrade from an installed Lyra OS 16.1 baseline. Build it in a
 dedicated OBS rehearsal project that is not inherited by an installed image

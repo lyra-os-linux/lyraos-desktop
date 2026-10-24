@@ -8,7 +8,8 @@
 >
 > RC 1 (maintainer decision, 2026-10-14) keeps the Alpha 8 result set and adds
 > the detached release signature required from Beta onwards (ADR 0005). See
-> [RC 1 changes](#rc-1-changes).
+> [RC 1 changes](#rc-1-changes). RC 2 (2026-10-24) repeats the RC 1 gate for
+> vegad 5.1.39; see [RC 2 changes](#rc-2-changes).
 
 This checklist is the versioned go/no-go contract for the standard Lyra OS
 Desktop Alpha 7 ISO. A release coordinator may declare **GO** only when every blocking
@@ -81,6 +82,25 @@ content and hardware coverage; a bare green status is rejected:
 - [ ] `hardware-matrix`: required real/virtual hardware scenarios are recorded.
 - [ ] `v1.0-alpha.6` remains available as the immutable Leap 16.0 rollback
   baseline and the 16.0 → 16.1 upgrade/rollback rehearsal is recorded.
+
+## RC 2 changes
+
+RC 1 (`v16.1-rc.1`) was published. On 2026-10-24 the maintainer brought two
+vegad bug fixes into the candidate (vegad 5.1.39: Firewall.Status reports the
+real active zone, vegad#83/#85; Snapshots.ClearProgress is declared in the
+introspection, vegad#86). Image content changes, so RC 2 (`16.1-rc.2`) is a new
+candidate and repeats the RC 1 gate below with the same results and scope. In
+addition:
+
+- [ ] the image rejects vegad older than 5.1.39 (`check-gnome-image.py`);
+- [ ] on the installed system, Vega's firewall status reports the `public`
+  zone;
+- [ ] the bundle is built by `scripts/build-desktop-rc2.sh` and published by
+  `scripts/upload-desktop-rc2-sourceforge.sh`, which sign and verify the
+  checksum with the official release key (ADR 0005); the RC 1 wrappers keep
+  guarding `16.1-rc.1` only;
+- [ ] a non-trivial defect found during the gate stops the promotion and
+  produces RC 3; criteria are never relaxed to keep the date.
 
 ## RC 1 changes
 

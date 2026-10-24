@@ -37,10 +37,12 @@ ciclos de publicação independentes (o Server usa o codinome Delos).
 | Lyra OS 16.1 Alpha 1 | `16.1-alpha.1` |
 | Lyra OS 16.1 Beta 1 | `16.1-beta.1` |
 | Lyra OS 16.1 RC1 | `16.1-rc.1` |
+| Lyra OS 16.1 RC2 | `16.1-rc.2` |
 | Lyra OS 16.1 | `16.1` |
 
 O ciclo 16.1 do Desktop vai da Alpha 8 (publicada como `1.1-alpha.8`)
-diretamente para a `16.1-rc.1`, sem Beta.
+diretamente para a `16.1-rc.1`, sem Beta. A `16.1-rc.2`, aberta em
+24/10/2026, leva o vegad 5.1.39 à candidata.
 
 ## Fonte canônica e metadados
 
@@ -56,7 +58,7 @@ que a anuncie.
 identifica a candidata completa. `LYRA_BASE_VERSION_ID` conserva a versão do
 Leap base, que coincide com `MAJOR.MINOR` do Lyra.
 
-ISOs usam `LyraOS-Desktop-16.1-rc.1-x86_64.iso` em candidatas e
+ISOs usam `LyraOS-Desktop-16.1-rc.2-x86_64.iso` em candidatas e
 `LyraOS-Desktop-16.1-x86_64.iso` na release estável.
 
 ## Compatibilidade, promoção e suporte
