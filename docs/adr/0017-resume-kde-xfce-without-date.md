@@ -1,6 +1,6 @@
 # ADR 0017: retomar KDE Plasma e XFCE com lançamento sem data
 
-- Estado: aceita
+- Estado: substituída pela [ADR 0018](0018-abandon-kde-xfce.md)
 - Data: 2026-10-23
 - Substitui: a decisão de foco exclusivo no GNOME de 11/09/2026
   ([docs/gnome-focus.md](../gnome-focus.md))

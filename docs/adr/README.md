@@ -21,7 +21,8 @@ nova não apaga a anterior: cria outro ADR que a substitui e aponta para ela.
 | [0014](0014-vscode-repository-registration-only.md) | VS Code entra só como registro do repositório oficial da Microsoft (vscode-repo) | Aceita |
 | [0015](0015-optional-android-windows-compatibility.md) | Compatibilidade Android e Windows permanece opcional e desacoplada da ISO | Substituída pela ADR 0016 |
 | [0016](0016-defer-android-windows-next-release.md) | Compatibilidade Android e Windows é adiada para o release futura | Aceita |
-| [0017](0017-resume-kde-xfce-without-date.md) | KDE Plasma e XFCE são retomados direto na RC 1 e lançados quando estiverem prontos, sem data | Aceita |
+| [0017](0017-resume-kde-xfce-without-date.md) | KDE Plasma e XFCE são retomados direto na RC 1 e lançados quando estiverem prontos, sem data | Substituída pela 0018 |
+| [0018](0018-abandon-kde-xfce.md) | KDE Plasma e XFCE são abandonados; o GNOME é a única edição Desktop | Aceita |
 
 Mudanças incompatíveis no formato do plano precisam incrementar
 `INSTALL_PLAN_SCHEMA_VERSION`, atualizar o ADR 0002 por meio de um novo ADR e

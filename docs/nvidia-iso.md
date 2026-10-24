@@ -8,9 +8,8 @@ foi retirada do escopo, sem reduzir os testes do driver.
 A construção e a qualificação continuam em
 [#63](https://github.com/lyra-os-linux/lyraos-desktop/issues/63) e
 [#56](https://github.com/lyra-os-linux/lyraos-desktop/issues/56).
-A issue histórica #62 permanece encerrada como não planejada. GNOME é o alvo
-Desktop desta ISO; KDE/XFCE foram retomados com ciclo próprio
-([ADR 0017](adr/0017-resume-kde-xfce-without-date.md)). A variante **Server com llama.cpp
+A issue histórica #62 permanece encerrada como não planejada. GNOME é a única
+edição Desktop ([ADR 0018](adr/0018-abandon-kde-xfce.md)). A variante **Server com llama.cpp
 + NVIDIA** permanece na [Server #21](https://github.com/lyra-os-linux/lyraos-server/issues/21).
 
 ## Contrato de distribuição e qualificação

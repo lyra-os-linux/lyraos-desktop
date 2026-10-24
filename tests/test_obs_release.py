@@ -51,7 +51,7 @@ class ManifestTests(unittest.TestCase):
         self.assertNotIn("calamares", self.manifest.project("lyra").packages)
         self.assertEqual(
             set(self.manifest.project("vega").packages),
-            {"vega-cli", "vega-gtk", "vega-qt", "vega-web", "vega-xfce", "vegad"},
+            {"vega-cli", "vega-gtk", "vega-web", "vegad"},
         )
         # calco and prosa were deleted from the release project on 2026-10-10.
         self.assertEqual(self.manifest.project("lyra").legacy_packages, ())
