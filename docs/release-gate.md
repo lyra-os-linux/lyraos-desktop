@@ -16,7 +16,7 @@ item below has passed and its evidence is included in the final image evidence
 manifest. Missing evidence is a failure, not an implicit exception.
 
 The current final-release scope is one GNOME Desktop ISO, with optional NVIDIA
-installation through Vega. KDE/XFCE are outside this release target. Package
+installation through Vega. GNOME is the only Desktop edition. Package
 CI, staging upload and local preview installation do not satisfy the ISO gate;
 evidence must refer to the exact candidate. See [GNOME status](status-gnome.md).
 

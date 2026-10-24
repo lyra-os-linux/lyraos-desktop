@@ -74,7 +74,7 @@ class I18nResultTests(unittest.TestCase):
             write_candidate(root, {"beam": "1.0.1", "zed": "1.16.1", "lyra-vms": "0.1.0"})
             inventory = write_inventory(
                 root / "inventory.json",
-                [entry("beam", "complete"), entry("zed", "not-applicable"), entry("lyra-vms", "complete"), entry("vega-qt", "scheduled")],
+                [entry("beam", "complete"), entry("zed", "not-applicable"), entry("lyra-vms", "complete"), entry("legacy-frontend", "scheduled")],
             )
             reviews = {"lyra-vms": review(root / "lyra-vms-review.json", "lyra-vms", "0.1.0-lp161.1.1")}
             result, iso = i18n_result.generate(root, inventory, reviews)
@@ -90,14 +90,14 @@ class I18nResultTests(unittest.TestCase):
             self.assertEqual(by_id["i18n-zed"]["scope"], "not-applicable")
             self.assertEqual(by_id["i18n-lyra-vms"]["scope"], "candidate-review")
             self.assertEqual(by_id["i18n-lyra-vms"]["catalog_evidence"], "lyra-vms-review.json")
-            self.assertEqual([item["id"] for item in result["excluded_not_in_candidate"]], ["vega-qt"])
+            self.assertEqual([item["id"] for item in result["excluded_not_in_candidate"]], ["legacy-frontend"])
             self.assertEqual(result["excluded_not_in_candidate"][0]["status"], "scheduled")
 
     def test_scheduled_package_that_ships_fails_the_gate(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            write_candidate(root, {"vega-qt": "5.1.0"})
-            inventory = write_inventory(root / "inventory.json", [entry("vega-qt", "scheduled")])
+            write_candidate(root, {"legacy-frontend": "5.1.0"})
+            inventory = write_inventory(root / "inventory.json", [entry("legacy-frontend", "scheduled")])
             result, _ = i18n_result.generate(root, inventory, {})
             self.assertEqual(result["status"], "failed")
             self.assertEqual(result["checks"][0]["status"], "failed")
@@ -121,8 +121,8 @@ class I18nResultTests(unittest.TestCase):
     def test_cli_refuses_to_write_a_failed_result(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
-            write_candidate(root, {"vega-qt": "5.1.0"})
-            inventory = write_inventory(root / "inventory.json", [entry("vega-qt", "scheduled")])
+            write_candidate(root, {"legacy-frontend": "5.1.0"})
+            inventory = write_inventory(root / "inventory.json", [entry("legacy-frontend", "scheduled")])
             output = root / "i18n-result.json"
             completed = subprocess.run(
                 [sys.executable, str(TOOL), "--iso-dir", str(root), "--inventory", str(inventory), "--output", str(output)],
@@ -130,7 +130,7 @@ class I18nResultTests(unittest.TestCase):
                 text=True,
             )
             self.assertNotEqual(completed.returncode, 0)
-            self.assertIn("i18n gate failed for: i18n-vega-qt", completed.stderr)
+            self.assertIn("i18n gate failed for: i18n-legacy-frontend", completed.stderr)
             self.assertFalse(output.exists())
 
     def test_cli_writes_a_result_the_release_contract_accepts(self) -> None:

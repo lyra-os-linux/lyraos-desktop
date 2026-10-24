@@ -12,7 +12,7 @@ The manifest also pins the fingerprint of the OBS signing key inherited from
 `home:rodrigosbrito`. A key rotation must update that fingerprint in a reviewed
 commit before a new release can pass the health gate.
 
-The active Desktop release target is GNOME. KDE/XFCE package work is deferred.
+The only Desktop edition is GNOME; KDE and XFCE were abandoned (ADR 0018).
 The current product stage comes from `release.toml`; historical Beta 2 labels
 below do not change that stage. See [GNOME status](status-gnome.md) for the
 latest coordinated suite and remaining candidate qualification.

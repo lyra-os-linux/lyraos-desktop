@@ -2,9 +2,9 @@
 
 > [!NOTE]
 > Substituída em 23/10/2026 pela
-> [ADR 0017](adr/0017-resume-kde-xfce-without-date.md): KDE Plasma e XFCE foram
-> retomados e serão lançados quando estiverem prontos, sem data. Este texto fica
-> como registro da decisão de 11/09.
+> [ADR 0017](adr/0017-resume-kde-xfce-without-date.md), que retomou KDE Plasma e
+> XFCE, e depois pela [ADR 0018](adr/0018-abandon-kde-xfce.md), que os abandonou
+> em 24/10/2026. Este texto fica como registro da decisão de 11/09.
 
 Decisão do mantenedor em 11 de setembro de 2026: a partir desta data, o trabalho
 ativo de desenvolvimento, integração, validação e publicação de pacotes será

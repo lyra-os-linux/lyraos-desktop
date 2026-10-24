@@ -7,9 +7,8 @@ The LibreOffice package supplies the existing `libreoffice-branding` capability
 and replaces the openSUSE provider in the image's normal RPM transaction.
 
 Both source packages belong to the shared Lyra OBS inventory maintained by the
-GNOME release manifest. The new default selection is limited to GNOME. KDE/XFCE
-integration and publication are paused by the maintainer's
-[GNOME focus decision](gnome-focus.md).
+GNOME release manifest. The default selection is limited to GNOME, the only
+Desktop edition ([ADR 0018](adr/0018-abandon-kde-xfce.md)).
 
 `libreoffice-branding-Lyra` 1.0.1 is the minimum for the next image: 1.0.0 did
 not provide `intro-highres.png`, `shell/logo.svg` and `shell/logo_inverted.svg`,

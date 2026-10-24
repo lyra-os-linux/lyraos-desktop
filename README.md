@@ -8,11 +8,8 @@ o instalador da edição **Odisseia 16.1 RC 1** para computadores x86_64.
 ## Foco da versão 16.1
 
 O lançamento de 05/11/2026 é o **Lyra OS Desktop GNOME 16.1**, que segue seu
-próprio cronograma. As edições
-[KDE Plasma](https://github.com/lyra-os-linux/lyraos-desktop-kde) e
-[XFCE](https://github.com/lyra-os-linux/lyraos-desktop-xfce) foram retomadas e
-serão lançadas quando estiverem prontas, sem data definida e sem promessa de
-paridade com o GNOME ([ADR 0017](docs/adr/0017-resume-kde-xfce-without-date.md)).
+próprio cronograma. O GNOME é a única edição Desktop: KDE Plasma e XFCE
+foram abandonados ([ADR 0018](docs/adr/0018-abandon-kde-xfce.md)).
 
 A decisão de 16/09/2026 prevê **uma única ISO Desktop GNOME**, sem a pilha
 NVIDIA pré-instalada. A instalação NVIDIA será opcional pelo Vega GTK após
@@ -21,15 +18,13 @@ Esta decisão substitui o plano de duas variantes de 14/09. A ISO e o fluxo
 opcional ainda exigem qualificação; veja o [plano NVIDIA](docs/nvidia-iso.md).
 
 A [situação do GNOME](docs/status-gnome.md) distingue código integrado,
-pacotes enviados e qualificação da candidata. O planejamento futuro de KDE
-está em [flavor KDE experimental](docs/kde-experimental-flavor.md).
+pacotes enviados e qualificação da candidata.
 
 ## Políticas e privacidade
 
 O [épico do ECA Digital](https://github.com/lyra-os-linux/lyraos-desktop/issues/11)
 e seus gates técnicos, jurídicos e de privacidade continuam registrados.
-Essa trilha não equivale a uma declaração de conformidade já obtida. O foco
-atual de integração é GNOME; nenhuma entrega Qt/XFCE é prometida para a 16.1.
+Essa trilha não equivale a uma declaração de conformidade já obtida.
 
 > [!IMPORTANT]
 > O projeto ainda está em desenvolvimento. A ISO não deve ser considerada uma
@@ -98,8 +93,7 @@ nos três idiomas.
 
 A [política de versões](docs/release-versioning.md) registra a meta da 16.1;
 o [roadmap](docs/roadmap.md) detalha o ciclo. Datas são referências de
-planejamento. A promoção depende do [release gate](docs/release-gate.md),
-sem prazo conjunto para KDE/XFCE.
+planejamento. A promoção depende do [release gate](docs/release-gate.md).
 
 ## Preparando o ambiente
 

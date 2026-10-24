@@ -2,26 +2,12 @@
 
 ## Escopo ativo e evidência
 
-O lançamento de 05/11/2026 é o Desktop GNOME 16.1. KDE Plasma e XFCE foram
-retomados e serão lançados quando estiverem prontos, sem data e sem
-estabilização conjunta com o GNOME
-([ADR 0017](adr/0017-resume-kde-xfce-without-date.md)). A decisão de 16/09/2026 prevê uma única ISO GNOME,
+O lançamento de 05/11/2026 é o Desktop GNOME 16.1, a única edição Desktop.
+KDE Plasma e XFCE foram abandonados em 24/10/2026
+([ADR 0018](adr/0018-abandon-kde-xfce.md)). A decisão de 16/09/2026 prevê uma única ISO GNOME,
 sem NVIDIA pré-instalada, e instalação opcional pelo Vega GTK.
 A [situação do GNOME](status-gnome.md) registra o que foi integrado e o que
 continua pendente de qualificação. O estágio canônico está em `release.toml`.
-
-## Flavor KDE experimental — planejamento futuro
-
-Fica planejado um flavor KDE experimental, separado da edição Desktop GNOME,
-que continua sendo a edição oficial e recomendada do Lyra OS. O flavor começa
-com uma Alpha formada somente pela pilha KDE da base, sem pacotes próprios do
-Lyra; em etapas posteriores recebe primeiro os wallpapers e depois um Vega
-nativo em Qt. O Welcome não faz parte do flavor, e uma integração própria de
-atualização permanece apenas como possibilidade a avaliar.
-
-Essa trilha não está ativa no ciclo de entrega GNOME. O escopo, a ordem das
-etapas e a separação prevista dos repositórios estão em
-[`kde-experimental-flavor.md`](kde-experimental-flavor.md).
 
 ## Lyra Enterprise Linux
 

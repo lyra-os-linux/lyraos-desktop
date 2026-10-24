@@ -34,7 +34,7 @@ the updater's canonical producer.
 The manifest is deliberately `testing`; the installed baseline must explicitly
 opt in through `/etc/lyra-upgrade/channel`. Rehearsal automation must retain the
 same disk, NVRAM and installation UUID through offline application, reboot,
-verification and rollback. GNOME, KDE and XFCE use the shared contract.
+verification and rollback.
 
 The controlled route requires updater 0.2.3 or newer because that is the first
 version that keeps stable URLs compiled while allowing an explicit external
