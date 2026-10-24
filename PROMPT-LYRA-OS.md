@@ -189,7 +189,8 @@ antiga vibrante azul-safira→violeta):
   correções de bugs, travamentos, segurança e performance crítica.
 - Decisão de 24/10/2026: a RC 1 foi publicada, e a RC 2 (`16.1-rc.2`) leva o
   vegad 5.1.39 (zona correta no status do firewall e `ClearProgress` na
-  introspecção). Repete o gate da RC 1; a estável continua em 05/11/2026.
+  introspecção), publicada até 31/10/2026. Repete o gate da RC 1; a estável
+  continua em 05/11/2026.
 - A versão 16.1 oferece somente `en-US`, `pt-BR` e `es-ES`; todos os projetos e
   RPMs foram traduzidos e testados nos três idiomas. Outros idiomas são escopo
   de um ciclo futuro, com fallback `en-US`.

@@ -4,8 +4,10 @@ Segunda candidata de lançamento do Lyra OS Desktop 16.1 sobre **openSUSE Leap
 16.1**. A RC 1 (`v16.1-rc.1`) foi publicada; em 24/10/2026 o mantenedor
 decidiu levar à candidata duas correções do vegad em vez de deixá-las para
 uma atualização depois do lançamento. Como o conteúdo da imagem muda, a RC 2
-é uma nova candidata e repete o gate. A versão estável continua prevista para
-**5 de novembro de 2026**. Vale o congelamento estrito da RC 1: só correções
+é uma nova candidata e repete o gate. A publicação está prevista até **31 de
+outubro de 2026**, deixando margem para uma RC 3 antes do GA do Leap 16.1 em
+3 de novembro. A versão estável continua prevista para **5 de novembro de
+2026**. Vale o congelamento estrito da RC 1: só correções
 de bugs, travamentos, segurança e performance crítica em pacotes já
 distribuídos.
 
