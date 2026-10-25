@@ -383,13 +383,15 @@
          backports. Without it the selector is hidden and nothing adjusts
          energy_performance_preference on battery (#167). -->
     <package name="tuned-ppd"/>
-    <!-- Mesa's Intel Vulkan driver arrives only through a hardware modalias
-         supplement, which the image build never sees and the squashfs-copy
-         installer never re-evaluates. Without it GTK 4's Vulkan renderer has
-         no Intel device: it falls back to GL
-         on Intel-only machines and renders every app on the NVIDIA GPU of
-         hybrid notebooks, which then never enters runtime D3 (vegad#78). -->
+    <!-- Mesa's Intel and AMD Vulkan drivers arrive only through hardware
+         modalias supplements, which the image build never sees and the
+         squashfs-copy installer never re-evaluates. Without them GTK 4's
+         Vulkan renderer has no integrated GPU: it falls back to GL on
+         single-GPU machines and renders every app on the NVIDIA GPU of
+         hybrid notebooks, which then never enters runtime D3 (vegad#78).
+         libvulkan_radeon's libLLVM dependency already ships via Mesa-dri. -->
     <package name="libvulkan_intel"/>
+    <package name="libvulkan_radeon"/>
     <package name="nautilus"/>
     <package name="lyra-nautilus-branding"/>
     <!-- Nautilus only Recommends gvfs. Without these explicit packages,
