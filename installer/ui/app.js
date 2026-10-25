@@ -93,6 +93,18 @@ function uiLocale(locale){return {
   'es_ES.UTF-8':'es-ES',
 }[locale]||'en-US'}
 
+async function loadReleaseLabel(){
+  try{
+    const label=await invoke('release_label');
+    if(!label) return;
+    const note=document.querySelector('.topbar-note');
+    note.firstChild.textContent=`${label.codename} `;
+    note.querySelector('span').textContent=label.display_version;
+  }catch(error){
+    console.error('Não foi possível ler a versão da imagem',error);
+  }
+}
+
 async function loadInstallerLogo(){
   const image=document.querySelector('#brand-logo');
   try{
@@ -612,6 +624,7 @@ void loadTimezones();
 renderLanguageCards();
 renderKeyboardCards();
 loadInstallerLogo();
+void loadReleaseLabel();
 discoverStorage();
 show(0);
 void fitWindowToMonitor();
