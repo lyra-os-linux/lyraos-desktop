@@ -321,6 +321,17 @@ assinatura7edca82e e download verificados.127 testes Rust passaram em staging
 208 testes Python do Desktop e CI35520704707 passaram para a integração do gate.
 Fonte de evidência: docs/packagekit-obs-evidence.json no PR Updater23.
 Nenhuma instalação no host nem candidata ISO qualificada; UPD-01 continua aberto.
+
+### UPD-01 — ciclo PackageKit na candidata RC 2, 25/10/2026
+
+ISO `16.1-rc.2`, sha256 `af42e088991863e170dbf6d411fb3ea9ad41a097e0e9ed5ab3945a8a093e10a3`,
+instalada pelo Lyra Installer em VM UEFI. `kiwi/test/guest/packagekit-gate.sh`
+preparou uma atualização offline pelo PackageKit (fixture inerte 1 → 2) e
+reiniciou. `lyra-upgrade-offline.service` terminou com sucesso sem tocar no
+estado Lyra, o PackageKit registrou `Success=true` e removeu o marcador, e não
+restaram units em falha. Evidência em
+[docs/evidence/upd-01-packagekit-rc2](evidence/upd-01-packagekit-rc2/README.md).
+UPD-01 está encerrado; candidatas futuras repetem o script no gate do sistema instalado.
 ## FW-01 — Instalador BIOS/UEFI e efivarfs, 19/09/2026
 
 Desktop #89: correção em fontes separa BIOS, UEFI com NVRAM e UEFI sem
@@ -662,7 +673,7 @@ físico, suspensão) continua pendente para a Beta, conforme as notas de versão
 | BOOT-09b | sem alteração (GDM 48) | mensagem isolada não observada como falha; login normal | acompanhar upstream |
 | NVIDIA-01/02/03 | ISO sem NVIDIA pré-instalada (decisão 16/09); `vega-gtk-5.1.46`, `vegad-5.1.32` | não testável em VM; NVIDIA declarada como não testada na Alpha 8 (#28) | pendente, declarado nas notas |
 | SHELL-01 | `sheliak-2.0.4-lp161.1.1` (≥ 2.0.3; 2.0.4 corrige #37) | `gnome-shell-core-dump` 0 em live e primeiro boot; dock usada no primeiro login; logout/reboot repetidos | **validado em VM** |
-| UPD-01 | `lyra-upgrade-0.2.5-lp161.1.2` | gate `rollback`: `zypper update` real, dois reboots, snapshots 2/3, `rollback-verified` | validado o ciclo Lyra; coexistência PackageKit offline não ensaiada |
+| UPD-01 | `lyra-upgrade-0.2.5-lp161.1.2` | gate `rollback`: `zypper update` real, dois reboots, snapshots 2/3, `rollback-verified`; `packagekit-gate.sh` na RC 2 (25/10/2026): unit Lyra sem falha, `Success=true` | **validado em VM** ([evidência](evidence/upd-01-packagekit-rc2/README.md)) |
 | FW-01 | `lyra-installer-0.1.0-lp161.35.1` (≥ lp161.34.1 da correção) | `installer-result.json` (UEFI+NVRAM+SB), `installer-bios-result.json`, `installer-no-nvram-result.json` (`uefi-fallback-no-variables`); disco subiu nos três modos | **validado** (#89) |
 | VEGA-01 | `vega-gtk-5.1.46-lp161.1.2` (≥ 5.1.40) | não ensaiado na candidata (Painel/abas) | incluído; ensaio de UI pendente |
 | VIRT-01 | `libvirt-daemon-qemu-12.4.0`, `lyra-vms-0.1.0-lp161.1.2`, `virt-viewer` | `lyra-vms` revisado no binário (i18n); VM dentro da VM não ensaiada | incluído; cenário gráfico pendente |

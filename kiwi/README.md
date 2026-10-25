@@ -207,3 +207,17 @@ A validação do initrd extraído da ISO continua sendo o gate final.
 (instalar `kiwi==10.2.33` em ambiente de teste). Os pisos de versão são aplicados
 por check-gnome-image.py durante config.sh; atributos version em package não
 fazem parte do schema e não devem substituir esse verificador.
+
+### Coexistência com atualizações offline do PackageKit (UPD-01)
+
+No sistema instalado, `packagekit-gate.sh` prepara uma atualização offline
+pelo PackageKit e confere, após o reboot, que `lyra-upgrade-offline.service`
+ignora o pedido externo sem falhar. A fixture inerte `lyra-offline-fixture`
+(versões 1 e 2, `noarch`) é servida pelo host junto do script:
+
+```bash
+curl -fsSL http://10.0.2.2:8765/packagekit-gate.sh -o packagekit-gate.sh
+sudo bash packagekit-gate.sh prepare --reboot
+# depois dos dois reboots (atualização offline e retorno)
+sudo bash packagekit-gate.sh verify
+```
