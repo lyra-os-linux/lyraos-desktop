@@ -119,13 +119,14 @@ class MinimumsTests(unittest.TestCase):
         # 5.1.32 recovered the first-boot preparation; 5.1.38 stops it from
         # pulling network-online into every boot (#168); 5.1.39 reports the
         # real active firewall zone (vegad#83); 5.1.40 installs the integrated
-        # GPU Vulkan driver with NVIDIA so the dGPU can suspend (vegad#78).
-        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38', '5.1.39', '5.1.40~rc1'):
+        # GPU Vulkan driver with NVIDIA so the dGPU can suspend (vegad#78);
+        # 5.1.41 reads the firewall zone in the broker (vegad#90).
+        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38', '5.1.39', '5.1.40', '5.1.41~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vegad' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.40'):
+                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.41'):
                         minimums.main()
 
     def test_shell_shutdown_fix_rejects_older_sheliak(self):
