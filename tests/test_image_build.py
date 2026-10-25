@@ -411,6 +411,15 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("suseInsertService tuned\n", desktop_branch)
         self.assertIn("suseInsertService tuned-ppd\n", desktop_branch)
 
+    def test_desktop_ships_intel_vulkan_driver(self) -> None:
+        # Without it GTK 4 renders on the NVIDIA GPU of hybrid notebooks and
+        # keeps it powered on (vegad#78).
+        root = ET.parse(ROOT / "kiwi/config.xml").getroot()
+        desktop_packages = {
+            node.attrib["name"] for node in root.findall("packages/package")
+        }
+        self.assertIn("libvulkan_intel", desktop_packages)
+
     def test_desktop_installs_explicit_alsa_userspace_stack(self) -> None:
         # PipeWire remains the desktop audio server, while these packages
         # provide ALSA hardware profiles, diagnostics and compatibility for
