@@ -28,6 +28,15 @@ class InstallerUiTests(unittest.TestCase):
         self.javascript = (UI / "app.js").read_text(encoding="utf-8")
         self.i18n = (UI / "i18n.js").read_text(encoding="utf-8")
 
+    def test_top_bar_release_label_comes_from_the_image(self) -> None:
+        # The OBS RPM is not rebuilt per candidate, so the HTML label is only
+        # a fallback; the image's /usr/lib/lyra-os/release wins at runtime.
+        self.assertIn("invoke('release_label')", self.javascript)
+        self.assertIn("void loadReleaseLabel();", self.javascript)
+        main = (UI.parent / "src-tauri/src/main.rs").read_text(encoding="utf-8")
+        self.assertIn('"/usr/lib/lyra-os/release"', main)
+        self.assertRegex(main, r"generate_handler!\[[^\]]*release_label")
+
     def test_element_ids_are_unique(self) -> None:
         parser = IdCollector()
         parser.feed(self.html)
