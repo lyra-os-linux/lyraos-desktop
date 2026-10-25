@@ -106,24 +106,26 @@ class MinimumsTests(unittest.TestCase):
                 minimums.main()
 
     def test_dashboard_refresh_rejects_stale_and_prerelease_vega(self):
-        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.43', '5.1.44', '5.1.45~rc1', '5.1.45', '5.1.46~rc1'):
+        # 5.2.0 replaces the GTK frontend with the Tauri port (vega#159).
+        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.43', '5.1.44', '5.1.45~rc1', '5.1.45', '5.1.46~rc1', '5.1.46', '5.1.47', '5.2.0~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vega-gtk' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.1.46'):
+                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.2.0'):
                         minimums.main()
 
     def test_preparation_rejects_daemon_before_recovery_release(self):
         # 5.1.32 recovered the first-boot preparation; 5.1.38 stops it from
         # pulling network-online into every boot (#168); 5.1.39 reports the
-        # real active firewall zone (vegad#83).
-        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38', '5.1.39~rc1'):
+        # real active firewall zone (vegad#83); 5.1.40 installs the integrated
+        # GPU Vulkan driver with NVIDIA so the dGPU can suspend (vegad#78).
+        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38', '5.1.39', '5.1.40~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vegad' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.39'):
+                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.40'):
                         minimums.main()
 
     def test_shell_shutdown_fix_rejects_older_sheliak(self):
