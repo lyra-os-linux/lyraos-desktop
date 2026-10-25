@@ -373,6 +373,27 @@ class ImagePolicyTests(unittest.TestCase):
         }
         self.assertIn("upower", desktop_packages)
 
+    def test_flatpak_environment_generator_keeps_xdg_data_dirs_without_trailing_slashes(self) -> None:
+        # Without XDG_DATA_DIRS, flatpak inherited GLib's "/usr/local/share/:/usr/share/"
+        # and dbus-broker logged duplicate services from /usr/share//dbus-1 (#169).
+        generator = ROOT / "kiwi/root/etc/systemd/system-environment-generators/60-flatpak-system-only"
+        self.assertTrue(generator.stat().st_mode & stat.S_IXUSR)
+        with tempfile.TemporaryDirectory() as temporary:
+            stub = Path(temporary) / "flatpak"
+            stub.write_text('#!/bin/sh\necho "$GIO_USE_VFS $XDG_DATA_DIRS $*"\n', encoding="utf-8")
+            stub.chmod(0o755)
+            result = subprocess.run(
+                ["sh", str(generator)],
+                env={"PATH": f"{temporary}:/usr/bin:/bin"},
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+        self.assertEqual(
+            result.stdout.strip(),
+            "local /usr/local/share:/usr/share --print-updated-env --print-system-only",
+        )
+
     def test_desktop_ships_power_profiles_provider(self) -> None:
         # Without a net.hadess.PowerProfiles provider GNOME hides its power
         # mode selector and nothing tunes the CPU on battery (#167).

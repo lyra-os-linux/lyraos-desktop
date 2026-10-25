@@ -1,0 +1,11 @@
+#!/bin/sh
+# Lyra OS override of
+# /usr/lib/systemd/system-environment-generators/60-flatpak-system-only (#169).
+# PID 1 runs this generator without XDG_DATA_DIRS, so flatpak fell back to the
+# GLib default "/usr/local/share/:/usr/share/". Every user manager inherits
+# that value; the trailing slashes made dbus-broker scan
+# /usr/share//dbus-1/services as a second directory and log duplicate names.
+# Start from the Leap default (/usr/lib/environment.d/50-xdg.conf) instead.
+export GIO_USE_VFS=local
+export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+exec flatpak --print-updated-env --print-system-only
