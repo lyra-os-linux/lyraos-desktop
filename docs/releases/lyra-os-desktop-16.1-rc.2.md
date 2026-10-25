@@ -46,7 +46,12 @@ commit, o SHA-256 e a decisão de GO são preenchidos no bundle publicado.
   ([#169](https://github.com/lyra-os-linux/lyraos-desktop/issues/169)).
 - Instalador: o rótulo de versão vem da própria imagem; a ISO anterior da RC 2
   mostrava "RC 1" ([#183](https://github.com/lyra-os-linux/lyraos-desktop/pull/183)).
-- A imagem exige vega-gtk 5.2.0 e vegad 5.1.40 ou posteriores
+- Firewall no Vega, de novo: no Desktop, o polkit do firewalld negava a
+  leitura da zona ativa ao processo de consulta do vegad, e o Vega mostrava a
+  zona vazia. O vegad 5.1.41 faz essa leitura no serviço principal
+  ([vegad#90](https://github.com/lyra-os-linux/vegad/pull/90)). O defeito foi
+  achado no gate desta candidata e também existia na RC 1.
+- A imagem exige vega-gtk 5.2.0 e vegad 5.1.41 ou posteriores
   (`check-gnome-image.py`).
 - Escopo: KDE Plasma e XFCE foram abandonados; o GNOME é a única edição
   Desktop ([ADR 0018](../adr/0018-abandon-kde-xfce.md)). Nenhum pacote da ISO
@@ -55,10 +60,11 @@ commit, o SHA-256 e a decisão de GO são preenchidos no bundle publicado.
 O vegad 5.1.39 foi promovido ao canal de release do OBS pelo SR 1392226,
 depois de testado numa VM Leap 16.1 contra o 5.1.38. O vegad 5.1.40 seguiu
 pelo SR 1392433, testado em VM contra o 5.1.39 e no notebook híbrido da
-issue. O vega-gtk 5.2.0 entrou pelo SR 1392280.
+issue, e o 5.1.41 pelo SR 1392496, testado em VM com a política polkit do
+Desktop. O vega-gtk 5.2.0 entrou pelo SR 1392280.
 
-Uma ISO da RC 2 chegou a ser construída antes dessas correções e não foi
-publicada. A RC 2 publicada é a reconstrução com o lote completo.
+Duas ISOs da RC 2 chegaram a ser construídas antes dessas correções e não
+foram publicadas; o gate da segunda achou o defeito do firewall. A RC 2 publicada é a reconstrução com o lote completo.
 
 ## Escopo e limites
 

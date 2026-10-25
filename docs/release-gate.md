@@ -94,11 +94,12 @@ addition:
 
 On 2026-10-25 the unpublished RC 2 build was superseded by a rebuild with the
 batched fixes: tuned-ppd (#167), XDG_DATA_DIRS (#169), the installer version
-label (#183), libvulkan_intel/libvulkan_radeon (#185/#186), vegad 5.1.40
-(vegad#78/#89) and the Tauri vega-gtk 5.2.0 (vega#159, freeze exception
+label (#183), libvulkan_intel/libvulkan_radeon (#185/#186), vegad 5.1.41
+(vegad#78/#89, and vegad#90 for the firewall zone found by the gate) and
+the Tauri vega-gtk 5.2.0 (vega#159, freeze exception
 approved by the maintainer). The candidate keeps the `16.1-rc.2` identity.
 
-- [ ] the image rejects vegad older than 5.1.40 and vega-gtk older than 5.2.0
+- [ ] the image rejects vegad older than 5.1.41 and vega-gtk older than 5.2.0
   (`check-gnome-image.py`);
 - [ ] on the installed system, Vega's firewall status reports the `public`
   zone;
