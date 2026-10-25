@@ -84,6 +84,12 @@ suseInsertService gdm
 # was fine, bluetooth.service just didn't exist as an enabled unit).
 suseInsertService bluetooth
 
+# GNOME power profiles (#167): tuned-ppd provides net.hadess.PowerProfiles on
+# top of TuneD. D-Bus activation alone would start it only when a client asks;
+# enable both so the balanced/battery profile is applied from boot.
+suseInsertService tuned
+suseInsertService tuned-ppd
+
 # Live-session autologin as liveuser. This is a live-boot convenience
 # only; the installed system's login/account model is set up by the
 # Lyra Installer (root disabled, sudo user), not here.

@@ -377,6 +377,12 @@
          graph, so onlyRequired omitted the daemon while retaining its client
          library; the result was a working BAT1 in sysfs but no battery icon. -->
     <package name="upower"/>
+    <!-- GNOME's power mode selector (Settings and quick settings) needs the
+         net.hadess.PowerProfiles service. tuned-ppd is the Leap 16 provider
+         for it and pulls in TuneD; power-profiles-daemon is only in
+         backports. Without it the selector is hidden and nothing adjusts
+         energy_performance_preference on battery (#167). -->
+    <package name="tuned-ppd"/>
     <package name="nautilus"/>
     <package name="lyra-nautilus-branding"/>
     <!-- Nautilus only Recommends gvfs. Without these explicit packages,

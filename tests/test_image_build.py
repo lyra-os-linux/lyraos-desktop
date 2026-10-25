@@ -373,6 +373,23 @@ class ImagePolicyTests(unittest.TestCase):
         }
         self.assertIn("upower", desktop_packages)
 
+    def test_desktop_ships_power_profiles_provider(self) -> None:
+        # Without a net.hadess.PowerProfiles provider GNOME hides its power
+        # mode selector and nothing tunes the CPU on battery (#167).
+        root = ET.parse(ROOT / "kiwi/config.xml").getroot()
+        desktop_packages = {
+            node.attrib["name"] for node in root.findall("packages/package")
+        }
+        self.assertIn("tuned-ppd", desktop_packages)
+        self.assertNotIn("power-profiles-daemon", desktop_packages)
+
+        config_sh = (ROOT / "kiwi/config.sh").read_text(encoding="utf-8")
+        desktop_branch = config_sh[
+            config_sh.index("# Display manager") : config_sh.index("# zram-generator")
+        ]
+        self.assertIn("suseInsertService tuned\n", desktop_branch)
+        self.assertIn("suseInsertService tuned-ppd\n", desktop_branch)
+
     def test_desktop_installs_explicit_alsa_userspace_stack(self) -> None:
         # PipeWire remains the desktop audio server, while these packages
         # provide ALSA hardware profiles, diagnostics and compatibility for

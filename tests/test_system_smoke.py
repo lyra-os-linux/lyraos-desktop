@@ -128,6 +128,9 @@ class SystemSmokeTests(unittest.TestCase):
         disabled = system_smoke.EXPECTED_DISABLED_UNITS["desktop"]
 
         self.assertIn("btrfs-scrub.timer", active)
+        # GNOME power profiles (#167).
+        self.assertIn("tuned.service", active)
+        self.assertIn("tuned-ppd.service", active)
         self.assertEqual(
             disabled,
             (
