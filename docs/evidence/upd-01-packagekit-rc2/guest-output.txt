@@ -1,0 +1,65 @@
+### BEGIN packagekit-gate prepare 2026-10-25T10:06:54Z host= kernel=6.12.0-160100.7-default
+lyra-upgrade: lyra-upgrade-0.2.5-lp161.1.2.x86_64
+PackageKit: PackageKit-1.3.6-160100.2.1.x86_64
+lyra-operations-before: absent
+check install-v1: ok
+Baixando os metadados do repositório 'Disposable PackageKit gate fixture' [.concluído]
+Construindo o cache do repositório 'Disposable PackageKit gate fixture' [....concluído]
+Os repositórios especificados foram atualizados.
+check zypper-refresh: ok
+Transação:	Recarregando cache
+Status: 	Esperando na fila
+Status: 	Esperando pela autenticação
+Status: 	Esperando na fila
+Status: 	Iniciando
+Status: 	Recarregando lista de softwares
+Porcentagem:	100
+Status: 	Finalizado
+Resultados:
+check pkcon-refresh: ok
+Transação:	Resolvendo
+Status: 	Esperando na fila
+Status: 	Iniciando
+Status: 	Consultando
+Transação:	Atualizando pacotes
+Status: 	Esperando na fila
+Status: 	Iniciando
+Status: 	Resolvendo dependências
+Porcentagem:	100
+Status: 	Instalando atualizações
+Porcentagem:	0
+Status: 	Baixando pacotes
+Pacote:	lyra-offline-fixture_2-1.noarch
+Porcentagem:	100
+Status: 	Finalizado
+Resultados:
+Baixado      lyra-offline-fixture-2-1.noarch (lyra-pk-fixture)
+check pkcon-download: ok
+check pkcon-offline-trigger: ok
+system-update: /var/lib/PackageKit/prepared-update
+check marker-owned-by-packagekit: ok
+result: passed
+### END packagekit-gate prepare exit=0
+### BEGIN packagekit-gate verify 2026-10-25T10:09:03Z host= kernel=6.12.0-160100.7-default
+lyra-upgrade: lyra-upgrade-0.2.5-lp161.1.2.x86_64
+offline-boot: f4ee28dbeb6b4104936e0bdf19656a36
+2026-10-25T07:08:04-03:00 lyra-os systemd[1]: Starting Apply a staged Lyra OS release upgrade...
+2026-10-25T07:08:04-03:00 lyra-os systemd[1]: lyra-upgrade-offline.service: Deactivated successfully.
+2026-10-25T07:08:04-03:00 lyra-os systemd[1]: Finished Apply a staged Lyra OS release upgrade.
+check unit-ran: ok
+check unit-not-failed: ok
+check packagekit-result-exists: ok
+[PackageKit Offline Update Results]
+Success=true
+Role=update-packages
+Packages=lyra-offline-fixture;2-1;noarch;lyra-pk-fixture,
+check packagekit-success: ok
+fixture: 2
+check fixture-updated-to-v2: ok
+check marker-removed: ok
+lyra-operations-after: absent
+check lyra-state-untouched: ok
+check no-failed-units: ok
+cleanup: fixture repository and package removed
+result: passed
+### END packagekit-gate verify exit=0
