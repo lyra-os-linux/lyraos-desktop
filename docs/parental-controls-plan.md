@@ -1,6 +1,6 @@
 # Plano de desenvolvimento do controle parental básico
 
-Estado: proposta de 25/10/2026, para decisão do mantenedor. Substitui, como
+Estado: plano aprovado pelo mantenedor em 25/10/2026; trabalho começa em 26/10/2026. Substitui, como
 direção de trabalho, o desenho congelado em 07/10/2026 (comentário no épico
 #11). Os documentos anteriores (`parental-protection-boundary.md`,
 `vega-parental-controls-ux.md`, ADR 0008) ficam como referência e serão
@@ -127,11 +127,11 @@ Depois da frente 1, as frentes 2 a 5 andam em paralelo.
 
 Esforço: 12 a 16 dias de trabalho; 14 a 21 com o sinal de idade.
 
-## Cronograma estimado (início em 27/10/2026)
+## Cronograma estimado (início em 26/10/2026)
 
 | Período | Entrega |
 | --- | --- |
-| 27–28/10 | Frente 1 (qualificação) |
+| 26–28/10 | Frente 1 (qualificação) |
 | 29/10–06/11 | Frentes 2 a 5 em paralelo, com staging no OBS |
 | 09–11/11 | Frente 7 (gate, ADR, documentação, issues) |
 | 12–13/11 | Build da RC 3 e gate completo da ISO |
