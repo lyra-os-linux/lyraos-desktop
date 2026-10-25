@@ -26,20 +26,47 @@ commit, o SHA-256 e a decisão de GO são preenchidos no bundle publicado.
 - Contrato D-Bus: a introspecção de `org.lyraos.Vega1.Snapshots` passa a
   declarar o sinal `ClearProgress`, como no contrato de `lyra-vega-dbus`
   ([vegad#86](https://github.com/lyra-os-linux/vegad/pull/86)).
-- A imagem exige vegad 5.1.39 ou posterior (`check-gnome-image.py`).
+- Vega: o vega-gtk 5.2.0 troca a interface GTK pelo port Tauri, com as
+  mesmas funções ([vega#159](https://github.com/lyra-os-linux/vega/pull/159)).
+  Isso é uma exceção ao congelamento, aprovada pelo mantenedor.
+- NVIDIA em notebooks híbridos: o vegad 5.1.40 instala o driver Vulkan da GPU
+  integrada junto com o driver NVIDIA, e o `lyra-nvidia` habilita o RTD3
+  fine-grained. Assim a GPU NVIDIA desliga quando fica ociosa
+  ([vegad#78](https://github.com/lyra-os-linux/vegad/issues/78),
+  [vegad#89](https://github.com/lyra-os-linux/vegad/pull/89)).
+- Drivers Vulkan: a imagem traz `libvulkan_intel` e `libvulkan_radeon`. Antes,
+  eles só entravam pela detecção de hardware do zypper, que o build e o
+  instalador não executam, e o GTK 4 caía para GL ou renderizava na GPU
+  NVIDIA ([#185](https://github.com/lyra-os-linux/lyraos-desktop/pull/185),
+  [#186](https://github.com/lyra-os-linux/lyraos-desktop/pull/186)).
+- Energia: o `tuned-ppd` fornece os perfis de energia do GNOME, que antes não
+  apareciam ([#167](https://github.com/lyra-os-linux/lyraos-desktop/issues/167)).
+- Sessão: `XDG_DATA_DIRS` deixa de terminar com barra, o que gerava avisos de
+  serviço D-Bus duplicado a cada login
+  ([#169](https://github.com/lyra-os-linux/lyraos-desktop/issues/169)).
+- Instalador: o rótulo de versão vem da própria imagem; a ISO anterior da RC 2
+  mostrava "RC 1" ([#183](https://github.com/lyra-os-linux/lyraos-desktop/pull/183)).
+- A imagem exige vega-gtk 5.2.0 e vegad 5.1.40 ou posteriores
+  (`check-gnome-image.py`).
 - Escopo: KDE Plasma e XFCE foram abandonados; o GNOME é a única edição
   Desktop ([ADR 0018](../adr/0018-abandon-kde-xfce.md)). Nenhum pacote da ISO
   muda por isso.
 
 O vegad 5.1.39 foi promovido ao canal de release do OBS pelo SR 1392226,
-depois de testado numa VM Leap 16.1 contra o 5.1.38.
+depois de testado numa VM Leap 16.1 contra o 5.1.38. O vegad 5.1.40 seguiu
+pelo SR 1392433, testado em VM contra o 5.1.39 e no notebook híbrido da
+issue. O vega-gtk 5.2.0 entrou pelo SR 1392280.
+
+Uma ISO da RC 2 chegou a ser construída antes dessas correções e não foi
+publicada. A RC 2 publicada é a reconstrução com o lote completo.
 
 ## Escopo e limites
 
 Os mesmos da [RC 1](lyra-os-desktop-16.1-rc.1.md#escopo-e-limites):
 
-- Só instalação nova. Uma instalação RC 1 recebe o vegad 5.1.39 pela
-  atualização normal do zypper, sem reinstalar.
+- Só instalação nova. Uma instalação RC 1 recebe o vegad e o vega-gtk novos
+  pela atualização normal do zypper, sem reinstalar. As mudanças da imagem
+  (`tuned-ppd`, drivers Vulkan, `XDG_DATA_DIRS`) não chegam por atualização.
 - O controle parental continua fora da 16.1 ([#102](https://github.com/lyra-os-linux/lyraos-desktop/issues/102)).
 - RAID, LVM, particionamento manual e instalação lado a lado continuam fora
   do cenário coberto.
@@ -59,7 +86,8 @@ QEMU/KVM:
 - o resultado `obs-repositories` do health check de release.
 
 No sistema instalado, o status do firewall no Vega precisa mostrar a zona
-`public`. Um defeito não trivial interrompe a promoção e gera a RC 3; os
+`public`, o seletor de perfil de energia do GNOME precisa aparecer e o Vega
+5.2.0 precisa abrir todas as páginas. Um defeito não trivial interrompe a promoção e gera a RC 3; os
 critérios não são reduzidos para preservar a data.
 
 ## Integridade

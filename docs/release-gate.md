@@ -92,9 +92,19 @@ introspection, vegad#86). Image content changes, so RC 2 (`16.1-rc.2`) is a new
 candidate and repeats the RC 1 gate below with the same results and scope. In
 addition:
 
-- [ ] the image rejects vegad older than 5.1.39 (`check-gnome-image.py`);
+On 2026-10-25 the unpublished RC 2 build was superseded by a rebuild with the
+batched fixes: tuned-ppd (#167), XDG_DATA_DIRS (#169), the installer version
+label (#183), libvulkan_intel/libvulkan_radeon (#185/#186), vegad 5.1.40
+(vegad#78/#89) and the Tauri vega-gtk 5.2.0 (vega#159, freeze exception
+approved by the maintainer). The candidate keeps the `16.1-rc.2` identity.
+
+- [ ] the image rejects vegad older than 5.1.40 and vega-gtk older than 5.2.0
+  (`check-gnome-image.py`);
 - [ ] on the installed system, Vega's firewall status reports the `public`
   zone;
+- [ ] GNOME shows the power mode selector and `tuned-ppd` is active;
+- [ ] Vega 5.2.0 opens every page without errors in the journal;
+- [ ] the installer header shows "RC 2";
 - [ ] the bundle is built by `scripts/build-desktop-rc2.sh` and published by
   `scripts/upload-desktop-rc2-sourceforge.sh`, which sign and verify the
   checksum with the official release key (ADR 0005); the RC 1 wrappers keep
