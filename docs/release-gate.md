@@ -157,9 +157,9 @@ Not required for Alpha 8:
 
 Declared in the release notes instead of structured evidence:
 
-- **Parental controls (16.1 RC 3 onward):** the basic parental controls are
+- **Parental controls (16.1 RC 2 onward):** the basic parental controls are
   gated by [docs/parental-controls-gate.md](parental-controls-gate.md)
-  (`installed-gate.sh parental` plus the manual list). Before RC 3:
+  (`installed-gate.sh parental` plus the manual list). Before RC 2:
 - **ECA Digital:** the candidate ships no parental control, no supervised
   account enrollment and no age signal to applications, and retains no age
   evidence. The notes state this scope explicitly;

@@ -138,6 +138,8 @@ Esforço: 12 a 16 dias de trabalho; 14 a 21 com o sinal de idade.
 O trabalho andou mais rápido que o previsto: em 26/10 ficaram prontas e
 publicadas todas as frentes, exceto a 6, que depende do parecer jurídico. O
 cronograma diário anterior (frentes até 13/11 e RC 3 em 16/11) fica superado.
+Como nenhuma ISO da RC 2 do Desktop tinha sido publicada, a candidata com o
+controle parental passa a ser a **RC 2**, não uma RC 3 (decisão de 26/10).
 
 ### Feito em 26/10
 
@@ -156,7 +158,7 @@ cronograma diário anterior (frentes até 13/11 e RC 3 em 16/11) fica superado.
 
 | Quando | Trabalho |
 | --- | --- |
-| 27–28/10 | Build da RC 3 e gate completo da ISO, com `installed-gate.sh sudo-policy` e `parental` e o [roteiro manual](parental-controls-gate.md), incluindo reinício, atualização e rollback |
+| 27–28/10 | Build da RC 2 e gate completo da ISO, com `installed-gate.sh sudo-policy` e `parental` e o [roteiro manual](parental-controls-gate.md), incluindo reinício, atualização e rollback |
 | Depois do gate | Margem para correções e novo build, se necessário |
 | Depois da margem | Release check, notas da release e assinatura com a chave da release (pendente com o mantenedor) |
 | A definir pelo mantenedor | Lançamento da 16.1 com controle parental; 26/11 continua como data-limite |
@@ -168,8 +170,8 @@ cronograma diário anterior (frentes até 13/11 e RC 3 em 16/11) fica superado.
 ## Impacto na 16.1
 
 - Exceção ao congelamento: imagem, Vega, um pacote novo e o `flatpak`.
-- O build #6 da RC 2 segue como validação do vegad 5.1.41; a candidata final
-  passa a ser uma RC 3 com o controle parental e o gate completo.
+- Os builds #4 a #6 da RC 2 não foram publicados; a RC 2 publicada será o
+  build com o controle parental e o gate completo.
 - A chave de assinatura da release continua pendente, qualquer que seja a
   data.
 
