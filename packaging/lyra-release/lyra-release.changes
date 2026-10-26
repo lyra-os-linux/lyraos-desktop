@@ -6,6 +6,8 @@ Mon Oct 26 12:00:00 UTC 2026 - Rodrigo Brito
   whose global "Defaults !targetpw" let every account sudo to root with its
   own password. The file is removed only when unchanged and when the vendor
   sudoers is in use; otherwise a warning asks for review.
+- Compare the file with cmp instead of command substitutions, so the
+  scriptlet prints nothing to the zypper output.
 
 -------------------------------------------------------------------
 Mon Oct 19 12:00:00 UTC 2026 - Rodrigo Brito
