@@ -7,3 +7,7 @@ Mon Oct 26 12:00:00 UTC 2026 - Rodrigo Brito
   * /etc/pam.d/login = vendor login + pam_access, so supervised accounts
     cannot log in on a text console while GDM is unchanged. %check fails
     when /usr/lib/pam.d/login changes, so the copy is refreshed.
+  * a dconf profile for supervised accounts that locks the Alt+F2
+    command line (org.gnome.desktop.lockdown disable-command-line),
+    selected by a systemd user environment generator only for members
+    of lyra-supervised.

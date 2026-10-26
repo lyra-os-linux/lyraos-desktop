@@ -14,6 +14,8 @@ GNOME e o openSUSE Leap 16.1 já entregam e mantêm.
 Fora do escopo, e escrito assim na interface e na documentação:
 
 - resistência a quem tem senha de administrador, live USB ou acesso ao disco;
+- resistência a uma criança com conhecimento técnico: atalhos `.desktop`, scripts
+  e macros próprios ainda executam comandos (qualificação R23);
 - filtro de conteúdo web e histórico de navegação;
 - bloqueio de aplicativos RPM (o malcontent só lista aplicativos Flatpak).
 

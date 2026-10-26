@@ -1,0 +1,3 @@
+# Lyra OS: contas supervisionadas não executam comandos pelo Alt+F2.
+[org/gnome/desktop/lockdown]
+disable-command-line=true
