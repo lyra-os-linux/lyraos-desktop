@@ -7,6 +7,7 @@
 // "Desabilitado" for supervised accounts. It grants READ only, to an
 // administrator in an active local session; changing parental controls still
 // needs authentication (docs/parental-controls-upstream-qualification.md, R12).
+// Shipped by lyra-parental-controls so existing installs get it from zypper.
 
 polkit.addRule(function(action, subject) {
     /* Allow administrators to read parental controls (for any account) without

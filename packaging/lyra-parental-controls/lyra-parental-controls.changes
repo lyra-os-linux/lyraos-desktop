@@ -11,3 +11,6 @@ Mon Oct 26 12:00:00 UTC 2026 - Rodrigo Brito
     command line (org.gnome.desktop.lockdown disable-command-line),
     selected by a systemd user environment generator only for members
     of lyra-supervised.
+  * require malcontent-control and its typelib, and ship the upstream
+    malcontent polkit read rule (wheel, active local session), so installs
+    made before the image carried them get them through zypper.

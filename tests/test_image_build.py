@@ -324,11 +324,16 @@ class ImagePolicyTests(unittest.TestCase):
     def test_parental_controls_app_and_read_rule_ship_in_the_image(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         packages = {node.attrib["name"] for node in root.findall("packages/package")}
-        self.assertTrue({"malcontent-control", "typelib-1_0-MalcontentUi-1"} <= packages)
+        self.assertTrue({"lyra-parental-controls", "malcontent-control",
+                         "typelib-1_0-MalcontentUi-1"} <= packages)
+        self.assertFalse((ROOT / "kiwi/root/etc/polkit-1/rules.d/52-lyra-parental-read.rules").exists())
 
-        rule = (
-            ROOT / "kiwi/root/etc/polkit-1/rules.d/52-lyra-parental-read.rules"
-        ).read_text(encoding="utf-8")
+        package = ROOT / "packaging/lyra-parental-controls"
+        spec = (package / "lyra-parental-controls.spec").read_text(encoding="utf-8")
+        for requirement in ("malcontent-control", "typelib-1_0-MalcontentUi-1"):
+            self.assertIn(f"Requires:       {requirement}\n", spec)
+        self.assertIn("%{_datadir}/polkit-1/rules.d/52-lyra-parental-read.rules", spec)
+        rule = (package / "52-lyra-parental-read.rules").read_text(encoding="utf-8")
         rule = rule[rule.index("polkit.addRule"):]
         # Read-only grant to an active local administrator, as upstream.
         self.assertIn('subject.isInGroup("wheel")', rule)
