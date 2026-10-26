@@ -1,6 +1,6 @@
 # ADR 0016: adiar compatibilidade Android e Windows para o release futura
 
-- Estado: aceita
+- Estado: substituída pela [ADR 0020](0020-abandon-android-windows.md) em 26/10/2026
 - Data: 2026-08-26
 - Substitui: [ADR 0015](0015-optional-android-windows-compatibility.md)
 - Relacionadas: issues #14, #15, #16, #17, #18, #19, #20 e #50
