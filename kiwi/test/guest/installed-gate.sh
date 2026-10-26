@@ -115,9 +115,15 @@ parental() {
   id -nG "$child"
   id -nG "$child" | tr ' ' '\n' | grep -qx lyra-supervised || fail "not in lyra-supervised"
   echo "## malcontent hides the terminals and Vega"
-  filter="$(sudo grep '^AppFilter=' "/var/lib/AccountsService/users/$child")"; echo "$filter"
+  # Read the AccountsService property, which GNOME Shell uses; the state file
+  # may be written a moment later on a fresh install.
+  local object
+  object="$(busctl call org.freedesktop.Accounts /org/freedesktop/Accounts \
+    org.freedesktop.Accounts FindUserByName s "$child" | awk '{print $2}' | tr -d '"')"
+  filter="$(sudo busctl get-property org.freedesktop.Accounts "$object" \
+    com.endlessm.ParentalControls.AppFilter AppFilter)"; echo "$filter"
   for path in /usr/bin/kgx /usr/bin/gnome-terminal /usr/bin/fish /usr/bin/vega-gtk; do
-    grep -qF "'$path'" <<<"$filter" || fail "$path not hidden"
+    grep -qF "\"$path\"" <<<"$filter" || fail "$path not hidden"
   done
   echo "## supervised account cannot become administrator"
   if sudo "${users[@]}" SetAdmin sb "$child" true 2>&1; then fail "SetAdmin accepted"; fi
@@ -126,7 +132,13 @@ parental() {
   echo "## su to root is refused (root is locked)"
   if sudo -u "$child" sh -c "printf '%s\\n' '$password' | su -c true root" 2>&1; then fail "su granted"; fi
   echo "## SSH denies the group"
-  sudo sshd -T 2>/dev/null | grep -Fx 'denygroups lyra-supervised' || fail "DenyGroups missing"
+  # sshd is disabled by default and a fresh install has no host keys yet:
+  # check the configuration with a throwaway key.
+  local hostkey
+  hostkey="$(mktemp -d)/hostkey"
+  ssh-keygen -q -t ed25519 -N '' -f "$hostkey"
+  sudo sshd -T -h "$hostkey" | grep -Fx 'denygroups lyra-supervised' || fail "DenyGroups missing"
+  rm -f "$hostkey" "$hostkey.pub"
   echo "## TTY: /etc/pam.d/login is the vendor file plus pam_access"
   grep -c 'pam_access.so accessfile=/usr/share/lyra-parental-controls/access.conf' /etc/pam.d/login || fail "pam_access missing"
   grep -vF 'pam_access.so accessfile=/usr/share/lyra-parental-controls/access.conf' /etc/pam.d/login \
