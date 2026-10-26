@@ -1,0 +1,24 @@
+// Lyra OS - Odisseia
+//
+// Upstream malcontent rule (accounts-service/com.endlessm.ParentalControls.rules.in,
+// Copyright © 2019 Endless Mobile, Inc., LGPL-2.1-or-later) with
+// @PRIVILEGED_GROUP@ = wheel. openSUSE moves it to %doc instead of installing
+// it, so GNOME Settings, which reads without an authentication dialog, shows
+// "Desabilitado" for supervised accounts. It grants READ only, to an
+// administrator in an active local session; changing parental controls still
+// needs authentication (docs/parental-controls-upstream-qualification.md, R12).
+
+polkit.addRule(function(action, subject) {
+    /* Allow administrators to read parental controls (for any account) without
+     * needing an additional polkit authorisation dialogue. */
+    if ((action.id == "com.endlessm.ParentalControls.AppFilter.ReadOwn" ||
+         action.id == "com.endlessm.ParentalControls.AppFilter.ReadAny" ||
+         action.id == "com.endlessm.ParentalControls.SessionLimits.ReadOwn" ||
+         action.id == "com.endlessm.ParentalControls.SessionLimits.ReadAny") &&
+        subject.active && subject.local &&
+        subject.isInGroup("wheel")) {
+            return polkit.Result.YES;
+    }
+
+    return polkit.Result.NOT_HANDLED;
+});

@@ -21,6 +21,7 @@ MINIMUMS = {
     'lyra-firefox-ext': '0.1.3',
     'lyra-firefox-theme': '0.1.0', 'lyra-vms': '0.1.0',
     'sudo-policy-wheel-auth-self': '1.9.17',
+    'malcontent-control': '0.12.0', 'typelib-1_0-MalcontentUi-1': '0.12.0',
 }
 
 
