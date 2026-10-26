@@ -48,9 +48,6 @@ Parental": navegadores restritos e um aplicativo bloqueado.
    Aplicativos, do menu Iniciar e da busca (Shell e Sheliak).
 4. Sessão da criança: Alt+F2 não abre nada.
 5. Sessão da criança: `Ctrl+Alt+F3` recusa o login dela; o administrador entra.
-6. Vega, Software: "Habilitar Flatpak" mostra o aviso com o parágrafo de
-   atenção, pede a senha do administrador e o Flathub aparece; o quadro da
-   conta supervisionada passa a mostrar o aviso do Flatpak.
 
 ## Reinício, atualização e rollback
 
@@ -60,6 +57,19 @@ Repetir `installed-gate.sh parental` e os itens 3 a 5 depois de:
 2. `zypper up` com os repositórios do Lyra;
 3. rollback para o snapshot anterior à atualização pelo Vega ou pelo Snapper,
    seguido de reinício.
+
+As fases podem andar junto com o `rollback-gate.sh` da candidata. Ele volta ao
+snapshot da instalação, anterior à conta da criança, que por isso some; para
+os itens 3 a 5, faça depois o rollback para o snapshot `pre` da atualização.
+
+## Por último: Flatpak
+
+Fica no fim porque instala o `flatpak`, e daí em diante o item "Flatpak
+ausente por padrão" da parte automática falha por definição.
+
+6. Vega, Software: "Habilitar Flatpak" mostra o aviso com o parágrafo de
+   atenção, pede a senha do administrador e o Flathub aparece; o quadro da
+   conta supervisionada passa a mostrar o aviso do Flatpak.
 
 ## Limites aceitos
 
