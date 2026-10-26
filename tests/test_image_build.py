@@ -352,6 +352,17 @@ class ImagePolicyTests(unittest.TestCase):
         # The rule never goes to the common stack, which GDM also uses.
         self.assertNotIn("pam-config", spec)
 
+        # Alt+F2 locked only in the supervised accounts' dconf profile.
+        generator = (package / "60-lyra-supervised.envgen").read_text(encoding="utf-8")
+        self.assertIn("grep -qx lyra-supervised && echo DCONF_PROFILE=lyra-supervised", generator)
+        self.assertEqual((package / "dconf-profile").read_text(encoding="utf-8").splitlines(),
+                         ["user-db:user", "system-db:lyra-supervised", "system-db:local"])
+        self.assertIn("disable-command-line=true",
+                      (package / "00-lyra-supervised").read_text(encoding="utf-8"))
+        self.assertEqual((package / "00-lyra-supervised.locks").read_text(encoding="utf-8").strip(),
+                         "/org/gnome/desktop/lockdown/disable-command-line")
+        self.assertIn("%ghost %{_sysconfdir}/dconf/db/lyra-supervised", spec)
+
     def test_installed_desktop_sudo_is_limited_to_wheel(self) -> None:
         deploy = (ROOT / "installer/src/service/operations/deploy.rs").read_text(
             encoding="utf-8"

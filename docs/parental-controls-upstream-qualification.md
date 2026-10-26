@@ -48,6 +48,9 @@ Legenda: **U** atendido pelo upstream; **I** atendido com integração do Lyra;
 | R18 | SSH bloqueado | Não ensaiado (frente 3) | — | `DenyGroups lyra-supervised` |
 | R19 | Limites de tempo de sessão | `pam_malcontent` presente, fora de qualquer pilha PAM | F | Fora do escopo desta versão |
 | R20 | GNOME Software respeita as regras | Fora da imagem. Ensaiado à parte: instala na conta da criança apesar da proibição | F | Sem efeito no Lyra; depende da frente 5 |
+| R21 | Criança não executa comandos pelo Alt+F2 | Fechado: perfil dconf `lyra-supervised` com `disable-command-line` travado, escolhido por um gerador de ambiente do systemd só para o grupo. A criança não destrava pelo perfil comum; o administrador mantém o Alt+F2 | I | `lyra-parental-controls` (26/10) |
+| R22 | Terminais e Vega fora do alcance da criança | Console, `gnome-terminal`, fish e Vega somem dos menus, da busca e do dock com o bloqueio por caminho no malcontent (Shell e Sheliak 2.0.6). Os terminais ignoram a trava do dconf e continuam executáveis se chamados | I | Frente 4: o Vega aplica essa lista ao marcar a conta |
+| R23 | Nenhum outro caminho para rodar comandos | Abertos: atalho `.desktop` criado pela criança (inclusive `Exec=flatpak install --user ...`, e o `flatpak` não pode ser bloqueado porque abre todos os apps Flatpak), script próprio pelo Nautilus e macros do LibreOffice | F | Documentar: o controle não resiste a uma criança com conhecimento técnico |
 
 ### Reestimativa
 

@@ -1,0 +1,5 @@
+#!/bin/sh
+# Lyra OS: a sessão de uma conta supervisionada usa o perfil dconf
+# lyra-supervised, com o Alt+F2 travado. Roda como o próprio usuário.
+id -nG | tr ' ' '\n' | grep -qx lyra-supervised && echo DCONF_PROFILE=lyra-supervised
+exit 0

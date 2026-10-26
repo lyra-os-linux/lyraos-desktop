@@ -8,6 +8,10 @@ Source0:        lyra-parental-controls.sysusers
 Source1:        50-lyra-supervised.conf
 Source2:        login
 Source3:        access.conf
+Source4:        dconf-profile
+Source5:        00-lyra-supervised
+Source6:        00-lyra-supervised.locks
+Source7:        60-lyra-supervised.envgen
 BuildRequires:  openssh-clients
 BuildRequires:  openssh-server
 BuildRequires:  sysuser-tools
@@ -16,13 +20,16 @@ BuildRequires:  util-linux
 Requires:       openssh-server
 Requires:       pam
 Requires:       util-linux
+Requires:       dconf
+Requires:       systemd
 %{?sysusers_requires}
 BuildArch:      noarch
 
 %description
 Marks accounts supervised by Lyra OS basic parental controls through the
 lyra-supervised system group. Members of the group cannot log in over SSH or
-on a text console (TTY); the graphical login is unchanged.
+on a text console (TTY); the graphical login is unchanged. Their GNOME
+session uses a dconf profile that locks the Alt+F2 command line.
 The rules themselves (applications, installation, age rating) belong to
 malcontent and its "Controle parental" application.
 
@@ -39,6 +46,12 @@ install -Dm0644 %{SOURCE1} %{buildroot}%{_distconfdir}/ssh/sshd_config.d/50-lyra
 # stack would also block GDM, whose PAM_TTY is a VT too.
 install -Dm0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pam.d/login
 install -Dm0644 %{SOURCE3} %{buildroot}%{_datadir}/%{name}/access.conf
+# GNOME session of supervised accounts: own dconf profile, chosen by a
+# systemd user environment generator only for members of the group.
+install -Dm0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/dconf/profile/lyra-supervised
+install -Dm0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/dconf/db/lyra-supervised.d/00-lyra-supervised
+install -Dm0644 %{SOURCE6} %{buildroot}%{_sysconfdir}/dconf/db/lyra-supervised.d/locks/00-lyra-supervised
+install -Dm0755 %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/user-environment-generators/60-lyra-supervised
 
 %check
 # The copy must stay the vendor file plus one line. When util-linux changes
@@ -49,6 +62,10 @@ test "$(grep -c pam_access %{SOURCE2})" = 1
 grep -Fx -- '-:(lyra-supervised):ALL' %{SOURCE3}
 grep -Fx 'g lyra-supervised -' %{SOURCE0}
 grep -Fx 'DenyGroups lyra-supervised' %{SOURCE1}
+grep -Fx 'system-db:lyra-supervised' %{SOURCE4}
+grep -Fx 'disable-command-line=true' %{SOURCE5}
+grep -Fx '/org/gnome/desktop/lockdown/disable-command-line' %{SOURCE6}
+sh -n %{SOURCE7}
 # sshd must parse the drop-in and apply DenyGroups.
 ssh-keygen -q -t ed25519 -N '' -f check-hostkey
 printf 'Include %s\n' %{buildroot}%{_distconfdir}/ssh/sshd_config.d/50-lyra-supervised.conf > check-sshd_config
@@ -59,9 +76,11 @@ printf 'Include %s\n' %{buildroot}%{_distconfdir}/ssh/sshd_config.d/50-lyra-supe
 # sshd keeps the configuration it loaded at start; reload only if running.
 %post
 systemctl try-reload-or-restart sshd.service >/dev/null 2>&1 || :
+dconf update >/dev/null 2>&1 || :
 
 %postun
 systemctl try-reload-or-restart sshd.service >/dev/null 2>&1 || :
+dconf update >/dev/null 2>&1 || :
 
 %files
 %{_sysusersdir}/%{name}.conf
@@ -70,5 +89,13 @@ systemctl try-reload-or-restart sshd.service >/dev/null 2>&1 || :
 %{_distconfdir}/ssh/sshd_config.d/50-lyra-supervised.conf
 %config %{_sysconfdir}/pam.d/login
 %{_datadir}/%{name}
+%dir %{_sysconfdir}/dconf
+%dir %{_sysconfdir}/dconf/profile
+%dir %{_sysconfdir}/dconf/db
+%{_sysconfdir}/dconf/profile/lyra-supervised
+%{_sysconfdir}/dconf/db/lyra-supervised.d
+%ghost %{_sysconfdir}/dconf/db/lyra-supervised
+%dir %{_prefix}/lib/systemd/user-environment-generators
+%{_prefix}/lib/systemd/user-environment-generators/60-lyra-supervised
 
 %changelog
