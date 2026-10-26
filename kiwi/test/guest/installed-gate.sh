@@ -5,7 +5,7 @@
 # The host assembles the gate files with kiwi/test/gate-evidence.py.
 #
 # Usage (as the installed account; sudo asks for its password once):
-#   installed-gate.sh all                       first-boot, uefi-secure-boot, journal-crit, packages, palette, locale, users
+#   installed-gate.sh all                       first-boot, uefi-secure-boot, journal-crit, packages, palette, locale, users, sudo-policy
 #   installed-gate.sh first-boot                only lyra-system-smoke first-boot
 #   installed-gate.sh <section> ...             any of the sections, in order
 # Options:
@@ -19,13 +19,13 @@ SECTIONS=()
 for argument in "$@"; do
   case "$argument" in
     --acknowledge-journal=*) ACK="${argument#*=}" ;;
-    all) SECTIONS+=(first-boot uefi-secure-boot journal-crit packages palette locale users) ;;
-    first-boot|uefi-secure-boot|journal-crit|packages|palette|locale|users) SECTIONS+=("$argument") ;;
+    all) SECTIONS+=(first-boot uefi-secure-boot journal-crit packages palette locale users sudo-policy) ;;
+    first-boot|uefi-secure-boot|journal-crit|packages|palette|locale|users|sudo-policy) SECTIONS+=("$argument") ;;
     *) echo "unknown argument: $argument" >&2; exit 2 ;;
   esac
 done
 if [ "${#SECTIONS[@]}" -eq 0 ]; then
-  echo "usage: installed-gate.sh all|first-boot|uefi-secure-boot|journal-crit|packages|palette|locale|users [--acknowledge-journal=ISSUE]" >&2
+  echo "usage: installed-gate.sh all|first-boot|uefi-secure-boot|journal-crit|packages|palette|locale|users|sudo-policy [--acknowledge-journal=ISSUE]" >&2
   exit 2
 fi
 if [ ! -c "$PORT" ]; then
@@ -78,6 +78,24 @@ palette() {
 }
 locale_info() { localectl status 2>&1; cat /etc/locale.conf 2>&1; }
 users() { getent passwd | awk -F: '$3 >= 1000 && $3 < 65534'; echo "## liveuser must be absent"; getent passwd liveuser || echo "liveuser absent"; }
+# Only wheel may sudo with its own password. A temporary account outside
+# wheel tries sudo with its own password and must be refused.
+sudo_policy() {
+  local probe=lyra-gate-sudo-probe password status=0
+  echo "## policy"; rpm -q sudo-policy-wheel-auth-self || status=1
+  echo "## global !targetpw (must be absent)"
+  sudo grep -rsnE '^Defaults[[:space:]]+!targetpw' /etc/sudoers /etc/sudoers.d /usr/etc/sudoers /usr/etc/sudoers.d && status=1
+  password="$(od -An -N12 -tx1 /dev/urandom | tr -d ' \n')"
+  sudo useradd -M -s /bin/sh "$probe" && echo "$probe:$password" | sudo chpasswd || return 1
+  echo "## account outside wheel, own password"
+  if sudo -u "$probe" sh -c "printf '%s\\n' '$password' | sudo -S -k -p '' true" 2>&1; then
+    echo "FAIL: $probe got root"; status=1
+  else
+    echo "refused"
+  fi
+  sudo userdel "$probe" || status=1
+  return "$status"
+}
 
 FINAL=0
 for section in "${SECTIONS[@]}"; do
@@ -89,6 +107,7 @@ for section in "${SECTIONS[@]}"; do
     palette) stream palette palette || FINAL=1 ;;
     locale) stream locale locale_info || FINAL=1 ;;
     users) stream users users || FINAL=1 ;;
+    sudo-policy) stream sudo-policy sudo_policy || FINAL=1 ;;
   esac
 done
 exit "$FINAL"

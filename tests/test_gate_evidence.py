@@ -92,7 +92,7 @@ class GateEvidenceTests(unittest.TestCase):
     def test_guest_scripts_stream_every_gate_section_through_the_evidence_port(self) -> None:
         for script_path, tool, sections in (
             (LIVE, "live-gate", ("live-session", "live-session-offline", "firmware", "repositories", "identity", "journal-crit", "installer")),
-            (INSTALLED, "installed-gate", ("first-boot", "uefi-secure-boot", "journal-crit", "packages", "palette", "locale", "users")),
+            (INSTALLED, "installed-gate", ("first-boot", "uefi-secure-boot", "journal-crit", "packages", "palette", "locale", "users", "sudo-policy")),
         ):
             subprocess.run(["bash", "-n", str(script_path)], check=True)
             script = script_path.read_text(encoding="utf-8")

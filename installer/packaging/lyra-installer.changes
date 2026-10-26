@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Mon Oct 26 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
+
+- Security: stop writing /etc/sudoers.d/10-installer. Its global
+  "Defaults !targetpw", combined with the stock "ALL ALL=(ALL) ALL", let
+  every account sudo to root with its own password. Require openSUSE's
+  sudo-policy-wheel-auth-self in the target instead, so only wheel
+  authenticates with its own password.
+
+-------------------------------------------------------------------
 Wed Oct 07 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
 
 - Refresh the reproducible source from integrated Git 977fd8fdb520c3f889bf0fde332ca156878f5a99.

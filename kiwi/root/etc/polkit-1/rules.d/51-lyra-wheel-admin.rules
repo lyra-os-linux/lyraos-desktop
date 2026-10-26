@@ -7,7 +7,8 @@
 // locked ("!" in kiwi/config.xml) on both the live session and the
 // installed system (installer/src/service/operations/deploy.rs disables
 // it), so that prompt is impossible to satisfy - the polkit analog of the
-// sudo "Defaults targetpw" issue fixed for sudoers/10-installer.
+// sudo "Defaults targetpw" issue, solved by sudo-policy-wheel-auth-self
+// (which also ships this same push as /usr/share/polkit-1/rules.d/51-wheel.rules).
 //
 // liveuser and the sudo user the installer creates are both in "wheel"
 // (kiwi/config.xml, deploy.rs REQUIRED_USER_GROUPS), so adding wheel here

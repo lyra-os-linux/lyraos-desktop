@@ -218,12 +218,15 @@
     <!--
       Required for the "root disabled, sudo user created at install"
       model (PROMPT-LYRA-OS.md) to work on the installed system. The
-      Rust installer writes /etc/sudoers.d/10-installer on the target.
-      Without this package the directory is absent. The image doubles as
-      the target rootfs, so sudo is also present in the live session even
-      though liveuser's password is locked and never used there.
+      image doubles as the target rootfs, so sudo is also present in the
+      live session even though liveuser's password is locked and never
+      used there. openSUSE's sudo-policy-wheel-auth-self lets only wheel
+      authenticate with its own password; every other account still needs
+      root's, which is locked. The installer requires this policy and
+      never writes a global "Defaults !targetpw".
     -->
     <package name="sudo"/>
+    <package name="sudo-policy-wheel-auth-self"/>
 
     <!-- Provides chattr (Btrfs nodatacow workaround) and mke2fs. -->
     <package name="e2fsprogs"/>
