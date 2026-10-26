@@ -12,6 +12,7 @@ Source4:        dconf-profile
 Source5:        00-lyra-supervised
 Source6:        00-lyra-supervised.locks
 Source7:        60-lyra-supervised.envgen
+Source8:        52-lyra-parental-read.rules
 BuildRequires:  openssh-clients
 BuildRequires:  openssh-server
 BuildRequires:  sysuser-tools
@@ -21,6 +22,12 @@ Requires:       openssh-server
 Requires:       pam
 Requires:       util-linux
 Requires:       dconf
+# The parental controls app and its read rule come with this package, so
+# installs made before they were in the image get them through zypper.
+Requires:       malcontent
+Requires:       malcontent-control
+Requires:       typelib-1_0-MalcontentUi-1
+Requires:       polkit
 Requires:       systemd
 %{?sysusers_requires}
 BuildArch:      noarch
@@ -29,7 +36,9 @@ BuildArch:      noarch
 Marks accounts supervised by Lyra OS basic parental controls through the
 lyra-supervised system group. Members of the group cannot log in over SSH or
 on a text console (TTY); the graphical login is unchanged. Their GNOME
-session uses a dconf profile that locks the Alt+F2 command line.
+session uses a dconf profile that locks the Alt+F2 command line. Brings the
+"Controle parental" application and a polkit rule that lets administrators
+read the restrictions without a password, as upstream malcontent does.
 The rules themselves (applications, installation, age rating) belong to
 malcontent and its "Controle parental" application.
 
@@ -52,6 +61,7 @@ install -Dm0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/dconf/profile/lyra-supervi
 install -Dm0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/dconf/db/lyra-supervised.d/00-lyra-supervised
 install -Dm0644 %{SOURCE6} %{buildroot}%{_sysconfdir}/dconf/db/lyra-supervised.d/locks/00-lyra-supervised
 install -Dm0755 %{SOURCE7} %{buildroot}%{_prefix}/lib/systemd/user-environment-generators/60-lyra-supervised
+install -Dm0644 %{SOURCE8} %{buildroot}%{_datadir}/polkit-1/rules.d/52-lyra-parental-read.rules
 
 %check
 # The copy must stay the vendor file plus one line. When util-linux changes
@@ -66,6 +76,8 @@ grep -Fx 'system-db:lyra-supervised' %{SOURCE4}
 grep -Fx 'disable-command-line=true' %{SOURCE5}
 grep -Fx '/org/gnome/desktop/lockdown/disable-command-line' %{SOURCE6}
 sh -n %{SOURCE7}
+grep -F 'subject.isInGroup("wheel")' %{SOURCE8}
+! grep -E 'Change(Own|Any)' %{SOURCE8}
 # sshd must parse the drop-in and apply DenyGroups.
 ssh-keygen -q -t ed25519 -N '' -f check-hostkey
 printf 'Include %s\n' %{buildroot}%{_distconfdir}/ssh/sshd_config.d/50-lyra-supervised.conf > check-sshd_config
@@ -97,5 +109,8 @@ dconf update >/dev/null 2>&1 || :
 %ghost %{_sysconfdir}/dconf/db/lyra-supervised
 %dir %{_prefix}/lib/systemd/user-environment-generators
 %{_prefix}/lib/systemd/user-environment-generators/60-lyra-supervised
+%dir %{_datadir}/polkit-1
+%dir %{_datadir}/polkit-1/rules.d
+%{_datadir}/polkit-1/rules.d/52-lyra-parental-read.rules
 
 %changelog

@@ -427,12 +427,13 @@
     -->
     <package name="gnome-control-center"/>
     <!--
-      Basic parental controls (docs/parental-controls-plan.md, front 2):
-      the upstream "Controle parental" app, opened from Settings > Users and
-      from Vega. Its rules live in AccountsService (malcontent, already in the
-      image). 52-lyra-parental-read.rules lets wheel read them so Settings
-      shows the real state.
+      Basic parental controls (docs/parental-controls-plan.md): the
+      supervised group, SSH/TTY/Alt+F2 restrictions, and the upstream
+      "Controle parental" app with its polkit read rule all come with
+      lyra-parental-controls, so existing installs get them through zypper.
+      The app is listed too, as the image contract checks it.
     -->
+    <package name="lyra-parental-controls"/>
     <package name="malcontent-control"/>
     <package name="typelib-1_0-MalcontentUi-1"/>
     <package name="gnome-text-editor"/>
