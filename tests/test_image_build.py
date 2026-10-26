@@ -319,6 +319,22 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertTrue(update_smoke.is_file())
         self.assertNotEqual(update_smoke.stat().st_mode & 0o111, 0)
 
+    def test_parental_controls_app_and_read_rule_ship_in_the_image(self) -> None:
+        root = ET.parse(ROOT / "kiwi/config.xml").getroot()
+        packages = {node.attrib["name"] for node in root.findall("packages/package")}
+        self.assertTrue({"malcontent-control", "typelib-1_0-MalcontentUi-1"} <= packages)
+
+        rule = (
+            ROOT / "kiwi/root/etc/polkit-1/rules.d/52-lyra-parental-read.rules"
+        ).read_text(encoding="utf-8")
+        rule = rule[rule.index("polkit.addRule"):]
+        # Read-only grant to an active local administrator, as upstream.
+        self.assertIn('subject.isInGroup("wheel")', rule)
+        self.assertIn("subject.active && subject.local", rule)
+        self.assertIn("AppFilter.ReadAny", rule)
+        self.assertNotIn("Change", rule)
+        self.assertNotIn("@PRIVILEGED_GROUP@", rule)
+
     def test_installed_desktop_sudo_is_limited_to_wheel(self) -> None:
         deploy = (ROOT / "installer/src/service/operations/deploy.rs").read_text(
             encoding="utf-8"

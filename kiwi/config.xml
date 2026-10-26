@@ -426,6 +426,15 @@
       spec rules out any first-boot onboarding).
     -->
     <package name="gnome-control-center"/>
+    <!--
+      Basic parental controls (docs/parental-controls-plan.md, front 2):
+      the upstream "Controle parental" app, opened from Settings > Users and
+      from Vega. Its rules live in AccountsService (malcontent, already in the
+      image). 52-lyra-parental-read.rules lets wheel read them so Settings
+      shows the real state.
+    -->
+    <package name="malcontent-control"/>
+    <package name="typelib-1_0-MalcontentUi-1"/>
     <package name="gnome-text-editor"/>
     <!-- Cheese was renamed/rewritten upstream; there is no "cheese" RPM
          in Leap 16 - verified against the real repodata. -->
