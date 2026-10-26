@@ -127,19 +127,55 @@ Depois da frente 1, as frentes 2 a 5 andam em paralelo.
 
 Esforço: 12 a 16 dias de trabalho; 14 a 21 com o sinal de idade.
 
-## Cronograma estimado (início em 26/10/2026)
+## Cronograma por dia (início em 26/10/2026)
 
-| Período | Entrega |
+Dias úteis, com os feriados nacionais de 02/11 e 20/11. As frentes 2 a 5 são
+independentes entre si, mas são feitas em sequência, uma de cada vez.
+
+### Semana 1: qualificação e pacote
+
+| Dia | Frente | Trabalho |
+| --- | --- | --- |
+| Seg 26/10 | 1 | VM Leap 16.1 com snapshot, conta administradora e conta da criança. `malcontent-control`: gravação, persistência e se a criança consegue remover a política. |
+| Ter 27/10 | 1 | Painel Usuários do Settings 48, restrição no GNOME Software, RPM, navegador e terminal. Confirmar o #102 no `flatpak` oficial e definir o mecanismo do `pam_access` no TTY. |
+| Qua 28/10 | 1 | Matriz em `parental-controls-upstream-qualification.md` (PR), bug na SUSE sobre o `flatpak` e reestimativa das frentes 3 a 5. Decisões 2 e 4 do mantenedor. |
+| Qui 29/10 | 2, 3 | PR da imagem (`config.xml` e `check-gnome-image.py`). Início do spec do `lyra-parental-controls`: grupo e drop-in do sshd. |
+| Sex 30/10 | 3 | `pam_access`, `%check` e `obs/projects.toml`; PR e staging. |
+
+### Semana 2: Vega e Flatpak
+
+| Dia | Frente | Trabalho |
+| --- | --- | --- |
+| Seg 02/11 | — | Feriado (Finados). |
+| Ter 03/11 | 4 | `vegad`: recusar administrador + supervisionada e proteger a última conta administradora. Testes, PR e release. |
+| Qua 04/11 | 4 | `vega`, página Usuários: interruptor, selo e botão "Abrir Controle Parental". |
+| Qui 05/11 | 4 | `vega`: quadro com o que a supervisão cobre e o que não cobre, textos em pt, en e es; PR e release. |
+| Sex 06/11 | 5 | `flatpak` com `-Dmalcontent=enabled` no staging e exceção no `repository-policy`. |
+
+### Semana 3: Flatpak, gate e RC 3
+
+| Dia | Frente | Trabalho |
+| --- | --- | --- |
+| Seg 09/11 | 5 | Instalador preservando a exceção. Execução e instalação negadas, por usuário e por sistema. |
+| Ter 10/11 | 5 | Portais, AccountsService indisponível, atualização e rollback com Snapper. Promoção dos pacotes. |
+| Qua 11/11 | 7 | Script do gate #9 em `kiwi/test/guest/`. |
+| Qui 12/11 | 7 | ADR substituindo a 0008, revisão do `vega-parental-controls-ux.md`, site (pt, en, es, it) e issues #2, #4, #5, #7, #8, #11 e #102. |
+| Sex 13/11 | — | Build da RC 3 e gate completo da ISO. |
+
+### Semanas 4 e 5: margem e lançamento
+
+| Dia | Trabalho |
 | --- | --- |
-| 26–28/10 | Frente 1 (qualificação) |
-| 29/10–06/11 | Frentes 2 a 5 em paralelo, com staging no OBS |
-| 09–11/11 | Frente 7 (gate, ADR, documentação, issues) |
-| 12–13/11 | Build da RC 3 e gate completo da ISO |
-| 16–20/11 | Margem para Flatpak, portais e correções do gate |
-| **26/11** | **Lançamento da 16.1 com controle parental (data realista)** |
+| 16–19/11 | Margem para Flatpak, portais, correções do gate e novo build, se necessário. |
+| Sex 20/11 | Feriado (Consciência Negra). |
+| 23–25/11 | Release check, notas da release e chave de assinatura. |
+| **Qui 26/11** | **Lançamento da 16.1 com controle parental (data realista)** |
+
+São 13 dias de trabalho, dentro da estimativa de 12 a 16.
 
 - Otimista: 19/11, se a Flatpak não trouxer surpresas.
-- Com sinal de idade: 03/12.
+- Com sinal de idade (frente 6): consome a margem; lançamento em 03/12.
+- Com o plano B da Flatpak: a semana 3 fica 2 a 3 dias mais curta.
 
 ## Impacto na 16.1
 
