@@ -7,8 +7,9 @@ o instalador da edição **Odisseia 16.1 RC 2** para computadores x86_64.
 
 ## Foco da versão 16.1
 
-O lançamento de 05/11/2026 é o **Lyra OS Desktop GNOME 16.1**, que segue seu
-próprio cronograma. O GNOME é a única edição Desktop: KDE Plasma e XFCE
+O próximo lançamento é o **Lyra OS Desktop GNOME 16.1**, com controle parental
+básico ([ADR 0019](docs/adr/0019-basic-parental-controls.md)). A data fica a
+definir pelo mantenedor depois do gate da RC 2, com 26/11/2026 como limite. O GNOME é a única edição Desktop: KDE Plasma e XFCE
 foram abandonados ([ADR 0018](docs/adr/0018-abandon-kde-xfce.md)).
 
 A decisão de 16/09/2026 prevê **uma única ISO Desktop GNOME**, sem a pilha

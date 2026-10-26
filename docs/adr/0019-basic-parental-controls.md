@@ -60,7 +60,7 @@ componentes do GNOME e do openSUSE:
 - A correção de segurança do `sudo` (#191, #192), encontrada na qualificação,
   é pré-requisito: sem ela qualquer conta virava administradora.
 - O gate #9 ([parental-controls-gate.md](../parental-controls-gate.md)) entra
-  na candidata a partir da RC 3.
+  na candidata a partir da RC 2.
 - [vega-parental-controls-ux.md](../vega-parental-controls-ux.md) e
   [parental-protection-boundary.md](../parental-protection-boundary.md) ficam
   como histórico do desenho anterior.
