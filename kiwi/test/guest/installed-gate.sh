@@ -5,7 +5,7 @@
 # The host assembles the gate files with kiwi/test/gate-evidence.py.
 #
 # Usage (as the installed account; sudo asks for its password once):
-#   installed-gate.sh all                       first-boot, uefi-secure-boot, journal-crit, packages, palette, locale, users, sudo-policy
+#   installed-gate.sh all                       first-boot, uefi-secure-boot, journal-crit, packages, palette, locale, users, sudo-policy, parental
 #   installed-gate.sh first-boot                only lyra-system-smoke first-boot
 #   installed-gate.sh <section> ...             any of the sections, in order
 # Options:
@@ -19,13 +19,13 @@ SECTIONS=()
 for argument in "$@"; do
   case "$argument" in
     --acknowledge-journal=*) ACK="${argument#*=}" ;;
-    all) SECTIONS+=(first-boot uefi-secure-boot journal-crit packages palette locale users sudo-policy) ;;
-    first-boot|uefi-secure-boot|journal-crit|packages|palette|locale|users|sudo-policy) SECTIONS+=("$argument") ;;
+    all) SECTIONS+=(first-boot uefi-secure-boot journal-crit packages palette locale users sudo-policy parental) ;;
+    first-boot|uefi-secure-boot|journal-crit|packages|palette|locale|users|sudo-policy|parental) SECTIONS+=("$argument") ;;
     *) echo "unknown argument: $argument" >&2; exit 2 ;;
   esac
 done
 if [ "${#SECTIONS[@]}" -eq 0 ]; then
-  echo "usage: installed-gate.sh all|first-boot|uefi-secure-boot|journal-crit|packages|palette|locale|users|sudo-policy [--acknowledge-journal=ISSUE]" >&2
+  echo "usage: installed-gate.sh all|first-boot|uefi-secure-boot|journal-crit|packages|palette|locale|users|sudo-policy|parental [--acknowledge-journal=ISSUE]" >&2
   exit 2
 fi
 if [ ! -c "$PORT" ]; then
@@ -97,6 +97,52 @@ sudo_policy() {
   return "$status"
 }
 
+# Basic parental controls (gate #9, docs/parental-controls-gate.md). A
+# temporary supervised account is created through vegad, every restriction
+# that can be checked without a graphical session is verified, and the
+# account is removed. The graphical checks follow the manual list in the doc.
+parental() {
+  local child=lyra-gate-child password status=0 path filter
+  local users=(busctl --system call org.lyraos.Vega1 /org/lyraos/Vega1 org.lyraos.Vega1.Users)
+  fail() { echo "FAIL: $*"; status=1; }
+  echo "## packages"
+  rpm -q lyra-parental-controls malcontent-control sheliak vegad vega-gtk || status=1
+  echo "## flatpak is not installed by default (enabled in Vega)"
+  if rpm -q flatpak; then fail "flatpak installed"; else echo "absent"; fi
+  password="$(od -An -N12 -tx1 /dev/urandom | tr -d ' \n')"
+  echo "## supervised account created through vegad"
+  sudo "${users[@]}" CreateUser sssasayb "$child" "Lyra Gate Child" "$password" 1 lyra-supervised 0 false || return 1
+  id -nG "$child"
+  id -nG "$child" | tr ' ' '\n' | grep -qx lyra-supervised || fail "not in lyra-supervised"
+  echo "## malcontent hides the terminals and Vega"
+  filter="$(sudo grep '^AppFilter=' "/var/lib/AccountsService/users/$child")"; echo "$filter"
+  for path in /usr/bin/kgx /usr/bin/gnome-terminal /usr/bin/fish /usr/bin/vega-gtk; do
+    grep -qF "'$path'" <<<"$filter" || fail "$path not hidden"
+  done
+  echo "## supervised account cannot become administrator"
+  if sudo "${users[@]}" SetAdmin sb "$child" true 2>&1; then fail "SetAdmin accepted"; fi
+  echo "## sudo with its own password is refused"
+  if sudo -u "$child" sh -c "printf '%s\\n' '$password' | sudo -S -k -p '' true" 2>&1; then fail "sudo granted"; fi
+  echo "## su to root is refused (root is locked)"
+  if sudo -u "$child" sh -c "printf '%s\\n' '$password' | su -c true root" 2>&1; then fail "su granted"; fi
+  echo "## SSH denies the group"
+  sudo sshd -T 2>/dev/null | grep -Fx 'denygroups lyra-supervised' || fail "DenyGroups missing"
+  echo "## TTY: /etc/pam.d/login is the vendor file plus pam_access"
+  grep -c 'pam_access.so accessfile=/usr/share/lyra-parental-controls/access.conf' /etc/pam.d/login || fail "pam_access missing"
+  grep -vF 'pam_access.so accessfile=/usr/share/lyra-parental-controls/access.conf' /etc/pam.d/login \
+    | diff -u /usr/lib/pam.d/login - || fail "vendor login changed; refresh the copy"
+  echo "## Alt+F2 locked only for the supervised account"
+  [ "$(sudo -u "$child" /usr/lib/systemd/user-environment-generators/60-lyra-supervised)" = DCONF_PROFILE=lyra-supervised ] || fail "generator"
+  [ -z "$(/usr/lib/systemd/user-environment-generators/60-lyra-supervised)" ] || fail "generator applies to the administrator"
+  [ "$(sudo -u "$child" env DCONF_PROFILE=lyra-supervised gsettings get org.gnome.desktop.lockdown disable-command-line)" = true ] || fail "Alt+F2 not locked"
+  [ "$(sudo -u "$child" env DCONF_PROFILE=lyra-supervised gsettings writable org.gnome.desktop.lockdown disable-command-line)" = false ] || fail "Alt+F2 lock writable"
+  echo "## Settings can read the rules (polkit read rule)"
+  test -f /usr/share/polkit-1/rules.d/52-lyra-parental-read.rules || fail "read rule missing"
+  echo "## temporary account removed"
+  sudo "${users[@]}" RemoveUser s "$child" || status=1
+  return "$status"
+}
+
 FINAL=0
 for section in "${SECTIONS[@]}"; do
   case "$section" in
@@ -108,6 +154,7 @@ for section in "${SECTIONS[@]}"; do
     locale) stream locale locale_info || FINAL=1 ;;
     users) stream users users || FINAL=1 ;;
     sudo-policy) stream sudo-policy sudo_policy || FINAL=1 ;;
+    parental) stream parental parental || FINAL=1 ;;
   esac
 done
 exit "$FINAL"
