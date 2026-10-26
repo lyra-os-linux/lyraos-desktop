@@ -1,5 +1,94 @@
 # Qualificação upstream de controles parentais
 
+## Qualificação 16.1 para o controle parental básico — 26/10/2026
+
+Frente 1 do [plano de desenvolvimento](parental-controls-plan.md). Ensaios numa
+VM descartável com o Lyra OS 16.1 RC 2 instalado (build #5), uma conta
+administradora (`wheel`) e uma conta de criança sem privilégios. Os pacotes do
+malcontent, AccountsService, Flatpak e GNOME Settings são os oficiais do Leap
+16.1, sem alteração. Desvio do plano: a base não é o Leap 16.1 puro, e sim o
+produto Lyra, porque o alvo inclui Sheliak, Vega, polkit e os repositórios do
+Lyra. Notas dos ensaios: [dia 1](evidence/parental-qualification-20261026/dia1.md)
+e [dia 2](evidence/parental-qualification-20261026/dia2.md).
+
+### Achado de segurança, já corrigido
+
+O instalador gravava `/etc/sudoers.d/10-installer` com `Defaults !targetpw`
+global. Somado ao `ALL ALL=(ALL) ALL` do sudoers do openSUSE, qualquer conta
+virava root com a própria senha, inclusive a criança. Corrigido em #191 e #192
+com a política `sudo-policy-wheel-auth-self` do openSUSE. Publicado em
+`lyra-release` 16.1-lp161.2.1 e `lyra-installer` 0.1.0-lp161.38.1, e
+verificado por um `zypper up` comum numa instalação RC 2. O gate ganhou a
+seção `installed-gate sudo-policy`.
+
+### Matriz requisito → responsável
+
+Legenda: **U** atendido pelo upstream; **I** atendido com integração do Lyra;
+**L** lacuna, sem solução nesta versão; **F** fora do escopo, a documentar.
+
+| # | Requisito | Resultado | Classe | Trabalho |
+| --- | --- | --- | --- | --- |
+| R1 | Administrador grava regras (navegadores, apps, instalação, classificação) | `malcontent-control` grava no AccountsService (arquivo do root, 0600) | U | Imagem: incluir `malcontent-control` e `typelib-1_0-MalcontentUi-1` |
+| R2 | Regras persistem | Mantidas após reinício | U | — |
+| R3 | Criança não remove as regras | Negado por `malcontent-client`, D-Bus, escrita no arquivo e na sessão gráfica (pede senha de administrador) | U | — |
+| R4 | Criança sem privilégios administrativos | `su`, `pkexec`, `zypper`, PackageKit e ações do Vega exigem administrador | U | Depende da correção do sudo acima |
+| R5 | Navegador e apps bloqueados somem dos menus e da busca | Somem no dock e na busca do Shell; **continuam no menu Aplicativos e na busca do Sheliak**, e abrem por lá | I | Sheliak: consultar `ParentalControlsManager` em `startMenu.ts`, `panelMenus.ts` e `search/indicator.ts` |
+| R6 | App Flatpak bloqueado não executa | `flatpak run` abre o app bloqueado | I | Frente 5: `flatpak` do Lyra com `-Dmalcontent=enabled` e exceção de prioridade (decisão de 26/10) |
+| R7 | Criança não instala Flatpak | Adiciona o Flathub na própria conta e instala, pela CLI e pelo GNOME Software | I | Frente 5, a mesma correção |
+| R8 | Instalação no sistema (RPM ou Flatpak) | Exige administrador (polkit) | U | — |
+| R9 | Bloqueio de apps RPM | Só ocultação por caminho, pela CLI; a interface lista só Flatpak | F | Documentar; não oferecer na interface |
+| R10 | Impedir navegador pelo terminal ou `xdg-open` | Abre: o malcontent orienta consumidores, não é controle obrigatório | F | Documentar; a imagem tem dois terminais (Console e `gnome-terminal`) |
+| R11 | Entrada pelo GNOME Settings | Linha "Controle parental" na conta abre `malcontent-control --user <conta>` | U | — |
+| R12 | Estado correto no Settings | Mostra "Desabilitado" com regras ativas: `ReadAny` é `auth_admin_keep` e o Settings lê sem interação | I | Regra polkit: `ReadAny` sem senha para `wheel` em sessão local ativa (só leitura) |
+| R13 | Uma autenticação só | Settings e Controle Parental pedem a senha separadamente | L | Aceitar; o Vega abrirá direto o Controle Parental |
+| R14 | Ajuda do Controle Parental | `help:malcontent` falha: sem `yelp` na imagem | L | Aceito; a página do site explica o uso (decisão de 26/10) |
+| R15 | Interface em português | "Unlock", "Unrestricted" e a descrição de "Adequação do aplicativo" sem tradução | L | Contribuir a tradução upstream; não bloqueia |
+| R16 | Vega para a criança | Abre só para leitura; alterações negadas ("Not authorized") | U | Frente 4 sem mudança |
+| R17 | Login por TTY bloqueado | `pam_access` na pilha comum também bloqueia o GDM (`PAM_TTY=tty7`). Funciona só copiando `/usr/lib/pam.d/login` para `/etc/pam.d/login` | I | Bloquear (decisão de 26/10): `lyra-parental-controls` instala a cópia com `pam_access` e um teste que acusa divergência do arquivo do fornecedor |
+| R18 | SSH bloqueado | Não ensaiado (frente 3) | — | `DenyGroups lyra-supervised` |
+| R19 | Limites de tempo de sessão | `pam_malcontent` presente, fora de qualquer pilha PAM | F | Fora do escopo desta versão |
+| R20 | GNOME Software respeita as regras | Fora da imagem. Ensaiado à parte: instala na conta da criança apesar da proibição | F | Sem efeito no Lyra; depende da frente 5 |
+
+### Reestimativa
+
+| Frente | Antes | Agora | Motivo |
+| --- | --- | --- | --- |
+| 2 Imagem | 1 dia | 1–1,5 dia | Regra polkit de leitura (R12) |
+| Nova: Sheliak | — | 1–1,5 dia | R5: três pontos de listagem, testes e RPM |
+| 3 `lyra-parental-controls` | 1–2 dias | 1,5–2 dias | R17: TTY bloqueado com a cópia do `login` |
+| 4 Vega | 2–3 dias | 2–3 dias | Sem mudança (R16) |
+| 5 Flatpak | 3–5 dias | 3–5 dias | Confirmado (R6, R7); a avaliação de 21/09 já registrou que o `flatpak` com malcontent libera a execução sem barramento ou AccountsService |
+| Total das frentes 2 a 5 | 7–11 dias | 8,5–13 dias | +1,5 a +2 dias, absorvidos pela margem de 16–19/11 |
+
+A correção do sudo consumiu meio dia fora do plano. O lançamento realista
+continua em 26/11.
+
+### Decisões do mantenedor (26/10/2026)
+
+1. Flatpak: `flatpak` do Lyra com `-Dmalcontent=enabled`, com exceção
+   temporária de prioridade no `repository-policy`, e bug aberto na SUSE (R6, R7).
+2. Nomes aprovados: `lyra-supervised` e `lyra-parental-controls`.
+3. TTY: bloquear, com a cópia do `login` mantida pelo `lyra-parental-controls` (R17).
+4. Ajuda: sem `yelp`; a lacuna fica documentada (R14).
+
+O bug na SUSE usa o texto da seção seguinte e é aberto pelo mantenedor.
+
+### Bug proposto para o openSUSE (flatpak sem malcontent)
+
+Título: `flatpak: build with -Dmalcontent=enabled so parental controls are enforced`
+
+> Leap 16.1 ships malcontent 0.12.0 and malcontent-control, but `flatpak.spec`
+> builds with `-Dmalcontent=disabled` (changelog of 23/04/2024 mentions
+> xdg-desktop-portal problems). As a result, parental-control app filters and
+> the "restrict app installation" setting are stored by AccountsService but
+> never enforced: a supervised account can `flatpak run` a blocked app and can
+> `flatpak remote-add --user` + install apps, also through GNOME Software.
+> Reproduced on Leap 16.1 with flatpak 1.16.6-160100.2.6 (26/10/2026). A
+> diagnostic build of the same source with `-Dmalcontent=enabled` blocked the
+> denied ref and passed the document portal test (21/09/2026). Could the
+> portal issue be re-evaluated so the option can be enabled? We can help test
+> FileChooser, Documents and ScreenCast.
+
 ## Reavaliação Leap 16.1 — 21/09/2026
 
 **A disponibilidade dos pacotes foi confirmada; a integração parental continua

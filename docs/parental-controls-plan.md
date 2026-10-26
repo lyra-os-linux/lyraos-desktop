@@ -189,5 +189,10 @@ São 13 dias de trabalho, dentro da estimativa de 12 a 16.
 
 1. Lançar a 16.1 em 05/11 sem controle parental ou adiar para a data acima.
 2. Exceção de prioridade para o `flatpak` do Lyra (frente 5) ou plano B.
+   **Decidido em 26/10: exceção + bug na SUSE.**
 3. Se o parecer jurídico exige o sinal de idade (frente 6).
-4. Nomes `lyra-supervised` e `lyra-parental-controls`.
+4. Nomes `lyra-supervised` e `lyra-parental-controls`. **Aprovados em 26/10.**
+
+A qualificação da frente 1 acrescentou a correção do Sheliak (1–1,5 dia) e
+mais duas decisões de 26/10: bloquear o TTY e não incluir o `yelp`. Detalhes e
+reestimativa em [parental-controls-upstream-qualification.md](parental-controls-upstream-qualification.md).
