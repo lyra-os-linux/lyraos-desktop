@@ -9,6 +9,7 @@ Source1:        lyra-release-identity
 Requires:       python3-base
 # Only wheel may sudo with its own password; see %posttrans.
 Requires:       sudo-policy-wheel-auth-self
+Requires(posttrans): diffutils
 BuildArch:      noarch
 
 %description
@@ -42,7 +43,7 @@ grep -Fx "LYRA_BUILD_ID='lyra-release-%{version}'" %{SOURCE0}
 installer_sudoers=/etc/sudoers.d/10-installer
 if [ -f "$installer_sudoers" ]; then
     if [ ! -e /etc/sudoers ] && [ -f /usr/etc/sudoers.d/50-wheel-auth-self ] &&
-       [ "$(cat "$installer_sudoers")" = "$(printf '%%s\n%%s' 'Defaults !targetpw' '%%wheel ALL=(ALL) ALL')" ]; then
+       printf '%%s\n' 'Defaults !targetpw' '%%wheel ALL=(ALL) ALL' | cmp -s - "$installer_sudoers"; then
         rm -f "$installer_sudoers"
     elif grep -qE '^Defaults[[:space:]]+!targetpw' "$installer_sudoers"; then
         echo "lyra-release: $installer_sudoers still disables targetpw for every account; review it" >&2
