@@ -104,7 +104,7 @@ pub fn deployment_operations(
             username: config.username.clone(),
             password: config.password.clone(),
         }),
-        Box::new(WriteSudoers {
+        Box::new(RequireWheelSudoPolicy {
             target_root: target_root.clone(),
         }),
         Box::new(BindMount {
@@ -678,27 +678,32 @@ impl PrivilegedOperation for CreateUser {
     }
 }
 
-struct WriteSudoers {
+struct RequireWheelSudoPolicy {
     target_root: PathBuf,
 }
 
-impl PrivilegedOperation for WriteSudoers {
+/// openSUSE's sudo-policy-wheel-auth-self policy, shipped in the image.
+const WHEEL_SUDO_POLICY: &str = "usr/etc/sudoers.d/50-wheel-auth-self";
+
+impl PrivilegedOperation for RequireWheelSudoPolicy {
     fn describe(&self) -> String {
-        "conceder sudo ao grupo wheel".to_string()
+        "conferir o sudo do grupo wheel".to_string()
     }
 
     fn perform(&self, _executor: &dyn Executor) -> Result<(), OperationError> {
-        let dir = self.target_root.join("etc/sudoers.d");
-        fs::create_dir_all(&dir).map_err(io_error)?;
-        let path = dir.join("10-installer");
-        // openSUSE's stock /etc/sudoers ships "Defaults targetpw" active,
-        // which makes sudo prompt for the *target* user's password (root)
-        // instead of the invoking user's - the opposite of what "root
-        // disabled, sudo user created at install" promises. `@includedir
-        // /etc/sudoers.d` comes after that line in the stock file, so this
-        // override here is what actually takes effect.
-        fs::write(&path, "Defaults !targetpw\n%wheel ALL=(ALL) ALL\n").map_err(io_error)?;
-        fs::set_permissions(&path, fs::Permissions::from_mode(0o440)).map_err(io_error)?;
+        // The stock sudoers grants `ALL ALL=(ALL) ALL` under `Defaults
+        // targetpw`, which is safe only because root is locked. The
+        // openSUSE package scopes `!targetpw` to wheel, so only the sudo
+        // user created here authenticates with their own password; other
+        // accounts still need root's. Never write a global `!targetpw`:
+        // it turns every account into an administrator.
+        let path = self.target_root.join(WHEEL_SUDO_POLICY);
+        if !path.is_file() {
+            return Err(OperationError::Io(format!(
+                "{} ausente: a imagem precisa do pacote sudo-policy-wheel-auth-self",
+                path.display()
+            )));
+        }
         Ok(())
     }
 }
@@ -1992,20 +1997,23 @@ mod tests {
     }
 
     #[test]
-    fn write_sudoers_grants_wheel_with_restrictive_permissions() {
+    fn wheel_sudo_policy_is_required_and_nothing_is_written() {
         let temp = TempRoot::new("sudoers");
-        let op = WriteSudoers {
+        let op = RequireWheelSudoPolicy {
             target_root: temp.0.clone(),
         };
-        op.perform(&FakeExecutor::new()).unwrap();
+        let error = op.perform(&FakeExecutor::new()).unwrap_err();
+        assert!(error.to_string().contains("sudo-policy-wheel-auth-self"));
 
-        let path = temp.0.join("etc/sudoers.d/10-installer");
-        assert_eq!(
-            fs::read_to_string(&path).unwrap(),
-            "Defaults !targetpw\n%wheel ALL=(ALL) ALL\n"
-        );
-        let mode = fs::metadata(&path).unwrap().permissions().mode() & 0o777;
-        assert_eq!(mode, 0o440);
+        let policy = temp.0.join(WHEEL_SUDO_POLICY);
+        fs::create_dir_all(policy.parent().unwrap()).unwrap();
+        fs::write(
+            &policy,
+            "Defaults:%wheel !targetpw\n%wheel ALL = (root) ALL\n",
+        )
+        .unwrap();
+        op.perform(&FakeExecutor::new()).unwrap();
+        assert!(!temp.0.join("etc/sudoers.d/10-installer").exists());
     }
 
     #[test]

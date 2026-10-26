@@ -94,8 +94,10 @@ AUDIT_MOUNTED=1
 cat "$AUDIT_MOUNT/etc/fstab"
 grep -q '^lyra:' "$AUDIT_MOUNT/etc/passwd" \
     || audit_fail "usuário lyra não encontrado"
-grep -q '^%wheel' "$AUDIT_MOUNT/etc/sudoers.d/10-installer" \
-    || audit_fail "sudoers não escrito"
+grep -q '^Defaults:%wheel !targetpw' "$AUDIT_MOUNT/usr/etc/sudoers.d/50-wheel-auth-self" \
+    || audit_fail "política sudo do wheel ausente"
+! grep -rqsE '^Defaults[[:space:]]+!targetpw' "$AUDIT_MOUNT/etc/sudoers.d" \
+    || audit_fail "sudoers com !targetpw global"
 compgen -G "$AUDIT_MOUNT/boot/initramfs-*.img" >/dev/null \
     || audit_fail "initramfs não encontrado com nome correto"
 umount "$AUDIT_MOUNT"

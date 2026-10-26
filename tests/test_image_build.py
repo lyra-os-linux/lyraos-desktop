@@ -319,16 +319,23 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertTrue(update_smoke.is_file())
         self.assertNotEqual(update_smoke.stat().st_mode & 0o111, 0)
 
-    def test_installed_desktop_sudo_uses_the_user_password(self) -> None:
+    def test_installed_desktop_sudo_is_limited_to_wheel(self) -> None:
         deploy = (ROOT / "installer/src/service/operations/deploy.rs").read_text(
             encoding="utf-8"
         )
-        changes = (ROOT / "installer/packaging/lyra-installer.changes").read_text(
+        root = ET.parse(ROOT / "kiwi/config.xml").getroot()
+        packages = {node.attrib["name"] for node in root.findall("packages/package")}
+        spec = (ROOT / "packaging/lyra-release/lyra-release.spec").read_text(
             encoding="utf-8"
         )
 
-        self.assertIn('"Defaults !targetpw\\n%wheel ALL=(ALL) ALL\\n"', deploy)
-        self.assertIn("Defaults targetpw", changes)
+        # A global "Defaults !targetpw" plus the stock "ALL ALL=(ALL) ALL"
+        # lets every account sudo with its own password.
+        self.assertNotIn('"Defaults !targetpw', deploy)
+        self.assertIn('"usr/etc/sudoers.d/50-wheel-auth-self"', deploy)
+        self.assertIn("sudo-policy-wheel-auth-self", packages)
+        self.assertIn("Requires:       sudo-policy-wheel-auth-self", spec)
+        self.assertIn("installer_sudoers=/etc/sudoers.d/10-installer", spec)
 
     def test_chord_is_not_installed_or_pinned_on_the_desktop(self) -> None:
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()

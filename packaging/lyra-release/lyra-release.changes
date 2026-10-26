@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Mon Oct 26 12:00:00 UTC 2026 - Rodrigo Brito
+
+- Security: require sudo-policy-wheel-auth-self and remove the
+  /etc/sudoers.d/10-installer written by Lyra installers up to 16.1 RC 2,
+  whose global "Defaults !targetpw" let every account sudo to root with its
+  own password. The file is removed only when unchanged and when the vendor
+  sudoers is in use; otherwise a warning asks for review.
+
+-------------------------------------------------------------------
 Mon Oct 19 12:00:00 UTC 2026 - Rodrigo Brito
 
 - Move the product identity from 1.1 to 16.1: Lyra OS versions now follow the
