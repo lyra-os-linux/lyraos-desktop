@@ -6,16 +6,23 @@ License:        GPL-3.0-only
 URL:            https://github.com/lyra-os-linux/lyraos-desktop
 Source0:        lyra-parental-controls.sysusers
 Source1:        50-lyra-supervised.conf
+Source2:        login
+Source3:        access.conf
 BuildRequires:  openssh-clients
 BuildRequires:  openssh-server
 BuildRequires:  sysuser-tools
+# Vendor /usr/lib/pam.d/login, compared in %check.
+BuildRequires:  util-linux
 Requires:       openssh-server
+Requires:       pam
+Requires:       util-linux
 %{?sysusers_requires}
 BuildArch:      noarch
 
 %description
 Marks accounts supervised by Lyra OS basic parental controls through the
-lyra-supervised system group. Members of the group cannot log in over SSH.
+lyra-supervised system group. Members of the group cannot log in over SSH or
+on a text console (TTY); the graphical login is unchanged.
 The rules themselves (applications, installation, age rating) belong to
 malcontent and its "Controle parental" application.
 
@@ -27,8 +34,19 @@ malcontent and its "Controle parental" application.
 %install
 install -Dm0644 %{SOURCE0} %{buildroot}%{_sysusersdir}/%{name}.conf
 install -Dm0644 %{SOURCE1} %{buildroot}%{_distconfdir}/ssh/sshd_config.d/50-lyra-supervised.conf
+# Leap ships login only in /usr/lib/pam.d; this copy in /etc shadows it to add
+# pam_access for the login (TTY) service alone. A pam_access rule in the common
+# stack would also block GDM, whose PAM_TTY is a VT too.
+install -Dm0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pam.d/login
+install -Dm0644 %{SOURCE3} %{buildroot}%{_datadir}/%{name}/access.conf
 
 %check
+# The copy must stay the vendor file plus one line. When util-linux changes
+# /usr/lib/pam.d/login, this fails and the copy has to be refreshed.
+grep -vFx 'account   required   pam_access.so accessfile=%{_datadir}/%{name}/access.conf' %{SOURCE2} \
+    | diff -u %{_prefix}/lib/pam.d/login -
+test "$(grep -c pam_access %{SOURCE2})" = 1
+grep -Fx -- '-:(lyra-supervised):ALL' %{SOURCE3}
 grep -Fx 'g lyra-supervised -' %{SOURCE0}
 grep -Fx 'DenyGroups lyra-supervised' %{SOURCE1}
 # sshd must parse the drop-in and apply DenyGroups.
@@ -50,5 +68,7 @@ systemctl try-reload-or-restart sshd.service >/dev/null 2>&1 || :
 %dir %{_distconfdir}/ssh
 %dir %{_distconfdir}/ssh/sshd_config.d
 %{_distconfdir}/ssh/sshd_config.d/50-lyra-supervised.conf
+%config %{_sysconfdir}/pam.d/login
+%{_datadir}/%{name}
 
 %changelog

@@ -92,6 +92,7 @@ packages = [
   "lyra-firefox-theme",
   "lyra-fish-productivity",
   "lyra-installer",
+  "lyra-parental-controls",
   "lyra-icons",
   "lyra-release",
   "lyra-upgrade",

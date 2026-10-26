@@ -97,6 +97,17 @@
       "rationale": "Three embedded catalogs with live switching and English fallback."
     },
     {
+      "id": "lyra-parental-controls",
+      "project": "lyra",
+      "wave": "rc3",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "python3 -m unittest tests.test_image_build",
+      "rationale": "System group, sshd drop-in and PAM login copy; no interactive Lyra-owned text."
+    },
+    {
       "id": "lyra-icons",
       "project": "lyra",
       "wave": "alpha8",

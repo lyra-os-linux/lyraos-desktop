@@ -34,10 +34,11 @@ class ManifestTests(unittest.TestCase):
 
     def test_project_inventory_matches_release_contract(self) -> None:
         self.assertEqual([project.id for project in self.manifest.projects], ["lyra", "vega", "fina"])
-        self.assertEqual(len(self.manifest.project("lyra").packages), 22)
+        self.assertEqual(len(self.manifest.project("lyra").packages), 23)
         self.assertIn("lyra-firefox-theme", self.manifest.project("lyra").packages)
         self.assertIn("lyra-vms", self.manifest.project("lyra").packages)
         self.assertIn("lyra-release", self.manifest.project("lyra").packages)
+        self.assertIn("lyra-parental-controls", self.manifest.project("lyra").packages)
         self.assertNotIn("chord", self.manifest.project("lyra").packages)
         self.assertIn("linuxtoys", self.manifest.project("lyra").packages)
         self.assertIn("zed", self.manifest.project("lyra").packages)

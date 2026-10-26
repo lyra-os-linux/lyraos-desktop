@@ -1,5 +1,9 @@
 -------------------------------------------------------------------
 Mon Oct 26 12:00:00 UTC 2026 - Rodrigo Brito
 
-- Initial package for Lyra OS basic parental controls: the
-  lyra-supervised system group and an sshd drop-in that denies the group.
+- Initial package for Lyra OS basic parental controls:
+  * the lyra-supervised system group (sysusers);
+  * an sshd drop-in that denies the group, reloading sshd if it runs;
+  * /etc/pam.d/login = vendor login + pam_access, so supervised accounts
+    cannot log in on a text console while GDM is unchanged. %check fails
+    when /usr/lib/pam.d/login changes, so the copy is refreshed.
