@@ -29,5 +29,9 @@ gate próprio e plano de reversão por frente. Detalhes e limites:
   (`malcontent-control`), aberto em Configurações → Sistema → Usuários. Uma
   regra polkit do próprio malcontent permite que o administrador veja o estado
   das restrições sem senha; alterá-las continua exigindo autenticação.
+- Flatpak deixa de vir instalado (exceção ao congelamento, 26/10/2026). O
+  Flatpak do Leap não aplica o controle parental; ele é habilitado na página
+  Software do Vega, com aviso para contas supervisionadas, e o Flathub aparece
+  junto. Instalações existentes mantêm o Flatpak.
 - LinuxToys deixa de vir instalado. Continua disponível no repositório do
   Lyra para quem quiser instalar (decisão do mantenedor, 26/10/2026).

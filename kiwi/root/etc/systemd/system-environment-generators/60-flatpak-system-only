@@ -6,6 +6,8 @@
 # that value; the trailing slashes made dbus-broker scan
 # /usr/share//dbus-1/services as a second directory and log duplicate names.
 # Start from the Leap default (/usr/lib/environment.d/50-xdg.conf) instead.
+# Flatpak is optional (enabled in Vega): without it, there is nothing to add.
+command -v flatpak >/dev/null 2>&1 || exit 0
 export GIO_USE_VFS=local
 export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 exec flatpak --print-updated-env --print-system-only

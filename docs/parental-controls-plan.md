@@ -200,5 +200,15 @@ São 14 dias de trabalho de 27/10 até o build da RC 3, dentro da estimativa de
 4. Nomes `lyra-supervised` e `lyra-parental-controls`. **Aprovados em 26/10.**
 
 A qualificação da frente 1 acrescentou a correção do Sheliak (1–1,5 dia) e
-mais duas decisões de 26/10: bloquear o TTY e não incluir o `yelp`. Detalhes e
+mais duas decisões de 26/10: bloquear o TTY e não incluir o `yelp`.
+
+**Exceção ao congelamento decidida em 26/10 (substitui a decisão 2):** o
+`flatpak` deixa de vir instalado. O administrador o habilita na página Software
+do Vega, que instala o pacote depois de um aviso (o parágrafo sobre contas
+supervisionadas aparece se houver alguma); o Flathub vem de
+`/etc/flatpak/remotes.d`. Saem o `flatpak` próprio do Lyra e a exceção de
+prioridade no `repository-policy`; o bug na SUSE continua. Quem já instalou uma
+RC mantém o Flatpak e vê o aviso na tela de conta supervisionada (frente 4). O
+LinuxToys também deixa de vir instalado, porque instalaria o `flatpak` por
+conta própria. Frente 5 passa de 3–5 para 2–3 dias. Detalhes e
 reestimativa em [parental-controls-upstream-qualification.md](parental-controls-upstream-qualification.md).

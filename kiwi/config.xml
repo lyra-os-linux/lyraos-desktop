@@ -577,11 +577,14 @@
     <package name="simple-scan"/>
 
     <!--
-      Flatpak itself; the Flathub remote is registered at build time in
-      config.sh (needs network access during the KIWI build - see
-      README.md). No Flatpak apps are pre-installed here.
+      Flatpak is not installed by default (maintainer decision, 26/10/2026,
+      docs/parental-controls-plan.md): the Leap flatpak does not enforce
+      parental controls, so a supervised account could install and run
+      Flatpak apps. The administrator enables it in Vega, which installs the
+      flatpak package after a warning. The versioned Flathub remote in
+      root/etc/flatpak/remotes.d stays, so Flathub appears as soon as flatpak
+      is installed.
     -->
-    <package name="flatpak"/>
 
     <!--
       Vega GTK4 and its shared backend. Both are explicit because the GNOME

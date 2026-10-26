@@ -33,8 +33,8 @@ Legenda: **U** atendido pelo upstream; **I** atendido com integração do Lyra;
 | R3 | Criança não remove as regras | Negado por `malcontent-client`, D-Bus, escrita no arquivo e na sessão gráfica (pede senha de administrador) | U | — |
 | R4 | Criança sem privilégios administrativos | `su`, `pkexec`, `zypper`, PackageKit e ações do Vega exigem administrador | U | Depende da correção do sudo acima |
 | R5 | Navegador e apps bloqueados somem dos menus e da busca | Somem no dock e na busca do Shell; **continuam no menu Aplicativos e na busca do Sheliak**, e abrem por lá | I | Sheliak: consultar `ParentalControlsManager` em `startMenu.ts`, `panelMenus.ts` e `search/indicator.ts` |
-| R6 | App Flatpak bloqueado não executa | `flatpak run` abre o app bloqueado | I | Frente 5: `flatpak` do Lyra com `-Dmalcontent=enabled` e exceção de prioridade (decisão de 26/10) |
-| R7 | Criança não instala Flatpak | Adiciona o Flathub na própria conta e instala, pela CLI e pelo GNOME Software | I | Frente 5, a mesma correção |
+| R6 | App Flatpak bloqueado não executa | `flatpak run` abre o app bloqueado | I | Flatpak fora da instalação padrão; habilitado pelo Vega com aviso (decisão de 26/10, substitui o `flatpak` próprio) |
+| R7 | Criança não instala Flatpak | Adiciona o Flathub na própria conta e instala, pela CLI e pelo GNOME Software | I | Idem: sem Flatpak instalado não há instalação; habilitado, vale o aviso |
 | R8 | Instalação no sistema (RPM ou Flatpak) | Exige administrador (polkit) | U | — |
 | R9 | Bloqueio de apps RPM | Só ocultação por caminho, pela CLI; a interface lista só Flatpak | F | Documentar; não oferecer na interface |
 | R10 | Impedir navegador pelo terminal ou `xdg-open` | Abre: o malcontent orienta consumidores, não é controle obrigatório | F | Documentar; a imagem tem dois terminais (Console e `gnome-terminal`) |
