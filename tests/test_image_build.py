@@ -451,6 +451,19 @@ class ImagePolicyTests(unittest.TestCase):
             result.stdout.strip(),
             "local /usr/local/share:/usr/share --print-updated-env --print-system-only",
         )
+        # Flatpak is optional: without it the generator adds nothing and
+        # does not fail at boot.
+        with tempfile.TemporaryDirectory() as temporary:
+            result = subprocess.run(["/bin/sh", str(generator)], env={"PATH": temporary},
+                                    capture_output=True, text=True, check=True)
+        self.assertEqual(result.stdout, "")
+
+    def test_flatpak_is_optional_and_flathub_ready(self) -> None:
+        root = ET.parse(ROOT / "kiwi/config.xml").getroot()
+        packages = {node.attrib["name"] for node in root.findall("packages/package")}
+        # Enabled in Vega with a warning for supervised accounts (26/10/2026).
+        self.assertNotIn("flatpak", packages)
+        self.assertTrue((ROOT / "kiwi/root/etc/flatpak/remotes.d/flathub.flatpakrepo").is_file())
 
     def test_desktop_ships_power_profiles_provider(self) -> None:
         # Without a net.hadess.PowerProfiles provider GNOME hides its power
