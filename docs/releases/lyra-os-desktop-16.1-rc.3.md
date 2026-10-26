@@ -29,3 +29,5 @@ gate próprio e plano de reversão por frente. Detalhes e limites:
   (`malcontent-control`), aberto em Configurações → Sistema → Usuários. Uma
   regra polkit do próprio malcontent permite que o administrador veja o estado
   das restrições sem senha; alterá-las continua exigindo autenticação.
+- LinuxToys deixa de vir instalado. Continua disponível no repositório do
+  Lyra para quem quiser instalar (decisão do mantenedor, 26/10/2026).
