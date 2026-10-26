@@ -335,6 +335,23 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertNotIn("Change", rule)
         self.assertNotIn("@PRIVILEGED_GROUP@", rule)
 
+    def test_parental_controls_package_blocks_tty_and_ssh_only(self) -> None:
+        package = ROOT / "packaging/lyra-parental-controls"
+        spec = (package / "lyra-parental-controls.spec").read_text(encoding="utf-8")
+        login = (package / "login").read_text(encoding="utf-8")
+        rule = "account   required   pam_access.so accessfile=/usr/share/lyra-parental-controls/access.conf"
+        # One extra line over the vendor login; %check diffs the rest.
+        self.assertEqual(login.splitlines().count(rule), 1)
+        self.assertEqual(login.count("pam_access"), 1)
+        self.assertIn("diff -u %{_prefix}/lib/pam.d/login -", spec)
+        self.assertEqual((package / "access.conf").read_text(encoding="utf-8").splitlines()[-1],
+                         "-:(lyra-supervised):ALL")
+        self.assertEqual((package / "50-lyra-supervised.conf").read_text(encoding="utf-8").splitlines()[-1],
+                         "DenyGroups lyra-supervised")
+        self.assertIn("try-reload-or-restart sshd.service", spec)
+        # The rule never goes to the common stack, which GDM also uses.
+        self.assertNotIn("pam-config", spec)
+
     def test_installed_desktop_sudo_is_limited_to_wheel(self) -> None:
         deploy = (ROOT / "installer/src/service/operations/deploy.rs").read_text(
             encoding="utf-8"
