@@ -33,18 +33,18 @@ Legenda: **U** atendido pelo upstream; **I** atendido com integração do Lyra;
 | R3 | Criança não remove as regras | Negado por `malcontent-client`, D-Bus, escrita no arquivo e na sessão gráfica (pede senha de administrador) | U | — |
 | R4 | Criança sem privilégios administrativos | `su`, `pkexec`, `zypper`, PackageKit e ações do Vega exigem administrador | U | Depende da correção do sudo acima |
 | R5 | Navegador e apps bloqueados somem dos menus e da busca | Somem no dock e na busca do Shell; **continuam no menu Aplicativos e na busca do Sheliak**, e abrem por lá | I | Sheliak: consultar `ParentalControlsManager` em `startMenu.ts`, `panelMenus.ts` e `search/indicator.ts` |
-| R6 | App Flatpak bloqueado não executa | `flatpak run` abre o app bloqueado | L→I | Frente 5: `flatpak` com `-Dmalcontent=enabled` |
-| R7 | Criança não instala Flatpak | Adiciona o Flathub na própria conta e instala, pela CLI e pelo GNOME Software | L→I | Frente 5, a mesma correção |
+| R6 | App Flatpak bloqueado não executa | `flatpak run` abre o app bloqueado | I | Frente 5: `flatpak` do Lyra com `-Dmalcontent=enabled` e exceção de prioridade (decisão de 26/10) |
+| R7 | Criança não instala Flatpak | Adiciona o Flathub na própria conta e instala, pela CLI e pelo GNOME Software | I | Frente 5, a mesma correção |
 | R8 | Instalação no sistema (RPM ou Flatpak) | Exige administrador (polkit) | U | — |
 | R9 | Bloqueio de apps RPM | Só ocultação por caminho, pela CLI; a interface lista só Flatpak | F | Documentar; não oferecer na interface |
 | R10 | Impedir navegador pelo terminal ou `xdg-open` | Abre: o malcontent orienta consumidores, não é controle obrigatório | F | Documentar; a imagem tem dois terminais (Console e `gnome-terminal`) |
 | R11 | Entrada pelo GNOME Settings | Linha "Controle parental" na conta abre `malcontent-control --user <conta>` | U | — |
 | R12 | Estado correto no Settings | Mostra "Desabilitado" com regras ativas: `ReadAny` é `auth_admin_keep` e o Settings lê sem interação | I | Regra polkit: `ReadAny` sem senha para `wheel` em sessão local ativa (só leitura) |
 | R13 | Uma autenticação só | Settings e Controle Parental pedem a senha separadamente | L | Aceitar; o Vega abrirá direto o Controle Parental |
-| R14 | Ajuda do Controle Parental | `help:malcontent` falha: sem `yelp` na imagem | L | Aceitar e documentar no site, ou incluir `yelp` (decisão) |
+| R14 | Ajuda do Controle Parental | `help:malcontent` falha: sem `yelp` na imagem | L | Aceito; a página do site explica o uso (decisão de 26/10) |
 | R15 | Interface em português | "Unlock", "Unrestricted" e a descrição de "Adequação do aplicativo" sem tradução | L | Contribuir a tradução upstream; não bloqueia |
 | R16 | Vega para a criança | Abre só para leitura; alterações negadas ("Not authorized") | U | Frente 4 sem mudança |
-| R17 | Login por TTY bloqueado | `pam_access` na pilha comum também bloqueia o GDM (`PAM_TTY=tty7`). Funciona só copiando `/usr/lib/pam.d/login` para `/etc/pam.d/login` | I ou F | Decisão: recomendo F, porque a criança já tem terminal na sessão gráfica |
+| R17 | Login por TTY bloqueado | `pam_access` na pilha comum também bloqueia o GDM (`PAM_TTY=tty7`). Funciona só copiando `/usr/lib/pam.d/login` para `/etc/pam.d/login` | I | Bloquear (decisão de 26/10): `lyra-parental-controls` instala a cópia com `pam_access` e um teste que acusa divergência do arquivo do fornecedor |
 | R18 | SSH bloqueado | Não ensaiado (frente 3) | — | `DenyGroups lyra-supervised` |
 | R19 | Limites de tempo de sessão | `pam_malcontent` presente, fora de qualquer pilha PAM | F | Fora do escopo desta versão |
 | R20 | GNOME Software respeita as regras | Fora da imagem. Ensaiado à parte: instala na conta da criança apesar da proibição | F | Sem efeito no Lyra; depende da frente 5 |
@@ -55,23 +55,23 @@ Legenda: **U** atendido pelo upstream; **I** atendido com integração do Lyra;
 | --- | --- | --- | --- |
 | 2 Imagem | 1 dia | 1–1,5 dia | Regra polkit de leitura (R12) |
 | Nova: Sheliak | — | 1–1,5 dia | R5: três pontos de listagem, testes e RPM |
-| 3 `lyra-parental-controls` | 1–2 dias | 0,5–1 dia sem TTY; 1,5–2 dias com TTY | R17 |
+| 3 `lyra-parental-controls` | 1–2 dias | 1,5–2 dias | R17: TTY bloqueado com a cópia do `login` |
 | 4 Vega | 2–3 dias | 2–3 dias | Sem mudança (R16) |
 | 5 Flatpak | 3–5 dias | 3–5 dias | Confirmado (R6, R7); a avaliação de 21/09 já registrou que o `flatpak` com malcontent libera a execução sem barramento ou AccountsService |
-| Total das frentes 2 a 5 | 7–11 dias | 7,5–12 dias | +0,5 a +1 dia, absorvido pela margem de 16–19/11 |
+| Total das frentes 2 a 5 | 7–11 dias | 8,5–13 dias | +1,5 a +2 dias, absorvidos pela margem de 16–19/11 |
 
 A correção do sudo consumiu meio dia fora do plano. O lançamento realista
 continua em 26/11.
 
-### Decisões pendentes do mantenedor
+### Decisões do mantenedor (26/10/2026)
 
-1. Flatpak: exceção de prioridade para o `flatpak` do Lyra no
-   `repository-policy`, ou plano B sem bloqueio de Flatpak (R6, R7).
-2. Nomes `lyra-supervised` e `lyra-parental-controls`.
-3. TTY: copiar o `login` (R17, classe I) ou registrar como fora do escopo.
-4. Ajuda: incluir `yelp` ou aceitar a lacuna (R14).
+1. Flatpak: `flatpak` do Lyra com `-Dmalcontent=enabled`, com exceção
+   temporária de prioridade no `repository-policy`, e bug aberto na SUSE (R6, R7).
+2. Nomes aprovados: `lyra-supervised` e `lyra-parental-controls`.
+3. TTY: bloquear, com a cópia do `login` mantida pelo `lyra-parental-controls` (R17).
+4. Ajuda: sem `yelp`; a lacuna fica documentada (R14).
 
-Bug na SUSE: texto preparado na seção seguinte, a abrir pelo mantenedor.
+O bug na SUSE usa o texto da seção seguinte e é aberto pelo mantenedor.
 
 ### Bug proposto para o openSUSE (flatpak sem malcontent)
 
