@@ -1,5 +1,13 @@
 # Experiência de supervisão parental no Vega
 
+> **Histórico.** Este documento descreve o desenho anterior, congelado em
+> 07/10/2026. O controle parental do Lyra OS 16.1 segue a
+> [ADR 0019](adr/0019-basic-parental-controls.md): conta supervisionada
+> (`lyra-supervised`) marcada pelo Vega, regras no aplicativo "Controle
+> parental" (malcontent), Flatpak opcional e limites declarados. A interface
+> atual está descrita na [qualificação](parental-controls-upstream-qualification.md)
+> e no [gate #9](parental-controls-gate.md).
+
 Status: especificação de UX da #8 — implementação visual pertence à #7  
 Idiomas obrigatórios: `en-US`, `pt-BR`, `es-ES`  
 Fallback: `en-US`

@@ -1,6 +1,6 @@
 # ADR 0008 — Sinal etário privado e supervisão parental
 
-- Status: **Proposta — revisão técnica e aprovação final pendentes**
+- Status: **Substituída pela [ADR 0019](0019-basic-parental-controls.md) em 26/10/2026** (antes: proposta, revisão técnica e aprovação final pendentes)
 - Data: 18/08/2026; conciliação técnica: 21/09/2026
 - Issues vigentes: #5 (arquitetura), #6 (base upstream), #7/#8 (integração/UX),
   #10 (parecer), #11 (epic), #102 (aplicação de políticas).
