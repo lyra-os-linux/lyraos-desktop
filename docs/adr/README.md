@@ -12,7 +12,7 @@ nova não apaga a anterior: cria outro ADR que a substitui e aponta para ela.
 | [0005](0005-guided-swap-policy-and-plan-v2.md) | Política guiada de swap e plano versão 2 | Aceita |
 | [0006](0006-btrfs-mount-policy-and-plan-v3.md) | Política Btrfs global e NOCOW granular, plano versão 3 | Aceita |
 | [0007](0007-lyra-upgrade-trust-boundaries.md) | Fronteiras, protocolo e persistência do Lyra Upgrade | Migrada para `lyraos-desktop-updater` |
-| [0008](0008-private-age-signal-and-parental-supervision.md) | Sinal etário privado e supervisão parental | Proposta — bloqueada pela #106 |
+| [0008](0008-private-age-signal-and-parental-supervision.md) | Sinal etário privado e supervisão parental | Substituída pela 0019 |
 | [0009](0009-server-edition-own-repository.md) | Edição Server migra para repositório próprio (lyraos-server) | Aceita |
 | [0010](0010-welcome-own-repository.md) | Lyra Welcome migra para repositório próprio (lyraos-desktop-welcome) | Aceita |
 | [0011](0011-upgrade-own-repository.md) | Lyra Upgrade migra para repositório próprio (lyraos-desktop-updater) | Aceita |
@@ -23,6 +23,7 @@ nova não apaga a anterior: cria outro ADR que a substitui e aponta para ela.
 | [0016](0016-defer-android-windows-next-release.md) | Compatibilidade Android e Windows é adiada para o release futura | Aceita |
 | [0017](0017-resume-kde-xfce-without-date.md) | KDE Plasma e XFCE são retomados direto na RC 1 e lançados quando estiverem prontos, sem data | Substituída pela 0018 |
 | [0018](0018-abandon-kde-xfce.md) | KDE Plasma e XFCE são abandonados; o GNOME é a única edição Desktop | Aceita |
+| [0019](0019-basic-parental-controls.md) | Controle parental básico com malcontent, conta supervisionada e Flatpak opcional | Aceita |
 
 Mudanças incompatíveis no formato do plano precisam incrementar
 `INSTALL_PLAN_SCHEMA_VERSION`, atualizar o ADR 0002 por meio de um novo ADR e
