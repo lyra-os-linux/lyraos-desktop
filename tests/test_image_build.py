@@ -231,8 +231,10 @@ class ImagePolicyTests(unittest.TestCase):
         root = ET.parse(ROOT / "kiwi/config.xml").getroot()
         packages = {node.attrib["name"] for node in root.findall("packages/package")}
 
-        for package in ("fish", "nvm-fish", "git", "linuxtoys", "lyra-welcome"):
+        for package in ("fish", "nvm-fish", "git", "lyra-welcome"):
             self.assertIn(package, packages)
+        # Available in repo-lyra, not installed by default (26/10/2026).
+        self.assertNotIn("linuxtoys", packages)
 
         live_user = root.find("users/user[@name='liveuser']")
         assert live_user is not None
