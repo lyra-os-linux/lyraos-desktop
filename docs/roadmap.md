@@ -39,8 +39,8 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   para o openSUSE Leap 16.1 Beta 1 e requalifica pacotes, ABI, Secure
   Boot, instalação, atualização, rollback e hardware. Também conclui o fluxo
   controlado entre releases do Lyra Upgrade. O Desktop 16.1 não oferece
-  suporte de produto a aplicativos Android ou Windows; essa trilha volta a ser
-  avaliada somente em uma release futura definida pelo projeto. A integração parental só avança quando os
+  suporte de produto a aplicativos Android ou Windows; em 26/10/2026 essa
+  trilha foi abandonada ([ADR 0020](adr/0020-abandon-android-windows.md)). A integração parental só avança quando os
   gates jurídico e técnico do ciclo atual estiverem satisfeitos.
 - **Alpha 8 (publicação em 17/10, limite 30/10) — gate e estabilização:**
   plano fixo aprovado em 07/10 na [#28](https://github.com/lyra-os-linux/lyraos-desktop/issues/28):
