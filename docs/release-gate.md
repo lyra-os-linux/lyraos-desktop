@@ -99,10 +99,10 @@ label (#183), libvulkan_intel/libvulkan_radeon (#185/#186), vegad 5.1.41
 the Tauri vega-gtk 5.2.0 (vega#159, freeze exception
 approved by the maintainer). The candidate keeps the `16.1-rc.2` identity.
 On 2026-10-27 build #7 (parental controls) was superseded by build #8 with
-vegad 5.1.44 and vega-gtk 5.3.2 (vegad#93/#94, vega#161/#163), for the Bluetooth
+vegad 5.1.45 and vega-gtk 5.3.2 (vegad#93/#94/#95, vega#161/#163), for the Bluetooth
 defect found by its gate on a machine without an adapter.
 
-- [ ] the image rejects vegad older than 5.1.44 and vega-gtk older than 5.3.2
+- [ ] the image rejects vegad older than 5.1.45 and vega-gtk older than 5.3.2
   (`check-gnome-image.py`);
 - [ ] on the installed system, Vega's firewall status reports the `public`
   zone;

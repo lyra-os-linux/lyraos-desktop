@@ -125,13 +125,14 @@ class MinimumsTests(unittest.TestCase):
         # GPU Vulkan driver with NVIDIA so the dGPU can suspend (vegad#78);
         # 5.1.41 reads the firewall zone in the broker (vegad#90); 5.1.42 adds
         # supervised accounts (vegad#92); 5.1.44 stops Bluetooth.Status from
-        # hanging without an adapter (vegad#93, vegad#94).
-        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38', '5.1.39', '5.1.40', '5.1.41', '5.1.42', '5.1.43', '5.1.44~rc1'):
+        # hanging without an adapter (vegad#93, vegad#94); 5.1.45 makes
+        # Update all finish cross-repository updates (vegad#95).
+        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38', '5.1.39', '5.1.40', '5.1.41', '5.1.42', '5.1.43', '5.1.44', '5.1.45~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vegad' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.44'):
+                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.45'):
                         minimums.main()
 
     def test_shell_shutdown_fix_rejects_older_sheliak(self):

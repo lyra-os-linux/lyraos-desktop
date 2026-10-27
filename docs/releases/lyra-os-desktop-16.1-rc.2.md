@@ -74,7 +74,12 @@ decisão (26/10/2026). Detalhes e limites:
   [vega#161](https://github.com/lyra-os-linux/vega/pull/161),
   [vega#163](https://github.com/lyra-os-linux/vega/pull/163)). O defeito foi
   achado no gate desta candidata e existia desde o vegad 1.3.3.
-- A imagem exige vega-gtk 5.3.2 e vegad 5.1.44 ou posteriores
+- "Atualizar tudo" no Vega deixava para trás a atualização que precisava de
+  uma dependência nova de outro repositório: o vegad atualiza um repositório
+  por vez, e o zypper descartava o pacote sem erro. O vegad 5.1.45 conclui
+  essas atualizações numa passada final com todos os repositórios
+  ([vegad#95](https://github.com/lyra-os-linux/vegad/pull/95)).
+- A imagem exige vega-gtk 5.3.2 e vegad 5.1.45 ou posteriores
   (`check-gnome-image.py`).
 - Segurança: só o grupo `wheel` usa `sudo` com a própria senha. O instalador
   deixava qualquer conta virar root com a própria senha. A imagem passa a usar
@@ -106,7 +111,8 @@ issue, e o 5.1.41 pelo SR 1392496, testado em VM com a política polkit do
 Desktop. O vega-gtk 5.2.0 entrou pelo SR 1392280. O vegad 5.1.44 seguiu
 pelo SR 1393050, testado numa VM do Desktop sem Bluetooth; a 5.1.43 ficou
 só no staging, porque o teste mostrou que ela não cobria o serviço que
-nunca chega a iniciar.
+nunca chega a iniciar. O vegad 5.1.45 foi testado na mesma VM com dois
+repositórios locais em que a atualização de um depende do outro.
 
 Várias ISOs da RC 2 foram construídas e nenhuma publicada: o gate de uma
 delas achou o defeito do firewall, e a decisão do controle parental veio
