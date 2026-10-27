@@ -154,16 +154,43 @@ controle parental passa a ser a **RC 2**, não uma RC 3 (decisão de 26/10).
 | 4 | Vega 5.3.0 e vegad 5.1.42: conta supervisionada e "Habilitar Flatpak" (vega#160, vegad#92), publicados |
 | 7 | Gate #9 (#201), ADR 0019 (#202), página do site (site#7) e issues |
 
-### Próximos passos
+### Feito em 27/10
 
-| Quando | Trabalho |
-| --- | --- |
-| 27–28/10 | Build da RC 2 e gate completo da ISO, com `installed-gate.sh sudo-policy` e `parental` e o [roteiro manual](parental-controls-gate.md), incluindo reinício, atualização e rollback |
-| Depois do gate | Margem para correções e novo build, se necessário |
-| Depois da margem | Release check, notas da release e assinatura com a chave da release (pendente com o mantenedor) |
-| A definir pelo mantenedor | Lançamento da 16.1 com controle parental; 26/11 continua como data-limite |
+O gate da RC 2 achou quatro defeitos, todos anteriores ao controle parental,
+e cada um gerou um novo build: Bluetooth sem adaptador e serviço pulado por
+condição (vegad 5.1.44, vega-gtk 5.3.2), "Atualizar tudo" deixando pacotes
+para trás (vegad 5.1.45, relatado pelo mantenedor), nomes de rede com acento
+(vegad 5.1.46) e a tela da live que travava sem como destravar (#209). A
+candidata é o build #10.
 
-- Com sinal de idade (frente 6): 2 a 5 dias a mais, só se o parecer exigir.
+### Cronograma (atualizado em 27/10/2026)
+
+Lançamento da 16.1 em **05/11**; 26/11 continua como data-limite.
+
+| Data | Trabalho | Responsável |
+| --- | --- | --- |
+| 27/10 (ter) | Terminar o gate do build #10 (BIOS e UEFI sem NVRAM); se passar, ele é a RC 2 | Claude, com o mantenedor nas instalações pela interface |
+| 28/10 (qua) | Flatpak no Vega: reproduzir, corrigir e publicar (staging, VM, SR); chega à RC 2 por atualização, sem novo build da ISO | Claude |
+| 28/10 (qua) | Importar a chave da release e assinar o build #10 (`--artifacts-only`) | Mantenedor |
+| 29/10 (qui) | Publicar a RC 2: SourceForge, PR do site e anúncio | Claude prepara, mantenedor aprova |
+| 29/10 (qui) | Server RC 3 (Delos) com o vegad 5.1.46, em paralelo | Claude |
+| 29/10–02/11 | Teste público da RC 2; só entram correções de defeito bloqueante | Todos |
+| 02/11 (seg) | Congelamento: identidade final `16.1` e notas da versão | Claude |
+| 03/11 (ter) | Build final e gate completo (UEFI com Secure Boot, BIOS, sem NVRAM, rollback) | Claude, com o mantenedor nas instalações |
+| 04/11 (qua) | Assinatura, upload e site | Mantenedor e Claude |
+| 05/11 (qui) | Lançamento do Lyra OS 16.1 "Odisseia" | Mantenedor |
+
+Riscos e alternativas:
+
+- Com sinal de idade (frente 6): 2 a 5 dias a mais, só se o parecer exigir;
+  o lançamento passa para 12/11.
+- Defeito bloqueante na RC 2: RC 3 em 05/11 e lançamento em 12/11 ou 19/11.
+- A chave da release é o único passo exclusivo do mantenedor; sem ela, nada
+  é publicado.
+
+Depois do lançamento: LinuxToys 7.7.3, promoção do lyra-upgrade 0.2.9,
+conferência do RTD3 da NVIDIA (vegad#78), decisão sobre o Sulafat em contas
+supervisionadas e a fase 2 (#125, #102, #22).
 - O bug no openSUSE para o `flatpak` com malcontent é opcional e fica com o
   mantenedor; não bloqueia a 16.1.
 
