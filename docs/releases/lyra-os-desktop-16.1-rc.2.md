@@ -79,7 +79,13 @@ decisão (26/10/2026). Detalhes e limites:
   por vez, e o zypper descartava o pacote sem erro. O vegad 5.1.45 conclui
   essas atualizações numa passada final com todos os repositórios
   ([vegad#95](https://github.com/lyra-os-linux/vegad/pull/95)).
-- A imagem exige vega-gtk 5.3.2 e vegad 5.1.45 ou posteriores
+- Rede no Vega com acento: o vegad rodava o `nmcli` sem locale, e a conexão
+  cabeada padrão de uma instalação em português aparecia como "Conex?o
+  cabeada 1"; configurar IP estático nela falhava, porque esse nome não
+  existe. O vegad 5.1.46 roda o `nmcli` em UTF-8
+  ([vegad#96](https://github.com/lyra-os-linux/vegad/pull/96)). O defeito foi
+  achado no gate do build #8 e já existia na RC 1.
+- A imagem exige vega-gtk 5.3.2 e vegad 5.1.46 ou posteriores
   (`check-gnome-image.py`).
 - Segurança: só o grupo `wheel` usa `sudo` com a própria senha. O instalador
   deixava qualquer conta virar root com a própria senha. A imagem passa a usar
@@ -112,7 +118,8 @@ Desktop. O vega-gtk 5.2.0 entrou pelo SR 1392280. O vegad 5.1.44 seguiu
 pelo SR 1393050, testado numa VM do Desktop sem Bluetooth; a 5.1.43 ficou
 só no staging, porque o teste mostrou que ela não cobria o serviço que
 nunca chega a iniciar. O vegad 5.1.45 foi testado na mesma VM com dois
-repositórios locais em que a atualização de um depende do outro.
+repositórios locais em que a atualização de um depende do outro, e o
+5.1.46 na VM do gate do build #8, com IP estático na conexão padrão.
 
 Várias ISOs da RC 2 foram construídas e nenhuma publicada: o gate de uma
 delas achou o defeito do firewall, e a decisão do controle parental veio
