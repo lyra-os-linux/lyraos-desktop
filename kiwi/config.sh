@@ -113,6 +113,21 @@ EOF
 chmod 0440 /etc/sudoers.d/00-liveuser-nopasswd
 visudo -cf /etc/sudoers.d/00-liveuser-nopasswd
 
+# The polkit side of the same problem: liveuser is in wheel, so every
+# auth_admin action (installing software in Vega, for instance) prompts for
+# the locked password and can never succeed. Authorize liveuser's local,
+# active session directly. The installer removes this file too
+# (LIVE_ONLY_ARTIFACTS), and it deletes the liveuser account.
+cat > /etc/polkit-1/rules.d/49-lyra-liveuser.rules <<'EOF'
+// Lyra OS live session only; removed by the installer.
+polkit.addRule(function(action, subject) {
+    if (subject.user == "liveuser" && subject.local && subject.active) {
+        return polkit.Result.YES;
+    }
+});
+EOF
+chmod 0644 /etc/polkit-1/rules.d/49-lyra-liveuser.rules
+
 # zram-generator activates its own systemd generator at boot from
 # /etc/systemd/zram-generator.conf - no service to enable here.
 

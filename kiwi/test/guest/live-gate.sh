@@ -6,7 +6,7 @@
 # assembles the gate files with kiwi/test/gate-evidence.py.
 #
 # Usage (as liveuser in the live session; sudo is passwordless there):
-#   live-gate.sh all                 live-session online+offline, firmware, repositories, identity, journal
+#   live-gate.sh all                 live-session online+offline, firmware, repositories, identity, polkit, journal
 #   live-gate.sh live-session        only the online lyra-live-smoke run
 #   live-gate.sh installer           after the Lyra Installer finished: its result JSON, logs and lsblk
 #   live-gate.sh <section> ...       any of the sections below, in order
@@ -24,13 +24,13 @@ for argument in "$@"; do
   case "$argument" in
     --acknowledge-journal=*) ACK="${argument#*=}" ;;
     --skip-offline) SKIP_OFFLINE=1 ;;
-    all) SECTIONS+=(live-session live-session-offline firmware repositories identity journal-crit) ;;
-    live-session|live-session-offline|firmware|repositories|identity|journal-crit|installer) SECTIONS+=("$argument") ;;
+    all) SECTIONS+=(live-session live-session-offline firmware repositories identity polkit journal-crit) ;;
+    live-session|live-session-offline|firmware|repositories|identity|polkit|journal-crit|installer) SECTIONS+=("$argument") ;;
     *) echo "unknown argument: $argument" >&2; exit 2 ;;
   esac
 done
 if [ "${#SECTIONS[@]}" -eq 0 ]; then
-  echo "usage: live-gate.sh all|live-session|live-session-offline|firmware|repositories|identity|journal-crit|installer [--acknowledge-journal=ISSUE] [--skip-offline]" >&2
+  echo "usage: live-gate.sh all|live-session|live-session-offline|firmware|repositories|identity|polkit|journal-crit|installer [--acknowledge-journal=ISSUE] [--skip-offline]" >&2
   exit 2
 fi
 if [ ! -c "$PORT" ]; then
@@ -81,6 +81,13 @@ repositories() {
   echo "## lyra packages"; rpm -q lyra-release lyra-installer sheliak lyra-upgrade lyra-vms lyra-welcome 2>&1
 }
 identity() { cat /etc/os-release; echo "## lyra release"; cat /usr/lib/lyra-os/release 2>&1; }
+# liveuser's password is locked, so an admin action must be authorized
+# without a prompt. pkcheck without --allow-user-interaction never prompts.
+polkit() {
+  echo "## rule"; cat /etc/polkit-1/rules.d/49-lyra-liveuser.rules 2>&1 || return 1
+  echo "## pkcheck org.lyraos.vega.software.install"
+  pkcheck --action-id org.lyraos.vega.software.install --process $$ 2>&1
+}
 # liveuser is not in systemd-journal; read the whole journal through sudo.
 journal_crit() { sudo journalctl -b -p 3 --no-pager 2>&1; }
 installer() {
@@ -100,6 +107,7 @@ for section in "${SECTIONS[@]}"; do
     firmware) stream firmware firmware || FINAL=1 ;;
     repositories) stream repositories repositories || FINAL=1 ;;
     identity) stream identity identity || FINAL=1 ;;
+    polkit) stream polkit polkit || FINAL=1 ;;
     journal-crit) stream journal-crit journal_crit || FINAL=1 ;;
     installer) stream installer installer || FINAL=1 ;;
   esac

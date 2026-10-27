@@ -91,6 +91,11 @@ decisão (26/10/2026). Detalhes e limites:
   apagamento de tela só para a conta da live; o sistema instalado mantém o
   padrão do GNOME. O defeito foi achado no gate do build #9 e já existia na
   RC 1.
+- Sessão live: instalar software pelo Vega pedia uma senha que a conta da
+  live não tem, e a instalação não acontecia. Na live, o polkit autoriza a
+  conta da live sem senha, como o `sudo` já fazia; o instalador remove essa
+  regra, e o sistema instalado continua pedindo a senha do administrador.
+  O defeito foi achado depois do gate do build #10 e já existia na RC 1.
 - A imagem exige vega-gtk 5.3.2 e vegad 5.1.46 ou posteriores
   (`check-gnome-image.py`).
 - Segurança: só o grupo `wheel` usa `sudo` com a própria senha. O instalador
