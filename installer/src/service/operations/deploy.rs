@@ -46,6 +46,8 @@ const LIVE_ONLY_ARTIFACTS: &[&str] = &[
     // onto the installed system, which gets its own sudo user with a real
     // password.
     "etc/sudoers.d/00-liveuser-nopasswd",
+    // The polkit counterpart, which authorizes liveuser without a password.
+    "etc/polkit-1/rules.d/49-lyra-liveuser.rules",
 ];
 
 /// Essential services shared by every desktop flavor.

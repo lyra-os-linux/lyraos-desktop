@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Tue Oct 27 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
+
+- Remove the live session's polkit rule
+  (etc/polkit-1/rules.d/49-lyra-liveuser.rules) from the installed
+  system, as already done for liveuser's passwordless sudo.
+
+-------------------------------------------------------------------
 Mon Oct 26 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
 
 - Security: stop writing /etc/sudoers.d/10-installer. Its global

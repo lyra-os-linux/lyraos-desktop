@@ -104,7 +104,9 @@ defect found by its gate on a machine without an adapter. Build #8 was then
 superseded by build #9 with vegad 5.1.46 (vegad#96), for accented
 NetworkManager names found by its gate. Build #9 was then superseded by
 build #10, for the live session screen lock that liveuser could not unlock,
-found by its gate.
+found by its gate. Build #10 was then superseded by build #11, because
+liveuser could not authorize any polkit admin action (installing software
+in Vega, for instance): its password is locked.
 
 - [ ] the image rejects vegad older than 5.1.46 and vega-gtk older than 5.3.2
   (`check-gnome-image.py`);
@@ -119,6 +121,9 @@ found by its gate.
   lock-enabled` is `false` and `org.gnome.desktop.session idle-delay` is `0`,
   and after more than 5 idle minutes the session is still usable; the
   installed account keeps GNOME's defaults (`true`, `300`);
+- [ ] live-gate `polkit` passes, and in the live session Vega installs a
+  Flathub app and an official package without a password prompt; the
+  installed system has no `/etc/polkit-1/rules.d/49-lyra-liveuser.rules`;
 - [ ] in a pt_BR install, Vega's Rede page shows "Conexão cabeada 1" (not
   "Conex?o"), and setting a static IPv4 on it works;
 - [ ] the installer header shows "RC 2";
