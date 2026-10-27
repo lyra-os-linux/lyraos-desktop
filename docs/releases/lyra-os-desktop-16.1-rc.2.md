@@ -85,6 +85,12 @@ decisão (26/10/2026). Detalhes e limites:
   existe. O vegad 5.1.46 roda o `nmcli` em UTF-8
   ([vegad#96](https://github.com/lyra-os-linux/vegad/pull/96)). O defeito foi
   achado no gate do build #8 e já existia na RC 1.
+- Sessão live: a tela travava depois de 5 minutos parada e não havia senha
+  para destravar, porque a conta da live entra sem senha. Quem saía de perto
+  durante a instalação perdia a sessão. A live desliga o bloqueio e o
+  apagamento de tela só para a conta da live; o sistema instalado mantém o
+  padrão do GNOME. O defeito foi achado no gate do build #9 e já existia na
+  RC 1.
 - A imagem exige vega-gtk 5.3.2 e vegad 5.1.46 ou posteriores
   (`check-gnome-image.py`).
 - Segurança: só o grupo `wheel` usa `sudo` com a própria senha. O instalador

@@ -213,6 +213,25 @@ install -d -m 0755 /home/liveuser/.config /home/liveuser/.local/state
 cp -a "$LYRA_FISH_SKEL/.config/fish" /home/liveuser/.config/
 cp -a "$LYRA_FISH_SKEL/.local/state/lyra-fish-productivity" \
     /home/liveuser/.local/state/
+
+# The live session logs in automatically and liveuser's password is locked
+# ("!" in config.xml), so GNOME's screen lock after 5 idle minutes could
+# never be unlocked: whoever stepped away during an installation lost the
+# live session. liveuser's own dconf database turns off the lock and the
+# idle blanking. It lives in liveuser's home, which the installer deletes
+# with the account (userdel --remove), so installed accounts keep GNOME's
+# defaults.
+lyra_live_dconf="$(mktemp -d)"
+cat > "$lyra_live_dconf/00-lyra-live-session" <<'EOF'
+[org/gnome/desktop/screensaver]
+lock-enabled=false
+
+[org/gnome/desktop/session]
+idle-delay=uint32 0
+EOF
+install -d -m 0700 /home/liveuser/.config/dconf
+dconf compile /home/liveuser/.config/dconf/user "$lyra_live_dconf"
+rm -rf "$lyra_live_dconf"
 chown -R liveuser:"$(id -gn liveuser)" /home/liveuser/.config /home/liveuser/.local
 
 # Product identity (PROMPT-LYRA-OS.md: "Lyra OS", not "Lyra Linux" or
