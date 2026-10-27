@@ -14,7 +14,7 @@ MINIMUMS = {
     'lyra-os-theme': '1.10.0', 'lyra-os-icons': '1.9.4',
     'lyra-nautilus-branding': '1.9.4', 'libreoffice-branding-Lyra': '1.0.1',
     'lyra-upgrade': '0.2.5', 'beam': '1.0.1',
-    'sulafat': '1.0.4', 'vegad': '5.1.45',
+    'sulafat': '1.0.4', 'vegad': '5.1.46',
     'lyra-installer': '0.1.0',
     'lyra-downloads': '0.1.3',
     'lyra-downloads-firefox-integration': '0.1.3',

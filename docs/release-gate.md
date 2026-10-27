@@ -100,9 +100,11 @@ the Tauri vega-gtk 5.2.0 (vega#159, freeze exception
 approved by the maintainer). The candidate keeps the `16.1-rc.2` identity.
 On 2026-10-27 build #7 (parental controls) was superseded by build #8 with
 vegad 5.1.45 and vega-gtk 5.3.2 (vegad#93/#94/#95, vega#161/#163), for the Bluetooth
-defect found by its gate on a machine without an adapter.
+defect found by its gate on a machine without an adapter. Build #8 was then
+superseded by build #9 with vegad 5.1.46 (vegad#96), for accented
+NetworkManager names found by its gate.
 
-- [ ] the image rejects vegad older than 5.1.45 and vega-gtk older than 5.3.2
+- [ ] the image rejects vegad older than 5.1.46 and vega-gtk older than 5.3.2
   (`check-gnome-image.py`);
 - [ ] on the installed system, Vega's firewall status reports the `public`
   zone;
@@ -111,6 +113,8 @@ defect found by its gate on a machine without an adapter.
 - [ ] on a machine without a Bluetooth adapter, the Vega Bluetooth page shows
   "Nenhum adaptador Bluetooth encontrado" at once, and neither the Painel nor
   Serviços flags `bluetooth.service`;
+- [ ] in a pt_BR install, Vega's Rede page shows "Conexão cabeada 1" (not
+  "Conex?o"), and setting a static IPv4 on it works;
 - [ ] the installer header shows "RC 2";
 - [ ] the bundle is built by `scripts/build-desktop-rc2.sh` and published by
   `scripts/upload-desktop-rc2-sourceforge.sh`, which sign and verify the
