@@ -91,11 +91,6 @@ decisão (26/10/2026). Detalhes e limites:
   apagamento de tela só para a conta da live; o sistema instalado mantém o
   padrão do GNOME. O defeito foi achado no gate do build #9 e já existia na
   RC 1.
-- Sessão live: instalar software pelo Vega pedia uma senha que a conta da
-  live não tem, e a instalação não acontecia. Na live, o polkit autoriza a
-  conta da live sem senha, como o `sudo` já fazia; o instalador remove essa
-  regra, e o sistema instalado continua pedindo a senha do administrador.
-  O defeito foi achado depois do gate do build #10 e já existia na RC 1.
 - A imagem exige vega-gtk 5.3.2 e vegad 5.1.46 ou posteriores
   (`check-gnome-image.py`).
 - Segurança: só o grupo `wheel` usa `sudo` com a própria senha. O instalador
@@ -152,6 +147,14 @@ Os mesmos da [RC 1](lyra-os-desktop-16.1-rc.1.md#escopo-e-limites):
 - RAID, LVM, particionamento manual e instalação lado a lado continuam fora
   do cenário coberto.
 - Idiomas: `en-US`, `pt-BR` e `es-ES`, com `en-US` como fallback explícito.
+
+## Problemas conhecidos
+
+- Na sessão live, instalar software pelo Vega pede uma senha que a conta da
+  live não tem, e a instalação não acontece. O Instalador do Lyra não é
+  afetado, nem o sistema instalado. Já existia na RC 1; a correção
+  ([#211](https://github.com/lyra-os-linux/lyraos-desktop/pull/211)) entra na
+  versão final.
 
 ## Qualificação obrigatória
 
