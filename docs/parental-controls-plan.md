@@ -163,6 +163,35 @@ para trás (vegad 5.1.45, relatado pelo mantenedor), nomes de rede com acento
 (vegad 5.1.46) e a tela da live que travava sem como destravar (#209). A
 candidata é o build #10.
 
+Depois do gate, o mantenedor relatou que o Flatpak não instalava pelo Vega.
+A investigação achou dois pontos. Primeiro, na live o polkit pedia a senha da
+conta da live, que não existe; a correção está no `main` (#211) e entra no
+build final. Segundo, o sistema instalado pedia a senha a cada Flatpak da
+fila; o vegad 5.1.47 pede uma vez por fila (`auth_admin_keep`, vegad#97,
+aprovado pelo mantenedor). Nenhum dos dois bloqueia a RC 2.
+
+### Regras do plano (decididas em 27/10)
+
+O plano é o farol. Em dois dias, cada defeito achado virou correção imediata,
+novo build e novo gate (builds #7 a #10), e o objetivo se perdeu nesse ciclo.
+A partir de 27/10:
+
+1. Só se trabalha no que está no cronograma abaixo.
+2. Todo achado novo é classificado antes de qualquer correção, pela política
+   de severidade de `release-gate.md`:
+   - **bloqueante (P1):** propõe-se uma mudança explícita no cronograma, com as
+     novas datas, e só se age depois da aprovação do mantenedor;
+   - **o resto:** vira problema conhecido, entra na lista "Achados em espera"
+     abaixo e é encaixado na próxima etapa prevista do cronograma.
+3. Nenhum build novo da ISO fora das datas do cronograma.
+4. Este documento é atualizado no mesmo dia em que o plano muda.
+
+### Achados em espera
+
+| Achado | Severidade | Onde está | Etapa |
+| --- | --- | --- | --- |
+| Live: o polkit pede a senha da conta da live e a instalação pelo Vega não acontece | Não bloqueante; já existia na RC 1 | Corrigido no `main` (#211); `lyra-installer` r43 no staging | Build final, 03/11; problema conhecido da RC 2 |
+
 ### Cronograma (atualizado em 27/10/2026)
 
 Lançamento da 16.1 em **05/11**; 26/11 continua como data-limite.
@@ -170,13 +199,13 @@ Lançamento da 16.1 em **05/11**; 26/11 continua como data-limite.
 | Data | Trabalho | Responsável |
 | --- | --- | --- |
 | 27/10 (ter) | Terminar o gate do build #10 (BIOS e UEFI sem NVRAM); se passar, ele é a RC 2 | Claude, com o mantenedor nas instalações pela interface |
-| 28/10 (qua) | Flatpak no Vega: reproduzir, corrigir e publicar (staging, VM, SR); chega à RC 2 por atualização, sem novo build da ISO | Claude |
+| 28/10 (qua) | Flatpak no Vega: vegad 5.1.47 (`auth_admin_keep`, vegad#97) no staging, VM e SR; SR do `lyra-installer` (#211). Chegam à RC 2 por atualização, sem novo build da ISO | Claude, com autorização do mantenedor para merge e SR |
 | 28/10 (qua) | Importar a chave da release e assinar o build #10 (`--artifacts-only`) | Mantenedor |
 | 29/10 (qui) | Publicar a RC 2: SourceForge, PR do site e anúncio | Claude prepara, mantenedor aprova |
 | 29/10 (qui) | Server RC 3 (Delos) com o vegad 5.1.46, em paralelo | Claude |
 | 29/10–02/11 | Teste público da RC 2; só entram correções de defeito bloqueante | Todos |
 | 02/11 (seg) | Congelamento: identidade final `16.1` e notas da versão | Claude |
-| 03/11 (ter) | Build final e gate completo (UEFI com Secure Boot, BIOS, sem NVRAM, rollback) | Claude, com o mantenedor nas instalações |
+| 03/11 (ter) | Build final, com os achados em espera, e gate completo (UEFI com Secure Boot, BIOS, sem NVRAM, rollback) | Claude, com o mantenedor nas instalações |
 | 04/11 (qua) | Assinatura, upload e site | Mantenedor e Claude |
 | 05/11 (qui) | Lançamento do Lyra OS 16.1 "Odisseia" | Mantenedor |
 
