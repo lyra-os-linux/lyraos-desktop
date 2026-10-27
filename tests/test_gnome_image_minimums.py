@@ -107,14 +107,15 @@ class MinimumsTests(unittest.TestCase):
 
     def test_dashboard_refresh_rejects_stale_and_prerelease_vega(self):
         # 5.2.0 replaces the GTK frontend with the Tauri port (vega#159);
-        # 5.3.0 adds parental controls (vega#160); 5.3.1 explains a missing
-        # Bluetooth adapter (vega#161).
-        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.47', '5.2.0~rc1', '5.2.0', '5.3.0', '5.3.1~rc1'):
+        # 5.3.0 adds parental controls (vega#160); 5.3.2 explains a missing
+        # Bluetooth adapter and stops flagging unavailable services
+        # (vega#161, vega#163).
+        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.47', '5.2.0~rc1', '5.2.0', '5.3.0', '5.3.1', '5.3.2~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vega-gtk' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.3.1'):
+                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.3.2'):
                         minimums.main()
 
     def test_preparation_rejects_daemon_before_recovery_release(self):

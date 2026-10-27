@@ -10,7 +10,7 @@ import re
 import subprocess
 
 MINIMUMS = {
-    'vega-gtk': '5.3.1', 'sheliak': '2.0.5', 'lyra-welcome': '0.4.1',
+    'vega-gtk': '5.3.2', 'sheliak': '2.0.5', 'lyra-welcome': '0.4.1',
     'lyra-os-theme': '1.10.0', 'lyra-os-icons': '1.9.4',
     'lyra-nautilus-branding': '1.9.4', 'libreoffice-branding-Lyra': '1.0.1',
     'lyra-upgrade': '0.2.5', 'beam': '1.0.1',

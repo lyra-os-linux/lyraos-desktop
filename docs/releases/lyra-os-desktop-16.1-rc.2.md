@@ -67,12 +67,14 @@ decisão (26/10/2026). Detalhes e limites:
   cru. O Painel e a página Serviços marcavam o `bluetooth.service` como
   "habilitado, mas parado". O vegad 5.1.44 responde na hora que não há
   adaptador e não conta serviços pulados por condição como falha, e o
-  vega-gtk 5.3.1 mostra "Nenhum adaptador Bluetooth encontrado"
+  vega-gtk 5.3.2 mostra "Nenhum adaptador Bluetooth encontrado" e deixa de
+  pintar de alerta o serviço indisponível
   ([vegad#93](https://github.com/lyra-os-linux/vegad/pull/93),
   [vegad#94](https://github.com/lyra-os-linux/vegad/pull/94),
-  [vega#161](https://github.com/lyra-os-linux/vega/pull/161)). O defeito foi
+  [vega#161](https://github.com/lyra-os-linux/vega/pull/161),
+  [vega#163](https://github.com/lyra-os-linux/vega/pull/163)). O defeito foi
   achado no gate desta candidata e existia desde o vegad 1.3.3.
-- A imagem exige vega-gtk 5.3.1 e vegad 5.1.44 ou posteriores
+- A imagem exige vega-gtk 5.3.2 e vegad 5.1.44 ou posteriores
   (`check-gnome-image.py`).
 - Segurança: só o grupo `wheel` usa `sudo` com a própria senha. O instalador
   deixava qualquer conta virar root com a própria senha. A imagem passa a usar
