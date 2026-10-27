@@ -106,13 +106,15 @@ class MinimumsTests(unittest.TestCase):
                 minimums.main()
 
     def test_dashboard_refresh_rejects_stale_and_prerelease_vega(self):
-        # 5.2.0 replaces the GTK frontend with the Tauri port (vega#159).
-        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.43', '5.1.44', '5.1.45~rc1', '5.1.45', '5.1.46~rc1', '5.1.46', '5.1.47', '5.2.0~rc1'):
+        # 5.2.0 replaces the GTK frontend with the Tauri port (vega#159);
+        # 5.3.0 adds parental controls (vega#160); 5.3.1 explains a missing
+        # Bluetooth adapter (vega#161).
+        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.47', '5.2.0~rc1', '5.2.0', '5.3.0', '5.3.1~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vega-gtk' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.2.0'):
+                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.3.1'):
                         minimums.main()
 
     def test_preparation_rejects_daemon_before_recovery_release(self):
@@ -120,13 +122,15 @@ class MinimumsTests(unittest.TestCase):
         # pulling network-online into every boot (#168); 5.1.39 reports the
         # real active firewall zone (vegad#83); 5.1.40 installs the integrated
         # GPU Vulkan driver with NVIDIA so the dGPU can suspend (vegad#78);
-        # 5.1.41 reads the firewall zone in the broker (vegad#90).
-        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38', '5.1.39', '5.1.40', '5.1.41~rc1'):
+        # 5.1.41 reads the firewall zone in the broker (vegad#90); 5.1.42 adds
+        # supervised accounts (vegad#92); 5.1.44 stops Bluetooth.Status from
+        # hanging without an adapter (vegad#93, vegad#94).
+        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38', '5.1.39', '5.1.40', '5.1.41', '5.1.42', '5.1.43', '5.1.44~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vegad' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.41'):
+                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.44'):
                         minimums.main()
 
     def test_shell_shutdown_fix_rejects_older_sheliak(self):
