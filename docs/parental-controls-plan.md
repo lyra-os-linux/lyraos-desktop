@@ -192,28 +192,34 @@ A partir de 27/10:
 | --- | --- | --- | --- |
 | Live: o polkit pede a senha da conta da live e a instalação pelo Vega não acontece | Não bloqueante; já existia na RC 1 | Corrigido no `main` (#211); `lyra-installer` r43 no staging | Build final, 03/11; problema conhecido da RC 2 |
 
-### Cronograma (atualizado em 27/10/2026)
+### Cronograma (atualizado em 28/10/2026)
 
-Lançamento da 16.1 em **05/11**; 26/11 continua como data-limite.
+Lançamento da 16.1 em **03/11, depois das 12:00 UTC**, junto com o GA do
+openSUSE Leap 16.1 (decisão do mantenedor em 28/10). O 05/11 vira folga, e
+26/11 continua como data-limite.
 
 | Data | Trabalho | Responsável |
 | --- | --- | --- |
-| 27/10 (ter) | Terminar o gate do build #10 (BIOS e UEFI sem NVRAM); se passar, ele é a RC 2 | Claude, com o mantenedor nas instalações pela interface |
-| 28/10 (qua) | Flatpak no Vega: vegad 5.1.47 (`auth_admin_keep`, vegad#97) no staging, VM e SR; SR do `lyra-installer` (#211). Chegam à RC 2 por atualização, sem novo build da ISO | Claude, com autorização do mantenedor para merge e SR |
-| 28/10 (qua) | Importar a chave da release e assinar o build #10 (`--artifacts-only`) | Mantenedor |
-| 29/10 (qui) | Publicar a RC 2: SourceForge, PR do site e anúncio | Claude prepara, mantenedor aprova |
-| 29/10 (qui) | Server RC 3 (Delos) com o vegad 5.1.46, em paralelo | Claude |
-| 29/10–02/11 | Teste público da RC 2; só entram correções de defeito bloqueante | Todos |
-| 02/11 (seg) | Congelamento: identidade final `16.1` e notas da versão | Claude |
-| 03/11 (ter) | Build final, com os achados em espera, e gate completo (UEFI com Secure Boot, BIOS, sem NVRAM, rollback) | Claude, com o mantenedor nas instalações |
-| 04/11 (qua) | Assinatura, upload e site | Mantenedor e Claude |
-| 05/11 (qui) | Lançamento do Lyra OS 16.1 "Odisseia" | Mantenedor |
+| 27/10 (ter) | Gate do build #10 completo e aprovado; ele é a RC 2 | Feito |
+| 27/10 (ter) | Flatpak no Vega: vegad 5.1.47 (`auth_admin_keep`, vegad#97) e `lyra-installer` (#211) publicados; chegam à RC 2 por atualização | Feito, um dia antes do previsto |
+| 28/10 (qua) | Chave da release importada; build #10 assinado (`--artifacts-only`) | Feito |
+| 28/10 (qua) | RC 2 publicada: SourceForge (`releases/16.1/rc2/desktop/`), tag `v16.1-rc.2`, site e anúncio. Saiu um dia antes do previsto, com GO às 10:45 UTC | Feito |
+| ~~29/10 (qui)~~ | ~~Server RC 3~~: cancelada. O Server recebe o vegad 5.1.47 direto na versão final | — |
+| 29/10–02/11 | Teste público da RC 2; só entram correções de defeito bloqueante. O mantenedor acompanha as issues e avisa | Mantenedor |
+| 02/11 (seg) | Congelamento: identidade final `16.1`, wrappers de build e upload da 16.1 (`release-first`) e notas da versão, Desktop e Server. Build final com os pacotes GM já nos repositórios e os achados em espera; início do gate reduzido | Claude, com o mantenedor nas instalações |
+| 02/11 (seg) | PRs do site e do anúncio da 16.1 prontos, revisados localmente pelo mantenedor | Claude prepara, mantenedor revisa |
+| 03/11 (ter) | Fim do gate reduzido (live, instalação UEFI com Secure Boot, primeiro boot, `sudo-policy`, `parental`, senha da live do #211); assinatura e upload de manhã, no mesmo fluxo da RC 2 | Claude e mantenedor |
+| 03/11 (ter) | **Lançamento do Lyra OS 16.1 "Odisseia"** depois das 12:00 UTC, quando o openSUSE anunciar o Leap 16.1: merge do site, tag e anúncio | Mantenedor |
+| 05/11 (qui) | Folga | — |
 
 Riscos e alternativas:
 
 - Com sinal de idade (frente 6): 2 a 5 dias a mais, só se o parecer exigir;
   o lançamento passa para 12/11.
 - Defeito bloqueante na RC 2: RC 3 em 05/11 e lançamento em 12/11 ou 19/11.
+- Conteúdo GM ainda fora dos repositórios em 02/11: o build final passa
+  para 03/11 e o lançamento para 04/11 ou 05/11.
+- Atraso do openSUSE: o lançamento acompanha o novo GA.
 - A chave da release é o único passo exclusivo do mantenedor; sem ela, nada
   é publicado.
 
