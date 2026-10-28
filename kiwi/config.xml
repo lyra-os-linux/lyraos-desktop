@@ -380,6 +380,12 @@
          graph, so onlyRequired omitted the daemon while retaining its client
          library; the result was a working BAT1 in sysfs but no battery icon. -->
     <package name="upower"/>
+    <!-- ping, tracepath and arping are the first network diagnostics in any
+         support guide, but iputils is not required by anything in the
+         onlyRequired graph, so the image shipped without them (#218).
+         Unprivileged ICMP works through net.ipv4.ping_group_range; no
+         setuid or file capability is needed. -->
+    <package name="iputils"/>
     <!-- GNOME's power mode selector (Settings and quick settings) needs the
          net.hadess.PowerProfiles service. tuned-ppd is the Leap 16 provider
          for it and pulls in TuneD; power-profiles-daemon is only in

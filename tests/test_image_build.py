@@ -492,6 +492,15 @@ class ImagePolicyTests(unittest.TestCase):
         self.assertIn("libvulkan_intel", desktop_packages)
         self.assertIn("libvulkan_radeon", desktop_packages)
 
+    def test_desktop_ships_network_diagnostics(self) -> None:
+        # Nothing in the onlyRequired graph pulls iputils, so the image had
+        # no ping or tracepath (#218).
+        root = ET.parse(ROOT / "kiwi/config.xml").getroot()
+        desktop_packages = {
+            node.attrib["name"] for node in root.findall("packages/package")
+        }
+        self.assertIn("iputils", desktop_packages)
+
     def test_desktop_installs_explicit_alsa_userspace_stack(self) -> None:
         # PipeWire remains the desktop audio server, while these packages
         # provide ALSA hardware profiles, diagnostics and compatibility for

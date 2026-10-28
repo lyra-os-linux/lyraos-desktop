@@ -649,6 +649,22 @@ assinaturas de metadata/RPM e SHA256 idêntico ao artefato instalado pela API.
 A candidata ISO permanece pendente até teste da imagem exata. Reversão do
 reparo: auxiliar --restore somente se o digest ainda corresponder ao gerado.
 
+## NET-01 — Ferramentas básicas de rede ausentes (28/10/2026)
+
+Desktop #218: na estação (RC 1, `BUILD_ID=20261022`), `ping` respondeu
+"command not found" durante um diagnóstico de rede; `iputils` não estava
+instalado. Causa na receita: `patternType="onlyRequired"` e nenhum pacote da
+imagem exige `iputils`, que no Leap só entra pelos patterns completos. Alcance:
+todos os hardwares e a sessão live.
+
+**Fonte:** `<package name="iputils"/>` em `kiwi/config.xml`, com teste em
+`tests/test_image_build.py`. Dependências (`libcap`, `libidn2`, `permissions`)
+já presentes; o ICMP sem privilégio vem de `net.ipv4.ping_group_range`, sem
+setuid ou capability. Sem RPM próprio. Reversão: remover a linha da receita.
+**Inclusão na ISO e validação na candidata pendentes:** `iputils` no
+inventário `.packages` e `ping -c 3 1.1.1.1` como usuário comum na live e no
+sistema instalado.
+
 ## Reconciliação na candidata 5 — 13/10/2026
 
 Candidata 5 da Alpha 8: `LyraOS-Desktop-1.1-alpha.8-x86_64.iso`, commit
