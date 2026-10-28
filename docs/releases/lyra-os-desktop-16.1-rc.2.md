@@ -8,14 +8,23 @@ uma atualização depois do lançamento. Como o conteúdo da imagem muda, a RC 2
 adiar a versão estável para incluir o **controle parental básico**
 ([plano](../parental-controls-plan.md), [ADR 0019](../adr/0019-basic-parental-controls.md)).
 Como nenhuma ISO da RC 2 tinha sido publicada, a RC 2 passa a trazer também
-esse recurso. A data de publicação e a da versão estável ficam a definir pelo
-mantenedor depois do gate, com **26 de novembro de 2026** como limite. Fora a
+esse recurso. A RC 2 foi publicada em **29 de outubro de 2026**; a versão
+estável está prevista para **5 de novembro de 2026**, com **26 de novembro de
+2026** como limite. Fora a
 exceção abaixo, vale o congelamento estrito da RC 1: só correções de bugs,
 travamentos, segurança e performance crítica em pacotes já distribuídos.
 
 A identidade técnica é `16.1-rc.2`, tag `v16.1-rc.2`, arquivo
-`LyraOS-Desktop-16.1-rc.2-x86_64.iso`. Estas notas acompanham a candidata; o
-commit, o SHA-256 e a decisão de GO são preenchidos no bundle publicado.
+`LyraOS-Desktop-16.1-rc.2-x86_64.iso`, publicado em
+[SourceForge](https://sourceforge.net/projects/lyra/files/releases/16.1/rc2/desktop/).
+
+| Campo | Valor |
+| --- | --- |
+| Build | #10, 27/10/2026 |
+| Commit | `f5d4dc67cd200e3fdf25fbda11b9465e935afa90` |
+| SHA-256 | `9592becd756cfec6d58f5589f2da0d560ac175051df26790c90b08308c238873` |
+| Gate | completo e aprovado em 27/10/2026 |
+| Decisão | GO do mantenedor em 29/10/2026 |
 
 ## Exceção ao congelamento
 
@@ -110,6 +119,10 @@ decisão (26/10/2026). Detalhes e limites:
 - Flatpak deixa de vir instalado. Ele é habilitado na página Software do
   Vega, com aviso para contas supervisionadas, e o Flathub aparece junto.
   Instalações existentes mantêm o Flatpak.
+- Depois do build, por atualização: o vegad 5.1.47 pede a senha de
+  administrador uma vez para uma fila de Flatpaks, em vez de uma por Flatpak
+  ([vegad#97](https://github.com/lyra-os-linux/vegad/pull/97)). A ISO traz o
+  5.1.46; o 5.1.47 chega pela primeira atualização do zypper ou do Vega.
 - LinuxToys deixa de vir instalado. Continua disponível no repositório do
   Lyra.
 - Escopo: KDE Plasma e XFCE foram abandonados; o GNOME é a única edição
@@ -171,10 +184,18 @@ QEMU/KVM:
 
 No sistema instalado, o status do firewall no Vega precisa mostrar a zona
 `public`, o seletor de perfil de energia do GNOME precisa aparecer e o Vega
-5.3.0 precisa abrir todas as páginas. `installed-gate.sh sudo-policy` e
+5.3.2 precisa abrir todas as páginas. `installed-gate.sh sudo-policy` e
 `parental` precisam passar, assim como o roteiro manual do
 [gate #9](../parental-controls-gate.md). Um defeito não trivial interrompe a
 promoção e gera a RC 3; os critérios não são reduzidos para preservar a data.
+
+Resultado: o build #10 passou em todos os itens acima em 27/10/2026. Na
+UEFI com Secure Boot passaram sessão live (online e offline), instalador,
+primeiro boot, Secure Boot, `sudo-policy` e `parental`; também passaram
+BIOS legado, UEFI sem NVRAM, rollback e `i18n`. Do roteiro manual do gate #9
+foram executados os itens 1 e 3, por decisão do mantenedor; os demais já
+tinham passado no build #7, com o mesmo controle parental. Na live, a tela
+ficou 6 minutos parada sem bloquear.
 
 ## Integridade
 
@@ -189,5 +210,5 @@ Arquivo esperado: `LyraOS-Desktop-16.1-rc.2-x86_64.iso`. Para verificar:
 
 A versão estável `16.1` será reconstruída a partir dos pacotes GA do openSUSE
 Leap 16.1 (3 de novembro de 2026), com o mesmo conteúdo Lyra da RC 2, e
-passará por um gate reduzido antes da publicação, em data a definir pelo
-mantenedor até 26 de novembro de 2026.
+passará por um gate reduzido antes da publicação, prevista para 5 de
+novembro de 2026, com 26 de novembro de 2026 como limite.
