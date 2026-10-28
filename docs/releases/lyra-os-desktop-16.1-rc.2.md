@@ -8,7 +8,7 @@ uma atualização depois do lançamento. Como o conteúdo da imagem muda, a RC 2
 adiar a versão estável para incluir o **controle parental básico**
 ([plano](../parental-controls-plan.md), [ADR 0019](../adr/0019-basic-parental-controls.md)).
 Como nenhuma ISO da RC 2 tinha sido publicada, a RC 2 passa a trazer também
-esse recurso. A RC 2 foi publicada em **29 de outubro de 2026**; a versão
+esse recurso. A RC 2 foi publicada em **28 de outubro de 2026**; a versão
 estável está prevista para **5 de novembro de 2026**, com **26 de novembro de
 2026** como limite. Fora a
 exceção abaixo, vale o congelamento estrito da RC 1: só correções de bugs,
@@ -24,7 +24,7 @@ A identidade técnica é `16.1-rc.2`, tag `v16.1-rc.2`, arquivo
 | Commit | `f5d4dc67cd200e3fdf25fbda11b9465e935afa90` |
 | SHA-256 | `9592becd756cfec6d58f5589f2da0d560ac175051df26790c90b08308c238873` |
 | Gate | completo e aprovado em 27/10/2026 |
-| Decisão | GO do mantenedor em 29/10/2026 |
+| Decisão | GO do mantenedor em 28/10/2026 |
 
 ## Exceção ao congelamento
 
