@@ -249,6 +249,7 @@ class RepositoryMetadataTests(unittest.TestCase):
         self.assertIn("build-desktop-alpha6.sh", wrapper)
         self.assertIn('LYRA_EXPECTED_VERSION="16.1-rc.2"', uploader_wrapper)
         self.assertIn('LYRA_RELEASE_SLUG="rc2"', uploader_wrapper)
+        self.assertIn('LYRA_RELEASE_LAYOUT="${LYRA_RELEASE_LAYOUT:-release-first}"', uploader_wrapper)
         self.assertIn("upload-desktop-alpha6-sourceforge.sh", uploader_wrapper)
         fingerprint = "01B63EEDBE6B079126A0116EFA7353A131ECEFEB"
         for script in (builder, uploader):
