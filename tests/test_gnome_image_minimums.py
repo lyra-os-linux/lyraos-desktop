@@ -109,13 +109,14 @@ class MinimumsTests(unittest.TestCase):
         # 5.2.0 replaces the GTK frontend with the Tauri port (vega#159);
         # 5.3.0 adds parental controls (vega#160); 5.3.2 explains a missing
         # Bluetooth adapter and stops flagging unavailable services
-        # (vega#161, vega#163).
-        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.47', '5.2.0~rc1', '5.2.0', '5.3.0', '5.3.1', '5.3.2~rc1'):
+        # (vega#161, vega#163); 5.3.3 stops WebKitWebProcess from aborting
+        # with heap corruption on exit (vega#166).
+        for version in ('5.1.37', '5.1.39', '5.1.40~rc1', '5.1.41', '5.1.47', '5.2.0~rc1', '5.2.0', '5.3.0', '5.3.1', '5.3.2', '5.3.3~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vega-gtk' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.3.2'):
+                    with self.assertRaisesRegex(ValueError, 'vega-gtk: need >= 5.3.3'):
                         minimums.main()
 
     def test_preparation_rejects_daemon_before_recovery_release(self):
@@ -127,13 +128,15 @@ class MinimumsTests(unittest.TestCase):
         # supervised accounts (vegad#92); 5.1.44 stops Bluetooth.Status from
         # hanging without an adapter (vegad#93, vegad#94); 5.1.45 makes
         # Update all finish cross-repository updates (vegad#95); 5.1.46 keeps
-        # accented NetworkManager names intact (vegad#96).
-        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38', '5.1.39', '5.1.40', '5.1.41', '5.1.42', '5.1.43', '5.1.44', '5.1.45', '5.1.46~rc1'):
+        # accented NetworkManager names intact (vegad#96); 5.1.47 asks for the
+        # password once per Flatpak queue (vegad#97); 5.1.48 stops
+        # vegad-trusted-keys from failing on every vegad update (vegad#99).
+        for version in ('5.1.26', '5.1.31', '5.1.32', '5.1.37', '5.1.38', '5.1.39', '5.1.40', '5.1.41', '5.1.42', '5.1.43', '5.1.44', '5.1.45', '5.1.46', '5.1.47', '5.1.48~rc1'):
             with self.subTest(version=version):
                 def installed(package):
                     return version if package == 'vegad' else minimums.MINIMUMS[package]
                 with patch.object(minimums, 'installed_version', side_effect=installed):
-                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.46'):
+                    with self.assertRaisesRegex(ValueError, 'vegad: need >= 5.1.48'):
                         minimums.main()
 
     def test_shell_shutdown_fix_rejects_older_sheliak(self):
