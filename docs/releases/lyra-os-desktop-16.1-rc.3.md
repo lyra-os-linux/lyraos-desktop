@@ -12,11 +12,11 @@ A identidade técnica é `16.1-rc.3`, tag `v16.1-rc.3`, arquivo
 
 | Campo | Valor |
 | --- | --- |
-| Build | a preencher |
-| Commit | a preencher |
-| SHA-256 | a preencher |
-| Gate | a preencher |
-| Decisão | a preencher |
+| Build | 30/10/2026, `scripts/build-desktop-rc3.sh` |
+| Commit | `70e4bf9805b3caaa32052585ffce75467a282acd` |
+| SHA-256 | `50211bcf31271d232ea4326fc46704cad79a729d1bb363679ce32829d7794a3a` |
+| Gate | completo e aprovado em 30/10/2026 |
+| Decisão | GO do mantenedor em 30/10/2026 |
 
 ## Exceção ao congelamento
 
@@ -63,7 +63,20 @@ ajuda" e o cartão da verificação semanal.
 
 ## Problemas conhecidos
 
-- Nenhum P0/P1 aberto na abertura desta candidata.
+Nenhum P0/P1 aberto. Ficam como P2/P3 aceitos:
+
+- [#22](https://github.com/lyra-os-linux/lyraos-desktop/issues/22): com
+  NVIDIA, o monitor externo não acorda depois do DPMS ou da suspensão.
+  Contorno: reconectar o cabo ou trocar de VT.
+- [#102](https://github.com/lyra-os-linux/lyraos-desktop/issues/102): com o
+  Flatpak habilitado, uma conta supervisionada consegue instalar e abrir apps
+  Flatpak. Contorno: não habilitar o Flatpak em máquinas com contas
+  supervisionadas.
+
+O controle parental é básico: não filtra sites e não resiste a uma criança
+com conhecimento técnico. O gate rodou em VM QEMU/KVM; a validação em
+hardware físico ([#69](https://github.com/lyra-os-linux/lyraos-desktop/issues/69))
+continua aberta.
 
 ## Qualificação
 
@@ -73,3 +86,12 @@ ISO exata. A imagem recusa versões anteriores às mínimas de
 sulafat 1.1.1, lyra-downloads 0.2.1). O bundle inclui a ISO, as evidências, os
 SBOMs, o checksum e a assinatura destacada pela chave oficial de release
 (`01B6 3EED BE6B 0791 26A0 116E FA73 53A1 31EC EFEB`).
+
+Resultado: a ISO acima passou em todos os itens em 30/10/2026. Na UEFI com
+Secure Boot passaram sessão live (online e offline), instalador, primeiro
+boot, Secure Boot, `sudo-policy` e `parental`; também passaram BIOS legado,
+UEFI sem NVRAM, rollback, `i18n` e `obs-repositories`. Na sessão live, o
+liveuser autoriza as ações do Vega sem senha (#211). Do roteiro manual do
+controle parental foram executados os itens 1 e 3; o diagnóstico de saúde,
+"Minha internet não funciona", o Liberar espaço e as páginas novas da Welcome
+foram testados pelo mantenedor.
