@@ -34,7 +34,9 @@ class ManifestTests(unittest.TestCase):
 
     def test_project_inventory_matches_release_contract(self) -> None:
         self.assertEqual([project.id for project in self.manifest.projects], ["lyra", "vega", "fina"])
-        self.assertEqual(len(self.manifest.project("lyra").packages), 23)
+        self.assertEqual(len(self.manifest.project("lyra").packages), 24)
+        # #125: promoted to release on 2026-10-30 (SR 1393905).
+        self.assertIn("xdg-desktop-portal-gnome", self.manifest.project("lyra").packages)
         self.assertIn("lyra-firefox-theme", self.manifest.project("lyra").packages)
         self.assertIn("lyra-vms", self.manifest.project("lyra").packages)
         self.assertIn("lyra-release", self.manifest.project("lyra").packages)
@@ -135,9 +137,11 @@ class ManifestTests(unittest.TestCase):
         obs_release.check_local_priorities(self.manifest)
 
     def test_retired_packages_are_expected_only_in_staging(self) -> None:
-        project = self.manifest.project("lyra")
-        self.assertEqual(
-            project.retired_staging_packages, ("gnome-shell-extension-desktop-icons",)
+        # The real contract has none since DING was deleted on 2026-10-30;
+        # the mechanism stays covered with an example package.
+        self.assertEqual(self.manifest.project("lyra").retired_staging_packages, ())
+        project = dataclasses.replace(
+            self.manifest.project("lyra"), retired_staging_packages=("retired-example",)
         )
         for package in project.retired_staging_packages:
             self.assertIn(package, obs_release.expected_source_packages(project, project.staging))
@@ -259,7 +263,10 @@ class BuildGateTests(unittest.TestCase):
 
 class RetiredStagingTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.project = obs_release.Manifest.load().project("lyra")
+        self.project = dataclasses.replace(
+            obs_release.Manifest.load().project("lyra"),
+            retired_staging_packages=("retired-example",),
+        )
         self.remote = self.project.staging
         self.package = self.project.retired_staging_packages[0]
         self.path = f"/source/{self.remote}/{self.package}/_meta"
@@ -324,9 +331,16 @@ class RetiredStagingTests(unittest.TestCase):
 
 class StagingCandidateTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.manifest = obs_release.Manifest.load()
-        self.project = self.manifest.project("lyra")
-        self.package = "xdg-desktop-portal-gnome"
+        # No staging-only candidate is open since #125 was promoted on
+        # 2026-10-30; the mechanism stays covered with an example package.
+        loaded = obs_release.Manifest.load()
+        self.package = "candidate-example"
+        self.project = dataclasses.replace(
+            loaded.project("lyra"),
+            staging_only_packages=(self.package,),
+            retired_staging_packages=("retired-example",),
+        )
+        self.manifest = dataclasses.replace(loaded, projects=(self.project, *loaded.projects[1:]))
 
     def test_candidate_is_required_only_in_staging(self) -> None:
         self.assertEqual(self.project.staging_only_packages, (self.package,))
