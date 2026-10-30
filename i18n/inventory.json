@@ -316,6 +316,17 @@
       "selection": "LC_ALL, LANGUAGE, LC_MESSAGES, LANG; en-US fallback",
       "lint": "cargo test --locked; desktop-file-validate; candidate locale smoke",
       "rationale": "Launcher errors in en-US/pt-BR/es-ES; console translations supplied by virt-viewer. Candidate locale review on 2026-10-10 against the installed lyra-vms 0.1.0-lp161.1.2 binary: all four launcher messages present in en-US/pt-BR/es-ES and the desktop Comment translated for pt_BR/es_ES, desktop-file-validate clean. The text(en,pt,es) selector requires all three locales by type, so none can be missing."
+    },
+    {
+      "id": "xdg-desktop-portal-gnome",
+      "project": "lyra",
+      "wave": "rc3",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "RPM policy checks and upstream ownership review",
+      "rationale": "openSUSE package rebuilt with one upstream backport (#125, global shortcuts); interface and translations stay upstream in xdg-desktop-portal-gnome-lang."
     }
   ]
 }

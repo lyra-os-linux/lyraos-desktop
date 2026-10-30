@@ -107,17 +107,19 @@ packages = [
   "sheliak",
   "sulafat",
   "vscode-repo",
+  "xdg-desktop-portal-gnome",
   "zed",
 ]
 # Pacotes legados fora da imagem e do contrato de promoção. `calco` e `prosa`
 # foram removidos do projeto de release em 10/10/2026 (osc rdelete, limpeza
 # da Alpha 8); o inventário do release volta a ser exatamente `packages`.
 legacy_packages = []
-# Historical standalone DING sources retained only in staging for rollback
-# provenance. Both build and publication must remain globally disabled.
-retired_staging_packages = ["gnome-shell-extension-desktop-icons"]
-# #125: qualify the signed backport before release ownership/promotion.
-staging_only_packages = ["xdg-desktop-portal-gnome"]
+# The standalone DING package was deleted from staging on 30/10/2026 by
+# maintainer decision: Sheliak's Desktop Icons replaced it and it was never
+# promoted. xdg-desktop-portal-gnome (#125, global shortcuts backport) was
+# promoted to release the same day (SR 1393905) and is now a regular package.
+retired_staging_packages = []
+staging_only_packages = []
 
 [[projects.targets]]
 name = "openSUSE_Leap_16.1"
