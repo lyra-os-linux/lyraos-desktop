@@ -10,14 +10,14 @@ import re
 import subprocess
 
 MINIMUMS = {
-    'vega-gtk': '5.3.3', 'sheliak': '2.0.5', 'lyra-welcome': '0.4.1',
-    'lyra-os-theme': '1.10.0', 'lyra-os-icons': '1.9.4',
+    'vega-gtk': '5.8.0', 'sheliak': '2.0.6', 'lyra-welcome': '0.5.0',
+    'lyra-os-theme': '1.10.1', 'lyra-os-icons': '1.9.4',
     'lyra-nautilus-branding': '1.9.4', 'libreoffice-branding-Lyra': '1.0.1',
-    'lyra-upgrade': '0.2.5', 'beam': '1.0.1',
-    'sulafat': '1.0.4', 'vegad': '5.1.48',
+    'lyra-upgrade': '0.2.9', 'beam': '1.1.1',
+    'sulafat': '1.1.1', 'vegad': '5.6.2',
     'lyra-installer': '0.1.0',
-    'lyra-downloads': '0.1.3',
-    'lyra-downloads-firefox-integration': '0.1.3',
+    'lyra-downloads': '0.2.1',
+    'lyra-downloads-firefox-integration': '0.2.1',
     'lyra-firefox-ext': '0.1.3',
     'lyra-firefox-theme': '0.1.0', 'lyra-vms': '0.1.0',
     'sudo-policy-wheel-auth-self': '1.9.17',

@@ -65,9 +65,15 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   publicada, ela traz esse recurso. Repete o gate da RC 1 mais o gate #9; um
   defeito não trivial gera a RC 3. Notas em
   [`releases/lyra-os-desktop-16.1-rc.2.md`](releases/lyra-os-desktop-16.1-rc.2.md).
-- **16.1 estável (data a definir pelo mantenedor, limite 26/11/2026):**
-  reconstruída com os pacotes GA do openSUSE Leap 16.1 (03/11/2026) e
-  publicada após um gate reduzido.
+- **RC 3 (decisão de 30/10/2026) — candidata final:** sai antecipada, com o
+  Vega 5.8.0 (diagnóstico de saúde, segurança, Liberar espaço, rede, boot,
+  Pedir ajuda e verificação semanal, como exceção ao congelamento aprovada
+  pelo mantenedor), a Welcome 0.5.0 e as correções acumuladas. Repete o gate
+  da RC 2. Notas em
+  [`releases/lyra-os-desktop-16.1-rc.3.md`](releases/lyra-os-desktop-16.1-rc.3.md).
+- **16.1 estável (19/11/2026):** a mesma ISO da RC 3, congelada e promovida
+  por tag, sem rebuild; as atualizações do Leap 16.1 GA chegam pelo
+  repositório `update`.
 
 A Beta 1 não começa por calendário com P0/P1 ou entrega obrigatória pendente.
 O Lyra OS 16.1 oferece somente inglês dos Estados Unidos (`en-US`), português
