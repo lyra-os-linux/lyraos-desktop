@@ -191,6 +191,9 @@ antiga vibrante azul-safira→violeta):
   vegad 5.1.39 (zona correta no status do firewall e `ClearProgress` na
   introspecção), publicada até 31/10/2026. Repete o gate da RC 1; a estável
   continua em 05/11/2026.
+- Decisão de 30/10/2026: a RC 3 (`16.1-rc.3`) sai antecipada, é a candidata
+  final e fica congelada; a mesma ISO é promovida por tag à 16.1 estável em
+  19/11/2026, sem rebuild.
 - A versão 16.1 oferece somente `en-US`, `pt-BR` e `es-ES`; todos os projetos e
   RPMs foram traduzidos e testados nos três idiomas. Outros idiomas são escopo
   de um ciclo futuro, com fallback `en-US`.

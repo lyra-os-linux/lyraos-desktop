@@ -3,7 +3,7 @@
 Lyra OS é uma distribuição Linux desktop baseada no openSUSE Leap 16.1,
 voltada a uma experiência GNOME simples, estável e integrada ao ecossistema
 Lyra. Este repositório contém a descrição KIWI usada para gerar a ISO live e
-o instalador da edição **Odisseia 16.1 RC 2** para computadores x86_64.
+o instalador da edição **Odisseia 16.1 RC 3** para computadores x86_64.
 
 ## Foco da versão 16.1
 

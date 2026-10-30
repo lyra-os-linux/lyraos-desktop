@@ -9,7 +9,8 @@
 > RC 1 (maintainer decision, 2026-10-14) keeps the Alpha 8 result set and adds
 > the detached release signature required from Beta onwards (ADR 0005). See
 > [RC 1 changes](#rc-1-changes). RC 2 (2026-10-24) repeats the RC 1 gate for
-> vegad 5.1.39; see [RC 2 changes](#rc-2-changes).
+> vegad 5.1.39; see [RC 2 changes](#rc-2-changes). RC 3 (2026-10-30) is the
+> final, frozen candidate; see [RC 3 changes](#rc-3-changes).
 
 This checklist is the versioned go/no-go contract for the standard Lyra OS
 Desktop Alpha 7 ISO. A release coordinator may declare **GO** only when every blocking
@@ -82,6 +83,37 @@ content and hardware coverage; a bare green status is rejected:
 - [ ] `hardware-matrix`: required real/virtual hardware scenarios are recorded.
 - [ ] `v1.0-alpha.6` remains available as the immutable Leap 16.0 rollback
   baseline and the 16.0 → 16.1 upgrade/rollback rehearsal is recorded.
+
+## RC 3 changes
+
+RC 2 (`v16.1-rc.2`) was published on 2026-10-28. On 2026-10-30 the maintainer
+decided to publish RC 3 (`16.1-rc.3`) early, frozen, and to promote the same
+ISO by tag to the stable 16.1 on 2026-11-19 without a rebuild. It repeats the
+RC 2 gate below with the same results and scope. Vega's new features since
+RC 2 (health diagnostics, security review, free up space, network check, boot
+analysis, ask for help, weekly check) are a maintainer-approved freeze
+exception. In addition:
+
+- [ ] the image rejects packages older than the `check-gnome-image.py`
+  minimums: vegad 5.6.2, vega-gtk 5.8.0, lyra-welcome 0.5.0, sheliak 2.0.6,
+  beam and sulafat 1.1.1, lyra-downloads 0.2.1, lyra-upgrade 0.2.9;
+- [ ] Hardware → health diagnostics: the quick run finishes, the report opens
+  after the password, a finding with a fix shows **Corrigir** in the list, and
+  **Já vi** turns the logs line healthy;
+- [ ] Network → "Minha internet não funciona" runs without a password and shows
+  the five steps;
+- [ ] Storage → free up space measures without a password and the application
+  cache list leaves out folders in use by a running program;
+- [ ] `vegad-health-check.timer` is enabled on the installed system;
+- [ ] the Welcome shows the "Como pedir ajuda" page after the network page and
+  the weekly check card on the Vega page;
+- [ ] in the live session, liveuser authorizes a Vega administrative action
+  without an impossible password prompt (#211);
+- [ ] the installer header shows "RC 3";
+- [ ] the bundle is built by `scripts/build-desktop-rc3.sh` and published by
+  `scripts/upload-desktop-rc3-sourceforge.sh`, which sign and verify the
+  checksum with the official release key (ADR 0005); the RC 1 and RC 2
+  wrappers keep guarding their own versions only.
 
 ## RC 2 changes
 
