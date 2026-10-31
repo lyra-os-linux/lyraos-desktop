@@ -14,10 +14,10 @@ está em [`docs/release-versioning.md`](docs/release-versioning.md). O GNOME é 
 foram abandonados ([ADR 0018](docs/adr/0018-abandon-kde-xfce.md)).
 
 A decisão de 16/09/2026 prevê **uma única ISO Desktop GNOME**, sem a pilha
-NVIDIA pré-instalada. A instalação NVIDIA será opcional pelo Vega GTK após
-instalar o sistema, usando RPMs oficiais e a integração `lyra-nvidia`.
-Esta decisão substitui o plano de duas variantes de 14/09. A ISO e o fluxo
-opcional ainda exigem qualificação; veja o [plano NVIDIA](docs/nvidia-iso.md).
+NVIDIA pré-instalada. Desde 31/10/2026 o Vega não instala o driver NVIDIA
+(spec `remove-nvidia-integration` do `lyra-ecosystem`): o usuário segue o
+[guia de instalação](https://github.com/lyra-os-linux/lyraos-desktop/discussions/234), com os pacotes oficiais da NVIDIA para o Leap
+16.1. Histórico da decisão no [plano NVIDIA](docs/nvidia-iso.md).
 
 A [situação do GNOME](docs/status-gnome.md) distingue código integrado,
 pacotes enviados e qualificação da candidata.

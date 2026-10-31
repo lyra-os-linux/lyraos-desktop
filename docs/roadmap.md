@@ -5,7 +5,8 @@
 O lançamento de 05/11/2026 é o Desktop GNOME 16.1, a única edição Desktop.
 KDE Plasma e XFCE foram abandonados em 24/10/2026
 ([ADR 0018](adr/0018-abandon-kde-xfce.md)). A decisão de 16/09/2026 prevê uma única ISO GNOME,
-sem NVIDIA pré-instalada, e instalação opcional pelo Vega GTK.
+sem NVIDIA pré-instalada, e instalação opcional pelo guia NVIDIA (pelo Vega GTK
+até 31/10/2026).
 A [situação do GNOME](status-gnome.md) registra o que foi integrado e o que
 continua pendente de qualificação. O estágio canônico está em `release.toml`.
 

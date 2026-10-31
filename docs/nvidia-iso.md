@@ -1,5 +1,11 @@
 # ISO Desktop única e NVIDIA opcional — decisão de 16/09/2026
 
+> [!NOTE]
+> Em 31/10/2026 o mantenedor retirou a instalação NVIDIA do Vega (spec
+> `remove-nvidia-integration` do `lyra-ecosystem`). A ISO única continua sem
+> NVIDIA; o driver passa a ser instalado pelo [guia](https://github.com/lyra-os-linux/lyraos-desktop/discussions/234), com os pacotes
+> oficiais da NVIDIA para o Leap 16.1. O restante deste documento é histórico.
+
 O Lyra Desktop terá **uma única ISO GNOME sem NVIDIA pré-instalada**. Após
 instalar o sistema, o usuário poderá optar pelo driver no Vega GTK. A decisão
 substitui as duas variantes planejadas em 14/09; a variante dedicada NVIDIA
