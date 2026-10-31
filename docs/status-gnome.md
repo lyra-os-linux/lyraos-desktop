@@ -12,8 +12,9 @@ de release aprovada. `release.toml` continua identificando **Lyra OS 1.1 Alpha 7
 
 - GNOME é o único alvo da versão final 16.1; trabalho atual em pacotes GNOME.
 - KDE e XFCE ficam em segundo plano, sem prazo conjunto ou promessa de paridade.
-- Uma única ISO GNOME sem NVIDIA pré-instalada; instalação opcional via Vega
-  GTK após instalar o sistema. Decisão de 16/09 substitui as duas variantes.
+- Uma única ISO GNOME sem NVIDIA pré-instalada. Decisão de 16/09 substitui as
+  duas variantes. Desde 31/10 o driver é instalado pelo [guia](https://github.com/lyra-os-linux/lyraos-desktop/discussions/234), não
+  pelo Vega.
   O Server com llama.cpp + NVIDIA tem planejamento independente.
 - Pacotes próprios em RPM no OBS; ISO construída localmente com KIWI.
 - PT-BR, EN-US e ES-ES nas interfaces próprias; inglês como padrão e fallback.
@@ -50,7 +51,7 @@ das versões coordenadas em
 2. Construir a ISO GNOME única localmente, registrando commit, inventário
    e checksum exatos.
 3. Validar live, instalação, primeiro login automático e conta nova; qualificar
-   a instalação opcional NVIDIA pelo Vega em hardware compatível.
+   o guia de instalação NVIDIA em hardware compatível.
 4. Repetir os cenários de perfis, desktop, idiomas, monitores e acessibilidade
    sobre essa candidata.
 5. Executar hardware, energia/suspensão, atualização, reboot e rollback,
@@ -62,7 +63,7 @@ o [roteiro de hardware](https://github.com/lyra-os-linux/lyraos-desktop/issues/6
 e o [ensaio de atualização/rollback](https://github.com/lyra-os-linux/lyraos-desktop/issues/24)
 organizam esse trabalho. Checklists antigos devem ser conciliados com as
 respectivas evidências antes de serem encerrados. A decisão de 16/09 mantém uma
-ISO GNOME única e NVIDIA opcional via Vega; propostas históricas de duas
+ISO GNOME única e NVIDIA opcional pelo guia (antes via Vega); propostas históricas de duas
 variantes ou três edições simultâneas não definem o ciclo atual.
 
 A nova [rodada de auditoria #78](https://github.com/lyra-os-linux/lyraos-desktop/issues/78)
