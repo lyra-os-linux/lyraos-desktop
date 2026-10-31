@@ -15,7 +15,6 @@ DRY_RUN=0
 REFRESH_REPOSITORIES=1
 INSTALL_PACKAGES=1
 INSTALL_RUSTUP=1
-INSTALL_CODEX=1
 INSTALL_VIRTUALIZATION=1
 
 usage() {
@@ -30,7 +29,6 @@ Options:
   --no-refresh          Do not refresh Zypper repositories.
   --skip-packages       Do not install RPM packages.
   --skip-rustup         Keep only the distro Rust toolchain.
-  --skip-codex          Do not install the Codex CLI.
   --skip-virtualization Do not install or configure QEMU/libvirt/KIWI.
   -h, --help            Show this help.
 
@@ -73,7 +71,6 @@ parse_args() {
             --no-refresh) REFRESH_REPOSITORIES=0 ;;
             --skip-packages) INSTALL_PACKAGES=0 ;;
             --skip-rustup) INSTALL_RUSTUP=0 ;;
-            --skip-codex) INSTALL_CODEX=0 ;;
             --skip-virtualization) INSTALL_VIRTUALIZATION=0 ;;
             -h|--help)
                 usage
@@ -216,12 +213,6 @@ install_user_rust_toolchain() {
     fi
 }
 
-install_codex_cli() {
-    log "Installing the Codex CLI"
-    run npm config set prefix "${HOME}/.local"
-    run npm install --global @openai/codex@latest
-}
-
 configure_osc() {
     local osc_dir="${XDG_CONFIG_HOME:-${HOME}/.config}/osc"
     local osc_config="${osc_dir}/oscrc"
@@ -327,9 +318,6 @@ verify_commands() {
 
     (( DRY_RUN )) && return
 
-    if (( INSTALL_CODEX )); then
-        required_commands+=(codex)
-    fi
     if (( INSTALL_VIRTUALIZATION )); then
         required_commands+=("${virtualization_commands[@]}")
     fi
@@ -431,8 +419,6 @@ Open a new login session before using libvirt, then complete authentication:
   gh auth setup-git
   osc config ${OBS_API_URL} --change-password
   osc my projects
-  codex login
-  codex login status
 
 Build a fresh ISO and start its disposable QEMU/KVM machine:
 
@@ -458,9 +444,6 @@ main() {
 
     if (( INSTALL_RUSTUP )); then
         install_user_rust_toolchain
-    fi
-    if (( INSTALL_CODEX )); then
-        install_codex_cli
     fi
 
     configure_osc

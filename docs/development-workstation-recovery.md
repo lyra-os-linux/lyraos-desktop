@@ -53,7 +53,6 @@ Depois execute a instalação completa:
 O script instala e verifica, entre outros:
 
 - Git, Git LFS e GitHub CLI (`gh`);
-- Codex CLI;
 - `osc` e integração com o chaveiro do GNOME;
 - Rust/rustup, Node.js, Go, Python e ferramentas de build RPM;
 - KIWI, QEMU/KVM, OVMF, libvirt e ferramentas de validação da ISO.
@@ -90,24 +89,7 @@ git fetch --prune origin
 git status --short --branch
 ```
 
-## 4. Codex CLI
-
-```bash
-codex login
-codex login status
-```
-
-Abra o Codex a partir do repositório para que o workspace correto seja usado:
-
-```bash
-cd ~/Git/Lyra
-codex
-```
-
-As conversas locais e caches da instalação anterior não são fonte de verdade.
-Decisões importantes devem estar em `docs/`, ADRs, issues ou commits.
-
-## 5. Open Build Service
+## 4. Open Build Service
 
 O bootstrap cria `~/.config/osc/oscrc` com o usuário OBS `rodrigosbrito` e
 armazenamento de credenciais no chaveiro. Autentique novamente sem colocar a
@@ -121,7 +103,7 @@ osc my projects
 
 Nunca restaure um `oscrc` contendo senha em texto puro.
 
-## 6. SourceForge
+## 5. SourceForge
 
 O usuário de publicação é `rodrigobritosoa`. O script fixa o host e o destino,
 e o SSH solicita diretamente a senha ou passphrase quando necessário:
@@ -134,7 +116,7 @@ Não republique a Alpha 4 apenas para testar credenciais. Para um lançamento
 novo, use o script correspondente à versão e confirme o diretório remoto antes
 do envio.
 
-## 7. Verificação da estação reconstruída
+## 6. Verificação da estação reconstruída
 
 ```bash
 cd ~/Git/Lyra
@@ -145,7 +127,6 @@ cargo test --manifest-path installer/Cargo.toml \
 ./scripts/image-build.py validate
 gh auth status
 osc my projects
-codex login status
 ```
 
 Confira a virtualização após abrir uma nova sessão:
@@ -155,7 +136,7 @@ test -r /dev/kvm && test -w /dev/kvm
 qemu-system-x86_64 -display help | grep gtk
 ```
 
-## 8. Retomada segura
+## 7. Retomada segura
 
 Antes de editar ou publicar qualquer coisa:
 

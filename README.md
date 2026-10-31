@@ -124,7 +124,7 @@ Depois de uma instalação limpa ou troca da máquina de desenvolvimento, siga o
 antes de retomar builds ou publicações.
 
 Veja o [guia de contribuição](CONTRIBUTING.md) para configuração de Git,
-GitHub, OBS, Codex e dos demais projetos do ecossistema.
+GitHub, OBS e dos demais projetos do ecossistema.
 
 ## Gerando e testando a ISO
 
