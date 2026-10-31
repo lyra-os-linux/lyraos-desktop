@@ -20,11 +20,9 @@ Faça backup criptografado apenas do que for necessário:
 - chaves SSH e GPG;
 - configuração Git;
 - fontes ou arquivos ainda não publicados;
-- configurações pessoais do Codex em `~/.codex`, sem reutilizar `auth.json`
-  em armazenamento não criptografado;
 - configuração do OSC em `~/.config/osc`, preferindo autenticar novamente.
 
-Tokens, senhas e sessões do GitHub, OBS e Codex não devem ser colocados no
+Tokens, senhas e sessões do GitHub e do OBS não devem ser colocados no
 repositório nem incorporados ao script.
 
 ## Bootstrap da estação
@@ -69,8 +67,7 @@ bash scripts/bootstrap-development.sh --help
 - Lyra OS: KIWI, QEMU/KVM com interface GTK, OVMF normal/Secure Boot,
   libvirt, `xorriso`, `lsinitrd` e utilitários para construir e validar a ISO;
 - contêineres e utilitários: Podman, Buildah, ripgrep, fd, fzf, bat, tmux e
-  ShellCheck;
-- Codex CLI oficial, instalado pelo npm no prefixo de usuário `~/.local`.
+  ShellCheck.
 
 ## Autenticação depois da instalação
 
@@ -111,19 +108,6 @@ curl -fsSL https://raw.githubusercontent.com/lyra-os-linux/lyraos-desktop/main/s
 ```
 
 Nunca versione `~/.config/osc/oscrc` ou uma senha do OBS.
-
-### Codex
-
-O Codex é instalado como `@openai/codex` no prefixo de usuário. Autentique com
-o fluxo de navegador do ChatGPT:
-
-```bash
-codex login
-codex login status
-```
-
-Também é possível usar o fluxo de dispositivo com `codex login --device-auth`.
-Não copie tokens ou `auth.json` para o repositório.
 
 ## Projetos do ecossistema
 
