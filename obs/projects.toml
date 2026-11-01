@@ -86,6 +86,8 @@ staging = "home:rodrigosbrito:lyra:staging"
 iso_consumer = true
 packages = [
   "beam",
+  "claude-code-repo",
+  "cursor-repo",
   "lyra-downloads",
   "lyra-vms",
   "lyra-firefox-ext",
