@@ -251,6 +251,61 @@
       "rationale": "Ships only a Zypper repository definition pointing at Anysphere's official Cursor repository, plus Anysphere's signing key; there is no Lyra-owned interface text and no upstream binary in this package."
     },
     {
+      "id": "hashicorp-repo",
+      "project": "lyra",
+      "wave": "16.1-updates",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "Ships only a Zypper repository definition pointing at HashiCorp's official RPM repository, plus HashiCorp's signing key; there is no Lyra-owned interface text and no upstream binary in this package."
+    },
+    {
+      "id": "aws-cli-v2",
+      "project": "lyra",
+      "wave": "16.1-updates",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "Amazon's official AWS CLI v2 bundle, repackaged unchanged; its interface text is upstream's (English) and there is no Lyra-owned interface text in this package."
+    },
+    {
+      "id": "azure-cli",
+      "project": "lyra",
+      "wave": "16.1-updates",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "Microsoft's official azure-cli wheels, installed unchanged; its interface text is upstream's (English) and there is no Lyra-owned interface text in this package."
+    },
+    {
+      "id": "doctl",
+      "project": "lyra",
+      "wave": "16.1-updates",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "DigitalOcean's official doctl binary, repackaged unchanged; its interface text is upstream's (English) and there is no Lyra-owned interface text in this package."
+    },
+    {
+      "id": "google-cloud-cli",
+      "project": "lyra",
+      "wave": "16.1-updates",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "Google's official Cloud CLI archive, repackaged unchanged; its interface text is upstream's (English) and there is no Lyra-owned interface text in this package."
+    },
+    {
       "id": "zed",
       "project": "lyra",
       "wave": "alpha5",

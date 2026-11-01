@@ -86,8 +86,13 @@ staging = "home:rodrigosbrito:lyra:staging"
 iso_consumer = true
 packages = [
   "beam",
+  "aws-cli-v2",
+  "azure-cli",
   "claude-code-repo",
   "cursor-repo",
+  "doctl",
+  "google-cloud-cli",
+  "hashicorp-repo",
   "lyra-downloads",
   "lyra-vms",
   "lyra-firefox-ext",
