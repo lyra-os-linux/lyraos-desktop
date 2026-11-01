@@ -251,6 +251,17 @@
       "rationale": "Ships only a Zypper repository definition pointing at Anysphere's official Cursor repository, plus Anysphere's signing key; there is no Lyra-owned interface text and no upstream binary in this package."
     },
     {
+      "id": "hashicorp-repo",
+      "project": "lyra",
+      "wave": "16.1-updates",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "inventory rationale",
+      "rationale": "Ships only a Zypper repository definition pointing at HashiCorp's official RPM repository, plus HashiCorp's signing key; there is no Lyra-owned interface text and no upstream binary in this package."
+    },
+    {
       "id": "aws-cli-v2",
       "project": "lyra",
       "wave": "16.1-updates",

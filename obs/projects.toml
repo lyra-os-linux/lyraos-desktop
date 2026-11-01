@@ -92,6 +92,7 @@ packages = [
   "cursor-repo",
   "doctl",
   "google-cloud-cli",
+  "hashicorp-repo",
   "lyra-downloads",
   "lyra-vms",
   "lyra-firefox-ext",
