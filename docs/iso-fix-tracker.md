@@ -687,10 +687,16 @@ desligaria o microfone; não usar.
 apenas `gnome-shell-gvc-null-active-profile.patch`, declarado em
 `staging_only_packages`. Staging revisão 1 (02/11) compilou e assinou
 `48.8-160100.2.1.lyra1.160100.1`; o `libgvc.so` gerado testa o ponteiro antes da
-leitura. Hashes em `packaging/gnome-shell/README.md`. **Pendentes:** regressão de áudio,
-OSD de volume, seleção de saída/entrada e hotplug USB; manifesto de migração
-por pacote com reversão (mesma política do portal, #125), aplicada offline;
-relato upstream; validação na candidata por checksum. Reversão: migração de
+leitura. Hashes em `packaging/gnome-shell/README.md`. **Regressão (02/11):** o teste determinístico derruba o libgvc SUSE e
+passa no do staging; na live da RC 3 (ISO `50211bcf…`), o plano do zypper
+troca só `gnome-shell`, `-lang` e `gnome-extensions`, e o shell corrigido passou
+em áudio, OSD, seleção de saída, troca de perfil S/PDIF e 10 ciclos de hotplug
+USB ([evidência](evidence/shell-01-live-vm/README.md)). Manifesto de teste
+sequência 3 auditado pelo core 0.2.9, aguardando assinatura
+([manifesto](evidence/shell-01-migration-manifest/README.md)).
+**Pendentes:** assinatura; ciclo nativo da migração e reversão em sistema
+instalado; promoção e manifesto `stable`; relato upstream; validação na
+candidata por checksum. Reversão: migração de
 volta ao RPM SUSE original, que restaura o crash.
 
 ## Reconciliação na candidata 5 — 13/10/2026

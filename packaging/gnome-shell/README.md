@@ -54,7 +54,20 @@ the active-profile pointer (`test %rax,%rax; je`) before
 `gvc_mixer_card_set_profile`; the SUSE binary dereferenced it directly. The
 three rpmlint errors (`no-binary` on `gnome-extensions`/`-devel`,
 `branding-requires-unversioned gnome-themes-accessibility`) come from the
-unchanged SUSE packaging, not from the patch. Runtime has not been tested yet.
+unchanged SUSE packaging, not from the patch.
+
+## Regression tests
+
+`tests/run.sh` is the deterministic regression: an `LD_PRELOAD` shim reports
+one card with zero profiles and a NULL active profile, then `gvc-test.js`
+opens `Gvc.MixerControl` as the shell does. The SUSE libgvc exits 139 at the
+same instruction as the station crash (`libgvc.so + 0x12a4c`); the staging
+libgvc prints `SURVIVED`.
+
+`tests/vm/` runs it, plus audio, volume OSD, Quick Settings output selection,
+S/PDIF profile switching and ten USB audio hotplug cycles, in the RC 3 live
+session before and after installing the staging RPMs. Results:
+[`docs/evidence/shell-01-live-vm`](../../docs/evidence/shell-01-live-vm/README.md).
 
 The release `160100.2.1.lyra1.<CI_CNT>.<B_CNT>` sorts after the affected SUSE
 `160100.2.1` and before a subsequent `160100.2.2`, without epoch or lock. All
@@ -71,8 +84,11 @@ no global vendor change, no repository priority change. Unlike the portal,
 offline and qualified with a live desktop; never replace it under a running
 session.
 
-Before closing SHELL-01: runtime regression of
-audio, volume OSD, quick settings output/input selection and USB hotplug on
-the patched build, the migration and its rollback, then the exact candidate
+The testing migration manifest (sequence 3) and its policy audit are in
+[`docs/evidence/shell-01-migration-manifest`](../../docs/evidence/shell-01-migration-manifest/README.md),
+awaiting the official signature.
+
+Before closing SHELL-01: the signed migration lifecycle and its rollback on
+an installed system, promotion with a stable manifest, then the exact candidate
 ISO checksum. Report the defect upstream to libgnome-volume-control and
 prefer an official fixed SUSE package when one is available.

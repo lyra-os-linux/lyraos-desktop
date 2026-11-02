@@ -1,0 +1,7 @@
+{"phase": "audio", "key": "pactl_info", "value": "Server Name: PulseAudio (on PipeWire 1.6.8);Default Sink: alsa_output.pci-0000_00_03.0.analog-stereo;Default Source: alsa_input.pci-0000_00_03.0.analog-stereo;"}
+{"phase": "audio", "key": "cards", "value": "50\talsa_card.pci-0000_00_03.0\talsa;316\talsa_card.usb-QEMU_QEMU_USB_Audio_1-0000_00_04.0-3-00\talsa;"}
+{"phase": "audio", "key": "sinks", "value": "54\talsa_output.pci-0000_00_03.0.analog-stereo\tPipeWire\ts16le 2ch 48000Hz\tSUSPENDED;317\talsa_output.usb-QEMU_QEMU_USB_Audio_1-0000_00_04.0-3-00.analog-stereo\tPipeWire\ts16le 2ch 48000Hz\tSUSPENDED;"}
+{"phase": "audio", "key": "play", "value": "exit=0"}
+{"phase": "audio", "key": "volume_set", "value": "Volume: front-left: 26214 /  40% / -23.88 dB,   front-right: 26214 /  40% / -23.88 dB"}
+{"phase": "audio", "key": "shell_pid", "value": "4231"}
+{"phase": "audio", "key": "done", "value": "ok"}
