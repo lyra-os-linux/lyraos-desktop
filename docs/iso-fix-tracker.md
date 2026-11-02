@@ -692,9 +692,9 @@ passa no do staging; na live da RC 3 (ISO `50211bcf…`), o plano do zypper
 troca só `gnome-shell`, `-lang` e `gnome-extensions`, e o shell corrigido passou
 em áudio, OSD, seleção de saída, troca de perfil S/PDIF e 10 ciclos de hotplug
 USB ([evidência](evidence/shell-01-live-vm/README.md)). Manifesto de teste
-sequência 3 auditado pelo core 0.2.9, aguardando assinatura
+sequência 3 auditado pelo core 0.2.9 e assinado com a chave oficial
 ([manifesto](evidence/shell-01-migration-manifest/README.md)).
-**Pendentes:** assinatura; ciclo nativo da migração e reversão em sistema
+**Pendentes:** ciclo nativo da migração e reversão em sistema
 instalado; promoção e manifesto `stable`; relato upstream; validação na
 candidata por checksum. Reversão: migração de
 volta ao RPM SUSE original, que restaura o crash.

@@ -1,0 +1,10 @@
+{
+  "verified": true,
+  "manifest_sha256": "6be7f5b5034201a146fda7c3581feb24258a755dd67751247207bdfeb22b8273",
+  "signature_sha256": "d152c65a2b1a6f7fec7acf81508e95ba041964f9e08c3a589e66ba74166fea2d",
+  "signed_at": "2026-11-02T19:43:42Z",
+  "signing_key_fingerprint": "01B63EEDBE6B079126A0116EFA7353A131ECEFEB",
+  "verified_against": "/usr/share/lyra-upgrade/release-signing-key.gpg from lyra-upgrade-0.2.9-lp161.1.1 (rpm -V clean)",
+  "gpg_status": "VALIDSIG 01B63EEDBE6B079126A0116EFA7353A131ECEFEB 2026-11-02 1793648622 0 4 0 1 8 00 01B63EEDBE6B079126A0116EFA7353A131ECEFEB",
+  "private_key_handling": "decrypted only under /dev/shm in a temporary GNUPGHOME, shredded and removed after signing; not present in the personal keyring"
+}

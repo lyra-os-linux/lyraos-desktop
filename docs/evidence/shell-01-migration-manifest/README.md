@@ -46,11 +46,15 @@ gpg --armor --detach-sign \
   --output releases-v1.json.asc -- releases-v1.json
 ```
 
-Nothing was signed yet: the private key is not on the development host.
+Signed by the maintainer on 2026-11-02 19:43 UTC. The private key was
+decrypted only in a temporary `/dev/shm` GNUPGHOME and removed afterwards.
+[signature-verified.json](signature-verified.json) records the `VALIDSIG`
+against the unchanged public key shipped by the `lyra-upgrade` 0.2.9 RPM.
+Signature SHA-256: `d152c65a2b1a6f7fec7acf81508e95ba041964f9e08c3a589e66ba74166fea2d`.
 
 ## Remaining gates
 
-1. Signature, then the native lifecycle on an installed RC 3 Btrfs VM with
+1. The native lifecycle on an installed RC 3 Btrfs VM with
    `/etc/lyra-upgrade/channel` = `testing` and the immutable commit URL as
    `testing-manifest-base-url`: preview, authenticated Start, snapshot, offline
    application, reboot and `Completed/Passed`, plus an explicit rollback run.
