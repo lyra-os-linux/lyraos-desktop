@@ -684,9 +684,10 @@ derrubar a sessão. Uma regra do WirePlumber por modelo não corrige a causa e
 desligaria o microfone; não usar.
 
 **Fonte:** `packaging/gnome-shell/` com o SRPM SUSE assinado preservado e
-apenas `gnome-shell-gvc-null-active-profile.patch`; entra em
-`staging_only_packages` junto com o envio ao staging. O patch aplica sobre os patches SUSE; o build ainda
-não rodou. **Pendentes:** build e assinatura no staging; regressão de áudio,
+apenas `gnome-shell-gvc-null-active-profile.patch`, declarado em
+`staging_only_packages`. Staging revisão 1 (02/11) compilou e assinou
+`48.8-160100.2.1.lyra1.160100.1`; o `libgvc.so` gerado testa o ponteiro antes da
+leitura. Hashes em `packaging/gnome-shell/README.md`. **Pendentes:** regressão de áudio,
 OSD de volume, seleção de saída/entrada e hotplug USB; manifesto de migração
 por pacote com reversão (mesma política do portal, #125), aplicada offline;
 relato upstream; validação na candidata por checksum. Reversão: migração de
