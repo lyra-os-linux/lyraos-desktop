@@ -194,6 +194,8 @@ antiga vibrante azul-safira→violeta):
 - Decisão de 30/10/2026: a RC 3 (`16.1-rc.3`) sai antecipada, é a candidata
   final e fica congelada; a mesma ISO é promovida por tag à 16.1 estável em
   19/11/2026, sem rebuild.
+- Decisão de 02/11/2026: a promoção da RC 3 à 16.1 estável é antecipada
+  para 03/11/2026, dia do GA do openSUSE Leap 16.1.
 - A versão 16.1 oferece somente `en-US`, `pt-BR` e `es-ES`; todos os projetos e
   RPMs foram traduzidos e testados nos três idiomas. Outros idiomas são escopo
   de um ciclo futuro, com fallback `en-US`.
@@ -202,8 +204,8 @@ antiga vibrante azul-safira→violeta):
   ganhos compensarem os riscos, com benefício, impacto, testes de regressão e
   plano de reversão registrados. A RC1 inicia o congelamento estrito.
 - O cronograma canônico e os critérios de promoção ficam em
-  `docs/release-versioning.md`; o lançamento está previsto para 5 de novembro
-  de 2026, dois dias após o GA do Leap 16.1, sempre priorizando qualidade sobre
+  `docs/release-versioning.md`; o lançamento está previsto para 3 de novembro
+  de 2026, no dia do GA do Leap 16.1, sempre priorizando qualidade sobre
   prazo.
 - O instalador opcional pós-instalação de driver NVIDIA via Vega foi concluído
   e validado na Desktop Alpha 5. A variante de ISO NVIDIA foi cancelada: o

@@ -89,7 +89,8 @@ content and hardware coverage; a bare green status is rejected:
 
 RC 2 (`v16.1-rc.2`) was published on 2026-10-28. On 2026-10-30 the maintainer
 decided to publish RC 3 (`16.1-rc.3`) early, frozen, and to promote the same
-ISO by tag to the stable 16.1 on 2026-11-19 without a rebuild. It repeats the
+ISO by tag to the stable 16.1 on 2026-11-03 (moved up on 2026-11-02 to the
+openSUSE Leap 16.1 GA day) without a rebuild. It repeats the
 RC 2 gate below with the same results and scope. Vega's new features since
 RC 2 (health diagnostics, security review, free up space, network check, boot
 analysis, ask for help, weekly check) are a maintainer-approved freeze

@@ -2,7 +2,7 @@
 
 ## Escopo ativo e evidência
 
-O lançamento de 05/11/2026 é o Desktop GNOME 16.1, a única edição Desktop.
+O lançamento de 03/11/2026 é o Desktop GNOME 16.1, a única edição Desktop.
 KDE Plasma e XFCE foram abandonados em 24/10/2026
 ([ADR 0018](adr/0018-abandon-kde-xfce.md)). A decisão de 16/09/2026 prevê uma única ISO GNOME,
 sem NVIDIA pré-instalada, e instalação opcional pelo guia NVIDIA (pelo Vega GTK
@@ -72,7 +72,7 @@ primeira onda de pacotes em `pt-BR`/`en-US`.
   pelo mantenedor), a Welcome 0.5.0 e as correções acumuladas. Repete o gate
   da RC 2. Notas em
   [`releases/lyra-os-desktop-16.1-rc.3.md`](releases/lyra-os-desktop-16.1-rc.3.md).
-- **16.1 estável (19/11/2026):** a mesma ISO da RC 3, congelada e promovida
+- **16.1 estável (03/11/2026):** a mesma ISO da RC 3, congelada e promovida
   por tag, sem rebuild; as atualizações do Leap 16.1 GA chegam pelo
   repositório `update`.
 

@@ -45,7 +45,8 @@ O ciclo 16.1 do Desktop vai da Alpha 8 (publicada como `1.1-alpha.8`)
 diretamente para a `16.1-rc.1`, sem Beta. A `16.1-rc.2`, aberta em
 24/10/2026, leva o vegad 5.1.39 à candidata. A `16.1-rc.3` (decisão de
 30/10/2026) é a candidata final: sai antecipada, fica congelada e é promovida
-por tag à `16.1` estável em 19/11/2026, sem rebuild.
+por tag à `16.1` estável em 03/11/2026, dia do GA do openSUSE Leap 16.1
+(data antecipada em 02/11/2026), sem rebuild.
 
 ## Fonte canônica e metadados
 
@@ -78,6 +79,6 @@ da geração 16.x são distintos. Não há promessa de EOL ou suporte prolongado
 Lyra sem política formal e sustentável.
 
 O Lyra OS 16.1 terá suporte comunitário, sem prazo contratual ou EOL prometido.
-O lançamento está previsto para **5 de novembro de 2026**, sempre condicionado
+O lançamento está previsto para **3 de novembro de 2026**, sempre condicionado
 ao gate completo. Artefatos legados serão preservados e republicados com nomes
 semânticos, mantendo checksums, assinaturas e proveniência verificáveis.

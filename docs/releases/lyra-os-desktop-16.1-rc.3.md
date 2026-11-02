@@ -3,7 +3,7 @@
 Terceira e última candidata de lançamento do Lyra OS Desktop 16.1 sobre
 **openSUSE Leap 16.1**. Por decisão do mantenedor em 30/10/2026, a RC 3 sai
 antes do previsto, fica **congelada** e é promovida por tag à versão estável
-**16.1 em 19 de novembro de 2026**, sem rebuild. As atualizações do Leap 16.1 GA
+**16.1 em 3 de novembro de 2026** (data antecipada em 02/11/2026), sem rebuild. As atualizações do Leap 16.1 GA
 chegam pelo repositório `update` depois da instalação.
 
 A identidade técnica é `16.1-rc.3`, tag `v16.1-rc.3`, arquivo
