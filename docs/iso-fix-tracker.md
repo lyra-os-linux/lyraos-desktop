@@ -665,6 +665,33 @@ setuid ou capability. Sem RPM próprio. Reversão: remover a linha da receita.
 inventário `.packages` e `ping -c 3 1.1.1.1` como usuário comum na live e no
 sistema instalado.
 
+## SHELL-01 — gnome-shell cai no login com placa de áudio sem perfis (02/11/2026)
+
+Na estação, `gnome-shell` 48.8-160100.2.1 recebeu SIGSEGV três segundos após o
+login (coredump PID 2026). O shell reiniciou em modo de segurança, com as
+extensões desativadas; as extensões Lyra não participam do backtrace. No
+mesmo segundo, `pipewire-pulse` registrou `card 52 port 0 profiles
+inconsistent (0 < 1)` para a webcam USB Redragon PK-635G, ainda sem perfis
+enumerados. O libgvc embutido no shell executa
+`gvc_mixer_card_set_profile (card, info->active_profile->name)` em
+`update_card()` sem checar NULL: o core mostra `mov (%rax),%rsi` com `rax = 0`
+antes dessa chamada. O `master` upstream do libgnome-volume-control ainda tem
+o mesmo código.
+
+Alcance: geral, intermitente. Qualquer placa anunciada pelo PipeWire sem perfis
+durante a enumeração (webcams e headsets USB, no login ou em hotplug) pode
+derrubar a sessão. Uma regra do WirePlumber por modelo não corrige a causa e
+desligaria o microfone; não usar.
+
+**Fonte:** `packaging/gnome-shell/` com o SRPM SUSE assinado preservado e
+apenas `gnome-shell-gvc-null-active-profile.patch`; entra em
+`staging_only_packages` junto com o envio ao staging. O patch aplica sobre os patches SUSE; o build ainda
+não rodou. **Pendentes:** build e assinatura no staging; regressão de áudio,
+OSD de volume, seleção de saída/entrada e hotplug USB; manifesto de migração
+por pacote com reversão (mesma política do portal, #125), aplicada offline;
+relato upstream; validação na candidata por checksum. Reversão: migração de
+volta ao RPM SUSE original, que restaura o crash.
+
 ## Reconciliação na candidata 5 — 13/10/2026
 
 Candidata 5 da Alpha 8: `LyraOS-Desktop-1.1-alpha.8-x86_64.iso`, commit
