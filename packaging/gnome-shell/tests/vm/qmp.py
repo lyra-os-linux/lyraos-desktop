@@ -9,6 +9,7 @@
   qmp.py SOCKET hmp COMMAND                raw human monitor command
 """
 import json
+import os
 import socket
 import sys
 import time
@@ -68,8 +69,11 @@ def main():
             qmp.keys(combo)
             time.sleep(0.3)
     elif action == 'type':
+        # QMP_TYPE_DELAY (seconds per character) for UIs that drop fast input.
+        delay = float(os.environ.get('QMP_TYPE_DELAY', '0'))
         for char in ' '.join(rest):
             qmp.keys(keys_for(char))
+            time.sleep(delay)
     elif action == 'usb-add':
         qmp.cmd('device_add', driver='usb-audio', id=rest[0], bus='xhci.0', audiodev='snd0')
     elif action == 'usb-del':

@@ -1,0 +1,3 @@
+{"phase": "fault", "key": "ready", "value": "['ReadyToReboot']"}
+{"phase": "fault", "key": "enable", "value": "Created symlink '/etc/systemd/system/multi-user.target.wants/shell01-fault.service' \u2192 '/etc/systemd/system/shell01-fault.service'.;"}
+{"phase": "fault", "key": "done", "value": "ok"}
