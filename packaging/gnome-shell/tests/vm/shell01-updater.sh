@@ -4,6 +4,7 @@
 #
 #   shell01-updater.sh setup URL   testing channel + manifest base URL, serial journal
 #   shell01-updater.sh state NAME  packages, Updater state, snapshots, crashes
+#   shell01-updater.sh statesubvol own subvolume for /var/lib/lyra-upgrade (fix candidate)
 #   shell01-updater.sh fault       rollback fixture: enable a unit that fails at boot
 #   shell01-updater.sh investigate boot/package timeline of the operation
 #   shell01-updater.sh fetchcheck  repeat the Updater manifest fetch step by step
@@ -93,6 +94,24 @@ investigate)
 	emit query_warnings "$(journalctl -b --no-pager -o short-iso -p warning -u 'lyra-upgrade-query@*' 2>&1 | tail -12 | cut -c1-220 | tr '\n' ';')"
 	emit service_log "$(journalctl -b --no-pager -o short-iso 2>&1 | grep -E 'lyra-upgrade-service|pkexec' | tail -12 | cut -c1-220 | tr '\n' ';')"
 	emit system_update_link "$(ls -la /system-update 2>&1)"
+	emit done ok
+	;;
+statesubvol)
+	# Candidate fix: keep Updater recovery records in their own subvolume,
+	# mounted like the installer's other /@/... subvolumes.
+	PHASE=statesubvol
+	if [ -e /var/lib/lyra-upgrade ] && [ -n "$(ls -A /var/lib/lyra-upgrade 2>/dev/null)" ]; then
+		emit refused "/var/lib/lyra-upgrade is not empty"; exit 1
+	fi
+	rmdir /var/lib/lyra-upgrade 2>/dev/null
+	emit create "$(btrfs subvolume create /var/lib/lyra-upgrade 2>&1)"
+	chmod 0700 /var/lib/lyra-upgrade
+	uuid=$(findmnt -no UUID /)
+	opts=$(awk '$2 == "/var/log" {print $4}' /etc/fstab | sed 's|subvol=[^,]*|subvol=/@/var/lib/lyra-upgrade|')
+	echo "UUID=$uuid /var/lib/lyra-upgrade btrfs $opts 0 0" >>/etc/fstab
+	systemctl daemon-reload
+	emit mount "$(mount /var/lib/lyra-upgrade 2>&1; findmnt -no SOURCE,OPTIONS /var/lib/lyra-upgrade)"
+	emit ids "root=$(btrfs inspect-internal rootid /) state=$(btrfs inspect-internal rootid /var/lib/lyra-upgrade)"
 	emit done ok
 	;;
 layout)
