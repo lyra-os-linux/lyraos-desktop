@@ -61,7 +61,7 @@ fn subvol(mount_point: &str, subvolume: &str, nodatacow: bool) -> SubvolumePlan 
     }
 }
 
-/// Default Btrfs subvolume layout, based on `mount.conf`.
+/// The 20 subvolumes from `mount.conf`, in the same order.
 pub fn default_subvolumes() -> Vec<SubvolumePlan> {
     vec![
         subvol("/", "/@", false),
@@ -75,10 +75,6 @@ pub fn default_subvolumes() -> Vec<SubvolumePlan> {
         subvol("/var/lib/machines", "/@/var/lib/machines", false),
         subvol("/var/lib/mailman", "/@/var/lib/mailman", false),
         subvol("/var/lib/named", "/@/var/lib/named", false),
-        // Lyra Upgrade recovery records must survive a snapshot rollback of
-        // `/`; the Updater refuses guided rollback (RECOVERY_STATE_NOT_PERSISTENT)
-        // when they share the root subvolume.
-        subvol("/var/lib/lyra-upgrade", "/@/var/lib/lyra-upgrade", false),
         subvol("/var/log", "/@/var/log", false),
         subvol("/var/opt", "/@/var/opt", false),
         subvol("/var/spool", "/@/var/spool", false),

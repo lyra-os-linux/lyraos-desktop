@@ -847,15 +847,12 @@ mod tests {
         assert_eq!(describe.last().unwrap(), "gerar /etc/fstab");
         assert_eq!(describe[describe.len() - 2], "montar ESP em /boot/efi");
 
-        // 22 default subvolumes (see storage::plan::default_subvolumes).
+        // 21 default subvolumes (see storage::plan::default_subvolumes).
         let mount_count = describe
             .iter()
             .filter(|d| d.starts_with("montar /@"))
             .count();
-        assert_eq!(mount_count, 22);
-        assert!(describe.contains(
-            &"montar /@/var/lib/lyra-upgrade em /var/lib/lyra-upgrade".to_string()
-        ));
+        assert_eq!(mount_count, 21);
 
         let index_of = |needle: &str| describe.iter().position(|d| d == needle).unwrap();
         // Ancestors must be mounted before descendants, or reverse-order
