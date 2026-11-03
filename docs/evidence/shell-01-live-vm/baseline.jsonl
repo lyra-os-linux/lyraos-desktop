@@ -1,0 +1,14 @@
+{"phase": "baseline", "key": "rpm", "value": "gnome-shell-48.8-160100.2.1 SUSE LLC <https://www.suse.com/>\ngnome-shell-lang-48.8-160100.2.1 SUSE LLC <https://www.suse.com/>\ngnome-extensions-48.8-160100.2.1 SUSE LLC <https://www.suse.com/>\npackage gnome-shell-calendar is not installed"}
+{"phase": "baseline", "key": "libgvc_sha256", "value": "7f5dd9247cff74cb83bdd3687e12bfd48da75be941e3e8f689da1c689b823fb0"}
+{"phase": "baseline", "key": "shell_pid", "value": "1923"}
+{"phase": "baseline", "key": "shell_libgvc_mapped", "value": "5 /usr/lib64/gnome-shell/libgvc.so "}
+{"phase": "baseline", "key": "session", "value": "Type=wayland Active=yes State=active "}
+{"phase": "baseline", "key": "pactl_info", "value": "Server Name: PulseAudio (on PipeWire 1.6.8);Default Sink: alsa_output.pci-0000_00_03.0.analog-stereo;Default Source: alsa_input.pci-0000_00_03.0.analog-stereo;"}
+{"phase": "baseline", "key": "cards", "value": "50\talsa_card.pci-0000_00_03.0\talsa;"}
+{"phase": "baseline", "key": "sinks", "value": "54\talsa_output.pci-0000_00_03.0.analog-stereo\tPipeWire\ts16le 2ch 48000Hz\tSUSPENDED;"}
+{"phase": "baseline", "key": "play", "value": "exit=0"}
+{"phase": "baseline", "key": "volume_set", "value": "Volume: front-left: 26214 /  40% / -23.88 dB,   front-right: 26214 /  40% / -23.88 dB"}
+{"phase": "baseline", "key": "deterministic", "value": "exit=139 state 2;SHIM: injecting card 9999 with n_profiles=0 active_profile=NULL;timeout: the monitored command dumped core;Segmentation fault;"}
+{"phase": "baseline", "key": "coredumps", "value": "Mon 2026-11-02 19:26:54 UTC 3218 1000 496 SIGSEGV present /usr/bin/gjs-console 1.4M;"}
+{"phase": "baseline", "key": "shell_journal_errors", "value": ""}
+{"phase": "baseline", "key": "done", "value": "ok"}

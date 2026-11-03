@@ -665,6 +665,40 @@ setuid ou capability. Sem RPM próprio. Reversão: remover a linha da receita.
 inventário `.packages` e `ping -c 3 1.1.1.1` como usuário comum na live e no
 sistema instalado.
 
+## SHELL-01 — gnome-shell cai no login com placa de áudio sem perfis (02/11/2026)
+
+Na estação, `gnome-shell` 48.8-160100.2.1 recebeu SIGSEGV três segundos após o
+login (coredump PID 2026). O shell reiniciou em modo de segurança, com as
+extensões desativadas; as extensões Lyra não participam do backtrace. No
+mesmo segundo, `pipewire-pulse` registrou `card 52 port 0 profiles
+inconsistent (0 < 1)` para a webcam USB Redragon PK-635G, ainda sem perfis
+enumerados. O libgvc embutido no shell executa
+`gvc_mixer_card_set_profile (card, info->active_profile->name)` em
+`update_card()` sem checar NULL: o core mostra `mov (%rax),%rsi` com `rax = 0`
+antes dessa chamada. O `master` upstream do libgnome-volume-control ainda tem
+o mesmo código.
+
+Alcance: geral, intermitente. Qualquer placa anunciada pelo PipeWire sem perfis
+durante a enumeração (webcams e headsets USB, no login ou em hotplug) pode
+derrubar a sessão. Uma regra do WirePlumber por modelo não corrige a causa e
+desligaria o microfone; não usar.
+
+**Fonte:** `packaging/gnome-shell/` com o SRPM SUSE assinado preservado e
+apenas `gnome-shell-gvc-null-active-profile.patch`, declarado em
+`staging_only_packages`. Staging revisão 1 (02/11) compilou e assinou
+`48.8-160100.2.1.lyra1.160100.1`; o `libgvc.so` gerado testa o ponteiro antes da
+leitura. Hashes em `packaging/gnome-shell/README.md`. **Regressão (02/11):** o teste determinístico derruba o libgvc SUSE e
+passa no do staging; na live da RC 3 (ISO `50211bcf…`), o plano do zypper
+troca só `gnome-shell`, `-lang` e `gnome-extensions`, e o shell corrigido passou
+em áudio, OSD, seleção de saída, troca de perfil S/PDIF e 10 ciclos de hotplug
+USB ([evidência](evidence/shell-01-live-vm/README.md)). Manifesto de teste
+sequência 3 auditado pelo core 0.2.9 e assinado com a chave oficial
+([manifesto](evidence/shell-01-migration-manifest/README.md)).
+**Pendentes:** ciclo nativo da migração e reversão em sistema
+instalado; promoção e manifesto `stable`; relato upstream; validação na
+candidata por checksum. Reversão: migração de
+volta ao RPM SUSE original, que restaura o crash.
+
 ## Reconciliação na candidata 5 — 13/10/2026
 
 Candidata 5 da Alpha 8: `LyraOS-Desktop-1.1-alpha.8-x86_64.iso`, commit
