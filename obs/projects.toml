@@ -126,10 +126,7 @@ legacy_packages = []
 # promoted. xdg-desktop-portal-gnome (#125, global shortcuts backport) was
 # promoted to release the same day (SR 1393905) and is now a regular package.
 retired_staging_packages = []
-# gnome-shell: SHELL-01 libgvc NULL active-profile crash fix (2026-11-02),
-# staging rev 1. Not promotable until the regression, package-scoped
-# migration and candidate gates in packaging/gnome-shell/README.md pass.
-staging_only_packages = ["gnome-shell"]
+staging_only_packages = []
 
 [[projects.targets]]
 name = "openSUSE_Leap_16.1"

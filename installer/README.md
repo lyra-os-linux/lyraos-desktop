@@ -70,7 +70,7 @@ ao final (sucesso ou falha). O comando Tauri `execute_plan` lança
 `kiwi/root/etc/polkit-1/rules.d/01-lyra-installer-service.rules`).
 
 `lyra-installer-core::service::operations` já implementa o particionamento
-real (GPT, ESP, Btrfs, os subvolumes de
+real (GPT, ESP, Btrfs, os 21 subvolumes de
 `storage::plan::default_subvolumes`, mount, `/etc/fstab` com UUID real) para
 o caso "disco inteiro, layout direto" — RAID e LVM como alvo ainda devolvem
 um erro explícito de "não implementado", não silêncio. `cargo test` cobre a
