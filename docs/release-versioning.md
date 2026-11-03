@@ -74,11 +74,17 @@ esquemas antigos. O Lyra Upgrade aceita a transição `1.1` → `16.1` porque a
 versão de destino é maior que a de origem.
 
 Uma versão é publicada quando passa pelos critérios de qualidade, não porque uma
-data chegou. O suporte da base openSUSE, o suporte de uma release Lyra e o ciclo
-da geração 16.x são distintos. Não há promessa de EOL ou suporte prolongado do
-Lyra sem política formal e sustentável.
+data chegou. O suporte da base openSUSE e o suporte de uma release Lyra são
+distintos.
 
-O Lyra OS 16.1 terá suporte comunitário, sem prazo contratual ou EOL prometido.
+O Lyra OS **não é uma rolling release**: cada versão `MAJOR.MINOR` é uma
+release fixa. **Cada release da geração 16.x tem 2 anos de suporte**, contados
+da publicação da versão estável. O fonte de cada release publicada é mantido
+para sustentar esse suporte: as tags de release (`v16.1`, `server-v16.1`, …)
+não são apagadas nem movidas, e as correções de uma release suportada partem do
+fonte dessa release. A política vale para toda a organização
+([ciclo de releases e suporte](https://github.com/lyra-os-linux/.github/blob/main/SUPPORT.md#ciclo-de-releases-e-suporte)).
+
 O lançamento está previsto para **3 de novembro de 2026**, sempre condicionado
 ao gate completo. Artefatos legados serão preservados e republicados com nomes
 semânticos, mantendo checksums, assinaturas e proveniência verificáveis.
