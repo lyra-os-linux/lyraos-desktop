@@ -5,6 +5,8 @@
 #   shell01-updater.sh setup URL   testing channel + manifest base URL, serial journal
 #   shell01-updater.sh state NAME  packages, Updater state, snapshots, crashes
 #   shell01-updater.sh statesubvol own subvolume for /var/lib/lyra-upgrade (fix candidate)
+#   shell01-updater.sh installvolume  install the candidate 0.2.10 boot migration
+#   shell01-updater.sh volumecheck    result of that migration after boot
 #   shell01-updater.sh fault       rollback fixture: enable a unit that fails at boot
 #   shell01-updater.sh investigate boot/package timeline of the operation
 #   shell01-updater.sh fetchcheck  repeat the Updater manifest fetch step by step
@@ -112,6 +114,34 @@ statesubvol)
 	systemctl daemon-reload
 	emit mount "$(mount /var/lib/lyra-upgrade 2>&1; findmnt -no SOURCE,OPTIONS /var/lib/lyra-upgrade)"
 	emit ids "root=$(btrfs inspect-internal rootid /) state=$(btrfs inspect-internal rootid /var/lib/lyra-upgrade)"
+	emit done ok
+	;;
+installvolume)
+	# Install the candidate Updater 0.2.10 boot migration from the host, as
+	# the RPM would, without changing anything else; it runs at next boot.
+	PHASE=installvolume
+	base=${2:-http://10.0.2.2:8766}
+	curl -sf -o /usr/libexec/lyra-upgrade-state-volume "$base/lyra-upgrade-state-volume" &&
+		curl -sf -o /etc/systemd/system/lyra-upgrade-state-volume.service "$base/lyra-upgrade-state-volume.service" ||
+		{ emit install "fetch failed"; exit 1; }
+	chmod 0755 /usr/libexec/lyra-upgrade-state-volume
+	emit sha256 "$(sha256sum /usr/libexec/lyra-upgrade-state-volume /etc/systemd/system/lyra-upgrade-state-volume.service | tr '\n' ';')"
+	systemctl daemon-reload
+	emit enable "$(systemctl enable lyra-upgrade-state-volume.service 2>&1 | tr '\n' ';')"
+	emit sequence_before "$(cat /var/lib/lyra-upgrade/last-manifest-sequence 2>&1)"
+	emit done ok
+	;;
+volumecheck)
+	PHASE=volumecheck
+	emit unit "$(systemctl show lyra-upgrade-state-volume.service -p ActiveState -p Result -p ConditionResult -p ExecMainStatus 2>&1 | tr '\n' ' ')"
+	emit journal "$(journalctl -b --no-pager -o cat -u lyra-upgrade-state-volume.service 2>&1 | tail -6 | tr '\n' ';')"
+	emit mount "$(findmnt -no SOURCE /var/lib/lyra-upgrade 2>&1)"
+	emit ids "root=$(btrfs inspect-internal rootid /) state=$(btrfs inspect-internal rootid /var/lib/lyra-upgrade 2>&1)"
+	emit fstab "$(grep lyra-upgrade /etc/fstab 2>&1)"
+	emit sequence "$(cat /var/lib/lyra-upgrade/last-manifest-sequence 2>&1)"
+	emit operations "$(ls /var/lib/lyra-upgrade/operations 2>&1 | tr '\n' ' ')"
+	emit kept "$(mkdir -p /run/lv && mount -o subvolid=5 UUID=$(findmnt -no UUID /) /run/lv && ls -a /run/lv/@/var/lib | grep lyra-upgrade | tr '\n' ' '; umount /run/lv)"
+	emit failed_units "$(systemctl --failed --no-legend 2>&1 | tr '\n' ';')"
 	emit done ok
 	;;
 layout)
