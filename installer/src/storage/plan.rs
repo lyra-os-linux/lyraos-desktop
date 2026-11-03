@@ -61,7 +61,7 @@ fn subvol(mount_point: &str, subvolume: &str, nodatacow: bool) -> SubvolumePlan 
     }
 }
 
-/// The 20 subvolumes from `mount.conf`, in the same order.
+/// Default Btrfs subvolume layout, based on `mount.conf`.
 pub fn default_subvolumes() -> Vec<SubvolumePlan> {
     vec![
         subvol("/", "/@", false),
