@@ -74,11 +74,34 @@ esquemas antigos. O Lyra Upgrade aceita a transição `1.1` → `16.1` porque a
 versão de destino é maior que a de origem.
 
 Uma versão é publicada quando passa pelos critérios de qualidade, não porque uma
-data chegou. O suporte da base openSUSE, o suporte de uma release Lyra e o ciclo
-da geração 16.x são distintos. Não há promessa de EOL ou suporte prolongado do
-Lyra sem política formal e sustentável.
+data chegou. O suporte da base openSUSE e o suporte de uma release Lyra são
+distintos.
 
-O Lyra OS 16.1 terá suporte comunitário, sem prazo contratual ou EOL prometido.
+O Lyra OS **não é uma rolling release**: cada versão `MAJOR.MINOR` é uma
+release fixa. **Cada release da geração 16.x tem 2 anos de suporte**, contados
+da publicação da versão estável. A política vale para toda a organização
+([ciclo de releases e suporte](https://github.com/lyra-os-linux/.github/blob/main/SUPPORT.md#ciclo-de-releases-e-suporte)).
+
+## Fluxo de git da release
+
+Só as edições têm release. Componentes como o Vega, o Beam e o Sulafat não
+pertencem a uma release: continuam sendo desenvolvidos na `main` de cada
+repositório, com versão própria.
+
+- `main`: desenvolvimento da próxima versão (16.2).
+- `v16.1`: tag anotada no commit promovido, igual ao da última RC. Ela nunca é
+  apagada nem movida.
+- `release/16.1`: criada a partir de `v16.1` para manter a release durante os
+  2 anos de suporte. As correções entram por pull request. Uma correção que
+  também vale para a `main` entra primeiro nela e vai para a release com
+  `git cherry-pick -x`. Cada versão de correção recebe a tag `v16.1.N`.
+- Rulesets do GitHub: as tags `v*` não podem ser apagadas nem movidas; as
+  branches `release/*` não podem ser apagadas nem receber force-push, e
+  mudanças entram só por pull request.
+
+Quando o suporte da 16.1 terminar, a branch `release/16.1` e as tags continuam
+no repositório, como registro.
+
 O lançamento está previsto para **3 de novembro de 2026**, sempre condicionado
 ao gate completo. Artefatos legados serão preservados e republicados com nomes
 semânticos, mantendo checksums, assinaturas e proveniência verificáveis.
