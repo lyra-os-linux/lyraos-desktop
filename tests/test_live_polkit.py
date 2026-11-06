@@ -35,7 +35,10 @@ class LivePolkitTests(unittest.TestCase):
 
     def test_live_gate_checks_authorization(self):
         gate = (ROOT / 'kiwi/test/guest/live-gate.sh').read_text()
-        self.assertIn('pkcheck --action-id org.lyraos.vega.software.install', gate)
+        self.assertIn('pkcheck --action-id "org.lyraos.vega.$action"', gate)
+        self.assertIn('for action in software.install hardware.diagnose storage.cleanup;', gate)
+        # rules.d is root-only: the rule must be read through sudo.
+        self.assertIn('sudo cat /etc/polkit-1/rules.d/49-lyra-liveuser.rules', gate)
         self.assertRegex(gate, r'all\) SECTIONS\+=\([^)]*\bpolkit\b')
 
     @unittest.skipUnless(shutil.which('node'), 'node not installed')
