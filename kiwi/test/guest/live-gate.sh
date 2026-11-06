@@ -83,10 +83,15 @@ repositories() {
 identity() { cat /etc/os-release; echo "## lyra release"; cat /usr/lib/lyra-os/release 2>&1; }
 # liveuser's password is locked, so an admin action must be authorized
 # without a prompt. pkcheck without --allow-user-interaction never prompts.
+# rules.d is readable only by root, so the rule is read through sudo.
 polkit() {
-  echo "## rule"; cat /etc/polkit-1/rules.d/49-lyra-liveuser.rules 2>&1 || return 1
-  echo "## pkcheck org.lyraos.vega.software.install"
-  pkcheck --action-id org.lyraos.vega.software.install --process $$ 2>&1
+  local action status=0
+  echo "## rule"; sudo cat /etc/polkit-1/rules.d/49-lyra-liveuser.rules 2>&1 || return 1
+  for action in software.install hardware.diagnose storage.cleanup; do
+    echo "## pkcheck org.lyraos.vega.$action"
+    pkcheck --action-id "org.lyraos.vega.$action" --process $$ 2>&1 || status=1
+  done
+  return "$status"
 }
 # liveuser is not in systemd-journal; read the whole journal through sudo.
 journal_crit() { sudo journalctl -b -p 3 --no-pager 2>&1; }
