@@ -1,7 +1,9 @@
 import importlib.machinery
 import importlib.util
 import os
+import sys
 import tempfile
+import types
 import unittest
 from pathlib import Path
 
@@ -9,7 +11,34 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "packaging/lyra-display-wake/lyra-display-wake"
 
 
+class FakeVariant:
+    def __init__(self, signature, value):
+        self.signature = signature
+        self.value = value
+
+    def unpack(self):
+        return self.value
+
+
+def ensure_gi():
+    """CI runners have no PyGObject; the tested functions only build Variants."""
+    try:
+        import gi  # noqa: F401
+        return
+    except ImportError:
+        pass
+    gi = types.ModuleType("gi")
+    gi.require_version = lambda _namespace, _version: None
+    repository = types.ModuleType("gi.repository")
+    repository.Gio = types.SimpleNamespace()
+    repository.GLib = types.SimpleNamespace(Variant=FakeVariant)
+    gi.repository = repository
+    sys.modules["gi"] = gi
+    sys.modules["gi.repository"] = repository
+
+
 def load():
+    ensure_gi()
     loader = importlib.machinery.SourceFileLoader("lyra_display_wake", str(SCRIPT))
     spec = importlib.util.spec_from_loader(loader.name, loader)
     module = importlib.util.module_from_spec(spec)
