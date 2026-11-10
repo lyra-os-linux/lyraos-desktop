@@ -246,11 +246,19 @@ class RepositoryMetadataTests(unittest.TestCase):
         self.assertIn("16.1-rc.2", notes)
         self.assertIn("## RC 2 changes", (ROOT / "docs/release-gate.md").read_text(encoding="utf-8"))
 
-    def test_rc3_wrappers_sign_the_bundle_and_target_16_1_rc_3(self) -> None:
+    def test_current_release_is_the_16_1_final(self) -> None:
+        # 16.1 saiu como final em 03/11/2026; a imagem não pode mais se
+        # identificar como RC (lyraos-desktop#531).
         release = Release.from_file()
-        self.assertEqual(release.version_id, "16.1-rc.3")
-        self.assertEqual(release.stage_label, "RC 3")
-        self.assertEqual(release.tag, "v16.1-rc.3")
+        self.assertEqual(release.version_id, "16.1")
+        self.assertEqual(release.display_version, "16.1")
+        self.assertEqual(release.tag, "v16.1")
+        environment = (ROOT / "kiwi/root/usr/lib/lyra-os/release").read_text(encoding="utf-8")
+        self.assertIn("LYRA_PRETTY_NAME='Lyra OS 16.1 (Odisseia)'", environment)
+        self.assertNotIn("RC ", environment)
+        self.assertNotIn("-rc.", environment)
+
+    def test_rc3_wrappers_sign_the_bundle_and_target_16_1_rc_3(self) -> None:
         wrapper = (ROOT / "scripts/build-desktop-rc3.sh").read_text(encoding="utf-8")
         uploader_wrapper = (ROOT / "scripts/upload-desktop-rc3-sourceforge.sh").read_text(encoding="utf-8")
         builder = (ROOT / "scripts/build-desktop-alpha6.sh").read_text(encoding="utf-8")
@@ -274,7 +282,6 @@ class RepositoryMetadataTests(unittest.TestCase):
         self.assertIn("01B6 3EED", notes)
         gate = (ROOT / "docs/release-gate.md").read_text(encoding="utf-8")
         self.assertIn("## RC 3 changes", gate)
-        self.assertIn("RC 3", (ROOT / "README.md").read_text(encoding="utf-8"))
 
     def test_alpha8_wrapper_uses_the_stage_aware_release_gate(self) -> None:
         wrapper = (ROOT / "scripts/build-desktop-alpha8.sh").read_text(encoding="utf-8")

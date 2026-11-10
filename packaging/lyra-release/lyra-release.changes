@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Tue Nov 10 12:00:00 UTC 2026 - Rodrigo Brito
+
+- Rebuild so that %posttrans reapplies the Lyra display identity on
+  installed systems: images up to 16.1 had /etc/os-release overwritten
+  after the package by the image builder and kept showing
+  "Lyra OS 16.1 RC 3" (lyraos-desktop#531). No code change.
+
+-------------------------------------------------------------------
 Mon Oct 26 12:00:00 UTC 2026 - Rodrigo Brito
 
 - Security: require sudo-policy-wheel-auth-self and remove the
