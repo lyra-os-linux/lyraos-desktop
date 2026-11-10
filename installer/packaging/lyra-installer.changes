@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Tue Nov 10 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
+
+- Disk discovery no longer depends on PATH: lsblk runs as
+  /usr/bin/lsblk and the other storage tools are looked up only in
+  /usr/sbin and /sbin (lyraos-desktop#530).
+- The top bar shows "Odisseia 16.1" instead of "16.1 RC 2".
+
+-------------------------------------------------------------------
 Tue Oct 27 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
 
 - Remove the live session's polkit rule
