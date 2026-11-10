@@ -1,0 +1,10 @@
+-------------------------------------------------------------------
+Tue Nov 10 12:00:00 UTC 2026 - Rodrigo Brito
+
+- Initial package (lyraos-desktop#22): a GNOME session service that,
+  when the screens wake from power saving (DPMS), switches each active
+  NVIDIA output to another refresh rate at the same resolution and back,
+  with the temporary method of org.gnome.Mutter.DisplayConfig. Re-applying
+  the same configuration does not bring the signal back; the mode change
+  does. Starts only when nvidia_drm is loaded and installs on its own,
+  without lyra-release or the image pulling it in.

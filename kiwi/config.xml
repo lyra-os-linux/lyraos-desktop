@@ -401,6 +401,10 @@
          libvulkan_radeon's libLLVM dependency already ships via Mesa-dri. -->
     <package name="libvulkan_intel"/>
     <package name="libvulkan_radeon"/>
+    <!-- NVIDIA outputs on hybrid notebooks may stay dark after DPMS (#22).
+         The user service only starts when nvidia_drm is loaded; existing
+         installs get it with zypper install lyra-display-wake. -->
+    <package name="lyra-display-wake"/>
     <package name="nautilus"/>
     <package name="lyra-nautilus-branding"/>
     <!-- Nautilus only Recommends gvfs. Without these explicit packages,

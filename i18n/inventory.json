@@ -97,6 +97,17 @@
       "rationale": "Three embedded catalogs with live switching and English fallback."
     },
     {
+      "id": "lyra-display-wake",
+      "project": "lyra",
+      "wave": "rc3",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "python3 -m unittest tests.test_display_wake",
+      "rationale": "Background GNOME session service; only journal log lines, no interactive Lyra-owned text."
+    },
+    {
       "id": "lyra-parental-controls",
       "project": "lyra",
       "wave": "rc3",
