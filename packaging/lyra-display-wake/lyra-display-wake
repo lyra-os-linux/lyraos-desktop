@@ -1,0 +1,207 @@
+#!/usr/bin/python3
+"""Recover NVIDIA outputs that stay dark after display power saving (DPMS).
+
+On hybrid laptops the NVIDIA HDMI output may not send a signal again when
+Mutter turns the screens back on, while the kernel and Mutter both report it
+as enabled (lyraos-desktop#22). Re-applying the same configuration does not
+help; a mode change does. When PowerSaveMode goes back to 0, this service
+switches each active NVIDIA output to another refresh rate of the same
+resolution and back. Both changes use the temporary method, so monitors.xml
+is never written.
+"""
+
+import glob
+import os
+import sys
+
+import gi
+
+gi.require_version("Gio", "2.0")
+from gi.repository import Gio, GLib  # noqa: E402
+
+BUS_NAME = "org.gnome.Mutter.DisplayConfig"
+OBJECT_PATH = "/org/gnome/Mutter/DisplayConfig"
+INTERFACE = "org.gnome.Mutter.DisplayConfig"
+METHOD_TEMPORARY = 1
+# Wait after the screens wake before touching the modes, and between the
+# switch and the restore. Tested on lyraos-desktop#22 hardware.
+SETTLE_SECONDS = 3
+RESTORE_SECONDS = 2
+APPLY_SIGNATURE = "(uua(iiduba(ssa{sv}))a{sv})"
+
+
+def log(message):
+    print(message, file=sys.stderr, flush=True)
+
+
+def mutter_connector(kernel_name):
+    """Kernel connector name (HDMI-A-1) to Mutter's (HDMI-1)."""
+    if kernel_name.startswith("HDMI-A-"):
+        return "HDMI-" + kernel_name[len("HDMI-A-"):]
+    return kernel_name
+
+
+def nvidia_connectors(drm_root="/sys/class/drm"):
+    """Connected and enabled connectors driven by the nvidia driver."""
+    found = set()
+    for path in glob.glob(os.path.join(drm_root, "card*-*")):
+        try:
+            driver = os.path.basename(os.path.realpath(os.path.join(path, "..", "device", "driver")))
+            with open(os.path.join(path, "status"), encoding="ascii") as status:
+                connected = status.read().strip() == "connected"
+            with open(os.path.join(path, "enabled"), encoding="ascii") as enabled:
+                active = enabled.read().strip() == "enabled"
+        except OSError:
+            continue
+        if driver == "nvidia" and connected and active:
+            kernel_name = os.path.basename(path).split("-", 1)[1]
+            found.add(mutter_connector(kernel_name))
+    return found
+
+
+def current_modes(monitors):
+    """Map connector -> (current mode id, [(mode id, w, h, refresh)])."""
+    result = {}
+    for (connector, _vendor, _product, _serial), modes, _props in monitors:
+        current = None
+        options = []
+        for mode_id, width, height, refresh, _scale, _scales, mode_props in modes:
+            options.append((mode_id, width, height, refresh))
+            if mode_props.get("is-current"):
+                current = mode_id
+        if current is not None:
+            result[connector] = (current, options)
+    return result
+
+
+def alternate_mode(current, options):
+    """Another refresh rate at the same resolution, the closest one; or None."""
+    by_id = {mode[0]: mode for mode in options}
+    if current not in by_id:
+        return None
+    _id, width, height, refresh = by_id[current]
+    candidates = [mode for mode in options
+                  if mode[1] == width and mode[2] == height and mode[0] != current
+                  and abs(mode[3] - refresh) > 0.5]
+    if not candidates:
+        return None
+    return min(candidates, key=lambda mode: abs(mode[3] - refresh))[0]
+
+
+def monitor_properties(monitors):
+    """Per-connector properties to carry over to ApplyMonitorsConfig."""
+    result = {}
+    for (connector, *_rest), _modes, props in monitors:
+        carried = {}
+        if "is-underscanning" in props:
+            carried["enable_underscanning"] = GLib.Variant("b", props["is-underscanning"])
+        if "color-mode" in props:
+            carried["color-mode"] = GLib.Variant("u", props["color-mode"])
+        result[connector] = carried
+    return result
+
+
+def build_config(state, overrides):
+    """ApplyMonitorsConfig arguments for the current state, with mode overrides."""
+    serial, monitors, logical_monitors, props = state
+    modes = current_modes(monitors)
+    carried = monitor_properties(monitors)
+    logical = []
+    for x, y, scale, transform, primary, specs, _lprops in logical_monitors:
+        members = []
+        for connector, *_rest in specs:
+            if connector not in modes:
+                return None
+            mode = overrides.get(connector, modes[connector][0])
+            members.append((connector, mode, carried.get(connector, {})))
+        logical.append((x, y, scale, transform, primary, members))
+    global_props = {}
+    if props.get("supports-changing-layout-mode") and "layout-mode" in props:
+        global_props["layout-mode"] = GLib.Variant("u", props["layout-mode"])
+    return (serial, METHOD_TEMPORARY, logical, global_props)
+
+
+class DisplayWake:
+    def __init__(self, bus):
+        self.bus = bus
+        self.power_save = None
+        self.pending = False
+
+    def call(self, method, params=None):
+        return self.bus.call_sync(BUS_NAME, OBJECT_PATH, INTERFACE, method, params,
+                                  None, Gio.DBusCallFlags.NONE, -1, None)
+
+    def state(self):
+        return self.call("GetCurrentState").unpack()
+
+    def apply(self, overrides):
+        config = build_config(self.state(), overrides)
+        if config is None:
+            log("current state has a monitor without an active mode; skipped")
+            return False
+        self.call("ApplyMonitorsConfig", GLib.Variant(APPLY_SIGNATURE, config))
+        return True
+
+    def recover(self):
+        self.pending = False
+        try:
+            targets = nvidia_connectors()
+            modes = current_modes(self.state()[1])
+            switch, restore = {}, {}
+            for connector in sorted(targets & modes.keys()):
+                current, options = modes[connector]
+                alternate = alternate_mode(current, options)
+                if alternate is None:
+                    log(f"{connector}: no other refresh rate at {current}; skipped")
+                    continue
+                switch[connector] = alternate
+                restore[connector] = current
+            if not switch:
+                return False
+            log(f"recovering {', '.join(sorted(switch))} after power saving")
+            if self.apply(switch):
+                GLib.timeout_add_seconds(RESTORE_SECONDS, self.restore, restore)
+        except GLib.Error as error:
+            log(f"recovery failed: {error.message}")
+        return False
+
+    def restore(self, restore):
+        try:
+            self.apply(restore)
+        except GLib.Error as error:
+            log(f"restore failed: {error.message}")
+        return False
+
+    def on_properties_changed(self, _conn, _sender, _path, _iface, _signal, params):
+        interface, changed, _invalidated = params.unpack()
+        if interface != INTERFACE or "PowerSaveMode" not in changed:
+            return
+        mode = changed["PowerSaveMode"]
+        woke = self.power_save not in (None, 0) and mode == 0
+        self.power_save = mode
+        if woke and not self.pending:
+            self.pending = True
+            GLib.timeout_add_seconds(SETTLE_SECONDS, self.recover)
+
+    def on_appeared(self, _conn, _name, _owner):
+        try:
+            reply = self.bus.call_sync(BUS_NAME, OBJECT_PATH, "org.freedesktop.DBus.Properties",
+                                       "Get", GLib.Variant("(ss)", (INTERFACE, "PowerSaveMode")),
+                                       None, Gio.DBusCallFlags.NONE, -1, None)
+            self.power_save = reply.unpack()[0]
+        except GLib.Error as error:
+            log(f"cannot read PowerSaveMode: {error.message}")
+
+
+def main():
+    bus = Gio.bus_get_sync(Gio.BusType.SESSION)
+    wake = DisplayWake(bus)
+    bus.signal_subscribe(BUS_NAME, "org.freedesktop.DBus.Properties", "PropertiesChanged",
+                         OBJECT_PATH, None, Gio.DBusSignalFlags.NONE, wake.on_properties_changed)
+    Gio.bus_watch_name_on_connection(bus, BUS_NAME, Gio.BusNameWatcherFlags.NONE,
+                                     wake.on_appeared, None)
+    GLib.MainLoop().run()
+
+
+if __name__ == "__main__":
+    main()

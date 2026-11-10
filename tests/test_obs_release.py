@@ -34,13 +34,14 @@ class ManifestTests(unittest.TestCase):
 
     def test_project_inventory_matches_release_contract(self) -> None:
         self.assertEqual([project.id for project in self.manifest.projects], ["lyra", "vega", "fina"])
-        self.assertEqual(len(self.manifest.project("lyra").packages), 31)
+        self.assertEqual(len(self.manifest.project("lyra").packages), 32)
         # #125: promoted to release on 2026-10-30 (SR 1393905).
         self.assertIn("xdg-desktop-portal-gnome", self.manifest.project("lyra").packages)
         self.assertIn("lyra-firefox-theme", self.manifest.project("lyra").packages)
         self.assertIn("lyra-vms", self.manifest.project("lyra").packages)
         self.assertIn("lyra-release", self.manifest.project("lyra").packages)
         self.assertIn("lyra-parental-controls", self.manifest.project("lyra").packages)
+        self.assertIn("lyra-display-wake", self.manifest.project("lyra").packages)
         self.assertNotIn("chord", self.manifest.project("lyra").packages)
         self.assertIn("linuxtoys", self.manifest.project("lyra").packages)
         self.assertIn("zed", self.manifest.project("lyra").packages)

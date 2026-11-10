@@ -93,6 +93,7 @@ packages = [
   "doctl",
   "google-cloud-cli",
   "hashicorp-repo",
+  "lyra-display-wake",
   "lyra-downloads",
   "lyra-vms",
   "lyra-firefox-ext",

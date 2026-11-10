@@ -1,0 +1,15 @@
+[Unit]
+Description=Recover NVIDIA outputs after display power saving
+Documentation=https://github.com/lyra-os-linux/lyraos-desktop/issues/22
+PartOf=graphical-session.target
+After=graphical-session.target
+# Only NVIDIA outputs are affected; without the driver the service stays off.
+ConditionPathExists=/sys/module/nvidia_drm
+
+[Service]
+ExecStart=/usr/libexec/lyra-display-wake
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target
