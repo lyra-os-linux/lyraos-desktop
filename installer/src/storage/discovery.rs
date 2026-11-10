@@ -140,7 +140,9 @@ struct LsblkDevice {
 }
 
 fn discover_disks() -> Result<Vec<Disk>, DiscoveryError> {
-    let output = Command::new("lsblk")
+    // Caminho absoluto: a descoberta não depende do PATH de quem a roda
+    // (lyraos-desktop#530).
+    let output = Command::new("/usr/bin/lsblk")
         .args([
             "--json",
             "--bytes",
@@ -492,11 +494,8 @@ fn run_lvs() -> Option<Vec<LvRow>> {
 /// against a real Leap-family desktop, where the bare command name silently
 /// resolved to "not found" (verified against a real system, not guessed).
 fn lvm_command(command: &str, fields: &str) -> Option<Vec<u8>> {
-    let candidates = [
-        command.to_string(),
-        format!("/usr/sbin/{command}"),
-        format!("/sbin/{command}"),
-    ];
+    // Só diretórios fixos, nunca o PATH (lyraos-desktop#530).
+    let candidates = [format!("/usr/sbin/{command}"), format!("/sbin/{command}")];
 
     for candidate in candidates {
         let Ok(output) = Command::new(&candidate)
