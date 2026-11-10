@@ -273,4 +273,10 @@ CPE_NAME="cpe:/o:rodrigosbrito:lyra_os:$LYRA_VERSION_ID"
 LOGO="distributor-logo-lyra"
 EOF
 
+# O lyra-release é quem mantém a identidade exibida depois das atualizações.
+# Reaplicada aqui, a imagem sai com a mesma identidade que o pacote grava, em
+# vez de deixar este arquivo sobrescrever o %posttrans dele (lyraos-desktop#531).
+# Os metadados da imagem (IMAGE_ID, IMAGE_VERSION, BUILD_ID) são preservados.
+/usr/libexec/lyra-release-identity
+
 exit 0
