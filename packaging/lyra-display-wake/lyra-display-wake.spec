@@ -40,6 +40,10 @@ grep -Fx 'ConditionPathExists=/sys/module/nvidia_drm' %{SOURCE1}
 grep -Fx 'ExecStart=%{_libexecdir}/lyra-display-wake' %{SOURCE1}
 grep -Fx 'enable lyra-display-wake.service' %{SOURCE2}
 
+# %pre marks the new unit; without it %post does not apply the preset.
+%pre
+%systemd_user_pre lyra-display-wake.service
+
 # Enables the unit for every user; it starts at the next GNOME login.
 %post
 %systemd_user_post lyra-display-wake.service

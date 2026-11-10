@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Tue Nov 10 21:00:00 UTC 2026 - Rodrigo Brito
+
+- Add %pre with %systemd_user_pre: without it the openSUSE helper does
+  not apply the preset in %post, and the unit stayed disabled after
+  installation (found testing the staging RPM).
+
+-------------------------------------------------------------------
 Tue Nov 10 12:00:00 UTC 2026 - Rodrigo Brito
 
 - Initial package (lyraos-desktop#22): a GNOME session service that,

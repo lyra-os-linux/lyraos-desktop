@@ -124,6 +124,8 @@ class DisplayWakeTests(unittest.TestCase):
         unit = (package / "lyra-display-wake.service").read_text(encoding="utf-8")
         self.assertIn("ConditionPathExists=/sys/module/nvidia_drm\n", unit)
         self.assertIn("WantedBy=graphical-session.target\n", unit)
+        # The openSUSE helper applies the preset in %post only after %pre marked the unit.
+        self.assertIn("%pre\n%systemd_user_pre lyra-display-wake.service\n", spec)
         self.assertIn('<package name="lyra-display-wake"/>',
                       (ROOT / "kiwi/config.xml").read_text(encoding="utf-8"))
 
