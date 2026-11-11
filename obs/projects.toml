@@ -117,6 +117,9 @@ packages = [
   "vscode-repo",
   "xdg-desktop-portal-gnome",
   "zed",
+  "font-manager",
+  "qlcplus",
+  "sooperlooper",
 ]
 # Pacotes legados fora da imagem e do contrato de promoção. `calco` e `prosa`
 # foram removidos do projeto de release em 10/10/2026 (osc rdelete, limpeza

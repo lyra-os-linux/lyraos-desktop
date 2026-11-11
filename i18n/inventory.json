@@ -415,6 +415,39 @@
       "selection": "none",
       "lint": "RPM policy checks and upstream ownership review",
       "rationale": "openSUSE package rebuilt with one upstream backport (#125, global shortcuts); interface and translations stay upstream in xdg-desktop-portal-gnome-lang."
+    },
+    {
+      "id": "font-manager",
+      "project": "lyra",
+      "wave": "store-e2",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "RPM policy checks and upstream ownership review",
+      "rationale": "Third-party font manager packaged from upstream for the Vega store; interface and translations stay upstream (gettext shipped by the package)."
+    },
+    {
+      "id": "qlcplus",
+      "project": "lyra",
+      "wave": "store-e2",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "RPM policy checks and upstream ownership review",
+      "rationale": "Third-party QLC+ 4.14.4 lighting control packaged from upstream for the Vega store; interface and translations stay upstream (Qt .qm files shipped by the package)."
+    },
+    {
+      "id": "sooperlooper",
+      "project": "lyra",
+      "wave": "store-e2",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "RPM policy checks and upstream ownership review",
+      "rationale": "Third-party SooperLooper packaged from upstream for the Vega store; interface and translations stay upstream."
     }
   ]
 }
