@@ -34,7 +34,11 @@ class ManifestTests(unittest.TestCase):
 
     def test_project_inventory_matches_release_contract(self) -> None:
         self.assertEqual([project.id for project in self.manifest.projects], ["lyra", "vega", "fina"])
-        self.assertEqual(len(self.manifest.project("lyra").packages), 32)
+        self.assertEqual(len(self.manifest.project("lyra").packages), 35)
+        # Vega store E2: Font Manager, QLC+ and SooperLooper packaged in lyra.
+        self.assertIn("font-manager", self.manifest.project("lyra").packages)
+        self.assertIn("qlcplus", self.manifest.project("lyra").packages)
+        self.assertIn("sooperlooper", self.manifest.project("lyra").packages)
         # #125: promoted to release on 2026-10-30 (SR 1393905).
         self.assertIn("xdg-desktop-portal-gnome", self.manifest.project("lyra").packages)
         self.assertIn("lyra-firefox-theme", self.manifest.project("lyra").packages)
