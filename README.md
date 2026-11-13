@@ -5,13 +5,16 @@ voltada a uma experiência GNOME simples, estável e integrada ao ecossistema
 Lyra. Este repositório contém a descrição KIWI usada para gerar a ISO live e
 o instalador da edição **Odisseia 16.1** para computadores x86_64.
 
-## Foco da versão 16.1
+## Versão 16.1
 
-O próximo lançamento é o **Lyra OS Desktop GNOME 16.1**, com controle parental
-básico ([ADR 0019](docs/adr/0019-basic-parental-controls.md)). O cronograma
-está em [`docs/release-versioning.md`](docs/release-versioning.md). O GNOME é a
-única edição Desktop: KDE Plasma e XFCE
-foram abandonados ([ADR 0018](docs/adr/0018-abandon-kde-xfce.md)).
+O **Lyra OS Desktop GNOME 16.1 “Odisseia”** foi lançado em **3 de novembro de
+2026**, com controle parental básico ([ADR 0019](docs/adr/0019-basic-parental-controls.md)).
+As notas, o checksum e o download estão em
+[`docs/releases/lyra-os-desktop-16.1.md`](docs/releases/lyra-os-desktop-16.1.md);
+a política de versionamento está em
+[`docs/release-versioning.md`](docs/release-versioning.md). O GNOME é a única
+edição Desktop: KDE Plasma e XFCE foram abandonados
+([ADR 0018](docs/adr/0018-abandon-kde-xfce.md)).
 
 A decisão de 16/09/2026 prevê **uma única ISO Desktop GNOME**, sem a pilha
 NVIDIA pré-instalada. Desde 31/10/2026 o Vega não instala o driver NVIDIA
@@ -19,8 +22,8 @@ NVIDIA pré-instalada. Desde 31/10/2026 o Vega não instala o driver NVIDIA
 [guia de instalação](https://github.com/lyra-os-linux/lyraos-desktop/discussions/234), com os pacotes oficiais da NVIDIA para o Leap
 16.1. Histórico da decisão no [plano NVIDIA](docs/nvidia-iso.md).
 
-A [situação do GNOME](docs/status-gnome.md) distingue código integrado,
-pacotes enviados e qualificação da candidata.
+A [situação do GNOME](docs/status-gnome.md) registra o que foi integrado e
+qualificado ao longo do ciclo.
 
 ## Políticas e privacidade
 
@@ -28,10 +31,11 @@ O [épico do ECA Digital](https://github.com/lyra-os-linux/lyraos-desktop/issues
 e seus gates técnicos, jurídicos e de privacidade continuam registrados.
 Essa trilha não equivale a uma declaração de conformidade já obtida.
 
-> [!IMPORTANT]
-> O projeto ainda está em desenvolvimento. A ISO não deve ser considerada uma
-> versão final até que o ciclo completo de build, instalação e inicialização do
-> sistema instalado seja validado novamente após as correções mais recentes.
+> [!NOTE]
+> A 16.1 é a versão estável publicada em 3 de novembro de 2026. A branch `main`
+> segue o desenvolvimento da próxima versão (16.2); as correções da 16.1 entram
+> pela branch `release/16.1`. Veja a
+> [política de releases](docs/release-versioning.md).
 
 ## Principais características
 
@@ -68,16 +72,15 @@ no sistema instalado.
 ## Estado atual
 
 A 16.1 usa exclusivamente o Lyra Installer nativo em
-[`installer/`](installer/). A imagem já instala seu RPM e abre o frontend na
-sessão live; a confirmação final já aciona o backend privilegiado e apresenta
-o resultado da execução. O fluxo principal de instalação e primeiro boot foi
-validado na base anterior; todo o gate será repetido sobre o Leap 16.1. Não
-há segundo instalador, configuração alternativa ou fallback na imagem.
+[`installer/`](installer/). A imagem instala seu RPM e abre o frontend na
+sessão live; a confirmação final aciona o backend privilegiado e apresenta o
+resultado da execução. Não há segundo instalador, configuração alternativa ou
+fallback na imagem.
 
-Para a próxima candidata ainda é necessário qualificar o conjunto de RPMs
-assinados nos repositórios de release, construir a ISO localmente e repetir os
-gates de live, instalação, primeiro login, Secure Boot, hardware, atualização
-e rollback. As recentes correções da suíte GNOME devem estar nessa candidata.
+O gate completo da candidata final foi aprovado em 30/10/2026 e a mesma ISO foi
+promovida por tag à 16.1 estável, sem rebuild. As correções da suíte GNOME
+integram a release; cenários dependentes de hardware, firmware e equipamento
+continuam registrados nas notas de lançamento e nas issues do repositório.
 
 O GitHub valida fontes e contratos; o OBS compila e publica pacotes RPM; o KIWI
 constrói a ISO **localmente**; o SourceForge distribui os artefatos aprovados.
@@ -90,12 +93,14 @@ decisões de implementação, limitações e verificações já realizadas.
 
 O instalador e as interfaces próprias do Lyra OS 16.1 têm como escopo
 `en-US`, `pt-BR` e `es-ES`, com inglês como padrão e fallback. A presença dos
-catálogos e os testes dos componentes não dispensam a revisão da candidata
+catálogos e os testes dos componentes não dispensam a revisão da release
 nos três idiomas.
 
-A [política de versões](docs/release-versioning.md) registra a meta da 16.1;
-o [roadmap](docs/roadmap.md) detalha o ciclo. Datas são referências de
-planejamento. A promoção depende do [release gate](docs/release-gate.md).
+A 16.1 tem **2 anos de suporte**, até **3 de novembro de 2028**, e recebe
+correções pela branch `release/16.1`. A `main` desenvolve a próxima versão
+(16.2), que volta a percorrer Alpha, Beta e RC. Veja a
+[política de versões](docs/release-versioning.md) e o [roadmap](docs/roadmap.md).
+Promoções continuam condicionadas ao [release gate](docs/release-gate.md).
 
 ## Preparando o ambiente
 
