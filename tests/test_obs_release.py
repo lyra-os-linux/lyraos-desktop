@@ -34,7 +34,7 @@ class ManifestTests(unittest.TestCase):
 
     def test_project_inventory_matches_release_contract(self) -> None:
         self.assertEqual([project.id for project in self.manifest.projects], ["lyra", "vega", "fina"])
-        self.assertEqual(len(self.manifest.project("lyra").packages), 37)
+        self.assertEqual(len(self.manifest.project("lyra").packages), 38)
         # Vega store E6: x3270 (link of Base:System) and Hercules (branch of
         # Emulators, built without REXX on Leap 16.1).
         self.assertIn("x3270", self.manifest.project("lyra").packages)
@@ -47,6 +47,9 @@ class ManifestTests(unittest.TestCase):
         self.assertIn("xdg-desktop-portal-gnome", self.manifest.project("lyra").packages)
         self.assertIn("lyra-firefox-theme", self.manifest.project("lyra").packages)
         self.assertIn("lyra-vms", self.manifest.project("lyra").packages)
+        # lyra-driver 0.1.0 promoted on 2026-11-16 (SR 1397965).
+        self.assertIn("lyra-driver", self.manifest.project("lyra").packages)
+        self.assertEqual(self.manifest.project("lyra").staging_only_packages, ())
         self.assertIn("lyra-release", self.manifest.project("lyra").packages)
         self.assertIn("lyra-parental-controls", self.manifest.project("lyra").packages)
         self.assertIn("lyra-display-wake", self.manifest.project("lyra").packages)
