@@ -20,6 +20,7 @@ MINIMUMS = {
     'lyra-downloads-firefox-integration': '0.2.1',
     'lyra-firefox-ext': '0.1.3',
     'lyra-firefox-theme': '0.1.0', 'lyra-vms': '0.1.0',
+    'lyra-driver': '0.1.0',
     'sudo-policy-wheel-auth-self': '1.9.17',
     'malcontent-control': '0.12.0', 'typelib-1_0-MalcontentUi-1': '0.12.0',
     'lyra-parental-controls': '0.1.0',

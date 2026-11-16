@@ -66,7 +66,7 @@ secure_boot() {
 journal_crit() { sudo journalctl -b -p 3 --no-pager 2>&1; }
 packages() {
   echo "## must be absent on the installed system"; rpm -q lyra-installer 2>&1
-  echo "## lyra packages"; rpm -q lyra-release sheliak lyra-upgrade lyra-vms lyra-welcome 2>&1
+  echo "## lyra packages"; rpm -q lyra-release sheliak lyra-upgrade lyra-vms lyra-driver lyra-welcome 2>&1
   echo "## snapper"; sudo snapper --no-dbus list 2>&1 | tail -5
 }
 palette() {
