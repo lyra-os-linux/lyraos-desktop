@@ -130,7 +130,9 @@ legacy_packages = []
 # promoted. xdg-desktop-portal-gnome (#125, global shortcuts backport) was
 # promoted to release the same day (SR 1393905) and is now a regular package.
 retired_staging_packages = []
-staging_only_packages = []
+# lyra-driver 0.1.0 (lyra-os-linux/lyra-driver) entered staging on 16/11/2026;
+# it moves to `packages` when promoted after the VM validation.
+staging_only_packages = ["lyra-driver"]
 
 [[projects.targets]]
 name = "openSUSE_Leap_16.1"
