@@ -34,7 +34,11 @@ class ManifestTests(unittest.TestCase):
 
     def test_project_inventory_matches_release_contract(self) -> None:
         self.assertEqual([project.id for project in self.manifest.projects], ["lyra", "vega", "fina"])
-        self.assertEqual(len(self.manifest.project("lyra").packages), 36)
+        self.assertEqual(len(self.manifest.project("lyra").packages), 38)
+        # Vega store E6: x3270 (link of Base:System) and Hercules (branch of
+        # Emulators, built without REXX on Leap 16.1).
+        self.assertIn("x3270", self.manifest.project("lyra").packages)
+        self.assertIn("hercules", self.manifest.project("lyra").packages)
         # Vega store E2: Font Manager, QLC+ and SooperLooper packaged in lyra.
         self.assertIn("font-manager", self.manifest.project("lyra").packages)
         self.assertIn("qlcplus", self.manifest.project("lyra").packages)

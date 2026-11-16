@@ -121,6 +121,8 @@ packages = [
   "font-manager",
   "qlcplus",
   "sooperlooper",
+  "x3270",
+  "hercules",
 ]
 # Pacotes legados fora da imagem e do contrato de promoção. `calco` e `prosa`
 # foram removidos do projeto de release em 10/10/2026 (osc rdelete, limpeza
