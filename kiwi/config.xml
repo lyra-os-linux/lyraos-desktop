@@ -264,6 +264,13 @@
     <package name="virt-viewer"/>
     <package name="virt-install"/>
     <package name="libvirt-daemon-qemu"/>
+    <!--
+      Lyra Driver (lyra-os-linux/lyra-driver): detecta a placa e instala,
+      testa e mantém o driver NVIDIA pelo guia do fórum, com polkit e ponto
+      de restauração. Pré-instalado a pedido do mantenedor (16/11/2026); o
+      autostart só abre o app quando há um teste pendente.
+    -->
+    <package name="lyra-driver"/>
     <package name="libvirt-daemon-config-network"/>
     <package name="libvirt-client"/>
     <package name="qemu"/>

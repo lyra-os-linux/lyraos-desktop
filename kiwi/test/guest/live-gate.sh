@@ -78,7 +78,7 @@ firmware() {
 }
 repositories() {
   echo "## zypper lr -u"; zypper --non-interactive lr -u 2>&1
-  echo "## lyra packages"; rpm -q lyra-release lyra-installer sheliak lyra-upgrade lyra-vms lyra-welcome 2>&1
+  echo "## lyra packages"; rpm -q lyra-release lyra-installer sheliak lyra-upgrade lyra-vms lyra-driver lyra-welcome 2>&1
 }
 identity() { cat /etc/os-release; echo "## lyra release"; cat /usr/lib/lyra-os/release 2>&1; }
 # liveuser's password is locked, so an admin action must be authorized
