@@ -96,6 +96,7 @@ packages = [
   "lyra-display-wake",
   "lyra-downloads",
   "lyra-vms",
+  "lyra-driver",
   "lyra-firefox-ext",
   "lyra-firefox-theme",
   "lyra-fish-productivity",
@@ -130,9 +131,10 @@ legacy_packages = []
 # promoted. xdg-desktop-portal-gnome (#125, global shortcuts backport) was
 # promoted to release the same day (SR 1393905) and is now a regular package.
 retired_staging_packages = []
-# lyra-driver 0.1.0 (lyra-os-linux/lyra-driver) entered staging on 16/11/2026;
-# it moves to `packages` when promoted after the VM validation.
-staging_only_packages = ["lyra-driver"]
+# lyra-driver 0.1.0 (lyra-os-linux/lyra-driver ab30b7f) was tested on the
+# maintainer's machine and promoted on 16/11/2026 (SR 1397965, release srcmd5
+# 489455a9c27d10108549cda6b7926a0a); it is now a regular package.
+staging_only_packages = []
 
 [[projects.targets]]
 name = "openSUSE_Leap_16.1"
