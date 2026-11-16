@@ -448,6 +448,28 @@
       "selection": "none",
       "lint": "RPM policy checks and upstream ownership review",
       "rationale": "Third-party SooperLooper packaged from upstream for the Vega store; interface and translations stay upstream."
+    },
+    {
+      "id": "x3270",
+      "project": "lyra",
+      "wave": "store-e6",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "RPM policy checks and upstream ownership review",
+      "rationale": "Third-party x3270 suite (x3270, c3270, s3270, pr3287) linked from openSUSE Base:System for the Vega store; interface stays upstream."
+    },
+    {
+      "id": "hercules",
+      "project": "lyra",
+      "wave": "store-e6",
+      "status": "not-applicable",
+      "format": "none",
+      "domain": "none",
+      "selection": "none",
+      "lint": "RPM policy checks and upstream ownership review",
+      "rationale": "Third-party SDL Hercules mainframe emulator branched from openSUSE Emulators (built without REXX on Leap 16.1) for the Vega store; interface stays upstream."
     }
   ]
 }
