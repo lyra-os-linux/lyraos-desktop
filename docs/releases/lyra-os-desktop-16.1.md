@@ -67,9 +67,8 @@ e da [Alpha 7](lyra-os-desktop-1.1-alpha7.md).
 
 ## Depois da instalação
 
-A ISO traz o Vega da RC 3 (vegad 5.6.2, vega-gtk 5.8.0). A primeira
-atualização já traz as versões novas do Vega publicadas depois da RC 3. Entre
-as mudanças, o Vega deixa de instalar o driver NVIDIA: o driver passa a ser
+A primeira atualização depois da instalação traz as versões mais recentes do
+Vega, que segue seu próprio ciclo. Entre as mudanças, o Vega deixa de instalar o driver NVIDIA: o driver passa a ser
 instalado pelo [guia](https://github.com/lyra-os-linux/lyraos-desktop/discussions/234),
 com os pacotes oficiais da NVIDIA para o Leap 16.1.
 
