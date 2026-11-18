@@ -77,8 +77,10 @@ sessão live; a confirmação final aciona o backend privilegiado e apresenta o
 resultado da execução. Não há segundo instalador, configuração alternativa ou
 fallback na imagem.
 
-O gate completo da candidata final foi aprovado em 30/10/2026 e a mesma ISO foi
-promovida por tag à 16.1 estável, sem rebuild. As correções da suíte GNOME
+O gate completo da candidata final foi aprovado em 30/10/2026 e a ISO foi
+promovida por tag à 16.1 estável em 03/11/2026. Como ela ainda se identificava
+como "16.1 RC 3", a ISO estável foi reconstruída em 14/11/2026 com a
+identidade `16.1`. As correções da suíte GNOME
 integram a release; cenários dependentes de hardware, firmware e equipamento
 continuam registrados nas notas de lançamento e nas issues do repositório.
 

@@ -1,24 +1,24 @@
 # Lyra OS 16.1 “Odisseia” — notas de lançamento
 
 Versão estável do Lyra OS Desktop, com GNOME, sobre **openSUSE Leap 16.1**,
-publicada em **3 de novembro de 2026**. É a própria ISO da
-[RC 3](lyra-os-desktop-16.1-rc.3.md), a candidata final, promovida por tag sem
-rebuild. O arquivo mantém o nome da RC 3, com o mesmo checksum e a mesma
-assinatura.
+publicada em **3 de novembro de 2026**. Em 03/11 a ISO da
+[RC 3](lyra-os-desktop-16.1-rc.3.md), a candidata final, foi promovida por tag
+sem rebuild, mas ainda se identificava como "16.1 RC 3". Em 14/11/2026 a ISO
+estável foi reconstruída a partir da `main`, com a identidade `16.1`.
 
 | Campo | Valor |
 | --- | --- |
 | Versão | `16.1` |
-| Tag | `v16.1` (o mesmo commit da `v16.1-rc.3`) |
-| Commit | `70e4bf9805b3caaa32052585ffce75467a282acd` |
-| Arquivo | `LyraOS-Desktop-16.1-rc.3-x86_64.iso` |
-| SHA-256 | `50211bcf31271d232ea4326fc46704cad79a729d1bb363679ce32829d7794a3a` |
+| Arquivo | `LyraOS-Desktop-16.1-x86_64.iso` |
+| Build | 14/11/2026, a partir da `main` |
+| Assinatura | `LyraOS-Desktop-16.1-x86_64.iso.asc`, chave Lyra OS Release |
 | Download | [releases/16.1/stable/desktop/](https://sourceforge.net/projects/lyra/files/releases/16.1/stable/desktop/) no SourceForge |
-| Build | 30/10/2026, `scripts/build-desktop-rc3.sh` |
-| Gate | completo e aprovado em 30/10/2026 |
+| Tag | `v16.1` (o mesmo commit da `v16.1-rc.3`, `70e4bf9`) |
+| ISO da RC 3 | `LyraOS-Desktop-16.1-rc.3-x86_64.iso`, mantida na mesma pasta; gate completo aprovado em 30/10/2026 |
 
 Quem instalou a RC 3 já tem o sistema da versão estável e só precisa seguir
-atualizando. As atualizações do Leap 16.1 final chegam pelo repositório
+atualizando: a atualização do pacote `lyra-release` troca a identidade para
+"Lyra OS 16.1". As atualizações do Leap 16.1 final chegam pelo repositório
 `update` depois da instalação.
 
 ## Suporte
@@ -100,9 +100,15 @@ aberta.
 
 ## Integridade
 
-O bundle publicado inclui a ISO, as evidências do gate, os SBOMs, o checksum e
-a assinatura destacada. Baixe a ISO, o `.sha256` e o `.sha256.asc` da mesma
-pasta e confira:
+A ISO estável vem com a assinatura destacada da própria ISO. Baixe a ISO e o
+`.asc` da mesma pasta e confira:
+
+```sh
+gpg --verify LyraOS-Desktop-16.1-x86_64.iso.asc LyraOS-Desktop-16.1-x86_64.iso
+```
+
+A ISO da RC 3, mantida na pasta, segue com o bundle completo (evidências do
+gate, SBOMs, `.sha256` e `.sha256.asc`):
 
 ```sh
 sha256sum -c LyraOS-Desktop-16.1-rc.3-x86_64.iso.sha256
