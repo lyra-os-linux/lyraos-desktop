@@ -10,7 +10,7 @@ estável foi reconstruída a partir da `main`, com a identidade `16.1`.
 | --- | --- |
 | Versão | `16.1` |
 | Arquivo | `LyraOS-Desktop-16.1-x86_64.iso` |
-| Build | 14/11/2026, a partir da `main` |
+| Build | 14/11/2026, commit `96cea7c` (tag `v16.1-iso.20261114`) |
 | Assinatura | `LyraOS-Desktop-16.1-x86_64.iso.asc`, chave Lyra OS Release |
 | Download | [releases/16.1/stable/desktop/](https://sourceforge.net/projects/lyra/files/releases/16.1/stable/desktop/) no SourceForge |
 | Tag | `v16.1` (o mesmo commit da `v16.1-rc.3`, `70e4bf9`) |
