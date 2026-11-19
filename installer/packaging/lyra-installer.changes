@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Nov 19 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
+
+- Euri, the Lyra OS mascot, guides the user from the side rail: a
+  speech bubble with a tip for each step and for the installing,
+  completed and failed states (en-US, pt-BR, es-ES).
+
+-------------------------------------------------------------------
 Tue Nov 10 2026 - Rodrigo Brito <183213+britors@users.noreply.github.com>
 
 - Disk discovery no longer depends on PATH: lsblk runs as

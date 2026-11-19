@@ -13,6 +13,8 @@ const installStatus=document.querySelector('#install-status');
 const installStatusTitle=document.querySelector('#install-status-title');
 const reboot=document.querySelector('#reboot');
 const rebootError=document.querySelector('#reboot-error');
+const euriGuide=document.querySelector('#euri-guide');
+const euriBubble=document.querySelector('#euri-bubble');
 const {invoke}=window.__TAURI__.core;
 const {listen}=window.__TAURI__.event;
 const i18n=window.LyraI18n;
@@ -290,8 +292,32 @@ function updateInstallButtonState(){
   install.hidden=current!==6||!installConfirm.checked||installing||installationTerminal;
 }
 
+// Euri, the mascot, comments on the current step or installation moment.
+// A moment (installing, done, failed…) overrides the per-step line.
+let euriMoment=null;
+const euriMoods={installing:'working',done:'done',failed:'worried',failedRetry:'worried'};
+const escapeHtml=value=>value.replace(/[&<>"']/g,char=>`&#${char.charCodeAt(0)};`);
+function updateEuri(){
+  const key=euriMoment||`step${current}`;
+  const name=document.querySelector('#full-name').value.trim().split(/\s+/)[0];
+  const named=name&&(key==='step6'||key==='done');
+  const html=named?i18n.t(`euri.${key}Named`,{name:escapeHtml(name)}):i18n.t(`euri.${key}`);
+  euriGuide.dataset.mood=euriMoods[euriMoment]||(current===0?'hello':'guide');
+  if(euriBubble.innerHTML===html) return;
+  euriBubble.innerHTML=html;
+  euriBubble.style.animation='none';
+  void euriBubble.offsetWidth;
+  euriBubble.style.animation='';
+}
+
+function setEuriMoment(moment){
+  euriMoment=moment;
+  updateEuri();
+}
+
 function show(index){
   current=index;
+  if(euriMoment==='failedRetry'&&index!==6) euriMoment=null;
   pages.forEach((page,i)=>page.classList.toggle('page-active',i===index));
   steps.forEach((step,i)=>step.classList.toggle('active',i===index));
   back.disabled=index===0||installing||installationTerminal;
@@ -303,6 +329,7 @@ function show(index){
   label.textContent=i18n.t('step',{current:`0${index+1}`});
   updateNextButtonState();
   updateInstallButtonState();
+  updateEuri();
 }
 
 function validate(){
@@ -506,6 +533,7 @@ async function executeInstallation(){
   reboot.hidden=true;
   rebootError.hidden=true;
   setInstallationStatus('running',i18n.t('installAuthorizing'));
+  setEuriMoment('installing');
   updateInstallButtonState();
   updateNextButtonState();
 
@@ -532,10 +560,12 @@ async function executeInstallation(){
       installationTerminal=true;
       setInstallationStatus('failed',i18n.t('installFailed'));
       install.textContent=i18n.t('installFailed');
+      setEuriMoment('failed');
     }else if(completed){
       installationTerminal=true;
       installStatus.hidden=true;
       reboot.hidden=false;
+      setEuriMoment('done');
       await fitWindowToMonitor();
     }else{
       throw new Error('installer service did not report completion');
@@ -544,6 +574,7 @@ async function executeInstallation(){
     console.error('Could not start installation',error);
     setInstallationStatus('failed',i18n.t('installFailed'));
     install.textContent=i18n.t('installRetry');
+    setEuriMoment('failedRetry');
   }finally{
     if(stopListening) stopListening();
     installing=false;
